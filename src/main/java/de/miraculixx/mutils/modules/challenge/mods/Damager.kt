@@ -19,7 +19,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerItemHeldEvent
 import org.bukkit.event.player.PlayerMoveEvent
 
-class Damager : Challenge() {
+class Damager : Challenge {
     override val challenge = Modules.DAMAGER
     private val listener = ArrayList<Listener>()
     private var damage = 1.0

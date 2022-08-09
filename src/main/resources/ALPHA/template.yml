@@ -1,0 +1,36 @@
+#-------------------> Challenge Creator <-------------------#
+#
+#
+#
+#-----------------------------------------------------------#
+
+# Do not change this value!
+# Otherwise, this challenge will get corrupted
+ID: UUID
+
+Name: "Template Challenge"
+Icon: DIRT
+Info: "This is a basic template for all custom Challenges"
+
+MoveEvents:
+  MoveGeneralEvent: false
+  MoveBlockEvent: false
+  MoveCameraEvent: false
+  JumpEvent: false
+  DimensionSwapEvent: false
+
+InteractionEvents:
+  InventoryInteractEvent: false
+  BlockInteractEvent: false
+  EntityInteractEvent: false
+  BlockBreakEvent: false
+  BlockPlaceEvent: false
+  ItemDropEvent: false
+  ItemCollectEvent: false
+
+DamageEvents:
+  PlayerDamageEvent: false
+  EntityDamageEvent: false
+  EntityDeathEvent: false
+
+

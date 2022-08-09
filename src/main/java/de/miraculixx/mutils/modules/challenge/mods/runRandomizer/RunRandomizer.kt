@@ -20,7 +20,7 @@ import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
 
-class RunRandomizer : Challenge() {
+class RunRandomizer : Challenge {
     override val challenge = Modules.RUN_RANDOMIZER
     private var runRandomObj: RunRandomizerData? = null
 

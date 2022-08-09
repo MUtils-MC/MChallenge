@@ -21,7 +21,7 @@ import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.vehicle.VehicleCreateEvent
 import org.bukkit.event.vehicle.VehicleEnterEvent
 
-class InTime : Challenge() {
+class InTime : Challenge {
     override val challenge = Modules.IN_TIME
     private var timers = HashMap<Entity, InTimeData>()
     private var mobTime = 1

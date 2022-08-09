@@ -2,6 +2,7 @@ package de.miraculixx.mutils.modules.challenge.mods
 
 import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.modules.challenge.Challenge
+import de.miraculixx.mutils.modules.challenge.utils.getLivingMobs
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
 import net.axay.kspigot.event.listen
@@ -9,12 +10,10 @@ import net.axay.kspigot.event.register
 import net.axay.kspigot.event.unregister
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
-import org.bukkit.entity.LivingEntity
 import org.bukkit.event.player.PlayerToggleSneakEvent
 import org.bukkit.inventory.ItemStack
-import java.util.*
 
-class SneakSpawn : Challenge() {
+class SneakSpawn : Challenge {
     override val challenge = Modules.SNEAK_SPAWN
     private var mobs: Boolean? = null
     private var livings: List<EntityType>? = null
@@ -26,9 +25,7 @@ class SneakSpawn : Challenge() {
 
         //Create List of Living Entitys
         if (mobs == true) {
-            val list = kotlin.collections.ArrayList<EntityType>(Arrays.stream(EntityType.values()).filter {
-                    entityType -> entityType.entityClass != null && LivingEntity::class.java.isAssignableFrom(entityType.entityClass)
-            }.toList())
+            val list = getLivingMobs(false)
             list.remove(EntityType.PLAYER)
             livings = list
         } else {

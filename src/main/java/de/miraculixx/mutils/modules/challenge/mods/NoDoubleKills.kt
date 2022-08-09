@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.util.*
 
-class NoDoubleKills : Challenge() {
+class NoDoubleKills : Challenge {
     override val challenge = Modules.NO_DOUBLE_KILL
     private var lastEntity = EntityType.PLAYER
     private val lastEntities = HashMap<UUID, EntityType>()

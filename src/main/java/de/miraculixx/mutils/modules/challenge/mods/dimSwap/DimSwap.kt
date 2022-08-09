@@ -21,7 +21,7 @@ import org.bukkit.event.player.PlayerPortalEvent
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class DimSwap : Challenge() {
+class DimSwap : Challenge {
     override val challenge = Modules.DIM_SWAP
 
     override fun start(): Boolean {
@@ -52,8 +52,8 @@ class DimSwap : Challenge() {
     private val onEndportal = listen<PlayerMoveEvent>(register = false) {
         if (it.player.world.environment != World.Environment.THE_END) return@listen
         if (it.to.world == null) return@listen
-        val loc = Location(it.to!!.world, it.to!!.x, it.to!!.y - 1, it.to!!.z)
-        if (it.to!!.world?.getBlockAt(loc)?.type == Material.END_PORTAL || it.to!!.world?.getBlockAt(loc)?.type == Material.BEDROCK) {
+        val loc = Location(it.to.world, it.to.x, it.to.y - 1, it.to.z)
+        if (it.to.world?.getBlockAt(loc)?.type == Material.END_PORTAL || it.to.world?.getBlockAt(loc)?.type == Material.BEDROCK) {
             val world = worlds[0]
             it.player.teleport(world.getHighestBlockAt(0, -60).location)
             val dragon = world.spawn(

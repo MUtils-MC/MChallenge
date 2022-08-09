@@ -26,7 +26,7 @@ import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
 
 
-class Ghost : Challenge() {
+class Ghost : Challenge {
     override val challenge = Modules.GHOST
     private var currentBlock = HashMap<Player, Material>()
     private var ghostObj: GhostData? = null
@@ -96,12 +96,12 @@ class Ghost : Challenge() {
     private val onMove = listen<PlayerMoveEvent>(register = false) {
         if (!currentBlock.containsKey(it.player)) return@listen
 
-        if (it.to?.block?.type == Material.SCAFFOLDING) {
+        if (it.to.block.type == Material.SCAFFOLDING) {
             ghostObj?.addPlayer(it.player)
         } else
             ghostObj?.removePlayer(it.player)
 
-        if (it.to?.blockX == it.from.blockX && it.to?.blockZ == it.from.blockZ && it.to?.blockY == it.from.blockY) return@listen
+        if (it.to.blockX == it.from.blockX && it.to.blockZ == it.from.blockZ && it.to.blockY == it.from.blockY) return@listen
         ghostObj?.update(it.player, currentBlock[it.player]!!)
     }
 

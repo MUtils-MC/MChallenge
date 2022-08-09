@@ -10,7 +10,7 @@ import net.axay.kspigot.event.unregister
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.player.PlayerMoveEvent
 
-class BoostUp : Challenge() {
+class BoostUp : Challenge {
     override val challenge = Modules.BOOST_UP
     private var radius: Double = 4.0
     private var boost: Double = 0.5

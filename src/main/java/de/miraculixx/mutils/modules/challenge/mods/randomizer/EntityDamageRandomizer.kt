@@ -17,7 +17,7 @@ import java.util.*
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-class EntityDamageRandomizer : Challenge() {
+class EntityDamageRandomizer : Challenge {
     override val challenge = Modules.RANDOMIZER_ENTITY_DAMAGE
     private var random = true
     private val map = HashMap<EntityType, Int>()

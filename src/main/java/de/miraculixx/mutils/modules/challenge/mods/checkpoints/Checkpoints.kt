@@ -21,7 +21,7 @@ import org.bukkit.event.entity.EntityExplodeEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
 
-class Checkpoints : Challenge() {
+class Checkpoints : Challenge {
     override val challenge = Modules.CHECKPOINTS
     private val actionList = HashMap<Player, CheckpointsData?>()
 

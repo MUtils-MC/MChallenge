@@ -13,7 +13,7 @@ import org.bukkit.entity.Player
 import org.bukkit.entity.Projectile
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 
-class DamageDuell : Challenge() {
+class DamageDuell : Challenge {
     override val challenge = Modules.DAMAGE_DUELL
 
     override fun start(): Boolean {

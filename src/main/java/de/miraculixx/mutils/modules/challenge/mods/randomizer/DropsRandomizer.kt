@@ -16,7 +16,7 @@ import org.bukkit.loot.LootTables
 import java.util.*
 import kotlin.random.Random
 
-class DropsRandomizer : Challenge() {
+class DropsRandomizer : Challenge {
     override val challenge = Modules.RANDOMIZER_ENTITY
     private var random = false
     private val map = HashMap<EntityType, EntityType>()

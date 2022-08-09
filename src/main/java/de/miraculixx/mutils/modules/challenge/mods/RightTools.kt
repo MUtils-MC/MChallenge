@@ -12,7 +12,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 
-class RightTools : Challenge() {
+class RightTools : Challenge {
     override val challenge = Modules.RIGHT_TOOL
 
     override fun start(): Boolean {

@@ -13,7 +13,7 @@ import org.bukkit.World
 import org.bukkit.World.Environment
 import org.bukkit.potion.PotionEffectType
 
-class BiomeRandomizer : Challenge() {
+class BiomeRandomizer : Challenge {
     override val challenge = Modules.RANDOMIZER_BIOMES
     private val chWorlds = ArrayList<World>()
 

@@ -1,0 +1,129 @@
+#----------------->> Modules <<-------------------#
+#    Module activation. Whether a Module should   #
+#                be loaded or not.                #
+#         You can change everything safely        #
+#  ingame! Only edit stuff if you know what you   #
+#                    are doing!                   #
+#-------------------------------------------------#
+
+# Challenges
+# - Active > true / false
+# - [Setting] > anything (ATTENTION)
+FLY:
+  Active: false
+  Boost: 2
+IN_TIME:
+  Active: false
+  PlayerTime: 120
+  MobTime: 120
+  DamageTime: 5
+MOB_RANDOMIZER:
+  Active: false
+  Random: false
+CHECKPOINTS:
+  Active: false
+  Teleport: false
+DIM_SWAP:
+  Active: false
+  Pickaxe: false
+SNAKE:
+  Active: false
+  Speed: 1
+REALISTIC:
+  Active: false
+  Info: "111"
+CAPTIVE:
+  Active: false
+  Size: 1
+  Amplifier: 1
+  LevelMode: false
+GHOST:
+  Active: false
+  Radius: 7
+  Mode: true
+  Adventure: false
+GRAVITY:
+  Active: false
+  Delay: 180
+BLOCK_ASYNC:
+  Active: false
+NO_SAME_ITEM:
+  Active: false
+  Lives: 5
+  SyncHeart: false
+  Info: "EVERYTHING"
+LIMITED_SKILLS:
+  Active: false
+  Random: true
+CHRISTMAS:
+  Active: false
+RUN_RANDOMIZER:
+  Active: false
+  Goal: 500
+SPLIT_HP:
+  Active: false
+DAMAGE_DUELL:
+  Active: false
+  Percent: 50
+ONE_BIOME:
+  Delay: 300
+BOOST_UP:
+  Active: false
+  Radius: 5
+  Boost: 5
+  Mode: true
+RIGHT_TOOL:
+  Active: false
+CHUNK_BLOCK_BREAK:
+  Active: false
+  Bundle: true
+STAY_AWAY:
+  Active: false
+  Distance: 3.0
+RANDOMIZER_BLOCK:
+  Active: false
+  Random: false
+RANDOMIZER_ENTITY:
+  Active: false
+  Random: false
+RANDOMIZER_BIOMES:
+  Active: false
+  Random: false
+RANDOMIZER_SPAWN:
+  Active: false
+  Random: false
+FORCE_COLLECT:
+  Active: false
+  MinSecs: 180
+  MaxSecs: 360
+  Cooldown: 300
+RANDOMIZER_ENTITY_DAMAGE:
+  Active: false
+  Random: false
+NO_DOUBLE_KILL:
+  Active: false
+  Global: true
+DAMAGER:
+  Active: false
+  Mode: SLOT_CHANGE
+  Damage: 1
+RIVALS_COLLECT:
+  Active: false
+  Mode: ITEMS
+  Joker: 3
+
+# Utilitys
+# - Active > true / false
+# - [Setting] > anything (ATTENTION)
+TIMER:
+  Active: true
+  #-> Moved to timer.yml
+PLAYER_WORLD:
+  Active: true
+  Type:
+BACK:
+  Active: true
+  #-> Moved to back.yml
+BACKPACK:
+  Active: true
+  #-> Moved to backpack.yml

@@ -1,0 +1,31 @@
+#---------------->> Placeholder <<-----------------#
+# %MAME% -> Executor / Player Name                 #
+# %INPUT% -> Variable Input                        #
+# %INPUT-2% -> Variable Input                      #
+# NOTE! Placeholder only works on some values!     #
+#------------>> Colors & Formatting <<-------------#
+# §1-9 / a-o ('&' also works)                      #
+# \n -> Next Line (NOT WORK ON ITEMS OR LISTS)     #
+# Commands without Color Code automatically use §7 #
+#                                                  #
+#------------------>> Credits <<-------------------#
+#        This Translation was created by           #
+#                      YOU                         #
+#--------------------------------------------------#
+
+# Displayed Language Name on load up
+# language: English (Example)
+language: Custom
+# Language ID and Filename
+# language-id: EN_US (Example for American English)
+language-id: Custom
+# Translator
+translator: Who are you?
+
+
+#----------------->> Commands <<------------------#
+# Syntax -> command.[global id]                   #
+#           >> Multiused command outputs          #
+#        -> command.[command id].[argument]       #
+#           >> Command feedback for an action     #
+#-------------------------------------------------#

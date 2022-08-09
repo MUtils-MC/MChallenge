@@ -15,7 +15,7 @@ import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.player.PlayerMoveEvent
 
-class StayAway : Challenge() {
+class StayAway : Challenge {
     override val challenge = Modules.STAY_AWAY
     private var distance: Double? = null
 

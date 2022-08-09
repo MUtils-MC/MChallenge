@@ -22,7 +22,7 @@ import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.event.player.PlayerMoveEvent
 
-class LimitedSkills : Challenge() {
+class LimitedSkills : Challenge {
     override val challenge = Modules.LIMITED_SKILLS
     private var p1: Player? = null
     private var p2: Player? = null

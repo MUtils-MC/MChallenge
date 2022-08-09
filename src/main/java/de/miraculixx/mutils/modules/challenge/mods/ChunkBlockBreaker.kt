@@ -12,7 +12,7 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.inventory.ItemStack
 
-class ChunkBlockBreaker : Challenge() {
+class ChunkBlockBreaker : Challenge {
     override val challenge = Modules.CHUNK_BLOCK_BREAK
     private var bundle: Boolean? = null
 

@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.EntityRegainHealthEvent
 
 
-class SplitHP : Challenge() {
+class SplitHP : Challenge {
     override val challenge = Modules.SPLIT_HP
 
     override fun start(): Boolean {

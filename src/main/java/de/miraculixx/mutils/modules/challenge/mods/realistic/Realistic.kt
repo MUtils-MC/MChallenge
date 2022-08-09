@@ -33,7 +33,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class Realistic: Challenge() {
+class Realistic: Challenge {
     override val challenge = Modules.REALISTIC
     private var weight: InventoryWeight? = null
     private var pathLogic: PathLogic? = null

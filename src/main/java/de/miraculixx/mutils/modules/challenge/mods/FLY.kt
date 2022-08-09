@@ -27,7 +27,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class FLY : Challenge() {
+class FLY : Challenge {
     override val challenge = Modules.FLY
     private val data: HashMap<Player, ItemStack?> = HashMap()
     private val wings = itemStack(Material.ELYTRA) {

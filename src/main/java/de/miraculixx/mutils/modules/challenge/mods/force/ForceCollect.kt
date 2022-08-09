@@ -9,7 +9,7 @@ import de.miraculixx.mutils.utils.msg
 import net.axay.kspigot.runnables.taskRunLater
 import org.bukkit.Material
 
-class ForceCollect : Challenge() {
+class ForceCollect : Challenge {
     override val challenge = Modules.FORCE_COLLECT
     private var forceObject: ForceObject? = null
 

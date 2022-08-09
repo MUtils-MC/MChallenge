@@ -17,7 +17,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerJoinEvent
 
-class NoSameItem : Challenge() {
+class NoSameItem : Challenge {
     override val challenge = Modules.NO_SAME_ITEM
     private var manager: NoSameItemManager? = null
 

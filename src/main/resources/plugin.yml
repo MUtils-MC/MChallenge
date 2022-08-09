@@ -1,0 +1,103 @@
+name: MUtils
+load: STARTUP
+version: 3.1.1
+loadbefore:
+  - "BUtils.jar"
+  - "BUtils"
+main: de.miraculixx.mutils.Main
+api-version: 1.16
+authors: [ Miraculixx ]
+description: MUtils upgrades your Server with many Utilitys, Challenges, Competitions and so much more!
+website: https://mutils.de/
+libraries:
+  - "net.axay:kspigot:1.18.0"
+  - "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
+  - "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+  - "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0"
+  - "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
+  - "io.ktor:ktor-client-cio-jvm:2.0.0"
+  - "io.ktor:ktor-client-core-jvm:2.0.0"
+  - "net.kyori:adventure-api:4.11.0"
+  - "net.kyori:adventure-text-minimessage:4.11.0"
+  - "net.kyori:adventure-text-serializer-plain:4.11.0"
+
+commands:
+  challenge:
+    description: "Main Command for the Challenge module"
+    aliases:
+      - ch
+      - settings
+    permission: mutils.command.challenge
+  chdebug:
+    permission: mutils.command.debug
+  spec:
+    description: "Main Command for the custom Spectating module"
+    aliases:
+      - spectate
+      - hide
+      - vanish
+    permission: mutils.command.spectate
+  gamemode:
+    description: "Override vanilla /gamemode Command"
+    aliases:
+      - gm
+    permission: minecraft.command.gamemode
+  reset:
+    description: "Reset the current World and temp-data"
+    permission: mutils.command.reset
+  timer:
+    description: "Main Command for the Timer module"
+    permission: mutils.command.timer
+  position:
+    description: "Save and load positions to use them later"
+    aliases:
+      - pos
+      - location
+      - loc
+    permission: mutils.command.position
+  heal:
+    description: "Heal and Feed chosen Entitys"
+    permission: mutils.command.heal
+  back:
+    description: "Warp back to your last death position"
+    permission: mutils.command.back
+  creator:
+    description: "Create own Challenges without touching any code!"
+    aliases:
+      - challengecreator
+    permission: mutils.command.creator
+  limitedskills:
+    description: "<< Challenge Command >> - Choose the roles"
+    permission: mutils.command.limitedskills
+  invsee:
+    description: "Access and manipulate other Players Inventory"
+    permission: mutils.command.invsee
+  backpack:
+    description: "Access your Backpack from everywhere (Module \"Backpack\" must be active)"
+    aliases:
+      - bp
+  texturepack:
+    description: "Save and load external Ressource packs. Force other Players to use them"
+    aliases:
+      - resourcepack
+    permission: mutils.command.texturepack
+  config:
+    description: "MUtils Config Manipulation Command"
+    permission: mutils.command.config
+  settings:
+    description: "Overall main Command to access all side Modules"
+    permission: mutils.command.settings
+  language:
+    description: "Access and manipulate MUtils message language"
+    permission: mutils.command.language
+  speedrun:
+    description: "Minecraft Speed running"
+    permission: mutils.command.speedrun
+  world:
+    description: "Create oder Delete Worlds"
+    permission: mutils.command.world
+  reminder:
+    description: "Create a little reminder to avoid forgetting your minds one second later"
+  verify:
+    description: "Activate a Licence Key to connect MUtils to your Account"
+    permission: mutils.command.verify

@@ -1,0 +1,481 @@
+#---------------->> Placeholder <<-----------------#
+# %MAME% -> Executor / Player Name                 #
+# %INPUT% -> Variable Input                        #
+# %INPUT-2% -> Variable Input                      #
+# NOTE! Placeholder only works on some values!     #
+#------------>> Colors & Formatting <<-------------#
+# §1-9 / a-o ('&' also works)                      #
+# \n -> Next Line (NOT WORK ON ITEMS OR LISTS)     #
+# Commands without Color Code automatically use §7 #
+#                                                  #
+#------------------>> Credits <<-------------------#
+#        This Translation was created by           #
+#                  Miraculixx                      #
+#--------------------------------------------------#
+
+# Displayed Language Name on load up
+# language: English (Example)
+language: American English
+# Language ID and Filename
+# language-id: EN_US (Example for American English)
+language-id: EN_US
+# Translator
+translator: PhoenixGHG
+
+
+#----------------->> Commands <<------------------#
+# Syntax -> command.[global id]                   #
+#           >> Multiused command outputs          #
+#        -> command.[command id].[argument]       #
+#           >> Command feedback for an action     #
+#-------------------------------------------------#
+command:
+  notPlayer: "&cYou have to be a player to execute this command"
+  notOnline: "&cThis player isn't on the server!"
+  reload:
+    reload: "The server is reloading..."
+    success: "The server has been reloaded successfully"
+  gamemode:
+    help: "&9Syntax&7 >> /gamemode [gamemode] <name/selector>\n&9Alias&7 - /gm\n&9use§7 >> Change your gamemode or the gamemode of other players "
+    change: "The player &9%NAME%&7 was put in gamemode &9%INPUT%&7!"
+  heal:
+    help: "&9Syntax§7 >> /heal <name/selector>\n&9Alias§7 - no\n&9use§7 >> Set life and hunger of you or other players to maximum "
+    heal: "Hearts and lives have been set to maximum!"
+    multiple: "Hearts and lives have been set to maximum!&8(%INPUT%)"
+  invsee:
+    help: "&9Syntax§7 >> /invsee [name]\n&9Alias§7 - no\n&9use§7 >> Open the inventory of a player"
+  position:
+    help: "&9Syntax§7 >> /position [name/list] <delete>\n&9Alias§7 - /pos /location /loc\n&9use§7 >> Save or load coordinates of positions "
+    delete: "The position &9%INPUT% (%INPUT-2%)&7 has been deleted!"
+    get: "The position &9%INPUT%&7 is at &9%INPUT-2%"
+    set: "The position &9%INPUT%&7 has been set at &9%INPUT-2% "
+  texturepack:
+    help: "&9Syntax§7 >> /texturepack [set/load/delete] <name/selector> \n&9Alias§7 - /resourcepack\n&9use§7 >> Save or load resource packs for players"
+    notExist: "&cNo value could be found under the name %INPUT% !"
+    set: "Ressource pack &9%INPUT%&7 has been saved! Load it with &9/texturepack load %INPUT%§8 ( %INPUT-2% )"
+    load: "Load ressourcen pack %INPUT%... &8(Server RessourcePacks have to be activated)"
+    loadAdmin: "Load ressourcen pack %INPUT%... &8(initialized by %INPUT-2%)"
+    delete: "Ressource pack &9%INPUT%&7 has been deleted from the server!"
+  spectator:
+    help: "&9Syntax§7 >> /spectate [join/leave/items] <name/selector>\n&9Alias§7 - /spec /hide /vanish\n&9use§7 >> Remove yourself from any challenges and become invisible! Get access to useful tools for watching"
+    isSpectator: "&cYou are already spectator!"
+    notSpectator: "&cYou aren't spectator!"
+    join: "Join spectator mode! &a(invisible)"
+    leave: "Leave spectator mode! &c(visible)"
+  visible:
+    hideGlobal: "All players are now invisible to each other!"
+    hideSelf: "All players are now invisible to you!"
+  challenge:
+    help: "&9Syntax§7 >> /challenge <start/stop/pause/continue> \n&9Alias§7 - /ch\n&9use§7 >> Main command for all Challenges. Challenges can only be changed in stopped mode. 'Stop' terminates the whole system, while 'Pause' only temporarily deactivates functions"
+    alreadyOn: "&cChallenges are already activated!"
+    alreadyOff: "&cChallenges are deactivated! Please activate some first to change their status!"
+    failed: "&cChallenges could not be started! Either no Challenges are activated or a Challenge requirement was not met!"
+    start: "Selected Challenges have been launched!"
+    stop: "Active Challenges have been stopped!"
+    pause: "Active Challenges have been paused! Continue with &9/ch continue"
+    continue: "Paused Challenges have been reactivated!"
+  timer:
+    help: "&9Syntax§7 >> /timer <resume/setup/reset> \n&9Alias§7 - no\n&9use§7 >> Main command for the timer module. Stop your time or set a limit. Automate changes through goals and rules"
+    alreadyOn: "&cThe timer is already activated!"
+    alreadyOff: "&cThe timer is already deactivated!"
+    resume: "The timer has been&a&l started&7!"
+    pause: "The timer has been&c&l paused&7!"
+    reset: "The timer has been reset successfully!"
+  lang:
+    help: "&9Syntax§7 >> /language <reload/get/set> \n&9Alias§7 - no\n&9use§7 >> Main command for the language system. Change the full language of the plugin or reload the file"
+    current: "Currently the language &9%INPUT%&7 is used"
+    switch: "The language has been changed to &9%INPUT%&7 ! &8(from %INPUT-2%)"
+    update: "The selected language configuration was reloaded"
+  config:
+    save: "Selected config File/s were successfully &9saved&7!"
+    reset: "Selected config File/s were successfully &9reset&7!"
+    reload: "Selected config File/s were successfully &9reloaded&7!"
+  speedrun:
+    help: "&9Syntax§7 >> /speedrun <disable/enable/settings> \n&9Alias§7 - no\n&9use§7 >> Main command for the speedrun module. While this module is activated, all other settings are deactivated"
+    notify: "&cThe speedrun module is activated! Deactivate it via &9/speedrun disable"
+    disable: "The speedrun module has been deactivated! Other functions are now usable"
+    isDisabled: "&cThe speedrun module is already deactivated!"
+
+
+#------------------>> Modules <<------------------#
+# Syntax -> modules.[module].[parameter]          #
+#           >> Module Messages                    #
+#           >> Tiles marked with '-title'         #
+# Syntax -> modules.ch.[challenge].[parameter]    #
+#           >> All Challenge Messages             #
+#-------------------------------------------------#
+modules:
+  worldManager:
+    worldNotExist: "&cThe world %INPUT% could not be loaded! &8(See console)"
+    estimated-title: "&cDuration ca &l%INPUT%s until teleportation"
+    lag-title: "&eStabilize TPS at 16 (Pause worlds tick)"
+    worldCreated: "&eWorld &l%INPUT%&e was created"
+  texturepack:
+    loading-title: "&cPlease activate Server ResourcePacks"
+  spectator:
+    join: "You joined the server as a Spectator!"
+    noPlayer: "&cNo matching player found! (not spectator)"
+  global:
+    running: "&cChallenge settings can only be changed in deactivated mode! Please deactivate first all via /ch stop"
+    soon: "%INPUT% is not yet implemented in this version! Keep an eye out for new updates"
+    outdated: "&cFEHLER! %INPUT% is only playable with server version &n%INPUT-2%&c !"
+    deactivated: "&cThe module &l%INPUT%&c is disabled! Activate it in the settings before use"
+  timer:
+    # Use `/` to display a singular and plural Version (only on days)
+    # E.g. "Day/s" -> 1 Day & 3 Days
+    days: "Day/s"
+    seconds: "Seconds"
+    minutes: "Minutes"
+    hours: "Hours"
+    paused: "Paused"
+    timeOver: "§c☠ §6The time has expired!\n"
+    gameOver: "&c☠ &6%PLAYER%&7 died!"
+    success: "&e⚐ &7Challenge achieved!\n&8>> &7The &6&l%INPUT%&7 was killed"
+    playtime: "&8>> &6Playtime &e&l%INPUT%\n"
+    back: "&7Type &9/back&7 to teleport to the death point!"
+    kick: "&7>> &9You died in the challenge &7<<\n&7>> &9and disqualified &7<<"
+    ban: "&7>> &9Hardcore &7<<\n&7>> &9Hardcore mode is enabled on this server! &7<<"
+  # <- Start of Challenge Message Package ->
+  ch:
+    noSameItem:
+      duplicate: "The item &9%INPUT%&7 had already been used by the player &9%PLAYER%&7!"
+      death: "The player &9%PLAYER%&7 had &9%INPUT%&7 same items!"
+      dead-title: "&4&oNo more lives"
+    snake:
+      hit: "&c%PLAYER% snake hit itself"
+      leave: "&c%PLAYER% has left his snake"
+    blockAsync:
+      death: "The player &9%PLAYER% &7has clicked the fake block at &9%INPUT%&7! &8(teleport)"
+  speedrun:
+    warning: "Activating the speedrun module will disable any other functions of the plugin! &9Click here&7 to start!"
+    noStructure: "Seed does not match the settings. Create new world..."
+    start: "Speedrun started! Use &9/reset&7 to get a new world. Good luck!"
+
+
+
+#------------------>> Items <<--------------------#
+# Syntax -> item.[module].[key].n                 #
+#           >> Displayed Name for selected Item   #
+#        -> item.[module].[key].l                 #
+#           >> Item Lore (description)            #
+#                ⚠ \n don't work! ⚠               #
+#-------------------------------------------------#
+item:
+  GUI:
+    Back: "Back to the main menu"
+    NavigateNL:
+      - "&7you can not go further"
+      - "&7scroll backwards"
+    NavigateNR:
+      - "&7you can not go further"
+      - "&7scroll forwards"
+    NavigateL:
+      - "&7One page back"
+      - "&7Click ≫ 1 page"
+      - "&7Sneak Click ≫ 5 pages"
+    NavigateR:
+      - "&7One page further"
+      - "&7Click ≫ 1 page"
+      - "&7Sneak Click ≫ 5 pages"
+    Select:
+      1:
+        l:
+          - "&7Overview of all challenges"
+          - "&7that are playable"
+      2:
+        l:
+          - "&7Manage your worlds and"
+          - "&7meet worlds specific or"
+          - "&7global settings"
+      3:
+        l:
+          - "&7challenge other players"
+          - "&7and play against them normal or"
+          - "&7exclusive Challenges"
+      4:
+        l:
+          - "&7Stop your time or set"
+          - "&7a stopwatch while playing! More"
+          - "&7settings for design and world"
+      5:
+        l:
+          - "&7For you the prefabricated Challenges are"
+          - "&7not enough? Create from scratch"
+          - "&7own challenges according to your wishes"
+      6:
+        l:
+          - "&7Settings..."
+      7:
+        l:
+          - "&7How fast can you play through Minecraft?"
+          - "&7reset your world without waiting"
+          - "&7and play directly on!"
+    FLY:
+      l:
+        - "&7Fly through the air with new powers"
+        - "&7like a superhero"
+        - "&7Jump Sneak to activate"
+    InTime:
+      l:
+        - "&7Each entity has a limited"
+        - "&7Time to live! By killing you get"
+        - "&7the time of the mob"
+    InTimeS:
+      1:
+        n: "Player start time"
+        l:
+          - "&7With what time should a"
+          - "&7player start?"
+      2:
+        n: "Entity start time"
+        l:
+          - "&7With what time should a"
+          - "&7entity start?"
+      3:
+        n: "Damage deduction"
+        l:
+          - "&7How much time should you be deducted per"
+          - "&7HP damage?"
+    MobBlock:
+      l:
+        - "&7Each mined block drops"
+        - "&7a random mob, instead of an item!"
+        - "&7This mob drops the block on kill"
+    Checkpoints:
+      l:
+        - "&7Set checkpoints (F) to travel"
+        - "&7back in the time! But be"
+        - "&7warned! The world is changing too..."
+    DimSwap:
+      l:
+        - "&7The portal dimensions have been swapped!"
+        - "&7The dragon is now waiting in the"
+        - "&7overworld for you..."
+        - "&7&oNether -> End -> Overworld"
+    Snake:
+      l:
+        - "&7You can only move on the snake!"
+        - "&7It will continuously move in"
+        - "&7your line of sight"
+    Realistic:
+      l:
+        - "&7Is Minecraft for you "
+        - "&7to unrealistic? Let's change that!"
+        - "&7Experience a whole new Minecraft"
+    Captive:
+      l:
+        - "&7The world is limited to a small area"
+        - "&7and it is up to you"
+        - "&7to enlarge it!"
+    CaptiveS:
+      1:
+        n: "Start size"
+        l:
+          - "&7Wich size should be applied"
+          - "&7to the starting border?"
+      2:
+        n: "Growth factor"
+        l:
+          - "&7By how many blocks should the border"
+          - "&7grow per point?"
+      3:
+        n: "Border Modus"
+        l:
+          - "&7By what should the Border be dependent"
+          - "&7and grow?"
+    Ghost:
+      l:
+        - "&7Get the ability to travel through blocks"
+        - "&7like a ghost"
+        - "&7But be careful! Ghosts are vulnerable..."
+    GhostS:
+      1:
+        n: "effective radius"
+        l:
+          - "&How large should be the radius"
+          - "&7of the ghost effect?"
+      2:
+        n: "Adventure mode"
+        l:
+          - "&7Should ghosts be in adventure mode"
+          - "&7during the ability?"
+      3:
+        n: "Sliding mode"
+        l:
+          - "&7Should ghosts be able"
+          - "&7to glide through blocks?"
+    Async:
+      l:
+        - "&7Each player sees his own world!"
+        - "&7however, if a player interacts with a"
+        - "&7fake block, he dies"
+    NoSameItem:
+      l:
+        - "&7Once an item is collected"
+        - "&7it belongs to the player."
+        - "&7Other players who also pick up this item"
+        - "&7lose a life"
+    NoSameItemS:
+      1:
+        n: "Life counter"
+        l:
+          - "&7With how many lives"
+          - "&7should all players start?"
+          - "&7(maximum value)"
+      2:
+        n: "Sync hearts"
+        l:
+          - "&7Should the lives be connected"
+          - "&7to the player hearts?"
+      3:
+        n: "Info mode"
+        l:
+          - "§7What information should be displayed"
+          - "§7to a player when changes are made?"
+          - "§7∙ EVERYTHING -> Item + lives Info"
+          - "§7∙ LIVE_CHANGE -> Life info"
+          - "§7∙ NOTHING -> no info"
+    LimitedSkills:
+      l:
+        - "&7Player 1 can see mobs,"
+        - "&7but cannot add damage."
+        - "&7Player 2 behaves exactly the opposite"
+    RandomizerRun:
+      l:
+        - "&7Each player gets 64 times an item "
+        - "&7every x blocks that he ran!"
+        - "&7Any other options for items are disabled!"
+    SharedHearts:
+      l:
+        - "&7Each player has the same hearts!"
+        - "&7So all get damage at the same time"
+        - "&7and regenerate together"
+    DamageDuell:
+      l:
+        - "&7All players get a percentage of"
+        - "&7the damage they deal. However,"
+        - "&7you can only die from your own damage."
+  Spec:
+    Hide:
+      l:
+        - "&7Make yourself visible "
+        - "&7or invisible to other players!"
+      on: "&7You are currently visible!"
+      off: "&7You are currently invisible"
+    SelfHide:
+      l:
+        - "&7Set for yourself if you"
+        - "&7can see other Spectator!"
+      on: "&7Other Spectators are visible!"
+      off: "&7Other Spectators are invisible!"
+    FlySpeed:
+      l:
+        - "&7Set for yourself how"
+        - "&7fast you can fly!"
+    Items:
+      l:
+        - "&7Whether you can pick up"
+        - "&7or throw away items!"
+      on: "&7You can interact with items!"
+      off: "&7You can't interact with items!"
+    Blocks:
+      l:
+        - "&7Whether you can mine"
+        - "&7or place blocks!"
+      on: "&7You can interact with blocks!"
+      off: "&7You can't interact with blocks!"
+    FakeB:
+      l:
+        - "&7Place fake blocks which"
+        - "&7disappear when clicked again!"
+    FakeS:
+      l:
+        - "&7Play fake sounds for specific players!"
+    Compass:
+      l:
+        - "&7Teleport to a random player"
+        - "&7or use the player menu"
+        - "&7for targeted teleportation!"
+    Settings:
+      l:
+        - "&7Open your own settings menu"
+        - "&7for world interactions and more!"
+    InfoStick:
+      l:
+        - "&7Hit entities or chests with this"
+        - "&7to get accurate information"
+        - "&7about them (players too)"
+    Troll:
+      l:
+        - "&7Troll live players with fake"
+        - "&7sounds or fake blocks!"
+  Timer:
+    Toggle:
+      l:
+        - "&7Disable or enable the timer "
+        - "&7and all integrated functions!"
+    Direction:
+      l:
+        - "&7In which direction the timer"
+        - "&7should count!"
+    Rules:
+      l:
+        - "&7Set how the timer should behave!"
+    Goals:
+      l:
+        - "&7Set what should be targets"
+        - "&7of the timer, at which"
+        - "&7everything will be finished!"
+    Design:
+      l:
+        - "&7Set the timer design"
+        - "&7the way you like it best!"
+    Style:
+      l:
+        - "&7The timer style in which you"
+        - "&7want the time to be displayed!"
+    Color1:
+      l:
+        - "&7Set the primary color of the timer "
+        - "&7(Primary is the time display)"
+    Color2:
+      l:
+        - "&7Set the secondary color of the timer"
+        - "&7(Secondary are the additions)"
+    Font1:
+      l:
+        - "&7Set the primary font of the timer"
+        - "&7(Primary is the time display)"
+    Font2:
+      l:
+        - "&7Set the secondary font of the timer"
+        - "&7(Secondary are the additions)"
+    MobDeath:
+      l:
+        - "&7As soon as a %INPUT% dies,"
+        - "&7the timer is terminated"
+    LastLeave:
+      l:
+        - "&7As soon as the last player leaves the"
+        - "&7server, the timer is stopped!"
+  Speedrun:
+    Village:
+      l:
+        - "&7Should there be a village "
+        - "&7near the spawn?"
+    Portal:
+      l:
+        - "&7Should there be a ruined portal"
+        - "&7near the spawn?"
+    Delay:
+      l:
+        - "&7Should the timer start automatically?"
+        - "&7Additionally the start delay can be determined"
+    Brutes:
+      l:
+        - "&7Should Brutes be removed from the game?"
+        - "&7Note: These only disappear on sight."
+    OldTrades:
+      l:
+        - "&7Should Piglins trade like in 1.16.1?"
+        - "&7i(Standard Speedrunning Version)"

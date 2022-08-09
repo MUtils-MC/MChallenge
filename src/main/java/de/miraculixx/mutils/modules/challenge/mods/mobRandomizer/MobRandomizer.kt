@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityExplodeEvent
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.entity.ItemMergeEvent
 
-class MobRandomizer : Challenge() {
+class MobRandomizer : Challenge {
     override val challenge = Modules.MOB_RANDOMIZER
     private var manager: MobRandomizerData? = null
 

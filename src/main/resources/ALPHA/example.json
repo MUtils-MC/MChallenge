@@ -1,0 +1,29 @@
+{
+  "name": "Challenge Name",
+  "description": "Challenge Description",
+  "author": "Miraculixx",
+  "version": {
+    "mc": "1.18.2",
+    "mutils": "3.2.0"
+  },
+  "events": [
+    {
+      "event": "PLAYER_MOVE_EVENT",
+      "data": {
+        "active": true,
+        "actions": {
+
+          "DROP_ITEM": [
+            "DIRT",
+            "STONE"
+          ],
+
+          "DAMAGE_PLAYER": [
+            "3"
+          ]
+
+        }
+      }
+    }
+  ]
+}

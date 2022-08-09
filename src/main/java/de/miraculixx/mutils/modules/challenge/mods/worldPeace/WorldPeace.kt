@@ -37,7 +37,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import kotlin.random.Random
 
-class WorldPeace : Challenge() {
+class WorldPeace : Challenge {
     override val challenge = Modules.WORLD_PEACE
     private val foodPlants = ArrayList<Material>()
     private val water = ArrayList<Material>()

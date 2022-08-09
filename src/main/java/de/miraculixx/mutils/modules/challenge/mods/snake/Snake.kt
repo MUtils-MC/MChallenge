@@ -15,7 +15,7 @@ import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.PlayerDeathEvent
 import java.util.*
 
-class Snake : Challenge() {
+class Snake : Challenge {
     override val challenge = Modules.SNAKE
     private val map = HashMap<UUID, SnakeObj?>()
 

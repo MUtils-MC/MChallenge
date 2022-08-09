@@ -18,7 +18,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent
 import java.util.*
 import kotlin.random.Random
 
-class MobSwitchRandomizer : Challenge() {
+class MobSwitchRandomizer : Challenge {
     override val challenge = Modules.RANDOMIZER_MOBS
     private var random = false
     private var list: List<EntityType>? = null

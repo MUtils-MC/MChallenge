@@ -23,7 +23,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.potion.PotionEffectType
 import java.util.*
 
-class GravityManager : Challenge() {
+class GravityManager : Challenge {
     override val challenge = Modules.GRAVITY
     private val barKey = NamespacedKey("mutils_gravity", UUID.randomUUID().toString())
     private val bar = Bukkit.createBossBar(barKey, "§e⇔ Normal Gravity ⇔", BarColor.YELLOW, BarStyle.SOLID)

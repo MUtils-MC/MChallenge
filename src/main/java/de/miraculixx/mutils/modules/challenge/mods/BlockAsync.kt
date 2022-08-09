@@ -21,7 +21,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.inventory.ItemStack
 
 
-class BlockAsync : Challenge() {
+class BlockAsync : Challenge {
     override val challenge = Modules.BLOCK_ASYNC
     private val blockList = HashMap<Location, Player>() //Location ist der fake Block - Player der Spieler, welcher den Block abgebaut hat
     private val dataList = HashMap<Location, BlockData>() //Location ist der fake Block - Material der ursprüngliche Block Type

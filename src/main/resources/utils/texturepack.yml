@@ -1,0 +1,21 @@
+#----------------->> Utilitys <<------------------#
+#       This Config is only for data saving!      #
+#        Do not edit anything or the Module       #
+#                will stop working                #
+#-------------------------------------------------#
+
+# Accepted values - Links
+# Note! Minecraft only accept direct links!
+# That means, if you enter the link the texture pack should install
+# instantly without clicking anywhere!
+# Dropbox - copy the share link and change the last number '0' to '1'
+#--->
+Texture Packs:
+  - clear
+  - ghost
+  - limitedskills
+
+# It's impossible to remove a loaded texture pack. This is an empty texture pack with no data
+clear: "https://www.dropbox.com/s/me1buxg3vy7ddc9/NoTextures.zip?dl=1"
+ghost: "https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1"
+limitedskills: "https://www.dropbox.com/s/83lqeu9x5y1wgdn/NoEntitys.zip?dl=1"

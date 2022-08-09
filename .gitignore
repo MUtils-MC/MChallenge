@@ -1,0 +1,7 @@
+/.gradle/
+/.idea/
+/build/
+/run/
+/.gitignore
+/MUtils.iml
+/gradle/wrapper/

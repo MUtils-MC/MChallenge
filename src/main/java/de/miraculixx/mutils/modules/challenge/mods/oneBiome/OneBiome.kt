@@ -13,7 +13,7 @@ import org.bukkit.Bukkit
 import org.bukkit.World
 import org.bukkit.event.player.PlayerPortalEvent
 
-class OneBiome: Challenge() {
+class OneBiome: Challenge {
     override val challenge = Modules.ONE_BIOME
     private var switcher: OneBiomeSwitcher? = null
 

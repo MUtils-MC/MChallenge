@@ -16,7 +16,7 @@ import org.bukkit.event.entity.EntityExplodeEvent
 import org.bukkit.inventory.ItemStack
 import kotlin.random.Random
 
-class BlockRandomizer : Challenge() {
+class BlockRandomizer : Challenge {
     override val challenge = Modules.RANDOMIZER_BLOCK
     private var random = true
     private val map = HashMap<Material, Material>()

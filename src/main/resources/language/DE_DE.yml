@@ -1,0 +1,773 @@
+#---------------->> Placeholder <<-----------------#
+# <PLAYER> -> Executor / Player Name               #
+# <INPUT> -> Variable Input                        #
+# <INPUT-2> -> Variable Input                      #
+# NOTE! Placeholder only works on some values!     #
+#------------>> Colors & Formatting <<-------------#
+# §1-9 / a-o ('&' also works)                      #
+# \n -> Next Line (NOT WORK ON ITEMS OR LISTS)     #
+# Commands without Color Code automatically use §7 #
+#                                                  #
+#------------------>> Credits <<-------------------#
+#        This Translation was created by           #
+#                  Miraculixx                      #
+#--------------------------------------------------#
+
+# Displayed Language Name on load up
+# language: English (Example)
+language: Deutsch
+# Language ID and Filename
+# language-id: EN_US (Example for American English)
+language-id: DE_DE
+# Translator
+translator: Miraculixx
+
+
+#----------------->> Commands <<------------------#
+# Syntax -> command.[global id]                   #
+#           >> Multiused command outputs          #
+#        -> command.[command id].[argument]       #
+#           >> Command feedback for an action     #
+#-------------------------------------------------#
+command:
+  notPlayer: "&cDu musst ein Spieler sein, um diesen Befehl auszuführen!"
+  notOnline: "&cDieser Spieler ist nicht auf dem Server!"
+  cooldown: "&cWoah! Bitte warte einen Moment"
+  awaitString: "Bitte gebe einen neuen Wert in den Chat ein &8('exit' um abzubrechen)"
+  awaitFinish: "Eingabe wurde beendet!"
+  verify:
+    help: "&9Syntax&7 >> /verify [key] \n&9Alias&7 - /mverify\n&9Verwendung§7 >> Aktiviere MUtils Premium mit einem gültigen Key. Erhalte diesen über§9 https://mutils.de/m/shop §7und erhalte Support über §9https://mutils.de/dc"
+    success: "§aPremium Key wurde erfolgreich aktiviert auf den Account <PLAYER>! §7(<INPUT>)\n§7 Der Server muss §cneugestartet§7 werden, damit alle Funktionen aktiviert werden! Klicke hier zum neustarten"
+    failed: "§cDer Key §f<INPUT>§c konnte nicht für den Account §f<PLAYER>§c aktiviert werden! Grund: §l<INPUT-2>"
+    verified: "§cDieser Server ist bereits verifiziert auf den Account <PLAYER>! Du kannst ihn über den MUtils Discord Bot entfernen (bald auch über ein Webpanel)"
+    noPremium: "&cDiese Funktion erfordert eine MUtils Premium Lizenz -> https://mutils.de/m/shop"
+  reload:
+    reload: "Der Server wird reloaded..."
+    success: "Der Server wurde erfolgreich reloaded!"
+  gamemode:
+    help: "&9Syntax&7 >> /gamemode [gamemode] <name/selector>\n&9Alias&7 - /gm\n&9Verwendung§7 >> Ändere den Spielmodus von dir oder anderen Spielern"
+    change: "Der Spieler &9<PLAYER>&7 wurde in den Spielmodus &9<INPUT>&7 gesetzt!"
+  heal:
+    help: "&9Syntax§7 >> /heal <name/selector>\n&9Alias§7 - keine\n&9Verwendung§7 >> Setze Leben und Hunger von dir oder anderen Spielern auf maximum"
+    heal: "Herzen und Hungerkeulen wurden auf maximum gesetzt!"
+    multiple: "Herzen und Hungerkeulen wurden auf maximum gesetzt! &8(<INPUT>)"
+  invsee:
+    help: "&9Syntax§7 >> /invsee [name]\n&9Alias§7 - keine\n&9Verwendung§7 >> Öffne das Inventar eines Spielers"
+  position:
+    help: "&9Syntax§7 >> /position [name/list] <delete>\n&9Alias§7 - /pos /location /loc\n&9Verwendung§7 >> Speichere oder lade Koordinaten von Positionen"
+    delete: "Position &9<INPUT> (<INPUT-2>)&7 wurde gelöscht!"
+    get: "Position &9<INPUT>&7 liegt bei &9<INPUT-2>"
+    set: "Position &9<INPUT>&7 wurde bei &9<INPUT-2>&7 gesetzt"
+  texturepack:
+    help: "&9Syntax§7 >> /texturepack [set/load/delete] <name/selector> \n&9Alias§7 - /resourcepack\n&9Verwendung§7 >> Speichere oder lade Ressourcen Pakete für Spieler"
+    notExist: "&cEs konnte kein Wert unter dem Namen <INPUT> gefunden werden!"
+    set: "Ressourcen Paket &9<INPUT>&7 wurde gespeichert! Lade es mit &9/texturepack load <INPUT>§8 ( <INPUT-2> )"
+    load: "Lade Ressourcen Paket <INPUT>... &8(Server RessourcePacks müssen aktiviert sein)"
+    loadAdmin: "Lade Ressourcen Paket <INPUT>... &8(Initialisiert von <INPUT-2>)"
+    delete: "Ressourcen Paket &9<INPUT>&7 wurde von Server gelöscht!"
+  spectator:
+    help: "&9Syntax§7 >> /spectate [join/leave/items] <name/selector>\n&9Alias§7 - /spec /hide /vanish\n&9Verwendung§7 >> Entferne dich aus jeglichen Challenges und werde unsichtbar! Erhalte Zugriff auf nützliche Tools zum beobachten"
+    isSpectator: "&cDu bist bereits Spectator!"
+    notSpectator: "&cDu bist kein Spectator!"
+    join: "Spectator Modus betreten! &a(unsichtbar)"
+    leave: "Spectator Modus verlassen! &c(sichtbar)"
+  visible:
+    hideGlobal: "Alle Spieler sind nun gegenseitig unsichtbar!"
+    hideSelf: "Alle Spieler sind nun für dich unsichtbar!"
+  challenge:
+    help: "&9Syntax§7 >> /challenge <start/stop/pause/continue> \n&9Alias§7 - /ch\n&9Verwendung§7 >> Hauptbefehl für alle Challenges. Challenges können nur im gestoppten Modus verändert werden. 'Stop' beendet alle System, während 'Pause' nur temporär Funktionen deaktiviert"
+    alreadyOn: "&cChallenges sind bereits aktiviert!"
+    alreadyOff: "&cChallenges sind deaktiviert! Bitte aktiviere zuerst welche, um ihren Status zu ändern!"
+    failed: "&cChallenges konnten nicht gestartet werden! Entweder sind keine Challenges aktiviert oder eine Challenge-Voraussetzung wurde nicht erfüllt!"
+    start: "Ausgewählte Challenges wurden gestartet!"
+    stop: "Aktive Challenges wurden beendet!"
+    pause: "Aktive Challenges wurden pausiert! Fahre fort mit &9/ch continue"
+    continue: "Pausiert Challenges wurden reaktiviert!"
+  timer:
+    help: "&9Syntax§7 >> /timer <resume/setup/reset> \n&9Alias§7 - keine\n&9Verwendung§7 >> Hauptbefehl für das Timer Modul. Stoppe deine Zeit oder setze dir ein Limit. Automatisiere änderungen durch Ziele und Regeln"
+    alreadyOn: "&cDer Timer ist bereits aktiviert!"
+    alreadyOff: "&cDer Timer ist bereits deaktiviert!"
+    resume: "Der Timer wurde&a&l gestartet&7!"
+    pause: "Der Timer wurde&c&l pausiert&7!"
+    reset: "Der Timer wurde erfolgreich zurück gesetzt!"
+  lang:
+    help: "&9Syntax§7 >> /language <reload/get/set> \n&9Alias§7 - keine\n&9Verwendung§7 >> Hauptbefehl für das Sprachen System. Ändere die vollständige Sprache des Plugins oder lade die File neu"
+    current: "Aktuell wird die Sprache &9<INPUT>&7 verwendet"
+    switch: "Die Sprache wurde auf &9<INPUT>&7 geändert! &8(von <INPUT-2>)"
+    update: "Die ausgewählte Sprachkonfiguration wurde neu geladen"
+  config:
+    help: "&9Syntax§7 >> /config <action> <config> \n&9Alias§7 - keine\n&9Verwendung§7 >> Verwalte alle Konfigurationsdateien direkt im Spiel. ACHTUNG - Es wird kein vollständiger Support garantiert!"
+    save: "Ausgewählte Config File/s wurden erfolgreich &9gespeichert&7!"
+    reset: "Ausgewählte Config File/s wurden erfolgreich &9zurück gesetzt&7!"
+    reload: "Ausgewählte Config File/s wurden erfolgreich &9neu geladen&7!"
+  speedrun:
+    help: "&9Syntax§7 >> /speedrun <disable/enable/settings> \n&9Alias§7 - keine\n&9Verwendung§7 >> Hauptbefehl für das Speedrun Modul. Während dieses Modul aktiviert ist, werden alle anderen Einstellungen deaktiviert"
+    notify: "&cDas Speedrun Modul ist aktiviert! Deaktiviere es über &9/speedrun disable"
+    disable: "Das Speedrun Modul wurde deaktiviert! Andere Funktionen sind nun wieder nutzbar"
+    isDisabled: "&cDas Speedrun Modul ist bereits deaktiviert!"
+  reminder:
+    help: "&9Syntax§7 >> /reminder <duration> <time> \n&9Alias§7 - keine\n&9Verwendung§7 >> Lasse dich in einer bestimmten Zeit an etwas super wichtiges erinnern"
+    new: "Du wirst in <INPUT> Sekunden an folgendes erinnert:\n<INPUT-2>"
+    remind: "Hey, du wolltest an folgendes erinnert werden:"
+  world:
+    help: "&9Syntax§7 >> /world <info/create/delete/tp> \n&9Alias§7 - keine\n&9Verwendung§7 >> Manage deine Welten über diesen Befehl. Nicht alle Parameter unter 'create' sind notwendig"
+  back:
+    noLocation: "&cEs gibt keine Todesposition!"
+  backpack:
+    disabled: "&cBackpacks wurden deaktiviert!"
+
+
+#------------------>> Modules <<------------------#
+# Syntax -> modules.[module].[parameter]          #
+#           >> Module Messages                    #
+#           >> Tiles marked with '-title'         #
+# Syntax -> modules.ch.[challenge].[parameter]    #
+#           >> All Challenge Messages             #
+#-------------------------------------------------#
+modules:
+  worldManager:
+    worldNotExist: "&cDie Welt <INPUT> konnte nicht geladen werden! &8(Sehe Konsole)"
+    estimated-title: "&cDauer ca &l<INPUT>s bis teleportation"
+    lag-title: "&eStabilisiere TPS auf 16 (Pausiere Welten Tick)"
+    worldCreated: "&eWelt &l<INPUT>&e wurde erstellt"
+    cancel: "Der Erstellungsprozess wurde abgebrochen!"
+  texturepack:
+    loading-title: "&cPlease activate Server ResourcePacks"
+  spectator:
+    join: "Du hast den Server als Spectator betreten!"
+    noPlayer: "&cKeinen passenden Spieler gefunden! (nicht spectator)"
+  global:
+    running: "&cChallenge Einstellungen können nur im deaktivierten Modus gewechselt werden! Bitte deaktiviere zuerst alle über /ch stop"
+    soon: "<INPUT> ist in dieser Version noch nicht implementiert! Halte ausschau nach neuen Updates"
+    outdated: "&cFEHLER! <INPUT> ist nur mit Server Version &n<INPUT-2>&c spielbar!"
+    deactivated: "&cDas Modul &l<INPUT>&c ist deaktiviert! Aktiviere es vor der Nutzung in den Einstellungen"
+    storageInv:
+      - "&7Klicke hier, um eine kompakte"
+      - "&7Ansicht aller Einstellungen"
+      - "&7zu öffnen"
+  timer:
+    # Use `/` to display a singular and plural Version (only on days)
+    # E.g. "Day/s" -> 1 Day & 3 Days
+    days: "Tag/e"
+    seconds: "Sekunden"
+    minutes: "Minuten"
+    hours: "Stunden"
+    paused: "Pausiert"
+    timeOver: "§c☠ §6Die Zeit ist abgelaufen!\n"
+    gameOver: "&c☠ &6<PLAYER>&7 ist gestorben!"
+    success: "&e⚐ &7Challenge geschafft!\n&8>> &7Der &6&l<INPUT>&7 wurde getötet"
+    playtime: "&8>> &6Spielzeit: &e&l<INPUT>\n"
+    back: "&7Gebe &9/back&7 ein, um dich zu dem Todespunkt zu teleportieren!"
+    kick: "&7>> &9Du bist in der Challenge gestorben &7<<\n&7>> &9und somit disqualifiziert &7<<"
+    ban: "&7>> &9Auf diesem Server ist der Hardcore &7<<\n&7>> &9Modus aktiviert! &7<<"
+  world:
+    defaultWorld: "&cDie 3 Basiswelten (Overworld, Nether, End) können nicht gelöscht werden!"
+    delete: "Die Welt &9<INPUT>&7 wurde erfolgreich gelöscht!"
+  # <- Start of Challenge Message Package ->
+  ch:
+    noSameItem:
+      duplicate: "Das Item &9<INPUT>&7 hatte bereits der Spieler &9<PLAYER>&7!"
+      death: "Der Spieler &9<PLAYER>&7 hatte &9<INPUT>&7 gleiche Items!"
+      dead-title: "&4&oKeine Leben mehr"
+    snake:
+      hit: "&c<PLAYER> Schlange hat sich selbst getroffen"
+      leave: "&c<PLAYER> hat seine Schlange verlassen"
+    blockAsync:
+      death: "Der Spieler &9<PLAYER> &7hat den Fake Block bei &9<INPUT>&7 angeklickt! &8(teleport)"
+    stayAway:
+      tooClose: "Der Spieler &9<PLAYER>&7 ist dem Mob &9<INPUT>&7 zu nahe gekommen!"
+    force:
+      failed: "&cDer Spieler <INPUT> hat die Voraussetzung nicht erfüllt!"
+      waiting: "&9Warte auf Anweisungen..."
+      item: "&6Finde das Item &l<INPUT>&7 (<INPUT-2>)"
+      success: "&aAlle Spieler haben die Voraussetzung erfüllt! Nächste in <INPUT>s"
+    noDoubleKill:
+      failed: "&cDer Spieler <PLAYER> hat das selbe Mob hintereinander getötet! &8(<INPUT>)"
+    rivalCollect:
+      newItem: "&aItem registriert! Finde als nächstes das Item &2&n<INPUT>"
+      itemFound: "<PLAYER> hat <INPUT-2> gefunden! Neues Item -> <INPUT>"
+  speedrun:
+    warning: "Die Aktivierung des Speedrun Modules wird jegliche andere Funktionen des Plugins deaktivieren! &9Klicke hier&7 um zu beginnen!"
+    noStructure: "Seed entspricht nicht den Einstellungen. Erstelle neue Welt..."
+    start: "Speedrun gestartet! Nutze &9/reset&7 um eine neue Welt zu erhalten. Viel Erfolg!"
+  serverSettings:
+    counter: "&6Textinput in den Chat"
+    counterSub: "&eAutomatischer Abbruch in &l<INPUT>&e Sekunden"
+    iconFailed: "&cDie Datei <INPUT> konnte nicht geladen werden. Es muss eine .png Datei sein mit der Größe 64x64"
+    uploadFail: "&cDer File Upload ist noch auf cooldown!"
+    upload: "&aAlle Daten erfolgreich hochgeladen!"
+    download: "&aAlle Daten erfolgreich runtergeladen und geladen!"
+
+
+
+#------------------>> Items <<--------------------#
+# Syntax -> item.[module].[key].n                 #
+#           >> Displayed Name for selected Item   #
+#        -> item.[module].[key].l                 #
+#           >> Item Lore (description)            #
+#                ⚠ \n don't work! ⚠               #
+#-------------------------------------------------#
+item:
+  GUI:
+    # IMPORTANT
+    # Filter must have 2 lines! Not more, not less
+    Filter:
+      - "&7Filtere alle Einstellungen nach"
+      - "&7einer bestimmten Kategorie"
+    Back: "Zurück zum Hauptmenü"
+    NavigateNL:
+      - "&7Du kannst nicht weiter"
+      - "&7nach hinten scrollen"
+    NavigateNR:
+      - "&7Du kannst nicht weiter"
+      - "&7nach vorne scrollen"
+    NavigateL:
+      - "&7Eine Seite zurück"
+      - "&7Click ≫ 1 Seite"
+      - "&7Sneak Click ≫ 5 Seiten"
+    NavigateR:
+      - "&7Eine Seite weiter"
+      - "&7Click ≫ 1 Seite"
+      - "&7Sneak Click ≫ 5 Seiten"
+    Select:
+      1:
+        l:
+          - "&7Übersicht aller Challenges,"
+          - "&7welche Spielbar sind"
+      2:
+        l:
+          - "&7Verwalte deinen Welten und"
+          - "&7treffe Welten spezifische oder"
+          - "&7globale Einstellungen"
+      3:
+        l:
+          - "&7Fordere andere Spieler heraus"
+          - "&7und spiele gegen sie normale oder"
+          - "&7exklusive Challenges"
+      4:
+        l:
+          - "&7Stoppe deine Zeit oder setze dir"
+          - "&7eine Stoppuhr beim spielen! Weitere"
+          - "&7Einstellungen für Design und Welt"
+      5:
+        l:
+          - "&7Dir sind die vorgefertigten Challenges"
+          - "&7nicht genug? Erstelle von Grund auf"
+          - "&7eigene Challenges nach deinem belieben"
+      6:
+        l:
+          - "&7Server Einstellungen für die"
+          - "&7Server List und Player"
+          - "&7Management. Zugriff auf die Cloud"
+      7:
+        l:
+          - "&7Wie schnell kannst du Minecraft durch"
+          - "&7spielen? Resette deine Welten ohne"
+          - "&7Wartezeiten und spiele direkt weiter!"
+    FLY:
+      l:
+        - "&7Fliege mit neuen Kräften durch"
+        - "&7die Lüfte wie ein Superheld!"
+        - "&7Jump Sneak zum aktivieren"
+    IN_TIME:
+      l:
+        - "&7Jedes Entity hat eine begrenzte"
+        - "&7Zeit zum leben! Durchs töten erhältst"
+        - "&7du die Zeit des Mobs"
+    InTimeS:
+      1:
+        n: "Spieler Startzeit"
+        l:
+          - "&7Mit welcher Zeit soll ein"
+          - "&7Spieler starten?"
+      2:
+        n: "Entity Startzeit"
+        l:
+          - "&7Mit welcher Zeit soll ein"
+          - "&7Entity starten?"
+      3:
+        n: "Schadensabzug"
+        l:
+          - "&7Wie viel Zeit soll dir pro"
+          - "&7HP Damage abgezogen werden?"
+    MOB_RANDOMIZER:
+      l:
+        - "&7Jeder abgebaute Block dropt"
+        - "&7ein zufälliges Mob, anstatt ein Item!"
+        - "&7Dieses Mob dropt beim Kill den Block"
+    CHECKPOINTS:
+      l:
+        - "&7Setze Checkpoints (F) um in der"
+        - "&7Zeit zurück zu reisen! Aber sei"
+        - "&7gewarnt! Auch die Welt verändert sich..."
+    DIM_SWAP:
+      l:
+        - "&7Die Portal Dimensionen wurden vertauscht!"
+        - "&7Der Drache wartet nun in der"
+        - "&7Overworld auf dich..."
+        - "&7&oNether -> End -> Overworld"
+    SNAKE:
+      l:
+        - "&7Du darfst dich nur auf der Schlange"
+        - "&7bewegen! Sie wird kontinuierlich in"
+        - "&7deine Blickrichtung sich bewegen"
+    REALISTIC:
+      l:
+        - "&7Ist dir Minecraft auch einfach"
+        - "&7zu unrealistisch? Das ändern wir!"
+        - "&7Erlebe ein völlig neues Minecraft"
+    CAPTIVE:
+      l:
+        - "&7Die Welt ist auf einen kleinen"
+        - "&7Bereich eingeschränkt und es liegt"
+        - "&7an dir, diesen zu vergrößern!"
+    CaptiveS:
+      1:
+        n: "Start Größe"
+        l:
+          - "&7Mit welcher Größe soll die"
+          - "&7Border starten?"
+      2:
+        n: "Wachstumsfaktor"
+        l:
+          - "&7Um wie viele Blöcke soll die"
+          - "&7Border pro Punkt wachsen?"
+      3:
+        n: "Border Modus"
+        l:
+          - "&7Durch was soll die Border"
+          - "&7abhängig sein und wachsen?"
+    GHOST:
+      l:
+        - "&7Erhalte die Fähigkeit wie ein"
+        - "&7Geist durch Blöcke reisen zu können!"
+        - "&7Aber Achtung! Geister sind verwundbar..."
+    GhostS:
+      1:
+        n: "Wirkungsradius"
+        l:
+          - "&7Wie groß soll der Radius"
+          - "&7des Geist Effekts sein?"
+      2:
+        n: "Abenteuer Modus"
+        l:
+          - "&7Sollen Geister während der"
+          - "&7Fähigkeit im Abenteuer Modus sein?"
+      3:
+        n: "Gleitmodus"
+        l:
+          - "&7Sollen Geister durch Blöcke"
+          - "&7gleiten können?"
+    GRAVITY:
+      l:
+        - "&7Erlebe vier neue Gravitationen,"
+        - "&7welche die ganze Welt beeinflusst!"
+    BLOCK_ASYNC:
+      l:
+        - "&7Jeder Spieler sieht seine eigene Welt!"
+        - "&7Sollte jedoch ein Spieler mit einem"
+        - "&7fake Block interagieren, stirbt er"
+    NO_SAME_ITEM:
+      l:
+        - "&7Sobald ein Item eingesammelt wird,"
+        - "&7gehört dieses dem Spieler."
+        - "&7Andere Spieler die ebenfalls dieses Item"
+        - "&7aufsammeln verlieren ein Leben"
+    NoSameItemS:
+      1:
+        n: "Lebensanzahl"
+        l:
+          - "&7Mit wie vielen Leben sollen"
+          - "&7alle Spieler starten?"
+          - "&7(Maximal Wert)"
+      2:
+        n: "Sync Herzen"
+        l:
+          - "&7Sollen die Leben mit den"
+          - "&7Spieler Herzen verbunden sein?"
+      3:
+        n: "Info Modus"
+        l:
+          - "§7Welche Informationen sollen bei Veränderungen"
+          - "§7einem Spieler angezeigt werden?"
+          - "§7∙ EVERYTHING -> Item + Lebens Info"
+          - "§7∙ LIVE_CHANGE -> Lebens Info"
+          - "§7∙ NOTHING -> Keine Info"
+    LIMITED_SKILLS:
+      l:
+        - "&7Spieler 1 kann Mobs sehen, jedoch"
+        - "&7keinen Schaden zufügen. Spieler 2"
+        - "&7verhält sich genau umgekehrt"
+    RUN_RANDOMIZER:
+      l:
+        - "&7Jeder Spieler erhält 64mal ein Item"
+        - "&7alle X Blöcke, die er gelaufen ist!"
+        - "&7Jegliche andere Möglichkeiten für"
+        - "&7Items sind deaktiviert!"
+    SPLIT_HP:
+      l:
+        - "&7Jeder Spieler hat die selben Herzen!"
+        - "&7Somit erhalten alle gleichzeitig schaden"
+        - "&7und regenerieren zusammen"
+    DAMAGE_DUELL:
+      l:
+        - "&7Alle Spieler bekommen prozentual den"
+        - "&7Schaden, welchen sie austeilen. Jedoch"
+        - "&7kann man nur durch eigenen Schaden sterben"
+    ONE_BIOME:
+      l:
+        - "&7Die ganze Welt besteht aus einem"
+        - "&7zufälligem Biome, welches jedoch alle"
+        - "&7X Sekunden wechselt"
+    BOOST_UP:
+      l:
+        - "&7Alle Entitys welche sich in deiner"
+        - "&7nähe befinden werden nach oben vor"
+        - "&7dir weg fliegen!"
+    BoostUpS:
+      1:
+        n: "Boost"
+        l:
+          - "&7Wie stark betroffene Entitys"
+          - "&7hoch fliegen sollen"
+      2:
+        n: "Wirkungsradius"
+        l:
+          - "&7In welchem Radius die Entitys"
+          - "&7von der Challenge betroffen"
+          - "&7sein sollen"
+      3:
+        n: "Modus"
+        l:
+          - "&7Ob nur Lebendige Entitys von"
+          - "&7der Challenge betroffen sind"
+          - "&7oder alle"
+    RIGHT_TOOL:
+      l:
+        - "&7Jeder Block kann nur mit dem"
+        - "&7vorgesehen richtigem Tool"
+        - "&7abgebaut werden"
+    CHUNK_BLOCK_BREAK:
+      l:
+        - "&7Jeder abgebaute Block lässt auch"
+        - "&7jeden anderen Block des selben"
+        - "&7Materials im Chunk verschwinden"
+    ChunkBlockBreakerS:
+      1:
+        n: "Bundle"
+        l:
+          - "&7Ob alle Drops gebündelt droppen"
+          - "&7sollen. Ansonsten wird jeder Block"
+          - "&7an seiner Position einzeln droppen."
+          - "&c(ACHTUNG! Kann Client-Lags verursachen)"
+    SNEAK_SPAWN:
+      l:
+        - "&7Bei jedem mal Sneaken wird ein"
+        - "&7zufälliges Mob/Entity an deiner"
+        - "&7Position erschaffen"
+    WORLD_PEACE:
+      l:
+        - "&fDiese Challenge ist zum Zeichen für Frieden"
+        - "&fwährend der Ukraine Kämpfe erstellt worden."
+        - "&7Anstelle dir Items durch Kämpfen"
+        - "&7zu besorgen handele doch einfach"
+        - "&7mal friedlich mit deinen Freunden!"
+    STAY_AWAY:
+      l:
+        - "&7Ein wenig Privatsphäre bitte!"
+        - "&7Solltest du einem Mob zu nahe kommen"
+        - "&7wirst du erst gewarnt, danach getötet."
+        - "&7Drastische Maßnahmen..."
+    RANDOMIZER_BLOCK:
+      l:
+        - "&7Jeder Block dropt beim abbauen"
+        - "&7einen zufälliges Item."
+        - "&7Random = false für feste Drops"
+    RANDOMIZER_ENTITY:
+      l:
+        - "&7Jedes Mob dropt beim sterben"
+        - "&7den Loot eines zufälligen Mob Typen."
+        - "&7Random = false für feste Drops"
+    RANDOMIZER_BIOMES:
+      l:
+        - "&7Jedes Biome wird mit einem"
+        - "&7zufällig anderen Biom aus egal"
+        - "&7welcher Dimension ausgetauscht"
+        - "&7Random = false für feste Biome"
+    RANDOMIZER_MOBS:
+      l:
+        - "&7Jedes Mob wird mit einem"
+        - "&7zufällig anderen Mob ausgetauscht."
+        - "&7Random = false für festes tauschen"
+    FORCE_COLLECT:
+      l:
+        - "&7Alle Spieler erhalten nach X Sekunden"
+        - "&7ein Item, welches sie nach Ablauf der"
+        - "&7Zeit im Inventar besitzen müssen"
+    RANDOMIZER_ENTITY_DAMAGE:
+      l:
+        - "&7Jedes Monster macht eine"
+        - "&7zufällige Anzahl an Schaden."
+        - "&7Random = false für festen Schaden"
+    DAMAGER:
+      l:
+        - "&7Schaffst du es gegen all den Schaden"
+        - "&7zu bestehen? Wähle aus verschieden"
+        - "&7Events aus welche leicht bis schwer sind"
+    DAMAGER_S:
+      1:
+        n: "Mode"
+        l:
+          - "&7Durch welches Event der"
+          - "&7Schaden verteilt werden soll"
+      2:
+        n: "Schaden"
+        l:
+          - "&7Die Menge an Schaden die"
+          - "&7pro Event verteilt wird"
+    RIVALS_COLLECT:
+      l:
+        - "&7Sammele so viele Sachen wie"
+        - "&7möglich um zu gewinnen! Joker"
+        - "&7lassen dich eine Sache überspringen"
+    RIVALS_COLLECT_S:
+      1:
+        n: "Mode"
+        l:
+          - "&7Die Kategorie, welche"
+          - "&7gesammelt werden soll"
+      2:
+        n: "Joker Anzahl"
+        l:
+          - "&7Ein Joker überspringt das"
+          - "&7gesuchte Objekt und gibt es"
+          - "&7dem Spieler falls möglich"
+  Spec:
+    Hide:
+      l:
+        - "&7Mache dich selbst für andere"
+        - "&7Spieler sichtbar oder unsichtbar!"
+      on: "&7Du bist aktuell sichtbar!"
+      off: "&7Du bist aktuell unsichtbar!"
+    SelfHide:
+      l:
+        - "&7Stelle für dich ein, ob du andere"
+        - "&7Spectator sehen kannst!"
+      on: "&7Andere Spectator sind sichtbar!"
+      off: "&7Andere Spectator sind unsichtbar!"
+    FlySpeed:
+      l:
+        - "&7Stelle für dich ein, wie schnell"
+        - "&7du fliegen kannst!"
+    Items:
+      l:
+        - "&7Ob du Items aufsammeln oder"
+        - "&7wegwerfen kannst!"
+      on: "&7Du kannst mit Items interagieren!"
+      off: "&7Du kannst nicht mit Items interagieren!"
+    Blocks:
+      l:
+        - "&7Ob du Blöcke abbauen oder"
+        - "&7platzieren kannst!"
+      on: "&7Du kannst mit Blöcken interagieren!"
+      off: "&7Du kannst nicht mit Blöcken interagieren!"
+    FakeB:
+      l:
+        - "&7Platziere Fake Blöcke, welche beim"
+        - "&7anklicken wieder verschwinden!"
+    FakeS:
+      l:
+        - "&7Spiele Fake Sounds für bestimmte"
+        - "&7Spieler ab!"
+    Compass:
+      l:
+        - "&7Teleportiere dich zu einem zufälligen Spieler"
+        - "&7oder nutze das Spieler Menü für"
+        - "&7gezielte Teleportationen!"
+    Settings:
+      l:
+        - "&7Öffne dein eigenes Einstellungsmenü"
+        - "&7für Welt-Interaktionen und mehr!"
+    InfoStick:
+      l:
+        - "&7Schlage hiermit Entitys oder Truhen"
+        - "&7um genaue Informationen über"
+        - "&7diese zu bekommen (auch Spieler)"
+    Troll:
+      l:
+        - "&7Trolle lebende Spieler mit"
+        - "&7fake Sounds oder fake Blöcken!"
+  Timer:
+    Toggle:
+      l:
+        - "&7Deaktiviere oder aktiviere den"
+        - "&7Timer und alle integrierten Funktionen!"
+    Direction:
+      l:
+        - "&7In welche Richtung der Timer"
+        - "&7zählen soll!"
+    Rules:
+      l:
+        - "&7Stelle ein, wie sich der"
+        - "&7Timer verhalten soll!"
+    Goals:
+      l:
+        - "&7Stelle ein, was Ziele des"
+        - "&7Timers sein sollen, bei welchem"
+        - "&7alles beendet wird!"
+    Design:
+      l:
+        - "&7Stelle das Timer Design so ein"
+        - "&7wie es dir am besten gefällt!"
+    Style:
+      l:
+        - "&7Der Timer Style, in welchem die"
+        - "&7die Zeit angezeigt werden soll"
+    Color1:
+      l:
+        - "&7Setze die Primäre Farbe des Timers"
+        - "&7(Primär ist die Zeit Anzeige)"
+    Color2:
+      l:
+        - "&7Setze die Sekundäre Farbe des Timers"
+        - "&7(Sekundär sind die Zusätze)"
+    Font1:
+      l:
+        - "&7Setze die Primäre Font des Timers"
+        - "&7(Primär ist die Zeit Anzeige)"
+    Font2:
+      l:
+        - "&7Setze die Sekundäre Font des Timers"
+        - "&7(Sekundär sind die Zusätze)"
+    MobDeath:
+      l:
+        - "&7Sobald ein <INPUT> stirbt,"
+        - "&7wird der Timer beendet!"
+    LastLeave:
+      l:
+        - "&7Sobald der letzte Spieler den Server"
+        - "&7verlässt, wird der Timer gestoppt!"
+    SendSeed:
+      l:
+        - "&7Ob beim beenden oder fehlschlagen"
+        - "&7einer Challenge der Seed angezeigt wird"
+    SendLocation:
+      l:
+        - "&7Ob beim beenden oder fehlschlagen"
+        - "&7einer Challenge die Postion angezeigt wird"
+    SpecDeath:
+      l:
+        - "&7Ob man in den Spectator Modus versetzt"
+        - "&7wird nach dem sterben (Nicht HIDE)"
+    SpecJoin:
+      l:
+        - "&7Ob man in den Hide Modus versetzt"
+        - "&7wird beim betreten des Servers"
+        - "&7während einer laufenden Challenge"
+    Punish:
+      l:
+        - "&7Soll ein Spieler für das Sterben"
+        - "&7bestraft werden? (Kick / Ban)"
+  Speedrun:
+    Village:
+      l:
+        - "&7Soll ein Dorf in der nähe"
+        - "&7des Spawns sich befinden?"
+    Portal:
+      l:
+        - "&7Soll ein Ruined Portal in der"
+        - "&7nähe des Spawns sich befinden?"
+    Delay:
+      l:
+        - "&7Soll der Timer sich automatisch"
+        - "&7starten? Zusätzlich kann der"
+        - "&7Start Delay bestimmt werden"
+    Brutes:
+      l:
+        - "&7Sollen Brutes aus dem Spiel"
+        - "&7entfernt werden? Note: Diese"
+        - "&7verschwinden erst bei Sichtkontakt"
+    OldTrades:
+      l:
+        - "&7Sollen Piglins Traden wie"
+        - "&7in der 1.16.1? (Standard"
+        - "&7Speedrunning Version)"
+  World:
+    Overview:
+      l:
+        - "&7Eine Übersicht aller Welten."
+        - "&7Modifiziere oder betrete sie einfach"
+        - "&7mit einem Klick!"
+    Creator:
+      l:
+        - "&7Erstelle neue Welten mit"
+        - "&7deinen eigenen Einstellungen!"
+    CustomData:
+      l:
+        - "&7Eine Übersicht aller geladener"
+        - "&7extra Inhalte"
+    WorldSettings:
+      l:
+        - "&7Welten spezifische Einstellungen"
+        - "&7welche nur auf einer Welt gelten"
+    GWorldSettings:
+      l:
+        - "&7Globale Welten Einstellungen"
+        - "&7welche für alle Welten gelten"
+  WorldCreator:
+    Name:
+      l:
+        - "&7Name der neuen Welt. Wird"
+        - "&7von manchen Generatoren überschrieben"
+    Seed:
+      l:
+        - "&7Seed der neuen Welt. Dieser"
+        - "&7bestimmt die Welten Generation."
+        - "&7(Optional - Default = Random)"
+    Env:
+      l:
+        - "&7Dimension der neuen Welt."
+        - "&7NORMAL = Overworld"
+    Generator:
+      l:
+        - "&7World Generator der neuen Welt."
+        - "&7Diese sind speziell von MUtils"
+        - "&7und modifizieren das Terrain stark."
+    SingleBiom:
+      l:
+        - "&7Das Biom, aus welche die neue"
+        - "&7Welt vollständig bestehen wird."
+        - "&7(Ändert Welten Name)"
+  Server:
+    Icon:
+      l:
+        - "&7Das Server Icon, welches in der"
+        - "&7Server Liste angezeigt wird"
+    MOTD:
+      l:
+        - "&7Die Message of the Day, welche in der"
+        - "&7Server Liste angezeigt wird"
+    Slots:
+      l:
+        - "&7Die Anzahl an Spielern, welche"
+        - "&7gleichzeitig auf dem Server sein können"
+    Bans:
+      l:
+        - "&7Alle Spieler, welche von dem"
+        - "&7Server ausgeschlossen wurden."
+        - "&7(/ban <player>)"
+    Whitelist:
+      l:
+        - "&7Alle Spieler, welche dem"
+        - "&7Server beitreten können,"
+        - "&7wenn Whitelist aktiviert ist."
+        - "&7(/whitelist add <player>)"
+    Upload:
+      l:
+        - "&7Lade deine MUtils Einstellungen"
+        - "&7in der Cloud hoch, um sie"
+        - "&7überall verwenden zu können"
+    Download:
+      l:
+        - "&7Downloade deine MUtils Einstellungen"
+        - "&7von der Cloud, um sie zu synchronisieren"
