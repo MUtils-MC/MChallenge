@@ -27,21 +27,6 @@ class Main : KSpigot() {
     override fun load() {
         INSTANCE = this
 
-        val custom = CustomChallengeData(UUID.randomUUID(), INSTANCE)
-        custom.eventData[CreatorEvent.MOVE_GENERAL] = EventData(
-            true, mapOf(
-                CreatorAction.GIVE_ITEM_TARGET_PLAYER to listOf("DIRT", "STONE"),
-                CreatorAction.DAMAGE_TARGET_PLAYER to listOf("1")
-            )
-        )
-        custom.eventData[CreatorEvent.MOVE_BLOCK] = EventData(
-            true, mapOf(
-                CreatorAction.DAMAGE_TARGET_PLAYER to listOf("1")
-            )
-        )
-        custom.saveConfig()
-
-
         val c = ConfigManager.getConfig(Configs.SETTINGS)
         if (c.getBoolean("Legacy Reset")) {
             consoleMessage("$prefix Delete old Worlds...")
