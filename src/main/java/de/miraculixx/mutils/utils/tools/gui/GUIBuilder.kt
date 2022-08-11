@@ -10,8 +10,10 @@ import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
 import de.miraculixx.mutils.utils.addLines
+import de.miraculixx.mutils.utils.getComponentList
 import de.miraculixx.mutils.utils.getMessageList
 import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.emptyComponent
 import de.miraculixx.mutils.utils.tools.gui.items.ItemLib
 import de.miraculixx.mutils.utils.tools.gui.items.skullTexture
 import net.axay.kspigot.items.customModel
@@ -248,9 +250,9 @@ class GUIBuilder(private val player: Player, private val preset: GUI, animation:
      * @return Current GUI Builder Instance
      * @author Miraculixx
      */
-    fun storage(filterChange: StorageFilters?, import: Map<ItemStack, Boolean>? = null): GUIBuilder {
+    fun storage(filterChange: StorageFilters?, import: Map<ItemStack, Boolean>? = null, header: ItemStack? = null): GUIBuilder {
         val lib = ItemLib()
-        var topItem: ItemStack? = null
+        var topItem: ItemStack? = header
 
         //Filter Calculation
         val filter = if (filterChange == null) {
@@ -301,8 +303,8 @@ class GUIBuilder(private val player: Player, private val preset: GUI, animation:
             }
         }
         finalInv?.fillPlaceholder()
-        finalInv!!.setItem(4, topItem)
-        finalInv!!.setItem(49, itemStack(Material.HOPPER) {
+        finalInv!!.setItem(4, topItem ?: InvUtils.primaryPlaceholder)
+        finalInv!!.setItem(49, if (filterChange != StorageFilters.HIDE) itemStack(Material.HOPPER) {
             meta {
                 customModel = 205
                 name = "§9§lFilters"
@@ -312,7 +314,14 @@ class GUIBuilder(private val player: Player, private val preset: GUI, animation:
                         " ", "§9Click §7≫ Rotate Filter"
                     )
             }
-        })
+        } else itemStack(Material.KNOWLEDGE_BOOK) { meta {
+            customModel = 205
+            name = "§9§lGUI Preset"
+            lore(buildList {
+                addAll(getComponentList("item.GUI.Preset"))
+                add(emptyComponent())
+            })
+        }})
         repeat(9 * 4) { i ->
             finalInv!!.setItem(i + 9, ph2)
         }

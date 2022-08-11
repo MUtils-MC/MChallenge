@@ -24,7 +24,7 @@ val jsonInstance = Json {
 }
 
 object CreatorManager {
-    private val challenges = HashMap<UUID, CustomChallengeData>()
+    private val challenges = ArrayList<CustomChallengeData>()
     private val activeChallenges = ArrayList<UUID>()
 
     fun isActive(uuid: UUID): Boolean {
@@ -32,29 +32,33 @@ object CreatorManager {
     }
 
     fun setActive(uuid: UUID, active: Boolean) {
-        if (active)
+        if (active) {
             if (!activeChallenges.contains(uuid))
                 activeChallenges.add(uuid)
-        else activeChallenges.remove(uuid)
+        } else {
+            activeChallenges.remove(uuid)
+        }
     }
 
     fun getActive(): List<CustomChallengeData> {
         return buildList {
-            activeChallenges.forEach { uuid ->
-                add(challenges[uuid] ?: return@forEach)
-            }
+            challenges.filter { activeChallenges.contains(it.uuid) }
         }
     }
 
+    fun getChallenge(id: Int): CustomChallengeData? {
+        return challenges.getOrNull(id)
+    }
+
     fun getAllChallenges(): List<CustomChallengeData> {
-        return challenges.values.toList()
+        return challenges.toList()
     }
 
-    fun addChallenge(challenge: CustomChallengeData, uuid: UUID) {
-        challenges[uuid] = challenge
+    fun addChallenge(challenge: CustomChallengeData) {
+        challenges.add(challenge)
     }
 
-    fun removeChallenge(challenge: UUID) {
+    fun removeChallenge(challenge: CustomChallengeData) {
         challenges.remove(challenge)
     }
 
@@ -100,8 +104,7 @@ object CreatorManager {
             addAll(meta.lore() ?: emptyList())
             addAll(lore)
         })
-        challengeItem.itemMeta = meta
-        return challengeItem
+        return itemStack(challengeItem.type) { itemMeta = meta }
     }
 
     init {
@@ -115,12 +118,14 @@ object CreatorManager {
             if (!file.name.endsWith(".json")) return@forEach
             val uuid = try {
                 UUID.fromString(file.nameWithoutExtension)
-            } catch (_: IllegalArgumentException) { return@forEach }
-            challenges[uuid] = CustomChallengeData(uuid, instance)
+            } catch (_: IllegalArgumentException) {
+                return@forEach
+            }
+            challenges.add(CustomChallengeData(uuid, instance))
         }
 
         //Loading Challenges
-        challenges.values.forEach { customChallenge ->
+        challenges.forEach { customChallenge ->
             if (!customChallenge.loadConfig()) {
                 consoleWarn("Failed to load Custom Challenge! (${customChallenge.uuid})")
                 consoleWarn("Config file seems to be corrupted")

@@ -12,7 +12,7 @@ import de.miraculixx.mutils.commands.utils.*
 import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.modules.challenge.ChallengeCommand
 import de.miraculixx.mutils.modules.challenge.mods.limitedSkills.LimitSkillsCommand
-import de.miraculixx.mutils.modules.creator.CreatorCommand
+import de.miraculixx.mutils.modules.creator.tools.CreatorCommand
 import de.miraculixx.mutils.modules.gui.GUIListener
 import de.miraculixx.mutils.modules.spectator.SpecCommand
 import de.miraculixx.mutils.modules.spectator.Spectator

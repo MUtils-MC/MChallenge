@@ -2,16 +2,16 @@ package de.miraculixx.mutils.modules.creator.gui
 
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
-import de.miraculixx.mutils.modules.creator.CreatorManager
+import de.miraculixx.mutils.modules.creator.tools.CreatorInvTools
 import de.miraculixx.mutils.modules.gui.GUITools
 import de.miraculixx.mutils.utils.text.cHighlight
 import de.miraculixx.mutils.utils.text.cmp
-import de.miraculixx.mutils.utils.text.emptyComponent
 import de.miraculixx.mutils.utils.text.plus
 import de.miraculixx.mutils.utils.tools.click
 import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.inventory.ItemStack
 
 class CreatorMain(val it: InventoryClickEvent) {
     val tool = GUITools(null)
@@ -29,21 +29,20 @@ class CreatorMain(val it: InventoryClickEvent) {
                 player.click()
             }
 
+            2 -> {
+                GUIBuilder(player, GUI.CREATOR_DELETE, GUIAnimation.SPLIT).storage(null, getAllItems()).open()
+                player.click()
+            }
+
             3 -> {
-                val challenges = CreatorManager.getAllChallenges()
-                var counter = 1
-                val itemMap = buildMap {
-                    challenges.forEach { challenge ->
-                        put(
-                            CreatorManager.modifyItem(challenge.item, counter, listOf(emptyComponent(), cmp("Left click", cHighlight) + cmp(" ≫ Toggle Active"))),
-                            CreatorManager.isActive(challenge.uuid)
-                        )
-                        counter++
-                    }
-                }
-                GUIBuilder(player, GUI.CREATOR_LIST, GUIAnimation.SPLIT).scroll(0, itemMap).open()
+                GUIBuilder(player, GUI.CREATOR_LIST, GUIAnimation.SPLIT).scroll(0, getAllItems()).open()
                 player.click()
             }
         }
+    }
+
+    private fun getAllItems(): Map<ItemStack, Boolean> {
+        val tools = CreatorInvTools()
+        return tools.getAllItems(cmp("Sneak click", cHighlight) + cmp(" ≫ Delete (FOREVER)"))
     }
 }

@@ -1,10 +1,6 @@
 package de.miraculixx.mutils
 
 import de.miraculixx.mutils.modules.ModuleManager
-import de.miraculixx.mutils.modules.creator.data.CustomChallengeData
-import de.miraculixx.mutils.modules.creator.data.EventData
-import de.miraculixx.mutils.modules.creator.enums.CreatorAction
-import de.miraculixx.mutils.modules.creator.enums.CreatorEvent
 import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.system.boot.StartUp
 import de.miraculixx.mutils.system.config.ConfigManager
@@ -16,7 +12,6 @@ import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import java.io.File
 import java.nio.file.Paths
-import java.util.*
 
 
 class Main : KSpigot() {
@@ -26,21 +21,6 @@ class Main : KSpigot() {
 
     override fun load() {
         INSTANCE = this
-
-        val custom = CustomChallengeData(UUID.randomUUID(), INSTANCE)
-        custom.eventData[CreatorEvent.MOVE_GENERAL] = EventData(
-            true, mapOf(
-                CreatorAction.GIVE_ITEM_TARGET_PLAYER to listOf("DIRT", "STONE"),
-                CreatorAction.DAMAGE_TARGET_PLAYER to listOf("1")
-            )
-        )
-        custom.eventData[CreatorEvent.MOVE_BLOCK] = EventData(
-            true, mapOf(
-                CreatorAction.DAMAGE_TARGET_PLAYER to listOf("1")
-            )
-        )
-        custom.saveConfig()
-
 
         val c = ConfigManager.getConfig(Configs.SETTINGS)
         if (c.getBoolean("Legacy Reset")) {

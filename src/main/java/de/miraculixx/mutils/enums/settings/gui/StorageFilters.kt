@@ -2,6 +2,7 @@ package de.miraculixx.mutils.enums.settings.gui
 
 enum class StorageFilters {
     NO_FILTER,
+    HIDE,
 
     //CHALLENGE FILTER
     FUN,

@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.modules.creator
+package de.miraculixx.mutils.modules.creator.tools
 
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
@@ -12,11 +12,11 @@ import org.bukkit.entity.Player
 class CreatorCommand: CommandExecutor {
     override fun onCommand(p0: CommandSender, p1: Command, p2: String, p3: Array<out String>): Boolean {
         if (p0 !is Player) {
-            p0.sendMessage(msg("command.  notPlayer"))
+            p0.sendMessage(msg("command.notPlayer"))
             return false
         }
 
-        GUIBuilder(p0, GUI.CREATOR_MAIN, GUIAnimation.SPLIT)
+        GUIBuilder(p0, GUI.CREATOR_MAIN, GUIAnimation.SPLIT).custom().open()
         return true
     }
 }
