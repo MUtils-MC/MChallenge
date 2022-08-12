@@ -82,4 +82,10 @@ class CustomChallengeData(val uuid: UUID, instance: KSpigot, override val challe
         if (!config.exists()) config.createIfNotExists()
         config.writeText(jsonString)
     }
+
+    fun delete() {
+        path.toFile().deleteOnExit()
+        consoleMessage("Deleted Custom Challenge ${data.name}")
+        consoleMessage("Path: $path")
+    }
 }

@@ -60,6 +60,8 @@ object CreatorManager {
 
     fun removeChallenge(challenge: CustomChallengeData) {
         challenges.remove(challenge)
+        activeChallenges.remove(challenge.uuid)
+        challenge.delete()
     }
 
     fun getChallengeItem(challenge: CustomChallengeData): ItemStack {
