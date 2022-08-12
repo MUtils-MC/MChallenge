@@ -30,19 +30,19 @@ class CreatorMain(val it: InventoryClickEvent) {
             }
 
             2 -> {
-                GUIBuilder(player, GUI.CREATOR_DELETE, GUIAnimation.SPLIT).storage(null, getAllItems()).open()
+                GUIBuilder(player, GUI.CREATOR_DELETE, GUIAnimation.SPLIT).storage(null, getAllItems(cmp("Sneak click", cHighlight) + cmp(" ≫ Delete (PERMANENT)"))).open()
                 player.click()
             }
 
             3 -> {
-                GUIBuilder(player, GUI.CREATOR_LIST, GUIAnimation.SPLIT).scroll(0, getAllItems()).open()
+                GUIBuilder(player, GUI.CREATOR_LIST, GUIAnimation.SPLIT).scroll(0, getAllItems(cmp("Left click", cHighlight) + cmp(" ≫ Toggle Active"))).open()
                 player.click()
             }
         }
     }
 
-    private fun getAllItems(): Map<ItemStack, Boolean> {
+    private fun getAllItems(info: Component): Map<ItemStack, Boolean> {
         val tools = CreatorInvTools()
-        return tools.getAllItems(cmp("Sneak click", cHighlight) + cmp(" ≫ Delete (FOREVER)"))
+        return tools.getAllItems(info)
     }
 }
