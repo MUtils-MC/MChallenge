@@ -47,6 +47,7 @@ enum class GUI(s: String, i: Int) {
     //Challenge Creator
     CREATOR_MAIN("§9Challenge Creator", 3),
     CREATOR_DELETE("§9Challenge Creator ∙ Delete", 3),
+    CREATOR_MODIFY("§9Challenge Creator ∙ Edit", 3),
     CREATOR_LIST("§9Challenge Creator ∙ List", 3);
 
     val title = s

@@ -13,6 +13,12 @@ import org.bukkit.inventory.meta.SkullMeta
 
 class ItemsMainMenu {
 
+    /**
+     * ID Glossary
+    - 1 -> Main Selector
+    - 2 -> World Manager
+    - 3 -> Challenge Creator
+     */
     fun getItems(id: Int): Map<ItemStack, Int> {
         val list = when (id) {
             1 -> g1()
@@ -22,11 +28,6 @@ class ItemsMainMenu {
                 mapOf(Pair(ItemStack(Material.BARRIER), 4))
             }
         }
-        /* ID Glossary
-        1 -> Main Selector
-        2 -> World Manager
-        3 -> Challenge Creator
-         */
         return list
     }
 

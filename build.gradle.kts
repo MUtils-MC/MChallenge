@@ -34,9 +34,9 @@ dependencies {
     paperDevBundle("1.18.2-R0.1-SNAPSHOT")
     implementation("net.axay:kspigot:1.18.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
-    implementation("io.ktor:ktor-client-core:2.0.1")
-    implementation("io.ktor:ktor-client-cio:2.0.1")
-    implementation("net.kyori:adventure-text-serializer-plain:4.10.1")
+    implementation("io.ktor:ktor-client-core:2.0.3")
+    implementation("io.ktor:ktor-client-cio:2.0.3")
+    //implementation("net.kyori:adventure-text-serializer-plain:4.11.0")
 }
 
 tasks {

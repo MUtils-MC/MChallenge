@@ -7,11 +7,11 @@ import de.miraculixx.mutils.modules.creator.CreatorManager
 import de.miraculixx.mutils.modules.creator.enums.CreatorEvent
 import de.miraculixx.mutils.modules.creator.events.CustomChallengeListener
 import de.miraculixx.mutils.modules.creator.jsonInstance
+import de.miraculixx.mutils.utils.consoleMessage
 import de.miraculixx.mutils.utils.consoleWarn
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.axay.kspigot.languageextensions.kotlinextensions.createIfNotExists
-import net.axay.kspigot.main.KSpigot
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
@@ -19,18 +19,18 @@ import java.util.*
 import kotlin.io.path.Path
 import kotlin.io.path.readText
 
-class CustomChallengeData(val uuid: UUID, instance: KSpigot, override val challenge: Modules = Modules.CUSTOM_CHALLENGE) : Challenge {
+class CustomChallengeData(val uuid: UUID, pluginVersion: String, override val challenge: Modules = Modules.CUSTOM_CHALLENGE) : Challenge {
     private val path = Path("plugins/MUtils/Creator/$uuid.json").toAbsolutePath()
-    val eventData = HashMap<CreatorEvent, EventData>()
+    private val eventData = HashMap<CreatorEvent, EventData>()
     private val listener = HashMap<CreatorEvent, CustomChallengeListener<*>>()
     var item = ItemStack(Material.STRUCTURE_VOID)
 
     var data = ChallengeData(
         "Error",
         "Failed to load Challenge!",
-        "STRUCTURE_VOID",
+        "Error",
         "MUtils",
-        Versions(Bukkit.getMinecraftVersion(), instance.description.version),
+        Versions(Bukkit.getMinecraftVersion(), pluginVersion),
         emptyList()
     )
 
@@ -81,6 +81,10 @@ class CustomChallengeData(val uuid: UUID, instance: KSpigot, override val challe
         if (!config.isFile) config.deleteOnExit()
         if (!config.exists()) config.createIfNotExists()
         config.writeText(jsonString)
+    }
+
+    fun update() {
+        item = CreatorManager.getChallengeItem(this)
     }
 
     fun delete() {

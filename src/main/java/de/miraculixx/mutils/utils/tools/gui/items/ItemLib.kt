@@ -1,6 +1,7 @@
 package de.miraculixx.mutils.utils.tools.gui.items
 
 import de.miraculixx.mutils.enums.settings.gui.StorageFilters
+import de.miraculixx.mutils.modules.creator.data.CustomChallengeData
 import de.miraculixx.mutils.modules.spectator.SpecCollection
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
@@ -44,6 +45,10 @@ class ItemLib {
 
     fun getServerSettings(id: Int, c: FileConfiguration?): Map<ItemStack, Int> {
         return ItemsServerSettings().getItems(id, c)
+    }
+
+    fun getCreator(id: Int, data: CustomChallengeData): Map<ItemStack, Int> {
+        return CreatorItems().getItems(id, data)
     }
 
     //Utility

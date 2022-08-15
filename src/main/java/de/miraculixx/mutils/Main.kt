@@ -1,6 +1,7 @@
 package de.miraculixx.mutils
 
 import de.miraculixx.mutils.modules.ModuleManager
+import de.miraculixx.mutils.modules.creator.CreatorManager
 import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.system.boot.StartUp
 import de.miraculixx.mutils.system.config.ConfigManager
@@ -61,6 +62,7 @@ class Main : KSpigot() {
             ModuleManager.shutDown()
             Spectator.saveData()
             ConfigManager.saveAll()
+            CreatorManager.saveAll()
             val barKeys = ArrayList<NamespacedKey>()
             Bukkit.getBossBars().forEach { barKeys.add(it.key) }
             barKeys.forEach { Bukkit.removeBossBar(it) }

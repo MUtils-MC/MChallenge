@@ -40,7 +40,7 @@ object CreatorManager {
         }
     }
 
-    fun getActive(): List<CustomChallengeData> {
+    fun getAllActive(): List<CustomChallengeData> {
         return buildList {
             challenges.filter { activeChallenges.contains(it.uuid) }
         }
@@ -48,6 +48,9 @@ object CreatorManager {
 
     fun getChallenge(id: Int): CustomChallengeData? {
         return challenges.getOrNull(id)
+    }
+    fun getChallenge(uuid: UUID): CustomChallengeData? {
+        return challenges.firstOrNull { it.uuid == uuid }
     }
 
     fun getAllChallenges(): List<CustomChallengeData> {
@@ -67,11 +70,7 @@ object CreatorManager {
     fun getChallengeItem(challenge: CustomChallengeData): ItemStack {
         val uuid = challenge.uuid
         val data = challenge.data
-        val material = try {
-            Material.valueOf(challenge.data.icon)
-        } catch (_: IllegalArgumentException) {
-            Material.BARRIER
-        }
+        val material = Material.getMaterial(challenge.data.icon) ?: Material.STRUCTURE_VOID
         return itemStack(material) {
             meta {
                 name = "§9§l${data.name}"
@@ -109,6 +108,12 @@ object CreatorManager {
         return itemStack(challengeItem.type) { itemMeta = meta }
     }
 
+    fun saveAll() {
+        challenges.forEach { ch ->
+            ch.saveConfig()
+        }
+    }
+
     init {
         //Reading Data
         val instance = Main.INSTANCE
@@ -123,7 +128,7 @@ object CreatorManager {
             } catch (_: IllegalArgumentException) {
                 return@forEach
             }
-            challenges.add(CustomChallengeData(uuid, instance))
+            challenges.add(CustomChallengeData(uuid, instance.description.version))
         }
 
         //Loading Challenges
