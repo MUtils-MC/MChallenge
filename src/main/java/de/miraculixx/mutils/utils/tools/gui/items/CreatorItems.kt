@@ -14,7 +14,8 @@ import org.bukkit.inventory.ItemStack
 class CreatorItems {
     /**
      * Item Library for Challenge Creator
-     * - 1 -> Modify main menu
+     * - 1 -> Modify - main menu
+     * - 2 -> Modify - Event Group Menu
      */
     fun getItems(id: Int, chData: CustomChallengeData): Map<ItemStack, Int> {
         return when (id) {
@@ -24,6 +25,21 @@ class CreatorItems {
         }
     }
 
+    // <active-events> <-> <add-new-event>
+    // 101-199
+    private fun g2(chData: FileConfiguration): Material<ItemStack, Int> {
+        val l = listOf(emptyComponent(), cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
+        return mapOf(
+            buildItem(Material.CHEST, 101, cmp("Saved Events", cHighlight, bold = true), 
+                buildList {
+                    addAll(l)
+                    addAll(getComponentList("item.CreatorCreate.savedEvents"))
+                }
+            )
+        )
+    }
+
+    // 1-99
     private fun g1(chData: CustomChallengeData): Map<ItemStack, Int> {
         val l = listOf(emptyComponent(), cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
         return mapOf(
