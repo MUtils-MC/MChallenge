@@ -3,7 +3,8 @@ package de.miraculixx.mutils.modules.gui
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.InvUtils
 import net.axay.kspigot.items.customModel
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
@@ -16,24 +17,23 @@ class SpeedrunGUI(private val e: InventoryClickEvent, private val p: Player) {
 
     fun event() {
         val c = ConfigManager.getConfig(Configs.SPEEDRUN)
-        val tool = GUITools(c)
         val item = e.currentItem
 
         val cl = e.click
         when (item?.itemMeta?.customModel ?: 0) {
             1 -> when (cl) {
-                ClickType.LEFT -> tool.toggleSetting(p, "Village Spawn")
-                ClickType.SHIFT_LEFT -> tool.toggleSetting(p, "Village Teleport")
-                else -> tool.numberChangerShift(p, cl, "Village Radius", 50, 50, 1000)
+                ClickType.LEFT -> InvUtils.toggleSetting(c, p, "Village Spawn")
+                ClickType.SHIFT_LEFT -> InvUtils.toggleSetting(c, p, "Village Teleport")
+                else -> InvUtils.numberChangerShift(c, p, cl, "Village Radius", 50, 50, 1000)
             }
             2 -> if (cl == ClickType.LEFT)
-                tool.toggleSetting(p, "Portal Spawn")
-            else tool.numberChangerShift(p, cl, "Portal Radius", 50, 50, 1000)
+                InvUtils.toggleSetting(c, p, "Portal Spawn")
+            else InvUtils.numberChangerShift(c, p, cl, "Portal Radius", 50, 50, 1000)
             3 -> if (cl == ClickType.LEFT)
-                tool.toggleSetting(p, "Timer")
-            else tool.numberChangerShift(p, cl, "Timer Delay", 1, 0, 30)
-            4 -> tool.toggleSetting(p, "Old Trading")
-            5 -> tool.toggleSetting(p, "Disable Brutes")
+                InvUtils.toggleSetting(c, p, "Timer")
+            else InvUtils.numberChangerShift(c, p, cl, "Timer Delay", 1, 0, 30)
+            4 -> InvUtils.toggleSetting(c, p, "Old Trading")
+            5 -> InvUtils.toggleSetting(c, p, "Disable Brutes")
         }
         GUIBuilder(p, GUI.SPEEDRUN_SETTINGS).scroll(0).open()
     }

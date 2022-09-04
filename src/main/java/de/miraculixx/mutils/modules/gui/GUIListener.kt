@@ -3,13 +3,10 @@
 package de.miraculixx.mutils.modules.gui
 
 import de.miraculixx.mutils.enums.settings.gui.GUI
-import de.miraculixx.mutils.modules.creator.gui.CreatorDelete
-import de.miraculixx.mutils.modules.creator.gui.CreatorEditor
-import de.miraculixx.mutils.modules.creator.gui.CreatorList
-import de.miraculixx.mutils.modules.creator.gui.CreatorMain
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.modules.creator.gui.*
 import de.miraculixx.mutils.utils.premium
-import de.miraculixx.mutils.utils.tools.error
+import de.miraculixx.mutils.utils.text.msg
+import de.miraculixx.mutils.utils.tools.soundError
 import net.axay.kspigot.event.listen
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
@@ -97,6 +94,18 @@ object GUIListener {
                 CreatorEditor(it)
             }
 
+            title == GUI.CREATOR_MODIFY_EVENTS.title -> {
+                it.isCancelled = true
+                if (!verify(player)) return@listen
+                CreatorEventEditor(it)
+            }
+
+            title == GUI.CREATOR_MODIFY_ACTIONS.title -> {
+                it.isCancelled = true
+                if (!verify(player)) return@listen
+                CreatorActionEditor(it)
+            }
+
             else -> return@listen
         }
     }
@@ -110,7 +119,7 @@ object GUIListener {
     fun verify(player: Player): Boolean {
         return if (!premium) {
             player.closeInventory()
-            player.error()
+            player.soundError()
             player.sendMessage(msg("command.verify.noPremium"))
             false
         } else true

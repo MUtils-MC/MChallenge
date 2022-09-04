@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules.utils.backpack
 
-import de.miraculixx.mutils.utils.cropColor
-import de.miraculixx.mutils.utils.tools.gui.items.skullTexture
+import de.miraculixx.mutils.utils.gui.items.skullTexture
+import de.miraculixx.mutils.utils.text.cropColor
 import net.axay.kspigot.items.customModel
 import net.axay.kspigot.items.itemStack
 import net.axay.kspigot.items.meta

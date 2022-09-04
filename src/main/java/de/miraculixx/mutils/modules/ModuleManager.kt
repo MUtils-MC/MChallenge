@@ -16,8 +16,8 @@ import de.miraculixx.mutils.modules.utils.backpack.BackPackListener
 import de.miraculixx.mutils.modules.worldManager.WorldTools
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.runnables.taskRunLater
 import org.bukkit.Bukkit
@@ -30,6 +30,10 @@ var challenges = ChallengeStatus.STOPPED
 
 object ModuleManager {
     private val moduleMap = HashMap<Modules, Boolean>()
+
+    fun getActiveModules(): List<Modules> {
+        return moduleMap.filter { it.value }.map { it.key }
+    }
 
     /*
      << Challenge managing >>
@@ -103,26 +107,31 @@ object ModuleManager {
                 timer.up = f
                 c["Settings.Count Up"] = f
             }
+
             TimerSettings.COLOR_PRIMARY -> {
                 val f = i1 ?: '6'
                 timer.color1 = i1 ?: '6'
                 c["Style.Primary Color"] = f
             }
+
             TimerSettings.COLOR_SECONDARY -> {
                 val f = i1 ?: '6'
                 timer.color2 = i1 ?: '6'
                 c["Style.Secondary Color"] = f
             }
+
             TimerSettings.STYLE_PRIMARY -> {
                 val f = i1 ?: 'l'
                 timer.style1 = i1 ?: 'l'
                 c["Style.Primary Style"] = f
             }
+
             TimerSettings.STYLE_SECONDARY -> {
                 val f = i1 ?: 'l'
                 timer.style2 = i1 ?: 'l'
                 c["Style.Secondary Style"] = f
             }
+
             TimerSettings.DESIGN -> {
                 val f = i2 ?: TimerDesign.COMPACT
                 timer.design = f
@@ -157,6 +166,7 @@ object ModuleManager {
                 timer.setActive(false)
                 TimerListener.setModuleStatus(false)
             }
+
             module == Modules.SPEEDRUN -> SpeedrunListener.unregister()
             module.isChallenge() -> {
                 val m = ChallengeManager()
@@ -185,6 +195,7 @@ object ModuleManager {
                 TimerListener.setModuleStatus(true)
                 timer.setActive(true)
             }
+
             Modules.BACK -> BackListener
             Modules.BACKPACK -> BackPackListener
             Modules.SPEEDRUN -> SpeedrunListener.register()

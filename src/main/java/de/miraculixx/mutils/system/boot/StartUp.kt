@@ -3,10 +3,7 @@
 package de.miraculixx.mutils.system.boot
 
 import de.miraculixx.mutils.Main
-import de.miraculixx.mutils.commands.DebugChallenge
-import de.miraculixx.mutils.commands.NoLicenceCommand
-import de.miraculixx.mutils.commands.SettingsCommand
-import de.miraculixx.mutils.commands.VerifyCommand
+import de.miraculixx.mutils.commands.*
 import de.miraculixx.mutils.commands.tools.GlobalOverride
 import de.miraculixx.mutils.commands.utils.*
 import de.miraculixx.mutils.modules.ModuleManager
@@ -30,6 +27,8 @@ import de.miraculixx.mutils.system.config.ConfigCommand
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
 import de.miraculixx.mutils.utils.*
+import de.miraculixx.mutils.utils.text.consoleMessage
+import de.miraculixx.mutils.utils.text.consoleWarn
 import kotlinx.coroutines.runBlocking
 import net.axay.kspigot.extensions.server
 import org.bukkit.plugin.java.JavaPlugin
@@ -190,5 +189,6 @@ class StartUp(private val plugin: JavaPlugin) {
         plugin.getCommand("verify")?.setExecutor(verify)
         plugin.getCommand("verify")?.tabCompleter = verify
         plugin.getCommand("creator")?.setExecutor(CreatorCommand())
+        plugin.getCommand("debuginv")?.setExecutor(TestInventory())
     }
 }

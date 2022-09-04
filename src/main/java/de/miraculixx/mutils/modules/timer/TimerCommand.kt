@@ -7,8 +7,8 @@ import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.modules.challenge.ChallengeManager
 import de.miraculixx.mutils.modules.challenges
-import de.miraculixx.mutils.utils.msg
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.broadcast
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor

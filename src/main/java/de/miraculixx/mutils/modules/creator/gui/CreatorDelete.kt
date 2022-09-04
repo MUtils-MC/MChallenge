@@ -4,18 +4,18 @@ import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.modules.creator.CreatorManager
 import de.miraculixx.mutils.modules.creator.tools.CreatorInvTools
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.items.skullTexture
 import de.miraculixx.mutils.utils.text.cHighlight
 import de.miraculixx.mutils.utils.text.cmp
 import de.miraculixx.mutils.utils.text.plus
 import de.miraculixx.mutils.utils.tools.click
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
-import de.miraculixx.mutils.utils.tools.gui.items.skullTexture
+import de.miraculixx.mutils.utils.tools.soundDelete
 import net.axay.kspigot.items.customModel
 import net.axay.kspigot.items.itemStack
 import net.axay.kspigot.items.meta
 import net.axay.kspigot.items.name
 import org.bukkit.Material
-import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
@@ -50,7 +50,7 @@ class CreatorDelete(val it: InventoryClickEvent) {
                 if (!it.click.isShiftClick) return
                 val challenge = CreatorManager.getChallenge(id - 1) ?: return
                 CreatorManager.removeChallenge(challenge)
-                player.playSound(player, Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1f, 1f)
+                player.soundDelete()
                 GUIBuilder(player, GUI.CREATOR_DELETE).storage(null, getAllItems(), top).open()
             }
         }
@@ -58,6 +58,6 @@ class CreatorDelete(val it: InventoryClickEvent) {
 
     private fun getAllItems(): Map<ItemStack, Boolean> {
         val tools = CreatorInvTools()
-        return tools.getAllItems(cmp("Sneak click", cHighlight) + cmp(" ≫ Delete (PERMANENT)"))
+        return tools.getAllChallengeItems(cmp("Sneak click", cHighlight) + cmp(" ≫ Delete (PERMANENT)"))
     }
 }

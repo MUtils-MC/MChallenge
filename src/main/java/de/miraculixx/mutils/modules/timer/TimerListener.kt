@@ -9,9 +9,9 @@ import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.system.config.Config
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.broadcast
-import de.miraculixx.mutils.utils.consoleMessage
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.broadcast
+import de.miraculixx.mutils.utils.text.consoleMessage
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.chat.literalText
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register

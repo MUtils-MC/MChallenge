@@ -6,7 +6,7 @@ import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.onlinePlayers
 import org.bukkit.Bukkit
 import org.bukkit.GameMode

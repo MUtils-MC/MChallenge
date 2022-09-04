@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.commands.utils
 
 import de.miraculixx.mutils.system.config.Config
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.broadcast
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor

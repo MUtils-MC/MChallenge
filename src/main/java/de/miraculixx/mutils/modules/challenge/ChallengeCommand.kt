@@ -6,8 +6,9 @@ import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.modules.challenges
-import de.miraculixx.mutils.utils.msg
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.broadcast
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -44,13 +45,18 @@ class ChallengeCommand : CommandExecutor, TabCompleter {
                         sender.sendMessage(msg("command.challenge.failed"))
                         return false
                     }
+
                     challenges = ChallengeStatus.RUNNING
                     if (ModuleManager.isActive(Modules.TIMER))
                         ModuleManager.setTimerStatus(true)
                     broadcast(msg("command.challenge.start", sender))
+                    sender.sendMessage("$prefix Started")
                 }
 
                 "stop" -> {
+                    //RUNNING -> Stop
+                    //PAUSED -> Stop
+                    //STOPPED -> Error
                     if (challenges == ChallengeStatus.STOPPED) {
                         sender.sendMessage(msg("command.challenge.alreadyOff"))
                         return false
@@ -64,6 +70,9 @@ class ChallengeCommand : CommandExecutor, TabCompleter {
                 }
 
                 "pause" -> {
+                    //RUNNING -> Pause
+                    //PAUSED -> Error
+                    //STOPPED -> Error
                     if (challenges != ChallengeStatus.RUNNING) {
                         sender.sendMessage(msg("command.challenge.alreadyOff"))
                         return false
@@ -77,6 +86,9 @@ class ChallengeCommand : CommandExecutor, TabCompleter {
                 }
 
                 "resume","continue" -> {
+                    //RUNNING -> Error
+                    //PAUSED -> Start
+                    //STOPPED -> Error
                     if (challenges != ChallengeStatus.PAUSED) {
                         sender.sendMessage(msg("command.challenge.alreadyOff"))
                         return false

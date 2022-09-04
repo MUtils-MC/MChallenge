@@ -542,6 +542,10 @@ item:
           - "&7Ein Joker überspringt das"
           - "&7gesuchte Objekt und gibt es"
           - "&7dem Spieler falls möglich"
+    NO_DOUBLE_KILL:
+      l:
+        - "&7Es darf niemals das selbe"
+        - "&7Mob hintereinander getötet werden!"
   Spec:
     Hide:
       l:

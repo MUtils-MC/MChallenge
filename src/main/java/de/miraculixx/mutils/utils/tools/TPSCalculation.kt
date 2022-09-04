@@ -3,7 +3,6 @@
 package de.miraculixx.mutils.utils.tools
 
 class TPSCalculation : Runnable {
-
     private var tickCount = 0
     private var ticks = LongArray(600)
 

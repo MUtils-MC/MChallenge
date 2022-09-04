@@ -2,7 +2,7 @@ package de.miraculixx.mutils.modules.utils.back
 
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Sound

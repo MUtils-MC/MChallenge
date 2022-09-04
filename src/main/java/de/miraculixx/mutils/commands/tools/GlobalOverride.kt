@@ -3,8 +3,8 @@
 package de.miraculixx.mutils.commands.tools
 
 import de.miraculixx.mutils.utils.TPS
-import de.miraculixx.mutils.utils.msg
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.msg
 import de.miraculixx.mutils.utils.tools.toLag
 import de.miraculixx.mutils.utils.tools.toMemPercent
 import de.miraculixx.mutils.utils.tools.toMemory

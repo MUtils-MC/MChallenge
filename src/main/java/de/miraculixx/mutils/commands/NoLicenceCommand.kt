@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.commands
 
 import de.miraculixx.mutils.utils.prefix
-import de.miraculixx.mutils.utils.tools.error
+import de.miraculixx.mutils.utils.tools.soundError
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -14,7 +14,7 @@ class NoLicenceCommand: CommandExecutor, TabCompleter {
         sender.sendMessage("$prefix §cSorry, this Command is only available for Premium Users!")
         sender.sendMessage("$prefix Shop ->§b https://mutils.de/m/shop")
         sender.sendMessage("$prefix Support ->§b https://mutils.de/dc")
-        if (sender is Player) sender.error()
+        if (sender is Player) sender.soundError()
 
         return false
     }

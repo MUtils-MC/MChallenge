@@ -5,7 +5,7 @@ package de.miraculixx.mutils.modules.utils.backpack
 import de.miraculixx.mutils.system.config.Config
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.cropColor
+import de.miraculixx.mutils.utils.text.cropColor
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.runnables.taskRunLater
 import org.bukkit.Bukkit

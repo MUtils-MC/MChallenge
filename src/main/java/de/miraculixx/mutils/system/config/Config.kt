@@ -1,8 +1,8 @@
 package de.miraculixx.mutils.system.config
 
 import de.miraculixx.mutils.Main
-import de.miraculixx.mutils.utils.consoleMessage
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.consoleMessage
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File

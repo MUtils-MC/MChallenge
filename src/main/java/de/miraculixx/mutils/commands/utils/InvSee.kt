@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.commands.utils
 
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.onlinePlayers
 import org.bukkit.Bukkit
 import org.bukkit.Sound

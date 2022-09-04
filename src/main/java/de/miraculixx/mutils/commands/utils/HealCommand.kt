@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.commands.utils
 
 import de.miraculixx.mutils.commands.tools.CommandTools
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.bukkit.feed
 import net.axay.kspigot.extensions.bukkit.feedSaturate
 import net.axay.kspigot.extensions.bukkit.heal

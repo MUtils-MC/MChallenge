@@ -4,7 +4,7 @@ import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.modules.challenge.Challenge
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
 import net.axay.kspigot.event.unregister

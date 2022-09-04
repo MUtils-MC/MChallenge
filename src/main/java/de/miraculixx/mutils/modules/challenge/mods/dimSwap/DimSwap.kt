@@ -3,7 +3,7 @@ package de.miraculixx.mutils.modules.challenge.mods.dimSwap
 import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.modules.challenge.Challenge
 import de.miraculixx.mutils.modules.challenge.utils.MobBossBar
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
 import net.axay.kspigot.event.unregister

@@ -5,8 +5,8 @@ import de.miraculixx.mutils.enums.modules.challenges.ChallengeStatus
 import de.miraculixx.mutils.enums.modules.worldCreator.BiomeProviders
 import de.miraculixx.mutils.modules.challenges
 import de.miraculixx.mutils.modules.worldManager.WorldTools
-import de.miraculixx.mutils.utils.consoleMessage
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.consoleMessage
 import net.axay.kspigot.extensions.bukkit.title
 import net.axay.kspigot.extensions.geometry.subtract
 import net.axay.kspigot.extensions.onlinePlayers

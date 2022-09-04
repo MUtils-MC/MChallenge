@@ -7,10 +7,11 @@ import de.miraculixx.mutils.modules.creator.CreatorManager
 import de.miraculixx.mutils.modules.creator.enums.CreatorEvent
 import de.miraculixx.mutils.modules.creator.events.CustomChallengeListener
 import de.miraculixx.mutils.modules.creator.jsonInstance
-import de.miraculixx.mutils.utils.consoleMessage
-import de.miraculixx.mutils.utils.consoleWarn
+import de.miraculixx.mutils.utils.text.consoleMessage
+import de.miraculixx.mutils.utils.text.consoleWarn
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
+import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.languageextensions.kotlinextensions.createIfNotExists
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -21,20 +22,21 @@ import kotlin.io.path.readText
 
 class CustomChallengeData(val uuid: UUID, pluginVersion: String, override val challenge: Modules = Modules.CUSTOM_CHALLENGE) : Challenge {
     private val path = Path("plugins/MUtils/Creator/$uuid.json").toAbsolutePath()
-    private val eventData = HashMap<CreatorEvent, EventData>()
+    val eventData = HashMap<CreatorEvent, EventData>()
     private val listener = HashMap<CreatorEvent, CustomChallengeListener<*>>()
     var item = ItemStack(Material.STRUCTURE_VOID)
 
     var data = ChallengeData(
+        "Name Placeholder",
+        "Challenge description placeholder",
         "Error",
-        "Failed to load Challenge!",
-        "Error",
-        "MUtils",
+        Author("MUtils", UUID.randomUUID()),
         Versions(Bukkit.getMinecraftVersion(), pluginVersion),
         emptyList()
     )
 
     override fun register() {
+        broadcast("${data.name} -> Aktiviert (${listener.values.size} Events)")
         listener.values.forEach {
             it.register()
         }
@@ -78,17 +80,21 @@ class CustomChallengeData(val uuid: UUID, pluginVersion: String, override val ch
 
         val jsonString = jsonInstance.encodeToString(data)
         val config = path.toFile()
-        if (!config.isFile) config.deleteOnExit()
+        if (!config.isFile) config.delete()
         if (!config.exists()) config.createIfNotExists()
         config.writeText(jsonString)
     }
 
     fun update() {
         item = CreatorManager.getChallengeItem(this)
+        eventData.forEach { (creatorEvent, eventData) ->
+            listener[creatorEvent] = ActionProvider.buildListener(Event(creatorEvent, eventData))
+        }
+        saveConfig()
     }
 
     fun delete() {
-        path.toFile().deleteOnExit()
+        path.toFile().delete()
         consoleMessage("Deleted Custom Challenge ${data.name}")
         consoleMessage("Path: $path")
     }

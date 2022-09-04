@@ -4,10 +4,17 @@ import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.*
+import de.miraculixx.mutils.utils.API
+import de.miraculixx.mutils.utils.ID
+import de.miraculixx.mutils.utils.await.AwaitChatMessage
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.InvUtils
+import de.miraculixx.mutils.utils.plainSerializer
+import de.miraculixx.mutils.utils.serverIcon
+import de.miraculixx.mutils.utils.text.cropColor
+import de.miraculixx.mutils.utils.text.msg
 import de.miraculixx.mutils.utils.tools.click
-import de.miraculixx.mutils.utils.tools.error
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.tools.soundError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +35,6 @@ class ServerSettingsGUI(private val e: InventoryClickEvent, private val p: Playe
     fun event() {
         val item = e.currentItem
         val conf = ConfigManager.getConfig(Configs.SETTINGS)
-        val tools = GUITools(conf)
         val click = e.click
 
         when (item?.itemMeta?.customModelData) {
@@ -41,27 +47,31 @@ class ServerSettingsGUI(private val e: InventoryClickEvent, private val p: Playe
             }
             100 -> {
                 p.closeInventory()
-                GUITools.AwaitChat(conf, "Server Icon", p) {
-                    val input = conf.getString("Server Icon") ?: "icon.png"
+                AwaitChatMessage(true, p, "Server Icon Path", 60, {
+                    val input = plainSerializer.serialize(it)
                     serverIcon = try {
                         Bukkit.loadServerIcon(File(input))
                     } catch (e: Exception) {
                         p.sendMessage(msg("modules.serverSettings.iconFailed", p, input))
-                        p.error()
+                        p.soundError()
                         null
                     }
+                    conf.set("Server Icon", input)
+                }, {
                     GUIBuilder(p, GUI.SERVER_SETTINGS).custom().open()
-                }
+                })
                 return
             }
             101 -> {
                 p.closeInventory()
-                GUITools.AwaitChat(conf, "MOTD", p) {
+                AwaitChatMessage(true, p, "MOTD", 60, {
+                    conf.set("MOTD", plainSerializer.serialize(it))
+                }, {
                     GUIBuilder(p, GUI.SERVER_SETTINGS).custom().open()
-                }
+                })
                 return
             }
-            102 -> tools.numberChanger(p, click, "Slots", 1, 1)
+            102 -> InvUtils.numberChanger(conf, p, click, "Slots", 1, 1)
             103 -> {
                 GUIBuilder(p, GUI.BANNED_PLAYERS).storage(null).open()
                 p.click()
@@ -123,7 +133,7 @@ class ServerSettingsGUI(private val e: InventoryClickEvent, private val p: Playe
     private fun getPlayer(item: ItemStack): OfflinePlayer? {
         val player = Bukkit.getOfflinePlayer(item.itemMeta?.name?.cropColor() ?: "null")
         if (player.name == "null") {
-            p.error()
+            p.soundError()
             p.sendMessage("§cAn unexpected error occurred! Please report this error")
             return null
         }

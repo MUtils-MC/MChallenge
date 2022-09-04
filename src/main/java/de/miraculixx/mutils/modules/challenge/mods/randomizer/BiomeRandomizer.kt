@@ -4,8 +4,8 @@ import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.enums.modules.worldCreator.BiomeProviders
 import de.miraculixx.mutils.modules.challenge.Challenge
 import de.miraculixx.mutils.modules.worldManager.WorldTools
-import de.miraculixx.mutils.utils.broadcastEffect
-import de.miraculixx.mutils.utils.broadcastTitle
+import de.miraculixx.mutils.utils.text.broadcastEffect
+import de.miraculixx.mutils.utils.text.broadcastTitle
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.runnables.task
 import org.bukkit.Sound

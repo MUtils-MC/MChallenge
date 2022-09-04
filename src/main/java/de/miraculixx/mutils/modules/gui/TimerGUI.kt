@@ -9,8 +9,8 @@ import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
+import de.miraculixx.mutils.utils.gui.GUIBuilder
 import de.miraculixx.mutils.utils.tools.click
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
 import net.axay.kspigot.items.customModel
 import org.bukkit.Sound
 import org.bukkit.entity.Player

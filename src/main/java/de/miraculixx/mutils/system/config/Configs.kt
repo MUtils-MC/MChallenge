@@ -11,4 +11,5 @@ enum class Configs {
     BACKPACK,
     SPEEDRUN,
     VERIFY,
+    CUSTOM_CHALLENGE
 }

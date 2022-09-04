@@ -3,9 +3,9 @@ package de.miraculixx.mutils.modules.worldManager
 import de.miraculixx.mutils.enums.modules.worldCreator.BiomeProviders
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.gui.GUIBuilder
 import de.miraculixx.mutils.utils.prefix
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.chat.sendText
 import net.md_5.bungee.api.chat.ClickEvent
 import net.md_5.bungee.api.chat.HoverEvent

@@ -101,3 +101,5 @@ commands:
   verify:
     description: "Activate a Licence Key to connect MUtils to your Account"
     permission: mutils.command.verify
+  debuginv:
+    description: "Debug Inventory Animations"

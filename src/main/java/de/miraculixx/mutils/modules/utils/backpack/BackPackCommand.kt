@@ -6,7 +6,7 @@ import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.command.Command

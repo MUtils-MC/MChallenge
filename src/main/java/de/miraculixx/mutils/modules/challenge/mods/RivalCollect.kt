@@ -9,9 +9,9 @@ import de.miraculixx.mutils.modules.challenge.utils.getItems
 import de.miraculixx.mutils.modules.challenge.utils.getLivingMobs
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.broadcastSound
-import de.miraculixx.mutils.utils.msg
-import de.miraculixx.mutils.utils.tools.gui.items.skullTexture
+import de.miraculixx.mutils.utils.gui.items.skullTexture
+import de.miraculixx.mutils.utils.text.broadcastSound
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
 import net.axay.kspigot.event.unregister

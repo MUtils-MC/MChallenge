@@ -2,8 +2,8 @@ package de.miraculixx.mutils.modules.challenge.mods.force
 
 import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.enums.modules.challenges.ForceChallenge
-import de.miraculixx.mutils.utils.broadcastSound
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.broadcastSound
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.runnables.sync

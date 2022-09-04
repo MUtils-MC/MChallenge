@@ -1,7 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.7.10"
     id("io.papermc.paperweight.userdev") version "1.3.5"
     id("xyz.jpenilla.run-paper") version "1.0.6"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.6.20"
@@ -31,12 +31,11 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-client-core-jvm:2.1.0")
+    implementation("io.ktor:ktor-client-cio-jvm:2.1.0")
     paperDevBundle("1.18.2-R0.1-SNAPSHOT")
     implementation("net.axay:kspigot:1.18.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
-    implementation("io.ktor:ktor-client-core:2.0.3")
-    implementation("io.ktor:ktor-client-cio:2.0.3")
-    //implementation("net.kyori:adventure-text-serializer-plain:4.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 }
 
 tasks {

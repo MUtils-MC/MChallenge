@@ -5,8 +5,8 @@ import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.modules.speedrun.PrepareWorld
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.consoleMessage
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.consoleMessage
 import net.axay.kspigot.extensions.bukkit.feed
 import net.axay.kspigot.extensions.bukkit.heal
 import net.axay.kspigot.extensions.onlinePlayers

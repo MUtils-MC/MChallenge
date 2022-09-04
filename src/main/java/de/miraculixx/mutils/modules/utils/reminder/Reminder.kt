@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.modules.utils.reminder
 
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.runnables.task
 import net.axay.kspigot.runnables.taskRunLater
 import org.bukkit.Sound

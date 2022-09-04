@@ -2,8 +2,8 @@ package de.miraculixx.mutils.modules.spectator
 
 import de.miraculixx.mutils.commands.tools.CommandTools
 import de.miraculixx.mutils.enums.settings.gui.GUI
-import de.miraculixx.mutils.utils.msg
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.text.msg
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor

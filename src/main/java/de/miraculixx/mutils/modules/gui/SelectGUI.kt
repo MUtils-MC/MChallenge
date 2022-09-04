@@ -4,9 +4,9 @@ import de.miraculixx.mutils.enums.modules.challenges.ChallengeStatus
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.modules.challenges
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.text.msg
 import de.miraculixx.mutils.utils.tools.click
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
 import net.axay.kspigot.chat.literalText
 import org.bukkit.Sound
 import org.bukkit.entity.Player

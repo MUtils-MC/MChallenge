@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.system.config
 
-import de.miraculixx.mutils.utils.addLines
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.addLines
+import de.miraculixx.mutils.utils.text.msg
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender

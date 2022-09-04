@@ -1,0 +1,10 @@
+#------------->> Challenge Creator <<-------------#
+#    Module activation. Whether a Module should   #
+#                be loaded or not.                #
+#         You can change everything safely        #
+#  ingame! Only edit stuff if you know what you   #
+#                    are doing!                   #
+#-------------------------------------------------#
+
+# Challenge UUID: true / false
+# Whether a Custom Challenge is enabled or not

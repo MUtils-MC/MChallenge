@@ -4,10 +4,10 @@ import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
 import de.miraculixx.mutils.utils.API
-import de.miraculixx.mutils.utils.msg
 import de.miraculixx.mutils.utils.prefix
 import de.miraculixx.mutils.utils.premium
-import de.miraculixx.mutils.utils.tools.error
+import de.miraculixx.mutils.utils.text.msg
+import de.miraculixx.mutils.utils.tools.soundError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -38,12 +38,12 @@ class VerifyCommand: CommandExecutor, TabCompleter {
         }
         if (premium) {
             sender.sendMessage(msg("command.verify.verified"))
-            sender.error()
+            sender.soundError()
             return false
         }
         if (cooldown) {
             sender.sendMessage(msg("command.cooldown"))
-            sender.error()
+            sender.soundError()
             return false
         }
 
@@ -61,13 +61,13 @@ class VerifyCommand: CommandExecutor, TabCompleter {
             if (!"[a-zA-Z\\d-]+".toRegex().matches(input)) {
                 delay(Random.nextLong(200,400))
                 sender.sendMessage("$prefix §cYour input contains illegal characters! Keys only contain A-Z a-z 0-9 -")
-                sender.error()
+                sender.soundError()
                 return@launch
             }
             val response = API.verify(input, ip, uuid)
             if (response == null || response.length < 2) {
                 sender.sendMessage("$prefix §cAn Error occurred. Please take a look into your console for further information!")
-                sender.error()
+                sender.soundError()
                 return@launch
             }
 
@@ -79,7 +79,7 @@ class VerifyCommand: CommandExecutor, TabCompleter {
 
             if (!response.startsWith("true")) {
                 sender.sendMessage(msg("command.verify.failed", sender, input, response))
-                sender.error()
+                sender.soundError()
                 return@launch
             }
 

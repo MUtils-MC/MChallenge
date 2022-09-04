@@ -8,8 +8,8 @@ import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.modules.challenges
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.worlds
 import org.bukkit.Sound
 import org.bukkit.command.Command

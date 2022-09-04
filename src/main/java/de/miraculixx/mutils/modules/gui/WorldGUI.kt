@@ -4,17 +4,18 @@ import de.miraculixx.mutils.enums.modules.timer.Weather
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.enums.settings.gui.GUIState
-import de.miraculixx.mutils.enums.settings.gui.StorageFilters
+import de.miraculixx.mutils.enums.settings.gui.StorageFilter
 import de.miraculixx.mutils.modules.worldManager.WorldCreator
 import de.miraculixx.mutils.modules.worldManager.WorldTools
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.InvUtils
+import de.miraculixx.mutils.utils.gui.items.ItemLib
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.msg
 import de.miraculixx.mutils.utils.tools.click
-import de.miraculixx.mutils.utils.tools.error
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
-import de.miraculixx.mutils.utils.tools.gui.items.ItemLib
+import de.miraculixx.mutils.utils.tools.soundError
 import net.axay.kspigot.extensions.worlds
 import net.axay.kspigot.items.customModel
 import org.bukkit.Difficulty
@@ -38,7 +39,6 @@ class WorldGUI(private val it: InventoryClickEvent, private val player: Player, 
 
     private fun globalSettings() {
         val c = ConfigManager.getConfig(Configs.WORLDS)
-        val tool = GUITools(c)
         val click = it.click
         when (id) {
             200 -> {
@@ -48,18 +48,18 @@ class WorldGUI(private val it: InventoryClickEvent, private val player: Player, 
             }
             205 -> {
                 player.sendMessage("$prefix§c No Filter available!")
-                player.error()
+                player.soundError()
             }
             203 -> {
                 if (click.isShiftClick)
-                    tool.navigate(player, 5, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
-                else tool.navigate(player, 1, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
+                    InvUtils.navigate(player, 5, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
+                else InvUtils.navigate(player, 1, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
                 return
             }
             202 -> {
                 if (click.isShiftClick)
-                    tool.navigate(player, -5, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
-                else tool.navigate(player, -1, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
+                    InvUtils.navigate(player, -5, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
+                else InvUtils.navigate(player, -1, GUI.WORLD_GLOBAL_SETTINGS, GUIState.SCROLL)
                 return
             }
             201 -> {
@@ -71,30 +71,32 @@ class WorldGUI(private val it: InventoryClickEvent, private val player: Player, 
             100 -> if (click.isRightClick) {
                 val items = ItemLib().getWorld(3, c = ConfigManager.getConfig(Configs.BACKPACK)).keys.toList()
                 GUIBuilder(player, GUI.CUSTOM).settings(1, items).open()
-            } else tool.toggleSetting(player, "Global.Backpack")
-            101 -> tool.toggleSetting(player, "Global.HeartsTab")
-            102 -> tool.toggleSetting(player, "Global.Hardcore")
-            103 -> if (click.isRightClick)
-                tool.enumRotate(Difficulty.values().toList(), Difficulty.valueOf(c.getString("Global.DifficultyMode") ?: "EASY"), player)
-            else tool.toggleSetting(player, "Global.Difficulty")
-            104 -> tool.toggleSetting(player, "Global.TimeFreeze")
-            105 -> if (click.isRightClick)
-                tool.enumRotate(Weather.values().toList(), Weather.valueOf(c.getString("Global.WeatherMode") ?: "SUNNY"), player)
-            else tool.toggleSetting(player, "Global.Weather")
-            106 -> tool.toggleSetting(player, "Global.FallDamage")
-            107 -> tool.toggleSetting(player, "Global.FireDamage")
-            108 -> tool.toggleSetting(player, "Global.DrowningDamage")
-            109 -> tool.toggleSetting(player, "Global.FreezeDamage")
-            110 -> tool.toggleSetting(player, "Global.Advancements")
-            111 -> tool.toggleSetting(player, "Global.Deaths")
-            112 -> tool.toggleSetting(player, "Global.KeepInv")
-            113 -> tool.toggleSetting(player, "Global.Raids")
-            114 -> tool.toggleSetting(player, "Global.FireTick")
-            115 -> tool.toggleSetting(player, "Global.InstantRespawn")
-            116 -> tool.toggleSetting(player, "Global.Phantoms")
-            117 -> tool.toggleSetting(player, "Global.MobDamage")
-            118 -> tool.toggleSetting(player, "Global.TickSpeed")
-            119 -> tool.toggleSetting(player, "Global.F3")
+            } else InvUtils.toggleSetting(c, player, "Global.Backpack")
+            101 -> InvUtils.toggleSetting(c, player, "Global.HeartsTab")
+            102 -> InvUtils.toggleSetting(c, player, "Global.Hardcore")
+            103 -> if (click.isRightClick) {
+                InvUtils.enumRotate(Difficulty.values(), Difficulty.valueOf(c.getString("Global.DifficultyMode") ?: "EASY"))
+                player.click()
+            } else InvUtils.toggleSetting(c, player, "Global.Difficulty")
+            104 -> InvUtils.toggleSetting(c, player, "Global.TimeFreeze")
+            105 -> if (click.isRightClick) {
+                InvUtils.enumRotate(Weather.values(), Weather.valueOf(c.getString("Global.WeatherMode") ?: "SUNNY"))
+                player.click()
+            } else InvUtils.toggleSetting(c, player, "Global.Weather")
+            106 -> InvUtils.toggleSetting(c, player, "Global.FallDamage")
+            107 -> InvUtils.toggleSetting(c, player, "Global.FireDamage")
+            108 -> InvUtils.toggleSetting(c, player, "Global.DrowningDamage")
+            109 -> InvUtils.toggleSetting(c, player, "Global.FreezeDamage")
+            110 -> InvUtils.toggleSetting(c, player, "Global.Advancements")
+            111 -> InvUtils.toggleSetting(c, player, "Global.Deaths")
+            112 -> InvUtils.toggleSetting(c, player, "Global.KeepInv")
+            113 -> InvUtils.toggleSetting(c, player, "Global.Raids")
+            114 -> InvUtils.toggleSetting(c, player, "Global.FireTick")
+            115 -> InvUtils.toggleSetting(c, player, "Global.InstantRespawn")
+            116 -> InvUtils.toggleSetting(c, player, "Global.Phantoms")
+            117 -> InvUtils.toggleSetting(c, player, "Global.MobDamage")
+            118 -> InvUtils.toggleSetting(c, player, "Global.TickSpeed")
+            119 -> InvUtils.toggleSetting(c, player, "Global.F3")
         }
         val builder = GUIBuilder(player, GUI.WORLD_GLOBAL_SETTINGS)
         if (it.view.topInventory.size == 9*4) builder.scroll(0)
@@ -109,7 +111,7 @@ class WorldGUI(private val it: InventoryClickEvent, private val player: Player, 
                 player.click()
             }
             1 -> {
-                GUIBuilder(player, GUI.WORLD_OVERVIEW).storage(StorageFilters.NO_FILTER).open()
+                GUIBuilder(player, GUI.WORLD_OVERVIEW).storage(StorageFilter.NO_FILTER).open()
                 player.click()
             }
             2 -> {
@@ -118,11 +120,11 @@ class WorldGUI(private val it: InventoryClickEvent, private val player: Player, 
                 WorldCreator(player)
             }
             3 -> {
-                player.error()
+                player.soundError()
                 player.sendMessage("$prefix §cAktuell sind keine Daten vorhanden!")
             }
             4 -> {
-                player.error()
+                player.soundError()
                 player.sendMessage("$prefix §cPer World Settings werden erst im nächsten Update verfügbar sein! Bis dahin kannst du globale Welteneinstellungen vornehmen")
             }
             5 -> {
@@ -150,11 +152,11 @@ class WorldGUI(private val it: InventoryClickEvent, private val player: Player, 
                     ClickType.SHIFT_RIGHT -> {
                         if (id <= 2) {
                             player.sendMessage(msg("modules.world.defaultWorld"))
-                            player.error()
+                            player.soundError()
                             return
                         }
-                        val wTools = WorldTools()
-                        wTools.deleteWorld(world)
+                        val wInvUtils = WorldTools()
+                        wInvUtils.deleteWorld(world)
                         player.playSound(player.location, Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1f, 1.2f)
                         player.sendMessage(msg("modules.world.delete", player, world.name))
                         GUIBuilder(player, GUI.WORLD_OVERVIEW).storage(null).open()

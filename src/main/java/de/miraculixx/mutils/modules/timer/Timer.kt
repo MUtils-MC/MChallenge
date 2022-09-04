@@ -7,7 +7,7 @@ import de.miraculixx.mutils.modules.challenge.ChallengeManager
 import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.chat.literalText
 import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.extensions.onlinePlayers

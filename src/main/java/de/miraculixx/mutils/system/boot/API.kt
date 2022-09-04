@@ -4,7 +4,12 @@ package de.miraculixx.mutils.system.boot
 
 import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.enums.modules.Modules
-import de.miraculixx.mutils.utils.*
+import de.miraculixx.mutils.utils.ID
+import de.miraculixx.mutils.utils.IP
+import de.miraculixx.mutils.utils.isUpdating
+import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.consoleMessage
+import de.miraculixx.mutils.utils.text.consoleWarn
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
@@ -90,8 +95,7 @@ class API {
                 "$prefix Discord: https://mutils.de/dc"
             )
             return null
-        }
-        else if (out.startsWith("error")) {
+        } else if (out.startsWith("error")) {
             consoleWarn(
                 "$prefix API returned an Error! (Error Code:${out.split('-')[1]} Call: $builder)",
                 "$prefix Please contact us on our Discord to fix this or get further information.",

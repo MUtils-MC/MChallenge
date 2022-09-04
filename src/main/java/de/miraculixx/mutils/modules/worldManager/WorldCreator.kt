@@ -4,18 +4,19 @@ package de.miraculixx.mutils.modules.worldManager
 
 import de.miraculixx.mutils.enums.modules.worldCreator.BiomeProviders
 import de.miraculixx.mutils.enums.settings.gui.GUI
-import de.miraculixx.mutils.modules.gui.GUITools
 import de.miraculixx.mutils.modules.worldManager.biomeProvider.RandomBiomes
 import de.miraculixx.mutils.modules.worldManager.biomeProvider.SingleBiomes
 import de.miraculixx.mutils.modules.worldManager.biomeProvider.SwitchBiomes
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.addLines
-import de.miraculixx.mutils.utils.getMessageList
-import de.miraculixx.mutils.utils.msg
-import de.miraculixx.mutils.utils.tools.error
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
-import de.miraculixx.mutils.utils.tools.gui.items.skullTexture
+import de.miraculixx.mutils.utils.await.AwaitChatMessage
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.gui.InvUtils
+import de.miraculixx.mutils.utils.gui.items.skullTexture
+import de.miraculixx.mutils.utils.plainSerializer
+import de.miraculixx.mutils.utils.text.addLines
+import de.miraculixx.mutils.utils.text.getMessageList
+import de.miraculixx.mutils.utils.text.msg
+import de.miraculixx.mutils.utils.tools.click
+import de.miraculixx.mutils.utils.tools.soundError
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.unregister
 import net.axay.kspigot.extensions.bukkit.title
@@ -41,9 +42,7 @@ class WorldCreator(private val player: Player) {
     private var wEnv = Environment.NORMAL
     private var wBiom: Biome? = null
 
-    private val tool = GUITools(null)
     private val gui = GUIBuilder(player, GUI.CUSTOM).custom(true, mapOf(), 3, "§9World Creator").get()!!
-    private val conf = ConfigManager.getConfig(Configs.WORLDS)
 
     private val onInvClose = listen<InventoryCloseEvent> {
         if (player != it.player) return@listen
@@ -59,26 +58,34 @@ class WorldCreator(private val player: Player) {
         it.isCancelled = true
 
         when (item?.itemMeta?.customModelData) {
-            101 -> GUITools.AwaitChat(conf, "DUMMY_WORLD_NAME", player) {
-                wName = conf.getString("DUMMY_WORLD_NAME")
+            101 -> AwaitChatMessage(true, player, "DUMMY_WORLD_NAME", 60, { message ->
+                wName = plainSerializer.serialize(message)
                 wBiom = null
-                conf["DUMMY_WORLD_NAME"] = null
-                player.openInventory(gui)
                 update()
-            }
-            102 -> GUITools.AwaitChat(conf, "DUMMY_WORLD_SEED", player) {
-                wSeed = conf.getString("DUMMY_WORLD_SEED")?.toLong(10)
-                conf["DUMMY_WORLD_SEED"] = null
+            }, {
                 player.openInventory(gui)
+            })
+            102 -> AwaitChatMessage(true, player, "DUMMY_WORLD_SEED",60, { message ->
+                val input = plainSerializer.serialize(message).toLong(10)
+                wSeed = input
                 update()
+            }, {
+                player.openInventory(gui)
+            })
+            103 -> {
+                wEnv = InvUtils.enumRotate(Environment.values().filter { e -> e != Environment.CUSTOM }.toTypedArray(), wEnv)
+                player.click()
             }
-            103 -> wEnv = tool.enumRotate(Environment.values().filter { e -> e != Environment.CUSTOM }, wEnv, player) as Environment
-            104 -> wGen = tool.enumRotate(BiomeProviders.values().toList(), wGen, player) as BiomeProviders
+            104 -> {
+                wGen = InvUtils.enumRotate(BiomeProviders.values(), wGen)
+                player.click()
+            }
             105 -> {
-                wBiom = tool.enumRotate(Biome.values().filter { b -> b != Biome.CUSTOM }, wBiom ?: Biome.PLAINS, player) as Biome
+                wBiom = InvUtils.enumRotate(Biome.values().filter { b -> b != Biome.CUSTOM }.toTypedArray(), wBiom ?: Biome.PLAINS)
                 wName = wBiom?.name
+                player.click()
             }
-            2 -> player.error()
+            2 -> player.soundError()
             1 -> {
                 finish()
                 return@listen

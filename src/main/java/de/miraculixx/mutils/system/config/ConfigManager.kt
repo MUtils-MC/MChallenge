@@ -2,9 +2,9 @@ package de.miraculixx.mutils.system.config
 
 import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.utils.API
-import de.miraculixx.mutils.utils.consoleMessage
-import de.miraculixx.mutils.utils.consoleWarn
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.consoleMessage
+import de.miraculixx.mutils.utils.text.consoleWarn
 import net.axay.kspigot.runnables.taskRunLater
 import org.bukkit.configuration.file.FileConfiguration
 import java.io.File
@@ -39,6 +39,7 @@ object ConfigManager {
         configMap[Configs.BACK] = Config("utils/back")
         configMap[Configs.BACKPACK] = Config("utils/backpack")
         configMap[Configs.SPEEDRUN] = Config("modules/speedrun")
+        configMap[Configs.CUSTOM_CHALLENGE] = Config("modules/challengeCreator")
 
         saveLang()
         updateLang()

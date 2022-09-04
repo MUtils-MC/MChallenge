@@ -10,10 +10,10 @@ import de.miraculixx.mutils.enums.settings.spectator.Hide
 import de.miraculixx.mutils.enums.settings.spectator.ItemPickup
 import de.miraculixx.mutils.enums.settings.spectator.SelfHide
 import de.miraculixx.mutils.system.config.Config
-import de.miraculixx.mutils.utils.cropColor
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.gui.GUIBuilder
+import de.miraculixx.mutils.utils.text.cropColor
+import de.miraculixx.mutils.utils.text.msg
 import de.miraculixx.mutils.utils.tools.click
-import de.miraculixx.mutils.utils.tools.gui.GUIBuilder
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.items.customModel

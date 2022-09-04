@@ -2,7 +2,7 @@ package de.miraculixx.mutils.modules.worldManager
 
 import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.modules.ModuleManager
-import de.miraculixx.mutils.utils.msg
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.event.listen
 import org.bukkit.Bukkit
 import org.bukkit.World

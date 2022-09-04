@@ -7,6 +7,7 @@ import de.miraculixx.mutils.system.boot.StartUp
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs
 import de.miraculixx.mutils.utils.*
+import de.miraculixx.mutils.utils.text.consoleMessage
 import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.main.KSpigot
 import org.bukkit.Bukkit
@@ -22,7 +23,6 @@ class Main : KSpigot() {
 
     override fun load() {
         INSTANCE = this
-
         val c = ConfigManager.getConfig(Configs.SETTINGS)
         if (c.getBoolean("Legacy Reset")) {
             consoleMessage("$prefix Delete old Worlds...")
@@ -79,5 +79,6 @@ class Main : KSpigot() {
         API.end()
         consoleMessage("$prefix Everything successfully saved and shut down!")
     }
-
 }
+
+val Manager by lazy { Main.INSTANCE }

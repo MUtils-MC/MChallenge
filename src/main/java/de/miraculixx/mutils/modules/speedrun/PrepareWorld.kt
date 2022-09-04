@@ -1,9 +1,9 @@
 package de.miraculixx.mutils.modules.speedrun
 
 import de.miraculixx.mutils.modules.ModuleManager
-import de.miraculixx.mutils.utils.consoleMessage
-import de.miraculixx.mutils.utils.msg
 import de.miraculixx.mutils.utils.prefix
+import de.miraculixx.mutils.utils.text.consoleMessage
+import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.extensions.worlds

@@ -2,42 +2,42 @@
 
 package de.miraculixx.mutils.enums.modules
 
-import de.miraculixx.mutils.enums.settings.gui.StorageFilters
+import de.miraculixx.mutils.enums.settings.gui.StorageFilter
 
-enum class Modules(b: Boolean, l: List<StorageFilters>) {
+enum class Modules(b: Boolean, l: List<StorageFilter>) {
     //Challenges
-    FLY(true, listOf(StorageFilters.FUN)),
-    IN_TIME(true, listOf(StorageFilters.MEDIUM)),
-    MOB_RANDOMIZER(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    CHECKPOINTS(true, listOf(StorageFilters.FUN)),
-    DIM_SWAP(true, listOf(StorageFilters.MEDIUM)),
-    SNAKE(true, listOf(StorageFilters.HARD, StorageFilters.COMPLEX)),
-    REALISTIC(true, listOf(StorageFilters.HARD, StorageFilters.COMPLEX, StorageFilters.BETA)),
-    CAPTIVE(true, listOf(StorageFilters.MEDIUM, StorageFilters.VERSION_BOUND)),
-    GHOST(true, listOf(StorageFilters.FUN)),
-    BLOCK_ASYNC(true, listOf(StorageFilters.FUN, StorageFilters.MULTIPLAYER)),
-    NO_SAME_ITEM(true, listOf(StorageFilters.MEDIUM, StorageFilters.MULTIPLAYER)),
-    LIMITED_SKILLS(true, listOf(StorageFilters.HARD, StorageFilters.MULTIPLAYER)),
-    RUN_RANDOMIZER(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    SPLIT_HP(true, listOf(StorageFilters.MEDIUM, StorageFilters.MULTIPLAYER)),
-    DAMAGE_DUELL(true, listOf(StorageFilters.FUN, StorageFilters.MULTIPLAYER)),
-    ONE_BIOME(true, listOf(StorageFilters.MEDIUM)),
-    BOOST_UP(true, listOf(StorageFilters.MEDIUM)),
-    RIGHT_TOOL(true, listOf(StorageFilters.MEDIUM)),
-    CHUNK_BLOCK_BREAK(true, listOf(StorageFilters.MEDIUM)),
-    SNEAK_SPAWN(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    WORLD_PEACE(true, listOf(StorageFilters.MEDIUM)),
-    STAY_AWAY(true, listOf(StorageFilters.HARD)),
-    RANDOMIZER_BLOCK(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    RANDOMIZER_ENTITY(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    RANDOMIZER_BIOMES(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    RANDOMIZER_MOBS(true, listOf(StorageFilters.FUN, StorageFilters.RANDOMIZER)),
-    FORCE_COLLECT(true, listOf(StorageFilters.MEDIUM, StorageFilters.FORCE)),
-    RANDOMIZER_ENTITY_DAMAGE(true, listOf(StorageFilters.MEDIUM, StorageFilters.RANDOMIZER)),
-    NO_DOUBLE_KILL(true, listOf(StorageFilters.MEDIUM)),
-    DAMAGER(true, listOf(StorageFilters.MEDIUM, StorageFilters.HARD)),
-    GRAVITY(true, listOf(StorageFilters.MEDIUM, StorageFilters.COMPLEX)),
-    RIVALS_COLLECT(true, listOf(StorageFilters.FUN, StorageFilters.FORCE, StorageFilters.MULTIPLAYER)),
+    FLY(true, listOf(StorageFilter.FUN)),
+    IN_TIME(true, listOf(StorageFilter.MEDIUM)),
+    MOB_RANDOMIZER(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    CHECKPOINTS(true, listOf(StorageFilter.FUN)),
+    DIM_SWAP(true, listOf(StorageFilter.MEDIUM)),
+    SNAKE(true, listOf(StorageFilter.HARD, StorageFilter.COMPLEX)),
+    REALISTIC(true, listOf(StorageFilter.HARD, StorageFilter.COMPLEX, StorageFilter.BETA)),
+    CAPTIVE(true, listOf(StorageFilter.MEDIUM, StorageFilter.VERSION_BOUND)),
+    GHOST(true, listOf(StorageFilter.FUN)),
+    BLOCK_ASYNC(true, listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER)),
+    NO_SAME_ITEM(true, listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER)),
+    LIMITED_SKILLS(true, listOf(StorageFilter.HARD, StorageFilter.MULTIPLAYER)),
+    RUN_RANDOMIZER(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    SPLIT_HP(true, listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER)),
+    DAMAGE_DUELL(true, listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER)),
+    ONE_BIOME(true, listOf(StorageFilter.MEDIUM)),
+    BOOST_UP(true, listOf(StorageFilter.MEDIUM)),
+    RIGHT_TOOL(true, listOf(StorageFilter.MEDIUM)),
+    CHUNK_BLOCK_BREAK(true, listOf(StorageFilter.MEDIUM)),
+    SNEAK_SPAWN(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    WORLD_PEACE(true, listOf(StorageFilter.MEDIUM)),
+    STAY_AWAY(true, listOf(StorageFilter.HARD)),
+    RANDOMIZER_BLOCK(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    RANDOMIZER_ENTITY(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    RANDOMIZER_BIOMES(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    RANDOMIZER_MOBS(true, listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER)),
+    FORCE_COLLECT(true, listOf(StorageFilter.MEDIUM, StorageFilter.FORCE)),
+    RANDOMIZER_ENTITY_DAMAGE(true, listOf(StorageFilter.MEDIUM, StorageFilter.RANDOMIZER)),
+    NO_DOUBLE_KILL(true, listOf(StorageFilter.MEDIUM)),
+    DAMAGER(true, listOf(StorageFilter.MEDIUM, StorageFilter.HARD)),
+    GRAVITY(true, listOf(StorageFilter.MEDIUM, StorageFilter.COMPLEX)),
+    RIVALS_COLLECT(true, listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER)),
 
     //Utilitys
     SPEEDRUN(false, listOf()),
@@ -56,7 +56,7 @@ enum class Modules(b: Boolean, l: List<StorageFilters>) {
     }
 
     private var filters = l
-    fun matchingFilter(filter: StorageFilters): Boolean {
+    fun matchingFilter(filter: StorageFilter): Boolean {
         return filters.contains(filter)
     }
     fun getFilterLore(): List<String> {
