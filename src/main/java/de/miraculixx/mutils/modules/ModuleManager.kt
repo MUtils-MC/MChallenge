@@ -45,7 +45,6 @@ object ModuleManager {
     fun getChallenges(): List<Challenge> {
         return buildList {
             addAll(chClasses)
-            addAll(CreatorManager.getAllChallenges())
         }
     }
 
