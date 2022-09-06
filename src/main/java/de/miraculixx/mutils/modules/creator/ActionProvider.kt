@@ -36,6 +36,7 @@ object ActionProvider {
             CreatorEvent.MOB_DAMAGE -> MobDamage(actions)
             CreatorEvent.BLOCK_BREAK -> BlockBreak(actions)
             CreatorEvent.BLOCK_PLACE -> BlockPlace(actions)
+            CreatorEvent.CRAFT_ITEM -> ItemCraft(actions)
         }
     }
 

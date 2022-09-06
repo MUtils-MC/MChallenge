@@ -116,7 +116,7 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                         }
                     }, {
                         if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
-                    })
+                    }, true)
                     CreatorActionInput.INT -> AwaitChatMessage(false, player, "Integer (eg 1, 2)", 60, {
                         val number = plainSerializer.serialize(it).toIntOrNull()
                         settings.settings[settingsID] = number?.toString() ?: "0"
@@ -133,13 +133,16 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                     }, {
                         if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
                     })
-                    CreatorActionInput.TEXT -> AwaitChatMessage(false, player, "Text", 60, {
-                        settings.settings[settingsID] = mm.serialize(it)
-                        player.soundEnable()
-                        sync { openActionValues(player, settings, event, uuid) }
-                    }, {
-                        if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
-                    })
+                    CreatorActionInput.TEXT -> {
+                        player.sendMessage(msg("module.await.placeholder"))
+                        AwaitChatMessage(false, player, "Text", 60, {
+                            settings.settings[settingsID] = mm.serialize(it)
+                            player.soundEnable()
+                            sync { openActionValues(player, settings, event, uuid) }
+                        }, {
+                            if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
+                        }, true)
+                    }
                 }
                 player.click()
             }

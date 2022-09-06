@@ -122,21 +122,11 @@ command:
 #           >> Module Messages                    #
 #           >> Tiles marked with '-title'         #
 # Syntax -> modules.ch.[challenge].[parameter]    #
-#           >> All Challenge Messages             #
+#           >> All Challenge Feedback Messages    #
 #-------------------------------------------------#
 modules:
-  worldManager:
-    worldNotExist: "&cDie Welt <INPUT> konnte nicht geladen werden! &8(Sehe Konsole)"
-    estimated-title: "&cDauer ca &l<INPUT>s bis teleportation"
-    lag-title: "&eStabilisiere TPS auf 16 (Pausiere Welten Tick)"
-    worldCreated: "&eWelt &l<INPUT>&e wurde erstellt"
-    cancel: "Der Erstellungsprozess wurde abgebrochen!"
-  texturepack:
-    loading-title: "&cPlease activate Server ResourcePacks"
-  spectator:
-    join: "Du hast den Server als Spectator betreten!"
-    noPlayer: "&cKeinen passenden Spieler gefunden! (nicht spectator)"
   global:
+    # Global keys that do not fit in any other groups
     running: "&cChallenge Einstellungen können nur im deaktivierten Modus gewechselt werden! Bitte deaktiviere zuerst alle über /ch stop"
     soon: "<INPUT> ist in dieser Version noch nicht implementiert! Halte ausschau nach neuen Updates"
     outdated: "&cFEHLER! <INPUT> ist nur mit Server Version &n<INPUT-2>&c spielbar!"
@@ -145,6 +135,27 @@ modules:
       - "&7Klicke hier, um eine kompakte"
       - "&7Ansicht aller Einstellungen"
       - "&7zu öffnen"
+  #---
+  await:
+    # All keys for Player input awaits. E.g. Await Chat, Item, ...
+    random: "Gebe &9'random' &7ein, um einen zufälligen Wert zu erhalten"
+    placeholder: "Dieser Text unterstützt MiniMessages und Placeholder!\nErfahre mehr unter:&9 https://webui.adventure.kyori.net"
+  #---
+  worldManager:
+    # All keys for the world Manager
+    worldNotExist: "&cDie Welt <INPUT> konnte nicht geladen werden! &8(Sehe Konsole)"
+    estimated-title: "&cDauer ca &l<INPUT>s bis teleportation"
+    lag-title: "&eStabilisiere TPS auf 16 (Pausiere Welten Tick)"
+    worldCreated: "&eWelt &l<INPUT>&e wurde erstellt"
+    cancel: "Der Erstellungsprozess wurde abgebrochen!"
+  #---
+  texturepack:
+    loading-title: "&cPlease activate Server ResourcePacks"
+  #---
+  spectator:
+    join: "Du hast den Server als Spectator betreten!"
+    noPlayer: "&cKeinen passenden Spieler gefunden! (nicht spectator)"
+  #---
   timer:
     # Use `/` to display a singular and plural Version (only on days)
     # E.g. "Day/s" -> 1 Day & 3 Days
@@ -160,11 +171,13 @@ modules:
     back: "&7Gebe &9/back&7 ein, um dich zu dem Todespunkt zu teleportieren!"
     kick: "&7>> &9Du bist in der Challenge gestorben &7<<\n&7>> &9und somit disqualifiziert &7<<"
     ban: "&7>> &9Auf diesem Server ist der Hardcore &7<<\n&7>> &9Modus aktiviert! &7<<"
+  #---
   world:
     defaultWorld: "&cDie 3 Basiswelten (Overworld, Nether, End) können nicht gelöscht werden!"
     delete: "Die Welt &9<INPUT>&7 wurde erfolgreich gelöscht!"
-  # <- Start of Challenge Message Package ->
+  #---
   ch:
+    # All keys for Challenges-Feedback message while running
     noSameItem:
       duplicate: "Das Item &9<INPUT>&7 hatte bereits der Spieler &9<PLAYER>&7!"
       death: "Der Spieler &9<PLAYER>&7 hatte &9<INPUT>&7 gleiche Items!"
@@ -186,10 +199,12 @@ modules:
     rivalCollect:
       newItem: "&aItem registriert! Finde als nächstes das Item &2&n<INPUT>"
       itemFound: "<PLAYER> hat <INPUT-2> gefunden! Neues Item -> <INPUT>"
+  #---
   speedrun:
     warning: "Die Aktivierung des Speedrun Modules wird jegliche andere Funktionen des Plugins deaktivieren! &9Klicke hier&7 um zu beginnen!"
     noStructure: "Seed entspricht nicht den Einstellungen. Erstelle neue Welt..."
     start: "Speedrun gestartet! Nutze &9/reset&7 um eine neue Welt zu erhalten. Viel Erfolg!"
+  #---
   serverSettings:
     counter: "&6Textinput in den Chat"
     counterSub: "&eAutomatischer Abbruch in &l<INPUT>&e Sekunden"
@@ -209,12 +224,10 @@ modules:
 #-------------------------------------------------#
 item:
   GUI:
-    # IMPORTANT
-    # Filter must have 2 lines! Not more, not less
     Filter:
       - "&7Filtere alle Einstellungen nach"
       - "&7einer bestimmten Kategorie"
-    Back: "Zurück zum Hauptmenü"
+    Back: "Zurück Navigieren"
     NavigateNL:
       - "&7Du kannst nicht weiter"
       - "&7nach hinten scrollen"
@@ -229,41 +242,44 @@ item:
       - "&7Eine Seite weiter"
       - "&7Click ≫ 1 Seite"
       - "&7Sneak Click ≫ 5 Seiten"
-    Select:
-      1:
-        l:
-          - "&7Übersicht aller Challenges,"
-          - "&7welche Spielbar sind"
-      2:
-        l:
-          - "&7Verwalte deinen Welten und"
-          - "&7treffe Welten spezifische oder"
-          - "&7globale Einstellungen"
-      3:
-        l:
-          - "&7Fordere andere Spieler heraus"
-          - "&7und spiele gegen sie normale oder"
-          - "&7exklusive Challenges"
-      4:
-        l:
-          - "&7Stoppe deine Zeit oder setze dir"
-          - "&7eine Stoppuhr beim spielen! Weitere"
-          - "&7Einstellungen für Design und Welt"
-      5:
-        l:
-          - "&7Dir sind die vorgefertigten Challenges"
-          - "&7nicht genug? Erstelle von Grund auf"
-          - "&7eigene Challenges nach deinem belieben"
-      6:
-        l:
-          - "&7Server Einstellungen für die"
-          - "&7Server List und Player"
-          - "&7Management. Zugriff auf die Cloud"
-      7:
-        l:
-          - "&7Wie schnell kannst du Minecraft durch"
-          - "&7spielen? Resette deine Welten ohne"
-          - "&7Wartezeiten und spiele direkt weiter!"
+  #---
+  Select:
+    1:
+      l:
+        - "&7Übersicht aller Challenges,"
+        - "&7welche Spielbar sind"
+    2:
+      l:
+        - "&7Verwalte deinen Welten und"
+        - "&7treffe Welten spezifische oder"
+        - "&7globale Einstellungen"
+    3:
+      l:
+        - "&7Fordere andere Spieler heraus"
+        - "&7und spiele gegen sie normale oder"
+        - "&7exklusive Challenges"
+    4:
+      l:
+        - "&7Stoppe deine Zeit oder setze dir"
+        - "&7eine Stoppuhr beim spielen! Weitere"
+        - "&7Einstellungen für Design und Welt"
+    5:
+      l:
+        - "&7Dir sind die vorgefertigten Challenges"
+        - "&7nicht genug? Erstelle von Grund auf"
+        - "&7eigene Challenges nach deinem belieben"
+    6:
+      l:
+        - "&7Server Einstellungen für die"
+        - "&7Server List und Player"
+        - "&7Management. Zugriff auf die Cloud"
+    7:
+      l:
+        - "&7Wie schnell kannst du Minecraft durch"
+        - "&7spielen? Resette deine Welten ohne"
+        - "&7Wartezeiten und spiele direkt weiter!"
+  #---
+  ch:
     FLY:
       l:
         - "&7Fliege mit neuen Kräften durch"
@@ -546,6 +562,7 @@ item:
       l:
         - "&7Es darf niemals das selbe"
         - "&7Mob hintereinander getötet werden!"
+  #---
   Spec:
     Hide:
       l:
@@ -601,6 +618,7 @@ item:
       l:
         - "&7Trolle lebende Spieler mit"
         - "&7fake Sounds oder fake Blöcken!"
+  #---
   Timer:
     Toggle:
       l:
@@ -672,6 +690,7 @@ item:
       l:
         - "&7Soll ein Spieler für das Sterben"
         - "&7bestraft werden? (Kick / Ban)"
+  #---
   Speedrun:
     Village:
       l:
@@ -696,6 +715,7 @@ item:
         - "&7Sollen Piglins Traden wie"
         - "&7in der 1.16.1? (Standard"
         - "&7Speedrunning Version)"
+  #---
   World:
     Overview:
       l:
@@ -718,6 +738,7 @@ item:
       l:
         - "&7Globale Welten Einstellungen"
         - "&7welche für alle Welten gelten"
+  #---
   WorldCreator:
     Name:
       l:
@@ -742,6 +763,7 @@ item:
         - "&7Das Biom, aus welche die neue"
         - "&7Welt vollständig bestehen wird."
         - "&7(Ändert Welten Name)"
+  #---
   Server:
     Icon:
       l:
@@ -775,3 +797,21 @@ item:
       l:
         - "&7Downloade deine MUtils Einstellungen"
         - "&7von der Cloud, um sie zu synchronisieren"
+  #---
+  await:
+    rdOnetime:
+      - "&7Ein zufälliger Wert wird"
+      - "&7beim auswählen gesetzt"
+    rdOnetimeFilter:
+      - "&7Ein zufälliger Wert anhand"
+      - "&7des aktuellen Filters wird"
+      - "&7beim auswählen gesetzt"
+    rdEverytime:
+      - "&7Ein zufälliger Wert wird"
+      - "&7jedes mal wenn diese Aktion"
+      - "&7aufgerufen wird ausgewählt"
+    rdEverytimeFilter:
+      - "&7Ein zufälliger Wert anhand"
+      - "&7des aktuellen Filters wird"
+      - "&7jedes mal wenn diese Aktion"
+      - "&7aufgerufen wird ausgewählt"

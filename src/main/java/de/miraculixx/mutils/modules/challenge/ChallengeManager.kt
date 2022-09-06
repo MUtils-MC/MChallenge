@@ -3,6 +3,21 @@ package de.miraculixx.mutils.modules.challenge
 import de.miraculixx.mutils.enums.modules.Modules
 import de.miraculixx.mutils.modules.ModuleManager
 import de.miraculixx.mutils.modules.challenge.mods.*
+import de.miraculixx.mutils.modules.challenge.mods.checkpoints.Checkpoints
+import de.miraculixx.mutils.modules.challenge.mods.dimSwap.DimSwap
+import de.miraculixx.mutils.modules.challenge.mods.force.ForceCollect
+import de.miraculixx.mutils.modules.challenge.mods.ghost.Ghost
+import de.miraculixx.mutils.modules.challenge.mods.gravity.GravityManager
+import de.miraculixx.mutils.modules.challenge.mods.inTime.InTime
+import de.miraculixx.mutils.modules.challenge.mods.limitedSkills.LimitedSkills
+import de.miraculixx.mutils.modules.challenge.mods.mobRandomizer.MobRandomizer
+import de.miraculixx.mutils.modules.challenge.mods.noSameItems.NoSameItem
+import de.miraculixx.mutils.modules.challenge.mods.oneBiome.OneBiome
+import de.miraculixx.mutils.modules.challenge.mods.randomizer.*
+import de.miraculixx.mutils.modules.challenge.mods.realistic.Realistic
+import de.miraculixx.mutils.modules.challenge.mods.runRandomizer.RunRandomizer
+import de.miraculixx.mutils.modules.challenge.mods.snake.Snake
+import de.miraculixx.mutils.modules.challenge.mods.worldPeace.WorldPeace
 
 class ChallengeManager {
 

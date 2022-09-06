@@ -10,9 +10,13 @@ enum class CreatorEvent(val interfaces: List<EventType>, val material: Material)
     MOVE_JUMP(listOf(EventType.PLAYER_EVENT, EventType.CANCELABLE), Material.RABBIT_FOOT),
     DIMENSION_SWAP(listOf(EventType.PLAYER_EVENT, EventType.CANCELABLE), Material.END_PORTAL_FRAME),
 
-    BLOCK_BREAK(listOf(EventType.CANCELABLE), Material.IRON_PICKAXE),
-    BLOCK_PLACE(listOf(EventType.CANCELABLE), Material.GRASS_BLOCK),
+    //Interact Events
+    BLOCK_PLACE(listOf(EventType.PLAYER_EVENT, EventType.CANCELABLE), Material.GRASS_BLOCK),
+    BLOCK_BREAK(listOf(EventType.PLAYER_EVENT ,EventType.CANCELABLE), Material.IRON_PICKAXE),
 
+    CRAFT_ITEM(listOf(EventType.PLAYER_EVENT, EventType.CANCELABLE), Material.CRAFTING_TABLE),
+
+    //Mob Events
     MOB_DEATH(listOf(EventType.ENTITY_EVENT), Material.ZOMBIE_HEAD),
     MOB_DAMAGE(listOf(EventType.ENTITY_EVENT, EventType.CANCELABLE), Material.DIAMOND_SWORD),
     MOB_KILL(listOf(EventType.ENTITY_EVENT, EventType.CANCELABLE), Material.ZOMBIE_HEAD);
