@@ -80,7 +80,7 @@ class ItemsChallenge(private val c: FileConfiguration) {
     //Utilities
     private fun getChallengeItem(challenge: Modules): Pair<ItemStack, Boolean> {
         val l = mutableListOf(" ", "§7∙ §9§nChallenge")
-            .addLines(getMessageList("item.GUI.${challenge.name}.l", "   "))
+            .addLines(getMessageList("item.ch.${challenge.name}.l", "   "))
             .addLines(getFilter(challenge))
             .addLines(" ", "§7∙ §9§nSettings")
         val item = when (challenge) {

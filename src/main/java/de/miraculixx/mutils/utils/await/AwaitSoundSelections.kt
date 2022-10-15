@@ -18,13 +18,13 @@ import org.bukkit.inventory.ItemStack
 /**
  * gui.await.sound
  */
-class AwaitSoundSelections(player: Player, filter: String, preset: GUI, callback: (ItemStack) -> Unit) {
+class AwaitSoundSelections(player: Player, filter: String, preset: GUI, random: Boolean, callback: (ItemStack) -> Unit) {
     private val lore = listOf(emptyComponent(), cmp("Click", cHighlight) + cmp(" ≫ Choose Sound"))
     private val invBuilder = GUIBuilder(player, preset, GUIAnimation.WATERFALL_OPEN)
         .storage(
             StorageFilter.HIDE,
             buildList {
-                addAll(ItemLib().getKeyed(1, "gui.await.sound"))
+                if (random) addAll(ItemLib().getKeyed(1, "gui.await.sound", filter))
                 addAll(Sound.values()
                     .filter { it.name.contains(filter.uppercase().replace(' ', '_')) }
                     .map { buildItem(Material.JUKEBOX, -1, cmp(it.name.fancy()), lore, values = listOf(PDCValues(NamespacedKey(Manager, "gui.await.sound"), it.name))) }

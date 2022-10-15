@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.modules.creator.events
 
+import de.miraculixx.mutils.modules.creator.data.CustomChallengeListener
 import net.axay.kspigot.event.SingleListener
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
@@ -12,6 +13,7 @@ class DimensionSwap(actions: List<(Event) -> Unit>) : CustomChallengeListener<Pl
     }
 
     override val listener: SingleListener<PlayerPortalEvent> = listen(register = false) {
+        if (it.isCancelled) return@listen
         actions.forEach { action ->
             action.invoke(it)
         }

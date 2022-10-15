@@ -44,8 +44,8 @@ class ItemsSettings {
     }
 
     private fun g8(c: FileConfiguration): List<ItemStack> {
-        val s1 = msg("item.GUI.RIVALS_COLLECT_S.1.n", pre = false)
-        val s2 = msg("item.GUI.RIVALS_COLLECT_S.2.n", pre = false)
+        val s1 = msg("item.ch.RIVALS_COLLECT_S.1.n", pre = false)
+        val s2 = msg("item.ch.RIVALS_COLLECT_S.2.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -58,7 +58,7 @@ class ItemsSettings {
                 customModel = 318
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.RIVALS_COLLECT_S.1.l"), ov)
+                    .addLines(getMessageList("item.ch.RIVALS_COLLECT_S.1.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Swap"
                     )
@@ -67,7 +67,7 @@ class ItemsSettings {
                 customModel = 319
                 name = "§9§l$s2"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.RIVALS_COLLECT_S.1.l"), ov)
+                    .addLines(getMessageList("item.ch.RIVALS_COLLECT_S.1.l"), ov)
                     .addLines(
                         "§9Left Click§7 ≫ +1",
                         "§9Right Click§7 ≫ -1"
@@ -77,8 +77,8 @@ class ItemsSettings {
     }
 
     private fun g7(c: FileConfiguration): List<ItemStack> {
-        val s1 = msg("item.GUI.DAMAGER_S.1.n", pre = false)
-        val s2 = msg("item.GUI.DAMAGER_S.2.n", pre = false)
+        val s1 = msg("item.ch.DAMAGER_S.1.n", pre = false)
+        val s2 = msg("item.ch.DAMAGER_S.2.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -91,7 +91,7 @@ class ItemsSettings {
                 customModel = 316
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.DAMAGER_S.1.l"), ov)
+                    .addLines(getMessageList("item.ch.DAMAGER_S.1.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Swap"
                     )
@@ -100,7 +100,7 @@ class ItemsSettings {
                 customModel = 317
                 name = "§9§l$s2"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.DAMAGER_S.1.l"), ov)
+                    .addLines(getMessageList("item.ch.DAMAGER_S.1.l"), ov)
                     .addLines(
                         "§9Left Click§7 ≫ +1hp",
                         "§9Right Click§7 ≫ -1hp"
@@ -110,7 +110,7 @@ class ItemsSettings {
     }
 
     private fun g6(c: FileConfiguration): List<ItemStack> {
-        val s1 = msg("item.GUI.ChunkBlockBreakerS.1.n", pre = false)
+        val s1 = msg("item.ch:ChunkBlockBreakerS.1.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -122,7 +122,7 @@ class ItemsSettings {
                 customModel = 315
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.ChunkBlockBreakerS.1.l"), ov)
+                    .addLines(getMessageList("item.ch:ChunkBlockBreakerS.1.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Toggle"
                     )
@@ -130,9 +130,9 @@ class ItemsSettings {
     }
 
     private fun g5(c: FileConfiguration): List<ItemStack> {
-        val s1 = msg("item.GUI.BoostUpS.1.n", pre = false)
-        val s2 = msg("item.GUI.BoostUpS.2.n", pre = false)
-        val s3 = msg("item.GUI.BoostUpS.3.n", pre = false)
+        val s1 = msg("item.ch:BoostUpS.1.n", pre = false)
+        val s2 = msg("item.ch:BoostUpS.2.n", pre = false)
+        val s3 = msg("item.ch:BoostUpS.3.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -146,7 +146,7 @@ class ItemsSettings {
             customModel = 312
             name = "§9§l$s1"
             lore = ArrayList<String>()
-                .addLines(getMessageList("item.GUI.BoostUpS.1.l"), ov)
+                .addLines(getMessageList("item.ch:BoostUpS.1.l"), ov)
                 .addLines(
                     "§9Left click§7 ≫ +1",
                     "§9Right click§7 ≫ -1"
@@ -156,7 +156,7 @@ class ItemsSettings {
             customModel = 313
             name = "§9§l$s2"
             lore = ArrayList<String>()
-                .addLines(getMessageList("item.GUI.BoostUpS.2.l"), ov)
+                .addLines(getMessageList("item.ch:BoostUpS.2.l"), ov)
                 .addLines(
                     "§9Left click§7 ≫ +1b",
                     "§9Right click§7 ≫ -1b"
@@ -166,7 +166,7 @@ class ItemsSettings {
             customModel = 314
             name = "§9§l$s3"
             lore = ArrayList<String>()
-                .addLines(getMessageList("item.GUI.BoostUpS.3.l"), ov)
+                .addLines(getMessageList("item.ch:BoostUpS.3.l"), ov)
                 .addLines(
                     "§9Click§7 ≫ Toggle",
                 )
@@ -175,9 +175,9 @@ class ItemsSettings {
 
     private fun g4(c: FileConfiguration): List<ItemStack> {
         val l = ArrayList<ItemStack>(3)
-        val s1 = msg("item.GUI.NoSameItemS.1.n", pre = false)
-        val s2 = msg("item.GUI.NoSameItemS.2.n", pre = false)
-        val s3 = msg("item.GUI.NoSameItemS.3.n", pre = false)
+        val s1 = msg("item.ch:NoSameItemS.1.n", pre = false)
+        val s2 = msg("item.ch:NoSameItemS.2.n", pre = false)
+        val s3 = msg("item.ch:NoSameItemS.3.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -191,7 +191,7 @@ class ItemsSettings {
                 customModel = 309
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.NoSameItemS.1.l"), ov)
+                    .addLines(getMessageList("item.ch:NoSameItemS.1.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +1",
                         "§9Right click§7 ≫ -1"
@@ -202,7 +202,7 @@ class ItemsSettings {
                 customModel = 310
                 name = "§9§l$s2"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.NoSameItemS.2.l"), ov)
+                    .addLines(getMessageList("item.ch:NoSameItemS.2.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Switch Mode"
                     )}}
@@ -212,7 +212,7 @@ class ItemsSettings {
                 customModel = 311
                 name = "§9§l$s3"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.NoSameItemS.3.l"), ov)
+                    .addLines(getMessageList("item.ch:NoSameItemS.3.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Switch Mode"
                     )}}
@@ -222,9 +222,9 @@ class ItemsSettings {
 
     private fun g3(c: FileConfiguration): List<ItemStack> {
         val l = ArrayList<ItemStack>(3)
-        val s1 = msg("item.GUI.GhostS.1.n", pre = false)
-        val s2 = msg("item.GUI.GhostS.2.n", pre = false)
-        val s3 = msg("item.GUI.GhostS.3.n", pre = false)
+        val s1 = msg("item.ch:GhostS.1.n", pre = false)
+        val s2 = msg("item.ch:GhostS.2.n", pre = false)
+        val s3 = msg("item.ch:GhostS.3.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -238,7 +238,7 @@ class ItemsSettings {
                 customModel = 306
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.GhostS.1.l"), ov)
+                    .addLines(getMessageList("item.ch:GhostS.1.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +1b",
                         "§9Right click§7 ≫ -1b"
@@ -249,7 +249,7 @@ class ItemsSettings {
                 customModel = 307
                 name = "§9§l$s2"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.GhostS.2.l"), ov)
+                    .addLines(getMessageList("item.ch:GhostS.2.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Switch Mode"
                     )}}
@@ -259,7 +259,7 @@ class ItemsSettings {
                 customModel = 308
                 name = "§9§l$s3"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.GhostS.3.l"), ov)
+                    .addLines(getMessageList("item.ch:GhostS.3.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Switch Mode"
                     )}}
@@ -269,9 +269,9 @@ class ItemsSettings {
 
     private fun g2(c: FileConfiguration): List<ItemStack> {
         val l = ArrayList<ItemStack>(3)
-        val s1 = msg("item.GUI.CaptiveS.1.n", pre = false)
-        val s2 = msg("item.GUI.CaptiveS.2.n", pre = false)
-        val s3 = msg("item.GUI.CaptiveS.3.n", pre = false)
+        val s1 = msg("item.ch:CaptiveS.1.n", pre = false)
+        val s2 = msg("item.ch:CaptiveS.2.n", pre = false)
+        val s3 = msg("item.ch:CaptiveS.3.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -285,7 +285,7 @@ class ItemsSettings {
                 customModel = 303
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.CaptiveS.1.l"), ov)
+                    .addLines(getMessageList("item.ch:CaptiveS.1.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +1b",
                         "§9Right click§7 ≫ -1b"
@@ -296,7 +296,7 @@ class ItemsSettings {
                 customModel = 304
                 name = "§9§l$s2"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.CaptiveS.2.l"), ov)
+                    .addLines(getMessageList("item.ch:CaptiveS.2.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +1b",
                         "§9Right click§7 ≫ -1b"
@@ -307,7 +307,7 @@ class ItemsSettings {
                 customModel = 305
                 name = "§9§l$s3"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.CaptiveS.3.l"), ov)
+                    .addLines(getMessageList("item.ch:CaptiveS.3.l"), ov)
                     .addLines(
                         "§9Click§7 ≫ Switch Mode"
                     )}}
@@ -317,9 +317,9 @@ class ItemsSettings {
 
     private fun g1(c: FileConfiguration, player: Player?): List<ItemStack> {
         val l = ArrayList<ItemStack>(3)
-        val s1 = msg("item.GUI.InTimeS.1.n", pre = false)
-        val s2 = msg("item.GUI.InTimeS.2.n", pre = false)
-        val s3 = msg("item.GUI.InTimeS.3.n", pre = false)
+        val s1 = msg("item.ch:InTimeS.1.n", pre = false)
+        val s2 = msg("item.ch:InTimeS.2.n", pre = false)
+        val s3 = msg("item.ch:InTimeS.3.n", pre = false)
         val ov = ArrayList<String>().addLines(
             " ",
             "§7∙ §9§nSettings",
@@ -334,7 +334,7 @@ class ItemsSettings {
                 customModel = 300
                 name = "§9§l$s1"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.InTimeS.1.l"), ov)
+                    .addLines(getMessageList("item.ch:InTimeS.1.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +10s",
                         "§9Right click§7 ≫ -10s"
@@ -345,7 +345,7 @@ class ItemsSettings {
                 customModel = 301
                 name = "§9§l$s2"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.InTimeS.2.l"), ov)
+                    .addLines(getMessageList("item.ch:InTimeS.2.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +10s",
                         "§9Right click§7 ≫ -10s"
@@ -356,7 +356,7 @@ class ItemsSettings {
                 customModel = 302
                 name = "§9§l$s3"
                 lore = ArrayList<String>()
-                    .addLines(getMessageList("item.GUI.InTimeS.3.l"), ov)
+                    .addLines(getMessageList("item.ch:InTimeS.3.l"), ov)
                     .addLines(
                         "§9Left click§7 ≫ +1s",
                         "§9Right click§7 ≫ -1s"

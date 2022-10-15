@@ -21,7 +21,7 @@ import de.miraculixx.mutils.modules.challenge.mods.worldPeace.WorldPeace
 
 class ChallengeManager {
 
-    private fun getClass(module: Modules): Challenge? {
+    fun getClass(module: Modules): Challenge? {
         return when (module) {
             Modules.FLY -> FLY()
             Modules.IN_TIME -> InTime()

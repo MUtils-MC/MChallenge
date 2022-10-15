@@ -5,12 +5,12 @@ import net.axay.kspigot.event.SingleListener
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
 import org.bukkit.event.Event
-import org.bukkit.event.block.BlockBreakEvent
+import org.bukkit.event.player.PlayerItemConsumeEvent
 
-class BlockBreak(actions: List<(Event) -> Unit>): CustomChallengeListener<BlockBreakEvent> {
-    override val listener: SingleListener<BlockBreakEvent> = listen(register = false) {
+class ConsumeItem(actions: List<(Event) -> Unit>): CustomChallengeListener<PlayerItemConsumeEvent> {
+    override val listener: SingleListener<PlayerItemConsumeEvent> = listen(register = false) {
         if (it.isCancelled) return@listen
-        actions.forEach { action -> action.invoke(it) }
+        actions.forEach { event -> event.invoke(it) }
     }
 
     override fun register() {

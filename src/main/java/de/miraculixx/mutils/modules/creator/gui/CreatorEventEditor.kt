@@ -12,6 +12,7 @@ import de.miraculixx.mutils.utils.gui.GUIBuilder
 import de.miraculixx.mutils.utils.gui.InvUtils
 import de.miraculixx.mutils.utils.gui.items.ItemLib
 import de.miraculixx.mutils.utils.tools.click
+import de.miraculixx.mutils.utils.tools.soundDelete
 import de.miraculixx.mutils.utils.tools.soundDisable
 import de.miraculixx.mutils.utils.tools.soundEnable
 import net.axay.kspigot.items.customModel
@@ -65,6 +66,7 @@ class CreatorEventEditor(val it: InventoryClickEvent) {
                     challenge.eventData.remove(event)
                     GUIBuilder(player, GUI.CREATOR_MODIFY_EVENTS).scroll(0, tools.getEvents(challenge))
                         .addIndicator(0, "gui.creator.uuid", uuid).open()
+                    player.soundDelete()
                 } else {
                     if (click == ClickType.LEFT) {
                         toggle(challenge, event, player)

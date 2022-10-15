@@ -330,31 +330,29 @@ class GUIBuilder(private val player: Player, private val preset: GUI, private va
             }
         }
         finalInv?.fillPlaceholder()
-        finalInv!!.setItem(4, topItem ?: InvUtils.primaryPlaceholder)
-        finalInv!!.setItem(49, if (filterChange != StorageFilter.HIDE) itemStack(Material.HOPPER) {
-            meta {
-                customModel = 205
-                name = "§9§lFilters"
-                lore = getMessageList("item.GUI.Filter").toMutableList()
-                    .addLines(
-                        " ", "§9§nFilter", "§7∙ ${filter.name.replace('_', ' ')}",
-                        " ", "§9Click §7≫ Rotate Filter"
-                    )
-                persistentDataContainer.set(NamespacedKey.fromString("gui.storage.filter", Manager)!!, PersistentDataType.STRING, filter.name)
+        finalInv?.setItem(4, topItem ?: InvUtils.primaryPlaceholder)
+        if (filterChange != StorageFilter.HIDE) {
+            finalInv?.setItem(49,  itemStack(Material.HOPPER) {
+                meta {
+                    customModel = 205
+                    name = "§9§lFilters"
+                    lore = getMessageList("item.GUI.Filter").toMutableList()
+                        .addLines(
+                            " ", "§9§nFilter", "§7∙ ${filter.name.replace('_', ' ')}",
+                            " ", "§9Click §7≫ Rotate Filter"
+                        )
+                    persistentDataContainer.set(NamespacedKey.fromString("gui.storage.filter", Manager)!!, PersistentDataType.STRING, filter.name)
+                }
+            })
+            repeat(9 * 4) { i ->
+                finalInv?.setItem(i + 9, ph2)
             }
-        } else itemStack(Material.KNOWLEDGE_BOOK) {
-            meta {
-                customModel = 205
-                name = "§9§lGUI Preset"
-                lore(buildList {
-                    addAll(getComponentList("item.GUI.Preset"))
-                    add(emptyComponent())
-                })
+        } else {
+            repeat(9 * 5) { i ->
+                finalInv?.setItem(i + 9, ph2)
             }
-        })
-        repeat(9 * 4) { i ->
-            finalInv!!.setItem(i + 9, ph2)
         }
+
 
         //Content
         var counter = 0
@@ -368,7 +366,7 @@ class GUIBuilder(private val player: Player, private val preset: GUI, private va
                 meta.addItemFlags(ItemFlag.HIDE_ENCHANTS)
                 item.itemMeta = meta
             }
-            if (counter + 9 >= (finalInv?.size?.minus(9) ?: 0)) return this
+            if (counter + 9 >= (finalInv?.size?.minus( if (filterChange == StorageFilter.HIDE) 0 else 9) ?: 0)) return this
             finalInv?.setItem(9 + counter, item)
             counter++
         }

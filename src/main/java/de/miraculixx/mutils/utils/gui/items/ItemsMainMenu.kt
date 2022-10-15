@@ -1,7 +1,6 @@
 package de.miraculixx.mutils.utils.gui.items
 
-import de.miraculixx.mutils.utils.text.addLines
-import de.miraculixx.mutils.utils.text.getMessageList
+import de.miraculixx.mutils.utils.text.*
 import net.axay.kspigot.items.customModel
 import net.axay.kspigot.items.itemStack
 import net.axay.kspigot.items.meta
@@ -32,16 +31,16 @@ class ItemsMainMenu {
     }
 
     private fun g3(): Map<ItemStack, Int> {
-        val l = arrayListOf(" ", "§7∙ §9§nInfo")
+        val l = arrayListOf(emptyComponent(), cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
         return mapOf(
             itemStack(Material.PLAYER_HEAD) {
                 meta<SkullMeta> {
                     customModel = 1
                     name = "§9Create New Challenge"
-                    lore = buildList {
+                    lore(buildList {
                         addAll(l)
-                        addAll(getMessageList("item.Creator.NewCh.l"))
-                    }
+                        addAll(getComponentList("item.creator.newCh"))
+                    })
                     itemMeta = skullTexture(
                         this,
                         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA1NmJjMTI0NGZjZmY5OTM0NGYxMmFiYTQyYWMyM2ZlZTZlZjZlMzM1MWQyN2QyNzNjMTU3MjUzMWYifX19"
@@ -52,10 +51,10 @@ class ItemsMainMenu {
                 meta<SkullMeta> {
                     customModel = 2
                     name = "§9Delete Challenges"
-                    lore = buildList {
+                    lore(buildList {
                         addAll(l)
-                        addAll(getMessageList("item.Creator.DeleteCh.l"))
-                    }
+                        addAll(getComponentList("item.creator.deleteCh"))
+                    })
                     itemMeta = skullTexture(
                         this,
                         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGU0YjhiOGQyMzYyYzg2NGUwNjIzMDE0ODdkOTRkMzI3MmE2YjU3MGFmYmY4MGMyYzViMTQ4Yzk1NDU3OWQ0NiJ9fX0="
@@ -66,20 +65,20 @@ class ItemsMainMenu {
                 meta {
                     customModel = 3
                     name = "§9Challenge List"
-                    lore = buildList {
+                    lore(buildList {
                         addAll(l)
-                        addAll(getMessageList("item.Creator.ChList"))
-                    }
+                        addAll(getComponentList("item.creator.chList"))
+                    })
                 }
             } to 13,
             itemStack(Material.PLAYER_HEAD) {
                 meta<SkullMeta> {
                     customModel = 4
                     name = "§9Upload Challenge"
-                    lore = buildList {
+                    lore(buildList {
                         addAll(l)
-                        addAll(getMessageList("item.Creator.UploadCh.l"))
-                    }
+                        addAll(getComponentList("item.creator.uploadCh"))
+                    })
                     itemMeta = skullTexture(
                         this,
                         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2U0ZjJmOTY5OGMzZjE4NmZlNDRjYzYzZDJmM2M0ZjlhMjQxMjIzYWNmMDU4MTc3NWQ5Y2VjZDcwNzUifX19"
@@ -90,10 +89,10 @@ class ItemsMainMenu {
                 meta<SkullMeta> {
                     customModel = 5
                     name = "§9Global Challenge List"
-                    lore = buildList {
+                    lore(buildList {
                         addAll(l)
-                        addAll(getMessageList("item.Creator.GlobalList.l"))
-                    }
+                        addAll(getComponentList("item.creator.globalList"))
+                    })
                     itemMeta = skullTexture(
                         this,
                         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmUyY2M0MjAxNWU2Njc4ZjhmZDQ5Y2NjMDFmYmY3ODdmMWJhMmMzMmJjZjU1OWEwMTUzMzJmYzVkYjUwIn19fQ=="
@@ -221,6 +220,6 @@ class ItemsMainMenu {
     private fun infoLore(id: Int): List<String> {
         val ph = listOf(" ", "§7∙ §9§nInfo")
         return ArrayList<String>()
-            .addLines(ph, getMessageList("item.GUI.Select.$id.l", "   "))
+            .addLines(ph, getMessageList("item.Select.$id.l", "   "))
     }
 }

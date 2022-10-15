@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.modules.creator.events
+package de.miraculixx.mutils.modules.creator.data
 
 import de.miraculixx.mutils.modules.challenge.Challenge
 import net.axay.kspigot.event.SingleListener

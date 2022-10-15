@@ -4,12 +4,14 @@ import de.miraculixx.mutils.Manager
 import de.miraculixx.mutils.enums.settings.gui.GUI
 import de.miraculixx.mutils.enums.settings.gui.GUIAnimation
 import de.miraculixx.mutils.enums.settings.gui.StorageFilter
+import de.miraculixx.mutils.modules.challenge.utils.getLivingMobs
 import de.miraculixx.mutils.modules.creator.data.ActionData
 import de.miraculixx.mutils.modules.creator.data.CustomChallengeData
 import de.miraculixx.mutils.modules.creator.enums.*
 import de.miraculixx.mutils.modules.creator.tools.CreatorInvTools
 import de.miraculixx.mutils.utils.await.AwaitChatMessage
 import de.miraculixx.mutils.utils.await.AwaitItemSelection
+import de.miraculixx.mutils.utils.await.AwaitMobSelections
 import de.miraculixx.mutils.utils.await.AwaitSoundSelections
 import de.miraculixx.mutils.utils.gui.GUIBuilder
 import de.miraculixx.mutils.utils.gui.InvUtils
@@ -27,6 +29,7 @@ import net.axay.kspigot.items.meta
 import net.axay.kspigot.runnables.sync
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
@@ -68,6 +71,7 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                 val actionUUID = getActionUUID(inventory, it.slot) ?: return
                 if (!it.click.isShiftClick) { // MODIFY DATA
                     openActionValues(player, challenge.eventData[event]?.actions?.get(actionUUID) ?: return, event, uuid, GUIAnimation.MOVE_LEFT)
+                    player.click()
                 } else {
                     challenge.eventData[event]?.actions?.remove(actionUUID)
                     openActiveActions(player, challenge, event)
@@ -96,27 +100,42 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                 }
                 val oldValue = settings.settings[settingsID]
                 when (inputType.type) {
-                    CreatorActionInput.MATERIAL -> AwaitChatMessage(false, player, "Item Name", 60, {
-                        AwaitItemSelection(player, plainSerializer.serialize(it), GUI.CREATOR_MODIFY_ACTIONS) { item ->
-                            settings.settings[settingsID] = item.type.name
+                    CreatorActionInput.MATERIAL -> AwaitChatMessage(true, player, "Item Name", 60, { message ->
+                        val plaintext = plainSerializer.serialize(message)
+                        AwaitItemSelection(player, plaintext, GUI.CREATOR_MODIFY_ACTIONS, true) { item ->
+                            val indicator = InvUtils.getIndicator("gui.await.item", item) ?: "AIR"
+                            settings.settings[settingsID] = when (indicator) {
+                                "#random-onetime" -> Material.values().random().name
+                                "#random-onetime-filter" -> Material.values().filter { it.name.contains(plaintext.uppercase().replace(' ', '_')) }.random().name
+                                else -> indicator
+                            }
                             openActionValues(player, settings, event, uuid)
                         }
                     }, {
                         if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
                     })
+
                     CreatorActionInput.SELECTOR -> {
                         val currentValue = CreatorActionSelector[oldValue] ?: CreatorActionSelector.MOBS_AND_PLAYERS
                         settings.settings[settingsID] = InvUtils.enumRotate(CreatorActionSelector.values(), currentValue).name
                         openActionValues(player, settings, event, uuid)
                     }
-                    CreatorActionInput.SOUND -> AwaitChatMessage(false, player, "Sound Name", 60, {
-                        AwaitSoundSelections(player, plainSerializer.serialize(it), GUI.CREATOR_MODIFY_ACTIONS) { item ->
-                            settings.settings[settingsID] = InvUtils.getIndicator("gui.await.sound", item) ?: "ENTITY_ENDERMAN_TELEPORT"
+
+                    CreatorActionInput.SOUND -> AwaitChatMessage(true, player, "Sound Name", 60, { msg ->
+                        val plaintext = plainSerializer.serialize(msg)
+                        AwaitSoundSelections(player, plaintext, GUI.CREATOR_MODIFY_ACTIONS, true) { item ->
+                            val indicator = InvUtils.getIndicator("gui.await.sound", item) ?: "ENTITY_ENDERMAN_TELEPORT"
+                            settings.settings[settingsID] = when (indicator) {
+                                "#random-onetime" -> Sound.values().random().name
+                                "#random-onetime-filter" -> Sound.values().filter { it.name.contains(plaintext.uppercase().replace(' ', '_')) }.random().name
+                                else -> indicator
+                            }
                             sync { openActionValues(player, settings, event, uuid) }
                         }
                     }, {
                         if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
-                    }, true)
+                    })
+
                     CreatorActionInput.INT -> AwaitChatMessage(false, player, "Integer (eg 1, 2)", 60, {
                         val number = plainSerializer.serialize(it).toIntOrNull()
                         settings.settings[settingsID] = number?.toString() ?: "0"
@@ -125,6 +144,7 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                     }, {
                         if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
                     })
+
                     CreatorActionInput.DOUBLE -> AwaitChatMessage(false, player, "Decimal (eg. 1.0)", 60, {
                         val number = plainSerializer.serialize(it).toDoubleOrNull()
                         settings.settings[settingsID] = number?.toString() ?: "0.0"
@@ -133,16 +153,32 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                     }, {
                         if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
                     })
+
                     CreatorActionInput.TEXT -> {
-                        player.sendMessage(msg("module.await.placeholder"))
+                        player.sendMessage(msg("modules.await.placeholder"))
                         AwaitChatMessage(false, player, "Text", 60, {
-                            settings.settings[settingsID] = mm.serialize(it)
+                            settings.settings[settingsID] = mm.serialize(it).replace("\\<", "<")
                             player.soundEnable()
                             sync { openActionValues(player, settings, event, uuid) }
                         }, {
                             if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
-                        }, true)
+                        })
                     }
+
+                    CreatorActionInput.MOB -> AwaitChatMessage(true, player, "Mob Name", 60, { msg ->
+                        val plaintext = plainSerializer.serialize(msg)
+                        AwaitMobSelections(player, plaintext, GUI.CREATOR_MODIFY_ACTIONS, true) { item ->
+                            val indicator = InvUtils.getIndicator("gui.await.mob", item) ?: "ZOMBIE"
+                            settings.settings[settingsID] = when (indicator) {
+                                "#random-onetime" -> getLivingMobs(false).random().name
+                                "#random-onetime-filter" -> getLivingMobs(false).filter { it.name.contains(plaintext.uppercase().replace(' ', '_')) }.random().name
+                                else -> indicator
+                            }
+                            sync { openActionValues(player, settings, event, uuid) }
+                        }
+                    }, {
+                        if (player.openInventory.topInventory.type != InventoryType.CHEST) openActionValues(player, settings, event, uuid)
+                    })
                 }
                 player.click()
             }
@@ -173,7 +209,7 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                 if (filter.interfaces.contains(action.type) || action.type == EventType.GENERAL) put(
                     buildItem(action.material, action.ordinal + 2000, cmp(action.name.fancy(), cHighlight, bold = true), buildList {
                         addAll(l)
-                        addAll(getComponentList("item.CreatorCreate.actions.${action.name}"))
+                        addAll(getComponentList("item.creator.actions.${action.name}"))
                         addAll(l2)
                     }), false
                 )
@@ -196,7 +232,7 @@ class CreatorActionEditor(val it: InventoryClickEvent) {
                             persistentDataContainer.set(NamespacedKey(Manager, "gui.creator.actionUUID"), PersistentDataType.STRING, uuid.toString())
                             lore(buildList {
                                 addAll(info)
-                                addAll(getComponentList("item.CreatorCreate.actions.${actionData.action.name}"))
+                                addAll(getComponentList("item.creator.actions.${actionData.action.name}"))
                                 addAll(settings)
                                 when (actionData.settings.size) {
                                     0 -> add(cmp("   None", italic = true))

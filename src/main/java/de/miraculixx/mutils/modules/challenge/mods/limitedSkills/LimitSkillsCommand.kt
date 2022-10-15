@@ -1,4 +1,4 @@
-@file:Suppress("SpellCheckingInspection", "ClassName")
+@file:Suppress("SpellCheckingInspection")
 
 package de.miraculixx.mutils.modules.challenge.mods.limitedSkills
 

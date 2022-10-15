@@ -5,10 +5,13 @@ import de.miraculixx.mutils.modules.creator.data.CustomChallengeData
 import de.miraculixx.mutils.modules.creator.enums.CreatorEvent
 import de.miraculixx.mutils.modules.creator.enums.EventType
 import de.miraculixx.mutils.utils.gui.InvUtils
-import de.miraculixx.mutils.utils.gui.items.buildItem
 import de.miraculixx.mutils.utils.text.*
+import net.axay.kspigot.items.customModel
+import net.axay.kspigot.items.itemStack
+import net.axay.kspigot.items.meta
 import net.kyori.adventure.text.Component
 import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import java.util.*
 
@@ -65,14 +68,14 @@ class CreatorInvTools {
      */
     fun getEvents(challengeData: CustomChallengeData): Map<ItemStack, Boolean> {
         return buildMap {
-            val l = listOf(emptyComponent(), cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
-            val l2 = listOf(emptyComponent(), cmp("Left Click ", cHighlight) + cmp("≫ Toggle"), cmp("Right Click ", cHighlight) + cmp("≫ Modify Actions"))
+            val l = listOf(
+                emptyComponent(),
+                cmp("Shift Left Click ", cHighlight) + cmp("≫ Delete Event"),
+                cmp("Right Click ", cHighlight) + cmp("≫ Modify Actions"),
+                cmp("Left Click ", cHighlight) + cmp("≫ Toggle")
+            )
             challengeData.eventData.forEach { (event, data) ->
-                put(buildItem(event.material, event.ordinal + 300, cmp(event.name.fancy(), cHighlight, bold = true), buildList {
-                    addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.events.${event.name}"))
-                    addAll(l2)
-                }), data.active)
+                put(getEventItem(event, l, 300), data.active)
             }
         }
     }
@@ -83,14 +86,28 @@ class CreatorInvTools {
      */
     fun getEvents(list: List<CreatorEvent>, eventType: EventType): Map<ItemStack, Boolean> {
         return buildMap {
-            val l = listOf(emptyComponent(), cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
-            val l2 = listOf(emptyComponent(), cmp("Click ", cHighlight) + cmp("≫ Add Event"))
+            val l = listOf(emptyComponent(), cmp("Click ", cHighlight) + cmp("≫ Add Event"))
             CreatorEvent.values().filter { !list.contains(it) && ((eventType == EventType.NO_FILTER) || it.interfaces.contains(eventType)) }.forEach { event ->
-                put(buildItem(event.material, event.ordinal + 400, cmp(event.name.fancy(), cHighlight, bold = true), buildList {
-                    addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.events.${event.name}"))
-                    addAll(l2)
-                }), false)
+                put(getEventItem(event, l, 400), false)
+            }
+        }
+    }
+
+    private fun getEventItem(event: CreatorEvent, sublore: List<Component>, indicator: Int): ItemStack {
+        return itemStack(event.material) {
+            meta {
+                customModel = event.ordinal + indicator
+                displayName(cmp(event.name.fancy(), cHighlight, bold = true))
+                lore(
+                    buildList {
+                        add(emptyComponent())
+                        add(cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
+                        add(cmp("   " + msg("item.creator.events.indicator", pre = false)))
+                        addAll(getComponentList("item.creator.events.${event.name}"))
+                        addAll(sublore)
+                    }
+                )
+                addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
             }
         }
     }

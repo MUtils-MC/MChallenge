@@ -52,8 +52,8 @@ class ItemLib {
         return CreatorItems().getItems(id, data, eventData)
     }
 
-    fun getKeyed(id: Int, key: String): List<ItemStack> {
-        return KeyedItems().getItems(id, key)
+    fun getKeyed(id: Int, key: String, filter: String?): List<ItemStack> {
+        return KeyedItems().getItems(id, key, filter)
     }
 
     //Utility

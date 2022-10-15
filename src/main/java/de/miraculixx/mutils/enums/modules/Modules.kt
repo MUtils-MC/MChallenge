@@ -1,5 +1,3 @@
-@file:Suppress("SpellCheckingInspection")
-
 package de.miraculixx.mutils.enums.modules
 
 import de.miraculixx.mutils.enums.settings.gui.StorageFilter

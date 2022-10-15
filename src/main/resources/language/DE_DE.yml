@@ -115,6 +115,11 @@ command:
     noLocation: "&cEs gibt keine Todesposition!"
   backpack:
     disabled: "&cBackpacks wurden deaktiviert!"
+  creator:
+    reloaded: "Alle Custom Challenges im Creator Ordner wurden neu geladen"
+    empty: "&cAktuell sind keine Custom Challenges aktiviert!"
+    start: "Aktivierte Custom Challenges wurden &a&lgestartet&7!"
+    stop: "Aktivierte Custom Challenges wurden &c&lgestoppt&7!"
 
 
 #------------------>> Modules <<------------------#
@@ -799,19 +804,150 @@ item:
         - "&7von der Cloud, um sie zu synchronisieren"
   #---
   await:
-    rdOnetime:
-      - "&7Ein zufälliger Wert wird"
-      - "&7beim auswählen gesetzt"
-    rdOnetimeFilter:
-      - "&7Ein zufälliger Wert anhand"
-      - "&7des aktuellen Filters wird"
-      - "&7beim auswählen gesetzt"
-    rdEverytime:
-      - "&7Ein zufälliger Wert wird"
-      - "&7jedes mal wenn diese Aktion"
-      - "&7aufgerufen wird ausgewählt"
-    rdEverytimeFilter:
-      - "&7Ein zufälliger Wert anhand"
-      - "&7des aktuellen Filters wird"
-      - "&7jedes mal wenn diese Aktion"
-      - "&7aufgerufen wird ausgewählt"
+    rndOnetime:
+      - "Ein zufälliger Wert wird"
+      - "beim auswählen gesetzt"
+    rndOnetimeFilter:
+      - "Ein zufälliger Wert anhand"
+      - "des aktuellen Filters wird"
+      - "beim auswählen gesetzt"
+    rndEverytime:
+      - "Ein zufälliger Wert wird"
+      - "jedes mal wenn diese Aktion"
+      - "aufgerufen wird ausgewählt"
+    rndEverytimeFilter:
+      - "Ein zufälliger Wert anhand"
+      - "des aktuellen Filters wird"
+      - "jedes mal wenn diese Aktion"
+      - "aufgerufen wird ausgewählt"
+  #---
+  creator:
+    events:
+      indicator: "Wird ausgelöst, wenn"
+      MOVE_GENERAL:
+        - "ein Spieler sich bewegt"
+      MOVE_BLOCK:
+        - "ein Spieler sich einen ganzen"
+        - "Block weit bewegt"
+      MOVE_CAMERA:
+        - "ein Spieler seine Kamera bewegt"
+      MOVE_JUMP:
+        - "ein Spieler springt"
+      DIMENSION_SWAP:
+        - "ein Spieler die Dimension oder"
+        - "die Welt wechselt (Portal)"
+      BLOCK_PLACE:
+        - "ein Spieler einen Block"
+        - "platziert"
+      BLOCK_BREAK:
+        - "ein Spieler einen Block"
+        - "abbaut"
+      CRAFT_ITEM:
+        - "ein Spieler ein Item craftet"
+      MOB_DEATH:
+        - "ein Mob stirbt"
+      MOB_DAMAGE:
+        - "ein Mob schaden bekommt."
+        - "(nicht zwingend von Spielern)"
+      MOB_DAMAGE_BY_PLAYER:
+        - "ein Mob schaden von einem"
+        - "Spieler bekommt"
+      MOB_KILL:
+        - "ein Mob stirbt durch"
+        - "einen Spieler"
+      COLLECT_ITEM:
+        - "ein Spieler ein Item aufsammelt"
+      DROP_ITEM:
+        - "ein Spieler ein Item dropt"
+      CONSUME_ITEM:
+        - "ein Spieler ein Item verwendet,"
+        - "z.b. durch Essen oder Tränke"
+      PLAYER_HUNGER:
+        - "ein Spieler hunger verliert"
+      PLAYER_DAMAGE:
+        - "ein Spieler schaden erleidet"
+        - "durch jegliche Quelle"
+      OPEN_CONTAINER:
+        - "ein Spieler mit einem Block"
+        - "interagiert, wodurch ein Inventar"
+        - "geöffnet wird"
+    #---
+    actions:
+      CANCEL:
+        - "Event wird nicht ausgeführt"
+        - "(Weitere Aktionen werden ausgeführt)"
+      SPAWN_MOB:
+        - "Spawned ein Mob an der Position des"
+        - "Events (sofern vorhanden)"
+      INVENTORY_CLEAR:
+        - "Leert das Inventar"
+        - "aller Targets"
+      TELEPORT_RADIUS:
+        - "Teleportiert zufällig alle Targets"
+        - "im vorgegebenen Radius"
+      CHANGE_TIME_WORLD:
+        - "Ändert die globale Zeit"
+        - "relative von der aktuellen Zeit"
+      CHANGE_TIME_PLAYER:
+        - "Ändert die Spieler Zeit"
+        - "relative von der aktuellen Welt Zeit"
+      GIVE_ITEM_PLAYER:
+        - "Gibt allen Targets das vorgegebene"
+        - "Item ins Inventar"
+      DAMAGE_ENTITY:
+        - "Fügt allen Targets vorgegebenen"
+        - "Schaden zu"
+      PLAY_SOUND:
+        - "Spielt für alle Targets den"
+        - "vorgegebenen Sound ab"
+      SEND_MESSAGE:
+        - "Sendet allen Targets die"
+        - "vorgegebene Nachricht"
+    #---
+    newCh:
+      - "Erstelle eine neue Challenge."
+      - "Nimm dir Zeit und erstelle etwas"
+      - "einzigartiges!"
+    deleteCh:
+      - "Entferne gespeicherte Challenges."
+      - "Achtung! Dieser Schritt ist nicht"
+      - "umkehrbar!"
+    chList:
+      - "Auflistung aller gespeicherten Challenges."
+      - "Aktiviere, deaktiviere oder editiere"
+      - "deine Challenges"
+    uploadCh:
+      - "Etwas einzigartiges Erschaffen? Teile"
+      - "deine Werke mit der Community"
+      - "damit jeder sie spielen kann!"
+    globalList:
+      - "Browse durch die global Challenge"
+      - "Liste und spiele Challenges"
+      - "von anderen Nutzern!"
+    name:
+      - "Setze einen Namen für deine"
+      - "neue Challenge! Kurz und catchy"
+    description:
+      - "Erkläre ausführlicher, was in deiner"
+      - "neuen Challenge alles passiert"
+    icon:
+      - "Setze ein Icon für deine"
+      - "neue Challenge! Dies ist das"
+      - "erste, was man sieht"
+    event:
+      - "Erstelle die Challenge Logik."
+      - "Das Herz jeder Custom Challenge"
+    savedEvents:
+      - "Manage alle gespeicherten Events"
+      - "für diese Custom Challenge"
+    eventLib:
+      - "Füge neue Events hinzu."
+      - "Events können Aktionen ausführen,"
+      - "sobald etwas auf der Welt passiert"
+    actionLib:
+      - "Füge neue Aktionen hinzu."
+      - "Aktionen interagieren mit der"
+      - "Welt oder dem Event"
+    savedActions:
+      - "Manage alle gespeicherten Aktionen"
+      - "für dieses Event der Challenge"

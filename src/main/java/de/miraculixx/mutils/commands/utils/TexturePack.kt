@@ -1,5 +1,3 @@
-@file:Suppress("SpellCheckingInspection")
-
 package de.miraculixx.mutils.commands.utils
 
 import de.miraculixx.mutils.commands.tools.CommandTools

@@ -29,11 +29,11 @@ fun getMessageList(key: String, inline: String? = null, input: String? = null): 
     return final.ifEmpty { listOf("§c$key") }
 }
 
-fun getComponentList(key: String, inline: String? = null, input: String? = "   "): List<Component> {
+fun getComponentList(key: String, input: String? = null, inline: String = "   "): List<Component> {
     val config = ConfigManager.getConfig(Configs.LANGUAGE)
-    val final = config.getStringList(key).map { mm.deserialize((inline ?: "") + it.replace("<INPUT>", input ?: "none")) }
+    val final = config.getStringList(key).map { cmp("") + mm.deserialize( inline + it.replace("<INPUT>", input ?: "none")) }
 
-    return final.ifEmpty { listOf(Component.text(key).color(cError)) }
+    return final.ifEmpty { listOf(cmp(key, cError)) }
 }
 
 fun String.cropColor(): String {

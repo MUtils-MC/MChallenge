@@ -91,7 +91,6 @@ class Timer {
         return string
     }
 
-    @Suppress("DuplicatedCode")
     fun setTime(pDay: Int? = null, pHour: Int? = null, pMin: Int? = null, pSec: Int? = null) {
         var dummy = Duration.ZERO
         time.toComponents { days, hours, minutes, seconds, _ ->

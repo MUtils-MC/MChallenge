@@ -7,6 +7,7 @@ enum class CreatorActionInput(val material: Material) {
     MATERIAL(Material.CRAFTING_TABLE),
     SELECTOR(Material.TOTEM_OF_UNDYING),
     SOUND(Material.JUKEBOX),
+    MOB(Material.SPAWNER),
 
     //Raw Types
     INT(Material.GOLD_NUGGET),

@@ -60,7 +60,7 @@ class CreatorEditor(val it: InventoryClickEvent) {
                 AwaitChatMessage(true, player, "Item Name", 30, {
                     val message = plainSerializer.serialize(it).uppercase().replace(" ", "_")
                     player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BELL, 1f, 1f)
-                    AwaitItemSelection(player, message, GUI.CREATOR_MODIFY) { item ->
+                    AwaitItemSelection(player, message, GUI.CREATOR_MODIFY, false) { item ->
                         challenge.data.icon = item.type.name
                         challenge.update()
                         GUIBuilder(player, GUI.CREATOR_MODIFY).custom(import = itemLib.getCreator(1, challenge)).open()

@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package de.miraculixx.mutils.commands.tools
 
 import de.miraculixx.mutils.utils.TPS

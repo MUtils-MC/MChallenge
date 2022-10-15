@@ -32,13 +32,13 @@ class CreatorItems {
             buildItem(Material.CHEST, 501, cmp("Saved Actions", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.savedActions"))
+                    addAll(getComponentList("item.creator.savedActions"))
                 }
             ) to 12,
             buildItem(Material.ENDER_CHEST, 502, cmp("Action Library", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.actionLib"))
+                    addAll(getComponentList("item.creator.actionLib"))
                 }
             ) to 14,
             InvUtils.secondaryPlaceholder.editMeta(dataContainer = PDCValues(NamespacedKey.fromString("gui.creator.uuid", Manager)!!, chData.uuid.toString()))
@@ -54,13 +54,13 @@ class CreatorItems {
             buildItem(Material.CHEST, 101, cmp("Saved Events", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.savedEvents"))
+                    addAll(getComponentList("item.creator.savedEvents"))
                 }
             ) to 12,
             buildItem(Material.ENDER_CHEST, 102, cmp("Event Library", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.eventLib"))
+                    addAll(getComponentList("item.creator.eventLib"))
                 }
             ) to 14,
             InvUtils.secondaryPlaceholder.editMeta(dataContainer = PDCValues(NamespacedKey.fromString("gui.creator.uuid", Manager)!!, chData.uuid.toString())) to 0
@@ -74,7 +74,7 @@ class CreatorItems {
             buildItem(Material.NAME_TAG, 1, cmp("Challenge Name", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.name"))
+                    addAll(getComponentList("item.creator.name"))
                     add(emptyComponent())
                     add(cmp("Click ", cHighlight) + cmp("≫ Change Name"))
                 }
@@ -82,7 +82,7 @@ class CreatorItems {
             buildItem(Material.WRITABLE_BOOK, 2, cmp("Challenge Description", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.description"))
+                    addAll(getComponentList("item.creator.description"))
                     add(emptyComponent())
                     add(cmp("Click ", cHighlight) + cmp("≫ Change Description"))
                 }
@@ -90,7 +90,7 @@ class CreatorItems {
             buildItem(Material.ITEM_FRAME, 3, cmp("Display Icon", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.icon"))
+                    addAll(getComponentList("item.creator.icon"))
                     add(emptyComponent())
                     add(cmp("Click ", cHighlight) + cmp("≫ Change Icon"))
                 }
@@ -98,7 +98,7 @@ class CreatorItems {
             buildItem(Material.TARGET, 4, cmp("Events", cHighlight, bold = true),
                 buildList {
                     addAll(l)
-                    addAll(getComponentList("item.CreatorCreate.events"))
+                    addAll(getComponentList("item.creator.event"))
                     add(emptyComponent())
                     add(cmp("Click ", cHighlight) + cmp("≫ Open Menu"))
                 }

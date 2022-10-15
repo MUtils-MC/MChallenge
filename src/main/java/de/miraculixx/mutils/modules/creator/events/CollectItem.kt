@@ -4,13 +4,15 @@ import de.miraculixx.mutils.modules.creator.data.CustomChallengeListener
 import net.axay.kspigot.event.SingleListener
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
+import org.bukkit.entity.Player
 import org.bukkit.event.Event
-import org.bukkit.event.block.BlockBreakEvent
+import org.bukkit.event.entity.EntityPickupItemEvent
 
-class BlockBreak(actions: List<(Event) -> Unit>): CustomChallengeListener<BlockBreakEvent> {
-    override val listener: SingleListener<BlockBreakEvent> = listen(register = false) {
+class CollectItem(actions: List<(Event) -> Unit>): CustomChallengeListener<EntityPickupItemEvent> {
+    override val listener: SingleListener<EntityPickupItemEvent> = listen(register = false) {
         if (it.isCancelled) return@listen
-        actions.forEach { action -> action.invoke(it) }
+        if (it.entity !is Player) return@listen
+        actions.forEach { event -> event.invoke(it) }
     }
 
     override fun register() {

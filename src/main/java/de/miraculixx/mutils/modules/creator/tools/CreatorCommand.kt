@@ -30,16 +30,17 @@ class CreatorCommand : TabExecutor {
                     return false
                 }
                 CreatorManager.status = ChallengeStatus.RUNNING
-                var counter = 0
+                val actives = CreatorManager.getActive()
+                if (actives.isEmpty()) {
+                    sender.sendMessage(msg("command.creator.empty"))
+                    return false
+                }
                 CreatorManager.getActive().forEach { challenge ->
-                    counter++
+                    challenge.update()
                     challenge.start()
                 }
-                if (counter == 0) sender.sendMessage(msg("command.creator.empty"))
-                else {
-                    sender.sendMessage(msg("command.creator.start", sender, counter.toString()))
-                    sender.soundEnable()
-                }
+                sender.sendMessage(msg("command.creator.start", sender, actives.size.toString()))
+                sender.soundEnable()
             }
 
             "stop" -> {

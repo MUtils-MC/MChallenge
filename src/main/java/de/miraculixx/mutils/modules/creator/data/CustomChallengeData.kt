@@ -5,13 +5,11 @@ import de.miraculixx.mutils.modules.challenge.Challenge
 import de.miraculixx.mutils.modules.creator.ActionProvider
 import de.miraculixx.mutils.modules.creator.CreatorManager
 import de.miraculixx.mutils.modules.creator.enums.CreatorEvent
-import de.miraculixx.mutils.modules.creator.events.CustomChallengeListener
 import de.miraculixx.mutils.modules.creator.jsonInstance
 import de.miraculixx.mutils.utils.text.consoleMessage
 import de.miraculixx.mutils.utils.text.consoleWarn
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
-import net.axay.kspigot.extensions.broadcast
 import net.axay.kspigot.languageextensions.kotlinextensions.createIfNotExists
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -36,7 +34,6 @@ class CustomChallengeData(val uuid: UUID, pluginVersion: String, override val ch
     )
 
     override fun register() {
-        broadcast("${data.name} -> Aktiviert (${listener.values.size} Events)")
         listener.values.forEach {
             it.register()
         }
