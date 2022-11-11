@@ -10,19 +10,6 @@ plugins {
 group = "de.miraculixx"
 version = ""
 
-sourceSets {
-    main {
-        java {
-            srcDirs("source", "source-gen")
-            exclude("de/miraculixx/mutils/modules/challenge/mods/ALPHA/**")
-        }
-        resources {
-            srcDirs("source", "source-gen")
-            exclude("**/ALPHA/**")
-        }
-    }
-}
-
 repositories {
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/") {
         name = "sonatype-oss-snapshots"
@@ -31,17 +18,12 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-client-core-jvm:2.1.3")
+    implementation("io.ktor:ktor-client-cio-jvm:2.1.3")
     paperDevBundle("1.18.2-R0.1-SNAPSHOT")
 
-    implementation("io.ktor:ktor-client-core-jvm:2.1.0")
-    implementation("io.ktor:ktor-client-cio-jvm:2.1.0")
     implementation("net.axay:kspigot:1.19.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
-
-    //legacy
-    //implementation("net.kyori:adventure-api:4.11.0")
-    //implementation("net.kyori:adventure-text-minimessage:4.11.0")
-    //implementation("net.kyori:adventure-text-serializer-plain:4.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 }
 
 tasks {
