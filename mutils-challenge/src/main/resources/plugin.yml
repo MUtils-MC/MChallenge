@@ -1,0 +1,18 @@
+name: MUtils-Challenges
+load: STARTUP
+version: 3.2.0
+main: de.miraculixx.mutils.MChallenge
+api-version: 1.16
+authors: [ Miraculixx ]
+description: MUtils Challenges - Play various Challenges that can modify the game slightly to completely against or in coop with your friends!
+website: https://mutils.de/
+libraries:
+  - "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
+  - "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+  - "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4"
+  - "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+  - "io.ktor:ktor-client-cio-jvm:2.1.3"
+  - "io.ktor:ktor-client-core-jvm:2.1.3"
+  - "net.kyori:adventure-api:4.11.0"
+  - "net.kyori:adventure-text-minimessage:4.11.0"
+  - "net.kyori:adventure-text-serializer-plain:4.11.0"
