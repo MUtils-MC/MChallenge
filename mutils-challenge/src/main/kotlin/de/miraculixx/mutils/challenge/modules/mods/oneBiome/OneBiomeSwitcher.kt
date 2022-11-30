@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules.challenge.mods.oneBiome
 
 import de.miraculixx.mutils.Main
-import de.miraculixx.mutils.challenge.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
 import de.miraculixx.mutils.enums.modules.worldCreator.BiomeProviders
 import de.miraculixx.mutils.modules.challenges
 import de.miraculixx.mutils.modules.worldManager.WorldTools

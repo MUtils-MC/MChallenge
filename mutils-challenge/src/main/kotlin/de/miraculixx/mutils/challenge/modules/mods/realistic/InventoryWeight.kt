@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.modules.challenge.mods.realistic
 
-import de.miraculixx.mutils.challenge.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
 import de.miraculixx.mutils.modules.challenges
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.runnables.task

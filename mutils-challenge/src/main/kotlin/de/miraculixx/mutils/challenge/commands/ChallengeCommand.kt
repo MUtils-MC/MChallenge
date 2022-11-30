@@ -6,7 +6,8 @@ import de.miraculixx.kpaper.commands.literal
 import de.miraculixx.kpaper.commands.runs
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mutils.challenge.modules.ChallengeManager
-import de.miraculixx.mutils.challenge.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.gui.data.InventoryManager
 import de.miraculixx.mutils.utils.messages.msg
 import net.minecraft.commands.CommandSourceStack
 
@@ -66,8 +67,11 @@ class ChallengeCommand {
                 sender.bukkitSender.sendMessage(prefix + msg("command.noPlayer"))
                 return@runs
             }
-            // Open Scroll UI
-            TODO()
+            InventoryManager.scrollBuilder(player.uniqueId.toString()) {
+                title = msg("gui.challenge.title")
+                player = sender.player
+                content
+            }
         }
     }
 }

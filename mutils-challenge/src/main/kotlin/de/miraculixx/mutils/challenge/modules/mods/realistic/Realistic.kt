@@ -2,7 +2,7 @@
 
 package de.miraculixx.mutils.modules.challenge.mods.realistic
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.Challenge
 import de.miraculixx.mutils.challenge.modules.Challenge
 import net.axay.kspigot.event.SingleListener
 import net.axay.kspigot.event.listen

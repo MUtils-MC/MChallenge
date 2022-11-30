@@ -1,14 +1,15 @@
 package de.miraculixx.mutils.utils.gui
 
+import de.miraculixx.mutils.utils.extensions.click
 import de.miraculixx.mutils.utils.gui.data.CustomInventory
+import de.miraculixx.mutils.utils.gui.data.GUIClick
+import de.miraculixx.mutils.utils.gui.data.InventoryManager
 import de.miraculixx.mutils.utils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.utils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.utils.gui.item.*
-import de.miraculixx.mutils.utils.messages.cError
-import de.miraculixx.mutils.utils.messages.cmp
-import de.miraculixx.mutils.utils.messages.msg
-import de.miraculixx.mutils.utils.messages.msgList
+import de.miraculixx.mutils.utils.messages.*
 import net.kyori.adventure.text.Component
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
@@ -25,12 +26,53 @@ class ScrollGUI(
     closeEvent: ((GUICloseEvent) -> Unit)?
 ) : CustomInventory(4 * 9, title, clickEvent, closeEvent) {
     private var page = startPage
-    private val arrowRedL = getCustomItem("arrowLeftEnd", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg0ZjU5NzEzMWJiZTI1ZGMwNThhZjg4OGNiMjk4MzFmNzk1OTliYzY3Yzk1YzgwMjkyNWNlNGFmYmEzMzJmYyJ9fX0=")
-    private val arrowRedR = getCustomItem("arrowRightEnd", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmNmZTg4NDVhOGQ1ZTYzNWZiODc3MjhjY2M5Mzg5NWQ0MmI0ZmMyZTZhNTNmMWJhNzhjODQ1MjI1ODIyIn19fQ==")
-    private val arrowGreenL = getCustomItem("arrowLeft", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODU1MGI3Zjc0ZTllZDc2MzNhYTI3NGVhMzBjYzNkMmU4N2FiYjM2ZDRkMWY0Y2E2MDhjZDQ0NTkwY2NlMGIifX19")
-    private val arrowGreenR = getCustomItem("arrowRight", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTYzMzlmZjJlNTM0MmJhMThiZGM0OGE5OWNjYTY1ZDEyM2NlNzgxZDg3ODI3MmY5ZDk2NGVhZDNiOGFkMzcwIn19fQ==")
+    private val arrowRedL = getCustomItem("arrowLeftEnd", 9000,"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg0ZjU5NzEzMWJiZTI1ZGMwNThhZjg4OGNiMjk4MzFmNzk1OTliYzY3Yzk1YzgwMjkyNWNlNGFmYmEzMzJmYyJ9fX0=")
+    private val arrowRedR = getCustomItem("arrowRightEnd", 9000, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmNmZTg4NDVhOGQ1ZTYzNWZiODc3MjhjY2M5Mzg5NWQ0MmI0ZmMyZTZhNTNmMWJhNzhjODQ1MjI1ODIyIn19fQ==")
+    private val arrowGreenL = getCustomItem("arrowLeft", 9001,"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODU1MGI3Zjc0ZTllZDc2MzNhYTI3NGVhMzBjYzNkMmU4N2FiYjM2ZDRkMWY0Y2E2MDhjZDQ0NTkwY2NlMGIifX19")
+    private val arrowGreenR = getCustomItem("arrowRight", 9002, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTYzMzlmZjJlNTM0MmJhMThiZGM0OGE5OWNjYTY1ZDEyM2NlNzgxZDg3ODI3MmY5ZDk2NGVhZDNiOGFkMzcwIn19fQ==")
+    private val pageIndicator = itemStack(Items.KNOWLEDGE_BOOK) {
+        setLore(msgList("gui.general.pageIndicator.l"))
+        setCustomModel(9003)
+    }
     private val activated = msg("gui.general.activated")
     private val deactivated = msg("gui.general.deactivated")
+    override val defaultClickAction: ((GUIClickEvent) -> Unit) = action@{
+        val item = it.item
+        val player = it.player
+        when (item.getCustomModel()) {
+            9000 -> {
+                it.isCancelled = true
+                player.playSound(SoundEvents.STONE_HIT)
+            }
+            9001 -> {
+                it.isCancelled = true
+                page -= (if (it.click == GUIClick.SHIFT_CLICK) 5
+                else 1).coerceAtMost(content.size - 6)
+                player.click()
+                update()
+                val id: String? = null
+            }
+            9002 -> {
+                it.isCancelled = true
+                page += (if (it.click == GUIClick.SHIFT_CLICK) 5
+                else 1).coerceAtLeast(0)
+                player.click()
+                update()
+            }
+            9003 -> {
+                it.isCancelled = true
+                player.click()
+                InventoryManager.storageBuilder("$id-STORAGE") {
+                    this.title = title
+                    this.players = viewers.keys.toList()
+                    this.clickAction = clickEvent
+                    this.closeAction = closeEvent
+                    this.markableItems = content
+                    this.scrollable = page > 36
+                }
+            }
+        }
+    }
 
     private constructor(builder: Builder): this(
         builder.content,
@@ -69,6 +111,14 @@ class ScrollGUI(
         val firstIndex = page
         val lastIndex = page + 7
 
+        // Adding Basic Buttons
+        setItem(27, if (page == 0) arrowRedL else arrowGreenL)
+        setItem(35, if (page >= content.size - 6) arrowRedR else arrowRedL)
+        pageIndicator.count = page
+        pageIndicator.setName(cmp("Page $page", cHighlight))
+        setItem(31, pageIndicator)
+
+        // Adding Content
         content.toList().subList(
             firstIndex.coerceIn(0 until content.size),
             lastIndex.coerceIn(0 until content.size)
@@ -76,19 +126,20 @@ class ScrollGUI(
             val item = if (data.second) {
                 data.first.enchant(Enchantments.MENDING, 1)
                 data.first.addHideFlags(HideFlag.HIDE_ENCHANTS)
-                setItem(index + 10, itemStack(Items.LIME_STAINED_GLASS_PANE) {
-                    setCustomName(activated)
-                })
                 data.first
             } else data.first
+            setItem(index + 10, itemStack(if (data.second) Items.LIME_STAINED_GLASS_PANE else Items.RED_STAINED_GLASS_PANE) {
+                setName(if (data.second) activated else deactivated)
+                setCustomModel(item.getCustomModel())
+            })
             setItem(index + 1, item)
         }
     }
 
     private fun fillPlaceholder() {
-        val primaryPlaceholder = itemStack(Items.GRAY_STAINED_GLASS_PANE) { setCustomName(cmp(" ")) }
-        val secondaryPlaceholder = itemStack(Items.BLACK_STAINED_GLASS_PANE) { setCustomName(cmp(" ")) }
-        val missingSetting = itemStack(Items.BARRIER) { setCustomName(cmp("✖", cError)) }
+        val primaryPlaceholder = itemStack(Items.GRAY_STAINED_GLASS_PANE) { setName(cmp(" ")) }
+        val secondaryPlaceholder = itemStack(Items.BLACK_STAINED_GLASS_PANE) { setName(cmp(" ")) }
+        val missingSetting = itemStack(Items.BARRIER) { setName(cmp("✖", cError)) }
 
         repeat(containerSize) {
             setItem(it, primaryPlaceholder)
@@ -97,11 +148,12 @@ class ScrollGUI(
         (10..16).forEach { setItem(it, missingSetting) }
     }
 
-    private fun getCustomItem(key: String, texture: String): ItemStack {
+    private fun getCustomItem(key: String, id: Int, texture: String): ItemStack {
         return itemStack(Items.PLAYER_HEAD) {
             setSkullTexture(texture)
-            setCustomName(msg("gui.general.$key.n"))
+            setName(msg("gui.general.$key.n"))
             setLore(msgList("gui.general.$key.l"))
+            setCustomModel(id)
         }
     }
 

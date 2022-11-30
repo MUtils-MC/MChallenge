@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.challenge.modules
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
 
 /*
 Global quick access

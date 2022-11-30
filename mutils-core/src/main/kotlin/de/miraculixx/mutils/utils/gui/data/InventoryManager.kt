@@ -69,5 +69,5 @@ object InventoryManager {
      * Use scroll GUIs to display activation status for your settings. Should not contain more than 64 settings for best experience.
      * @author Miraculixx
      */
-    internal fun scrollBuilder(id: String, builder: ScrollGUI.Builder.() -> Unit) = ScrollGUI.Builder(id).apply(builder).build()
+    inline fun scrollBuilder(id: String, builder: ScrollGUI.Builder.() -> Unit) = ScrollGUI.Builder(id).apply(builder).build()
 }

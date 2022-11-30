@@ -5,7 +5,7 @@ import de.miraculixx.mutils.utils.gui.data.InventoryManager
 import de.miraculixx.mutils.utils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.utils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.utils.gui.item.itemStack
-import de.miraculixx.mutils.utils.gui.item.setCustomName
+import de.miraculixx.mutils.utils.gui.item.setName
 import de.miraculixx.mutils.utils.messages.*
 import net.kyori.adventure.text.Component
 import net.minecraft.world.entity.player.Player
@@ -21,9 +21,7 @@ class CustomGUI(
     clickEvent: ((GUIClickEvent) -> Unit)?,
     closeEvent: ((GUICloseEvent) -> Unit)?
 ) : CustomInventory(size * 9, title, clickEvent, closeEvent) {
-    override val defaultClickAction: ((GUIClickEvent) -> Unit) = {
-
-    }
+    override val defaultClickAction: ((GUIClickEvent) -> Unit)? = null
 
     private constructor(builder: Builder) : this(
         builder.content,
@@ -62,8 +60,8 @@ class CustomGUI(
     }
 
     private fun fillPlaceholder() {
-        val primaryPlaceholder = itemStack(Items.GRAY_STAINED_GLASS_PANE) { setCustomName(cmp(" ")) }
-        val secondaryPlaceholder = itemStack(Items.BLACK_STAINED_GLASS_PANE) { setCustomName(cmp(" ")) }
+        val primaryPlaceholder = itemStack(Items.GRAY_STAINED_GLASS_PANE) { setName(cmp(" ")) }
+        val secondaryPlaceholder = itemStack(Items.BLACK_STAINED_GLASS_PANE) { setName(cmp(" ")) }
 
         val size = containerSize
         repeat(size) {

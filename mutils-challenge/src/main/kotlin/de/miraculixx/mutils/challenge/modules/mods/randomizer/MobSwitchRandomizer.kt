@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules.challenge.mods.randomizer
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
 import de.miraculixx.mutils.challenge.modules.Challenge
 import de.miraculixx.mutils.system.config.ConfigManager
 import de.miraculixx.mutils.system.config.Configs

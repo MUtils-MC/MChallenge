@@ -2,7 +2,7 @@
 
 package de.miraculixx.mutils.modules.challenge.mods.ALPHA
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.Challenge
 import de.miraculixx.mutils.utils.activated
 import de.miraculixx.mutils.utils.active
 import net.axay.kspigot.event.listen

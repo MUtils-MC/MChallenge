@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.challenge.modules
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.Challenge
 import de.miraculixx.mutils.modules.challenge.mods.*
 import de.miraculixx.mutils.modules.challenge.mods.checkpoints.Checkpoints
 import de.miraculixx.mutils.modules.challenge.mods.dimSwap.DimSwap

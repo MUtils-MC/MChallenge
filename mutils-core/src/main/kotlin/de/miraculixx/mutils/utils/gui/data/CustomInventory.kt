@@ -22,7 +22,7 @@ abstract class CustomInventory(
     private val clickEvent: ((GUIClickEvent) -> Unit)?,
     private val closeEvent: ((GUICloseEvent) -> Unit)?
     ) : SimpleContainer(size), MenuProvider {
-    private val viewers: MutableMap<Player, ChestMenu> = mutableMapOf()
+    val viewers: MutableMap<Player, ChestMenu> = mutableMapOf()
     abstract val id: String
     abstract val defaultClickAction: ((GUIClickEvent) -> Unit)?
 
@@ -78,7 +78,7 @@ abstract class CustomInventory(
      */
     override fun createMenu(syncId: Int, inventory: Inventory, player: Player): AbstractContainerMenu {
         val height = containerSize / 9
-        val menu = GUIEventHandler(getMenuType(height), syncId, inventory, this, height, clickEvent, closeEvent)
+        val menu = GUIEventHandler(getMenuType(height), syncId, inventory, this, height, clickEvent, closeEvent, defaultClickAction)
         viewers[player] = menu
         return menu
     }

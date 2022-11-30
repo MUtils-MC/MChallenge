@@ -2,8 +2,8 @@
 
 package de.miraculixx.mutils.modules.challenge.mods
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.utils.enums.challenges.RivalCollectMode
+import de.miraculixx.mutils.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.challenges.RivalCollectMode
 import de.miraculixx.mutils.challenge.modules.Challenge
 import de.miraculixx.mutils.challenge.utils.getItems
 import de.miraculixx.mutils.challenge.utils.getLivingMobs

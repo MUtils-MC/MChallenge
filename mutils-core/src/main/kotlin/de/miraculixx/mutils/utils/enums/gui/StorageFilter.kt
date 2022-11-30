@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.challenge.utils.enums.gui
+package de.miraculixx.mutils.utils.enums.gui
 
 enum class StorageFilter {
     NO_FILTER,

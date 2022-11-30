@@ -27,6 +27,11 @@ class StorageGUI(
     closeEvent: ((GUICloseEvent) -> Unit)?
 ) : CustomInventory(6 * 9, title, clickEvent, closeEvent) {
     private var filter: String? = filterName
+    override val defaultClickAction: ((GUIClickEvent) -> Unit) = action@{
+        val item = it.item
+        val player = it.player
+        // TODO Filter & co
+    }
 
     private constructor(builder: Builder) : this(
         buildMap {
@@ -136,7 +141,7 @@ class StorageGUI(
         if (filterable) {
             setItem(49, itemStack(Items.HOPPER, 1) {
                 setCustomModel(205)
-                setCustomName(cmp("Filters", cHighlight, bold = true))
+                setName(cmp("Filters", cHighlight, bold = true))
                 setLore(listOf(
                     emptyComponent(),
                     cmp("Filter", cHighlight, underlined = true),
@@ -169,8 +174,8 @@ class StorageGUI(
     }
 
     private fun fillPlaceholder() {
-        val darkHolder = itemStack(Items.GRAY_STAINED_GLASS_PANE) { setCustomName(emptyComponent()) }
-        val lightHolder = itemStack(Items.LIGHT_GRAY_STAINED_GLASS_PANE) { setCustomName(emptyComponent()) }
+        val darkHolder = itemStack(Items.GRAY_STAINED_GLASS_PANE) { setName(emptyComponent()) }
+        val lightHolder = itemStack(Items.LIGHT_GRAY_STAINED_GLASS_PANE) { setName(emptyComponent()) }
         (0..8).forEach { setItem(it, darkHolder) }
         (9..53).forEach { setItem(it, lightHolder) }
         if (scrollable || filterable) (45..53).forEach { setItem(it, darkHolder) }

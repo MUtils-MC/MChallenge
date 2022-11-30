@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules.challenge.mods.runRandomizer
 
 import de.miraculixx.mutils.Main
-import de.miraculixx.mutils.challenge.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
 import de.miraculixx.mutils.modules.challenges
 import de.miraculixx.mutils.modules.spectator.Spectator
 import net.axay.kspigot.extensions.onlinePlayers

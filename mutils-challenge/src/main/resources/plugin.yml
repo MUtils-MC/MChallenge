@@ -16,3 +16,4 @@ libraries:
   - "net.kyori:adventure-api:4.11.0"
   - "net.kyori:adventure-text-minimessage:4.11.0"
   - "net.kyori:adventure-text-serializer-plain:4.11.0"
+  - "org.yaml:snakeyaml:1.33"

@@ -52,7 +52,7 @@ fun ItemStack.setLore(text: Collection<Component>) {
  * Opens a [LiteralTextBuilder] to change the custom name of
  * the item stack. See [literalText].
  */
-fun ItemStack.setCustomName(name: Component?) {
+fun ItemStack.setName(name: Component?) {
     val compoundTag = getOrCreateTagElement("display")
     if (name != null) {
         compoundTag.putString("Name", jsonSerializer.serialize(name))
@@ -133,6 +133,10 @@ fun ItemStack.setSkullPlayer(player: ServerPlayer) {
 
 fun ItemStack.setCustomModel(int: Int) {
     orCreateTag.putInt("CustomModelData", int)
+}
+
+fun ItemStack.getCustomModel(): Int {
+    return orCreateTag.getInt("CustomModelData")
 }
 
 fun ItemStack.printJSONData() {

@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules.challenge.mods
 
 import de.miraculixx.mutils.Main
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.Challenge
 import de.miraculixx.mutils.challenge.modules.Challenge
 import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.event.listen

@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.modules.challenge.mods.randomizer
 
-import de.miraculixx.mutils.challenge.utils.enums.Challenge
+import de.miraculixx.mutils.utils.enums.Challenge
 import de.miraculixx.mutils.enums.modules.worldCreator.BiomeProviders
 import de.miraculixx.mutils.challenge.modules.Challenge
 import de.miraculixx.mutils.modules.worldManager.WorldTools
