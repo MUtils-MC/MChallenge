@@ -7,9 +7,19 @@ pluginManagement {
     }
 }
 
-include("mutils-core")
-include("mutils-challenge")
-include("mutils-custom-challenge")
-include("mutils-timer")
+// Cores
+include("vanilla")
+include("core:paper")
+//include("core:fabric")
 
+include("custom-challenges:paper")
+//include("custom-challenges:fabric")
+
+include("timer:paper")
+//include("timer:fabric")
+
+include("challenges:paper")
+//include("challenges:fabric")
+
+// 3rd party
 include("kpaper-light")
