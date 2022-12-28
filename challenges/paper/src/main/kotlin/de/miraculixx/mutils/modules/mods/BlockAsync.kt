@@ -1,8 +1,10 @@
-package de.miraculixx.mutils.modules.challenge.mods
+package de.miraculixx.mutils.modules.mods
 
 import de.miraculixx.mutils.Main
 import de.miraculixx.mutils.utils.enums.Challenge
 import de.miraculixx.mutils.challenge.modules.Challenge
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.utils.text.msg
 import net.axay.kspigot.event.listen
 import net.axay.kspigot.event.register
@@ -22,7 +24,7 @@ import org.bukkit.inventory.ItemStack
 
 
 class BlockAsync : Challenge {
-    override val challenge = Challenge.BLOCK_ASYNC
+    override val challenge = Challenges.BLOCK_ASYNC
     private val blockList = HashMap<Location, Player>() //Location ist der fake Block - Player der Spieler, welcher den Block abgebaut hat
     private val dataList = HashMap<Location, BlockData>() //Location ist der fake Block - Material der ursprüngliche Block Type
 

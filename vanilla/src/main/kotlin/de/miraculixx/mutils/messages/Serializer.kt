@@ -11,5 +11,10 @@ val miniMessages = MiniMessage.miniMessage()
 val jsonSerializer = GsonComponentSerializer.gson()
 
 val json = Json {
+    prettyPrint = true
+    ignoreUnknownKeys = true
+}
+
+val jsonCompact = Json {
     ignoreUnknownKeys = true
 }

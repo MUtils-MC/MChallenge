@@ -1,38 +1,47 @@
-package de.miraculixx.mutils.modules.challenge.mods.dimSwap
+package de.miraculixx.mutils.modules.mods.dimSwap
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import de.miraculixx.mutils.challenge.utils.MobBossBar
-import de.miraculixx.mutils.utils.text.msg
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.onlinePlayers
-import net.axay.kspigot.extensions.worlds
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.extensions.worlds
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.mutils.utils.MobBossBar
+import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.boss.BarColor
 import org.bukkit.entity.EnderDragon
-import org.bukkit.entity.Player
+import org.bukkit.entity.EntityType
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerPortalEvent
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
+import java.time.Duration
 
 class DimSwap : Challenge {
-    override val challenge = Challenge.DIM_SWAP
+    override val challenge = Challenges.DIM_SWAP
 
     override fun start(): Boolean {
-        for (player in onlinePlayers) {
-            player.sendTitle(msg("module.challenge.dimSwap.prepare", pre = false), "§cPlease wait a moment", 10, 9999, 0)
+        onlinePlayers.forEach { player ->
+            player.showTitle(
+                Title.title(
+                    cmp("Prepare all worlds", cHighlight), cmp("Please wait a moment", cError),
+                    Title.Times.times(Duration.ofMillis(300), Duration.ofHours(1), Duration.ofMillis(0))
+                )
+            )
             player.addPotionEffect(PotionEffect(PotionEffectType.BLINDNESS, 99999, 1, true))
         }
         if (DimSwapSchedule().worldGen()) {
             onlinePlayers.forEach {
                 it.removePotionEffect(PotionEffectType.BLINDNESS)
-                it.sendTitle(" "," ",1,1,1)
+                it.showTitle(Title.title(emptyComponent(), emptyComponent()))
             }
             return false
         }
@@ -44,6 +53,7 @@ class DimSwap : Challenge {
         onEndportal.register()
         onPortal.register()
     }
+
     override fun unregister() {
         onEndportal.unregister()
         onPortal.unregister()
@@ -67,18 +77,20 @@ class DimSwap : Challenge {
     }
 
     private val onPortal = listen<PlayerPortalEvent>(register = false) {
-        if (it.to.world == null || it.from.world == null) return@listen
-        if (it.to.world!!.environment == World.Environment.NORMAL && it.from.world!!.environment == World.Environment.NETHER) {
+        val to = it.to.world
+        val from = it.from.world
+        if (to == null || from == null) return@listen
+        if (to.environment == World.Environment.NORMAL && from.environment == World.Environment.NETHER) {
             it.isCancelled = true
             val mainWorld = worlds[0]
             val endWorld = Bukkit.getWorld("${mainWorld.name}_the_end")
             if (endWorld == null) {
-                Bukkit.broadcastMessage(msg("module.challenge.worldNotFound", input = "${mainWorld.name}_the_end"))
+                broadcast(prefix + msg("event.worldNotFound", listOf("${mainWorld.name}_the_end")))
                 return@listen
             }
             val y = endWorld.getHighestBlockYAt(0, 1130)
             if (y < 30) {
-                //Plattform builder
+                // Plattform builder
                 for (x in -2..2) {
                     for (z in 1128..1132) {
                         endWorld.getBlockAt(x, 60, z).type = Material.OBSIDIAN
@@ -86,23 +98,16 @@ class DimSwap : Challenge {
                 }
             }
             it.player.teleport(endWorld.getHighestBlockAt(0, 1130).location)
-            try {
-                endWorld.enderDragonBattle!!.enderDragon!!.remove()
-            } catch (exception: NullPointerException) {
-                endWorld.enderDragonBattle!!.bossBar.isVisible = false
-                endWorld.enderDragonBattle!!.bossBar.removeAll()
-                endWorld.enderDragonBattle!!.generateEndPortal(true)
-                for (entity in endWorld.entities) {
-                    if (entity is Player) continue
-                    entity.remove()
+            endWorld.enderDragonBattle?.enderDragon?.remove()
+
+            val battle = endWorld.enderDragonBattle
+            battle?.bossBar?.isVisible = false
+            battle?.bossBar?.removeAll()
+            battle?.generateEndPortal(true)
+            task(true, 0, 10, 3) {
+                endWorld.entities.forEach { entity ->
+                    if (entity.type == EntityType.ENDER_DRAGON) entity.remove()
                 }
-            }
-            endWorld.enderDragonBattle!!.bossBar.isVisible = false
-            endWorld.enderDragonBattle!!.bossBar.removeAll()
-            endWorld.enderDragonBattle!!.generateEndPortal(true)
-            for (entity in endWorld.entities) {
-                if (entity is Player) continue
-                entity.remove()
             }
         }
     }

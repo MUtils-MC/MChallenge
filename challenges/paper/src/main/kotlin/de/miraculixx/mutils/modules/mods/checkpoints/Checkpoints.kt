@@ -1,12 +1,12 @@
-package de.miraculixx.mutils.modules.challenge.mods.checkpoints
+package de.miraculixx.mutils.modules.mods.checkpoints
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.onlinePlayers
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
@@ -20,20 +20,22 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityExplodeEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
+import java.util.*
 
 class Checkpoints : Challenge {
-    override val challenge = Challenge.CHECKPOINTS
-    private val actionList = HashMap<Player, CheckpointsData?>()
+    override val challenge = Challenges.CHECKPOINTS
+    private val actionList = HashMap<UUID, CheckpointsData?>()
 
     override fun start(): Boolean {
         return true
     }
 
     override fun stop() {
-        for (player in onlinePlayers) {
-            if (actionList.containsKey(player)) {
-                actionList[player]?.reset()
-                actionList.remove(player)
+        onlinePlayers.forEach { player ->
+            val uuid = player.uniqueId
+            if (actionList.containsKey(uuid)) {
+                actionList[uuid]?.reset()
+                actionList.remove(uuid)
             }
         }
     }
@@ -47,6 +49,7 @@ class Checkpoints : Challenge {
         onKill.register()
         onChestOpen.register()
     }
+
     override fun unregister() {
         onSwitch.unregister()
         onCombust.unregister()
@@ -58,12 +61,13 @@ class Checkpoints : Challenge {
     }
 
     private val onSwitch = listen<PlayerSwapHandItemsEvent>(register = false) {
-        if (Spectator.isSpectator(it.player.uniqueId)) return@listen
-        if (it.player.gameMode == GameMode.SPECTATOR) return@listen
+        val player = it.player
+        val uuid = player.uniqueId
+        if (Spectator.isSpectator(uuid) || player.gameMode == GameMode.SPECTATOR) return@listen
         it.isCancelled = true
-        if (actionList[it.player] == null) {
+        if (actionList[uuid] == null) {
             //Neuer Ghost
-            val zombie = it.player.world.spawnEntity(it.player.location, EntityType.ZOMBIE) as Zombie
+            val zombie = player.world.spawnEntity(player.location, EntityType.ZOMBIE) as Zombie
             zombie.isInvisible = true
             zombie.isInvulnerable = true
             zombie.isPersistent = true
@@ -71,11 +75,11 @@ class Checkpoints : Challenge {
             zombie.isGlowing = true
             zombie.setGravity(false)
             zombie.isSilent = true
-            actionList[it.player] = CheckpointsData(it.player, zombie)
+            actionList[uuid] = CheckpointsData(it.player, zombie)
         } else {
             //Teleportiere zum Ghost
-            actionList[it.player]?.reset()
-            actionList.remove(it.player)
+            actionList[uuid]?.reset()
+            actionList.remove(uuid)
         }
     }
 
@@ -85,38 +89,44 @@ class Checkpoints : Challenge {
     }
 
     private val onBreak = listen<BlockBreakEvent>(register = false) {
-        if (actionList[it.player] == null) return@listen
-        actionList[it.player]?.addBrokenBlock(it.block)
+        val uuid = it.player.uniqueId
+        if (actionList[uuid] == null) return@listen
+        actionList[uuid]?.addBrokenBlock(it.block)
     }
 
     private val onPlace = listen<BlockPlaceEvent>(register = false) {
-        if (actionList[it.player] == null) return@listen
-        actionList[it.player]?.addPlacedBlock(it.block)
+        val uuid = it.player.uniqueId
+        if (actionList[uuid] == null) return@listen
+        actionList[uuid]?.addPlacedBlock(it.block)
     }
 
     private val onExplode = listen<EntityExplodeEvent>(register = false) {
-        for (onlinePlayer in onlinePlayers) {
-            if (actionList[onlinePlayer] == null) continue
+        onlinePlayers.forEach { player ->
+            val uuid = player.uniqueId
+            if (actionList[uuid] == null) return@forEach
             for (block in it.blockList()) {
-                actionList[onlinePlayer]?.addBrokenBlock(block)
+                actionList[uuid]?.addBrokenBlock(block)
             }
         }
     }
 
     private val onKill = listen<EntityDamageByEntityEvent>(register = false) {
-        if (it.damager !is Player) return@listen
-        if (it.entity !is LivingEntity) return@listen
-        if (actionList[(it.damager as Player).player] == null) return@listen
-        if ((it.entity as LivingEntity).health - it.damage <= 0.0) {
-            actionList[(it.damager as Player).player]?.addEntity(it.entity)
+        val damager = it.damager
+        if (damager !is Player) return@listen
+        val taker = it.entity
+        if (taker !is LivingEntity) return@listen
+        if (actionList[damager.uniqueId] == null) return@listen
+        if (taker.health - it.damage <= 0.0) {
+            actionList[damager.uniqueId]?.addEntity(taker)
         }
     }
 
     private val onChestOpen = listen<PlayerInteractEvent>(register = false) {
-        if (actionList[it.player] == null) return@listen
-        if (it.clickedBlock == null) return@listen
-        if (it.clickedBlock!!.type == Material.CHEST || it.clickedBlock!!.type == Material.BARREL) {
-            actionList[it.player]?.addPlacedBlock(it.clickedBlock!!)
+        val uuid = it.player.uniqueId
+        if (actionList[uuid] == null) return@listen
+        val block = it.clickedBlock ?: return@listen
+        if (block.type == Material.CHEST || block.type == Material.BARREL) {
+            actionList[uuid]?.addPlacedBlock(block)
         }
     }
 }

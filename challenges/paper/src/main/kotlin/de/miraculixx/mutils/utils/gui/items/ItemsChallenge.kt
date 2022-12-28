@@ -1,80 +1,70 @@
 package de.miraculixx.mutils.utils.gui.items
 
-import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.config.Config
-import de.miraculixx.mutils.utils.enums.Challenge
+import de.miraculixx.kpaper.items.name
+import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.gui.items.ItemFilterProvider
+import de.miraculixx.mutils.gui.items.ItemProvider
+import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.utils.cotm
+import de.miraculixx.mutils.utils.getAccountStatus
+import de.miraculixx.mutils.utils.settings
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.TextColor
-import net.kyori.adventure.text.format.TextDecoration
-import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
-class ItemsChallenge(private val config: Config) {
+class ItemsChallenge : ItemFilterProvider {
+    override var filter = StorageFilter.NO_FILTER
 
-    fun getItems(id: Int, filter: StorageFilter?): LinkedHashMap<ItemStack, Boolean> {
-        val list = when (id) {
-            1 -> g1(filter)
-            else -> {
-                linkedMapOf(Pair(ItemStack(Material.BARRIER), false))
+    override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
+        return buildMap {
+            val challenges = Challenges.values()
+            val amount = challenges.size - 1
+            val range = challenges.copyOfRange(from.coerceAtMost(amount), to.coerceAtMost(amount))
+            val status = getAccountStatus()
+
+            // Adding Challenge of the month at first
+            if (isMatchingFilter(cotm, filter)) {
+                val monthly = getChallengeItem(cotm)
+                val item = monthly.first
+                item.editMeta {
+                    it.name = it.name?.color(cSuccess)
+                    it.lore(it.lore()?.plus(cmp("Challenge of the Month", cSuccess)))
+                }
+                put(item, monthly.second)
             }
-        }
-        /* ID Glossary
-        1 → Main Challenges
-        2 -> TODO
-         */
-        return list
-    }
 
-    private fun g1(filter: StorageFilter?): LinkedHashMap<ItemStack, Boolean> {
-        val map = LinkedHashMap<ItemStack, Boolean>()
-
-        if (isMatchingFilter(challengeOfTheMonth, filter)) {
-            val monthly = getChallengeItem(challengeOfTheMonth)
-            val item = monthly.first
-            val meta = item.itemMeta
-            val green = TextColor.fromHexString("#55FF55")
-            meta.displayName(Component.text(ChatColor.stripColor(meta.name) ?: "error").color(green).decoration(TextDecoration.ITALIC, false).decorate(TextDecoration.BOLD))
-            val lore = meta.lore()
-            lore?.add(0, Component.text("Challenge of the Month").color(green).decoration(TextDecoration.ITALIC, false))
-            meta.lore(lore)
-            item.itemMeta = meta
-            map[item] = monthly.second
-        }
-
-        Challenge.values().reversed().forEach { module ->
-            if (module.isChallenge()) {
-                if (module == challengeOfTheMonth) return@forEach
-                if (isMatchingFilter(module, filter)) {
-                    val pair = getChallengeItem(module)
-                    if (!premium) {
-                        val item = pair.first
-                        val meta = item.itemMeta
-                        val lore = meta.lore()
-                        lore?.add(0, Component.text("Premium only").color(TextColor.fromHexString("#FF5555")).decoration(TextDecoration.ITALIC, false))
-                        meta.lore(lore)
-                        item.itemMeta = meta
-                    }
-                    map[pair.first] = pair.second
+            // Adding all other Challenges in reversed order (newest first)
+            range.reversed().forEach { challenge ->
+                if (challenge == cotm) return@forEach
+                if (isMatchingFilter(challenge, filter)) {
+                    val data = getChallengeItem(challenge)
+                    if (!status) {
+                        data.first.editMeta {
+                            it.name = it.name?.color(cError)
+                            it.lore(it.lore()?.plus(cmp("Premium only", cError)))
+                        }
+                    } else data.first.editMeta { it.name = it.name?.color(cHighlight) }
+                    put(data.first, data.second)
                 }
             }
         }
-        return map
     }
 
-    private fun isMatchingFilter(module: Challenge, filter: StorageFilter?): Boolean {
+    private fun isMatchingFilter(module: Challenges, filter: StorageFilter?): Boolean {
         return filter == null || filter == StorageFilter.NO_FILTER || module.matchingFilter(filter)
     }
 
     //Utilities
-    private fun getChallengeItem(challenge: Challenge): Pair<ItemStack, Boolean> {
-        return Pair(challenge.getIcon().apply { editMeta {
-            it.displayName(getName(challenge))
-            it.lore(getLore(challenge))
-        } } to )
+    private fun getChallengeItem(challenge: Challenges): Pair<ItemStack, Boolean> {
+        return challenge.getIcon().apply {
+            editMeta {
+                it.displayName(getName(challenge))
+                it.lore(getLore(challenge))
+            }
+        } to settings.getBoolean(challenge.name + ".active")
     }
 
-    private fun getFilter(challenge: Challenge): List<Component> {
+    private fun getFilter(challenge: Challenges): List<Component> {
         return buildList {
             emptyComponent()
             cmp("∙ ") + cmp("Filters", cHighlight, underlined = true)
@@ -82,11 +72,11 @@ class ItemsChallenge(private val config: Config) {
         }
     }
 
-    private fun getName(challenge: Challenge): Component {
+    private fun getName(challenge: Challenges): Component {
         return cmp("", cHighlight, underlined = true) + msg("items.ch.${challenge.name}.n")
     }
 
-    private fun getLore(challenge: Challenge): List<Component> {
+    private fun getLore(challenge: Challenges): List<Component> {
         return buildList {
             val hasSettings = challenge.hasSettings()
             add(emptyComponent())
@@ -95,7 +85,7 @@ class ItemsChallenge(private val config: Config) {
 
             add(emptyComponent())
             add(cmp("∙ ") + cmp("Settings", cHighlight, underlined = true))
-            if (hasSettings) addAll(challenge.getSettings(config).map {
+            if (hasSettings) addAll(challenge.getSettings(settings).map {
                 cmp("   ") + msg("items.chS.${challenge.name}.${it.id}.n") + cmp(": ") + cmp(it.value, cHighlight) + cmp(" (Default ${it.default})")
             }) else add(cmp("   None", italic = true))
 

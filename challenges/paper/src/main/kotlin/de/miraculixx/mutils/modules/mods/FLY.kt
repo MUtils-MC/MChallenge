@@ -1,21 +1,18 @@
-@file:Suppress("DEPRECATION")
+package de.miraculixx.mutils.modules.mods
 
-package de.miraculixx.mutils.modules.challenge.mods
-
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.items.itemStack
+import de.miraculixx.kpaper.items.meta
+import de.miraculixx.kpaper.items.name
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.messages.cHighlight
+import de.miraculixx.mutils.messages.cmp
+import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.text.cHighlight
-import de.miraculixx.mutils.utils.text.cmp
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.items.itemStack
-import net.axay.kspigot.items.meta
-import net.axay.kspigot.items.name
-import net.axay.kspigot.runnables.task
+import de.miraculixx.mutils.utils.settings
 import org.bukkit.Color
 import org.bukkit.GameMode
 import org.bukkit.Material
@@ -30,23 +27,18 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
 class FLY : Challenge {
-    override val challenge = Challenge.FLY
+    override val challenge = Challenges.FLY
     private val data: HashMap<Player, ItemStack?> = HashMap()
     private val wings = itemStack(Material.ELYTRA) {
         meta {
             name = cmp("Hero Wings", cHighlight)
-            addEnchant(Enchantment.BINDING_CURSE, 1, true)
+            addUnsafeEnchantment(Enchantment.BINDING_CURSE, 1)
             addItemFlags(ItemFlag.HIDE_ENCHANTS)
             isUnbreakable = true
         }
     }
-    private val flyBoost = ConfigManager.getConfig(Configs.MODULES).getDouble("FLY.Boost")
+    private val flyBoost = settings.getDouble("FLY.power")
 
-    override fun start(): Boolean {
-        return true
-    }
-
-    override fun stop() {}
     override fun register() {
         onMove.register()
         onSneakToggle.register()

@@ -1,27 +1,25 @@
-package de.miraculixx.mutils.modules.challenge.mods.ghost
+package de.miraculixx.mutils.modules.mods.ghost
 
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.extensions.geometry.add
-import net.axay.kspigot.runnables.task
+import de.miraculixx.kpaper.extensions.geometry.add
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.utils.settings
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
 
-@Suppress("unused")
 class GhostData {
     private val currentBlocks = HashMap<Player, List<Block>>()
     private val ghostPlayer = ArrayList<Player>()
-    private val radius: Int
-    private val mode: Boolean
+    private val radius = settings.getInt("GHOST.radius")
+    private val mode = settings.getBoolean("GHOST.mode")
 
     init {
-        val config = ConfigManager.getConfig(Configs.MODULES)
-        radius = config.getInt("GHOST.Radius")
-        mode = config.getBoolean("GHOST.Mode")
         scheduler()
     }
 
+    /**
+     * Update surrounding blocks - Cube format
+     */
     fun updateCUBE(player: Player, current: Material) {
         val loc = player.location
         val oldBlocks = ArrayList<Block>(currentBlocks.getOrDefault(player, ArrayList()))
@@ -49,6 +47,9 @@ class GhostData {
         currentBlocks[player] = newBlocks
     }
 
+    /**
+     * Update surrounding blocks - Sphere format
+     */
     fun update(player: Player, current: Material) {
         val loc = player.location
         val oldBlocks = ArrayList<Block>(currentBlocks.getOrDefault(player, ArrayList()))
@@ -80,9 +81,7 @@ class GhostData {
     }
 
     fun reset(player: Player, current: Material) {
-        currentBlocks[player]?.forEach { block ->
-            block.type = current
-        }
+        currentBlocks[player]?.forEach { block -> block.type = current }
         currentBlocks.remove(player)
     }
 
@@ -96,9 +95,7 @@ class GhostData {
 
     private fun scheduler() {
         task(true, 1, 1) {
-            ghostPlayer.forEach { player ->
-                player.freezeTicks = player.maxFreezeTicks
-            }
+            ghostPlayer.forEach { player -> player.freezeTicks = player.maxFreezeTicks }
         }
     }
 }

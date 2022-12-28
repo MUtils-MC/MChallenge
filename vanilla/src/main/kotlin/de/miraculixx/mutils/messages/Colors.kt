@@ -8,3 +8,4 @@ val cBase: NamedTextColor = NamedTextColor.GRAY
 val cError: NamedTextColor = NamedTextColor.RED
 val cSuccess: NamedTextColor = NamedTextColor.GREEN
 val cMark = TextColor.fromHexString("#6e94ff")!!
+val cHide = TextColor.fromHexString("#1f2124")!!

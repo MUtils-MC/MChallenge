@@ -1,52 +1,54 @@
-package de.miraculixx.mutils.modules.challenge.mods.dimSwap
+package de.miraculixx.mutils.modules.mods.dimSwap
 
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.text.cmp
-import de.miraculixx.mutils.utils.text.msg
-import net.axay.kspigot.extensions.broadcast
-import net.axay.kspigot.extensions.onlinePlayers
-import net.axay.kspigot.extensions.worlds
-import net.axay.kspigot.items.itemStack
-import net.axay.kspigot.items.meta
-import net.axay.kspigot.items.name
-import net.axay.kspigot.runnables.task
+import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.extensions.worlds
+import de.miraculixx.kpaper.items.itemStack
+import de.miraculixx.kpaper.items.meta
+import de.miraculixx.kpaper.items.name
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.utils.settings
+import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.title.Title
 import org.bukkit.*
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.potion.PotionEffectType
+import java.time.Duration
 
 class DimSwapSchedule {
 
     fun worldGen(): Boolean {
         val normal = worlds[0]
         val end = Bukkit.getWorld("${normal.name}_the_end")
-        val prepareString = msg("module.challenge.dimSwap.prepare", pre = false)
+        val prepareString = cmp("Prepare all worlds...", cHighlight)
         var i = 0
         var progress = 0
         var high = 0
         if (end == null) {
-            broadcast(msg("module.challenge.worldNotFound", input = "${normal.name}_the_end"))
+            broadcast(prefix + msg("event.worldNotFound", listOf("${normal.name}_the_end")))
             return false
         }
+        val timings = Title.Times.times(Duration.ZERO, Duration.ofHours(1), Duration.ZERO)
         task(true, 2, 2) {
             if (i == 3) {
                 for (player in onlinePlayers) {
-                    player.sendTitle(prepareString, "§cPrepare End world", 0, 9999, 0)
+                    player.showTitle(Title.title(prepareString, cmp("Prepare End", cError), timings))
                 }
                 for (x in -4..4) {
                     for (z in -4..4) {
                         end.loadChunk(x, z)
                     }
                 }
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(prepareString, "§cEnd world loaded", 0, 9999, 0)
+                for (player in onlinePlayers) {
+                    player.showTitle(Title.title(prepareString, cmp("End Loaded", cError), timings))
                 }
             }
             if (i == 5) {
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(prepareString, "§ccPrepare Overworld", 0, 9999, 0)
+                for (player in onlinePlayers) {
+                    player.showTitle(Title.title(prepareString, cmp("Prepare Overworld", cError), timings))
                 }
                 for (x in -4..4) {
                     for (z in -4..4) {
@@ -54,13 +56,13 @@ class DimSwapSchedule {
                     }
                 }
                 high = normal.getHighestBlockYAt(0, 0) - end.getHighestBlockYAt(0, 0)
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(prepareString, "§cOverworld loaded", 0, 9999, 0)
+                for (player in onlinePlayers) {
+                    player.showTitle(Title.title(prepareString, cmp("Overworld Loaded", cError), timings))
                 }
             }
             if (i == 6) {
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(prepareString, "§cStabilize TPS (< 16TPS)", 0, 9999, 0)
+                for (player in onlinePlayers) {
+                    player.showTitle(Title.title(prepareString, cmp("Stabilize TPS (< 16TPS)", cError), timings))
                 }
             }
             if (i in 11..498) { //50x110x50 -> 1x per Tick, 110y per Tick, 50z per Tick -> 5500 Blocks per Tick
@@ -69,8 +71,8 @@ class DimSwapSchedule {
                     i = 499
                     return@task
                 }
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(prepareString, "§cDragon Battle generating ($progress%)", 0, 9999, 0)
+                for (player in onlinePlayers) {
+                    player.showTitle(Title.title(prepareString, cmp("Dragon Battle generating ($progress%)", cError), timings))
                 }
                 for (y in 0..110) {
                     for (z in -50..50) {
@@ -95,7 +97,7 @@ class DimSwapSchedule {
             if (i == 500) {
                 //Spawne Endplattform
                 for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(prepareString, "§cDragon Battle generating (Structures)", 0, 9999, 0)
+                    player.showTitle(Title.title(prepareString, cmp("Dragon Battle generating (Structures)", cError), timings))
                 }
                 val y = normal.getHighestBlockYAt(0, 0)
                 for (j in 0..4) normal.getBlockAt(0, y + j, 0).type = Material.BEDROCK
@@ -116,10 +118,10 @@ class DimSwapSchedule {
             if (i == 505) for (player in Bukkit.getOnlinePlayers()) {
                 if (player.gameMode == GameMode.SPECTATOR) {
                     player.removePotionEffect(PotionEffectType.BLINDNESS)
-                    player.sendTitle("", "", 0, 0, 0)
+                    player.showTitle(Title.title(emptyComponent(), emptyComponent(), Title.Times.times(Duration.ZERO, Duration.ZERO, Duration.ZERO)))
                     continue
                 }
-                schedule(player, end, prepareString)
+                schedule(player, end, prepareString, timings)
                 it.cancel()
                 return@task
             }
@@ -128,29 +130,20 @@ class DimSwapSchedule {
         return true
     }
 
-    private fun schedule(p: Player, end: World, prepareString: String) {
-        val loc: Location = p.location
+    private fun schedule(player: Player, end: World, prepareString: Component, timings: Title.Times) {
+        val loc: Location = player.location
         var i = -3
         task(true, 2, 2) {
             when (i) {
                 0 -> {
-                    p.sendTitle(prepareString, "§cSearch End Spawn", 0, 9999, 0)
-                    p.gameMode = GameMode.CREATIVE
-                    p.teleport(end.getHighestBlockAt(0, 0).location.add(0.0, 10.0, 0.0))
-                    p.isFlying = true
+                    player.showTitle(Title.title(prepareString, cmp("Search End Spawn", cError), timings))
+                    player.gameMode = GameMode.CREATIVE
+                    player.teleport(end.getHighestBlockAt(0, 0).location.add(0.0, 10.0, 0.0))
+                    player.isFlying = true
                 }
+
                 2 -> {
-                    try {
-                        end.enderDragonBattle!!.enderDragon!!.remove()
-                    } catch (exception: NullPointerException) {
-                        end.enderDragonBattle?.bossBar?.isVisible = false
-                        end.enderDragonBattle?.bossBar?.removeAll()
-                        end.enderDragonBattle?.generateEndPortal(true)
-                        for (entity in end.entities) {
-                            if (entity is Player) continue
-                            entity.remove()
-                        }
-                    }
+                    end.enderDragonBattle?.enderDragon?.remove()
                     end.enderDragonBattle?.bossBar?.isVisible = false
                     end.enderDragonBattle?.bossBar?.removeAll()
                     end.enderDragonBattle?.generateEndPortal(true)
@@ -159,15 +152,17 @@ class DimSwapSchedule {
                         entity.remove()
                     }
                 }
-                3 -> p.teleport(loc)
+
+                3 -> player.teleport(loc)
                 6 -> {
-                    p.sendTitle(prepareString, "§cSearch Nether Spawn", 0, 9999, 0)
-                    p.teleport(Location(loc.world, loc.blockX.toDouble(), 2.0, loc.blockZ.toDouble()))
+                    player.showTitle(Title.title(prepareString, cmp("Search Nether Spawn", cError), timings))
+                    player.teleport(Location(loc.world, loc.blockX.toDouble(), 2.0, loc.blockZ.toDouble()))
                 }
-                8 -> loc.world!!.getBlockAt(loc.blockX, 2, loc.blockZ).type = Material.NETHER_PORTAL
+
+                8 -> loc.world?.getBlockAt(loc.blockX, 2, loc.blockZ)?.type = Material.NETHER_PORTAL
                 10 -> {
-                    loc.world!!.getBlockAt(loc.blockX, 2, loc.blockZ).type = Material.STONE
-                    val loc1: Location = p.location
+                    loc.world?.getBlockAt(loc.blockX, 2, loc.blockZ)?.type = Material.STONE
+                    val loc1: Location = player.location
                     var y = -10
                     while (y < 10) {
                         var x = -10
@@ -182,22 +177,21 @@ class DimSwapSchedule {
                                         block.type = Material.AIR
                                     }
                                 }
-                                p.stopSound(Sound.BLOCK_GLASS_BREAK)
+                                player.stopSound(Sound.BLOCK_GLASS_BREAK)
                                 ++z
                             }
                             ++x
                         }
                         ++y
                     }
-                    for (entity in p.world.entities) {
+                    for (entity in player.world.entities) {
                         if (entity is Player) continue
                         entity.remove()
                     }
-                    p.gameMode = GameMode.SURVIVAL
-                    p.removePotionEffect(PotionEffectType.BLINDNESS)
-                    p.sendTitle(" ", " ", 1, 1, 1)
-                    val config = ConfigManager.getConfig(Configs.MODULES)
-                    if (config.getBoolean("DIM_SWAP.Pickaxe")) {
+                    player.gameMode = GameMode.SURVIVAL
+                    player.removePotionEffect(PotionEffectType.BLINDNESS)
+                    player.showTitle(Title.title(emptyComponent(), emptyComponent(), Title.Times.times(Duration.ZERO, Duration.ZERO, Duration.ZERO)))
+                    if (settings.getBoolean("DIM_SWAP.starter")) {
                         val item = itemStack(Material.WOODEN_PICKAXE) {
                             meta {
                                 name = cmp("Starter Wooden Pickaxe", NamedTextColor.WHITE)
@@ -209,6 +203,7 @@ class DimSwapSchedule {
                         }
                     }
                 }
+
                 11 -> {
                     it.cancel()
                     return@task

@@ -1,13 +1,13 @@
-package de.miraculixx.mutils.modules.challenge.mods.snake
+package de.miraculixx.mutils.modules.mods.snake
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.messages.msg
+import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.utils.text.msg
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.onlinePlayers
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.event.block.BlockBreakEvent
@@ -16,7 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent
 import java.util.*
 
 class Snake : Challenge {
-    override val challenge = Challenge.SNAKE
+    override val challenge = Challenges.SNAKE
     private val map = HashMap<UUID, SnakeObj?>()
 
     override fun start(): Boolean {
@@ -42,6 +42,7 @@ class Snake : Challenge {
         onPlace.register()
         onBreak.register()
     }
+
     override fun unregister() {
         onDie.unregister()
         onPlace.unregister()
@@ -51,10 +52,10 @@ class Snake : Challenge {
     private val onDie = listen<PlayerDeathEvent>(register = false) {
         if (it.entity.scoreboardTags.contains("SnakeDeath")) {
             it.entity.removeScoreboardTag("SnakeDeath")
-            it.deathMessage = msg("modules.ch.snake.hit", it.entity, pre = false)
+            it.deathMessage(msg("modules.snake.hit", listOf(it.entity.name)))
         } else if (it.entity.scoreboardTags.contains("SnakeLeave")) {
             it.entity.removeScoreboardTag("SnakeLeave")
-            it.deathMessage = msg("modules.ch.snake.leave", it.entity, pre = false)
+            it.deathMessage(msg("modules.snake.leave", listOf(it.entity.name)))
         }
     }
 

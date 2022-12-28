@@ -1,0 +1,27 @@
+name: MUtils-Timer
+load: STARTUP
+version: 100
+main: de.miraculixx.mutils.MTimer
+api-version: 1.16
+authors: [ Miraculixx ]
+description: MUtils Timer - Stop your time or use it as a countdown. Personal Timers, Goals, Rules and more!
+website: https://mutils.de/
+libraries:
+  - "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
+  - "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+  - "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4"
+  - "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+  - "io.ktor:ktor-client-cio-jvm:2.1.3"
+  - "io.ktor:ktor-client-core-jvm:2.1.3"
+  - "net.kyori:adventure-api:4.11.0"
+  - "net.kyori:adventure-text-minimessage:4.11.0"
+  - "net.kyori:adventure-text-serializer-plain:4.11.0"
+  - "org.yaml:snakeyaml:1.33"
+
+commands:
+  timer:
+    permission: "mutils.command.timer"
+    description: "Setup the global MUtils-Timer"
+  ptimer:
+    permission: "mutils.command.ptimer"
+    description: "Setup your own global MUtils-Timer"

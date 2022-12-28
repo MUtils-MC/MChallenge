@@ -1,78 +1,20 @@
 package de.miraculixx.mutils.commands
 
-import de.miraculixx.kpaper.commands.command
-import de.miraculixx.kpaper.commands.literal
-import de.miraculixx.kpaper.commands.runs
 import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.mutils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.messages.msg
+import de.miraculixx.mutils.messages.plus
+import de.miraculixx.mutils.messages.prefix
+import de.miraculixx.mutils.modules.ChallengeManager
+import de.miraculixx.mutils.utils.gui.GUITypes
+import de.miraculixx.mutils.utils.gui.actions.GUIChallenge
+import de.miraculixx.mutils.utils.gui.items.ItemsChallenge
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import org.bukkit.entity.Player
 
-class ChallengeCommand: TabExecutor {
-    val challenge = command("challenge") {
-        commandLogic("challenge")
-    }
-    val ch = command("ch") {
-        commandLogic("ch")
-    }
-
-    private fun LiteralArgumentBuilder<CommandSourceStack>.commandLogic(prefix: String) {
-        literal("start") {
-            runs {
-                val audience = sender.bukkitSender
-                if (ChallengeManager.status == ChallengeStatus.RUNNING) {
-                    audience.sendMessage(prefix + msg("command.challenge.alreadyOn"))
-                    return@runs
-                }
-
-                if (ChallengeManager.startChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.RUNNING
-                    broadcast(msg("command.challenge.start", listOf(sender.textName)))
-                } else audience.sendMessage(prefix + msg("command.challenge.failed"))
-            }
-        }
-
-        literal("stop") {
-            runs {
-                if (ChallengeManager.stopChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.STOPPED
-                    broadcast((msg("command.challenge.stop", listOf(sender.textName))))
-                } else sender.bukkitSender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
-            }
-        }
-
-        literal("pause") {
-            runs {
-                if (ChallengeManager.unregisterChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.PAUSED
-                    broadcast(msg("command.challenge.pause", listOf(sender.textName)))
-                } else sender.bukkitSender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
-            }
-        }
-
-        literal("resume") {
-            runs {
-                if (ChallengeManager.registerChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.RUNNING
-                    broadcast(msg("command.challenge.continue", listOf(sender.textName)))
-                } else sender.bukkitSender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
-            }
-        }
-
-        runs {
-            if (!sender.isPlayer) {
-                sender.bukkitSender.sendMessage(prefix + msg("command.noPlayer"))
-                return@runs
-            }
-            InventoryManager.scrollBuilder(player.uniqueId.toString()) {
-                title = msg("gui.challenge.title")
-                player = sender.player
-                content
-            }
-        }
-    }
-
+class ChallengeCommand : TabExecutor {
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>?): MutableList<String> {
         return buildList {
             when (args?.size ?: 0) {
@@ -82,11 +24,36 @@ class ChallengeCommand: TabExecutor {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
-        if (args?.isEmpty() == true) {
-            if (sender is Player) InventoryMa
+        if (args == null || args.isEmpty()) {
+            if (sender is Player) GUITypes.CHALLENGE_MENU.buildInventory(sender, sender.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
+            else sender.sendMessage(prefix + msg("command.noPlayer"))
             return true
         }
 
+        when (args.getOrNull(0)?.lowercase()) {
+            "stop" -> if (ChallengeManager.stopChallenges()) {
+                ChallengeManager.status = ChallengeStatus.STOPPED
+                broadcast((msg("command.challenge.stop", listOf(sender.name))))
+            } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+
+            "start" -> if (ChallengeManager.status == ChallengeStatus.RUNNING) {
+                sender.sendMessage(prefix + msg("command.challenge.alreadyOn"))
+                return false
+            } else if (ChallengeManager.startChallenges()) {
+                ChallengeManager.status = ChallengeStatus.RUNNING
+                broadcast(msg("command.challenge.start", listOf(sender.name)))
+            } else sender.sendMessage(prefix + msg("command.challenge.failed"))
+
+            "pause" -> if (ChallengeManager.unregisterChallenges()) {
+                ChallengeManager.status = ChallengeStatus.PAUSED
+                broadcast(msg("command.challenge.pause", listOf(sender.name)))
+            } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+
+            "resume" -> if (ChallengeManager.registerChallenges()) {
+                ChallengeManager.status = ChallengeStatus.RUNNING
+                broadcast(msg("command.challenge.continue", listOf(sender.name)))
+            } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+        }
         return true
     }
 }

@@ -1,23 +1,20 @@
-@file:Suppress("DEPRECATION")
+package de.miraculixx.mutils.modules.mods.realistic
 
-package de.miraculixx.mutils.modules.challenge.mods.realistic
-
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import net.axay.kspigot.event.SingleListener
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.broadcast
-import net.axay.kspigot.extensions.geometry.minus
-import net.axay.kspigot.extensions.geometry.vecY
-import net.axay.kspigot.runnables.task
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.extensions.geometry.minus
+import de.miraculixx.kpaper.extensions.geometry.vecY
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.mutils.modules.challenge.mods.realistic.*
 import org.bukkit.Material
 import org.bukkit.Tag
 import org.bukkit.block.BlockFace
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
-import org.bukkit.event.Event
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockExplodeEvent
 import org.bukkit.event.block.BlockPlaceEvent
@@ -33,31 +30,14 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class Realistic: Challenge {
-    override val challenge = Challenge.REALISTIC
+class Realistic : Challenge {
+    override val challenge = Challenges.REALISTIC
     private var weight: InventoryWeight? = null
     private var pathLogic: PathLogic? = null
     private var drinkLogic: DrinkLogic? = null
     private var temperatureLogic: TemperatureLogic? = null
     private var infoBar: InfoBar? = null
 
-    private fun getListener(): List<SingleListener<Event>> {
-        val list = ArrayList<SingleListener<*>>()
-        list.add(onMove)
-        list.add(onQuit)
-        list.add(onBlockPlace)
-        list.add(onBlockBreak)
-        list.add(onItemUse)
-        list.add(onInvClick)
-        list.add(onHunger)
-        list.add(onDamage)
-        list.add(onDeath)
-        list.add(onDrink)
-        list.add(onExplode)
-        list.add(onExplodeV2)
-        list.add(onTeleport)
-        return list as ArrayList<SingleListener<Event>>
-    }
     override fun start(): Boolean {
         weight = InventoryWeight()
         pathLogic = PathLogic()
@@ -90,6 +70,7 @@ class Realistic: Challenge {
         onDeath.register()
         onDamage.register()
     }
+
     override fun unregister() {
         onMove.unregister()
         onQuit.unregister()
@@ -108,7 +89,7 @@ class Realistic: Challenge {
 
     private val onMove = listen<PlayerMoveEvent>(register = false) {
         //Path bildet sich beim Laufen vvv
-        val block = ((it.to ?: return@listen) - vecY(1)).block
+        val block = (it.to - vecY(1)).block
         when (block.type) {
             Material.GRASS_BLOCK, Material.DIRT, Material.PODZOL, Material.COARSE_DIRT, Material.MYCELIUM -> pathLogic?.addBlock(block)
             else -> {}
@@ -174,14 +155,12 @@ class Realistic: Challenge {
             if ((it.currentItem!!.amount + it.cursor!!.amount) <= 6) {
                 it.isCancelled = true
                 it.currentItem!!.amount += it.cursor!!.amount
-                it.cursor = null
                 (it.whoClicked as Player).updateInventory()
             }
         } else
             if (it.currentItem == null && it.cursor?.type == Material.POTION && it.click == ClickType.LEFT) {
                 it.isCancelled = true
                 it.inventory.setItem(it.slot, it.cursor)
-                it.cursor = null
                 (it.whoClicked as Player).updateInventory()
             }
 
@@ -215,7 +194,7 @@ class Realistic: Challenge {
     private val onTeleport = listen<PlayerTeleportEvent>(register = false) {
         if (it.cause == PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
             it.player.addPotionEffect(PotionEffect(PotionEffectType.CONFUSION, 10 * 20, 1))
-            it.to!!.world!!.spawnEntity(it.to!!, EntityType.ENDERMITE)
+            it.to.world.spawnEntity(it.to, EntityType.ENDERMITE)
         }
     }
 

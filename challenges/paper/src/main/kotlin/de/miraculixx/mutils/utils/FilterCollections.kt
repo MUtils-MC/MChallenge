@@ -1,9 +1,7 @@
 package de.miraculixx.mutils.utils
 
+import de.miraculixx.mutils.messages.majorVersion
 import org.bukkit.Material
-import org.bukkit.entity.EntityType
-import org.bukkit.entity.LivingEntity
-import java.util.*
 
 
 fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
@@ -20,22 +18,25 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
                 && !it.name.endsWith("_HEAD")
                 && (!it.name.contains("AMETHYST") || !silkTouch)
     }.toMutableList()
-    if (!silkTouch) list.removeAll(listOf(
-        Material.CRIMSON_NYLIUM,
-        Material.WARPED_NYLIUM,
-        Material.ICE,
-        Material.BLUE_ICE,
-        Material.PACKED_ICE,
-        Material.MYCELIUM,
+    if (!silkTouch) list.removeAll(
+        listOf(
+            Material.CRIMSON_NYLIUM,
+            Material.WARPED_NYLIUM,
+            Material.ICE,
+            Material.BLUE_ICE,
+            Material.PACKED_ICE,
+            Material.MYCELIUM,
 
-        ))
-    if (removeHardToObtain) list.removeAll(listOf(
-        Material.TURTLE_EGG,
-        ))
+            )
+    )
+    if (removeHardToObtain) list.removeAll(
+        listOf(
+            Material.TURTLE_EGG,
+        )
+    )
     list.removeAll(
         listOf(
             Material.BEDROCK,
-            Material.BUDDING_AMETHYST,
             Material.DIRT_PATH,
             Material.FARMLAND,
             Material.END_PORTAL_FRAME,
@@ -46,23 +47,6 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
             Material.ENCHANTED_BOOK
         )
     )
-    return list
-}
-
-fun getLivingMobs(natural: Boolean): MutableList<EntityType> {
-    val list = kotlin.collections.ArrayList<EntityType>(Arrays.stream(EntityType.values()).filter {
-            entityType -> entityType.entityClass != null && LivingEntity::class.java.isAssignableFrom(entityType.entityClass)
-    }.toList()).toMutableList()
-    list.remove(EntityType.PLAYER)
-    if (natural) {
-        list.removeAll(
-            listOf(
-                EntityType.GIANT,
-                EntityType.ILLUSIONER,
-                EntityType.ZOMBIE_HORSE,
-                EntityType.SKELETON_HORSE
-            )
-        )
-    }
+    if (majorVersion >= 17) list.remove(Material.BUDDING_AMETHYST)
     return list
 }

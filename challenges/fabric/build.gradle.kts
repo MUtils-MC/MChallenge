@@ -6,5 +6,5 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core:fabric", configuration = "namedElements"))
+    implementation(project(":core-fabric", configuration = "namedElements"))
 }

@@ -2,7 +2,7 @@ package de.miraculixx.mutils.utils
 
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.mutils.utils.messages.namespace
+import de.miraculixx.mutils.messages.namespace
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
@@ -47,15 +47,10 @@ class MobBossBar(entity: LivingEntity, color: BarColor, name: String) {
     }
 
     // Update Events
-    private val onDamage = listen<EntityDamageEvent>() {
+    private val onDamage = listen<EntityDamageEvent> {
         if (it.entity == entity) update(it.finalDamage)
     }
     private val onRegen = listen<EntityRegainHealthEvent> {
         if (it.entity == entity) update(it.amount)
     }
-    /* Paper Builds
-    private val onDespawn = listen<EntityDespawnEvent> {
-        if (it.entity == entity) removeMobBar()
-    }
-     */
 }

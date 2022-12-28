@@ -1,70 +1,66 @@
 package de.miraculixx.mutils.modules
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.modules.challenge.mods.*
-import de.miraculixx.mutils.modules.challenge.mods.checkpoints.Checkpoints
-import de.miraculixx.mutils.modules.challenge.mods.dimSwap.DimSwap
-import de.miraculixx.mutils.modules.challenge.mods.force.ForceCollect
-import de.miraculixx.mutils.modules.challenge.mods.ghost.Ghost
-import de.miraculixx.mutils.modules.challenge.mods.gravity.GravityManager
-import de.miraculixx.mutils.modules.challenge.mods.inTime.InTime
-import de.miraculixx.mutils.modules.challenge.mods.limitedSkills.LimitedSkills
-import de.miraculixx.mutils.modules.challenge.mods.mobRandomizer.MobRandomizer
-import de.miraculixx.mutils.modules.challenge.mods.noSameItems.NoSameItem
-import de.miraculixx.mutils.modules.challenge.mods.oneBiome.OneBiome
-import de.miraculixx.mutils.modules.challenge.mods.randomizer.*
-import de.miraculixx.mutils.modules.challenge.mods.realistic.Realistic
-import de.miraculixx.mutils.modules.challenge.mods.runRandomizer.RunRandomizer
-import de.miraculixx.mutils.modules.challenge.mods.snake.Snake
-import de.miraculixx.mutils.modules.challenge.mods.worldPeace.WorldPeace
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.modules.mods.BlockAsync
+import de.miraculixx.mutils.modules.mods.ghost.Ghost
+import de.miraculixx.mutils.modules.mods.realistic.Realistic
+import de.miraculixx.mutils.modules.mods.snake.Snake
+import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
+import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
+import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
+import de.miraculixx.mutils.modules.mods.FLY
+import de.miraculixx.mutils.modules.mods.inTime.InTime
+import de.miraculixx.mutils.utils.cotm
+import de.miraculixx.mutils.utils.getAccountStatus
+import de.miraculixx.mutils.utils.settings
 
 class StatusChanger {
 
-    fun getClass(module: Challenge): Challenge? {
+    private fun getClass(module: Challenges): Challenge {
         return when (module) {
-            Challenge.FLY -> FLY()
-            Challenge.IN_TIME -> InTime()
-            Challenge.MOB_RANDOMIZER -> MobRandomizer()
-            Challenge.CHECKPOINTS -> Checkpoints()
-            Challenge.DIM_SWAP -> DimSwap()
-            Challenge.SNAKE -> Snake()
-            Challenge.REALISTIC -> Realistic()
-            Challenge.GHOST -> Ghost()
-            Challenge.BLOCK_ASYNC -> BlockAsync()
-            Challenge.NO_SAME_ITEM -> NoSameItem()
-            Challenge.LIMITED_SKILLS -> LimitedSkills()
-            Challenge.RUN_RANDOMIZER -> RunRandomizer()
-            Challenge.SPLIT_HP -> SplitHP()
-            Challenge.DAMAGE_DUELL -> DamageDuell()
-            Challenge.ONE_BIOME -> OneBiome()
-            Challenge.BOOST_UP -> BoostUp()
-            Challenge.RIGHT_TOOL -> RightTools()
-            Challenge.CHUNK_BLOCK_BREAK -> ChunkBlockBreaker()
-            Challenge.SNEAK_SPAWN -> SneakSpawn()
-            Challenge.WORLD_PEACE -> WorldPeace()
-            Challenge.STAY_AWAY -> StayAway()
-            Challenge.RANDOMIZER_BLOCK -> BlockRandomizer()
-            Challenge.RANDOMIZER_ENTITY -> DropsRandomizer()
-            Challenge.RANDOMIZER_BIOMES -> BiomeRandomizer()
-            Challenge.RANDOMIZER_MOBS -> MobSwitchRandomizer()
-            Challenge.FORCE_COLLECT -> ForceCollect()
-            Challenge.RANDOMIZER_ENTITY_DAMAGE -> EntityDamageRandomizer()
-            Challenge.NO_DOUBLE_KILL -> NoDoubleKills()
-            Challenge.DAMAGER -> Damager()
-            Challenge.GRAVITY -> GravityManager()
-            Challenge.RIVALS_COLLECT -> RivalCollect()
-
-            Challenge.CAPTIVE -> TODO("Challenge is in Alpha Mode and not yet playable")
-            else -> null
+            Challenges.FLY -> FLY()
+            Challenges.IN_TIME -> InTime()
+            Challenges.MOB_BLOCKS -> MobBlocks()
+            Challenges.CHECKPOINTS -> Checkpoints()
+            Challenges.DIM_SWAP -> DimSwap()
+            Challenges.SNAKE -> Snake()
+            Challenges.REALISTIC -> Realistic()
+            //Challenges.CAPTIVE -> Captive()
+            Challenges.GHOST -> Ghost()
+            Challenges.BLOCK_ASYNC -> BlockAsync()
+            Challenges.NO_SAME_ITEM -> TODO()
+            Challenges.LIMITED_SKILLS -> TODO()
+            Challenges.RUN_RANDOMIZER -> TODO()
+            Challenges.SPLIT_HP -> TODO()
+            Challenges.DAMAGE_DUELL -> TODO()
+            Challenges.ONE_BIOME -> TODO()
+            Challenges.BOOST_UP -> TODO()
+            Challenges.RIGHT_TOOL -> TODO()
+            Challenges.CHUNK_BLOCK_BREAK -> TODO()
+            Challenges.SNEAK_SPAWN -> TODO()
+            Challenges.WORLD_PEACE -> TODO()
+            Challenges.GRAVITY -> TODO()
+            Challenges.STAY_AWAY -> TODO()
+            Challenges.RANDOMIZER_BLOCK -> TODO()
+            Challenges.RANDOMIZER_ENTITY -> TODO()
+            Challenges.RANDOMIZER_BIOMES -> TODO()
+            Challenges.RANDOMIZER_MOBS -> TODO()
+            Challenges.FORCE_COLLECT -> TODO()
+            Challenges.RANDOMIZER_DAMAGE -> TODO()
+            Challenges.NO_DOUBLE_KILL -> TODO()
+            Challenges.DAMAGER -> TODO()
+            Challenges.RIVALS_COLLECT -> TODO()
         }
     }
 
     fun startChallenges(): ArrayList<Challenge>? {
         val activated = ArrayList<Challenge>()
         var success = false
+        val available = if (!getAccountStatus()) arrayOf(cotm) else Challenges.values()
 
-        ChallengeManager.getActiveModules().forEach {
-            val challenge = getClass(it) ?: return@forEach
+        available.forEach {
+            if (!settings.getBoolean(it.name + ".active")) return@forEach
+            val challenge = getClass(it)
             if (challenge.start()) {
                 success = true
                 activated.add(challenge)

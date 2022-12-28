@@ -1,14 +1,14 @@
-package de.miraculixx.mutils.modules.challenge.mods.ghost
+package de.miraculixx.mutils.modules.mods.ghost
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.onlinePlayers
+import de.miraculixx.mutils.utils.getRPPrompt
+import de.miraculixx.mutils.utils.settings
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.Particle
@@ -27,14 +27,16 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent
 
 
 class Ghost : Challenge {
-    override val challenge = Challenge.GHOST
+    override val challenge = Challenges.GHOST
     private var currentBlock = HashMap<Player, Material>()
     private var ghostObj: GhostData? = null
+    private var adventure: Boolean = false
 
     override fun start(): Boolean {
         ghostObj = GhostData()
+        adventure = settings.getBoolean("GHOST.adventure")
         onlinePlayers.forEach {
-            it.setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1")
+            it.setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1", "", true, getRPPrompt("player", "Ghost-Challenge"))
         }
         return true
     }
@@ -42,7 +44,7 @@ class Ghost : Challenge {
     override fun stop() {
         ghostObj = null
         onlinePlayers.forEach {
-            it.setResourcePack("https://www.dropbox.com/s/me1buxg3vy7ddc9/NoTextures.zip?dl=1")
+            it.sendGhostRP()
         }
     }
 
@@ -56,6 +58,7 @@ class Ghost : Challenge {
         onCollect.register()
         onJoin.register()
     }
+
     override fun unregister() {
         onSelect.unregister()
         onDeselect.unregister()
@@ -77,8 +80,7 @@ class Ghost : Challenge {
                 ghostObj?.update(it.player, it.clickedBlock!!.type)
                 it.player.world.spawnParticle(Particle.END_ROD, it.player.location, 50, 0.3, 0.1, 0.3, 0.2)
                 it.player.playSound(it.player.location, Sound.BLOCK_SCULK_SENSOR_CLICKING, 1f, 0.8f)
-                val config = ConfigManager.getConfig(Configs.MODULES)
-                if (config.getBoolean("GHOST.Adventure")) it.player.gameMode = GameMode.ADVENTURE
+                if (adventure) it.player.gameMode = GameMode.ADVENTURE
                 it.isCancelled = true
             }
         }
@@ -131,6 +133,10 @@ class Ghost : Challenge {
     }
 
     private val onJoin = listen<PlayerJoinEvent>(register = false) {
-        it.player.setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1")
+        it.player.sendGhostRP()
+    }
+
+    private fun Player.sendGhostRP() {
+        setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1", "", true, getRPPrompt("player", "Ghost-Challenge"))
     }
 }

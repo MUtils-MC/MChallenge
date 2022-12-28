@@ -9,17 +9,17 @@ pluginManagement {
 
 // Cores
 include("vanilla")
-include("core:paper")
-//include("core:fabric")
+include("core-paper")
+include("core-fabric")
 
 include("custom-challenges:paper")
-//include("custom-challenges:fabric")
+include("custom-challenges:fabric")
 
 include("timer:paper")
-//include("timer:fabric")
+include("timer:fabric")
 
 include("challenges:paper")
-//include("challenges:fabric")
+include("challenges:fabric")
 
 // 3rd party
 include("kpaper-light")

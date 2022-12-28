@@ -1,7 +1,6 @@
-package de.miraculixx.mutils.modules.challenge.mods.checkpoints
+package de.miraculixx.mutils.modules.mods.checkpoints
 
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
+import de.miraculixx.mutils.utils.settings
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
@@ -15,10 +14,9 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import java.util.*
 
-class CheckpointsData(player: Player, zombie: Zombie) {
-    private val onlyTeleport = ConfigManager.getConfig(Configs.MODULES).getBoolean("CHECKPOINTS.Teleport")
+class CheckpointsData(player: Player, private val zombie: Zombie) {
+    private val onlyTeleport = settings.getBoolean("CHECKPOINTS.onlyTP")
     private val inventory: Inventory
-    private val zombie: Zombie
     private val uuid: UUID
     private val xp: Int
     private val hunger: Int
@@ -30,7 +28,6 @@ class CheckpointsData(player: Player, zombie: Zombie) {
 
     init {
         uuid = player.uniqueId
-        this.zombie = zombie
         hunger = player.foodLevel
         saturation = player.saturation
         health = player.health
@@ -39,12 +36,9 @@ class CheckpointsData(player: Player, zombie: Zombie) {
         brokenBlocks = HashMap()
         entities = HashMap()
         val inventory = Bukkit.createInventory(null, InventoryType.PLAYER)
-        for ((slot, itemStack) in player.inventory.withIndex()) {
-            if (itemStack == null) {
-                inventory.setItem(slot, ItemStack(Material.AIR))
-            } else {
-                inventory.setItem(slot, itemStack)
-            }
+        player.inventory.forEachIndexed { slot, itemStack ->
+            if (itemStack == null) inventory.setItem(slot, ItemStack(Material.AIR))
+            else inventory.setItem(slot, itemStack)
         }
         this.inventory = inventory
     }
@@ -63,8 +57,8 @@ class CheckpointsData(player: Player, zombie: Zombie) {
 
     fun reset() {
         var slot = 0
-        val player = Bukkit.getPlayer(uuid)
-        player!!.teleport(zombie)
+        val player = Bukkit.getPlayer(uuid) ?: return
+        player.teleport(zombie)
         zombie.remove()
         player.level = xp
         player.health = health
@@ -80,19 +74,20 @@ class CheckpointsData(player: Player, zombie: Zombie) {
             for (nearbyEntity in player.getNearbyEntities(100.0, 100.0, 100.0)) {
                 if (nearbyEntity.type == EntityType.DROPPED_ITEM) nearbyEntity.remove()
             }
-            brokenBlocks.forEach { (location: Location, material: Material?) -> location.world!!.getBlockAt(location).type = material }
-            for (placeBlock in placeBlocks) {
-                if (placeBlock.world!!.getBlockAt(placeBlock).type == Material.CHEST) {
-                    placeBlock.world!!.getBlockAt(placeBlock).type = Material.BARREL
+            brokenBlocks.forEach { (location, material) -> location.world?.getBlockAt(location)?.type = material }
+            placeBlocks.forEach { block ->
+                val world = block.world ?: return
+                if (world.getBlockAt(block).type == Material.CHEST) {
+                    world.getBlockAt(block).type = Material.BARREL
                     return
                 }
-                if (placeBlock.world!!.getBlockAt(placeBlock).type == Material.BARREL) {
-                    placeBlock.world!!.getBlockAt(placeBlock).type = Material.CHEST
+                if (world.getBlockAt(block).type == Material.BARREL) {
+                    world.getBlockAt(block).type = Material.CHEST
                     return
                 }
-                placeBlock.world!!.getBlockAt(placeBlock).type = Material.AIR
+                world.getBlockAt(block).type = Material.AIR
             }
-            entities.forEach { (location: Location, type: EntityType?) -> location.world!!.spawnEntity(location, type) }
+            entities.forEach { (location, type) -> location.world?.spawnEntity(location, type) }
         }
     }
 }

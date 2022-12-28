@@ -1,16 +1,14 @@
-package de.miraculixx.mutils.modules.challenge.mods.snake
+package de.miraculixx.mutils.modules.mods.snake
 
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.runnables.task
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.utils.settings
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
 
-@Suppress("DEPRECATION")
 class SnakeObj(private val player: Player) {
-    private var delay: Int = ConfigManager.getConfig(Configs.MODULES).getInt("SNAKE.Speed")
+    private var delay: Int = settings.getInt("SNAKE.speed")
     private var blockList = HashMap<Block, Int>()
     private var replaceBlocks = HashMap<Block, Material>()
     private var active = true

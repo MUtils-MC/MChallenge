@@ -1,10 +1,11 @@
-package de.miraculixx.mutils.modules.challenge.mods.inTime
+package de.miraculixx.mutils.modules.mods.inTime
 
-import de.miraculixx.mutils.Main
-import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
-import de.miraculixx.mutils.modules.challenges
-import de.miraculixx.mutils.utils.text.msg
-import net.axay.kspigot.runnables.task
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.modules.ChallengeManager
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.*
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
@@ -23,33 +24,22 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
 
     private var time: String? = null
         get() {
-            secString = if (sec <= 9) {
-                "0$sec"
-            } else {
-                sec.toString()
-            }
-            minString = if (min <= 9) {
-                "0$min"
-            } else {
-                min.toString()
-            }
+            secString = if (sec <= 9) "0$sec"
+            else sec.toString()
+
+            minString = if (min <= 9) "0$min"
+            else min.toString()
+
             field = "$minString:$secString"
             return field
         }
 
-    init {
-        while (this.sec >= 60) {
-            min++
-            this.sec -= 60
-        }
-        isRunning = true
-        if (isPlayer) {
-            key = NamespacedKey(Main.INSTANCE, entity.name)
-            bossBar = Bukkit.createBossBar(key!!, "§c...", BarColor.WHITE, BarStyle.SOLID)
-            (bossBar as KeyedBossBar).isVisible = true
-            (bossBar as KeyedBossBar).addPlayer(entity as Player)
-        }
-        inTime()
+    fun getTime(): String {
+        return time ?: ""
+    }
+
+    fun isRed(): Boolean {
+        return min <= 0 && sec <= 30
     }
 
     fun setTime(min: Int, sec: Int) {
@@ -59,93 +49,106 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
 
     fun remove() {
         if (bossBar != null) {
-            bossBar!!.isVisible = false
-            bossBar!!.removeAll()
+            bossBar?.isVisible = false
+            bossBar?.removeAll()
             key?.let { Bukkit.removeBossBar(it) }
         }
         if (!isPlayer) {
-            entity!!.remove()
+            entity?.remove()
         }
+    }
+
+    fun pauseTimer() {
+        isRunning = false
+    }
+
+    fun resumeTimer() {
+        isRunning = true
     }
 
     private fun inTime() {
         task(true, 20, 20) {
-            if (!isRunning || challenges != ChallengeStatus.RUNNING) {
-                if (!isPlayer) {
-                    entity!!.customName = "§9§o$time paused"
-                } else {
-                    bossBar?.setTitle("§9§o$time paused")
-                }
+            // Timer Paused
+            if (!isRunning || ChallengeManager.status == ChallengeStatus.RUNNING) {
+                if (!isPlayer) entity?.customName(cmp("$time paused", cHighlight, italic = true))
+                else bossBar?.setTitle("§9§o$time paused")
                 return@task
             }
+
+            // Remove Timer if entity is dead or despawned.
+            // If Timer belongs to a player, it will be paused
             if (entity == null) {
                 it.cancel()
                 return@task
             }
-            if (entity!!.isDead) {
+            if (entity?.isDead == true) {
                 if (isPlayer) {
                     isRunning = false
                     return@task
                 }
-                entity!!.remove()
+                entity?.remove()
                 remove()
                 it.cancel()
                 return@task
             }
+
+            // Timer hits zero
             if (sec == 0 && min == 0) {
                 if (!isPlayer) {
-                    for (player in Bukkit.getOnlinePlayers()) {
-                        player.spawnParticle(Particle.SPELL_WITCH, entity!!.location.add(0.0, 0.2, 0.0), 20, 0.1, 0.1, 0.1, 0.1)
-                        player.playSound(entity!!.location, Sound.ENTITY_VEX_DEATH, 0.7f, 0.1f)
+                    val loc = entity?.location ?: return@task
+                    onlinePlayers.forEach { player ->
+                        player.spawnParticle(Particle.SPELL_WITCH, loc.add(0.0, 0.2, 0.0), 20, 0.1, 0.1, 0.1, 0.1)
+                        player.playSound(loc, Sound.ENTITY_VEX_DEATH, 0.7f, 0.1f)
                     }
-                    entity!!.remove()
+                    entity?.remove()
                     isRunning = false
                     it.cancel()
                     return@task
                 } else {
-                    (entity as LivingEntity).damage(999.0)
-                    for (player in Bukkit.getOnlinePlayers()) {
+                    (entity as? LivingEntity)?.damage(999.0)
+                    onlinePlayers.forEach { player ->
                         player.gameMode = GameMode.SPECTATOR
-                        player.sendMessage(msg("module.challenges.inTime.noTime", player))
+                        player.sendMessage(prefix + msg("event.inTime.noTime", listOf(player.name)))
                         player.playSound(player.location, Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1.2f)
                     }
-                    challenges = ChallengeStatus.PAUSED
+                    ChallengeManager.status = ChallengeStatus.PAUSED
                     isRunning = false
                     it.cancel()
                     return@task
                 }
             }
+
+            // Calculating time
             sec -= 1
             if (sec < 0) {
-                //Down
                 min -= 1
                 sec = 59
             }
-            if (!isPlayer) {
-                var playerNearby = false
-                for (nearbyEntity in entity!!.getNearbyEntities(6.0, 6.0, 6.0)) {
-                    if (nearbyEntity is Player) {
-                        entity!!.isCustomNameVisible = true
-                        playerNearby = true
-                    }
-                }
-                if (!playerNearby) entity!!.isCustomNameVisible = false
-                if (min == 0 && sec <= 30) {
-                    entity!!.customName = "§c$time"
-                } else {
-                    entity!!.customName = "§6$time"
-                }
-            } else {
+
+
+            if (isPlayer) {
                 //Spieler
                 if (min == 0 && sec <= 30) {
+                    // Manipulate the dragon to purge if timer is about to end (feels like insane clutch omg omg omg)
                     bossBar?.setTitle("§c$time")
-                    if (entity!!.type == EntityType.ENDER_DRAGON) {
-                        entity!!.world.enderDragonBattle!!.enderDragon!!.phase = EnderDragon.Phase.LAND_ON_PORTAL
-                    }
-                } else {
-                    bossBar?.setTitle("§6$time")
-                }
+                    if (entity is EnderDragon) (entity as EnderDragon).world.enderDragonBattle?.enderDragon?.phase = EnderDragon.Phase.LAND_ON_PORTAL
+                } else bossBar?.setTitle("§6$time")
             }
         }
+    }
+
+    init {
+        while (this.sec >= 60) {
+            min++
+            this.sec -= 60
+        }
+        isRunning = true
+        if (isPlayer) {
+            key = NamespacedKey(namespace, entity.name)
+            bossBar = Bukkit.createBossBar(key!!, "§c...", BarColor.WHITE, BarStyle.SOLID)
+            (bossBar as KeyedBossBar).isVisible = true
+            (bossBar as KeyedBossBar).addPlayer(entity as Player)
+        }
+        inTime()
     }
 }

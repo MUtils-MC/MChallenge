@@ -50,14 +50,6 @@ fun commandSuggestions(prefix: String, vararg commands: String): Component {
     return base
 }
 
-fun Component.toMC(): net.minecraft.network.chat.Component {
-    return net.minecraft.network.chat.Component.Serializer.fromJson(jsonSerializer.serialize(this)) ?: net.minecraft.network.chat.Component.empty()
-}
-
-fun net.minecraft.network.chat.Component.toAdventure(): Component {
-    return de.miraculixx.mutils.messages.jsonSerializer.deserialize(net.minecraft.network.chat.Component.Serializer.toJson(this))
-}
-
 operator fun Component.plus(other: Component): Component {
     return append(other)
 }

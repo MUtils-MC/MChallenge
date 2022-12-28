@@ -1,21 +1,25 @@
+@file:Suppress("unused")
+
 package de.miraculixx.mutils.config
 
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.extensions.enumOf
+import org.yaml.snakeyaml.DumperOptions
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.io.InputStream
-import kotlin.io.path.Path
 
-class Config(stream: InputStream?, val name: String) {
-    private val yaml: Yaml = Yaml()
+class Config(stream: InputStream?, val name: String, private val destination: File) {
+    private val yaml: Yaml
     val configMap: Map<String, Any>
 
     inline fun <reified T> get(key: String): T? {
         var route: Any? = configMap
         key.split('.').forEach {
-            if (route is Map<*,*>) route = (route as Map<*, *>)[it]
-            else {
+            if (route is Map<*,*>) {
+                route = (route as Map<*, *>)[it]
+                //if (debug) consoleAudience.sendMessage(prefix + cmp("Key:$it  Value:$route"))
+            } else {
                 if (debug) consoleAudience.sendMessage(prefix + cmp("Failed to resolve config key '$key' because '$it' is no section or null ('$name.yml')"))
                 return null
             }
@@ -57,6 +61,11 @@ class Config(stream: InputStream?, val name: String) {
     }
 
 
+    fun saveConfig() {
+        if (!destination.exists()) destination.createNewFile()
+        destination.writeText(yaml.dump(configMap))
+    }
+
     private fun loadConfig(file: File, input: InputStream) {
         if (debug) consoleAudience.sendMessage(prefix + cmp("Create new config file - $name"))
         if (!file.exists()) {
@@ -66,22 +75,27 @@ class Config(stream: InputStream?, val name: String) {
     }
 
     init {
+        val ymlOptions = DumperOptions()
+        ymlOptions.defaultFlowStyle = DumperOptions.FlowStyle.BLOCK
+        ymlOptions.isPrettyFlow = true
+        yaml = Yaml(ymlOptions)
+
         if (debug) consoleAudience.sendMessage(prefix + cmp("Load config file - $name"))
-        val file = Path("config/$name.yml").toFile()
         configMap = if (stream != null) {
-            if (!file.exists()) loadConfig(file, stream)
+            if (!destination.exists()) loadConfig(destination, stream)
 
             try {
-                yaml.load(file.inputStream())
+                yaml.load(destination.inputStream())
             } catch (e: Exception) {
                 e.printStackTrace()
                 consoleAudience.sendMessage(prefix + cmp("Failed to load Configuration File '$name' ^^ Reason above ^^"))
-                consoleAudience.sendMessage(prefix + cmp("Config Path -> ${file.path}"))
+                consoleAudience.sendMessage(prefix + cmp("Config Path -> ${destination.path}"))
                 emptyMap()
             }
         } else {
             consoleAudience.sendMessage(prefix + cmp("Configuration file '$name' is null"))
             emptyMap()
         }
+        //if (debug) println(configMap.toString())
     }
 }

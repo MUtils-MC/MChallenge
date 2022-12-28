@@ -1,7 +1,8 @@
 package de.miraculixx.mutils.modules
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.utils.settings
 
 /*
 Global quick access
@@ -16,9 +17,7 @@ object ChallengeManager {
      * @return all activated challenges
      */
     fun getChallenges(): List<Challenge> {
-        return buildList {
-            addAll(activatedChallenges)
-        }
+        return activatedChallenges.toList()
     }
 
     /**
@@ -66,73 +65,14 @@ object ChallengeManager {
         return true
     }
 
-    /**
-     * Add a challenge to the activation list.
-     * @return false if challenge is already activated
-     */
-    private fun addChallenge(challenge: Challenge): Boolean {
-        return if (activatedChallenges.contains(challenge)) false
-        else {
-            activatedChallenges.add(challenge)
-            true
-        }
-    }
-
-    /**
-     * Remove a challenge from the activation list.
-     * @return false if challenge is not activated
-     */
-    private fun removeChallenge(challenge: Challenge): Boolean {
-        return if (activatedChallenges.contains(challenge)) {
-            activatedChallenges.remove(challenge)
-            true
-        } else false
-    }
-
-
-    fun isActive(module: Challenge): Boolean {
-        return activatedChallenges.contains(module)
-    }
-
-
-    /*
-    Config managing
-    Load data from Disk or save it back
-     */
-    private fun load() {
-        val c = ConfigManager.getConfig(Configs.MODULES)
-        Challenge.values().forEach { s: Challenge ->
-            val active = c.getBoolean("${s.name}.Active")
-            moduleMap[s] = active
-            if (active) enableModule(s)
-        }
-        taskRunLater(20) {
-            val wTools = WorldTools()
-            wTools.loadWorlds()
-        }
-    }
-
-    fun save() {
-        val c = ConfigManager.getConfig(Configs.MODULES)
-        moduleMap.forEach { (s, b) ->
-            c["${s.name}.Active"] = b
-        }
-        val cT = ConfigManager.getConfig(Configs.TIMER)
-        cT["Time.Seconds"] = timer.getTime(TimerValue.SECONDS)
-        cT["Time.Minutes"] = timer.getTime(TimerValue.MINUTES)
-        cT["Time.Hours"] = timer.getTime(TimerValue.HOURS)
-        cT["Time.Days"] = timer.getTime(TimerValue.DAYS)
+    fun isActive(module: Challenges): Boolean {
+        return settings.getBoolean("${module.name}.active")
     }
 
     fun shutDown() {
         activatedChallenges.forEach {
-            if (challenges != ChallengeStatus.STOPPED) it.stop()
+            if (status != ChallengeStatus.STOPPED) it.stop()
             it.unregister()
         }
-        timer.setActive(false)
-    }
-
-    init {
-        load()
     }
 }
