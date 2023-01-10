@@ -61,8 +61,8 @@ class GUIChallenge : GUIEvent {
             IN_TIME -> if (click == ClickType.LEFT) settings.toggle("IN_TIME.active", inv, player)
             else if (click == ClickType.RIGHT) TODO()
 
-            MOB_BLOCKS -> if (click == ClickType.LEFT) settings.toggle("MOB_RANDOMIZER.active", inv, player)
-            else if (click == ClickType.RIGHT) settings.toggle("MOB_RANDOMIZER.rnd", inv, player)
+            MOB_BLOCKS -> if (click == ClickType.LEFT) settings.toggle("MOB_BLOCKS.active", inv, player)
+            else if (click == ClickType.RIGHT) settings.toggle("MOB_BLOCKS.rnd", inv, player)
 
             CHECKPOINTS -> if (click == ClickType.LEFT) settings.toggle("CHECKPOINTS.active", inv, player)
             else if (click == ClickType.RIGHT) settings.toggle("CHECKPOINTS.onlyTP", inv, player)
@@ -74,9 +74,6 @@ class GUIChallenge : GUIEvent {
             else if (click == ClickType.RIGHT) settings.numberChangerShift(player, click, "SNAKE.speed", inv, 1, 1, 20)
 
             REALISTIC -> if (click == ClickType.LEFT) settings.toggle("REALISTIC.active", inv, player)
-
-            CAPTIVE -> if (click == ClickType.LEFT) settings.toggle("CAPTIVE.active", inv, player)
-            else if (click == ClickType.RIGHT) TODO()
 
             GHOST -> if (click == ClickType.LEFT) settings.toggle("GHOST.active", inv, player)
             else if (click == ClickType.RIGHT) TODO()
@@ -144,6 +141,9 @@ class GUIChallenge : GUIEvent {
             else if (click == ClickType.RIGHT) TODO()
 
             RIVALS_COLLECT -> if (click == ClickType.LEFT) settings.toggle("RIVALS_COLLECT.active", inv, player)
+            else if (click == ClickType.RIGHT) TODO()
+
+            ROCKET -> if (click == ClickType.LEFT) settings.toggle("ROCKET.active", inv, player)
             else if (click == ClickType.RIGHT) TODO()
         }
     }

@@ -1,15 +1,14 @@
 package de.miraculixx.mutils.modules
 
 import de.miraculixx.mutils.enums.Challenges
-import de.miraculixx.mutils.modules.mods.BlockAsync
-import de.miraculixx.mutils.modules.mods.ghost.Ghost
-import de.miraculixx.mutils.modules.mods.realistic.Realistic
-import de.miraculixx.mutils.modules.mods.snake.Snake
-import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
-import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
-import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
 import de.miraculixx.mutils.modules.mods.FLY
+import de.miraculixx.mutils.modules.mods.rocket.Rocket
+import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
+import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
+import de.miraculixx.mutils.modules.mods.ghost.Ghost
 import de.miraculixx.mutils.modules.mods.inTime.InTime
+import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
+import de.miraculixx.mutils.modules.mods.snake.Snake
 import de.miraculixx.mutils.utils.cotm
 import de.miraculixx.mutils.utils.getAccountStatus
 import de.miraculixx.mutils.utils.settings
@@ -24,10 +23,10 @@ class StatusChanger {
             Challenges.CHECKPOINTS -> Checkpoints()
             Challenges.DIM_SWAP -> DimSwap()
             Challenges.SNAKE -> Snake()
-            Challenges.REALISTIC -> Realistic()
+            Challenges.REALISTIC -> TODO()
             //Challenges.CAPTIVE -> Captive()
             Challenges.GHOST -> Ghost()
-            Challenges.BLOCK_ASYNC -> BlockAsync()
+            Challenges.BLOCK_ASYNC -> TODO()
             Challenges.NO_SAME_ITEM -> TODO()
             Challenges.LIMITED_SKILLS -> TODO()
             Challenges.RUN_RANDOMIZER -> TODO()
@@ -50,6 +49,7 @@ class StatusChanger {
             Challenges.NO_DOUBLE_KILL -> TODO()
             Challenges.DAMAGER -> TODO()
             Challenges.RIVALS_COLLECT -> TODO()
+            Challenges.ROCKET -> Rocket()
         }
     }
 

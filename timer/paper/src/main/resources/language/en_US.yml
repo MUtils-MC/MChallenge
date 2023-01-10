@@ -15,7 +15,7 @@ version: 1.0.0
 #   Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
-  help: "Help or so"
+  help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
   resume: "<green><b>Resuming</b> the timer <grey>(<input-1>)" #v1
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
   alreadyOn: "<red>Timer is already running!"

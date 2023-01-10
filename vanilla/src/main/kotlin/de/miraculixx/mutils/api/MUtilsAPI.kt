@@ -21,7 +21,6 @@ class MUtilsAPI(
     dataFolder: File,
     serverIP: String?,
 ) {
-    private val client = HttpClient(CIO)
     private val accountData: AccountData
     private var accountConnected = false
     private val configFile: File
@@ -38,7 +37,7 @@ class MUtilsAPI(
      * @return false if plugin is too outdated to be used or if no connection could be established to MUtils API
      */
     suspend fun versionCheck(): Boolean {
-        val versions = serialize<ModuleVersion>(get("https://api.mutils.de/public/version/?$moduleName")) ?: return false
+        val versions = serialize<ModuleVersion>(WebClient.getString("https://api.mutils.de/public/version/?$moduleName")) ?: return false
         val outdated = cmp("Latest Version: ") + cmp(versions.latest.toString(), cSuccess) + cmp(" - Installed Version: ") + cmp(moduleVersion.toString(), cError)
         if (moduleVersion < versions.last) {
             consoleAudience.sendMessage(prefix + cmp("You are running a too outdated version of $moduleName! An update is required due to security updates or internal changes.", cError))
@@ -57,7 +56,7 @@ class MUtilsAPI(
      */
     suspend fun modrinthUpdate(projectID: String, fileName: String) {
         if (!accountData.autoUpdate) return
-        val response = get("https://api.modrinth.com/v2/project/$projectID/version?loaders=[%22paper%22]")
+        val response = WebClient.getString("https://api.modrinth.com/v2/project/$projectID/version?loaders=[%22paper%22]")
         val modrinthVersions = serialize<List<ModrinthVersion>>(response)
         val latestVersion = modrinthVersions?.firstOrNull()
         val file = latestVersion?.files?.firstOrNull()
@@ -74,7 +73,7 @@ class MUtilsAPI(
         )
         val updateFolder = File("plugins/update")
         if (!updateFolder.exists()) updateFolder.mkdirs()
-        val fileData = getFile(file.url)
+        val fileData = WebClient.getFile(file.url)
         val targetFile = File("${updateFolder.path}/$fileName")
         if (fileData != null) {
             targetFile.writeBytes(fileData)
@@ -100,7 +99,7 @@ class MUtilsAPI(
      * Activate an account slot on this server/client
      */
     suspend fun activate(key: String, ip: String, uuid: UUID): Boolean {
-        val response = get("https://api.mutils.de/public/activate/?key=$key&ip=$ip&uuid=$uuid")
+        val response = WebClient.getString("https://api.mutils.de/public/activate/?key=$key&ip=$ip&uuid=$uuid")
         val loginResponse = serialize<LoginResponse>(response)
         if (loginResponse == null) {
             consoleAudience.sendMessage(noConnection)
@@ -138,35 +137,13 @@ class MUtilsAPI(
      * Receive the challenge of the month
      */
     suspend fun getCOTM(): String {
-        return serialize<String>(get("https://api.mutils.de/public/monthlychallenge")) ?: ""
+        return serialize<String>(WebClient.getString("https://api.mutils.de/public/monthlychallenge")) ?: ""
     }
 
 
     /*
      * Utilities
      */
-    private suspend fun get(destination: String): String {
-        return try {
-            val url = URL(destination)
-            val response: HttpResponse = client.get(url)
-            response.bodyAsText()
-        } catch (e: Exception) {
-            if (debug) consoleAudience.sendMessage(noConnection)
-            return ""
-        }
-    }
-
-    private suspend fun getFile(destination: String): ByteArray? {
-        return try {
-            val url = URL(destination)
-            val response: HttpResponse = client.get(url)
-            response.body() as ByteArray
-        } catch (e: Exception) {
-            consoleAudience.sendMessage(noConnection)
-            return null
-        }
-    }
-
     private inline fun <reified T> serialize(input: String): T? {
         return try {
             json.decodeFromString(input)
@@ -180,7 +157,7 @@ class MUtilsAPI(
     }
 
     private suspend fun proceedLogin(url: String) {
-        val loginData = serialize<LoginResponse>(get("https://api.mutils.de/public/login/?$url"))
+        val loginData = serialize<LoginResponse>(WebClient.getString("https://api.mutils.de/public/login/?$url"))
         accountConnected = !(loginData == null || !loginData.success)
         if (accountConnected) {
             if (debug) consoleAudience.sendMessage(prefix + cmp("API - Heartbeat success", cSuccess))

@@ -23,19 +23,15 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
     private var key: NamespacedKey? = null
 
     private var time: String? = null
-        get() {
-            secString = if (sec <= 9) "0$sec"
-            else sec.toString()
-
-            minString = if (min <= 9) "0$min"
-            else min.toString()
-
-            field = "$minString:$secString"
-            return field
-        }
 
     fun getTime(): String {
-        return time ?: ""
+        secString = if (sec <= 9) "0$sec"
+        else sec.toString()
+
+        minString = if (min <= 9) "0$min"
+        else min.toString()
+
+        return "$minString:$secString"
     }
 
     fun isRed(): Boolean {

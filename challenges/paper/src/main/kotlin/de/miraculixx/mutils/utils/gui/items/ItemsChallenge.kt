@@ -10,7 +10,10 @@ import de.miraculixx.mutils.utils.cotm
 import de.miraculixx.mutils.utils.getAccountStatus
 import de.miraculixx.mutils.utils.settings
 import net.kyori.adventure.text.Component
+import org.bukkit.NamespacedKey
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
+import org.bukkit.persistence.PersistentDataType
 
 class ItemsChallenge : ItemFilterProvider {
     override var filter = StorageFilter.NO_FILTER
@@ -18,30 +21,29 @@ class ItemsChallenge : ItemFilterProvider {
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
             val challenges = Challenges.values()
-            val amount = challenges.size - 1
-            val range = challenges.copyOfRange(from.coerceAtMost(amount), to.coerceAtMost(amount))
+            val amount = challenges.size
+            val range = if (from >= amount) emptyList() else challenges.copyOfRange(from, to.coerceAtMost(amount)).filter { it != cotm }
             val status = getAccountStatus()
 
-            // Adding Challenge of the month at first
-            if (isMatchingFilter(cotm, filter)) {
+            // Adding Challenge of the month at first - only if first index
+            if (isMatchingFilter(cotm, filter) && from == 0) {
                 val monthly = getChallengeItem(cotm)
                 val item = monthly.first
                 item.editMeta {
                     it.name = it.name?.color(cSuccess)
-                    it.lore(it.lore()?.plus(cmp("Challenge of the Month", cSuccess)))
+                    it.lore(it.lore()?.apply { add(0, cmp("Challenge of the Month", cSuccess)) })
                 }
                 put(item, monthly.second)
             }
 
             // Adding all other Challenges in reversed order (newest first)
-            range.reversed().forEach { challenge ->
-                if (challenge == cotm) return@forEach
+            range.forEach { challenge ->
                 if (isMatchingFilter(challenge, filter)) {
                     val data = getChallengeItem(challenge)
                     if (!status) {
                         data.first.editMeta {
                             it.name = it.name?.color(cError)
-                            it.lore(it.lore()?.plus(cmp("Premium only", cError)))
+                            it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
                         }
                     } else data.first.editMeta { it.name = it.name?.color(cHighlight) }
                     put(data.first, data.second)
@@ -60,6 +62,8 @@ class ItemsChallenge : ItemFilterProvider {
             editMeta {
                 it.displayName(getName(challenge))
                 it.lore(getLore(challenge))
+                it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                it.persistentDataContainer.set(NamespacedKey(namespace, "gui.challenge"), PersistentDataType.STRING, challenge.name)
             }
         } to settings.getBoolean(challenge.name + ".active")
     }
@@ -73,7 +77,7 @@ class ItemsChallenge : ItemFilterProvider {
     }
 
     private fun getName(challenge: Challenges): Component {
-        return cmp("", cHighlight, underlined = true) + msg("items.ch.${challenge.name}.n")
+        return cmp("", cHighlight, bold = true) + msg("items.ch.${challenge.name}.n")
     }
 
     private fun getLore(challenge: Challenges): List<Component> {

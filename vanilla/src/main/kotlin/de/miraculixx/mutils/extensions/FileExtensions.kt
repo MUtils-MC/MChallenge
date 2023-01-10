@@ -7,7 +7,10 @@ import java.util.*
 //private val jsonValidationList = Regex("\\[.*.]")
 
 fun File.readJsonString(isObject: Boolean): String {
-    if (!exists()) createNewFile()
+    if (!exists()) {
+        parentFile.mkdirs()
+        createNewFile()
+    }
     val outPut = readText()
     return if (isObject)
         if (outPut.startsWith('{') && outPut.endsWith('}')) outPut

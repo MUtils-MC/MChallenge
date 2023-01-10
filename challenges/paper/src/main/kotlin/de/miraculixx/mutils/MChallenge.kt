@@ -3,6 +3,7 @@ package de.miraculixx.mutils
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.api.MUtilsAPI
+import de.miraculixx.mutils.commands.ChallengeCommand
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.messages.*
@@ -24,6 +25,14 @@ class MChallenge : KSpigot() {
 
     private lateinit var config: BukkitConfig
 
+    override fun startup() {
+        getCommand("challenge")!!.let {
+            val cmd = ChallengeCommand()
+            it.setExecutor(cmd)
+            it.tabCompleter = cmd
+        }
+    }
+
     override fun load() {
         INSTANCE = this
         consoleAudience = console
@@ -34,7 +43,7 @@ class MChallenge : KSpigot() {
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
         if (!configFolder.exists()) configFolder.mkdirs()
-        config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings")
+        config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings.yml")
         settings = config.getConfig()
         val languages = listOf("en_US").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
         localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages)
@@ -43,7 +52,10 @@ class MChallenge : KSpigot() {
             api = MUtilsAPI("challenges", description.version.toInt(), configFolder, "${server.ip}:${server.port}")
             cotm = enumOf<Challenges>(api.getCOTM()) ?: Challenges.FLY
         }
+
+        settings.getConfigurationSection("users")
     }
 }
 
 val PluginManager by lazy { MChallenge.INSTANCE }
+

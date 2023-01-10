@@ -5,9 +5,11 @@ import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.messages.cHighlight
 import de.miraculixx.mutils.messages.cmp
+import de.miraculixx.mutils.messages.namespace
 import de.miraculixx.mutils.messages.plus
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
+import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 
 enum class GUITypes(private val title: Component) {
@@ -20,6 +22,7 @@ enum class GUITypes(private val title: Component) {
             CHALLENGE_MENU -> InventoryManager.scrollBuilder(id) {
                 this.title = this@GUITypes.title
                 this.player = player
+                this.dataKeys = listOf(NamespacedKey(namespace, "gui.challenge"))
                 this.itemProvider = itemProvider
                 this.clickAction = clickAction.run
             }

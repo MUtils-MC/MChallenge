@@ -21,7 +21,7 @@ enum class Challenges(val filter: List<StorageFilter>, private val settings: Lis
     IN_TIME(            listOf(StorageFilter.MEDIUM),                               listOf("pTime" to "120s", "eTime" to "120s", "hpTime" to "5s"),         Icon(Material.CLOCK)),
     MOB_BLOCKS(         listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER),        listOf("rnd" to "false"),                                               Icon(Material.ZOMBIE_HEAD)),
     CHECKPOINTS(        listOf(StorageFilter.FUN),                                  listOf("onlyTP" to "false"),                                            Icon(Material.PLAYER_HEAD, Head64.BACKWARD_QUARTZ)),
-    DIM_SWAP(           listOf(StorageFilter.MEDIUM),                               listOf("starter" to "false"),                                           Icon(Material.END_PORTAL)),
+    DIM_SWAP(           listOf(StorageFilter.MEDIUM),                               listOf("starter" to "false"),                                           Icon(Material.END_PORTAL_FRAME)),
     SNAKE(              listOf(StorageFilter.HARD, StorageFilter.COMPLEX),          listOf("speed" to "1b/s"),                                              Icon(Material.RED_CONCRETE_POWDER)),
     REALISTIC(          listOf(StorageFilter.HARD, StorageFilter.COMPLEX),          emptyList(),                                                            Icon(Material.OAK_SAPLING)),
     //CAPTIVE(            listOf(StorageFilter.MEDIUM, StorageFilter.VERSION_BOUND),  listOf("base" to "1b", "amplifier" to "1b", "mode" to "true"),          Icon(Material.IRON_BARS)),
@@ -48,7 +48,8 @@ enum class Challenges(val filter: List<StorageFilter>, private val settings: Lis
     RANDOMIZER_DAMAGE(  listOf(StorageFilter.MEDIUM, StorageFilter.RANDOMIZER),     listOf("random" to "false"),                                            Icon(Material.PLAYER_HEAD, Head64.DICE_RED)),
     NO_DOUBLE_KILL(     listOf(StorageFilter.MEDIUM),                               listOf("global" to "true"),                                             Icon(Material.REPEATER)),
     DAMAGER(            listOf(StorageFilter.MEDIUM, StorageFilter.HARD),           listOf("mode" to "SLOT_CHANGE", "damage" to "1hp"),                     Icon(Material.DIAMOND_SWORD)),
-    RIVALS_COLLECT(     listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), listOf("mode" to "ITEMS", "joker" to "3"),               Icon(Material.CHEST_MINECART));
+    RIVALS_COLLECT(     listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), listOf("mode" to "ITEMS", "joker" to "3"),               Icon(Material.CHEST_MINECART)),
+    ROCKET(             listOf(StorageFilter.MEDIUM),                               listOf("capacity" to "5s"),                                             Icon(Material.FIREWORK_ROCKET));
 
   
     fun matchingFilter(filter: StorageFilter): Boolean {

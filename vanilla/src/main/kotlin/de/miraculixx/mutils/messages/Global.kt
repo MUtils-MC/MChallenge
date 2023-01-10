@@ -23,12 +23,6 @@ var debug = false
  */
 val prefix = cmp("MUtils", cHighlight) + cmp(" >> ", NamedTextColor.DARK_GRAY)
 
-val msgClick = cmp("Click", cHighlight) + cmp(" ≫ ")
-val msgClickRight = cmp("Right-Click", cHighlight) + cmp(" ≫ ")
-val msgShiftClickRight = cmp("Sneak-Right-Click", cHighlight) + cmp(" ≫ ")
-val msgClickLeft = cmp("Left-Click", cHighlight) + cmp(" ≫ ")
-val msgShiftClickLeft = cmp("Sneak-Left-Click", cHighlight) + cmp(" ≫ ")
-
 /**
  * 1.**19**.1
  */

@@ -21,5 +21,8 @@ include("timer:fabric")
 include("challenges:paper")
 include("challenges:fabric")
 
+include("world-creator:paper")
+include("world-creator:fabric")
+
 // 3rd party
 include("kpaper-light")

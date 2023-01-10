@@ -13,13 +13,14 @@ import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
+import org.bukkit.NamespacedKey
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
-
+import org.bukkit.persistence.PersistentDataType
 
 class ScrollGUI(
     override val itemProvider: ItemProvider?,
@@ -27,6 +28,7 @@ class ScrollGUI(
     title: Component,
     players: List<Player>,
     startPage: Int,
+    val dataKeys: List<NamespacedKey>,
     clickEvent: ((InventoryClickEvent, CustomInventory) -> Unit)?,
     closeEvent: ((InventoryCloseEvent, CustomInventory) -> Unit)?,
 ) : CustomInventory(4 * 9, title, clickEvent, closeEvent) {
@@ -55,8 +57,8 @@ class ScrollGUI(
 
             9001 -> {
                 it.isCancelled = true
-                page -= (if (it.click.isShiftClick) 5
-                else 1).coerceAtMost(0)
+                page = (page - if (it.click.isShiftClick) 5
+                else 1).coerceAtLeast(0)
                 player.click()
                 update()
             }
@@ -92,6 +94,7 @@ class ScrollGUI(
             builder.player?.let { add(it) }
         },
         builder.startPage,
+        builder.dataKeys,
         builder.clickAction,
         builder.closeAction
     )
@@ -111,6 +114,11 @@ class ScrollGUI(
         var startPage: Int = 0
 
         /**
+         * Defines the data container keys that should be copied to the signal item
+         */
+        var dataKeys: List<NamespacedKey> = emptyList()
+
+        /**
          * Internal function
          */
         fun build() = ScrollGUI(this)
@@ -119,6 +127,9 @@ class ScrollGUI(
     override fun update() {
         val lastIndex = page + 7
         val content = itemProvider?.getBooleanMap(page, lastIndex) ?: emptyMap() // Render only visible items
+
+        // Clean up
+        fillPlaceholder(false)
 
         // Adding Basic Buttons
         i.setItem(27, if (page == 0) arrowRedL else arrowGreenL)
@@ -136,27 +147,32 @@ class ScrollGUI(
             i.setItem(index + 19, itemStack(if (data.second) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
                 meta {
                     displayName(if (data.second) activated else deactivated)
-                    customModel = data.first.itemMeta.customModel
+                    val sourceMeta = data.first.itemMeta
+                    customModel = sourceMeta.customModel
+                    val dataContainer = sourceMeta.persistentDataContainer
+                    dataKeys.forEach { key ->
+                        persistentDataContainer.set(key, PersistentDataType.STRING, dataContainer.get(key, PersistentDataType.STRING) ?: "")
+                    }
                 }
             })
             i.setItem(index + 10, data.first)
         }
     }
 
-    private fun fillPlaceholder() {
+    private fun fillPlaceholder(full: Boolean) {
         val primaryPlaceholder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
         val secondaryPlaceholder = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
         val missingSetting = itemStack(Material.BARRIER) { meta { displayName(cmp("✖", cError)) } }
 
-        repeat(i.size) {
-            i.setItem(it, primaryPlaceholder)
-        }
-        listOf(0, 1, 7, 8, 9, 17, 18, 26, 27, 28, 34, 35).forEach { i.setItem(it, secondaryPlaceholder) }
+        if (full) {
+            repeat(i.size) { i.setItem(it, primaryPlaceholder) }
+            listOf(0, 1, 7, 8, 9, 17, 18, 26, 27, 28, 34, 35).forEach { i.setItem(it, secondaryPlaceholder) }
+        } else (19..25).forEach { i.setItem(it, primaryPlaceholder) }
         (10..16).forEach { i.setItem(it, missingSetting) }
     }
 
     init {
-        fillPlaceholder()
+        fillPlaceholder(true)
         update()
         open(players)
     }

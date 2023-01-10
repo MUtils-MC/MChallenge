@@ -1,0 +1,100 @@
+#----------------------- Translation ------------------------#
+#       Content of all messages in MUtils-Challenge.         #
+#------------------------------------------------------------#
+# Some messages support MiniMessage styling (marked with #m) #
+#          and extra variables (marked with #v).             #
+# Syntax: <input-i> ->                                       #
+#         i is a number from 0 to the message max            #
+#------------------------------------------------------------#
+
+creator: MUtils
+version: 1.0.0
+
+#-----------------------------------------#
+#            Command Responses            #
+#   Every command supports MiniMessages   #
+#-----------------------------------------#
+command:
+
+
+#-----------------------------------------#
+#                 Events                  #
+# Messages that occur on multiple places  #
+#-----------------------------------------#
+event:
+
+
+#-----------------------------------------#
+#                  Items                  #
+#   Messages only visible on GUI items    #
+# Syntax: n -> Item Name                  #
+#         l -> Item Lore                  #
+#-----------------------------------------#
+items:
+  ch:
+    FLY:
+      n: "F.L.Y. Challenge"
+      l:
+        - "Fly with a new power through"
+        - "the sky like a hero!"
+        - "Sneak in midair to activate"
+    IN_TIME:
+      n: "InTime Challenge"
+      l:
+        - "Every Entity has a limited time"
+        - "to live. You too! Kill mobs to"
+        - "steal their time"
+    MOB_BLOCKS:
+      n: "Mob Blocks Randomizer"
+      l:
+        - "Every block contains a random mob."
+        - "Break the block to release it and"
+        - "only after killing it, the item drops"
+    CHECKPOINTS:
+      n: "Rewind Challenge"
+      l:
+        - "Create Checkpoints (F) to travel"
+        - "back in time! But be warned... Time"
+        - "traveling is dangerous"
+    DIM_SWAP:
+      n: "Dimension Swap Challenge"
+      l:
+        - "All portals are shuffled! Now you"
+        - "have to fight the Ender Dragon in..."
+        - "the Overworld?"
+        - "Nether -> End -> Overworld"
+    SNAKE:
+      n: "Snake Challenges"
+      l:
+        - "You can only move on your personal"
+        - "snake, which permanently move in"
+        - "your viewing direction"
+    REALISTIC:
+      n: "Realistic Minecraft"
+      l:
+        - "Is MC to unrealistic? This Challenge"
+        - "will change everything to discover"
+        - "a full new Minecraft"
+    CAPTIVE:
+      n: "Captive Challenge"
+      l:
+        - "The world shrunk down to small"
+        - "field and it's your task to"
+        - "grow it through Level"
+    GHOST:
+      n: "Ghost Challenge"
+      l:
+        - "Discover the depths with your new"
+        - "ability to travel through blocks!"
+        - "But be aware... Ghosts are weak"
+    BLOCK_ASYNC:
+      n: "Block Async Challenge"
+      l:
+        - "Every player sees his own world!"
+        - "But should a player interact with a"
+        - "block modified by a different player"
+        - "he dies. Communication is key"
+    NO_SAME_ITEM:
+      n: "No Same Item Challenge"
+      l:
+        - ""

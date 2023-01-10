@@ -5,7 +5,6 @@ import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.command.TimerCommand
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mutils.module.perspective.Perspective
 import de.miraculixx.mutils.utils.BukkitConfig
 import de.miraculixx.mutils.utils.registerCommand
 import java.io.File
@@ -38,7 +37,6 @@ class MTimer : KSpigot() {
         registerCommand("ptimer", TimerCommand(true))
 
         TimerManager.load(configFolder)
-        Perspective()
     }
 
     override fun shutdown() {

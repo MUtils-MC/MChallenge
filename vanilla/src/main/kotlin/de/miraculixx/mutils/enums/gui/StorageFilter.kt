@@ -14,4 +14,9 @@ enum class StorageFilter {
     VERSION_BOUND,
     BETA,
     MULTIPLAYER,
+
+    //Dimensions
+    OVERWORLD,
+    NETHER,
+    END,
 }
