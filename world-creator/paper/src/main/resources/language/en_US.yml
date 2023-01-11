@@ -173,3 +173,17 @@ items:
       l:
         - "Print circle holes in your world"
         - "or only leave circles as floor"
+    SCALE_X:
+      n: "Scaling-X"
+    SCALE_Z:
+      n: "Scaling-Z"
+    SOLID_THICKNESS:
+      n: "Thickness-Solid"
+    HOLE_THICKNESS:
+      n: "Thickness-Hole"
+    X_DIRECTION:
+      n: "Direction-X"
+    INVERTED:
+      n: "Inverted"
+    RANDOM:
+      n: "Random"
