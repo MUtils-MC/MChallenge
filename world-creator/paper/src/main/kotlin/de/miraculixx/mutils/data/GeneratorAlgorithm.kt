@@ -6,8 +6,10 @@ import de.miraculixx.kpaper.items.name
 import org.bukkit.Material
 import de.miraculixx.mutils.data.AlgorithmSettingIndex.*
 import de.miraculixx.mutils.data.AlgorithmSetting.*
+import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.SkullMeta
 
 enum class GeneratorAlgorithm(val settings: Map<AlgorithmSettingIndex, AlgorithmSetting>,val icon: String) {
     LINE(           mapOf(X1 to SOLID_THICKNESS, X2 to HOLE_THICKNESS, MODE to X_DIRECTION, INVERT to INVERTED), "e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTFjOGI3ZGVhMDE0NjdjYjdmZDlhM2RlYmQ2YTEyNzE0YTlhNDJhOGZkZmJkZGE1MzdmZmI3NTEwMzE4MzIyNSJ9fX0"),
@@ -83,11 +85,15 @@ enum class GeneratorAlgorithm(val settings: Map<AlgorithmSettingIndex, Algorithm
     fun getIcon(generatorData: GeneratorData, id: Int): ItemStack {
         return itemStack(Material.PLAYER_HEAD) {
             meta {
-                val key = this.name
-                name = cmp(msgString("items.creator.$key.n"), cHighlight)
-                lore(msgList("items.creator.$key.l") + buildList {
-                    settings.forEach { (settingIndex, setting) ->
-                        add(cmp("   ${msgString("items.creator.${setting.name}.n")}: ") + cmp(settingIndex.getString(generatorData)))
+                val key = this@GeneratorAlgorithm.name
+                name = cmp(msgString("items.algo.$key.n"), cHighlight)
+                lore(msgList("items.algo.$key.l", inline = "<grey>") + buildList {
+                    if (settings.isNotEmpty()) {
+                        add(emptyComponent())
+                        add(cmp("• ") + cmp("Settings", cHighlight, underlined = true))
+                        settings.forEach { (settingIndex, setting) ->
+                            add(cmp("   ${msgString("items.algo.${setting.name}.n")}: ") + cmp(settingIndex.getString(generatorData), cHighlight))
+                        }
                     }
                     if (id != 0) {
                         add(emptyComponent())
@@ -96,6 +102,7 @@ enum class GeneratorAlgorithm(val settings: Map<AlgorithmSettingIndex, Algorithm
                     }
                 })
             }
+            itemMeta = (itemMeta as SkullMeta).skullTexture(this@GeneratorAlgorithm.icon)
         }
     }
 }
