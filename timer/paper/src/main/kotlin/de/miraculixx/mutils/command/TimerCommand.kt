@@ -99,6 +99,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
             if (debug) consoleAudience.sendMessage(prefix + cmp("Creating new personal timer for ${sender.name}"))
             val newTimer = Timer(true, sender as Player, null)
             newTimer.design = TimerManager.getGlobalTimer().design
+            newTimer.visible = false
             TimerManager.addPersonalTimer(sender.uniqueId, newTimer)
             newTimer
         } else timer

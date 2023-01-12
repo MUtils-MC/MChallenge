@@ -24,6 +24,7 @@ common:
   sneak: "Sneak"
   none: "None"
 
+
 #-----------------------------------------#
 #            Command Responses            #
 #   Every command supports MiniMessages   #

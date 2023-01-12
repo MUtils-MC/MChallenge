@@ -11,6 +11,21 @@ creator: MUtils
 version: 1.0.0
 
 #-----------------------------------------#
+#           Common Translations           #
+# Translation keys that persist in every  #
+#        project for simple values        #
+#-----------------------------------------#
+common:
+  boolTrue: "Enabled"
+  boolFalse: "Disabled"
+  left: "Left"
+  right: "Right"
+  click: "Click"
+  sneak: "Sneak"
+  none: "None"
+
+
+#-----------------------------------------#
 #            Command Responses            #
 #   Every command supports MiniMessages   #
 #-----------------------------------------#
@@ -44,6 +59,8 @@ event:
   spaceInfo: "Use _ to add spaces before and after your message"
   clickToCopy: "Click to copy: <blue><input-1>"
   finish: "Finish"
+  playtime: "Spielzeit:"
+  endSuccess: "Challenge succeed!\n<input-1> killed" #v1
 
 
 #-----------------------------------------#

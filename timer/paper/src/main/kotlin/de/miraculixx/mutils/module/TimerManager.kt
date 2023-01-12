@@ -64,7 +64,7 @@ object TimerManager {
     }
 
     private fun toDataObj(timer: Timer): TimerData {
-        return TimerData(designs.filter { it.value == timer.design }.keys.firstOrNull() ?: TimerPresets.CLASSIC.uuid, timer.getTime(), timer.player?.uniqueId)
+        return TimerData(designs.filter { it.value == timer.design }.keys.firstOrNull() ?: TimerPresets.CLASSIC.uuid, timer.getTime(), timer.visible, timer.countUp, timer.player?.uniqueId)
     }
 
     fun save(folder: File) {
@@ -104,7 +104,7 @@ object TimerManager {
             resolveTimer(json.decodeFromString(File("${folder.path}/global-timer.json").readJsonString(true)))
         } catch (e: Exception) {
             if (debug) console.sendMessage(prefix + cmp("Malformed global timer save file! Creating a default timer..."))
-            resolveTimer(TimerData(TimerPresets.CLASSIC.uuid, Duration.ZERO))
+            resolveTimer(TimerData(TimerPresets.CLASSIC.uuid, Duration.ZERO, true, true))
         }
 
         val pTimerOut = json.decodeFromString<List<TimerData>>(File("${folder.path}/personal-timers.json").readJsonString(false))

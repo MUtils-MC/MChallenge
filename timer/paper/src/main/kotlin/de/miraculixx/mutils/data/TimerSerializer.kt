@@ -9,6 +9,8 @@ import kotlin.time.Duration
 data class TimerData(
     val timerDesign: @Serializable(with = UUIDExtension::class) UUID,
     val time: Duration,
+    val isVisible: Boolean,
+    val countingUp: Boolean,
     val playerUUID: @Serializable(with = UUIDExtension::class) UUID? = null
 )
 

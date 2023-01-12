@@ -11,6 +11,21 @@ creator: MUtils
 version: 1.0.0
 
 #-----------------------------------------#
+#           Common Translations           #
+# Translation keys that persist in every  #
+#        project for simple values        #
+#-----------------------------------------#
+common:
+  boolTrue: "Aktiviert"
+  boolFalse: "Deaktiviert"
+  left: "Links"
+  right: "Rechts"
+  click: "Klick"
+  sneak: "Sneak"
+  none: "Leer"
+
+
+#-----------------------------------------#
 #            Command Responses            #
 #   Every command supports MiniMessages   #
 #-----------------------------------------#

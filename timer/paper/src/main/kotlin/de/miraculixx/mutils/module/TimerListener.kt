@@ -93,14 +93,14 @@ class TimerListener {
             val dash = cmp("\n======================\n", NamedTextColor.DARK_AQUA, bold = true, strikethrough = true)
             var cmp = dash + msg("modules.timer.gameOver", listOf(player.name))
 
-            if (settings.getBoolean("Settings.Send Location"))
+            if (settings.getBoolean("Rules.announceLocation"))
                 cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp(msgString("event.location"), NamedTextColor.GOLD) + cmp("${loc.blockX} ${loc.blockY} ${loc.blockZ}", NamedTextColor.YELLOW))
                     .addHover(
                         cmp(msgString("event.exactLocation"), cHighlight, bold = true) + cmp(" ${loc.toSimpleString()}") +
                                 cmp(msgString("event.world"), cHighlight, bold = true) + cmp(loc.world.name)
                     )
 
-            if (settings.getBoolean("Settings.Send Seed")) {
+            if (settings.getBoolean("Rules.announceSeed")) {
                 val seed = loc.world.seed.toString()
                 cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("Seed", NamedTextColor.GOLD) + cmp(seed, NamedTextColor.YELLOW))
                     .addHover(cmp(msgString("event.clickCopy"), cHighlight))
@@ -177,16 +177,17 @@ class TimerListener {
         //tool.stopChallenges(ModuleManager.getChallenges())
         //challenges = ChallengeStatus.PAUSED
         val dash = cmp("\n======================\n", NamedTextColor.DARK_AQUA, bold = true, strikethrough = true)
-        var final = dash + msg("event.endSuccess", listOf(entity.name))
+        val dashes = cmp("\n>> ", NamedTextColor.DARK_GRAY)
+        var final = dash + dashes + msg("event.endSuccess", listOf(entity.name))
 
-        if (settings.getBoolean("Settings.Send Seed")) {
+        if (settings.getBoolean("Rules.announceSeed")) {
             val seed = entity.world.seed.toString()
-            final += cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("Seed", NamedTextColor.GOLD) + cmp(seed, NamedTextColor.YELLOW))
+            final += dashes + (cmp("Seed: ", NamedTextColor.GOLD) + cmp(seed, NamedTextColor.YELLOW))
                 .addHover(cmp(msgString("event.clickCopy"), cHighlight))
                 .clickEvent(ClickEvent.copyToClipboard(seed))
         }
 
-        broadcast(final + cmp(msgString("event.playtime"), NamedTextColor.GOLD) + cmp(" ${timer.buildSimple()}") + dash)
+        broadcast(final + dashes + cmp(msgString("event.playtime"), NamedTextColor.GOLD) + cmp(" ${timer.buildSimple()}") + dash)
     }
 
 

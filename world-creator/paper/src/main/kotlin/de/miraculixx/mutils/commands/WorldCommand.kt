@@ -1,7 +1,9 @@
 package de.miraculixx.mutils.commands
 
 import de.miraculixx.kpaper.extensions.bukkit.register
+import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.mutils.messages.msg
+import de.miraculixx.mutils.messages.plainSerializer
 import de.miraculixx.mutils.messages.plus
 import de.miraculixx.mutils.messages.prefix
 import de.miraculixx.mutils.utils.GUITypes
@@ -28,10 +30,17 @@ class WorldCommand : CommandExecutor, TabCompleter {
 
         when (args[0]) {
             "tp" -> {
+                if (sender !is Player) {
+                    sender.sendMessage(msg("command.noPlayer"))
+                    return false
+                }
                 val worldName = args.getOrNull(1)
-                val world = worlds.first { it.name == worldName }
-                val spawnLocation = world.spawnLocation
-                
+                val world = worlds.firstOrNull { it.name == worldName }
+                if (world == null) {
+                    sender.sendMessage(prefix + msg("command.noWorld"))
+                    return false
+                }
+                sender.teleport(world.spawnLocation)
             }
 
             "delete" -> {
