@@ -28,7 +28,10 @@ class WorldCommand : CommandExecutor, TabCompleter {
 
         when (args[0]) {
             "tp" -> {
-
+                val worldName = args.getOrNull(1)
+                val world = worlds.first { it.name == worldName }
+                val spawnLocation = world.spawnLocation
+                
             }
 
             "delete" -> {
@@ -43,7 +46,12 @@ class WorldCommand : CommandExecutor, TabCompleter {
     }
 
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
-        return mutableListOf()
+        return buildList {
+            when (args.size) {
+                0,1 -> addAll(listOf("tp", "delete", "info"))
+                2 -> worlds.map { it.name }
+            }
+        }.toMutableList()
     }
 
     init {
