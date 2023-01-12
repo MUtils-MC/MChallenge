@@ -38,19 +38,19 @@ command:
 event:
   seed: "Seed"
   dimension: "Dimension"
-  type: "World Type"
+  type: "Weltenart"
   biomeProvider: "Biome Generator"
-  noiseProvider: "World Generator"
-  teleportToWorld: "Teleported to <input-1>" #v - world name
+  noiseProvider: "Welt Generator"
+  teleportToWorld: "Teleportiere zu <input-1>" #v - world name
   env:
     NORMAL: "Overworld"
     THE_END: "End"
     NETHER: "Nether"
   gen:
     NORMAL: "Normal"
-    AMPLIFIED: "Amplified"
-    FLAT: "Flat"
-    LARGE_BIOMES: "Larger Biomes"
+    AMPLIFIED: "Verstärkt"
+    FLAT: "Flach"
+    LARGE_BIOMES: "Große Biome"
 
 
 #-----------------------------------------#
@@ -62,45 +62,46 @@ event:
 items:
   menu:
     worldOverview:
-      n: "World Overview"
+      n: "Welten Übersicht"
       l:
-        - "List of all loaded worlds"
-        - "with fast access to teleport"
-        - "or delete"
+        - "Liste aller geladenen Welten"
+        - "mit Schnellzugriff zu"
+        - "teleportieren oder löschen"
     worldCreator:
-      n: "World Creator"
+      n: "Welten Ersteller"
       l:
-        - "Create new worlds from"
-        - "a template or completely"
-        - "from scratch"
+        - "Erstelle neue Welten von"
+        - "Grund auf, oder nutze"
+        - "eine Vorlage"
     worldDatas:
-      n: "Custom World Data"
+      n: "Lokale Welten Daten"
       l:
-        - "World specific resources"
-        - "like datapacks that should"
-        - "persist through resets"
+        - "Welten spezifische Dateien"
+        - "wie Datapacks oder Ressourcepacks,"
+        - "welche über resets erhalten"
+        - "bleiben sollen"
     worldSettings:
-      n: "World Settings"
+      n: "Welteinstellungen"
       l:
-        - "Access and edit world"
-        - "settings like gamerules for"
-        - "each world"
+        - "Greife auf spezifische"
+        - "Einstellungen einer Welt zu,"
+        - "wie Gamerules"
     worldSettingsGlobal:
-      n: "Global World Settings"
+      n: "Globale Welteinstellungen"
       l:
-        - "Define global world"
-        - "settings that apply for"
-        - "all new worlds"
+        - "Definiere globale Regeln"
+        - "für alle neu erstellten"
+        - "Welten"
   creator:
     name:
-      n: "World Name"
+      n: "Weltname"
       l:
-        - "Set your favourite world name"
-        - "that is used to save or access"
-        - "the new world"
+        - "Setze einen Namen, unter"
+        - "welchem die Welt gespeichert"
+        - "wird und erreichbar ist"
       s: "Name"
     seed:
-      n: "World Seed"
+      n: "Welt Seed"
       l:
         - "Set a seed that is used to"
         - "change the world generation."
@@ -108,68 +109,85 @@ items:
         - "generate equal"
       s: "Seed"
     env:
-      n: "Environment"
+      n: "Dimension"
       l:
-        - "Set the world Environment"
-        - "(Dimension)"
-      s: "Environment"
+        - "Setze die Welt Dimension."
+        - "Dies verändert die vanilla"
+        - "Generation"
+      s: "Dimension"
     structures:
-      n: "Structure Generation"
+      n: "Strukturen Generation"
       l:
-        - "Toggle structure generation"
-        - "in your new world"
-      s: "Structures"
+        - "Stelle ein, ob Strukturen"
+        - "generieren sollen"
+      s: "Strukturen"
     worldType:
-      n: "World Type"
+      n: "Weltart"
       l:
-        - "Change the vanilla world"
-        - "generation. These work differently"
-        - "on different versions"
-      s: "Type"
+        - "Ändere den vanilla Weltgenerator."
+        - "Diese Einstellung funktioniert"
+        - "unterschiedlich in anderen Versionen"
+      s: "Art"
     biomeAlgo:
-      n: "Biome Algorithm"
+      n: "Biome Algorithmus"
       l:
-        - "Change the biome generation"
-        - "to new custom one. Every algorithm"
-        - "can be modified"
+        - "Ändere die Biome Generierung."
+        - "Jeder Generator lässt sich"
+        - "einstellen"
     noiseAlgo:
-      n: "Vanilla Noise Algorithms"
+      n: "Vanilla Generierung"
       l:
-        - "Advanced settings to modify"
-        - "the vanilla world generation."
-        - "<#CF6679>Only edit if you know what you are"
-        - "<#CF6679>doing!"
+        - "Vertiefte Einstellungen zum"
+        - "ändern der vanilla Generierung."
+        - "<#CF6679>Veränder diese nur, wenn du"
+        - "<#CF6679>weißt was du tust!"
       s1: "Noise Generation"
-      s2: "Cave Generation"
-      s3: "Surface Generation"
-      s4: "Foliage Generation"
-      s5: "Mobs Generation"
+      s2: "Höhlen Generation"
+      s3: "Oberflächen Generation"
+      s4: "Gewächs Generation"
+      s5: "Kreaturen Generation"
   algo:
     CHESS:
-      n: "Chess Algorithm"
+      n: "Schach Algorithmus"
       l:
-        - "Shapes your world in squares."
-        - "Like chess, the white squares will"
-        - "be replaced with air"
+        - "Stempelt Vierecklöcher in die"
+        - "Welt wie ein Schachbrett. Die"
+        - "weißen Felder werden zu Luft"
     LINE:
-      n: "Line Algorithm"
+      n: "Linien Algorithmus"
       l:
-        - "Draw void lines in your world."
-        - "The line and void thickness can"
-        - "be modified individual"
+        - "Zeichne Linien in die Welt."
+        - "Die Richtung und Liniendicke"
+        - "ist einstellbar"
     DIAGONAL_LINE:
-      n: "Diagonal Line Algorithm"
+      n: "Diagonale Linien Algorithmus"
       l:
-        - "Draw diagonal void lines in your"
-        - "world. The line and void thickness"
-        - "can be modified individual"
+        - "Zeichne diagonale Linien in die"
+        - "Welt. Die Richtung und"
+        - "Liniendicke ist einstellbar"
     SQUARE:
-      n: "Chunked Squares Algorithm"
+      n: "Chunk Ecken Algorithmus"
       l:
-        - "Print square holes in your chunks"
-        - "with individual border sizes"
+        - "Stemple Vierecke in alle"
+        - "Chunks. Die Ränderdicke ist"
+        - "individuell einstellbar"
     CIRCLE:
-      n: "Circle Algorithm"
+      n: "Kreis Algorithmus"
       l:
-        - "Print circle holes in your world"
-        - "or only leave circles as floor"
+        - "Stemple Kreislöcher in deine"
+        - "Welt oder lasse nur noch Kreisböden"
+        - "übrig"
+    SCALE_X:
+      n: "Skalierung-X"
+    SCALE_Z:
+      n: "Skalierung-Z"
+    SOLID_THICKNESS:
+      n: "Dicke-Solid"
+    HOLE_THICKNESS:
+      n: "Dicke-Luft"
+    X_DIRECTION:
+      n: "Richtung-X"
+    INVERTED:
+      n: "Invertiert"
+    RANDOM:
+      n: "Zufällig"
