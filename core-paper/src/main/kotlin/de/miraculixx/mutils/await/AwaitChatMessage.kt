@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionEffectType
 import java.time.Duration
 
 class AwaitChatMessage(sync: Boolean, private val player: Player, name: String, maxSeconds: Int, before: String?, onChat: (String) -> Unit, private val callback: () -> Unit) {
-    var counter = maxSeconds
+    private var counter = maxSeconds
 
     private val onChat = listen<AsyncChatEvent> {
         if (it.player != player) return@listen

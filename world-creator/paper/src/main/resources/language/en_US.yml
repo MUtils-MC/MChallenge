@@ -9,6 +9,7 @@
 
 creator: MUtils
 version: 1.0.0
+locale: ENGLISH
 
 #-----------------------------------------#
 #           Common Translations           #
@@ -23,6 +24,8 @@ common:
   click: "Click"
   sneak: "Sneak"
   none: "None"
+  confirm: "Confirm"
+  cancel: "Cancel"
 
 
 #-----------------------------------------#
@@ -43,6 +46,12 @@ event:
   biomeProvider: "Biome Generator"
   noiseProvider: "World Generator"
   teleportToWorld: "Teleported to <input-1>" #v - world name
+  noOverride: "<red>Activate global override to modify the value!"
+  sneakExit: "Sneak to exit"
+  newWorld: "Creating new world..."
+  newWorldSub: "This could take a few seconds"
+  teleportFromDelete: "The world you were in was deleted..."
+  category: "Category"
   env:
     NORMAL: "Overworld"
     THE_END: "End"
@@ -61,6 +70,31 @@ event:
 #         l -> Item Lore                  #
 #-----------------------------------------#
 items:
+  general:
+    arrowRightEnd:
+      n: "<red>Scroll Right"
+      l:
+        - "You can not scroll any"
+        - "further to the right"
+    arrowLeftEnd:
+      n: "<red>Scroll Left"
+      l:
+        - "You can not scroll any"
+        - "further to the left"
+    arrowRight:
+      n: "<green>Scroll Right"
+      l:
+        - "<blue>Click ≫ +1 page"
+        - "<blue>Sneak-Click ≫ +5 pages"
+    arrowLeft:
+      n: "<green>Scroll Left"
+      l:
+        - "<blue>Click ≫ -1 page"
+        - "<blue>Sneak-Click ≫ -5 pages"
+    pageIndicator:
+      l:
+        - "Click to open a compact"
+        - "GUI with quick access"
   menu:
     worldOverview:
       n: "World Overview"
@@ -145,6 +179,42 @@ items:
       s3: "Surface Generation"
       s4: "Foliage Generation"
       s5: "Mobs Generation"
+      s6: "Structure Generation"
+    copy:
+      n: "Copy World Settings"
+      l:
+        - "Copy only the world settings"
+        - "and generate new terrain."
+    copyFull:
+      n: "Copy Full World"
+      l:
+        - "Copy the whole world"
+        - "with all settings and"
+        - "progress (terrain & entities)"
+    preview:
+      n: "Prerender Current Rule"
+      l:
+        - "Preview your current rule"
+        - "in an abstract prerender"
+    category:
+      n: "Sync Category"
+      l:
+        - "Enter a custom category"
+        - "to create a separat player"
+        - "saving. Switching between categories"
+        - "will load the needed player data"
+      s: "Category"
+    worldSet:
+      n: "Create World Set"
+      l:
+        - "Create an overworld, nether"
+        - "and end world from your settings"
+        - "and put them all in one category"
+    singleWorld:
+      n: "Create World"
+      l:
+        - "Create a single world from"
+        - "your settings"
   algo:
     CHESS:
       n: "Chess Algorithm"
@@ -176,15 +246,40 @@ items:
         - "or only leave circles as floor"
     SCALE_X:
       n: "Scaling-X"
+      l:
+        - "Up or downscale the"
+        - "X direction"
     SCALE_Z:
       n: "Scaling-Z"
+      l:
+        - "Up or downscale the"
+        - "Z direction"
     SOLID_THICKNESS:
       n: "Thickness-Solid"
+      l:
+        - "The thickness of the"
+        - "solid part that is not"
+        - "replaced with air"
     HOLE_THICKNESS:
       n: "Thickness-Hole"
+      l:
+        - "The thickness of the"
+        - "void part that is replaced"
+        - "with air"
     X_DIRECTION:
       n: "Direction-X"
+      l:
+        - "The pattern direction."
+        - "Deactivate it for a z"
+        - "direction"
     INVERTED:
       n: "Inverted"
+      l:
+        - "Switch the hole and"
+        - "solid part"
     RANDOM:
       n: "Random"
+      l:
+        - "Overrides the thickness"
+        - "or scaling values with an"
+        - "random value for every repetition"

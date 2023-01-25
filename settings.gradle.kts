@@ -23,6 +23,7 @@ include("challenges:fabric")
 
 include("world-creator:paper")
 include("world-creator:fabric")
+include("world-creator:api")
 
 // 3rd party
 include("kpaper-light")

@@ -4,6 +4,7 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.commands.WorldCommand
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.BukkitConfig
 import java.io.File
@@ -35,10 +36,12 @@ class MWorlds : KSpigot() {
         WorldCommand()
 
         WorldManager.load()
+        WorldDataHandling //Register all events
     }
 
     override fun shutdown() {
         WorldManager.save()
+        WorldDataHandling.saveAll()
         config.save()
     }
 }

@@ -2,10 +2,13 @@ package de.miraculixx.mutils.commands
 
 import de.miraculixx.kpaper.extensions.bukkit.register
 import de.miraculixx.kpaper.extensions.worlds
+import de.miraculixx.mutils.MWorlds
 import de.miraculixx.mutils.messages.msg
 import de.miraculixx.mutils.messages.plainSerializer
 import de.miraculixx.mutils.messages.plus
 import de.miraculixx.mutils.messages.prefix
+import de.miraculixx.mutils.module.PlayerData
+import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.actions.GUIMenu
 import de.miraculixx.mutils.utils.items.ItemsMenu
@@ -21,10 +24,6 @@ class WorldCommand : CommandExecutor, TabCompleter {
         if (args.isEmpty() && sender is Player) {
             GUITypes.WORLD_MENU.buildInventory(sender, "WORLD_MENU", ItemsMenu(), GUIMenu())
             return true
-        }
-        if (!(args.size == 1 && args[0] == "info") && args.size < 2) {
-            sender.sendMessage(prefix + msg("command.world.help"))
-            return false
         }
         // world create <name> <Environment> <BiomeProvider> <Seed>
 
@@ -49,6 +48,16 @@ class WorldCommand : CommandExecutor, TabCompleter {
 
             "info" -> {
 
+            }
+
+            "save" -> {
+                if (sender !is Player) return false
+                WorldDataHandling.savePlayerData(sender, "baum")
+            }
+
+            "load" -> {
+                if (sender !is Player) return false
+                WorldDataHandling.loadPlayerData(sender, "baum")
             }
         }
         return true

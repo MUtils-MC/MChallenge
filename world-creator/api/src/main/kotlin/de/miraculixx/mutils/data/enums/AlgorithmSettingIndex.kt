@@ -1,11 +1,23 @@
-package de.miraculixx.mutils.data
+package de.miraculixx.mutils.data.enums
 
+import de.miraculixx.mutils.data.GeneratorData
 import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.messages.*
 import net.kyori.adventure.text.Component
 
 enum class AlgorithmSettingIndex {
     X1, X2, X3, MODE, RND, INVERT;
+
+    fun <T> set(value: T, settings: GeneratorData) {
+        when (this) {
+            X1 -> settings.x1 = value as? Int ?: return
+            X2 -> settings.x2 = value as? Int ?: return
+            X3 -> settings.x3 = value as? Int ?: return
+            MODE -> settings.mode = value as? Boolean ?: return
+            RND -> settings.rnd = value as? Boolean ?: return
+            INVERT -> settings.invert = value as? Boolean ?: return
+        }
+    }
 
     fun getInt(settings: GeneratorData): Int? {
         return when (this) {
@@ -39,7 +51,7 @@ enum class AlgorithmSettingIndex {
     fun getClickLore(): List<Component> {
         return when (this) {
             X1, X2, X3 -> listOf(msgClickLeft + cmp("+1b"), msgClickRight + cmp("-1b"))
-            MODE, RND, INVERT -> listOf(msgClick + msg("Toggle"))
+            MODE, RND, INVERT -> listOf(msgClick + cmp("Toggle"))
         }
     }
 }

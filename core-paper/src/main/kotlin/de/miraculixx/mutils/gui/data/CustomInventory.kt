@@ -120,6 +120,11 @@ abstract class CustomInventory(
         var title: Component = emptyComponent()
 
         /**
+         * Import an item provider that handles all content inside this GUI. Depending on the GUI type, different functions will be called to update the content
+         */
+        var itemProvider: ItemProvider? = null
+
+        /**
          * Inject a click logic directly into this GUI. This will automatically be removed with the inventory after all player close it.
          *
          * [InventoryClickEvent] for more information

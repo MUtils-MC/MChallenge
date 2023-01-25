@@ -18,12 +18,14 @@ import java.util.*
 
 class ItemsWorlds(private val currentWorld: UUID) : ItemFilterProvider {
     override var filter = StorageFilter.NO_FILTER
+    private val clickLore = listOf(emptyComponent(), msgClickLeft + cmp("Teleport"), msgClickRight + cmp("Copy"), msgShiftClickRight + cmp("Delete"))
     private val msgSeed = msgString("event.seed")
     private val msgDimension = msgString("event.dimension")
     private val msgType = msgString("event.type")
     private val msgBiome = msgString("event.biomeProvider")
     private val msgNoise = msgString("event.noiseProvider")
-    private val msgNone = msgString("event.none")
+    private val msgNone = msgString("common.none")
+    private val msgCategory = msgString("event.category")
 
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
@@ -47,12 +49,13 @@ class ItemsWorlds(private val currentWorld: UUID) : ItemFilterProvider {
                         val worldData = WorldManager.getWorldData(uuid)
                         name = cmp(world.name, cHighlight)
                         lore(listOf(
+                            cmp("$msgCategory ≫ ") + cmp(worldData?.category ?: "Vanilla", cHighlight),
                             cmp("$msgSeed ≫ ") + cmp("${world.seed}", cHighlight),
-                            cmp("$msgDimension ≫ ") + cmp(msgString("event.${world.environment.name}"), cHighlight),
-                            cmp("$msgType ≫ ") + cmp(msgString("event.${worldData?.worldType?.name ?: "NORMAL"}"), cHighlight),
+                            cmp("$msgDimension ≫ ") + cmp(msgString("event.env.${world.environment.name}"), cHighlight),
+                            cmp("$msgType ≫ ") + cmp(msgString("event.gen.${worldData?.worldType?.name ?: "NORMAL"}"), cHighlight),
                             cmp("$msgBiome ≫ ") + cmp(worldData?.biomeProvider?.algorithm?.let { msgString("items.algo.${it.name}") } ?: msgNone, cHighlight),
                             cmp("$msgNoise ≫ ") + cmp("[${worldData?.chunkProviders?.size ?: 0} Rules]", cHighlight)
-                        ))
+                        ) + clickLore)
                         customModel = 1
                         persistentDataContainer.set(NamespacedKey(namespace, "gui.worlds.uuid"), PersistentDataType.STRING, uuid.toString())
                     }

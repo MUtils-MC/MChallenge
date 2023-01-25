@@ -205,50 +205,6 @@ class ChallengeCommand : TabExecutor {
         }
     }
 
-    private fun rotateRight(arr: Array<Array<Boolean>>): Array<Array<Boolean>> {
-        val rows = arr.size
-        val cols = arr[0].size
-        val result = (1..128).map { (1..128).map { false }.toTypedArray() }.toTypedArray()
-
-        for (i in 0 until rows) {
-            for (j in 0 until cols) {
-                result[j][rows - 1 - i] = arr[i][j]
-            }
-        }
-
-        return result
-    }
-
-    class CustomMapRenderer(private val pixelMap: Array<Array<Boolean>>): MapRenderer() {
-        override fun render(map: MapView, canvas: MapCanvas, player: Player) {
-
-            pixelMap.forEachIndexed { x, innerMap ->
-                innerMap.forEachIndexed { z, colorValue ->
-                    if (colorValue) canvas.setPixelColor(x, z, Color(42, 118, 30))
-                }
-            }
-        }
-    }
-
-    class CustomMapOverlay: MapRenderer() {
-        override fun render(map: MapView, canvas: MapCanvas, player: Player) {
-            for (x in 0 .. 127) {
-                canvas.setPixelColor(x, 127, getColor(x))
-            }
-            for (y in 0..127) {
-                canvas.setPixelColor(0, 127 - y, getColor(y))
-            }
-        }
-
-        private fun getColor(i: Int): Color {
-            return when {
-                i % 16 == 0 -> Color(0, 130, 255)
-                i % 2 == 0 -> Color.WHITE
-                else -> Color.BLACK
-            }
-        }
-    }
-
     class MapRenderChunk(
         private val chunkX: Int,
         private val chunkZ: Int,

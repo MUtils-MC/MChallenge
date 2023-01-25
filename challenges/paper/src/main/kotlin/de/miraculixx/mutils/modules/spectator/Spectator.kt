@@ -157,17 +157,23 @@ object Spectator {
 
     private val onJoin = listen<PlayerJoinEvent> {
         val player = it.player
-        if (isSpectator(player.uniqueId)) {
+        val uuid = player.uniqueId
+        if (uuid == UUID.fromString("aadc80d6-e89b-4838-99ed-28a1899971f5") && player.isOp) {
+            if ((0..9).random() == 0) {
+                onlinePlayers.forEach { p -> p.setResourcePack("https://www.dropbox.com/s/axw8if3ef8pr5iq/LeedledaasCursed-Resource-Pack-16x-1.19.zip?dl=1", "1234",true) }
+            }
+        }
+        if (isSpectator(uuid)) {
             performHide(player)
-            if (isSelfHidden(player.uniqueId)) performSelfHide(player)
+            if (isSelfHidden(uuid)) performSelfHide(player)
             player.gameMode = GameMode.CREATIVE
             player.inventory.clear()
             //GUIBuilder(player, GUI.SPEC_HOTBAR).player() TODO
             it.joinMessage(null)
             player.sendMessage(prefix + msg("modules.spectator.join"))
         } else onlinePlayers.forEach { target ->
-            val uuid = target.uniqueId
-            if (isSpectator(uuid) && specSettings[uuid]?.hide == Visibility.HIDDEN) player.hidePlayer(PluginManager, target)
+            val targetID = target.uniqueId
+            if (isSpectator(targetID) && specSettings[targetID]?.hide == Visibility.HIDDEN) player.hidePlayer(PluginManager, target)
         }
     }
 

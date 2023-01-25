@@ -1,8 +1,10 @@
 package de.miraculixx.mutils.messages
 
 import de.miraculixx.mutils.config.Config
+import de.miraculixx.mutils.extensions.enumOf
 import java.io.File
 import java.io.InputStream
+import java.util.Locale
 
 private var localization: Config? = null
 
@@ -31,6 +33,14 @@ fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<g
     }?.ifEmpty {
         listOf(cmp(inline + key, cError))
     } ?: listOf(cmp(inline + key, cError))
+
+fun getLocal(): Locale {
+    return try {
+        Locale.forLanguageTag(localization?.name) ?: Locale.ENGLISH
+    } catch (_: Exception) {
+        Locale.ENGLISH
+    }
+}
 
 private fun String.replaceInput(input: List<String>): String {
     var msg = this

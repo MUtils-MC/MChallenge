@@ -1,8 +1,10 @@
 package de.miraculixx.mutils.module
 
-import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.extensions.console
-import de.miraculixx.kpaper.extensions.geometry.add
+import de.miraculixx.kpaper.extensions.worlds
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.kpaper.runnables.taskRunLater
+import de.miraculixx.mutils.MWorldAPI
 import de.miraculixx.mutils.MWorlds
 import de.miraculixx.mutils.data.*
 import de.miraculixx.mutils.extensions.readJsonString
@@ -10,29 +12,27 @@ import de.miraculixx.mutils.messages.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.kyori.adventure.util.TriState
-import org.bukkit.Material
-import org.bukkit.World
-import org.bukkit.WorldCreator
-import org.bukkit.event.block.BlockFromToEvent
-import org.bukkit.event.block.BlockGrowEvent
+import org.bukkit.*
+import org.bukkit.entity.Player
 import org.bukkit.generator.ChunkGenerator
 import org.bukkit.generator.WorldInfo
 import java.io.File
 import java.util.*
 
-object WorldManager {
+object WorldManager: MWorldAPI() {
     private val customWorlds: MutableMap<UUID, WorldData> = mutableMapOf()
     private val saveFile = File("${MWorlds.configFolder.path}/worlds.json")
 
-    fun getWorldData(uuid: UUID): WorldData? {
-        return customWorlds[uuid]
-    }
+    override fun getWorldData(uuid: UUID): WorldData? = customWorlds[uuid]
 
-    fun createWorld(worldData: WorldData): World? {
+    override fun getLoadedWorlds() = customWorlds.toMap()
+
+    override fun createWorld(worldData: WorldData): UUID? {
         val world = WorldCreator(worldData.worldName).apply {
-            environment(worldData.environment)
-            generateStructures(worldData.generateStructures)
-            type(worldData.worldType)
+            try {
+                environment(World.Environment.valueOf(worldData.environment.name))
+                type(WorldType.valueOf(worldData.worldType.name))
+            } catch (_: IllegalArgumentException) { return null }
             worldData.seed?.let { seed(it) }
             val biomeInfo = worldData.biomeProvider
             biomeInfo.algorithm.getProvider(biomeInfo.settings)?.let { biomeProvider(it) }
@@ -44,58 +44,83 @@ object WorldManager {
 
         if (world == null)
             console.sendMessage(prefix + cmp("Failed to generate world ${worldData.presetName} (${worldData.presetName})", cError))
-        return world
+        else {
+            worldData.seed = world.seed
+            customWorlds[world.uid] = worldData
+        }
+        return world?.uid
     }
 
-    fun copyWorld(world: World, name: String): World? {
+    override fun copyWorld(worldID: UUID, name: String): UUID? {
+        val sourceWorld = Bukkit.getWorld(worldID) ?: return null
         val newWorld = WorldCreator(name)
-            .copy(world)
+            .copy(sourceWorld)
             .createWorld()
 
         if (newWorld == null)
-            console.sendMessage(prefix + cmp("Failed to generate world $name as copy from ${world.name}", cError))
-        return newWorld
+            console.sendMessage(prefix + cmp("Failed to generate world $name as copy from ${sourceWorld.name}", cError))
+        else {
+            val newData = getWorldData(sourceWorld.uid)?.copy()?.apply { seed = sourceWorld.seed }
+            if (newData == null) {
+                console.sendMessage(prefix + cmp("Failed to resolve data from world ${sourceWorld.name}!", cError))
+                return null
+            }
+            customWorlds[newWorld.uid] = newData
+        }
+        return newWorld?.uid
+    }
+
+    override fun fullCopyWorld(worldID: UUID, name: String): UUID? {
+        val sourceWorld = Bukkit.getWorld(worldID) ?: return null
+        val source = sourceWorld.worldFolder
+        val target = File(name)
+        target.mkdir()
+
+        source.listFiles()?.forEach {
+            val fileName = it.name
+            if (fileName == "session.lock" || fileName == "uid.dat") return@forEach
+            if (!it.copyRecursively(File("${target.path}/${fileName}"), true))
+                console.sendMessage(prefix + cmp("Failed to copy folder ${source.path} to ${target.path}!", cError))
+        }
+
+       return copyWorld(sourceWorld.uid, name)
+    }
+
+    override fun deleteWorld(worldID: UUID) {
+        val sourceWorld = Bukkit.getWorld(worldID) ?: return
+        val mainSpawn = worlds[0].spawnLocation
+        sourceWorld.livingEntities.forEach { entity ->
+            if (entity is Player) {
+                entity.teleport(mainSpawn)
+                entity.playSound(entity, Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f)
+                entity.sendMessage(prefix + msg("event.teleportFromDelete", listOf(sourceWorld.name)))
+            }
+        }
+        Bukkit.unloadWorld(sourceWorld, false)
+
+        task(false, 0, 20 * 5, 3) {
+            if (sourceWorld.worldFolder.deleteRecursively()) {
+                customWorlds.remove(sourceWorld.uid)
+                it.cancel()
+            }
+            else console.sendMessage(prefix + cmp("Failed to delete world ${sourceWorld.name}. ${it.counterDownToOne} trys left..."))
+        }
     }
 
     fun save() {
         if (!saveFile.exists()) saveFile.parentFile.mkdirs()
-        saveFile.writeText(json.encodeToString(customWorlds.values))
+        saveFile.writeText(json.encodeToString(customWorlds.values.toList()))
     }
 
     fun load() {
         customWorlds.clear()
         val output = saveFile.readJsonString(false)
-        json.decodeFromString<List<WorldData>>(output).forEach { worldData ->
-            consoleAudience.sendMessage(prefix + cmp("Loading world ${worldData.worldName} from preset ${worldData.presetName}..."))
-            val world = createWorld(worldData)
-            if (world == null) consoleAudience.sendMessage(prefix + cmp("Failed to load world ${worldData.worldName}!", cError))
-            else customWorlds[world.uid] = worldData
-        }
-    }
-
-    /**
-     * Prevent water/lava from flowing around on chunk generation. This will increase performance server and client side!
-     */
-    private val onWaterFlow = listen<BlockFromToEvent> {
-        val block = it.toBlock
-        if (!customWorlds.containsKey(block.world.uid)) return@listen
-        if (block.chunk.inhabitedTime < 20) it.isCancelled = true
-    }
-
-    /**
-     * Prevent sea-grass growing on near air positions to prevent block update mania (lag)
-     */
-    private val onGrow = listen<BlockGrowEvent> {
-        val block = it.newState
-        val world = block.world
-        if (!customWorlds.containsKey(world.uid)) return@listen
-        val sourceLoc = block.location
-        for (x in -1..1) {
-            for (z in -1..1) {
-                if (world.getBlockAt(sourceLoc.blockX + x, sourceLoc.blockY, sourceLoc.blockZ + z).type == Material.AIR) {
-                    it.isCancelled = true
-                    return@listen
-                }
+        taskRunLater(1) {
+            json.decodeFromString<List<WorldData>>(output).forEach { worldData ->
+                consoleAudience.sendMessage(prefix + cmp("Loading world ${worldData.worldName} from preset ${worldData.presetName}..."))
+                val world = createWorld(worldData)
+                if (world == null) consoleAudience.sendMessage(prefix + cmp("Failed to load world ${worldData.worldName}!", cError))
+                else customWorlds[world] = worldData
             }
         }
     }
@@ -105,7 +130,7 @@ object WorldManager {
         private val settings: List<GeneratorData>,
     ) : ChunkGenerator() {
         override fun generateNoise(worldInfo: WorldInfo, random: Random, chunkX: Int, chunkZ: Int, chunkData: ChunkData) {
-            val chunkInfo = ChunkCalcData(worldInfo, chunkX, chunkZ, chunkData)
+            val chunkInfo = ChunkCalcData(chunkX, chunkZ, chunkData)
             settings.forEach {
                 it.generator.getGenerator(it).invoke(chunkInfo)
             }

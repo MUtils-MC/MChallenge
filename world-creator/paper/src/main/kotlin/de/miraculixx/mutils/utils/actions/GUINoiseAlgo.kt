@@ -1,9 +1,9 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.data.GeneratorAlgorithm
 import de.miraculixx.mutils.data.GeneratorData
 import de.miraculixx.mutils.data.WorldData
+import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.extensions.soundEnable
@@ -17,7 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.persistence.PersistentDataType
 
 class GUINoiseAlgo(previousInv: CustomInventory, worldData: WorldData) : GUIEvent {
-    override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
+    override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, _: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
         val item = it.currentItem ?: return@event

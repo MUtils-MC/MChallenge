@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.data.GeneratorAlgorithm
+import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
@@ -23,8 +23,8 @@ class ItemsNoiseAlgos: ItemProvider {
             itemStack(Material.PLAYER_HEAD) {
                 meta {
                     customModel = 1
-                    name = cmp(msgString("items.creator.${it.name}.n"), cHighlight)
-                    lore(infoLore + msgList("items.creator.${it.name}.l") + clickLore)
+                    name = cmp(msgString("items.algo.${it.name}.n"), cHighlight)
+                    lore(infoLore + msgList("items.algo.${it.name}.l") + clickLore)
                     persistentDataContainer.set(NamespacedKey(namespace, "gui.wc.noise"), PersistentDataType.STRING, it.name)
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(it.icon)

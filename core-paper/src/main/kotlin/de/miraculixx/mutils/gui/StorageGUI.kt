@@ -7,6 +7,7 @@ import de.miraculixx.mutils.enums.gui.Head64
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.toMap
 import de.miraculixx.mutils.gui.data.CustomInventory
+import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.messages.*
 import net.kyori.adventure.key.Key
@@ -34,7 +35,6 @@ class StorageGUI(
     clickEvent: ((InventoryClickEvent, CustomInventory) -> Unit)?,
     closeEvent: ((InventoryCloseEvent, CustomInventory) -> Unit)?
 ) : CustomInventory(6 * 9, title, clickEvent, closeEvent) {
-    private var filter: String? = filterName
     private var page: Int = 0
     private val arrowUpRed = if (scrollable) InventoryUtils.getCustomItem("arrowUpRed", 9000, Head64.ARROW_UP_RED) else null
     private val arrowDownRed = if (scrollable) InventoryUtils.getCustomItem("arrowDownRed", 9000, Head64.ARROW_DOWN_RED) else null
@@ -87,12 +87,6 @@ class StorageGUI(
 
     class Builder(val id: String): CustomInventory.Builder() {
         /**
-         * Import items that are markable. Marked items will be displayed with either an enchanting glint or and be replaced with a shiny green glass pane, if they not support enchanting glints.
-         * @see itemProvider
-         */
-        var itemProvider: ItemProvider? = null
-
-        /**
          * Decorate the storage header (first row) with custom items. You can set
          * - 0 Items for no header
          * - 1 Item ----o----
@@ -140,7 +134,8 @@ class StorageGUI(
 
     override fun update() {
         val content = itemProvider?.getItemList()?.toMap(false)?.plus(itemProvider.getBooleanMap(page * 9, (page + 5) * 9)) ?: emptyMap()
-        (9..53).forEach { i.setItem(it, lightHolder) }
+        val filter = (itemProvider as? ItemFilterProvider)?.filter
+        fillPlaceholder(false)
 
         //Header
         when (header.size) {
@@ -172,11 +167,10 @@ class StorageGUI(
                 lore(listOf(
                     emptyComponent(),
                     cmp("Filter", cHighlight, underlined = true),
-                    cmp("∙ ${filter ?: "No Filter"}"),
+                    cmp("∙ ${filter ?: msgString("common.none")}"),
                     emptyComponent(),
                     cmp("Click ", cHighlight) + cmp("≫ Change Filter")
                 ))
-                persistentDataContainer.set(NamespacedKey(namespace, "gui.storage.filter"), PersistentDataType.STRING, filter ?: "No Filter")
             }})
         }
 
@@ -209,15 +203,16 @@ class StorageGUI(
         }
     }
 
-    private fun fillPlaceholder() {
+    private fun fillPlaceholder(full: Boolean) {
         val darkHolder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { displayName(emptyComponent()) } }
-        (0..8).forEach { i.setItem(it, darkHolder) }
-        (9..53).forEach { i.setItem(it, lightHolder) }
+        if (full) (0..8).forEach { i.setItem(it, darkHolder) }
+
+        (9..53 - (if (filterable) 9 else 0)).forEach { i.setItem(it, lightHolder) }
         if (filterable) (45..53).forEach { i.setItem(it, darkHolder) }
     }
 
     init {
-        fillPlaceholder()
+        fillPlaceholder(true)
         update()
         open(players)
     }

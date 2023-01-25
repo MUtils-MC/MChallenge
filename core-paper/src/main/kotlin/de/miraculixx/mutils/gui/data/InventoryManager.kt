@@ -2,6 +2,7 @@ package de.miraculixx.mutils.gui.data
 
 import de.miraculixx.mutils.gui.CustomGUI
 import de.miraculixx.mutils.gui.ScrollGUI
+import de.miraculixx.mutils.gui.SettingsGUI
 import de.miraculixx.mutils.gui.StorageGUI
 
 object InventoryManager {
@@ -70,4 +71,12 @@ object InventoryManager {
      * @author Miraculixx
      */
     inline fun scrollBuilder(id: String, builder: ScrollGUI.Builder.() -> Unit) = ScrollGUI.Builder(id).apply(builder).build()
+
+    /**
+     * Inline Builder for GUI type - Settings
+     *
+     * Use settings GUIs to display 1-4 items in a central and compact design. Items will align to the center and with a one slot gap between
+     * @author Miraculixx
+     */
+    inline fun settingsBuilder(id: String, builder: SettingsGUI.Builder.() -> Unit) = SettingsGUI.Builder(id).apply(builder).build()
 }

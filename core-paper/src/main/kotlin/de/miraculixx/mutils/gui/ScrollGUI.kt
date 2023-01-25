@@ -16,10 +16,10 @@ import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.ItemFlag
-import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
 class ScrollGUI(
@@ -28,7 +28,7 @@ class ScrollGUI(
     title: Component,
     players: List<Player>,
     startPage: Int,
-    val dataKeys: List<NamespacedKey>,
+    private val dataKeys: List<NamespacedKey>,
     clickEvent: ((InventoryClickEvent, CustomInventory) -> Unit)?,
     closeEvent: ((InventoryCloseEvent, CustomInventory) -> Unit)?,
 ) : CustomInventory(4 * 9, title, clickEvent, closeEvent) {
@@ -44,11 +44,25 @@ class ScrollGUI(
             customModel = 9003
         }
     }
-    private val activated = cmp(msgString("event.active"), cSuccess)
-    private val deactivated = cmp(msgString("event.disabled"), cError)
+    private val activated = cmp(msgString("common.boolTrue"), cSuccess)
+    private val deactivated = cmp(msgString("common.boolFalse"), cError)
     override val defaultClickAction: ((InventoryClickEvent) -> Unit) = action@{
         val item = it.currentItem
         val player = it.whoClicked
+        val click = it.click
+        if (it.slot == -999) {
+            if (click.isLeftClick) {
+                if (it.inventory.getItem(35)?.itemMeta?.customModel == 9000) return@action
+                page += 1
+            } else if (click.isRightClick) {
+                if (page == 0) return@action
+                else page -= 1
+            } else return@action
+            player.click()
+            update()
+            return@action
+        }
+
         when (item?.itemMeta?.customModel) {
             9000 -> {
                 it.isCancelled = true
@@ -100,12 +114,6 @@ class ScrollGUI(
     )
 
     class Builder(val id: String) : CustomInventory.Builder() {
-        /**
-         * Import items to the scroll menu. All items will be placed in one row and displayed if the current page contains them.
-         * [ItemStack] with true import ([Boolean]) will be marked as activated (green glass pain).
-         */
-        var itemProvider: ItemProvider? = null
-
         /**
          * Define the startpage for this GUI. Only items matching the current page are visible.
          *
