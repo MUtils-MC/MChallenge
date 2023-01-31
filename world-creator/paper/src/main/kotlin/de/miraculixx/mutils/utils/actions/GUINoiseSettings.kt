@@ -1,7 +1,9 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.data.GeneratorData
+import de.miraculixx.mutils.data.GeneratorProviderData
 import de.miraculixx.mutils.data.enums.AlgorithmSettingIndex
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
@@ -12,9 +14,17 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.persistence.PersistentDataType
 
-class GUINoiseSettings(generatorData: GeneratorData, mainInv: CustomInventory) : GUIEvent {
+class GUINoiseSettings(generatorSettings: GeneratorData, previousInv: CustomInventory, generatorProviderData: GeneratorProviderData? ) : GUIEvent {
+    override val close: ((InventoryCloseEvent, CustomInventory) -> Unit) = event@{ it: InventoryCloseEvent, _: CustomInventory ->
+        if (it.reason == InventoryCloseEvent.Reason.PLAYER) taskRunLater(1) {
+            previousInv.update()
+            previousInv.open(it.player as? Player ?: return@taskRunLater)
+        }
+    }
+
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -27,20 +37,22 @@ class GUINoiseSettings(generatorData: GeneratorData, mainInv: CustomInventory) :
                 val setting = enumOf<AlgorithmSettingIndex>(key) ?: return@event
                 val click = it.click
                 when (setting) {
-                    AlgorithmSettingIndex.X1, AlgorithmSettingIndex.X2, AlgorithmSettingIndex.X3 -> setting.numberChange(click, generatorData, player)
-                    AlgorithmSettingIndex.MODE, AlgorithmSettingIndex.RND, AlgorithmSettingIndex.INVERT -> setting.boolChanger(generatorData, player)
+                    AlgorithmSettingIndex.X1, AlgorithmSettingIndex.X2, AlgorithmSettingIndex.X3 -> setting.numberChange(click, generatorSettings, player)
+                    AlgorithmSettingIndex.MODE, AlgorithmSettingIndex.RND, AlgorithmSettingIndex.INVERT -> setting.boolChanger(generatorSettings, player)
+                    AlgorithmSettingIndex.KEY -> setting.getString(generatorSettings)
                 }
                 inv.update()
             }
 
             2 -> {
+                if (generatorProviderData == null) return@event
                 player.click()
-                MapRender(player, inv, listOf(generatorData))
+                MapRender(player, inv, listOf(generatorProviderData))
             }
 
             else -> {
-                mainInv.update()
-                mainInv.open(player)
+                previousInv.update()
+                previousInv.open(player)
                 player.click()
             }
         }

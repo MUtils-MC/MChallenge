@@ -1,6 +1,7 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.data.GeneratorDefaults
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.soundDisable
@@ -9,8 +10,16 @@ import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
 
-class GUINoiseVanilla(defaults: GeneratorDefaults, oldInv: CustomInventory) : GUIEvent {
+class GUINoiseVanilla(defaults: GeneratorDefaults, previousInv: CustomInventory) : GUIEvent {
+    override val close: ((InventoryCloseEvent, CustomInventory) -> Unit) = event@{ it: InventoryCloseEvent, _: CustomInventory ->
+        if (it.reason == InventoryCloseEvent.Reason.PLAYER) taskRunLater(1) {
+            previousInv.update()
+            previousInv.open(it.player as? Player ?: return@taskRunLater)
+        }
+    }
+
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -24,8 +33,8 @@ class GUINoiseVanilla(defaults: GeneratorDefaults, oldInv: CustomInventory) : GU
             5 -> defaults.vanillaMobs = defaults.vanillaMobs.toggle(player)
 
             null, 0 -> {
-                oldInv.update()
-                oldInv.open(player)
+                previousInv.update()
+                previousInv.open(player)
                 player.click()
                 return@event
             }

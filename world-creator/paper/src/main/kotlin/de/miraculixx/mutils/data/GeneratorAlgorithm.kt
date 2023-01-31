@@ -4,12 +4,17 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
+import de.miraculixx.mutils.data.enums.AlgorithmSetting
+import de.miraculixx.mutils.data.enums.AlgorithmSettingIndex
+import de.miraculixx.mutils.data.enums.BiomeAlgorithm
 import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 
 fun GeneratorAlgorithm.getGenerator(generatorData: GeneratorData): (ChunkCalcData) -> Unit {
@@ -73,30 +78,59 @@ fun GeneratorAlgorithm.getGenerator(generatorData: GeneratorData): (ChunkCalcDat
         }
 
         GeneratorAlgorithm.CIRCLE -> TODO()
+
+        GeneratorAlgorithm.SINUS -> { chunk: ChunkCalcData ->
+            val zScratch = generatorData.x1 ?: 10
+            val yScratch = generatorData.x2 ?: 10
+            val minHeight = generatorData.x3 ?: 0
+
+            val startX = chunk.chunkX * 16
+            val startZ = chunk.chunkZ * 16
+
+            for (x in 0..16) {
+                for (z in 0..16) {
+                    val realX = startX + x
+                    val realZ = startZ + z
+                    val dis = sqrt(.0 + realX * realX + realZ * realZ)
+                    val halt = sin(dis / zScratch) * yScratch
+                    chunk.chunkData.setRegion(x, minHeight + halt.toInt(), z, x + 1, chunk.chunkData.maxHeight, z + 1, Material.AIR)
+                }
+            }
+        }
     }
 }
 
 fun GeneratorAlgorithm.getIcon(generatorData: GeneratorData, id: Int): ItemStack {
     return itemStack(Material.PLAYER_HEAD) {
-        meta {
-            val key = this@getIcon.name
-            name = cmp(msgString("items.algo.$key.n"), cHighlight)
-            customModel = id
-            lore(msgList("items.algo.$key.l", inline = "<grey>") + buildList {
-                if (settings.isNotEmpty()) {
-                    add(emptyComponent())
-                    add(cmp("• ") + cmp("Settings", cHighlight, underlined = true))
-                    settings.forEach { (settingIndex, setting) ->
-                        add(cmp("   ${msgString("items.algo.${setting.name}.n")}: ") + cmp(settingIndex.getString(generatorData), cHighlight))
-                    }
-                }
-                if (id != 0) {
-                    add(emptyComponent())
-                    add(msgClickLeft + cmp("Open Settings"))
-                    add(msgShiftClickRight + cmp("Delete Rule"))
-                }
-            })
-        }
+        getIconMeta(this@getIcon.name, id, settings, generatorData)
         itemMeta = (itemMeta as SkullMeta).skullTexture(this@getIcon.icon)
+    }
+}
+
+fun BiomeAlgorithm.getIcon(generatorData: GeneratorData, id: Int): ItemStack {
+    return itemStack(Material.SPRUCE_SAPLING) {
+        getIconMeta(this@getIcon.name, id, settings, generatorData)
+    }
+}
+
+
+private fun ItemStack.getIconMeta(key: String, id: Int, settings: Map<AlgorithmSettingIndex, AlgorithmSetting>, data: GeneratorData) {
+    meta {
+        name = cmp(msgString("items.algo.$key.n"), cHighlight)
+        customModel = id
+        lore(msgList("items.algo.$key.l", inline = "<grey>") + buildList {
+            if (settings.isNotEmpty()) {
+                add(emptyComponent())
+                add(cmp("• ") + cmp("Settings", cHighlight, underlined = true))
+                settings.forEach { (settingIndex, setting) ->
+                    add(cmp("   ${msgString("items.algo.${setting.name}.n")}: ") + cmp(settingIndex.getString(data), cHighlight))
+                }
+            }
+            if (id != 0) {
+                add(emptyComponent())
+                add(msgClickLeft + cmp("Open Settings"))
+                add(msgShiftClickRight + cmp("Delete Rule"))
+            }
+        })
     }
 }

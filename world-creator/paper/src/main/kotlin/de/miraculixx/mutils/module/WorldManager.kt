@@ -127,12 +127,12 @@ object WorldManager: MWorldAPI() {
 
     private class InternalChunkGenerator(
         private val defaults: GeneratorDefaults,
-        private val settings: List<GeneratorData>,
+        private val settings: List<GeneratorProviderData>,
     ) : ChunkGenerator() {
         override fun generateNoise(worldInfo: WorldInfo, random: Random, chunkX: Int, chunkZ: Int, chunkData: ChunkData) {
             val chunkInfo = ChunkCalcData(chunkX, chunkZ, chunkData)
             settings.forEach {
-                it.generator.getGenerator(it).invoke(chunkInfo)
+                it.algorithm.getGenerator(it.settings).invoke(chunkInfo)
             }
         }
 

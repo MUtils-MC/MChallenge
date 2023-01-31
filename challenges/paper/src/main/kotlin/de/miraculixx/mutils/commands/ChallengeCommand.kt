@@ -120,18 +120,7 @@ class ChallengeCommand : TabExecutor {
      */
     class SinusWorld(private val zScratch: Int, private val yScratch: Int): ChunkGenerator() {
         override fun generateNoise(worldInfo: WorldInfo, random: Random, chunkX: Int, chunkZ: Int, chunkData: ChunkData) {
-            val startX = chunkX * 16
-            val startZ = chunkZ * 16
 
-            for (x in 0..16) {
-                for (z in 0..16) {
-                    val realX = startX + x
-                    val realZ = startZ + z
-                    val dis = sqrt(.0 + realX * realX + realZ * realZ)
-                    val halt = sin(dis / zScratch) * yScratch
-                    chunkData.setRegion(x, halt.toInt(), z, x + 1, 319, z + 1, Material.AIR)
-                }
-            }
         }
 
         override fun getBaseHeight(worldInfo: WorldInfo, random: Random, x: Int, z: Int, heightMap: HeightMap): Int {

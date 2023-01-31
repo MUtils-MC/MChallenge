@@ -7,5 +7,7 @@ enum class AlgorithmSetting {
     SOLID_THICKNESS,
     HOLE_THICKNESS,
     SCALE_X,
-    SCALE_Z
+    SCALE_Z,
+    BIOME,
+    HEIGHT
 }

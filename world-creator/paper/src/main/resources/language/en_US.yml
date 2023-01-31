@@ -52,6 +52,8 @@ event:
   newWorldSub: "This could take a few seconds"
   teleportFromDelete: "The world you were in was deleted..."
   category: "Category"
+  worldCreated: "New world successfully created"
+  worldInfo: "Current world information"
   env:
     NORMAL: "Overworld"
     THE_END: "End"
@@ -283,3 +285,30 @@ items:
         - "Overrides the thickness"
         - "or scaling values with an"
         - "random value for every repetition"
+    VANILLA:
+      n: "Vanilla"
+      l:
+        - "Default biome generation"
+        - "like in vanilla worlds"
+    CHUNKED_BIOMES:
+      n: "Chunked Biomes"
+      l:
+        - "Every chunk contains a random biome."
+        - "You can define the chunk size"
+    RANDOM_BIOMES:
+      n: "Random Biomes"
+      l:
+        - "Every block contains a random biome."
+        - "This counts for heights and depths"
+    SINGLE_BIOME:
+      n: "Single Biome"
+      l:
+        - "The world only contains one biome."
+        - "This affects structure and mob"
+        - "spawning"
+    SWITCHED_BIOMES:
+      n: "Switched Biomes"
+      l:
+        - "All biomes are swapped with other"
+        - "random biomes. The vanilla biome"
+        - "structure stays the same"

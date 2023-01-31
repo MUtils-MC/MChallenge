@@ -3,10 +3,12 @@ package de.miraculixx.mutils
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.command.TimerCommand
+import de.miraculixx.mutils.data.Settings
+import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mutils.utils.BukkitConfig
 import de.miraculixx.mutils.utils.registerCommand
+import kotlinx.serialization.decodeFromString
 import java.io.File
 
 class MTimer : KSpigot() {
@@ -15,8 +17,6 @@ class MTimer : KSpigot() {
         val configFolder = File("plugins/MUtils/Timer")
         lateinit var localization: Localization
     }
-
-    private lateinit var config: BukkitConfig
 
     override fun startup() {
         INSTANCE = this
@@ -28,10 +28,9 @@ class MTimer : KSpigot() {
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
         if (!configFolder.exists()) configFolder.mkdirs()
-        config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings")
-        settings = config.getConfig()
+        val settings = json.decodeFromString<Settings>(File("${configFolder.path}/settings.json").readJsonString(true))
         val languages = listOf("en_US").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
-        localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages)
+        localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
 
         registerCommand("timer", TimerCommand(false))
         registerCommand("ptimer", TimerCommand(true))
@@ -40,7 +39,6 @@ class MTimer : KSpigot() {
     }
 
     override fun shutdown() {
-        config.save()
         TimerManager.save(configFolder)
     }
 }

@@ -22,3 +22,6 @@ commands:
   world:
     permission: "mutils.command.world"
     description: "Create or manage your worlds"
+  worlds:
+    permission: "mutils.event.overview"
+    description: "Open the world overview & manager"

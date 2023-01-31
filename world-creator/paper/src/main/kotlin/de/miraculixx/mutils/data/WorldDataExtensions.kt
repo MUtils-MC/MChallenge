@@ -12,7 +12,7 @@ import org.bukkit.generator.ChunkGenerator
 
 data class ChunkCalcData(val chunkX: Int, val chunkZ: Int, val chunkData: ChunkGenerator.ChunkData)
 
-fun BiomeAlgorithm.getProvider(biomeData: BiomeData): BiomeProvider? {
+fun BiomeAlgorithm.getProvider(biomeData: GeneratorData): BiomeProvider? {
     return when (this) {
         BiomeAlgorithm.VANILLA -> null
         BiomeAlgorithm.CHUNKED_BIOMES -> ChunkBiomes(biomeData)
@@ -31,5 +31,7 @@ fun AlgorithmSetting.getIcon(): Material {
         AlgorithmSetting.HOLE_THICKNESS -> Material.BLACK_CONCRETE_POWDER
         AlgorithmSetting.SCALE_X -> Material.GOLD_NUGGET
         AlgorithmSetting.SCALE_Z -> Material.GOLD_INGOT
+        AlgorithmSetting.BIOME -> Material.ACACIA_SAPLING
+        AlgorithmSetting.HEIGHT -> Material.HOPPER
     }
 }

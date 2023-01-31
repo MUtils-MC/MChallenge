@@ -3,6 +3,7 @@ package de.miraculixx.mutils
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.commands.WorldCommand
+import de.miraculixx.mutils.commands.WorldsCommand
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
@@ -34,6 +35,7 @@ class MWorlds : KSpigot() {
         localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages)
 
         WorldCommand()
+        WorldsCommand()
 
         WorldManager.load()
         WorldDataHandling //Register all events

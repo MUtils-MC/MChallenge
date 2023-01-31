@@ -141,7 +141,7 @@ object WorldDataHandling {
         if (fromCategory == toCategory) return@listen
         val player = it.player
         savePlayerData(player, fromCategory)
-        loadPlayerData(player, toCategory)?.let { loc -> it.to = loc }
+        loadPlayerData(player, toCategory)?.let { loc -> it.to = loc.apply { world = toWorld } }
     }
 
 
@@ -158,7 +158,7 @@ object WorldDataHandling {
      * Load and set saved data to the player
      * @return Whether player data was found or not
      */
-    fun loadPlayerData(player: Player, category: String): Location? {
+    private fun loadPlayerData(player: Player, category: String): Location? {
         val data = playerData[player.uniqueId] ?: PlayerData(player.uniqueId, saveFolder)
         return data.loadData(player, category)
     }
@@ -166,7 +166,7 @@ object WorldDataHandling {
     /**
      * Saves current player data to the current category
      */
-    fun savePlayerData(player: Player, category: String) {
+    private fun savePlayerData(player: Player, category: String) {
         val data = playerData.getOrPut(player.uniqueId) { PlayerData(player.uniqueId, saveFolder) }
         data.saveData(player, category)
     }

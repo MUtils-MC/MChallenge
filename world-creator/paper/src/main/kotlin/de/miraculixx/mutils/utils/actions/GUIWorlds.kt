@@ -11,8 +11,8 @@ import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
+import de.miraculixx.mutils.utils.checkPermission
 import de.miraculixx.mutils.utils.items.ItemsCopy
-import de.miraculixx.mutils.utils.items.ItemsMenu
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.Sound
@@ -22,7 +22,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.persistence.PersistentDataType
 import kotlin.time.Duration.Companion.seconds
 
-class GUIWorlds : GUIEvent {
+class GUIWorlds(private val preInv: CustomInventory?) : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -40,6 +40,7 @@ class GUIWorlds : GUIEvent {
 
                 when (it.click) {
                     ClickType.LEFT -> {
+                        if (!player.checkPermission("mutils.event.tp")) return@event
                         player.closeInventory()
                         player.title(emptyComponent(), cmp(msgString("event.teleportToWorld", listOf(world.name)), cHighlight), fadeOut = 0.5.seconds)
                         player.teleport(world.spawnLocation)
@@ -47,10 +48,12 @@ class GUIWorlds : GUIEvent {
                     }
 
                     ClickType.RIGHT -> {
+                        if (!player.checkPermission("mutils.event.create")) return@event
                         GUITypes.WORLD_COPY.buildInventory(player, "${player.uniqueId}-copy", ItemsCopy(), GUICopy(world, inv))
                     }
 
                     ClickType.SHIFT_RIGHT -> {
+                        if (!player.checkPermission("mutils.event.delete")) return@event
                         if (worlds.indexOf(world) in 0..2) {
                             player.soundError()
                             player.sendMessage(msg("event.cannotDeleted"))
@@ -75,8 +78,8 @@ class GUIWorlds : GUIEvent {
             provider.filter = arrayOf(StorageFilter.NO_FILTER, StorageFilter.OVERWORLD, StorageFilter.NETHER, StorageFilter.END).enumRotate(provider.filter)
             player.soundUp()
             inv.update()
-        } else {
-            GUITypes.WORLD_MENU.buildInventory(player, "WORLD_MENU", ItemsMenu(), GUIMenu())
+        } else if (preInv != null) {
+            preInv.open(player)
             player.click()
         }
     }

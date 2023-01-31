@@ -10,6 +10,7 @@ import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.msg
 import de.miraculixx.mutils.messages.msgList
+import net.kyori.adventure.audience.Audience
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.Sound

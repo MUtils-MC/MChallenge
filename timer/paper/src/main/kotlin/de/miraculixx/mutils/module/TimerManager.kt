@@ -2,9 +2,7 @@ package de.miraculixx.mutils.module
 
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.mutils.MTimer
-import de.miraculixx.mutils.data.TimerData
-import de.miraculixx.mutils.data.TimerDesign
-import de.miraculixx.mutils.data.TimerPresets
+import de.miraculixx.mutils.data.*
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.extensions.toUUID
 import de.miraculixx.mutils.messages.*
@@ -14,6 +12,9 @@ import org.bukkit.Bukkit
 import java.io.File
 import java.util.*
 import kotlin.time.Duration
+
+lateinit var rules: Rules
+lateinit var goals: Goals
 
 object TimerManager {
     private lateinit var globalTimer: Timer
@@ -79,6 +80,8 @@ object TimerManager {
 
         File("${folder.path}/global-timer.json").writeText(json.encodeToString(toDataObj(globalTimer))) // Obj
         File("${folder.path}/personal-timers.json").writeText(json.encodeToString(personalTimer.map { toDataObj(it.value) })) // List
+        File("${folder.path}/rules.json").writeText(json.encodeToString(rules))
+        File("${folder.path}/goals.json").writeText(json.encodeToString(goals))
     }
 
     fun load(folder: File) {
@@ -107,9 +110,12 @@ object TimerManager {
             resolveTimer(TimerData(TimerPresets.CLASSIC.uuid, Duration.ZERO, true, true))
         }
 
+
         val pTimerOut = json.decodeFromString<List<TimerData>>(File("${folder.path}/personal-timers.json").readJsonString(false))
         personalTimer.forEach { (_, timer) -> timer.disableTimer() }
         personalTimer.clear()
         pTimerOut.forEach { pt -> pt.playerUUID?.let { personalTimer[it] = resolveTimer(pt) } }
+        rules = json.decodeFromString(File("${folder.path}/rules.json").readJsonString(true))
+        goals = json.decodeFromString(File("${folder.path}/goals.json").readJsonString(true))
     }
 }

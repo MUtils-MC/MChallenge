@@ -8,6 +8,7 @@ import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsOverview
 import de.miraculixx.mutils.module.TimerManager
+import de.miraculixx.mutils.module.goals
 import de.miraculixx.mutils.settings
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -19,8 +20,11 @@ class GUIGoals : GUIEvent {
         val item = it.currentItem ?: return@event
 
         when (item.itemMeta?.customModel ?: 0) {
-            1 -> settings.toggle("Goals.Dragon", inv, player)
-            2 -> settings.toggle("Goals.Wither", inv, player)
+            1 -> goals.enderDragon = . toggle ("Goals.Dragon"
+                , inv, player)
+                2
+
+            -> settings.toggle("Goals.Wither", inv, player)
             3 -> settings.toggle("Goals.ElderGuardian", inv, player)
             4 -> settings.toggle("Goals.Warden", inv, player)
             5 -> settings.toggle("Goals.Player", inv, player)

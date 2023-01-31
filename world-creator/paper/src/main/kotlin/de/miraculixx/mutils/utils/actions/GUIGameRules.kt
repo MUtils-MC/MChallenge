@@ -1,6 +1,5 @@
 package de.miraculixx.mutils.utils.actions
 
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mutils.extensions.*
@@ -8,10 +7,12 @@ import de.miraculixx.mutils.globalRules
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.InventoryUtils.get
 import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.messages.msg
+import de.miraculixx.mutils.messages.namespace
+import de.miraculixx.mutils.messages.plus
+import de.miraculixx.mutils.messages.prefix
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.items.ItemsMenu
-import net.kyori.adventure.text.Component
 import org.bukkit.GameRule
 import org.bukkit.NamespacedKey
 import org.bukkit.World
@@ -56,6 +57,7 @@ class GUIGameRules(world: World?) : GUIEvent {
                         gameRule.changeValue(true, isGlobal, player, world)
                     }
                 }
+
                 is Int -> {
                     val isShift = click.isShiftClick
                     when (click) {
@@ -78,10 +80,12 @@ class GUIGameRules(world: World?) : GUIEvent {
                         else -> Unit
                     }
                 }
+
                 null -> {
                     player.soundError()
                     player.sendMessage(prefix + msg("event.noOverride"))
                 }
+
                 else -> return@event
             }
         }

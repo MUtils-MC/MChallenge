@@ -39,6 +39,7 @@ enum class GUITypes(private val title: Component) {
                 this.size = 5
                 this.itemProvider = itemProvider
                 this.clickAction = clickAction.run
+                this.closeAction = clickAction.close
             }
 
             WORLD_OVERVIEW -> InventoryManager.storageBuilder(id) {
@@ -54,6 +55,7 @@ enum class GUITypes(private val title: Component) {
                 this.player = player
                 this.itemProvider = itemProvider
                 this.clickAction = clickAction.run
+                this.closeAction = clickAction.close
             }
 
             WORLD_COPY, WORLD_CREATOR_TYPE -> InventoryManager.settingsBuilder(id) {

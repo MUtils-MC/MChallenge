@@ -4,11 +4,14 @@ import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.await.AwaitChatMessage
+import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.mutils.data.WorldData
 import de.miraculixx.mutils.data.enums.BiomeAlgorithm
 import de.miraculixx.mutils.data.enums.Dimension
 import de.miraculixx.mutils.data.enums.VanillaGenerator
+import de.miraculixx.mutils.data.printInfo
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
@@ -17,16 +20,14 @@ import de.miraculixx.mutils.module.MapRender
 import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
-import de.miraculixx.mutils.utils.items.ItemsNoiseAlgos
-import de.miraculixx.mutils.utils.items.ItemsNoiseSettings
-import de.miraculixx.mutils.utils.items.ItemsNoiseVanilla
-import de.miraculixx.mutils.utils.items.ItemsWorlds
+import de.miraculixx.mutils.utils.items.*
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.World
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import kotlin.random.Random
@@ -34,6 +35,20 @@ import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.seconds
 
 class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
+    override val close: ((InventoryCloseEvent, CustomInventory) -> Unit) = event@{ it: InventoryCloseEvent, inv: CustomInventory ->
+        val player = it.player as? Player ?: return@event
+        if (it.reason != InventoryCloseEvent.Reason.PLAYER) return@event
+        taskRunLater(1) {
+            AwaitConfirm(player, {
+                player.sendMessage(prefix + msg("event.abortBuilder"))
+                player.soundError()
+            }) {
+                inv.open(player)
+                player.click()
+            }
+        }
+    }
+
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -92,14 +107,22 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
             }
 
             6 -> {
-                val new = BiomeAlgorithm.values().enumRotate(worldData.biomeProvider.algorithm)
-                worldData.biomeProvider.algorithm = new
-                player.click()
+                val click = it.click
+                if (click.isLeftClick) {
+                    val new = BiomeAlgorithm.values().enumRotate(worldData.biomeProvider.algorithm)
+                    worldData.biomeProvider.algorithm = new
+                    player.click()
+                } else if (click.isRightClick) {
+                    val biomeData = worldData.biomeProvider
+                    GUITypes.WORLD_CREATOR_SETTINGS.buildInventory(player, "${player.uniqueId}-CREATOR_SETTINGS", ItemsBiomeSettings(biomeData), GUINoiseSettings(biomeData.settings, inv, null))
+                    return@event
+                }
             }
 
             7 -> {
                 GUITypes.WORLD_CREATOR_ALGOS.buildInventory(player, "WORLD_CREATOR_NOISE", ItemsNoiseAlgos(), GUINoiseAlgo(inv, worldData))
                 player.click()
+                return@event
             }
 
             in 100..105 -> {
@@ -107,7 +130,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
                 val data = worldData.chunkProviders.getOrNull(index) ?: return@event
                 val click = it.click
                 if (click == ClickType.LEFT) {
-                    GUITypes.WORLD_CREATOR_SETTINGS.buildInventory(player, "${player.uniqueId}-SETTINGS", ItemsNoiseSettings(data), GUINoiseSettings(data, inv))
+                    GUITypes.WORLD_CREATOR_SETTINGS.buildInventory(player, "${player.uniqueId}-SETTINGS", ItemsNoiseSettings(data), GUINoiseSettings(data.settings, inv, data))
                     player.click()
                 } else if (click == ClickType.SHIFT_RIGHT) {
                     worldData.chunkProviders.remove(data)
@@ -126,7 +149,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
                     if (isSet) {
                         if (worldData.seed == null) worldData.seed = Random.nextLong()
                         task(true, 0, 20, 3, endCallback = {
-                            GUITypes.WORLD_OVERVIEW.buildInventory(player, "${player.uniqueId}-OVERVIEW", ItemsWorlds(player.uniqueId), GUIWorlds())
+                            GUITypes.WORLD_OVERVIEW.buildInventory(player, "${player.uniqueId}-OVERVIEW", ItemsWorlds(player.uniqueId), GUIWorlds(inv))
                         }) {
                             when (it.counterDownToZero) {
                                 2L -> {
@@ -187,37 +210,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
 
         async {
             WorldDataHandling.setCategory(world, category)
-            player.sendMessage(
-                miniMessages.deserialize(
-                    "<grey><gold>┐</gold> <green>New world successfully created!</green>\n" +
-                            "<gold>├></gold> ${msgString("event.name")} ≫ <blue>${world.name}</blue>\n" +
-                            "<gold>├></gold> ${msgString("event.category")} ≫ <blue>${category}</blue>\n" +
-                            "<gold>├></gold> ${msgString("event.seed")} ≫ <blue>${world.seed}</blue>\n" +
-                            "<gold>├></gold> ${msgString("event.dimension")} ≫ <blue>${msgString("event.env.${world.environment.name}")}</blue>\n" +
-                            "<gold>├></gold> ${msgString("event.type")} ≫ <blue>${msgString("event.gen.${worldType.name}")}</blue>\n" +
-                            "<gold>├></gold> ${msgString("event.biomeProvider")} ≫ <blue><hover:show_text:'<red>Settings TODO'>${
-                                msgString("items.algo.${biomeProvider.algorithm.name}.n")
-                            }</hover></blue>\n" +
-                            "<gold>└></gold> ${msgString("event.noiseProvider")} ≫ <blue><hover:show_text:'${
-                                buildString hover@{
-                                    chunkProviders.forEach { cp ->
-                                        val gen = cp.generator
-                                        append(
-                                            "<grey>- <blue>${msgString("items.creator.${gen.name}.n")}</blue> (${
-                                                buildString setting@{
-                                                    cp.x1?.let { append("$it, ") }
-                                                    cp.x2?.let { append("$it, ") }
-                                                    cp.x3?.let { append("$it, ") }
-                                                    cp.rnd?.let { append("$it, ") }
-                                                    cp.invert?.let { append(it) }
-                                                }.removeSuffix(", ")
-                                            })</grey>\n"
-                                        )
-                                    }
-                                }
-                            }'>[2 Rules]</hover></blue>"
-                )
-            )
+            player.sendMessage(printInfo(true))
             player.soundEnable()
             player.title(emptyComponent(), emptyComponent())
         }

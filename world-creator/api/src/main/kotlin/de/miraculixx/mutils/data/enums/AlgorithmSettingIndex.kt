@@ -6,7 +6,7 @@ import de.miraculixx.mutils.messages.*
 import net.kyori.adventure.text.Component
 
 enum class AlgorithmSettingIndex {
-    X1, X2, X3, MODE, RND, INVERT;
+    X1, X2, X3, MODE, RND, INVERT, KEY;
 
     fun <T> set(value: T, settings: GeneratorData) {
         when (this) {
@@ -16,6 +16,7 @@ enum class AlgorithmSettingIndex {
             MODE -> settings.mode = value as? Boolean ?: return
             RND -> settings.rnd = value as? Boolean ?: return
             INVERT -> settings.invert = value as? Boolean ?: return
+            KEY -> settings.key = value as? String ?: return
         }
     }
 
@@ -45,6 +46,7 @@ enum class AlgorithmSettingIndex {
             MODE -> settings.mode?.msg()
             RND -> settings.rnd?.msg()
             INVERT -> settings.invert?.msg()
+            KEY -> settings.key
         } ?: msgNone
     }
 
@@ -52,6 +54,7 @@ enum class AlgorithmSettingIndex {
         return when (this) {
             X1, X2, X3 -> listOf(msgClickLeft + cmp("+1b"), msgClickRight + cmp("-1b"))
             MODE, RND, INVERT -> listOf(msgClick + cmp("Toggle"))
+            KEY -> listOf(msgClick + cmp("Change"))
         }
     }
 }

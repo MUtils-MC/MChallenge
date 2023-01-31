@@ -1,7 +1,9 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.data.GeneratorData
+import de.miraculixx.mutils.data.GeneratorProviderData
 import de.miraculixx.mutils.data.WorldData
 import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
 import de.miraculixx.mutils.extensions.click
@@ -14,9 +16,17 @@ import de.miraculixx.mutils.messages.namespace
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.persistence.PersistentDataType
 
 class GUINoiseAlgo(previousInv: CustomInventory, worldData: WorldData) : GUIEvent {
+    override val close: ((InventoryCloseEvent, CustomInventory) -> Unit) = event@{ it: InventoryCloseEvent, _: CustomInventory ->
+        if (it.reason == InventoryCloseEvent.Reason.PLAYER) taskRunLater(1) {
+            previousInv.update()
+            previousInv.open(it.player as? Player ?: return@taskRunLater)
+        }
+    }
+
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, _: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -28,7 +38,7 @@ class GUINoiseAlgo(previousInv: CustomInventory, worldData: WorldData) : GUIEven
             val noiseAlgo = enumOf<GeneratorAlgorithm>(noise)
             if (noiseAlgo == null) player.soundError()
             else {
-                worldData.chunkProviders.add(GeneratorData(noiseAlgo))
+                worldData.chunkProviders.add(GeneratorProviderData(noiseAlgo, GeneratorData()))
                 player.soundEnable()
             }
 

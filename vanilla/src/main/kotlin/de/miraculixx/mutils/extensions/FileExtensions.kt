@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.extensions
 
+import net.kyori.adventure.audience.Audience
 import java.io.File
 import java.util.*
 
@@ -30,5 +31,15 @@ fun String.toUUID(): UUID? {
         UUID.fromString(this)
     } catch (_: IllegalArgumentException) {
         null
+    }
+}
+
+fun Boolean.toggle(player: Audience): Boolean {
+    return if (this) {
+        player.soundDisable()
+        false
+    } else {
+        player.soundEnable()
+        true
     }
 }

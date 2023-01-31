@@ -100,7 +100,7 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
                             persistentDataContainer.set(NamespacedKey(namespace, "wc.id"), PersistentDataType.STRING, UUID.randomUUID().toString())
                         }
                     }, index + 30)
-                } else put(data.generator.getIcon(data, 100 + index), index + 30)
+                } else put(data.algorithm.getIcon(data.settings, 100 + index), index + 30)
             }
         }
     }

@@ -1,13 +1,17 @@
 package de.miraculixx.mutils.module.biomes
 
-import de.miraculixx.mutils.data.BiomeData
+import de.miraculixx.mutils.data.GeneratorData
 import org.bukkit.block.Biome
 import org.bukkit.generator.BiomeProvider
 import org.bukkit.generator.WorldInfo
 
-class SingleBiomes(biomeData: BiomeData) : BiomeProvider() {
-    private val biome = biomeData.biome?.let {
-        try { Biome.valueOf(it) } catch (_: IllegalArgumentException) { Biome.PLAINS }
+class SingleBiomes(biomeData: GeneratorData) : BiomeProvider() {
+    private val biome = biomeData.key?.let {
+        try {
+            Biome.valueOf(it)
+        } catch (_: IllegalArgumentException) {
+            Biome.PLAINS
+        }
     } ?: Biome.PLAINS
 
     override fun getBiome(worldInfo: WorldInfo, x: Int, y: Int, z: Int): Biome {

@@ -9,6 +9,7 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.mutils.data.ChunkCalcData
 import de.miraculixx.mutils.data.GeneratorData
+import de.miraculixx.mutils.data.GeneratorProviderData
 import de.miraculixx.mutils.data.getGenerator
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.messages.*
@@ -34,7 +35,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.awt.Color
 
-class MapRender(private val player: Player, private val inv: CustomInventory, generators: List<GeneratorData>) {
+class MapRender(private val player: Player, private val inv: CustomInventory, generators: List<GeneratorProviderData>) {
     private val previousInventory: Array<ItemStack?> = player.inventory.contents
     private val bar = BossBar.bossBar(msg("event.sneakExit"), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS)
 
@@ -92,13 +93,13 @@ class MapRender(private val player: Player, private val inv: CustomInventory, ge
         if (openGUI) inv.open(player)
     }
 
-    private fun prerenderMap(generators: List<GeneratorData>): Boolean {
+    private fun prerenderMap(generators: List<GeneratorProviderData>): Boolean {
         val pixelMap = (1..128).map { (1..128).map { true }.toTypedArray() }.toTypedArray()
         for (x in 0..7) {
             for (z in 0..7) {
                 val chunkInfo = ChunkCalcData(x, z, MapRenderChunk(x, z, pixelMap))
                 generators.forEach {
-                    it.generator.getGenerator(it).invoke(chunkInfo)
+                    it.algorithm.getGenerator(it.settings).invoke(chunkInfo)
                 }
             }
         }
@@ -189,10 +190,10 @@ class MapRender(private val player: Player, private val inv: CustomInventory, ge
         }
 
         override fun getMinHeight(): Int {
-            TODO("Not yet implemented")
+            return -64
         }
         override fun getMaxHeight(): Int {
-            TODO("Not yet implemented")
+            return 319
         }
         override fun getBiome(x: Int, y: Int, z: Int): Biome {
             TODO("Not yet implemented")

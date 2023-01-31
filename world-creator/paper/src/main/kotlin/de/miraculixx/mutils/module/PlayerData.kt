@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.module
 
+import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.utils.ItemStackSerializer
 import de.miraculixx.kpaper.utils.LocationSerializer
 import de.miraculixx.mutils.extensions.readJsonString
@@ -11,6 +12,7 @@ import kotlinx.serialization.encodeToString
 import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
+import org.bukkit.World
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
@@ -40,7 +42,13 @@ class PlayerData(private val playerID: UUID, private val topFolder: File) {
     fun loadData(player: Player, category: String): Location? {
         val path = "${topFolder.path}/$category/$playerID.json"
         val saveString = saveData[path] ?: File(path).readJsonString(true)
-        val data = json.decodeFromString<PlayerSaveData>(saveString)
+        val data = try {
+            json.decodeFromString<PlayerSaveData>(saveString)
+        } catch (e: Exception) {
+            consoleAudience.sendMessage(prefix + cmp("Invalid player save file at $path!"))
+            if (debug) consoleAudience.sendMessage(prefix + cmp("Reason: ${e.message}"))
+            return null
+        }
         player.inventory.contents = data.inventory
         player.health = data.hp
         player.totalExperience = data.xp

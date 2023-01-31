@@ -5,37 +5,35 @@ import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
 import kotlinx.serialization.Serializable
 
 /**
- * Biome data to customize custom biome generation. Not all values are affective on all generators
- */
-@Serializable
-data class BiomeData(
-    var biome: String? = null,
-    var xScale: Int? = null,
-    var zScale: Int? = null,
-    var random: Boolean? = null
-)
-
-/**
  * Provide a custom biome generation with settings
  */
 @Serializable
 data class BiomeProviderData(
     var algorithm: BiomeAlgorithm,
-    var settings: BiomeData,
+    var settings: GeneratorData,
 )
 
 /**
  * Provide a custom noise generation with settings
  */
 @Serializable
+data class GeneratorProviderData(
+    var algorithm: GeneratorAlgorithm,
+    var settings: GeneratorData
+)
+
+/**
+ * Provide settings to a custom generator
+ */
+@Serializable
 data class GeneratorData(
-    val generator: GeneratorAlgorithm,
     var x1: Int? = null,
     var x2: Int? = null,
     var x3: Int? = null,
     var mode: Boolean? = null,
     var rnd: Boolean? = null,
-    var invert: Boolean? = null
+    var invert: Boolean? = null,
+    var key: String? = null
 )
 
 /**

@@ -27,7 +27,7 @@ data class WorldData(
     var seed: Long? = null,
     var environment: Dimension = Dimension.NORMAL,
     var worldType: VanillaGenerator = VanillaGenerator.NORMAL,
-    val biomeProvider: BiomeProviderData = BiomeProviderData(BiomeAlgorithm.VANILLA, BiomeData()),
-    val chunkProviders: MutableList<GeneratorData> = mutableListOf(),
+    val biomeProvider: BiomeProviderData = BiomeProviderData(BiomeAlgorithm.VANILLA, GeneratorData()),
+    val chunkProviders: MutableList<GeneratorProviderData> = mutableListOf(),
     val chunkDefaults: GeneratorDefaults = GeneratorDefaults()
 )

@@ -2,16 +2,15 @@ package de.miraculixx.mutils.module
 
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.data.TimerPresets
 import de.miraculixx.mutils.data.TimerDesignValue
+import de.miraculixx.mutils.data.TimerPresets
 import de.miraculixx.mutils.messages.miniMessages
 import de.miraculixx.mutils.messages.msg
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.title.Title
 import org.bukkit.OfflinePlayer
 import org.bukkit.Sound
-import org.bukkit.entity.Player
-import java.util.UUID
+import java.util.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -23,13 +22,14 @@ class Timer(
     private val isPersonal: Boolean,
     val player: OfflinePlayer? = null,
     designID: UUID? = null,
-    activate: Boolean = true
+    activate: Boolean = true,
 ) {
     private var animator = 0.0f
     private var time = Duration.ZERO
     var running = false
         set(value) {
-            listener?.setRunning(value, true)
+            if (value) listener?.activateTimer()
+            else listener?.deactivateTimer()
             field = value
         }
     var countUp = true
@@ -122,8 +122,10 @@ class Timer(
             if (!running) return@task
             if (time < 0.seconds) {
                 running = false
-                val title = Title.title(msg("event.timeout.1"), msg("event.timeout.2"),
-                    Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofMillis(5000), java.time.Duration.ofMillis(1000))) // 0,3s 5s 1s
+                val title = Title.title(
+                    msg("event.timeout.1"), msg("event.timeout.2"),
+                    Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofMillis(5000), java.time.Duration.ofMillis(1000))
+                ) // 0,3s 5s 1s
                 target.forEach { p ->
                     p?.playSound(p, Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1.1f)
                     p?.showTitle(title)
