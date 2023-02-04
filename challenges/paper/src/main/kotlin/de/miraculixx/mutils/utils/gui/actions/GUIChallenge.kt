@@ -14,6 +14,7 @@ import de.miraculixx.mutils.gui.InventoryUtils.toggle
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.namespace
+import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.utils.settings
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -145,6 +146,11 @@ class GUIChallenge : GUIEvent {
 
             ROCKET -> if (click == ClickType.LEFT) settings.toggle("ROCKET.active", inv, player)
             else if (click == ClickType.RIGHT) TODO()
+
+            VAMPIRE -> if (click == ClickType.LEFT) settings.toggle("VAMPIRE.active", inv, player)
+
+            TRAFFIC_LIGHT -> if (click == ClickType.LEFT) settings.toggle("TRAFFIC_LIGHT.active", inv, player)
         }
+        ChallengeManager.activatedChallenges
     }
 }

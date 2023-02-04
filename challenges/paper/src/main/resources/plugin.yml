@@ -24,3 +24,6 @@ commands:
       - ch
     permission: mutils.command.challenge
     description: Access all challenges and modify your settings
+  reset:
+    permission: mutils.command.reset
+    description: Resets the main world after a server restart

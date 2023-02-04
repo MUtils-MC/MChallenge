@@ -4,6 +4,7 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.api.MUtilsAPI
 import de.miraculixx.mutils.commands.ChallengeCommand
+import de.miraculixx.mutils.commands.ResetCommand
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.messages.*
@@ -27,6 +28,7 @@ class MChallenge : KSpigot() {
 
     override fun startup() {
         getCommand("challenge")!!.let {
+            ResetCommand()
             val cmd = ChallengeCommand()
             it.setExecutor(cmd)
             it.tabCompleter = cmd
@@ -48,12 +50,32 @@ class MChallenge : KSpigot() {
         val languages = listOf("en_US").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
         localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages)
 
+        //Reset
+        if (settings.getBoolean("ResetWorld")) {
+            resetWorld(File("world"))
+            resetWorld(File("world_nether"))
+            resetWorld(File("world_the_end"))
+            settings.set("ResetWorld", false)
+        }
+
         CoroutineScope(Dispatchers.Default).launch {
             api = MUtilsAPI("challenges", description.version.toInt(), configFolder, "${server.ip}:${server.port}")
             cotm = enumOf<Challenges>(api.getCOTM()) ?: Challenges.FLY
         }
 
         settings.getConfigurationSection("users")
+    }
+
+
+    private fun resetWorld(file: File) {
+        file.listFiles().forEach { f ->
+            val fileName = f.name
+            if (fileName == "playerdata") {
+                f.listFiles().forEach { pData ->
+                    pData.delete()
+                }
+            } else f.deleteRecursively()
+        }
     }
 }
 

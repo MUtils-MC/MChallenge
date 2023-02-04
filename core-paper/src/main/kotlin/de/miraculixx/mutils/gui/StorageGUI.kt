@@ -133,7 +133,7 @@ class StorageGUI(
     }
 
     override fun update() {
-        val content = itemProvider?.getItemList()?.toMap(false)?.plus(itemProvider.getBooleanMap(page * 9, (page + 5) * 9)) ?: emptyMap()
+        val content = itemProvider?.getItemList()?.toMap(false)?.plus(itemProvider.getBooleanMap(0,99)) ?: emptyMap()
         val filter = (itemProvider as? ItemFilterProvider)?.filter
         fillPlaceholder(false)
 

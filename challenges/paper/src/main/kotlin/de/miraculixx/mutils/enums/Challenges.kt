@@ -49,7 +49,13 @@ enum class Challenges(val filter: List<StorageFilter>, private val settings: Lis
     NO_DOUBLE_KILL(     listOf(StorageFilter.MEDIUM),                               listOf("global" to "true"),                                             Icon(Material.REPEATER)),
     DAMAGER(            listOf(StorageFilter.MEDIUM, StorageFilter.HARD),           listOf("mode" to "SLOT_CHANGE", "damage" to "1hp"),                     Icon(Material.DIAMOND_SWORD)),
     RIVALS_COLLECT(     listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), listOf("mode" to "ITEMS", "joker" to "3"),               Icon(Material.CHEST_MINECART)),
-    ROCKET(             listOf(StorageFilter.MEDIUM),                               listOf("capacity" to "5s"),                                             Icon(Material.FIREWORK_ROCKET));
+    ROCKET(             listOf(StorageFilter.MEDIUM),                               listOf("capacity" to "5s"),                                             Icon(Material.FIREWORK_ROCKET)),
+
+    VAMPIRE(            listOf(StorageFilter.MEDIUM),                               listOf(),                                                               Icon(Material.GHAST_TEAR)),
+    TRAFFIC_LIGHT(      listOf(StorageFilter.MEDIUM),                               listOf(),                                                               Icon(Material.REDSTONE_LAMP)),
+
+
+    ;
 
   
     fun matchingFilter(filter: StorageFilter): Boolean {

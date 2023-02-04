@@ -9,6 +9,8 @@ import de.miraculixx.mutils.modules.mods.ghost.Ghost
 import de.miraculixx.mutils.modules.mods.inTime.InTime
 import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
 import de.miraculixx.mutils.modules.mods.snake.Snake
+import de.miraculixx.mutils.modules.mods.trafficlight.TrafficLight
+import de.miraculixx.mutils.modules.mods.vampire.Vampire
 import de.miraculixx.mutils.utils.cotm
 import de.miraculixx.mutils.utils.getAccountStatus
 import de.miraculixx.mutils.utils.settings
@@ -50,15 +52,18 @@ class StatusChanger {
             Challenges.DAMAGER -> TODO()
             Challenges.RIVALS_COLLECT -> TODO()
             Challenges.ROCKET -> Rocket()
+            Challenges.VAMPIRE -> Vampire()
+            Challenges.TRAFFIC_LIGHT -> TrafficLight()
         }
     }
 
     fun startChallenges(): ArrayList<Challenge>? {
         val activated = ArrayList<Challenge>()
         var success = false
-        val available = if (!getAccountStatus()) arrayOf(cotm) else Challenges.values()
+        val available = if (false) arrayOf(cotm) else Challenges.values() //TODO
 
         available.forEach {
+            println("${it.name} - ${settings.getBoolean(it.name + ".active")}")
             if (!settings.getBoolean(it.name + ".active")) return@forEach
             val challenge = getClass(it)
             if (challenge.start()) {

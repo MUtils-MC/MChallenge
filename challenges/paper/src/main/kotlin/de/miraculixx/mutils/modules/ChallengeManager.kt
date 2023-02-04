@@ -11,7 +11,7 @@ Global quick access
 
 object ChallengeManager {
     var status = ChallengeStatus.STOPPED
-    private val activatedChallenges = ArrayList<Challenge>()
+    val activatedChallenges = ArrayList<Challenge>()
 
     /**
      * @return all activated challenges
