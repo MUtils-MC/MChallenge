@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.modules.mods
+package de.miraculixx.mutils.modules.mods.fly
 
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register

@@ -10,10 +10,10 @@ enum class StorageFilter {
     HARD,
     RANDOMIZER,
     FORCE,
-    COMPLEX,
     VERSION_BOUND,
     BETA,
     MULTIPLAYER,
+    FREE,
 
     //Dimensions
     OVERWORLD,

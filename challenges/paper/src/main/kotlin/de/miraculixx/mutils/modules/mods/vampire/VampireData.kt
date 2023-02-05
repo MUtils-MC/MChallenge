@@ -11,7 +11,10 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
@@ -32,10 +35,20 @@ import org.bukkit.persistence.PersistentDataType
 import java.util.UUID
 
 class VampireData(private val uuid: UUID) {
-    private var blood = 250.0 //TODO - Settings
-    private var maxBlood = 500 //TODO - Settings
-    private var healthToBlood = 2.0 //TODO - Settings
-    private var bloodLoosing = 2 //TODO - Settings
+    //Settings - START
+    private var blood: Double
+    private var maxBlood: Int
+    private var healthToBlood: Double
+    private var bloodLoosing: Double
+
+    init {
+        val settings = challenges.getSetting(Challenges.VAMPIRE).settings
+        blood = settings["startBlood"]?.toInt()?.getValue()?.toDouble() ?: 0.0
+        maxBlood = settings["maxBlood"]?.toInt()?.getValue() ?: 0
+        healthToBlood = settings["healthToBlood"]?.toDouble()?.getValue() ?: 0.0
+        bloodLoosing = settings["bloodLoose"]?.toDouble()?.getValue() ?: 0.0
+    }
+    //Settings - END
 
     private val msgBlood = msgString("event.bloodPack")
     private val keyBloodPack = NamespacedKey(namespace, "challenge.vampire.blood")

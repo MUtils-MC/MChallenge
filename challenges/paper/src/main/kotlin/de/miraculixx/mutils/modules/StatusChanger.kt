@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules
 
 import de.miraculixx.mutils.enums.Challenges
-import de.miraculixx.mutils.modules.mods.FLY
+import de.miraculixx.mutils.modules.mods.fly.FLY
 import de.miraculixx.mutils.modules.mods.rocket.Rocket
 import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
 import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
@@ -12,7 +12,6 @@ import de.miraculixx.mutils.modules.mods.snake.Snake
 import de.miraculixx.mutils.modules.mods.trafficlight.TrafficLight
 import de.miraculixx.mutils.modules.mods.vampire.Vampire
 import de.miraculixx.mutils.utils.cotm
-import de.miraculixx.mutils.utils.getAccountStatus
 import de.miraculixx.mutils.utils.settings
 
 class StatusChanger {
@@ -63,7 +62,6 @@ class StatusChanger {
         val available = if (false) arrayOf(cotm) else Challenges.values() //TODO
 
         available.forEach {
-            println("${it.name} - ${settings.getBoolean(it.name + ".active")}")
             if (!settings.getBoolean(it.name + ".active")) return@forEach
             val challenge = getClass(it)
             if (challenge.start()) {

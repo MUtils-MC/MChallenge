@@ -38,7 +38,7 @@ class MChallenge : KSpigot() {
     override fun load() {
         INSTANCE = this
         consoleAudience = console
-        debug = true
+        debug = false
 
         val versionSplit = server.minecraftVersion.split('.')
         majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0

@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.modules.challenge.mods.noSameItems
+package de.miraculixx.mutils.modules.mods.noSameItem
 
 enum class NoSameItemEnum {
     EVERYTHING,

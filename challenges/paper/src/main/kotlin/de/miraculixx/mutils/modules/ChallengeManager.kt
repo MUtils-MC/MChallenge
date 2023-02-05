@@ -2,7 +2,13 @@ package de.miraculixx.mutils.modules
 
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.enums.challenges.ChallengeStatus
+import de.miraculixx.mutils.extensions.readJsonString
+import de.miraculixx.mutils.messages.json
 import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.ChallengeData
+import de.miraculixx.mutils.utils.settings.challenges
+import kotlinx.serialization.decodeFromString
+import java.io.File
 
 /*
 Global quick access
@@ -73,6 +79,13 @@ object ChallengeManager {
         activatedChallenges.forEach {
             if (status != ChallengeStatus.STOPPED) it.stop()
             it.unregister()
+        }
+    }
+
+    fun load(file: File) {
+        val data = json.decodeFromString<Map<Challenges, ChallengeData>>(file.readJsonString(false))
+        data.forEach { (ch, data) ->
+            challenges[ch] = data
         }
     }
 }

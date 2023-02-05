@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.enums.challenges
+package de.miraculixx.mutils.modules.mods.damager
 
 enum class ChDamager {
     SLOT_CHANGE,

@@ -16,7 +16,6 @@ import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
-import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.ItemFlag
@@ -28,6 +27,7 @@ class ScrollGUI(
     title: Component,
     players: List<Player>,
     startPage: Int,
+    filterable: Boolean,
     private val dataKeys: List<NamespacedKey>,
     clickEvent: ((InventoryClickEvent, CustomInventory) -> Unit)?,
     closeEvent: ((InventoryCloseEvent, CustomInventory) -> Unit)?,
@@ -93,7 +93,8 @@ class ScrollGUI(
                     this.clickAction = clickEvent
                     this.closeAction = closeEvent
                     this.itemProvider = this@ScrollGUI.itemProvider
-                    this.scrollable = page > 36
+                    this.scrollable = true
+                    this.filterable = filterable
                 }
             }
         }
@@ -108,6 +109,7 @@ class ScrollGUI(
             builder.player?.let { add(it) }
         },
         builder.startPage,
+        builder.filterable,
         builder.dataKeys,
         builder.clickAction,
         builder.closeAction
@@ -125,6 +127,11 @@ class ScrollGUI(
          * Defines the data container keys that should be copied to the signal item
          */
         var dataKeys: List<NamespacedKey> = emptyList()
+
+        /**
+         * Pass through the value to [StorageGUI], if the storage view is used
+         */
+        var filterable: Boolean = false
 
         /**
          * Internal function

@@ -13,6 +13,7 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 
 enum class GUITypes(private val title: Component) {
+    CHALLENGE_SETTINGS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenge Settings", cHighlight)),
     SPEC_SETTINGS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Settings", cHighlight)),
     SPEC_PLAYER_OVERVIEW(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Online Player", cHighlight)),
     CHALLENGE_MENU(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenges", cHighlight));
@@ -23,6 +24,7 @@ enum class GUITypes(private val title: Component) {
                 this.title = this@GUITypes.title
                 this.player = player
                 this.dataKeys = listOf(NamespacedKey(namespace, "gui.challenge"))
+                this.filterable = true
                 this.itemProvider = itemProvider
                 this.clickAction = clickAction.run
             }
@@ -38,6 +40,13 @@ enum class GUITypes(private val title: Component) {
                 this.title = this@GUITypes.title
                 this.player = player
                 this.size = 3 * 9
+                this.itemProvider = itemProvider
+                this.clickAction = clickAction.run
+            }
+
+            CHALLENGE_SETTINGS -> InventoryManager.settingsBuilder(id) {
+                this.title = this@GUITypes.title
+                this.player = player
                 this.itemProvider = itemProvider
                 this.clickAction = clickAction.run
             }

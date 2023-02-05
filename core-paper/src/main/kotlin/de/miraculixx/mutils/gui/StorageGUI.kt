@@ -4,6 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.enums.gui.StorageFilter
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.toMap
 import de.miraculixx.mutils.gui.data.CustomInventory
@@ -50,8 +51,7 @@ class StorageGUI(
             }
             9001 -> {
                 it.isCancelled = true
-                page -= (if (it.click.isShiftClick) 3
-                else 1).coerceAtMost(0)
+                page = (page - if (it.click.isShiftClick) 3 else 1).coerceAtLeast(0)
                 player.click()
                 update()
             }
@@ -171,22 +171,28 @@ class StorageGUI(
                     emptyComponent(),
                     cmp("Click ", cHighlight) + cmp("≫ Change Filter")
                 ))
+                persistentDataContainer.set(NamespacedKey(namespace, "gui.storage.filter"), PersistentDataType.STRING, (filter ?: StorageFilter.NO_FILTER).name)
             }})
         }
+
+
+
+        //Visible Content
+        val visible = if (scrollable) {
+//            println("Content - ${page * 9} -> ${page * 9 + (if (filterable) 9*4 else 9*5)}")
+            content.toList().subList(
+                (page * 9).coerceIn(0 until content.size),
+                (page * 9 + (if (filterable) 9*4 else 9*5)).coerceIn(0 until content.size + 1)
+            )
+        } else content.toList()
 
         //Scroll Apply
         if (scrollable) {
             i.setItem(0, if (page <= 0) arrowUpRed else arrowUpGreen)
-            i.setItem(8, if ((page + 9 * 3) >= content.size) arrowDownRed else arrowDownGreen)
+            i.setItem(8, if (visible.size < 9*3) arrowDownRed else arrowDownGreen)
         }
 
-        //Content
-        val visible = if (scrollable) {
-            content.toList().subList(
-                (page * 9).coerceIn(0 until content.size),
-                (page * 9 + (if (filterable) 9*4 else 9*5)).coerceIn(0 until content.size)
-            )
-        } else content.toList()
+        //Place Content
         visible.forEachIndexed { index, pair ->
             if (pair.second) {
                  when (pair.first.type) {
@@ -198,7 +204,7 @@ class StorageGUI(
                 pair.first.addUnsafeEnchantment(Enchantment.MENDING, 1)
                 pair.first.addItemFlags(ItemFlag.HIDE_ENCHANTS)
             }
-            if ((filterable && index >= 24) || index >= 30) return
+            if (filterable && index >= 9*4) return
             i.setItem(9 + index, pair.first)
         }
     }

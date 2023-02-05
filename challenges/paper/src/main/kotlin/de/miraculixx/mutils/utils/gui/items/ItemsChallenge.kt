@@ -3,13 +3,15 @@ package de.miraculixx.mutils.utils.gui.items
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.gui.items.ItemFilterProvider
-import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.utils.cotm
 import de.miraculixx.mutils.utils.getAccountStatus
 import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.*
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
@@ -22,7 +24,9 @@ class ItemsChallenge : ItemFilterProvider {
         return buildMap {
             val challenges = Challenges.values()
             val amount = challenges.size
-            val range = if (from >= amount) emptyList() else challenges.copyOfRange(from, to.coerceAtMost(amount)).filter { it != cotm }
+            val range = if (from >= amount) emptyList() else challenges.copyOfRange(from, to.coerceAtMost(amount)).filter {
+                it != cotm
+            }
             val status = getAccountStatus()
 
             // Adding Challenge of the month at first - only if first index
@@ -40,7 +44,7 @@ class ItemsChallenge : ItemFilterProvider {
             range.forEach { challenge ->
                 if (isMatchingFilter(challenge, filter)) {
                     val data = getChallengeItem(challenge)
-                    if (!status) {
+                    if (!status && !challenge.status) {
                         data.first.editMeta {
                             it.name = it.name?.color(cError)
                             it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
@@ -65,7 +69,7 @@ class ItemsChallenge : ItemFilterProvider {
                 it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
                 it.persistentDataContainer.set(NamespacedKey(namespace, "gui.challenge"), PersistentDataType.STRING, challenge.name)
             }
-        } to settings.getBoolean(challenge.name + ".active")
+        } to challenges.getSetting(challenge).active
     }
 
     private fun getFilter(challenge: Challenges): List<Component> {
@@ -82,26 +86,41 @@ class ItemsChallenge : ItemFilterProvider {
 
     private fun getLore(challenge: Challenges): List<Component> {
         return buildList {
-            val hasSettings = challenge.hasSettings()
+            val settings = challenges.getSetting(challenge).settings
+            val hasSettings = settings.isNotEmpty()
             add(emptyComponent())
             add(cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
             addAll(msgList("items.ch.${challenge.name}.l"))
 
             add(emptyComponent())
             add(cmp("∙ ") + cmp("Settings", cHighlight, underlined = true))
-            if (hasSettings) addAll(challenge.getSettings(settings).map {
-                cmp("   ") + msg("items.chS.${challenge.name}.${it.id}.n") + cmp(": ") + cmp(it.value, cHighlight) + cmp(" (Default ${it.default})")
-            }) else add(cmp("   None", italic = true))
+            if (hasSettings) {
+                settings.forEach { (key, data) ->
+                    addAll(challenge.getSettingLore(data, key, false))
+                }
+            } else add(cmp("   None", italic = true))
 
             add(emptyComponent())
             add(cmp("∙ ") + cmp("Filter", cHighlight, underlined = true))
             addAll(getFilter(challenge))
 
             add(emptyComponent())
-            if (hasSettings) {
-                add(cmp("Left-Click ", cHighlight) + cmp("≫ Toggle Active"))
-                add(cmp("Right-Click ", cHighlight) + cmp("≫ Open Settings"))
-            } else add(cmp("Click ", cHighlight) + cmp("≫ Toggle Active"))
+            add(msgClickLeft + cmp("Toggle Active"))
+            if (hasSettings) add(msgClickRight + cmp("Open Settings"))
+        }
+    }
+
+    private fun Challenges.getSettingLore(data: ChallengeSetting<*>, key: String, isSection: Boolean): List<Component> {
+        return if (data is ChallengeSectionSetting<*>) {
+            buildList {
+                add(cmp("   " + msgString("items.chS.$name.$key.n"), cMark))
+                addAll(data.getValue().flatMap { getSettingLore(it.value, it.key, true) })
+            }
+        } else {
+            val prefix = if (isSection) cmp("    → ", NamedTextColor.DARK_GRAY) else cmp("   ")
+            val info = if (data is ChallengeBoolSetting) data.getValue().msg() to data.getDefault().msg()
+            else data.getValue().toString() to data.getValue().toString()
+            listOf(prefix + cmp(msgString("items.chS.$name.$key.n")) + cmp(": ") + cmp("${info.first}${data.getUnit()}" , cHighlight) + cmp(" (Default ${info.second})"))
         }
     }
 }

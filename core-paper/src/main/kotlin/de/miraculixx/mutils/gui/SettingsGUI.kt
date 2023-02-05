@@ -59,9 +59,9 @@ class SettingsGUI(
             }
             4 -> {
                 i.setItem(10, content[0])
-                i.setItem(12, content[0])
-                i.setItem(14, content[0])
-                i.setItem(16, content[0])
+                i.setItem(12, content[1])
+                i.setItem(14, content[2])
+                i.setItem(16, content[3])
             }
         }
     }
