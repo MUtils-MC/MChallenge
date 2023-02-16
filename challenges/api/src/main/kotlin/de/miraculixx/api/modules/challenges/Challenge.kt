@@ -1,6 +1,4 @@
-package de.miraculixx.mutils.modules
-
-import de.miraculixx.mutils.enums.Challenges
+package de.miraculixx.api.modules.challenges
 
 interface Challenge {
     val challenge: Challenges
@@ -17,6 +15,13 @@ interface Challenge {
      */
     fun stop() {}
 
+    /**
+     * Activate the Challenge. Used to enable all listeners
+     */
     fun register()
+
+    /**
+     * Deactivate the Challenge. Used to disable all listeners
+     */
     fun unregister()
 }

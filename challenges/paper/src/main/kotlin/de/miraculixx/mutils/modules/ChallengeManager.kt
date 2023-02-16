@@ -1,11 +1,13 @@
 package de.miraculixx.mutils.modules
 
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.enums.challenges.ChallengeStatus
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.json
-import de.miraculixx.mutils.utils.settings.ChallengeData
-import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.mutils.modules.challenges.StatusChanger
+import de.miraculixx.api.settings.ChallengeData
+import de.miraculixx.api.settings.challenges
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File

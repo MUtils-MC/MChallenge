@@ -1,21 +1,21 @@
 package de.miraculixx.mutils.utils.gui.actions
 
-import de.miraculixx.kpaper.extensions.bukkit.error
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.*
+import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.messages.namespace
-import de.miraculixx.mutils.utils.gui.GUITypes
+import de.miraculixx.mutils.utils.gui.buildInventory
 import de.miraculixx.mutils.utils.gui.items.ItemsChallengeSettings
-import de.miraculixx.mutils.utils.settings.*
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.persistence.PersistentDataType
 
-class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSectionSetting<*>?): GUIEvent {
+class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSectionSetting<*>?) : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event

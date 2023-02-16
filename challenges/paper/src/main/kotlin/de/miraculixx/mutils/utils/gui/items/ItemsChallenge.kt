@@ -1,15 +1,16 @@
 package de.miraculixx.mutils.utils.gui.items
 
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.*
+import de.miraculixx.api.utils.cotm
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.enums.gui.StorageFilter
 import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.utils.cotm
+import de.miraculixx.mutils.modules.challenges.getIcon
 import de.miraculixx.mutils.utils.getAccountStatus
-import de.miraculixx.mutils.utils.settings.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.NamespacedKey
@@ -121,7 +122,7 @@ class ItemsChallenge : ItemFilterProvider {
             val prefix = if (isSection) cmp("    → ", NamedTextColor.DARK_GRAY) else cmp("   ")
             val info = if (data is ChallengeBoolSetting) data.getValue().msg() to data.getDefault().msg()
             else data.getValue().toString() to data.getValue().toString()
-            listOf(prefix + cmp(msgString("items.chS.$name.$key.n")) + cmp(": ") + cmp("${info.first}${data.getUnit()}" , cHighlight) + cmp(" (Default ${info.second})"))
+            listOf(prefix + cmp(msgString("items.chS.$name.$key.n")) + cmp(": ") + cmp("${info.first}${data.getUnit()}", cHighlight) + cmp(" (Default ${info.second})"))
         }
     }
 }

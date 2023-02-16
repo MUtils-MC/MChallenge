@@ -1,10 +1,8 @@
-package de.miraculixx.mutils.utils.settings
+package de.miraculixx.api.settings
 
-import de.miraculixx.mutils.enums.Challenges
-import de.miraculixx.mutils.extensions.enumOf
+import de.miraculixx.api.modules.challenges.Challenges
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import org.bukkit.Material
 
 fun MutableMap<Challenges, ChallengeData>.getSetting(challenge: Challenges): ChallengeData {
     return getOrPut(challenge) {
@@ -20,7 +18,6 @@ data class ChallengeData(
 )
 
 /**
- * @param key Translation key
  * @param default Default value for init and reset
  * @param value Current value (default on init)
  * @param unit Information unit (like b/s)
@@ -34,8 +31,8 @@ data class ChallengeIntSetting(
 
     val max: Int = 100,
     val min: Int = 0,
-    val step: Int = 1
-): ChallengeSetting<Int> {
+    val step: Int = 1,
+) : ChallengeSetting<Int> {
     override val materialKey = material
     override fun getDefault() = default
     override fun getUnit() = unit ?: ""
@@ -54,8 +51,8 @@ data class ChallengeDoubleSetting(
 
     val max: Double = 10.0,
     val min: Double = 0.0,
-    val step: Double = 0.5
-): ChallengeSetting<Double> {
+    val step: Double = 0.5,
+) : ChallengeSetting<Double> {
     override val materialKey = material
     override fun getDefault() = default
     override fun getUnit() = unit ?: ""
@@ -71,7 +68,7 @@ data class ChallengeBoolSetting(
     private val default: Boolean = false,
     private val unit: String? = null,
     private var value: Boolean = default,
-): ChallengeSetting<Boolean> {
+) : ChallengeSetting<Boolean> {
     override val materialKey = material
     override fun getDefault() = default
     override fun getUnit() = unit ?: ""
@@ -88,8 +85,8 @@ data class ChallengeEnumSetting(
     private val unit: String? = null,
     private var value: String = default,
 
-    val options: List<String> = emptyList()
-): ChallengeSetting<String> {
+    val options: List<String> = emptyList(),
+) : ChallengeSetting<String> {
     override val materialKey = material
     override fun getDefault() = default
     override fun getUnit() = unit ?: ""
@@ -106,7 +103,7 @@ data class ChallengeSectionSetting<T>(
     private val default: Map<String, ChallengeSetting<T>> = emptyMap(),
     private val unit: String? = null,
     private var value: Map<String, ChallengeSetting<T>> = default,
-): ChallengeSetting<Map<String, ChallengeSetting<T>>> {
+) : ChallengeSetting<Map<String, ChallengeSetting<T>>> {
     override val materialKey = material
     override fun getDefault() = default
     override fun getUnit() = unit ?: ""
@@ -127,5 +124,3 @@ sealed interface ChallengeSetting<T> {
     fun toBool() = this as? ChallengeBoolSetting
     fun toSection() = this as? ChallengeSectionSetting<*>
 }
-
-fun ChallengeSetting<*>.getMaterial() = enumOf(materialKey) ?: Material.BARRIER

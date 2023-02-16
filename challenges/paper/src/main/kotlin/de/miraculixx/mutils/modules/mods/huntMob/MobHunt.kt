@@ -8,10 +8,10 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.MChallenge
 import de.miraculixx.mutils.PluginManager
 import de.miraculixx.mutils.commands.ModuleCommand
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.utils.getLivingMobs
 import kotlinx.serialization.Serializable

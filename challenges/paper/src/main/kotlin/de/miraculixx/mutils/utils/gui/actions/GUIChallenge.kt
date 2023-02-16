@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.utils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.enums.gui.StorageFilter
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
@@ -9,10 +9,11 @@ import de.miraculixx.mutils.gui.InventoryUtils.get
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.namespace
-import de.miraculixx.mutils.utils.gui.GUITypes
+import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.mutils.utils.gui.items.ItemsChallengeSettings
-import de.miraculixx.mutils.utils.settings.challenges
-import de.miraculixx.mutils.utils.settings.getSetting
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.mutils.utils.gui.buildInventory
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent

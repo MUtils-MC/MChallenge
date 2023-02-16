@@ -7,23 +7,14 @@ import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.MChallenge
 import de.miraculixx.mutils.PluginManager
 import de.miraculixx.mutils.data.UUIDSerializer
-import de.miraculixx.mutils.enums.spectator.Activation
-import de.miraculixx.mutils.enums.spectator.Visibility
+import de.miraculixx.api.modules.spectator.Activation
+import de.miraculixx.api.modules.spectator.Visibility
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.utils.gui.GUITypes
-import de.miraculixx.mutils.utils.gui.actions.GUISpecPlayer
-import de.miraculixx.mutils.utils.gui.actions.GUISpecSettings
-import de.miraculixx.mutils.utils.gui.items.ItemsSpecPlayer
-import de.miraculixx.mutils.utils.gui.items.ItemsSpecSettings
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.bukkit.GameMode
-import org.bukkit.Material
-import org.bukkit.Sound
-import org.bukkit.block.Barrel
-import org.bukkit.block.Chest
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
@@ -32,10 +23,7 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.EntityPickupItemEvent
-import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.player.*
-import org.bukkit.inventory.meta.SkullMeta
 import java.io.File
 import java.util.*
 

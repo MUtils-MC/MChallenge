@@ -7,9 +7,9 @@ import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mutils.utils.MobBossBar
 import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit

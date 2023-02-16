@@ -1,76 +1,65 @@
-package de.miraculixx.mutils.enums
+package de.miraculixx.api.modules.challenges
 
-import de.miraculixx.kpaper.items.itemStack
+import de.miraculixx.api.modules.mods.damager.ChDamager
+import de.miraculixx.api.modules.mods.noSameItem.NoSameItemEnum
+import de.miraculixx.api.modules.mods.rivalsCollect.RivalCollectMode
+import de.miraculixx.api.settings.*
 import de.miraculixx.mutils.enums.gui.Head64
 import de.miraculixx.mutils.enums.gui.StorageFilter
-import de.miraculixx.mutils.gui.items.skullTexture
-import de.miraculixx.mutils.modules.mods.damager.ChDamager
-import de.miraculixx.mutils.modules.mods.noSameItem.NoSameItemEnum
-import de.miraculixx.mutils.modules.mods.rivalsCollect.RivalCollectMode
-import de.miraculixx.mutils.utils.settings.*
-import org.bukkit.Material
-import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.SkullMeta
 
 /**
  * @param filter List of filter categories the challenges owns
  * @param icon Material with possible metadata **Pair<Icon, HeadTexture>**
  */
-enum class Challenges(val filter: List<StorageFilter>, private val icon: Icon, val status: Boolean = false) {
-    // Free Challenges
-    VAMPIRE(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.GHAST_TEAR), true),
-    TRAFFIC_LIGHT(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.REDSTONE_LAMP), true),
-    TRON(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.LIGHT_BLUE_CONCRETE), true),
-    DISABLED(listOf(StorageFilter.FUN, StorageFilter.FREE), Icon(Material.IRON_BARS), true),
-    MOB_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon(Material.PHANTOM_SPAWN_EGG), true),
-    MIRROR(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.MULTIPLAYER), Icon(Material.GLASS), true),
+enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val status: Boolean = false) {
+    // Global Challenges
+    VAMPIRE(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("GHAST_TEAR"), true),
+    TRAFFIC_LIGHT(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("REDSTONE_LAMP"), true),
+    TRON(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("LIGHT_BLUE_CONCRETE"), true),
+    DISABLED(listOf(StorageFilter.FUN, StorageFilter.FREE), Icon("IRON_BARS"), true),
+    MOB_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon("PHANTOM_SPAWN_EGG"), true),
+    MIRROR(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.MULTIPLAYER), Icon("GLASS"), true),
 
 
-    FLY(listOf(StorageFilter.FUN), Icon(Material.ELYTRA)),
-    IN_TIME(listOf(StorageFilter.MEDIUM), Icon(Material.CLOCK)),
-    MOB_BLOCKS(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.ZOMBIE_HEAD)),
-    CHECKPOINTS(listOf(StorageFilter.FUN), Icon(Material.PLAYER_HEAD, Head64.BACKWARD_QUARTZ)),
-    DIM_SWAP(listOf(StorageFilter.MEDIUM), Icon(Material.END_PORTAL_FRAME)),
-    SNAKE(listOf(StorageFilter.HARD), Icon(Material.RED_CONCRETE_POWDER)),
-    REALISTIC(listOf(StorageFilter.HARD), Icon(Material.OAK_SAPLING)),
-    //CAPTIVE(listOf(StorageFilter.MEDIUM, StorageFilter.VERSION_BOUND), Icon(Material.IRON_BARS)),
-    GHOST(listOf(StorageFilter.FUN), Icon(Material.PLAYER_HEAD, Head64.GHAST)),
-    BLOCK_ASYNC(listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER), Icon(Material.RED_STAINED_GLASS)),
-    NO_SAME_ITEM(listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER), Icon(Material.WITHER_ROSE)),
-    LIMITED_SKILLS(listOf(StorageFilter.HARD, StorageFilter.MULTIPLAYER), Icon(Material.TURTLE_HELMET)),
-    RUN_RANDOMIZER(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.GOLDEN_BOOTS)),
-    SPLIT_HP(listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER), Icon(Material.BEETROOT)),
-    DAMAGE_DUELL(listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER), Icon(Material.IRON_SWORD)),
-    ONE_BIOME(listOf(StorageFilter.MEDIUM), Icon(Material.FILLED_MAP)),
-    BOOST_UP(listOf(StorageFilter.MEDIUM), Icon(Material.SHULKER_SHELL)),
-    RIGHT_TOOL(listOf(StorageFilter.MEDIUM), Icon(Material.WOODEN_AXE)),
-    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM), Icon(Material.TNT)),
-    SNEAK_SPAWN(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.HOPPER)),
-    WORLD_PEACE(listOf(StorageFilter.MEDIUM), Icon(Material.CORNFLOWER)),
-    GRAVITY(listOf(StorageFilter.MEDIUM), Icon(Material.SAND)),
-    STAY_AWAY(listOf(StorageFilter.HARD), Icon(Material.TNT)),
-    RANDOMIZER_BLOCK(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.PLAYER_HEAD, Head64.DICE_GREEN)),
-    RANDOMIZER_ENTITY(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.PLAYER_HEAD, Head64.DICE_ORANGE)),
-    RANDOMIZER_BIOMES(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.PLAYER_HEAD, Head64.DICE_PURPLE)),
-    RANDOMIZER_MOBS(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.PLAYER_HEAD, Head64.DICE_BLACK)),
-    FORCE_COLLECT(listOf(StorageFilter.MEDIUM, StorageFilter.FORCE), Icon(Material.CHEST)),
-    RANDOMIZER_DAMAGE(listOf(StorageFilter.MEDIUM, StorageFilter.RANDOMIZER), Icon(Material.PLAYER_HEAD, Head64.DICE_RED)),
-    NO_DOUBLE_KILL(listOf(StorageFilter.MEDIUM), Icon(Material.REPEATER)),
-    DAMAGER(listOf(StorageFilter.MEDIUM, StorageFilter.HARD), Icon(Material.DIAMOND_SWORD)),
-    RIVALS_COLLECT(listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), Icon(Material.CHEST_MINECART)),
-    ROCKET(listOf(StorageFilter.MEDIUM), Icon(Material.FIREWORK_ROCKET)),
+    FLY(listOf(StorageFilter.FUN), Icon("ELYTRA")),
+    IN_TIME(listOf(StorageFilter.MEDIUM), Icon("CLOCK")),
+    MOB_BLOCKS(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("ZOMBIE_HEAD")),
+    CHECKPOINTS(listOf(StorageFilter.FUN), Icon("PLAYER_HEAD", Head64.BACKWARD_QUARTZ)),
+    DIM_SWAP(listOf(StorageFilter.MEDIUM), Icon("END_PORTAL_FRAME")),
+    SNAKE(listOf(StorageFilter.HARD), Icon("RED_CONCRETE_POWDER")),
+    REALISTIC(listOf(StorageFilter.HARD), Icon("OAK_SAPLING")),
+    //CAPTIVE(listOf(StorageFilter.MEDIUM, StorageFilter.VERSION_BOUND), Icon("IRON_BARS)),
+    GHOST(listOf(StorageFilter.FUN), Icon("PLAYER_HEAD", Head64.GHAST)),
+    BLOCK_ASYNC(listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER), Icon("RED_STAINED_GLASS")),
+    NO_SAME_ITEM(listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER), Icon("WITHER_ROSE")),
+    LIMITED_SKILLS(listOf(StorageFilter.HARD, StorageFilter.MULTIPLAYER), Icon("TURTLE_HELMET")),
+    RUN_RANDOMIZER(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("GOLDEN_BOOTS")),
+    SPLIT_HP(listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER), Icon("BEETROOT")),
+    DAMAGE_DUELL(listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER), Icon("IRON_SWORD")),
+    ONE_BIOME(listOf(StorageFilter.MEDIUM), Icon("FILLED_MAP")),
+    BOOST_UP(listOf(StorageFilter.MEDIUM), Icon("SHULKER_SHELL")),
+    RIGHT_TOOL(listOf(StorageFilter.MEDIUM), Icon("WOODEN_AXE")),
+    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM), Icon("TNT")),
+    SNEAK_SPAWN(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("HOPPER")),
+    WORLD_PEACE(listOf(StorageFilter.MEDIUM), Icon("CORNFLOWER")),
+    GRAVITY(listOf(StorageFilter.MEDIUM), Icon("SAND")),
+    STAY_AWAY(listOf(StorageFilter.HARD), Icon("TNT")),
+    RANDOMIZER_BLOCK(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_GREEN)),
+    RANDOMIZER_ENTITY(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_ORANGE)),
+    RANDOMIZER_BIOMES(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_PURPLE)),
+    RANDOMIZER_MOBS(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_BLACK)),
+    FORCE_COLLECT(listOf(StorageFilter.MEDIUM, StorageFilter.FORCE), Icon("CHEST")),
+    RANDOMIZER_DAMAGE(listOf(StorageFilter.MEDIUM, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_RED)),
+    NO_DOUBLE_KILL(listOf(StorageFilter.MEDIUM), Icon("REPEATER")),
+    DAMAGER(listOf(StorageFilter.MEDIUM, StorageFilter.HARD), Icon("DIAMOND_SWORD")),
+    RIVALS_COLLECT(listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), Icon("CHEST_MINECART")),
+    ROCKET(listOf(StorageFilter.MEDIUM), Icon("FIREWORK_ROCKET")),
 
     ;
 
 
     fun matchingFilter(filter: StorageFilter): Boolean {
         return this.filter.contains(filter)
-    }
-
-    fun getIcon(): ItemStack {
-        return itemStack(icon.material) {
-            icon.texture?.let { itemMeta = (itemMeta as? SkullMeta)?.skullTexture(it.value) }
-        }
     }
 
     fun getDefaultSettings(): Map<String, ChallengeSetting<out Any>> {
@@ -204,5 +193,5 @@ enum class Challenges(val filter: List<StorageFilter>, private val icon: Icon, v
         }
     }
 
-    data class Icon(val material: Material, val texture: Head64? = null)
+    data class Icon(val material: String, val texture: Head64? = null)
 }

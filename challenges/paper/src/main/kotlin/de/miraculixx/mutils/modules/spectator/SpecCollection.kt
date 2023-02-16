@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.modules.spectator
 
-import de.miraculixx.mutils.enums.spectator.Activation
-import de.miraculixx.mutils.enums.spectator.Visibility
+import de.miraculixx.api.modules.spectator.Activation
+import de.miraculixx.api.modules.spectator.Visibility
 
 data class SpecCollection(
     var hide: Visibility = Visibility.HIDDEN,

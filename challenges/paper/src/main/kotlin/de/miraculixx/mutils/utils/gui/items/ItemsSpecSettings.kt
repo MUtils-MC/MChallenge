@@ -1,11 +1,11 @@
 package de.miraculixx.mutils.utils.gui.items
 
+import de.miraculixx.api.modules.spectator.Activation
+import de.miraculixx.api.modules.spectator.Visibility
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.enums.spectator.Activation
-import de.miraculixx.mutils.enums.spectator.Visibility
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.spectator.SpecCollection
@@ -36,10 +36,12 @@ class ItemsSpecSettings(private val settings: SpecCollection) : ItemProvider {
                 meta {
                     customModel = 3
                     name = cmp(msgString("items.spec.flySpeed.n"), cHighlight) + cmp(" (${settings.flySpeed})")
-                    lore(msgInfo + msgList("items.spec.flySpeed.l") + listOf(
-                        msgClickRight + cmp("-1"),
-                        msgClickLeft + cmp("+1")
-                    ))
+                    lore(
+                        msgInfo + msgList("items.spec.flySpeed.l") + listOf(
+                            msgClickRight + cmp("-1"),
+                            msgClickLeft + cmp("+1")
+                        )
+                    )
                 }
             } to 13,
             itemStack(Material.HOPPER) {

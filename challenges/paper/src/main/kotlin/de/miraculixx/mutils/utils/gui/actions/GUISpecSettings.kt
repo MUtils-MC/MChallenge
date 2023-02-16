@@ -1,8 +1,8 @@
 package de.miraculixx.mutils.utils.gui.actions
 
+import de.miraculixx.api.modules.spectator.Activation
+import de.miraculixx.api.modules.spectator.Visibility
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.enums.spectator.Activation
-import de.miraculixx.mutils.enums.spectator.Visibility
 import de.miraculixx.mutils.extensions.soundDisable
 import de.miraculixx.mutils.extensions.soundEnable
 import de.miraculixx.mutils.extensions.soundStone
@@ -14,7 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 
-class GUISpecSettings(settings: SpecCollection): GUIEvent {
+class GUISpecSettings(settings: SpecCollection) : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         val player = it.whoClicked as? Player ?: return@event
         val uuid = player.uniqueId

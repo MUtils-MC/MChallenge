@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.utils.settings
+package de.miraculixx.api.settings
 
 import kotlinx.serialization.Serializable
 

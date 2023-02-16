@@ -7,8 +7,9 @@ import de.miraculixx.mutils.messages.msg
 import de.miraculixx.mutils.messages.plus
 import de.miraculixx.mutils.messages.prefix
 import de.miraculixx.mutils.modules.ChallengeManager
-import de.miraculixx.mutils.utils.gui.GUITypes
+import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.mutils.utils.gui.actions.GUIChallenge
+import de.miraculixx.mutils.utils.gui.buildInventory
 import de.miraculixx.mutils.utils.gui.items.ItemsChallenge
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender

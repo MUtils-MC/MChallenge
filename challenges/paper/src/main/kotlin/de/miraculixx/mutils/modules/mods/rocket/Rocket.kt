@@ -3,8 +3,8 @@ package de.miraculixx.mutils.modules.mods.rocket
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.mutils.enums.Challenges
-import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent

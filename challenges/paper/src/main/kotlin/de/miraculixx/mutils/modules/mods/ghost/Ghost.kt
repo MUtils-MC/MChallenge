@@ -4,12 +4,12 @@ import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.mutils.enums.Challenges
-import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.utils.getRPPrompt
-import de.miraculixx.mutils.utils.settings.challenges
-import de.miraculixx.mutils.utils.settings.getSetting
+import de.miraculixx.api.utils.getRPPrompt
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.Particle

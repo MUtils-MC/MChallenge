@@ -1,6 +1,6 @@
-package de.miraculixx.mutils.utils
+package de.miraculixx.api.utils
 
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.messages.cHighlight
 import de.miraculixx.mutils.messages.cMark
 import de.miraculixx.mutils.messages.cmp

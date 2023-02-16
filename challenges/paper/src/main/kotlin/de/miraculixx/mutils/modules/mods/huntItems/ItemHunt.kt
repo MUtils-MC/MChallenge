@@ -5,10 +5,10 @@ import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mutils.MChallenge
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.utils.getMaterials
 import kotlinx.serialization.Serializable
@@ -19,7 +19,6 @@ import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
 import org.bukkit.Material
-import org.bukkit.entity.EntityType
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import java.io.File

@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.modules.mods.rivalsCollect
+package de.miraculixx.api.modules.mods.rivalsCollect
 
 enum class RivalCollectMode {
     ITEMS,

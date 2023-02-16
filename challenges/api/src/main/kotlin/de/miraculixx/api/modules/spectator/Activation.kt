@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.enums.spectator
+package de.miraculixx.api.modules.spectator
 
 enum class Activation {
     ENABLED, DISABLED

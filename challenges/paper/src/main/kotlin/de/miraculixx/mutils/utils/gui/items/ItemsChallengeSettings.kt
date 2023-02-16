@@ -1,14 +1,15 @@
 package de.miraculixx.mutils.utils.gui.items
 
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.*
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.utils.settings.*
+import de.miraculixx.mutils.modules.challenges.getMaterial
 import net.kyori.adventure.text.Component
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemFlag
@@ -25,7 +26,7 @@ class ItemsChallengeSettings(private val challengeSettings: Map<String, Challeng
             val key = it.key
             val data = it.value
             val material = data.getMaterial()
-            val infoLore = msgSetting + data.getSettingLore(key, chName) + emptyComponent() +  data.getClickLore()
+            val infoLore = msgSetting + data.getSettingLore(key, chName) + emptyComponent() + data.getClickLore()
             itemStack(material) {
                 meta {
                     customModel = 1
@@ -48,7 +49,7 @@ class ItemsChallengeSettings(private val challengeSettings: Map<String, Challeng
         } else {
             val info = if (this is ChallengeBoolSetting) getValue().msg() to getDefault().msg()
             else getValue().toString() to getValue().toString()
-            listOf(cmp("   ") + cmp(msgString("items.chS.${challenge}.$key.n")) + cmp(": ") + cmp("${info.first}${getUnit()}" , cHighlight) + cmp(" (Default ${info.second})"))
+            listOf(cmp("   ") + cmp(msgString("items.chS.${challenge}.$key.n")) + cmp(": ") + cmp("${info.first}${getUnit()}", cHighlight) + cmp(" (Default ${info.second})"))
         }
     }
 

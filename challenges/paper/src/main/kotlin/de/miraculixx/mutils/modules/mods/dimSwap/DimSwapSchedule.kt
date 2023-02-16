@@ -7,10 +7,10 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.utils.settings.challenges
-import de.miraculixx.mutils.utils.settings.getSetting
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.title.Title

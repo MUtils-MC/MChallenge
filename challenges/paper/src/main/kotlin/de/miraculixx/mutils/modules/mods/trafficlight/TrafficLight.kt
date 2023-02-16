@@ -6,11 +6,12 @@ import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.modules.mods.trafficlight.TrafficLightState
 import de.miraculixx.mutils.messages.cHighlight
 import de.miraculixx.mutils.messages.cmp
 import de.miraculixx.mutils.messages.plus
-import de.miraculixx.mutils.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenge
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
