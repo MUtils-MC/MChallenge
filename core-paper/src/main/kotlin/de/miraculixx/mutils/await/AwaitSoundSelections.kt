@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.gui.Head64
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.extensions.soundStone
 import de.miraculixx.mutils.gui.data.CustomInventory

@@ -7,7 +7,7 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.gui.Head64
 import de.miraculixx.mutils.extensions.soundError
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory

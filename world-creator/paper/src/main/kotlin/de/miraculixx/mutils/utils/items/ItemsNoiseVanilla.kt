@@ -5,7 +5,7 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.api.data.GeneratorDefaults
-import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.gui.Head64
 import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.gui.items.skullTexture

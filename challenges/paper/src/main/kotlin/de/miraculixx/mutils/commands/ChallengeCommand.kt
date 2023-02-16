@@ -2,7 +2,7 @@ package de.miraculixx.mutils.commands
 
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.bukkit.register
-import de.miraculixx.mutils.enums.challenges.ChallengeStatus
+import de.miraculixx.api.modules.challenges.ChallengeStatus
 import de.miraculixx.mutils.messages.msg
 import de.miraculixx.mutils.messages.plus
 import de.miraculixx.mutils.messages.prefix

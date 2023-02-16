@@ -5,7 +5,7 @@ import de.miraculixx.api.settings.*
 import de.miraculixx.api.utils.cotm
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.*

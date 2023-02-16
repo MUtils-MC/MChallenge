@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.enums.gui
+package de.miraculixx.mutils.gui
 
 enum class Head64(val value: String) {
     // Arrows

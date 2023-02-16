@@ -1,17 +1,16 @@
 package de.miraculixx.mutils.data
 
-import de.miraculixx.mutils.extensions.UUIDExtension
 import kotlinx.serialization.Serializable
-import java.util.UUID
+import java.util.*
 import kotlin.time.Duration
 
 @Serializable
 data class TimerData(
-    val timerDesign: @Serializable(with = UUIDExtension::class) UUID,
+    val timerDesign: @Serializable(with = UUIDSerializer::class) UUID,
     val time: Duration,
     val isVisible: Boolean,
     val countingUp: Boolean,
-    val playerUUID: @Serializable(with = UUIDExtension::class) UUID? = null
+    val playerUUID: @Serializable(with = UUIDSerializer::class) UUID? = null
 )
 
 @Serializable

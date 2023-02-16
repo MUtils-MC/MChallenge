@@ -2,7 +2,7 @@ package de.miraculixx.mutils.utils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.InventoryUtils.get

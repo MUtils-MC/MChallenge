@@ -3,7 +3,7 @@ package de.miraculixx.mutils.utils.actions
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mutils.await.AwaitConfirm
-import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory

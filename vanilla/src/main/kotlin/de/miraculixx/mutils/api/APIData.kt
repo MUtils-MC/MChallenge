@@ -2,7 +2,7 @@
 
 package de.miraculixx.mutils.api
 
-import de.miraculixx.mutils.extensions.UUIDExtension
+import de.miraculixx.mutils.data.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.UUID
 
@@ -10,7 +10,7 @@ import java.util.UUID
 data class ModuleVersion(val latest: Int, val last: Int)
 
 @Serializable
-data class AccountData(var key: String = "", var uuid: @Serializable(with = UUIDExtension::class)UUID? = null, var autoUpdate: Boolean = false)
+data class AccountData(var key: String = "", var uuid: @Serializable(with = UUIDSerializer::class)UUID? = null, var autoUpdate: Boolean = false)
 
 @Serializable
 data class LoginResponse(val success: Boolean = false, val slots: Int = 0, val protocol: Int = 0)

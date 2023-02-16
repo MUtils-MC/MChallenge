@@ -3,7 +3,7 @@ package de.miraculixx.mutils.gui
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
-import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.gui.Head64
 import de.miraculixx.mutils.extensions.soundDisable
 import de.miraculixx.mutils.extensions.soundEnable
 import de.miraculixx.mutils.gui.data.CustomInventory

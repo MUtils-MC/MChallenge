@@ -4,8 +4,8 @@ import de.miraculixx.api.modules.mods.damager.ChDamager
 import de.miraculixx.api.modules.mods.noSameItem.NoSameItemEnum
 import de.miraculixx.api.modules.mods.rivalsCollect.RivalCollectMode
 import de.miraculixx.api.settings.*
-import de.miraculixx.mutils.enums.gui.Head64
-import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.gui.Head64
+import de.miraculixx.mutils.gui.StorageFilter
 
 /**
  * @param filter List of filter categories the challenges owns

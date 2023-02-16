@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.enums.challenges
+package de.miraculixx.api.modules.challenges
 
 enum class ChallengeStatus {
     RUNNING,

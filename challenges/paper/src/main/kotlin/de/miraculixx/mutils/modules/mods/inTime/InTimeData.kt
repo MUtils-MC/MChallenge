@@ -2,10 +2,9 @@ package de.miraculixx.mutils.modules.mods.inTime
 
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.enums.challenges.ChallengeStatus
+import de.miraculixx.api.modules.challenges.ChallengeStatus
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.ChallengeManager
-import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.*
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle

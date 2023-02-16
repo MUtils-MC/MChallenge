@@ -2,7 +2,7 @@ package de.miraculixx.api.data.enums
 
 import de.miraculixx.api.data.enums.AlgorithmSetting.*
 import de.miraculixx.api.data.enums.AlgorithmSettingIndex.*
-import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.gui.Head64
 
 enum class GeneratorAlgorithm(val settings: Map<AlgorithmSettingIndex, AlgorithmSetting>, val icon: String) {
     //Geometry Cuts

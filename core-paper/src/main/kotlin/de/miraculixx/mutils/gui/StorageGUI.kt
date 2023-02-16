@@ -3,8 +3,8 @@ package de.miraculixx.mutils.gui
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
-import de.miraculixx.mutils.enums.gui.Head64
-import de.miraculixx.mutils.enums.gui.StorageFilter
+import de.miraculixx.mutils.gui.Head64
+import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.toMap
 import de.miraculixx.mutils.gui.data.CustomInventory

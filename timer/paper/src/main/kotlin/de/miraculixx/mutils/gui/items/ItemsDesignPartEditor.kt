@@ -6,7 +6,7 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerDesignValue
-import de.miraculixx.mutils.enums.gui.Head64
+import de.miraculixx.mutils.gui.Head64
 import de.miraculixx.mutils.extensions.round
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
