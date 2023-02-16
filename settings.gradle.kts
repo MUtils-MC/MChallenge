@@ -20,6 +20,7 @@ include("timer:fabric")
 
 include("challenges:paper")
 include("challenges:fabric")
+include("challenges:api")
 
 include("world-creator:paper")
 include("world-creator:fabric")

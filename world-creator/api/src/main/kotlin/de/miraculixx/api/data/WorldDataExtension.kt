@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.data
+package de.miraculixx.api.data
 
 import de.miraculixx.mutils.messages.miniMessages
 import de.miraculixx.mutils.messages.msgString

@@ -1,12 +1,17 @@
-package de.miraculixx.mutils
+package de.miraculixx.api
 
-import de.miraculixx.mutils.data.WorldData
-import java.util.UUID
+import de.miraculixx.api.data.WorldData
+import java.util.*
 
 /**
  * Access to the MWorld Manager API
  */
 abstract class MWorldAPI {
+
+    companion object {
+        var instance: MWorldAPI? = null
+    }
+
     /**
      * Create a new custom world form a [WorldData] object.
      * All worlds created by this function will be saved and loaded automatically on server/client restart.

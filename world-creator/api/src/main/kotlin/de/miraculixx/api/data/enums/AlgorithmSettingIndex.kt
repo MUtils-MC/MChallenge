@@ -1,6 +1,6 @@
-package de.miraculixx.mutils.data.enums
+package de.miraculixx.api.data.enums
 
-import de.miraculixx.mutils.data.GeneratorData
+import de.miraculixx.api.data.GeneratorData
 import de.miraculixx.mutils.extensions.msg
 import de.miraculixx.mutils.messages.*
 import net.kyori.adventure.text.Component

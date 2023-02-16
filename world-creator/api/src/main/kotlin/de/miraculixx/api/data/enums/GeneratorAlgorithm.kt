@@ -1,7 +1,7 @@
-package de.miraculixx.mutils.data.enums
+package de.miraculixx.api.data.enums
 
-import de.miraculixx.mutils.data.enums.AlgorithmSetting.*
-import de.miraculixx.mutils.data.enums.AlgorithmSettingIndex.*
+import de.miraculixx.api.data.enums.AlgorithmSetting.*
+import de.miraculixx.api.data.enums.AlgorithmSettingIndex.*
 import de.miraculixx.mutils.enums.gui.Head64
 
 enum class GeneratorAlgorithm(val settings: Map<AlgorithmSettingIndex, AlgorithmSetting>, val icon: String) {

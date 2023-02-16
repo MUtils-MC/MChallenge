@@ -1,4 +1,4 @@
-package de.miraculixx.mutils.data.enums
+package de.miraculixx.api.data.enums
 
 /**
  * Modify the world biome generation with custom implementations

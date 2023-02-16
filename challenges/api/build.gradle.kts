@@ -8,5 +8,5 @@ dependencies {
     implementation(project(":vanilla")) // Main Utils
 }
 
-group = "de.miraculixx.mwc.api"
-setProperty("module_name", "mwc")
+group = "de.miraculixx.challenges.api"
+setProperty("module_name", "challenges")

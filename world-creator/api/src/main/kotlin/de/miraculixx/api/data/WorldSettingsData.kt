@@ -1,7 +1,7 @@
-package de.miraculixx.mutils.data
+package de.miraculixx.api.data
 
-import de.miraculixx.mutils.data.enums.BiomeAlgorithm
-import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
+import de.miraculixx.api.data.enums.BiomeAlgorithm
+import de.miraculixx.api.data.enums.GeneratorAlgorithm
 import kotlinx.serialization.Serializable
 
 /**
