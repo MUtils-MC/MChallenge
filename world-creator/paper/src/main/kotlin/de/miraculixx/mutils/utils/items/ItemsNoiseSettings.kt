@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.data.GeneratorProviderData
+import de.miraculixx.api.data.GeneratorProviderData
 import de.miraculixx.mutils.data.getIcon
 import de.miraculixx.mutils.enums.gui.Head64
 import de.miraculixx.mutils.gui.items.ItemProvider

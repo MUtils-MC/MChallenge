@@ -7,11 +7,11 @@ import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.await.AwaitChatMessage
 import de.miraculixx.mutils.await.AwaitConfirm
-import de.miraculixx.mutils.data.WorldData
-import de.miraculixx.mutils.data.enums.BiomeAlgorithm
-import de.miraculixx.mutils.data.enums.Dimension
-import de.miraculixx.mutils.data.enums.VanillaGenerator
-import de.miraculixx.mutils.data.printInfo
+import de.miraculixx.api.data.WorldData
+import de.miraculixx.api.data.enums.BiomeAlgorithm
+import de.miraculixx.api.data.enums.Dimension
+import de.miraculixx.api.data.enums.VanillaGenerator
+import de.miraculixx.api.data.printInfo
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory

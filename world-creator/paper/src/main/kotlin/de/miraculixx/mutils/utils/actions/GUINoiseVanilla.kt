@@ -2,7 +2,7 @@ package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.data.GeneratorDefaults
+import de.miraculixx.api.data.GeneratorDefaults
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.soundDisable
 import de.miraculixx.mutils.extensions.soundEnable

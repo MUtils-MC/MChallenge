@@ -4,7 +4,10 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.MWorldAPI
+import de.miraculixx.api.MWorldAPI
+import de.miraculixx.api.data.GeneratorDefaults
+import de.miraculixx.api.data.GeneratorProviderData
+import de.miraculixx.api.data.WorldData
 import de.miraculixx.mutils.MWorlds
 import de.miraculixx.mutils.data.*
 import de.miraculixx.mutils.extensions.readJsonString
@@ -20,6 +23,9 @@ import java.io.File
 import java.util.*
 
 object WorldManager: MWorldAPI() {
+    init {
+        instance = this
+    }
     private val customWorlds: MutableMap<UUID, WorldData> = mutableMapOf()
     private val saveFile = File("${MWorlds.configFolder.path}/worlds.json")
 

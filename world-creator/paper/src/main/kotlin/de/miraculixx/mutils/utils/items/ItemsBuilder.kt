@@ -4,8 +4,8 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.data.WorldData
-import de.miraculixx.mutils.data.enums.Dimension
+import de.miraculixx.api.data.WorldData
+import de.miraculixx.api.data.enums.Dimension
 import de.miraculixx.mutils.data.getIcon
 import de.miraculixx.mutils.enums.gui.Head64
 import de.miraculixx.mutils.extensions.msg

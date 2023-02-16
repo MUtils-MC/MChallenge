@@ -2,9 +2,9 @@ package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.data.GeneratorData
-import de.miraculixx.mutils.data.GeneratorProviderData
-import de.miraculixx.mutils.data.enums.AlgorithmSettingIndex
+import de.miraculixx.api.data.GeneratorData
+import de.miraculixx.api.data.GeneratorProviderData
+import de.miraculixx.api.data.enums.AlgorithmSettingIndex
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory

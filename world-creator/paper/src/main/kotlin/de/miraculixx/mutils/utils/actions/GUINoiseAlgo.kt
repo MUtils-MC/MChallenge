@@ -2,10 +2,10 @@ package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.data.GeneratorData
-import de.miraculixx.mutils.data.GeneratorProviderData
-import de.miraculixx.mutils.data.WorldData
-import de.miraculixx.mutils.data.enums.GeneratorAlgorithm
+import de.miraculixx.api.data.GeneratorData
+import de.miraculixx.api.data.GeneratorProviderData
+import de.miraculixx.api.data.WorldData
+import de.miraculixx.api.data.enums.GeneratorAlgorithm
 import de.miraculixx.mutils.extensions.click
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.extensions.soundEnable

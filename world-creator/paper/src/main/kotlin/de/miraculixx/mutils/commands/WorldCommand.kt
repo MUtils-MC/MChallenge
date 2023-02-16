@@ -3,7 +3,7 @@ package de.miraculixx.mutils.commands
 import de.miraculixx.kpaper.extensions.bukkit.register
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.mutils.await.AwaitConfirm
-import de.miraculixx.mutils.data.printInfo
+import de.miraculixx.api.data.printInfo
 import de.miraculixx.mutils.extensions.soundDelete
 import de.miraculixx.mutils.extensions.soundDisable
 import de.miraculixx.mutils.messages.msg
