@@ -5,14 +5,19 @@ import de.miraculixx.mutils.modules.mods.fly.FLY
 import de.miraculixx.mutils.modules.mods.rocket.Rocket
 import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
 import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
+import de.miraculixx.mutils.modules.mods.disabled.Disabled
 import de.miraculixx.mutils.modules.mods.ghost.Ghost
+import de.miraculixx.mutils.modules.mods.huntMob.MobHunt
 import de.miraculixx.mutils.modules.mods.inTime.InTime
+import de.miraculixx.mutils.modules.mods.mirror.Mirror
 import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
 import de.miraculixx.mutils.modules.mods.snake.Snake
 import de.miraculixx.mutils.modules.mods.trafficlight.TrafficLight
+import de.miraculixx.mutils.modules.mods.tron.Tron
 import de.miraculixx.mutils.modules.mods.vampire.Vampire
 import de.miraculixx.mutils.utils.cotm
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 
 class StatusChanger {
 
@@ -53,6 +58,10 @@ class StatusChanger {
             Challenges.ROCKET -> Rocket()
             Challenges.VAMPIRE -> Vampire()
             Challenges.TRAFFIC_LIGHT -> TrafficLight()
+            Challenges.TRON -> Tron()
+            Challenges.DISABLED -> Disabled()
+            Challenges.MOB_HUNT -> MobHunt()
+            Challenges.MIRROR -> Mirror()
         }
     }
 
@@ -62,7 +71,9 @@ class StatusChanger {
         val available = if (false) arrayOf(cotm) else Challenges.values() //TODO
 
         available.forEach {
-            if (!settings.getBoolean(it.name + ".active")) return@forEach
+            val settings = challenges.getSetting(it)
+            if (!settings.active) return@forEach
+
             val challenge = getClass(it)
             if (challenge.start()) {
                 success = true

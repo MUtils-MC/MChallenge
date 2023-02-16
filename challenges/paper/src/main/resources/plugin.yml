@@ -27,3 +27,6 @@ commands:
   reset:
     permission: mutils.command.reset
     description: Resets the main world after a server restart
+  mobhunt:
+    permission: mutils.command.mobhunt
+    description: Modify the Mob-Hunt challenge

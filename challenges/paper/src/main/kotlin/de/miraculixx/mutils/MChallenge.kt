@@ -4,16 +4,21 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.api.MUtilsAPI
 import de.miraculixx.mutils.commands.ChallengeCommand
+import de.miraculixx.mutils.commands.ModuleCommand
 import de.miraculixx.mutils.commands.ResetCommand
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.extensions.enumOf
+import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.utils.BukkitConfig
+import de.miraculixx.mutils.modules.ChallengeManager
+import de.miraculixx.mutils.modules.global.DeathListener
+import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.utils.cotm
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.SettingsData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.serialization.decodeFromString
 import java.io.File
 
 class MChallenge : KSpigot() {
@@ -24,7 +29,8 @@ class MChallenge : KSpigot() {
         lateinit var api: MUtilsAPI
     }
 
-    private lateinit var config: BukkitConfig
+    private lateinit var configFile: File
+    private lateinit var settingsFile: File
 
     override fun startup() {
         getCommand("challenge")!!.let {
@@ -33,6 +39,10 @@ class MChallenge : KSpigot() {
             it.setExecutor(cmd)
             it.tabCompleter = cmd
         }
+        ModuleCommand("mobhunt")
+
+        DeathListener
+//        Spectator.register()
     }
 
     override fun load() {
@@ -40,42 +50,33 @@ class MChallenge : KSpigot() {
         consoleAudience = console
         debug = false
 
+        // Define version
         val versionSplit = server.minecraftVersion.split('.')
         majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
+        // Load configuration
         if (!configFolder.exists()) configFolder.mkdirs()
-        config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings.yml")
-        settings = config.getConfig()
+        configFile = File("${configFolder.path}/settings.json")
+        settingsFile = File("${configFolder.path}/config.json")
+        ChallengeManager.load(configFile)
         val languages = listOf("en_US").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
-        localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages)
+        val settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
+        localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
+//        Spectator.loadData()
 
-        //Reset
-        if (settings.getBoolean("ResetWorld")) {
-            resetWorld(File("world"))
-            resetWorld(File("world_nether"))
-            resetWorld(File("world_the_end"))
-            settings.set("ResetWorld", false)
-        }
-
+        // Connect to API
         CoroutineScope(Dispatchers.Default).launch {
             api = MUtilsAPI("challenges", description.version.toInt(), configFolder, "${server.ip}:${server.port}")
             cotm = enumOf<Challenges>(api.getCOTM()) ?: Challenges.FLY
         }
-
-        settings.getConfigurationSection("users")
     }
 
 
-    private fun resetWorld(file: File) {
-        file.listFiles().forEach { f ->
-            val fileName = f.name
-            if (fileName == "playerdata") {
-                f.listFiles().forEach { pData ->
-                    pData.delete()
-                }
-            } else f.deleteRecursively()
-        }
+    override fun shutdown() {
+        ChallengeManager.shutDown()
+        ChallengeManager.save(configFile)
+//        Spectator.saveData()
     }
 }
 

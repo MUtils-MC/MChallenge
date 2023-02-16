@@ -10,7 +10,8 @@ import de.miraculixx.mutils.messages.cHighlight
 import de.miraculixx.mutils.messages.cmp
 import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.GameMode
 import org.bukkit.World
 import org.bukkit.entity.*
@@ -27,14 +28,18 @@ import java.util.UUID
 class InTime : Challenge {
     override val challenge = Challenges.IN_TIME
     private var timers = HashMap<UUID, InTimeData>()
-    private var mobTime = 1
-    private var damageTime = 1
-    private var playerTime = 1
+    private var mobTime: Int
+    private var damageTime: Int
+    private var playerTime: Int
+
+    init {
+        val settings = challenges.getSetting(Challenges.IN_TIME).settings
+        mobTime = settings["pTime"]?.toInt()?.getValue() ?: 120
+        damageTime = settings["eTime"]?.toInt()?.getValue() ?: 120
+        playerTime = settings["hpTime"]?.toInt()?.getValue() ?: 5
+    }
 
     override fun start(): Boolean {
-        mobTime = settings.getInt("IN_TIME.eTime")
-        damageTime = settings.getInt("IN_TIME.hpTime")
-        playerTime = settings.getInt("IN_TIME.pTime")
         onlinePlayers.forEach { player ->
             if (Spectator.isSpectator(player.uniqueId)) return@forEach
             player.world.entities.forEach entity@{ entity ->

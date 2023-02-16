@@ -1,19 +1,24 @@
 package de.miraculixx.mutils.modules.mods.snake
 
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
 
 class SnakeObj(private val player: Player) {
-    private var delay: Int = settings.getInt("SNAKE.speed")
+    private var delay: Int
     private var blockList = HashMap<Block, Int>()
     private var replaceBlocks = HashMap<Block, Material>()
     private var active = true
 
     init {
+        val settings = challenges.getSetting(Challenges.SNAKE).settings
+        delay = settings["speed"]?.toInt()?.getValue() ?: 1
+
         //Erster Block
         val loc = Location(player.location.world, player.location.blockX.toDouble(), player.location.blockY - 1.0, player.location.blockZ.toDouble())
         val block = loc.block

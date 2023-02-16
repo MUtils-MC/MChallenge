@@ -12,7 +12,8 @@ import de.miraculixx.mutils.messages.cHighlight
 import de.miraculixx.mutils.messages.cmp
 import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.Color
 import org.bukkit.GameMode
 import org.bukkit.Material
@@ -29,6 +30,7 @@ import org.bukkit.potion.PotionEffectType
 class FLY : Challenge {
     override val challenge = Challenges.FLY
     private val data: HashMap<Player, ItemStack?> = HashMap()
+    private val flyBoost: Double
     private val wings = itemStack(Material.ELYTRA) {
         meta {
             name = cmp("Hero Wings", cHighlight)
@@ -37,7 +39,11 @@ class FLY : Challenge {
             isUnbreakable = true
         }
     }
-    private val flyBoost = settings.getDouble("FLY.power")
+
+    init {
+        val settings = challenges.getSetting(Challenges.FLY).settings
+        flyBoost = settings["power"]?.toDouble()?.getValue() ?: 1.0
+    }
 
     override fun register() {
         onMove.register()

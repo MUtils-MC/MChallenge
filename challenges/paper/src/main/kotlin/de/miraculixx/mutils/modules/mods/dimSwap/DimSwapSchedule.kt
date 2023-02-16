@@ -7,8 +7,10 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.title.Title
@@ -18,6 +20,9 @@ import org.bukkit.entity.Player
 import org.bukkit.potion.PotionEffectType
 import java.time.Duration
 
+/**
+ * Disclaimer - The following code is awful and I know that. But it works. Never change a running system
+ */
 class DimSwapSchedule {
 
     fun worldGen(): Boolean {
@@ -191,7 +196,7 @@ class DimSwapSchedule {
                     player.gameMode = GameMode.SURVIVAL
                     player.removePotionEffect(PotionEffectType.BLINDNESS)
                     player.showTitle(Title.title(emptyComponent(), emptyComponent(), Title.Times.times(Duration.ZERO, Duration.ZERO, Duration.ZERO)))
-                    if (settings.getBoolean("DIM_SWAP.starter")) {
+                    if (challenges.getSetting(Challenges.DIM_SWAP).settings["starter"]?.toBool()?.getValue() == true) {
                         val item = itemStack(Material.WOODEN_PICKAXE) {
                             meta {
                                 name = cmp("Starter Wooden Pickaxe", NamedTextColor.WHITE)

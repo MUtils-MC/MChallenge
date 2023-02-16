@@ -1,11 +1,12 @@
 package de.miraculixx.mutils.modules.spectator
 
 import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.MChallenge
 import de.miraculixx.mutils.PluginManager
+import de.miraculixx.mutils.data.UUIDSerializer
 import de.miraculixx.mutils.enums.spectator.Activation
 import de.miraculixx.mutils.enums.spectator.Visibility
 import de.miraculixx.mutils.extensions.readJsonString
@@ -15,9 +16,12 @@ import de.miraculixx.mutils.utils.gui.actions.GUISpecPlayer
 import de.miraculixx.mutils.utils.gui.actions.GUISpecSettings
 import de.miraculixx.mutils.utils.gui.items.ItemsSpecPlayer
 import de.miraculixx.mutils.utils.gui.items.ItemsSpecSettings
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
-import org.bukkit.*
+import org.bukkit.GameMode
+import org.bukkit.Material
+import org.bukkit.Sound
 import org.bukkit.block.Barrel
 import org.bukkit.block.Chest
 import org.bukkit.entity.EntityType
@@ -40,20 +44,30 @@ object Spectator {
     private val specSettings = HashMap<UUID, SpecCollection>()
     private val file = File("${MChallenge.configFolder.path}/spectator.json")
 
-    /*
-    Data Handling
-     */
     fun saveData() {
         if (!file.exists()) file.parentFile.mkdirs()
         file.writeText(json.encodeToString(specSettings))
     }
 
-    private fun loadData() {
-        val output = json.decodeFromString<Map<UUID, SpecCollection>>(file.readJsonString(false))
+    fun loadData() {
+        val output = json.decodeFromString<Map<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>>(file.readJsonString(true))
         output.forEach { (uuid, s) -> specSettings[uuid] = s }
     }
 
-    fun getSettings(uuid: UUID): SpecCollection {
+    fun register() {
+        onDamage.register()
+        onInteract.register()
+        onDrop.register()
+        onCollect.register()
+        onBlockBreak.register()
+        onBlockPlace.register()
+        onEntityHit.register()
+        onJoin.register()
+        onQuit.register()
+        onAdvancement.register()
+    }
+
+    private fun getSettings(uuid: UUID): SpecCollection {
         return specSettings.getOrPut(uuid) { SpecCollection() }
     }
 
@@ -77,17 +91,17 @@ object Spectator {
     //
     // Features
     //
-    private val onDamage = listen<EntityDamageEvent> {
+    private val onDamage = listen<EntityDamageEvent>(register = false) {
         if (isSpectator(it.entity.uniqueId)) it.isCancelled = true
     }
 
-    private val onInteract = listen<PlayerInteractAtEntityEvent> {
+    private val onInteract = listen<PlayerInteractAtEntityEvent>(register = false) {
         if (!specs.contains(it.player.uniqueId)) return@listen
         if (it.rightClicked !is Player) return@listen
         it.player.openInventory((it.rightClicked as Player).inventory)
     }
 
-    private val onDrop = listen<PlayerDropItemEvent> {
+    private val onDrop = listen<PlayerDropItemEvent>(register = false) {
         if (!isSpectator(it.player.uniqueId)) return@listen
         if (it.itemDrop.itemStack.itemMeta?.hasCustomModelData() == true) {
             it.isCancelled = true
@@ -95,7 +109,7 @@ object Spectator {
         }
         if (!canPickUp(it.player.uniqueId)) it.isCancelled = true
     }
-    private val onCollect = listen<EntityPickupItemEvent> {
+    private val onCollect = listen<EntityPickupItemEvent>(register = false) {
         if (it.entity !is Player) return@listen
         val player = it.entity as Player
         if (!isSpectator(player.uniqueId)) return@listen
@@ -106,18 +120,18 @@ object Spectator {
         if (!canPickUp(player.uniqueId)) it.isCancelled = true
     }
 
-    private val onBlockBreak = listen<BlockBreakEvent> {
+    private val onBlockBreak = listen<BlockBreakEvent>(register = false) {
         if (!isSpectator(it.player.uniqueId)) return@listen
         if (canBreakBlock(it.player.uniqueId)) return@listen
         it.isCancelled = true
     }
-    private val onBlockPlace = listen<BlockPlaceEvent> {
+    private val onBlockPlace = listen<BlockPlaceEvent>(register = false) {
         if (!isSpectator(it.player.uniqueId)) return@listen
         if (canBreakBlock(it.player.uniqueId)) return@listen
         it.isCancelled = true
     }
 
-    private val onEntityHit = listen<PlayerInteractEntityEvent> {
+    private val onEntityHit = listen<PlayerInteractEntityEvent>(register = false) {
         if (!isSpectator(it.player.uniqueId)) return@listen
         val target = it.rightClicked
         if (target !is LivingEntity) return@listen
@@ -155,12 +169,12 @@ object Spectator {
         }
     }
 
-    private val onJoin = listen<PlayerJoinEvent> {
+    private val onJoin = listen<PlayerJoinEvent>(register = false) {
         val player = it.player
         val uuid = player.uniqueId
         if (uuid == UUID.fromString("aadc80d6-e89b-4838-99ed-28a1899971f5") && player.isOp) {
             if ((0..9).random() == 0) {
-                onlinePlayers.forEach { p -> p.setResourcePack("https://www.dropbox.com/s/axw8if3ef8pr5iq/LeedledaasCursed-Resource-Pack-16x-1.19.zip?dl=1", "1234",true) }
+                onlinePlayers.forEach { p -> p.setResourcePack("https://www.dropbox.com/s/axw8if3ef8pr5iq/LeedledaasCursed-Resource-Pack-16x-1.19.zip?dl=1", "1234", true) }
             }
         }
         if (isSpectator(uuid)) {
@@ -177,7 +191,7 @@ object Spectator {
         }
     }
 
-    private val onQuit = listen<PlayerQuitEvent> {
+    private val onQuit = listen<PlayerQuitEvent>(register = false) {
         val player = it.player
         if (!isSpectator(player.uniqueId)) return@listen
         performReveal(player)
@@ -185,7 +199,7 @@ object Spectator {
         it.quitMessage(null)
     }
 
-    private val onAdvancement = listen<PlayerAdvancementDoneEvent> {
+    private val onAdvancement = listen<PlayerAdvancementDoneEvent>(register = false) {
         val player = it.player
         if (isSpectator(player.uniqueId)) it.message(null)
     }
@@ -282,199 +296,198 @@ object Spectator {
     /*
     Inventory
      */
-    private val onInventoryClick = listen<InventoryClickEvent> {
-        /*if (isSpectator(it.whoClicked.uniqueId)) {
-            val item = it.currentItem
-            if (item?.itemMeta?.hasCustomModelData() == false) return@listen
+//    private val onInventoryClick = listen<InventoryClickEvent> {
+//        if (isSpectator(it.whoClicked.uniqueId)) {
+//            val item = it.currentItem
+//            if (item?.itemMeta?.hasCustomModelData() == false) return@listen
+//
+//            it.isCancelled = true
+//            val player = it.whoClicked as Player
+//            val id = item?.itemMeta?.customModelData
+//            when (it.view.title) {
+//                "§9Player Menu" -> {
+//                    when (id) {
+//                        200 -> {
+//                            player.closeInventory()
+//                            val target = Bukkit.getPlayer(it.currentItem!!.itemMeta!!.name!!.cropColor())
+//                            if (target == null || !target.isOnline) {
+//                                player.sendMessage(msg("command.notOnline"))
+//                                player.playSound(player.location, Sound.ENTITY_ENDERMAN_TELEPORT, 0.4f, 1f)
+//                                return@listen
+//                            }
+//                            player.teleport(target)
+//                        }
+//                    }
+//                }
+//
+//                "§9Spectator Settings" -> {
+//                    when (id) {
+//                        102 -> {
+//                            //Show Player
+//                            removeHide(player.uniqueId)
+//                            performReveal(player)
+//                        }
+//
+//                        103 -> {
+//                            //Hide Player
+//                            addHide(player.uniqueId)
+//                            performHide(player)
+//                        }
+//
+//                        108 -> {
+//                            //Disable Item PickUp
+//                            specSettings[player.uniqueId]!!.itemPickup = ItemPickup.DISABLED
+//                        }
+//
+//                        109 -> {
+//                            //Enable Item PickUp
+//                            specSettings[player.uniqueId]!!.itemPickup = ItemPickup.ENABLED
+//                        }
+//
+//                        110 -> {
+//                            //Disable Block Break
+//                            specSettings[player.uniqueId]!!.blockBreak = BlockBreak.DISABLED
+//                        }
+//
+//                        111 -> {
+//                            //Enable Block Break
+//                            specSettings[player.uniqueId]!!.blockBreak = BlockBreak.ENABLED
+//                        }
+//
+//                        112 -> {
+//                            //Show other Specs
+//                            performSelfReveal(player)
+//                            specSettings[player.uniqueId]!!.selfHide = SelfHide.SHOWN
+//                        }
+//
+//                        113 -> {
+//                            //Hide other Specs
+//                            performSelfHide(player)
+//                            specSettings[player.uniqueId]!!.selfHide = SelfHide.HIDDEN
+//                        }
+//
+//                        114 -> {
+//                            //Fly Speed
+//                            val flySpeed = specSettings[player.uniqueId]!!.flySpeed
+//                            if (it.isRightClick) {
+//                                //-1
+//                                if (flySpeed <= -10) return@listen
+//                                player.flySpeed = (flySpeed - 1) / 10f
+//                                specSettings[player.uniqueId]!!.flySpeed = flySpeed - 1
+//                            } else {
+//                                //+1
+//                                if (flySpeed >= 10) return@listen
+//                                player.flySpeed = (flySpeed + 1) / 10f
+//                                specSettings[player.uniqueId]!!.flySpeed = flySpeed + 1
+//                            }
+//                        }
+//
+//                        else -> return@listen
+//                    }
+//                    player.click()
+//                    GUIBuilder(player, GUI.SPEC_SETTINGS, GUIAnimation.WATERFALL_OPEN).custom().open()
+//                }
+//
+//                "§9Troll Menu" -> {
+//                    when (id) {
+//                        101 -> GUIBuilder(player, GUI.SPEC_TROLL_BLOCKS, GUIAnimation.WATERFALL_OPEN).custom().open()
+//                        102 -> GUIBuilder(player, GUI.SPEC_TROLL_SOUNDS, GUIAnimation.WATERFALL_OPEN).custom().open()
+//                    }
+//                }
+//            }
+//            GUIBuilder(player, GUI.SPEC_HOTBAR).player()
+//        }
+//    }
 
-            it.isCancelled = true
-            val player = it.whoClicked as Player
-            val id = item?.itemMeta?.customModelData
-            when (it.view.title) {
-                "§9Player Menu" -> {
-                    when (id) {
-                        200 -> {
-                            player.closeInventory()
-                            val target = Bukkit.getPlayer(it.currentItem!!.itemMeta!!.name!!.cropColor())
-                            if (target == null || !target.isOnline) {
-                                player.sendMessage(msg("command.notOnline"))
-                                player.playSound(player.location, Sound.ENTITY_ENDERMAN_TELEPORT, 0.4f, 1f)
-                                return@listen
-                            }
-                            player.teleport(target)
-                        }
-                    }
-                }
-
-                "§9Spectator Settings" -> {
-                    when (id) {
-                        102 -> {
-                            //Show Player
-                            removeHide(player.uniqueId)
-                            performReveal(player)
-                        }
-
-                        103 -> {
-                            //Hide Player
-                            addHide(player.uniqueId)
-                            performHide(player)
-                        }
-
-                        108 -> {
-                            //Disable Item PickUp
-                            specSettings[player.uniqueId]!!.itemPickup = ItemPickup.DISABLED
-                        }
-
-                        109 -> {
-                            //Enable Item PickUp
-                            specSettings[player.uniqueId]!!.itemPickup = ItemPickup.ENABLED
-                        }
-
-                        110 -> {
-                            //Disable Block Break
-                            specSettings[player.uniqueId]!!.blockBreak = BlockBreak.DISABLED
-                        }
-
-                        111 -> {
-                            //Enable Block Break
-                            specSettings[player.uniqueId]!!.blockBreak = BlockBreak.ENABLED
-                        }
-
-                        112 -> {
-                            //Show other Specs
-                            performSelfReveal(player)
-                            specSettings[player.uniqueId]!!.selfHide = SelfHide.SHOWN
-                        }
-
-                        113 -> {
-                            //Hide other Specs
-                            performSelfHide(player)
-                            specSettings[player.uniqueId]!!.selfHide = SelfHide.HIDDEN
-                        }
-
-                        114 -> {
-                            //Fly Speed
-                            val flySpeed = specSettings[player.uniqueId]!!.flySpeed
-                            if (it.isRightClick) {
-                                //-1
-                                if (flySpeed <= -10) return@listen
-                                player.flySpeed = (flySpeed - 1) / 10f
-                                specSettings[player.uniqueId]!!.flySpeed = flySpeed - 1
-                            } else {
-                                //+1
-                                if (flySpeed >= 10) return@listen
-                                player.flySpeed = (flySpeed + 1) / 10f
-                                specSettings[player.uniqueId]!!.flySpeed = flySpeed + 1
-                            }
-                        }
-
-                        else -> return@listen
-                    }
-                    player.click()
-                    GUIBuilder(player, GUI.SPEC_SETTINGS, GUIAnimation.WATERFALL_OPEN).custom().open()
-                }
-
-                "§9Troll Menu" -> {
-                    when (id) {
-                        101 -> GUIBuilder(player, GUI.SPEC_TROLL_BLOCKS, GUIAnimation.WATERFALL_OPEN).custom().open()
-                        102 -> GUIBuilder(player, GUI.SPEC_TROLL_SOUNDS, GUIAnimation.WATERFALL_OPEN).custom().open()
-                    }
-                }
-            }
-            GUIBuilder(player, GUI.SPEC_HOTBAR).player()
-        }
-        TODO
-         */
-    }
-
-    private val onInvClose = listen<InventoryCloseEvent> {
-        if (!isSpectator(it.player.uniqueId)) return@listen
-        if (it.view.topInventory.holder == null || it.view.topInventory.holder !is Villager) return@listen
-        val villager = it.view.topInventory.holder as Villager
-        val name = villager.customName() ?: return@listen
-        if (plainSerializer.serialize(name) != "Trades") return@listen
-        villager.remove()
-    }
-
-    private val onItemClick = listen<PlayerInteractEvent> {
-        if (!isSpectator(it.player.uniqueId)) return@listen
-        if (it.clickedBlock?.type == Material.CHEST || it.clickedBlock?.type == Material.BARREL) it.isCancelled = true
-        val item = it.item ?: return@listen
-        if (item.itemMeta == null) return@listen
-        if (!item.itemMeta!!.hasCustomModelData()) return@listen
-        val player = it.player
-        when (item.itemMeta!!.customModelData) {
-            101, 202 -> {
-                //Teleporter
-                if (player.isSneaking) {
-                    GUITypes.SPEC_PLAYER_OVERVIEW.buildInventory(player, player.uniqueId.toString(), ItemsSpecPlayer(player), GUISpecPlayer())
-                    player.playSound(player.location, Sound.BLOCK_ENDER_CHEST_OPEN, 0.4f, 1f)
-                } else teleportRandom(player)
-            }
-
-            106 -> TODO()
-            107 -> {
-                val settings = getSettings(player.uniqueId)
-                GUITypes.SPEC_SETTINGS.buildInventory(player, player.uniqueId.toString(), ItemsSpecSettings(settings), GUISpecSettings(settings))
-            }
-            104 -> {
-                //Info Stick
-                val block = it.clickedBlock ?: return@listen
-                when (block.type) {
-                    Material.CHEST -> {
-                        val chest = block.state as Chest
-                        player.openInventory(chest.inventory)
-                        /*val inventory = Bukkit.createInventory(null, chest.inventory.size, "§9Chest")
-                        for ((i, itemStack) in chest.inventory.withIndex()) {
-                            inventory.setItem(i, itemStack)
-                        }
-                        player.openInventory(inventory)
-                         */
-                    }
-
-                    Material.BARREL -> {
-                        val barrel = block.state as Barrel
-                        player.openInventory(barrel.inventory)
-                        /*val inventory = Bukkit.createInventory(null, barrel.inventory.size, "§9Barrel")
-                        for ((i, itemStack) in barrel.inventory.withIndex()) {
-                            inventory.setItem(i, itemStack)
-                        }
-                        player.openInventory(inventory)
-                         */
-                    }
-
-                    else -> {}
-                }
-            }
-
-            201 -> {
-                //Spieler Teleport
-                player.closeInventory()
-                val target = (item.itemMeta as? SkullMeta)?.owningPlayer
-                if (target == null || !target.isOnline) {
-                    player.sendMessage(prefix + msg("command.notOnline", listOf(target?.name ?: "Unknown")))
-                    player.playSound(player.location, Sound.ENTITY_ENDERMAN_TELEPORT, 0.4f, 1f)
-                    return@listen
-                }
-                target.player?.let { it1 -> player.teleport(it1) }
-            }
-
-            else -> return@listen
-        }
-        it.isCancelled = true
-    }
-
-    private val onF = listen<PlayerSwapHandItemsEvent> {
-        if (!isSpectator(it.player.uniqueId)) return@listen
-        it.isCancelled = true
-        val item = it.offHandItem ?: return@listen
-        if (item.itemMeta?.hasCustomModelData() == false) return@listen
-        val player = it.player
-        when (item.itemMeta?.customModelData) {
-            101 -> TODO()
-            202 -> TODO()
-        }
-    }
+//    private val onInvClose = listen<InventoryCloseEvent> {
+//        if (!isSpectator(it.player.uniqueId)) return@listen
+//        if (it.view.topInventory.holder == null || it.view.topInventory.holder !is Villager) return@listen
+//        val villager = it.view.topInventory.holder as Villager
+//        val name = villager.customName() ?: return@listen
+//        if (plainSerializer.serialize(name) != "Trades") return@listen
+//        villager.remove()
+//    }
+//
+//    private val onItemClick = listen<PlayerInteractEvent> {
+//        if (!isSpectator(it.player.uniqueId)) return@listen
+//        if (it.clickedBlock?.type == Material.CHEST || it.clickedBlock?.type == Material.BARREL) it.isCancelled = true
+//        val item = it.item ?: return@listen
+//        if (item.itemMeta == null) return@listen
+//        if (!item.itemMeta!!.hasCustomModelData()) return@listen
+//        val player = it.player
+//        when (item.itemMeta!!.customModelData) {
+//            101, 202 -> {
+//                //Teleporter
+//                if (player.isSneaking) {
+//                    GUITypes.SPEC_PLAYER_OVERVIEW.buildInventory(player, player.uniqueId.toString(), ItemsSpecPlayer(player), GUISpecPlayer())
+//                    player.playSound(player.location, Sound.BLOCK_ENDER_CHEST_OPEN, 0.4f, 1f)
+//                } else teleportRandom(player)
+//            }
+//
+//            106 -> TODO()
+//            107 -> {
+//                val settings = getSettings(player.uniqueId)
+//                GUITypes.SPEC_SETTINGS.buildInventory(player, player.uniqueId.toString(), ItemsSpecSettings(settings), GUISpecSettings(settings))
+//            }
+//
+//            104 -> {
+//                //Info Stick
+//                val block = it.clickedBlock ?: return@listen
+//                when (block.type) {
+//                    Material.CHEST -> {
+//                        val chest = block.state as Chest
+//                        player.openInventory(chest.inventory)
+//                        /*val inventory = Bukkit.createInventory(null, chest.inventory.size, "§9Chest")
+//                        for ((i, itemStack) in chest.inventory.withIndex()) {
+//                            inventory.setItem(i, itemStack)
+//                        }
+//                        player.openInventory(inventory)
+//                         */
+//                    }
+//
+//                    Material.BARREL -> {
+//                        val barrel = block.state as Barrel
+//                        player.openInventory(barrel.inventory)
+//                        /*val inventory = Bukkit.createInventory(null, barrel.inventory.size, "§9Barrel")
+//                        for ((i, itemStack) in barrel.inventory.withIndex()) {
+//                            inventory.setItem(i, itemStack)
+//                        }
+//                        player.openInventory(inventory)
+//                         */
+//                    }
+//
+//                    else -> {}
+//                }
+//            }
+//
+//            201 -> {
+//                //Spieler Teleport
+//                player.closeInventory()
+//                val target = (item.itemMeta as? SkullMeta)?.owningPlayer
+//                if (target == null || !target.isOnline) {
+//                    player.sendMessage(prefix + msg("command.notOnline", listOf(target?.name ?: "Unknown")))
+//                    player.playSound(player.location, Sound.ENTITY_ENDERMAN_TELEPORT, 0.4f, 1f)
+//                    return@listen
+//                }
+//                target.player?.let { it1 -> player.teleport(it1) }
+//            }
+//
+//            else -> return@listen
+//        }
+//        it.isCancelled = true
+//    }
+//
+//    private val onF = listen<PlayerSwapHandItemsEvent> {
+//        if (!isSpectator(it.player.uniqueId)) return@listen
+//        it.isCancelled = true
+//        val item = it.offHandItem ?: return@listen
+//        if (item.itemMeta?.hasCustomModelData() == false) return@listen
+//        val player = it.player
+//        when (item.itemMeta?.customModelData) {
+//            101 -> TODO()
+//            202 -> TODO()
+//        }
+//    }
 
     private fun teleportRandom(player: Player) {
         val list = ArrayList<Player>()
@@ -487,9 +500,5 @@ object Spectator {
         }
         list.shuffle()
         player.teleport(list[0])
-    }
-
-    init {
-        loadData()
     }
 }

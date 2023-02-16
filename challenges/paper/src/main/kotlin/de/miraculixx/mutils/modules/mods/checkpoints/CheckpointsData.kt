@@ -1,6 +1,8 @@
 package de.miraculixx.mutils.modules.mods.checkpoints
 
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
@@ -15,7 +17,7 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 class CheckpointsData(player: Player, private val zombie: Zombie) {
-    private val onlyTeleport = settings.getBoolean("CHECKPOINTS.onlyTP")
+    private val onlyTeleport: Boolean
     private val inventory: Inventory
     private val uuid: UUID
     private val xp: Int
@@ -27,6 +29,8 @@ class CheckpointsData(player: Player, private val zombie: Zombie) {
     private val entities: HashMap<Location, EntityType>
 
     init {
+        val settings = challenges.getSetting(Challenges.CHECKPOINTS).settings
+        onlyTeleport = settings["onlyTP"]?.toBool()?.getValue() ?: false
         uuid = player.uniqueId
         hunger = player.foodLevel
         saturation = player.saturation

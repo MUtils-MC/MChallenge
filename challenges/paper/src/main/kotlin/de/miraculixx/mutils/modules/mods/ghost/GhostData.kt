@@ -2,7 +2,9 @@ package de.miraculixx.mutils.modules.mods.ghost
 
 import de.miraculixx.kpaper.extensions.geometry.add
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.enums.Challenges
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
@@ -10,10 +12,14 @@ import org.bukkit.entity.Player
 class GhostData {
     private val currentBlocks = HashMap<Player, List<Block>>()
     private val ghostPlayer = ArrayList<Player>()
-    private val radius = settings.getInt("GHOST.radius")
-    private val mode = settings.getBoolean("GHOST.mode")
+    private val radius: Int
+    private val mode: Boolean
 
     init {
+        val settings = challenges.getSetting(Challenges.GHOST).settings
+        radius = settings["radius"]?.toInt()?.getValue() ?: 7
+        mode = settings["glide"]?.toBool()?.getValue() ?: true
+
         scheduler()
     }
 

@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.utils
 
+import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import java.util.*
@@ -19,5 +20,18 @@ fun getLivingMobs(natural: Boolean): MutableList<EntityType> {
             )
         )
     }
+    return list
+}
+
+fun getMaterials(survival: Boolean): List<Material> {
+    val list = Material.values().filter {
+        val name = it.name
+        it.isItem
+                && !it.isAir
+                && (it.creativeCategory != null || !survival)
+                && (!name.startsWith("INFESTED_") || !survival)
+                && (!name.endsWith("_SPAWN_EGG") || !survival)
+    }.toMutableList()
+    if (survival) list.remove(Material.BEDROCK)
     return list
 }

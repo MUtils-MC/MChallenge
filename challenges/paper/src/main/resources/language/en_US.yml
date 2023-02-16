@@ -32,6 +32,7 @@ common:
 #   Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
+  notRegistered: "<red>Activate the module to use this command!"
 
 
 #-----------------------------------------#
@@ -39,6 +40,18 @@ command:
 # Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
+  death:
+    tron: "<red><input-1> stepped into a line and died!"
+    disable:
+      break: "<red><input-1> tried to break a block!"
+      place: "<red><input-1> tried to place a block!"
+      craft: "<red><input-1> tried to use the crafting table!"
+      xp: "<red><input-1> tried to pickup XP!"
+      item: "<red><input-1> tried to pickup an item!"
+      trade: "<red><input-1> tried to trade!"
+  mobHunt:
+    collect: "<green><input-1> found <input-2>!"
+    success: "<green>Congratulations! You found all mobs"
 
 
 #-----------------------------------------#
@@ -257,6 +270,20 @@ items:
         - "You are only allowed to move"
         - "on green lights. If you move"
         - "on red, you get punished"
+    TRON:
+      n: "Snake Path"
+      l:
+        - "Every player creates a path"
+        - "on walking. But be carefully!"
+        - "You are not allowed to touch it"
+        - "ever again..."
+    DISABLED:
+      n: "Disable Features"
+      l:
+        - "Disable certain key features"
+        - "to challenge your self."
+        - "Additionally a damage punishment"
+        - "can be added"
   chS:
     FLY:
       power:
@@ -285,8 +312,8 @@ items:
         n: "Radius"
       adventure:
         n: "Adventure Ghost"
-      info:
-        n:
+      glide:
+        n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
         n: "Lives"
@@ -386,3 +413,27 @@ items:
         n: "Yellow Phase"
       red:
         n: "Red Phase"
+    TRON:
+      visible:
+        n: "Visible Path"
+    DISABLED:
+      block:
+        n: "Block Category"
+      break:
+        n: "Disable Breaking"
+      place:
+        n: "Disable Placing"
+      interact:
+        n: "Interact Category"
+      craft:
+        n: "Disable Crafting Table"
+      trade:
+        n: "Disable Trading"
+      misc:
+        n: "Misc Category"
+      xp:
+        n: "Disable XP Pickup"
+      items:
+        n: "Disable Item Pickup"
+      damage:
+        n: "Damage"

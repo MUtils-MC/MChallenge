@@ -8,7 +8,8 @@ import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
 import de.miraculixx.mutils.utils.getRPPrompt
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.Particle
@@ -34,7 +35,8 @@ class Ghost : Challenge {
 
     override fun start(): Boolean {
         ghostObj = GhostData()
-        adventure = settings.getBoolean("GHOST.adventure")
+        val settings = challenges.getSetting(Challenges.GHOST).settings
+        adventure = settings["adventure"]?.toBool()?.getValue() ?: false
         onlinePlayers.forEach {
             it.setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1", "", true, getRPPrompt("player", "Ghost-Challenge"))
         }

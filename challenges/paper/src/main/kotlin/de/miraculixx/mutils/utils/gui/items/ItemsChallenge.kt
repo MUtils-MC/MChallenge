@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.utils.gui.items
 
+import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.enums.gui.StorageFilter
@@ -8,7 +9,6 @@ import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.utils.cotm
 import de.miraculixx.mutils.utils.getAccountStatus
-import de.miraculixx.mutils.utils.settings
 import de.miraculixx.mutils.utils.settings.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -64,6 +64,7 @@ class ItemsChallenge : ItemFilterProvider {
     private fun getChallengeItem(challenge: Challenges): Pair<ItemStack, Boolean> {
         return challenge.getIcon().apply {
             editMeta {
+                it.customModel = 1
                 it.displayName(getName(challenge))
                 it.lore(getLore(challenge))
                 it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES)

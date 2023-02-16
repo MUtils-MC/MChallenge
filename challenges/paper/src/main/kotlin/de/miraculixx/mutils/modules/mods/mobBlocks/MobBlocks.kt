@@ -6,7 +6,8 @@ import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.mutils.enums.Challenges
 import de.miraculixx.mutils.modules.Challenge
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.utils.settings
+import de.miraculixx.mutils.utils.settings.challenges
+import de.miraculixx.mutils.utils.settings.getSetting
 import org.bukkit.Material
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockExplodeEvent
@@ -18,8 +19,13 @@ class MobBlocks : Challenge {
     override val challenge = Challenges.MOB_BLOCKS
     private var manager: MobRandomizerData? = null
 
+    init {
+        val settings = challenges.getSetting(Challenges.MOB_BLOCKS).settings
+        manager = MobRandomizerData(settings["rnd"]?.toBool()?.getValue() ?: false)
+    }
+
     override fun start(): Boolean {
-        manager = MobRandomizerData(settings.getBoolean("MOB_RANDOMIZER.random"))
+
         manager?.generate()
         return true
     }

@@ -6,7 +6,6 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.bukkit.Material
 
-val challenges: MutableMap<Challenges, ChallengeData> = mutableMapOf()
 fun MutableMap<Challenges, ChallengeData>.getSetting(challenge: Challenges): ChallengeData {
     return getOrPut(challenge) {
         ChallengeData(challenge.getDefaultSettings(), false)
@@ -115,7 +114,8 @@ data class ChallengeSectionSetting<T>(
     override fun setValue(new: Map<String, ChallengeSetting<T>>) {}
 }
 
-interface ChallengeSetting<T> {
+@Serializable
+sealed interface ChallengeSetting<T> {
     val materialKey: String
     fun getDefault(): T
     fun getUnit(): String

@@ -6,9 +6,7 @@ import de.miraculixx.mutils.messages.cMark
 import de.miraculixx.mutils.messages.cmp
 import de.miraculixx.mutils.messages.plus
 import net.kyori.adventure.text.Component
-import org.bukkit.configuration.file.FileConfiguration
 
-lateinit var settings: FileConfiguration
 lateinit var cotm: Challenges
 
 fun getRPPrompt(action: String, input: String): Component {

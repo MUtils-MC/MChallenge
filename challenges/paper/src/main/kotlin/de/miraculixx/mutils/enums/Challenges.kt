@@ -17,6 +17,15 @@ import org.bukkit.inventory.meta.SkullMeta
  * @param icon Material with possible metadata **Pair<Icon, HeadTexture>**
  */
 enum class Challenges(val filter: List<StorageFilter>, private val icon: Icon, val status: Boolean = false) {
+    // Free Challenges
+    VAMPIRE(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.GHAST_TEAR), true),
+    TRAFFIC_LIGHT(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.REDSTONE_LAMP), true),
+    TRON(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.LIGHT_BLUE_CONCRETE), true),
+    DISABLED(listOf(StorageFilter.FUN, StorageFilter.FREE), Icon(Material.IRON_BARS), true),
+    MOB_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon(Material.PHANTOM_SPAWN_EGG), true),
+    MIRROR(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.MULTIPLAYER), Icon(Material.GLASS), true),
+
+
     FLY(listOf(StorageFilter.FUN), Icon(Material.ELYTRA)),
     IN_TIME(listOf(StorageFilter.MEDIUM), Icon(Material.CLOCK)),
     MOB_BLOCKS(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon(Material.ZOMBIE_HEAD)),
@@ -51,9 +60,6 @@ enum class Challenges(val filter: List<StorageFilter>, private val icon: Icon, v
     RIVALS_COLLECT(listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), Icon(Material.CHEST_MINECART)),
     ROCKET(listOf(StorageFilter.MEDIUM), Icon(Material.FIREWORK_ROCKET)),
 
-    VAMPIRE(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.GHAST_TEAR), true),
-    TRAFFIC_LIGHT(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon(Material.REDSTONE_LAMP), true),
-
     ;
 
 
@@ -84,6 +90,7 @@ enum class Challenges(val filter: List<StorageFilter>, private val icon: Icon, v
             GHOST -> mapOf(
                 "radius" to ChallengeIntSetting("SNOWBALL", 7, "b", max = 20, min = 1),
                 "adventure" to ChallengeBoolSetting("IRON_SWORD", false),
+                "glide" to ChallengeBoolSetting("FEATHER", true),
             )
 
             BLOCK_ASYNC -> emptyMap()
@@ -161,6 +168,38 @@ enum class Challenges(val filter: List<StorageFilter>, private val icon: Icon, v
                     )
                 ),
                 "damage" to ChallengeDoubleSetting("BEETROOT", 10.0, "hp", max = 50.0, min = 0.5)
+            )
+            TRON -> mapOf("visible" to ChallengeBoolSetting("GLASS_BOTTLE", true))
+            DISABLED -> mapOf(
+                "block" to ChallengeSectionSetting(
+                    "STONE_BRICKS",
+                    mapOf(
+                        "break" to ChallengeBoolSetting("IRON_PICKAXE", false),
+                        "place" to ChallengeBoolSetting("GRAVEL", false)
+                    )
+                ),
+                "interact" to ChallengeSectionSetting(
+                    "BREAD",
+                    mapOf(
+                        "craft" to ChallengeBoolSetting("CRAFTING_TABLE", false),
+                        "trade" to ChallengeBoolSetting("EMERALD", false)
+                    )
+                ),
+                "misc" to ChallengeSectionSetting(
+                    "WHEAT_SEEDS",
+                    mapOf(
+                        "xp" to ChallengeBoolSetting("EXPERIENCE_BOTTLE", false),
+                        "items" to ChallengeBoolSetting("HOPPER", false)
+                    )
+                ),
+                "damage" to ChallengeIntSetting("BEETROOT", 1)
+            )
+            MOB_HUNT -> emptyMap()
+            MIRROR -> mapOf(
+                "hearts" to ChallengeBoolSetting("BEETROOT"),
+                "food" to ChallengeBoolSetting("BREAD"),
+                "potions" to ChallengeBoolSetting("POTION"),
+                "hotbar" to ChallengeBoolSetting("WHITE_SHULKER_BOX")
             )
         }
     }

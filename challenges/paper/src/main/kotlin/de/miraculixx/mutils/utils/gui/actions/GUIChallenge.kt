@@ -52,23 +52,25 @@ class GUIChallenge : GUIEvent {
                 player.click()
                 inv.update()
             }
-        }
 
-        val challengeKey = meta?.persistentDataContainer.get(NamespacedKey(namespace, "gui.challenge")) ?: return@event
-        val challenge = enumOf<Challenges>(challengeKey) ?: return@event
+            else -> {
+                val challengeKey = meta?.persistentDataContainer.get(NamespacedKey(namespace, "gui.challenge")) ?: return@event
+                val challenge = enumOf<Challenges>(challengeKey) ?: return@event
 
-        val data = challenges.getSetting(challenge)
-        if (click.isLeftClick) {
-            data.active = data.active.toggle(player)
-            inv.update()
-        } else if (click.isRightClick) {
-            val settings = data.settings
-            if (settings.isEmpty()) {
-                player.soundStone()
-                return@event
+                val data = challenges.getSetting(challenge)
+                if (click.isLeftClick) {
+                    data.active = data.active.toggle(player)
+                    inv.update()
+                } else if (click.isRightClick) {
+                    val settings = data.settings
+                    if (settings.isEmpty()) {
+                        player.soundStone()
+                        return@event
+                    }
+                    GUITypes.CHALLENGE_SETTINGS.buildInventory(player, "CH-$challengeKey", ItemsChallengeSettings(settings, challenge), GUIChallengeSettings(inv, null))
+                    player.click()
+                }
             }
-            GUITypes.CHALLENGE_SETTINGS.buildInventory(player, "CH-$challengeKey", ItemsChallengeSettings(settings, challenge), GUIChallengeSettings(inv, null))
-            player.click()
         }
     }
 }
