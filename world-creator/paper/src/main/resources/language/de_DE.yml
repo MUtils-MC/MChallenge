@@ -1,20 +1,18 @@
 #----------------------- Translation ------------------------#
-#       Content of all messages in MUtils-Challenge.         #
+#Content of all messages in MUtils-Challenge.         #
 #------------------------------------------------------------#
-# Some messages support MiniMessage styling (marked with #m) #
-#          and extra variables (marked with #v).             #
-# Syntax: <input-i> ->                                       #
-#         i is a number from 0 to the message max            #
+#Some messages support MiniMessage styling (marked with #m) #
+#and extra variables (marked with #v).             #
+#Syntax: <input-i> ->                                       #
+#i is a number from 0 to the message max            #
 #------------------------------------------------------------#
-
 creator: MUtils
 version: 1.0.0
 locale: GERMAN
-
 #-----------------------------------------#
-#           Common Translations           #
-# Translation keys that persist in every  #
-#        project for simple values        #
+#Common Translations           #
+#Translation keys that persist in every  #
+#project for simple values        #
 #-----------------------------------------#
 common:
   boolTrue: "Aktiviert"
@@ -24,18 +22,16 @@ common:
   click: "Klick"
   sneak: "Sneak"
   none: "Leer"
-
-
+  confirm: "Confirm"
+  cancel: "Cancel"
 #-----------------------------------------#
-#            Command Responses            #
-#   Every command supports MiniMessages   #
+#Command Responses            #
+#Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
-
-
 #-----------------------------------------#
-#                 Events                  #
-# Messages that occur on multiple places  #
+#Events                  #
+#Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
   seed: "Seed"
@@ -44,6 +40,14 @@ event:
   biomeProvider: "Biome Generator"
   noiseProvider: "Welt Generator"
   teleportToWorld: "Teleportiere zu <input-1>" #v - world name
+  noOverride: "<red>Activate global override to modify the value!"
+  sneakExit: "Sneak to exit"
+  newWorld: "Creating new world..."
+  newWorldSub: "This could take a few seconds"
+  teleportFromDelete: "The world you were in was deleted..."
+  category: "Category"
+  worldCreated: "New world successfully created"
+  worldInfo: "Current world information"
   env:
     NORMAL: "Overworld"
     THE_END: "End"
@@ -53,15 +57,38 @@ event:
     AMPLIFIED: "Verstärkt"
     FLAT: "Flach"
     LARGE_BIOMES: "Große Biome"
-
-
 #-----------------------------------------#
-#                  Items                  #
-#   Messages only visible on GUI items    #
-# Syntax: n -> Item Name                  #
-#         l -> Item Lore                  #
+#Items                  #
+#Messages only visible on GUI items    #
+#Syntax: n -> Item Name                  #
+#l -> Item Lore                  #
 #-----------------------------------------#
 items:
+  general:
+    arrowRightEnd:
+      n: "<red>Scroll Right"
+      l:
+        - "You can not scroll any"
+        - "further to the right"
+    arrowLeftEnd:
+      n: "<red>Scroll Left"
+      l:
+        - "You can not scroll any"
+        - "further to the left"
+    arrowRight:
+      n: "<green>Scroll Right"
+      l:
+        - "<blue>Click ≫ +1 page"
+        - "<blue>Sneak-Click ≫ +5 pages"
+    arrowLeft:
+      n: "<green>Scroll Left"
+      l:
+        - "<blue>Click ≫ -1 page"
+        - "<blue>Sneak-Click ≫ -5 pages"
+    pageIndicator:
+      l:
+        - "Click to open a compact"
+        - "GUI with quick access"
   menu:
     worldOverview:
       n: "Welten Übersicht"
@@ -81,7 +108,6 @@ items:
         - "Welten spezifische Dateien"
         - "wie Datapacks oder Ressourcepacks,"
         - "welche über resets erhalten"
-        - "bleiben sollen"
     worldSettings:
       n: "Welteinstellungen"
       l:
@@ -115,7 +141,6 @@ items:
       l:
         - "Setze die Welt Dimension."
         - "Dies verändert die vanilla"
-        - "Generation"
       s: "Dimension"
     structures:
       n: "Strukturen Generation"
@@ -148,6 +173,42 @@ items:
       s3: "Oberflächen Generation"
       s4: "Gewächs Generation"
       s5: "Kreaturen Generation"
+      s6: "Structure Generation"
+    copy:
+      n: "Copy World Settings"
+      l:
+        - "Copy only the world settings"
+        - "and generate new terrain."
+    copyFull:
+      n: "Copy Full World"
+      l:
+        - "Copy the whole world"
+        - "with all settings and"
+        - "progress (terrain & entities)"
+    preview:
+      n: "Prerender Current Rule"
+      l:
+        - "Preview your current rule"
+        - "in an abstract prerender"
+    category:
+      n: "Sync Category"
+      l:
+        - "Enter a custom category"
+        - "to create a separat player"
+        - "saving. Switching between categories"
+        - "will load the needed player data"
+      s: "Category"
+    worldSet:
+      n: "Create World Set"
+      l:
+        - "Create an overworld, nether"
+        - "and end world from your settings"
+        - "and put them all in one category"
+    singleWorld:
+      n: "Create World"
+      l:
+        - "Create a single world from"
+        - "your settings"
   algo:
     CHESS:
       n: "Schach Algorithmus"
@@ -172,24 +233,74 @@ items:
       l:
         - "Stemple Vierecke in alle"
         - "Chunks. Die Ränderdicke ist"
-        - "individuell einstellbar"
     CIRCLE:
       n: "Kreis Algorithmus"
       l:
         - "Stemple Kreislöcher in deine"
         - "Welt oder lasse nur noch Kreisböden"
-        - "übrig"
     SCALE_X:
       n: "Skalierung-X"
+      l:
+        - "Up or downscale the"
+        - "X direction"
     SCALE_Z:
       n: "Skalierung-Z"
+      l:
+        - "Up or downscale the"
+        - "Z direction"
     SOLID_THICKNESS:
       n: "Dicke-Solid"
+      l:
+        - "The thickness of the"
+        - "solid part that is not"
+        - "replaced with air"
     HOLE_THICKNESS:
       n: "Dicke-Luft"
+      l:
+        - "The thickness of the"
+        - "void part that is replaced"
+        - "with air"
     X_DIRECTION:
       n: "Richtung-X"
+      l:
+        - "The pattern direction."
+        - "Deactivate it for a z"
+        - "direction"
     INVERTED:
       n: "Invertiert"
+      l:
+        - "Switch the hole and"
+        - "solid part"
     RANDOM:
       n: "Zufällig"
+      l:
+        - "Overrides the thickness"
+        - "or scaling values with an"
+        - "random value for every repetition"
+    VANILLA:
+      n: "Vanilla"
+      l:
+        - "Default biome generation"
+        - "like in vanilla worlds"
+    CHUNKED_BIOMES:
+      n: "Chunked Biomes"
+      l:
+        - "Every chunk contains a random biome."
+        - "You can define the chunk size"
+    RANDOM_BIOMES:
+      n: "Random Biomes"
+      l:
+        - "Every block contains a random biome."
+        - "This counts for heights and depths"
+    SINGLE_BIOME:
+      n: "Single Biome"
+      l:
+        - "The world only contains one biome."
+        - "This affects structure and mob"
+        - "spawning"
+    SWITCHED_BIOMES:
+      n: "Switched Biomes"
+      l:
+        - "All biomes are swapped with other"
+        - "random biomes. The vanilla biome"
+        - "structure stays the same"
