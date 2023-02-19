@@ -1,19 +1,17 @@
 #----------------------- Translation ------------------------#
-#        Content of all messages in MUtils-Timer.            #
+#Content of all messages in MUtils-Timer.            #
 #------------------------------------------------------------#
-# Some messages support MiniMessage styling (marked with #m) #
-#          and extra variables (marked with #v).             #
-# Syntax: <input-i> ->                                       #
-#         i is a number from 0 to the message max            #
+#Some messages support MiniMessage styling (marked with #m) #
+#and extra variables (marked with #v).             #
+#Syntax: <input-i> ->                                       #
+#i is a number from 0 to the message max            #
 #------------------------------------------------------------#
-
 creator: MUtils
 version: 1.0.0
-
 #-----------------------------------------#
-#           Common Translations           #
-# Translation keys that persist in every  #
-#        project for simple values        #
+#Common Translations           #
+#Translation keys that persist in every  #
+#project for simple values        #
 #-----------------------------------------#
 common:
   boolTrue: "Aktiviert"
@@ -23,11 +21,9 @@ common:
   click: "Klick"
   sneak: "Sneak"
   none: "Leer"
-
-
 #-----------------------------------------#
-#            Command Responses            #
-#   Every command supports MiniMessages   #
+#Command Responses            #
+#Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
   help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
@@ -36,11 +32,9 @@ command:
   alreadyOn: "<red>Timer ist bereits am laufen!"
   alreadyOff: "<red>Timer ist bereits pausiert!"
   reset: "<grey>Timer erfolgreich zurück auf 0 gesetzt!"
-
-
 #-----------------------------------------#
-#                 Events                  #
-# Messages that occur on multiple places  #
+#Events                  #
+#Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
   millis: "Millisekunden"
@@ -56,16 +50,18 @@ event:
   syntax: "Syntax"
   forcedTwoDigits: "Immer 2 Zeichen"
   visibleOnNull: "Sichtbar wenn 0"
-  spaceInfo: "Nutze _ um Leerzeichen am Ende und Anfang zu nutzen" #m
-  clickToCopy: "Klicke zum kopieren: <blue><input-1>" #m
+  spaceInfo: "Nutze _ um Leerzeichen am Ende und Anfang zu nutzen"
+  clickToCopy: "Klicke zum kopieren: <blue><input-1>"
   finish: "Fertig"
-
-
+  playtime: "Spielzeit:"
+  endSuccess: "Challenge succeed!\n<input-1> killed" #v1
+  kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
+  ban: "§9§m                            §9[ §lGame Over§9 ]§m                            §r\n\n§c≫ You died and got kicked ≪§r\n§6Thanks for playing!§r\n\n§9§m                            §9[ §lGame Over§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
 #-----------------------------------------#
-#                  Items                  #
-#   Messages only visible on GUI items    #
-# Syntax: n -> Item Name                  #
-#         l -> Item Lore                  #
+#Items                  #
+#Messages only visible on GUI items    #
+#Syntax: n -> Item Name                  #
+#l -> Item Lore                  #
 #-----------------------------------------#
 items:
   general:
@@ -104,6 +100,7 @@ items:
     l:
       - "Setze die Regeln für deinen"
       - "Server solange der Timer läuft"
+      - "is active"
   goals:
     n: "Timer Ziele"
     l:
@@ -115,13 +112,11 @@ items:
     l:
       - "Der globale Timer wird immer"
       - "über den persönlichen Timer angezeigt,"
-      - "ausser er ist pausiert"
   direction:
     n: "Timer Richtung"
     l:
       - "Setze die Zählrichtung."
       - "Sobald die Zeit 0 erreicht wird"
-      - "stoppt der Timer"
   createDesign:
     n: "Neues Design"
     l:
@@ -190,16 +185,20 @@ items:
     l:
       - "Werde in den Spectator Modus"
       - "gesetzt beim Tod."
-      - "Nur wenn der Timer läuft"
   specOnJoin:
     n: "Spectator beim Joinen"
     l:
       - "Werde in den Spectator Modus"
       - "gesetzt beim joinen."
-      - "Nur wenn der Timer läuft"
   punishment:
     n: "Todesbestrafung"
     l:
       - "Bestrafe tote Spieler mit"
       - "gewissen Aktionen."
-      - "Nur wenn der Timer läuft"
+  freezeWorld:
+    n: "Freeze World"
+    l:
+      - "Freeze the world on timer"
+      - "pause. This will prevent any"
+      - "player interactions and pauses"
+      - "all AIs and game logics"

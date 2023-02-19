@@ -8,20 +8,20 @@
 #------------------------------------------------------------#
 creator: MUtils
 version: 1.0.0
-locale: GERMAN
+locale: ENGLISH
 #-----------------------------------------#
 #Common Translations           #
 #Translation keys that persist in every  #
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Aktiviert"
-  boolFalse: "Deaktiviert"
-  left: "Links"
-  right: "Rechts"
-  click: "Klick"
+  boolTrue: "Enabled"
+  boolFalse: "Disabled"
+  left: "Left"
+  right: "Right"
+  click: "Click"
   sneak: "Sneak"
-  none: "Leer"
+  none: "None"
   confirm: "Confirm"
   cancel: "Cancel"
 #-----------------------------------------#
@@ -36,10 +36,10 @@ command:
 event:
   seed: "Seed"
   dimension: "Dimension"
-  type: "Weltenart"
+  type: "World Type"
   biomeProvider: "Biome Generator"
-  noiseProvider: "Welt Generator"
-  teleportToWorld: "Teleportiere zu <input-1>" #v - world name
+  noiseProvider: "World Generator"
+  teleportToWorld: "Teleported to <input-1>" #v - world name
   noOverride: "<red>Activate global override to modify the value!"
   sneakExit: "Sneak to exit"
   newWorld: "Creating new world..."
@@ -54,9 +54,9 @@ event:
     NETHER: "Nether"
   gen:
     NORMAL: "Normal"
-    AMPLIFIED: "Verstärkt"
-    FLAT: "Flach"
-    LARGE_BIOMES: "Große Biome"
+    AMPLIFIED: "Amplified"
+    FLAT: "Flat"
+    LARGE_BIOMES: "Larger Biomes"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -91,45 +91,45 @@ items:
         - "GUI with quick access"
   menu:
     worldOverview:
-      n: "Welten Übersicht"
+      n: "World Overview"
       l:
-        - "Liste aller geladenen Welten"
-        - "mit Schnellzugriff zu"
-        - "teleportieren oder löschen"
+        - "List of all loaded worlds"
+        - "with fast access to teleport"
+        - "or delete"
     worldCreator:
-      n: "Welten Ersteller"
+      n: "World Creator"
       l:
-        - "Erstelle neue Welten von"
-        - "Grund auf, oder nutze"
-        - "eine Vorlage"
+        - "Create new worlds from"
+        - "a template or completely"
+        - "from scratch"
     worldDatas:
-      n: "Lokale Welten Daten"
+      n: "Custom World Data"
       l:
-        - "Welten spezifische Dateien"
-        - "wie Datapacks oder Ressourcepacks,"
-        - "welche über resets erhalten"
+        - "World specific resources"
+        - "like datapacks that should"
+        - "persist through resets"
     worldSettings:
-      n: "Welteinstellungen"
+      n: "World Settings"
       l:
-        - "Greife auf spezifische"
-        - "Einstellungen einer Welt zu,"
-        - "wie Gamerules"
+        - "Access and edit world"
+        - "settings like gamerules for"
+        - "each world"
     worldSettingsGlobal:
-      n: "Globale Welteinstellungen"
+      n: "Global World Settings"
       l:
-        - "Definiere globale Regeln"
-        - "für alle neu erstellten"
-        - "Welten"
+        - "Define global world"
+        - "settings that apply for"
+        - "all new worlds"
   creator:
     name:
-      n: "Weltname"
+      n: "World Name"
       l:
-        - "Setze einen Namen, unter"
-        - "welchem die Welt gespeichert"
-        - "wird und erreichbar ist"
+        - "Set your favourite world name"
+        - "that is used to save or access"
+        - "the new world"
       s: "Name"
     seed:
-      n: "Welt Seed"
+      n: "World Seed"
       l:
         - "Set a seed that is used to"
         - "change the world generation."
@@ -137,42 +137,42 @@ items:
         - "generate equal"
       s: "Seed"
     env:
-      n: "Dimension"
+      n: "Environment"
       l:
-        - "Setze die Welt Dimension."
-        - "Dies verändert die vanilla"
-      s: "Dimension"
+        - "Set the world Environment"
+        - "(Dimension)"
+      s: "Environment"
     structures:
-      n: "Strukturen Generation"
+      n: "Structure Generation"
       l:
-        - "Stelle ein, ob Strukturen"
-        - "generieren sollen"
-      s: "Strukturen"
+        - "Toggle structure generation"
+        - "in your new world"
+      s: "Structures"
     worldType:
-      n: "Weltart"
+      n: "World Type"
       l:
-        - "Ändere den vanilla Weltgenerator."
-        - "Diese Einstellung funktioniert"
-        - "unterschiedlich in anderen Versionen"
-      s: "Art"
+        - "Change the vanilla world"
+        - "generation. These work differently"
+        - "on different versions"
+      s: "Type"
     biomeAlgo:
-      n: "Biome Algorithmus"
+      n: "Biome Algorithm"
       l:
-        - "Ändere die Biome Generierung."
-        - "Jeder Generator lässt sich"
-        - "einstellen"
+        - "Change the biome generation"
+        - "to new custom one. Every algorithm"
+        - "can be modified"
     noiseAlgo:
-      n: "Vanilla Generierung"
+      n: "Vanilla Noise Algorithms"
       l:
-        - "Vertiefte Einstellungen zum"
-        - "ändern der vanilla Generierung."
-        - "<#CF6679>Veränder diese nur, wenn du"
-        - "<#CF6679>weißt was du tust!"
+        - "Advanced settings to modify"
+        - "the vanilla world generation."
+        - "<#CF6679>Only edit if you know what you are"
+        - "<#CF6679>doing!"
       s1: "Noise Generation"
-      s2: "Höhlen Generation"
-      s3: "Oberflächen Generation"
-      s4: "Gewächs Generation"
-      s5: "Kreaturen Generation"
+      s2: "Cave Generation"
+      s3: "Surface Generation"
+      s4: "Foliage Generation"
+      s5: "Mobs Generation"
       s6: "Structure Generation"
     copy:
       n: "Copy World Settings"
@@ -211,68 +211,68 @@ items:
         - "your settings"
   algo:
     CHESS:
-      n: "Schach Algorithmus"
+      n: "Chess Algorithm"
       l:
-        - "Stempelt Vierecklöcher in die"
-        - "Welt wie ein Schachbrett. Die"
-        - "weißen Felder werden zu Luft"
+        - "Shapes your world in squares."
+        - "Like chess, the white squares will"
+        - "be replaced with air"
     LINE:
-      n: "Linien Algorithmus"
+      n: "Line Algorithm"
       l:
-        - "Zeichne Linien in die Welt."
-        - "Die Richtung und Liniendicke"
-        - "ist einstellbar"
+        - "Draw void lines in your world."
+        - "The line and void thickness can"
+        - "be modified individual"
     DIAGONAL_LINE:
-      n: "Diagonale Linien Algorithmus"
+      n: "Diagonal Line Algorithm"
       l:
-        - "Zeichne diagonale Linien in die"
-        - "Welt. Die Richtung und"
-        - "Liniendicke ist einstellbar"
+        - "Draw diagonal void lines in your"
+        - "world. The line and void thickness"
+        - "can be modified individual"
     SQUARE:
-      n: "Chunk Ecken Algorithmus"
+      n: "Chunked Squares Algorithm"
       l:
-        - "Stemple Vierecke in alle"
-        - "Chunks. Die Ränderdicke ist"
+        - "Print square holes in your chunks"
+        - "with individual border sizes"
     CIRCLE:
-      n: "Kreis Algorithmus"
+      n: "Circle Algorithm"
       l:
-        - "Stemple Kreislöcher in deine"
-        - "Welt oder lasse nur noch Kreisböden"
+        - "Print circle holes in your world"
+        - "or only leave circles as floor"
     SCALE_X:
-      n: "Skalierung-X"
+      n: "Scaling-X"
       l:
         - "Up or downscale the"
         - "X direction"
     SCALE_Z:
-      n: "Skalierung-Z"
+      n: "Scaling-Z"
       l:
         - "Up or downscale the"
         - "Z direction"
     SOLID_THICKNESS:
-      n: "Dicke-Solid"
+      n: "Thickness-Solid"
       l:
         - "The thickness of the"
         - "solid part that is not"
         - "replaced with air"
     HOLE_THICKNESS:
-      n: "Dicke-Luft"
+      n: "Thickness-Hole"
       l:
         - "The thickness of the"
         - "void part that is replaced"
         - "with air"
     X_DIRECTION:
-      n: "Richtung-X"
+      n: "Direction-X"
       l:
         - "The pattern direction."
         - "Deactivate it for a z"
         - "direction"
     INVERTED:
-      n: "Invertiert"
+      n: "Inverted"
       l:
         - "Switch the hole and"
         - "solid part"
     RANDOM:
-      n: "Zufällig"
+      n: "Random"
       l:
         - "Overrides the thickness"
         - "or scaling values with an"
