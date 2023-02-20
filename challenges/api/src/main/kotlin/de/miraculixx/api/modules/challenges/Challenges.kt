@@ -18,7 +18,13 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     TRON(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("LIGHT_BLUE_CONCRETE"), true),
     DISABLED(listOf(StorageFilter.FUN, StorageFilter.FREE), Icon("IRON_BARS"), true),
     MOB_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon("PHANTOM_SPAWN_EGG"), true),
+    ITEM_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon("ENDER_CHEST"), true),
     MIRROR(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.MULTIPLAYER), Icon("GLASS"), true),
+    CHUNK_FLATTENER(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("IRON_TRAPDOOR"), true),
+    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM), Icon("TNT"), true),
+    CHUNK_DECAY(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("OAK_LEAVES"), true),
+    CHUNK_CLEARER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("DRAGON_BREATH"), true),
+    ANVIL_CRUSHER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("ANVIL"), true),
 
 
     FLY(listOf(StorageFilter.FUN), Icon("ELYTRA")),
@@ -39,7 +45,6 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     ONE_BIOME(listOf(StorageFilter.MEDIUM), Icon("FILLED_MAP")),
     BOOST_UP(listOf(StorageFilter.MEDIUM), Icon("SHULKER_SHELL")),
     RIGHT_TOOL(listOf(StorageFilter.MEDIUM), Icon("WOODEN_AXE")),
-    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM), Icon("TNT")),
     SNEAK_SPAWN(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("HOPPER")),
     WORLD_PEACE(listOf(StorageFilter.MEDIUM), Icon("CORNFLOWER")),
     GRAVITY(listOf(StorageFilter.MEDIUM), Icon("SAND")),
@@ -184,11 +189,41 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                 "damage" to ChallengeIntSetting("BEETROOT", 1)
             )
             MOB_HUNT -> emptyMap()
+            ITEM_HUNT -> emptyMap()
             MIRROR -> mapOf(
                 "hearts" to ChallengeBoolSetting("BEETROOT"),
                 "food" to ChallengeBoolSetting("BREAD"),
                 "potions" to ChallengeBoolSetting("POTION"),
                 "hotbar" to ChallengeBoolSetting("WHITE_SHULKER_BOX")
+            )
+            CHUNK_FLATTENER -> mapOf(
+                "delay" to ChallengeIntSetting("CLOCK", 15, "s", max = 600, min = 1),
+                "shouldBreak" to ChallengeBoolSetting("IRON_PICKAXE", false)
+            )
+            CHUNK_DECAY -> mapOf(
+                "delay" to ChallengeIntSetting("CLOCK", 15, "s", max = 600, min = 1),
+                "percentage" to ChallengeIntSetting("COMPARATOR", 5, "%", max = 100, min = 1),
+                "shouldBreak" to ChallengeBoolSetting("IRON_PICKAXE", false)
+            )
+            CHUNK_CLEARER -> mapOf(
+                "breakAll" to ChallengeBoolSetting("GRASS_BLOCK", true),
+                "shouldBreak" to ChallengeBoolSetting("IRON_PICKAXE", true),
+                "bundle" to ChallengeBoolSetting("HOPPER", true)
+            )
+            ANVIL_CRUSHER -> mapOf(
+                "delay" to ChallengeSectionSetting("CLOCK", mapOf(
+                    "startDelay" to ChallengeIntSetting("REDSTONE", 200, "t", max = 1200, min = 20, step = 20),
+                    "amplifierDelay" to ChallengeIntSetting("COMPARATOR", 5, "t", max = 60, min = 0, step = 5)
+                )),
+                "density" to ChallengeSectionSetting("ANVIL", mapOf(
+                    "startDensity" to ChallengeIntSetting("REDSTONE", 5, "%", max = 100, min = 1),
+                    "amplifierDensity" to ChallengeIntSetting("COMPARATOR", 1, "%", max = 10, min = 0)
+                )),
+                "radius" to ChallengeSectionSetting("ARROW", mapOf(
+                    "startRadius" to ChallengeIntSetting("REDSTONE", 5, "b", max = 15, min = 1),
+                    "amplifierRadius" to ChallengeIntSetting("COMPARATOR", 5, "b", max = 5, min = 0),
+                )),
+                "height" to ChallengeIntSetting("RABBIT_FOOT", 5, "b", max = 15, min = 2)
             )
         }
     }

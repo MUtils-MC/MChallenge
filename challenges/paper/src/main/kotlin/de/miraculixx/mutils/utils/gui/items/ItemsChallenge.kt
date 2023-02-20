@@ -5,8 +5,8 @@ import de.miraculixx.api.settings.*
 import de.miraculixx.api.utils.cotm
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.extensions.msg
+import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.gui.items.ItemFilterProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.challenges.getIcon
@@ -23,36 +23,28 @@ class ItemsChallenge : ItemFilterProvider {
 
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
-            val challenges = Challenges.values()
+            val challenges = Challenges.values().filter { isMatchingFilter(it, filter) }
             val amount = challenges.size
-            val range = if (from >= amount) emptyList() else challenges.copyOfRange(from, to.coerceAtMost(amount)).filter {
-                it != cotm
-            }
+            val range = if (from >= amount) mutableListOf() else challenges
+                .subList(from, to.coerceAtMost(amount))
             val status = getAccountStatus()
+//            println("$from - $to >> $range")
 
-            // Adding Challenge of the month at first - only if first index
-            if (isMatchingFilter(cotm, filter) && from == 0) {
-                val monthly = getChallengeItem(cotm)
-                val item = monthly.first
-                item.editMeta {
-                    it.name = it.name?.color(cSuccess)
-                    it.lore(it.lore()?.apply { add(0, cmp("Challenge of the Month", cSuccess)) })
-                }
-                put(item, monthly.second)
-            }
-
-            // Adding all other Challenges in reversed order (newest first)
+            // Adding all other Challenges - globals first
             range.forEach { challenge ->
-                if (isMatchingFilter(challenge, filter)) {
-                    val data = getChallengeItem(challenge)
-                    if (!status && !challenge.status) {
-                        data.first.editMeta {
-                            it.name = it.name?.color(cError)
-                            it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
-                        }
-                    } else data.first.editMeta { it.name = it.name?.color(cHighlight) }
-                    put(data.first, data.second)
+                val data = getChallengeItem(challenge)
+                when {
+                    challenge == cotm -> data.first.editMeta {
+                        it.name = it.name?.color(cSuccess)
+                        it.lore(it.lore()?.apply { add(0, cmp("Challenge of the Month", cSuccess)) })
+                    }
+                    !status && !challenge.status -> data.first.editMeta {
+                        it.name = it.name?.color(cError)
+                        it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
+                    }
+                    else -> data.first.editMeta { it.name = it.name?.color(cHighlight) }
                 }
+                put(data.first, data.second)
             }
         }
     }
