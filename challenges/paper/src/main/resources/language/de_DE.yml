@@ -14,14 +14,14 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
-  click: "Click"
-  sneak: "Sneak"
-  none: "None"
-  confirm: "Confirm"
+  boolTrue: "Aktiviert"
+  boolFalse: "Deaktiviert"
+  left: "Links"
+  right: "Rechts"
+  click: "Klick"
+  sneak: "Schleichen"
+  none: "Nichts"
+  confirm: "Bestätigen"
   cancel: "Cancel"
 #-----------------------------------------#
 #Command Responses            #
