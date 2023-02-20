@@ -29,10 +29,10 @@ common:
 #-----------------------------------------#
 command:
   challenge:
-    stop: "Challenges <red><b>wurden gestoppt</b></red>! (<input-1>)"
-    start: "Challenges <green><b>wurden gestartet</b></green>! (<input-1>)"
+    stop: "Challenges wurden <red><b>gestoppt</b></red>! (<input-1>)"
+    start: "Challenges wurden <green><b>gestartet</b></green>! (<input-1>)"
     pause: "Challenges temporär <red>pausiert</red>! (<input-1>)"
-    continue: "Challenges <green>wurde fortgesetzt</green>! (<input-1>)"
+    continue: "Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
 #-----------------------------------------#
 #Events                  #
@@ -60,45 +60,45 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scrolle nach Rechts"
+      n: "<red>Scrolle nach rechts"
       l:
         - "Du kannst nicht weiter"
-        - "nach Rechts scrollen"
+        - "nach rechts scrollen"
     arrowLeftEnd:
-      n: "<red>Scrolle nach Links"
+      n: "<red>Scrolle nach links"
       l:
         - "Du kannst nicht weiter"
-        - "nach Links scrollen"
+        - "nach links scrollen"
     arrowRight:
-      n: "<green>Scrolle nach Rechts"
+      n: "<green>Scrolle nach rechts"
       l:
         - "<blue>Klicke ≫ +1 Seite"
-        - "<blue>Schleich-Klick ≫ +5 Seiten"
+        - "<blue>Sneak-Klick ≫ +5 Seiten"
     arrowLeft:
-      n: "<green>Scrolle nach Links"
+      n: "<green>Scrolle nach links"
       l:
         - "<blue>Klicke ≫ - 1Seite"
-        - "<blue>Schleich-Klick ≫ -5 Seiten"
+        - "<blue>Sneak-Klick ≫ -5 Seiten"
     arrowUpGreen:
-      n: "<green>Scrollen nach oben"
+      n: "<green>Scrolle nach oben"
       l:
         - "<blue>Klicke ≫ - 1Seite"
         - "<blue>Sneak-Click ≫ -3 pages"
     arrowDownGreen:
-      n: "<green>Runter scrollen"
+      n: "<green>Scrolle nach unten"
       l:
         - "<blue>Klicke ≫ +1 Seite"
         - "<blue>Sneak-Click ≫ +3 pages"
     arrowUpRed:
-      n: "<red>Hochscrollen"
+      n: "<red>Scrolle nach oben"
       l:
         - "Du kannst nicht weiter"
-        - "weiter oben"
+        - "nach oben scrollen"
     arrowDownRed:
-      n: "<red>Herunterscrollen"
+      n: "<red>Scrolle nach unten"
       l:
         - "You can not scroll any"
-        - "weiter nach unten"
+        - "nach unten scrollen"
     pageIndicator:
       l:
         - "Click to open a compact"
@@ -267,7 +267,7 @@ items:
     FORCE_COLLECT:
       n: "Sammel Aufgabe"
       l:
-        - "Du bist gezwungen zu sammeln"
+        - "Du musst das vorgegebene"
         - "das gegebene Item um zu überleben"
     RANDOMIZER_DAMAGE:
       n: "Schaden Randomizer"
