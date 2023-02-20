@@ -191,29 +191,29 @@ items:
     STAY_AWAY:
       n: "Bleibe fern"
       l:
-        - "Kommst du zu nahe an andere "
-        - "mobs or players causes damage."
-        - "Time for some social distancing"
+        - "Wenn du zu nahe an andere "
+        - "Mobs oder Spieler kommst, verursacht das Schaden."
+        - "Zeit für soziale Distanz"
     RANDOMIZER_BLOCK:
       n: "Block Randomizer"
       l:
-        - "Block drops are shuffled"
-        - "(or random)"
+        - "Die Block Drops sind gemischt"
+        - "(oder zufällig)"
     RANDOMIZER_ENTITY:
       n: "Mob Drop Randomizer"
       l:
-        - "Mob drops are shuffled"
-        - "(or random)"
+        - "Die Mob Drops sind gemischt"
+        - "(oder zufällig)"
     RANDOMIZER_BIOMES:
       n: "Biome Randomizer"
       l:
-        - "World biomes are shuffled"
-        - "(or random)"
+        - "Die Biome in der Welt sind gemischt"
+        - "(oder zufällig)"
     RANDOMIZER_MOBS:
       n: "Mob Randomizer"
       l:
-        - "Mob spawning is shuffled"
-        - "(or random)"
+        - "Das Mob-Spawning ist gemischt"
+        - "(oder zufällig)"
     FORCE_COLLECT:
       n: "Force Collect"
       l:
@@ -224,7 +224,7 @@ items:
       l:
         - "Damage is shuffled like"
         - "2hp will be always 5hp"
-        - "(or random)"
+        - "(oder zufällig)"
     NO_DOUBLE_KILL:
       n: "No Double Kills"
       l:
@@ -273,23 +273,23 @@ items:
       n: "Disable Features"
       l:
         - "Disable certain key features"
-        - "to challenge your self."
+        - "sich selbst herauszufordern."
         - "Additionally a damage punishment"
-        - "can be added"
+        - "kann hinzugefügt werden"
   chS:
     FLY:
       power:
-        n: "Power"
+        n: "Kraft"
     IN_TIME:
       pTime:
-        n: "Player Time"
+        n: "Spielerzeit"
       eTime:
         n: "Entity Time"
       hpTime:
         n: "Time per HP"
     MOB_BLOCKS:
       rnd:
-        n: "Random"
+        n: "Zufällig"
     CHECKPOINTS:
       onlyTP:
         n: "Only Position"
@@ -298,7 +298,7 @@ items:
         n: "Starter Pickaxe"
     SNAKE:
       speed:
-        n: "Speed"
+        n: "Tempo"
     GHOST:
       radius:
         n: "Radius"
@@ -308,7 +308,7 @@ items:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
-        n: "Lives"
+        n: "Leben"
       sync:
         n: "Lives = HP"
       info:
@@ -317,10 +317,10 @@ items:
       random: "Random Roles"
     RUN_RANDOMIZER:
       goal:
-        n: "Block Goal"
+        n: "Blockziel"
     DAMAGE_DUELL:
       percent:
-        n: "Percentage"
+        n: "Prozent"
     ONE_BIOME:
       delay:
         n: "Delay"
@@ -330,7 +330,7 @@ items:
       boost:
         n: "Boost Power"
       mode:
-        n: "Only Mobs"
+        n: "Nur Monster"
     CHUNK_BLOCK_BREAK:
       bundle:
         n: "Bundle Drops"
@@ -345,7 +345,7 @@ items:
         n: "Damage Distance"
     RANDOMIZER_BLOCK:
       random:
-        n: "Full Random"
+        n: "Komplett Zufällig"
     RANDOMIZER_ENTITY:
       random:
         n: "Full Random"
@@ -359,11 +359,11 @@ items:
       minCooldown:
         n: "Min Cooldown"
       maxCooldown:
-        n: "Max Cooldown"
+        n: "Maximale Abklingzeit"
       minTime:
-        n: "Min Collect Time"
+        n: "Minimale Sammelzeit"
       maxTime:
-        n: "Max Collect Time"
+        n: "Maximale Sammelzeit"
     RANDOMIZER_DAMAGE:
       random:
         n: "Full Random"
@@ -382,7 +382,7 @@ items:
         n: "Joker"
     ROCKET:
       capacity:
-        n: "Fuel Capacity"
+        n: "Treibstoffkapazität"
     VAMPIRE:
       startBlood:
         n: "Start Blood"
@@ -394,13 +394,13 @@ items:
         n: "Blood Drain"
     TRAFFIC_LIGHT:
       min:
-        n: "Min Duration"
+        n: "Minimale Dauer"
       max:
-        n: "Max Duration"
+        n: "Maximale Dauer"
       damage:
-        n: "Damage on red"
+        n: "Schaden bei Rot"
       green:
-        n: "Green Phase"
+        n: "Grün Phase"
       yellow:
         n: "Yellow Phase"
       red:
