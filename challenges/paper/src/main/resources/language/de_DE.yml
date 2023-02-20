@@ -385,9 +385,9 @@ items:
         n: "Treibstoffkapazität"
     VAMPIRE:
       startBlood:
-        n: "Start Blood"
+        n: "Starte Blut"
       maxBlood:
-        n: "Blood Capacity"
+        n: "Blutkapazität"
       healthToBlood:
         n: "HP - Blut"
       bloodLoose:
@@ -402,7 +402,7 @@ items:
       green:
         n: "Grün Phase"
       yellow:
-        n: "Yellow Phase"
+        n: "Gelbphase"
       red:
         n: "Rot-Phase"
     TRON:
@@ -410,7 +410,7 @@ items:
         n: "Sichtbarer Pfad"
     DISABLED:
       block:
-        n: "Block Category"
+        n: "Blockkategorie"
       break:
         n: "Abbauen deaktivieren"
       place:
