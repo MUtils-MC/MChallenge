@@ -36,7 +36,7 @@ command:
 event:
   seed: "Seed"
   dimension: "Dimension"
-  type: "Weltenart"
+  type: "Welttyp"
   biomeProvider: "Biome Generator"
   noiseProvider: "Welt Generator"
   teleportToWorld: "Teleportiere zu <input-1>" #v - world name
