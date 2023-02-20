@@ -29,10 +29,10 @@ common:
 #-----------------------------------------#
 command:
   challenge:
-    stop: "Challenges <red><b>stopped</b></red>! (<input-1>)"
-    start: "Challenges <green><b>started</b></green>! (<input-1>)"
-    pause: "Challenges temporary <red>paused</red>! (<input-1>)"
-    continue: "Challenges <green>resumed</green>! (<input-1>)"
+    stop: "Challenges <red><b>wurden gestoppt</b></red>! (<input-1>)"
+    start: "Challenges <green><b>wurden gestartet</b></green>! (<input-1>)"
+    pause: "Challenges temporär <red>pausiert</red>! (<input-1>)"
+    continue: "Challenges <green>wurde fortgesetzt</green>! (<input-1>)"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
 #-----------------------------------------#
 #Events                  #
@@ -60,42 +60,42 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scroll Right"
+      n: "<red>Scrolle nach Rechts"
       l:
-        - "You can not scroll any"
-        - "further to the right"
+        - "Du kannst nicht weiter"
+        - "nach Rechts scrollen"
     arrowLeftEnd:
-      n: "<red>Scroll Left"
+      n: "<red>Scrolle nach Links"
       l:
-        - "You can not scroll any"
-        - "further to the left"
+        - "Du kannst nicht weiter"
+        - "nach Links scrollen"
     arrowRight:
-      n: "<green>Scroll Right"
+      n: "<green>Scrolle nach Rechts"
       l:
-        - "<blue>Click ≫ +1 page"
-        - "<blue>Sneak-Click ≫ +5 pages"
+        - "<blue>Klicke ≫ +1 Seite"
+        - "<blue>Schleich-Klick ≫ +5 Seiten"
     arrowLeft:
-      n: "<green>Scroll Left"
+      n: "<green>Scrolle nach Links"
       l:
-        - "<blue>Click ≫ -1 page"
-        - "<blue>Sneak-Click ≫ -5 pages"
+        - "<blue>Klicke ≫ - 1Seite"
+        - "<blue>Schleich-Klick ≫ -5 Seiten"
     arrowUpGreen:
-      n: "<green>Scroll Up"
+      n: "<green>Scrollen nach oben"
       l:
-        - "<blue>Click ≫ -1 page"
+        - "<blue>Klicke ≫ - 1Seite"
         - "<blue>Sneak-Click ≫ -3 pages"
     arrowDownGreen:
-      n: "<green>Scroll Down"
+      n: "<green>Runter scrollen"
       l:
-        - "<blue>Click ≫ +1 page"
+        - "<blue>Klicke ≫ +1 Seite"
         - "<blue>Sneak-Click ≫ +3 pages"
     arrowUpRed:
-      n: "<red>Scroll Up"
+      n: "<red>Hochscrollen"
       l:
-        - "You can not scroll any"
-        - "further up"
+        - "Du kannst nicht weiter"
+        - "weiter oben"
     arrowDownRed:
-      n: "<red>Scroll Down"
+      n: "<red>Herunterscrollen"
       l:
         - "You can not scroll any"
         - "further down"
@@ -333,11 +333,11 @@ items:
         - "order to finish!"
         - "Use /mobhunt to modify"
     ITEM_HUNT:
-      n: "Item Hunt"
+      n: "Gegenstandssuche"
       l:
         - "Collect all Items in a given"
-        - "order to finish!"
-        - "Use /itemhunt to modify"
+        - "um zu beenden!"
+        - "Benutze /itemhunt zum ändern"
     MIRROR:
       n: "Mirror Challenge"
       l:
