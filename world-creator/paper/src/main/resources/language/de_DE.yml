@@ -84,7 +84,7 @@ items:
       n: "<green>Scroll Left"
       l:
         - "<blue>Klick ≫ - 1Seite"
-        - "<blue>Sneak-Click ≫ -5 pages"
+        - "<blue>Schleich-Klick ≫ -5 Seiten"
     pageIndicator:
       l:
         - "Klicke, um ein kompaktes GUI zu öffnen"
@@ -288,7 +288,7 @@ items:
         - "Every chunk contains a random biome."
         - "You can define the chunk size"
     RANDOM_BIOMES:
-      n: "Random Biomes"
+      n: "Zufällige Biome"
       l:
         - "Every block contains a random biome."
         - "This counts for heights and depths"
@@ -297,10 +297,10 @@ items:
       l:
         - "Die Welt enthält nur ein Biom."
         - "Dies wirkt sich auf Strukturen- und"
-        - "spawning"
+        - "Mob-Spawning aus"
     SWITCHED_BIOMES:
-      n: "Switched Biomes"
+      n: "Gewechselte Biome"
       l:
-        - "All biomes are swapped with other"
-        - "random biomes. The vanilla biome"
-        - "structure stays the same"
+        - "Alle Biome werden mit anderen"
+        - "zufälligen Biomen ausgetauscht. Die"
+        - "Vanilla-Biom Struktur bleibt gleich"
