@@ -19,7 +19,7 @@ common:
   left: "Links"
   right: "Rechts"
   click: "Klick"
-  sneak: "Sneak"
+  sneak: "Schleichen"
   none: "Leer"
 #-----------------------------------------#
 #Command Responses            #
@@ -44,7 +44,7 @@ event:
   days: "Tage"
   active: "Aktiv"
   disabled: "Inaktiv"
-  prefix: "Prefix"
+  prefix: "Präfix"
   suffix: "Suffix"
   animation: "Animationsgeschw."
   syntax: "Syntax"
@@ -124,7 +124,7 @@ items:
       - "von Grund auf. Animationen sind"
       - "in der Vorschau nicht animiert!"
   designName:
-    n: "Design Name"
+    n: "Designname"
     l:
       - "Setze einen passenden Namen, er"
       - "ist in der lokalen und öffentlichen"
