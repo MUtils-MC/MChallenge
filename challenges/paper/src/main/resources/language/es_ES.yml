@@ -28,6 +28,11 @@ common:
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
+  challenge:
+    stop: "Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "Challenges <green>resumed</green>! (<input-1>)"
   notRegistered: "<red>Activate the module to use this command!"
 #-----------------------------------------#
 #Events                  #
@@ -53,6 +58,51 @@ event:
 #l -> Item Lore                  #
 #-----------------------------------------#
 items:
+  general:
+    arrowRightEnd:
+      n: "<red>Scroll Right"
+      l:
+        - "You can not scroll any"
+        - "further to the right"
+    arrowLeftEnd:
+      n: "<red>Scroll Left"
+      l:
+        - "You can not scroll any"
+        - "further to the left"
+    arrowRight:
+      n: "<green>Scroll Right"
+      l:
+        - "<blue>Click ≫ +1 page"
+        - "<blue>Sneak-Click ≫ +5 pages"
+    arrowLeft:
+      n: "<green>Scroll Left"
+      l:
+        - "<blue>Click ≫ -1 page"
+        - "<blue>Sneak-Click ≫ -5 pages"
+    arrowUpGreen:
+      n: "<green>Scroll Up"
+      l:
+        - "<blue>Click ≫ -1 page"
+        - "<blue>Sneak-Click ≫ -3 pages"
+    arrowDownGreen:
+      n: "<green>Scroll Down"
+      l:
+        - "<blue>Click ≫ +1 page"
+        - "<blue>Sneak-Click ≫ +3 pages"
+    arrowUpRed:
+      n: "<red>Scroll Up"
+      l:
+        - "You can not scroll any"
+        - "further up"
+    arrowDownRed:
+      n: "<red>Scroll Down"
+      l:
+        - "You can not scroll any"
+        - "further down"
+    pageIndicator:
+      l:
+        - "Click to open a compact"
+        - "GUI with quick access"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -276,6 +326,34 @@ items:
         - "to challenge your self."
         - "Additionally a damage punishment"
         - "can be added"
+    MOB_HUNT:
+      n: "Mob Hunt"
+      l:
+        - "Kill all Mobs in a given"
+        - "order to finish!"
+        - "Use /mobhunt to modify"
+    ITEM_HUNT:
+      n: "Item Hunt"
+      l:
+        - "Collect all Items in a given"
+        - "order to finish!"
+        - "Use /itemhunt to modify"
+    MIRROR:
+      n: "Mirror Challenge"
+      l:
+        - "Mirror certain things from"
+        - "you to all other players (sync)"
+    CHUNK_FLATTENER:
+      n: "Chunk Flattener"
+      l:
+        - "Watch out your steps!"
+        - "Your current chunk slowly"
+        - "shrinks down"
+    CHUNK_DECAY:
+      n: "Chunk Decay"
+      l:
+        - "Your current chunk randomly"
+        - "decays till it's gone"
   chS:
     FLY:
       power:
@@ -314,7 +392,8 @@ items:
       info:
         n: "Announce Mode"
     LIMITED_SKILLS:
-      random: "Random Roles"
+      random:
+        n: "Random Roles"
     RUN_RANDOMIZER:
       goal:
         n: "Block Goal"
@@ -429,3 +508,24 @@ items:
         n: "Disable Item Pickup"
       damage:
         n: "Damage"
+    MIRROR:
+      hearts:
+        n: "Sync Health"
+      food:
+        n: "Sync Food"
+      potions:
+        n: "Sync Potions"
+      hotbar:
+        n: "Sync Hotbar"
+    CHUNK_FLATTENER:
+      delay:
+        n: "Delay"
+      shouldBreak:
+        n: "Drop Blocks"
+    CHUNK_DECAY:
+      delay:
+        n: "Delay"
+      percentage:
+        n: "Decay Percentage"
+      shouldBreak:
+        n: "Drop Blocks"
