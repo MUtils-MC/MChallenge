@@ -20,10 +20,10 @@ common:
   left: "Links"
   right: "Rechts"
   click: "Klick"
-  sneak: "Sneak"
+  sneak: "Schleichen"
   none: "Leer"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  confirm: "Bestätigen"
+  cancel: "Abbrechen"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -36,18 +36,18 @@ command:
 event:
   seed: "Seed"
   dimension: "Dimension"
-  type: "Weltenart"
-  biomeProvider: "Biome Generator"
+  type: "Welttyp"
+  biomeProvider: "Biom Generator"
   noiseProvider: "Welt Generator"
   teleportToWorld: "Teleportiere zu <input-1>" #v - world name
   noOverride: "<red>Activate global override to modify the value!"
-  sneakExit: "Sneak to exit"
-  newWorld: "Creating new world..."
-  newWorldSub: "This could take a few seconds"
-  teleportFromDelete: "The world you were in was deleted..."
-  category: "Category"
-  worldCreated: "New world successfully created"
-  worldInfo: "Current world information"
+  sneakExit: "Schleiche zum verlassen"
+  newWorld: "Erstelle neue Welt..."
+  newWorldSub: "Bitte habe ein wenig Geduld..."
+  teleportFromDelete: "Die Welt, in der du warst, wurde gelöscht..."
+  category: "Kategorie"
+  worldCreated: "Eine neue Welt wurde erfolgreich erstellt"
+  worldInfo: "Informationen zur aktuellen Welt"
   env:
     NORMAL: "Overworld"
     THE_END: "End"
@@ -66,29 +66,29 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scroll Right"
+      n: "<red>Scrolle Rechts"
       l:
-        - "You can not scroll any"
-        - "further to the right"
+        - "Du kannst nicht weiter"
+        - "nach Rechts scrollen."
     arrowLeftEnd:
-      n: "<red>Scroll Left"
+      n: "<red>Scrolle nach Links"
       l:
-        - "You can not scroll any"
-        - "further to the left"
+        - "Du kannst nicht weiter"
+        - "nach Links scrollen."
     arrowRight:
       n: "<green>Scroll Right"
       l:
-        - "<blue>Click ≫ +1 page"
-        - "<blue>Sneak-Click ≫ +5 pages"
+        - "<blue>Klick ≫ +1 Seite"
+        - "<blue>Schleich-Klick ≫ +5 Seiten"
     arrowLeft:
       n: "<green>Scroll Left"
       l:
-        - "<blue>Click ≫ -1 page"
+        - "<blue>Klick ≫ - 1Seite"
         - "<blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
       l:
-        - "Click to open a compact"
-        - "GUI with quick access"
+        - "Klicke, um ein kompaktes GUI zu öffnen"
+        - "GUI mit Schnellzugriff"
   menu:
     worldOverview:
       n: "Welten Übersicht"
@@ -173,22 +173,22 @@ items:
       s3: "Oberflächen Generation"
       s4: "Gewächs Generation"
       s5: "Kreaturen Generation"
-      s6: "Structure Generation"
+      s6: "Strukturen Generierung"
     copy:
-      n: "Copy World Settings"
+      n: "Kopiere Welteinstellungen"
       l:
-        - "Copy only the world settings"
-        - "and generate new terrain."
+        - "Kopiere nur die Welteinstellungen"
+        - "und generiere neues Gelände."
     copyFull:
-      n: "Copy Full World"
+      n: "Kopiere die gesamte Welt"
       l:
-        - "Copy the whole world"
-        - "with all settings and"
-        - "progress (terrain & entities)"
+        - "Kopiere die gesamte Welt"
+        - "mit allen Einstellungen und"
+        - "Fortschritten (Gelände & Entitäten)"
     preview:
       n: "Prerender Current Rule"
       l:
-        - "Preview your current rule"
+        - "Vorschau der aktuellen Regeln"
         - "in an abstract prerender"
     category:
       n: "Sync Category"
@@ -197,7 +197,7 @@ items:
         - "to create a separat player"
         - "saving. Switching between categories"
         - "will load the needed player data"
-      s: "Category"
+      s: "Kategorie"
     worldSet:
       n: "Create World Set"
       l:
@@ -205,10 +205,10 @@ items:
         - "and end world from your settings"
         - "and put them all in one category"
     singleWorld:
-      n: "Create World"
+      n: "Welt erstellen"
       l:
-        - "Create a single world from"
-        - "your settings"
+        - "Erstelle eine einzige Welt"
+        - "aus deinen Einstellungen"
   algo:
     CHESS:
       n: "Schach Algorithmus"
@@ -241,13 +241,13 @@ items:
     SCALE_X:
       n: "Skalierung-X"
       l:
-        - "Up or downscale the"
-        - "X direction"
+        - "Hoch oder herunterskalieren der"
+        - "X-Achse"
     SCALE_Z:
       n: "Skalierung-Z"
       l:
-        - "Up or downscale the"
-        - "Z direction"
+        - "Hoch oder herunterskalieren der"
+        - "Z-Achse"
     SOLID_THICKNESS:
       n: "Dicke-Solid"
       l:
@@ -265,7 +265,7 @@ items:
       l:
         - "The pattern direction."
         - "Deactivate it for a z"
-        - "direction"
+        - "Richtung"
     INVERTED:
       n: "Invertiert"
       l:
@@ -280,8 +280,8 @@ items:
     VANILLA:
       n: "Vanilla"
       l:
-        - "Default biome generation"
-        - "like in vanilla worlds"
+        - "Standard Biomgenerierung"
+        - "wie in Vanilla-Welten"
     CHUNKED_BIOMES:
       n: "Chunked Biomes"
       l:
@@ -295,8 +295,8 @@ items:
     SINGLE_BIOME:
       n: "Single Biome"
       l:
-        - "The world only contains one biome."
-        - "This affects structure and mob"
+        - "Die Welt enthält nur ein Biom."
+        - "Dies wirkt sich auf Strukturen- und"
         - "spawning"
     SWITCHED_BIOMES:
       n: "Switched Biomes"

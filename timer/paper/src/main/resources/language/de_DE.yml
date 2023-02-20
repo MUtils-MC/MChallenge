@@ -19,19 +19,19 @@ common:
   left: "Links"
   right: "Rechts"
   click: "Klick"
-  sneak: "Sneak"
+  sneak: "Schleichen"
   none: "Leer"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
-  help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
+  help: "Nutzte <blue>/timer</blue>, um auf den globalen Timer zuzugreifen und nutzte <blue>/ptimer<blue>, um auf deinen persönlichen Timer zuzugreifen. Nur der globale Timer kann auf die Regeln und Welt Einstellungen zugreifen. Nutzte <blue>/timer language</blue>, um die Plugin Sprache zu ändern"
   resume: "<green>Timer wurde <b>aktiviert</b>!<grey> (<input-1>)" #v1
   pause: "<red>Timer wurde <b>pausiert</b>!<grey> (<input-1>)" #v1
-  alreadyOn: "<red>Timer ist bereits am laufen!"
+  alreadyOn: "<red>Timer ist bereits am Laufen!"
   alreadyOff: "<red>Timer ist bereits pausiert!"
-  reset: "<grey>Timer erfolgreich zurück auf 0 gesetzt!"
+  reset: "<grey>Timer erfolgreich zurück auf 0 gesetzt"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -44,19 +44,19 @@ event:
   days: "Tage"
   active: "Aktiv"
   disabled: "Inaktiv"
-  prefix: "Prefix"
+  prefix: "Präfix"
   suffix: "Suffix"
   animation: "Animationsgeschw."
   syntax: "Syntax"
   forcedTwoDigits: "Immer 2 Zeichen"
   visibleOnNull: "Sichtbar wenn 0"
   spaceInfo: "Nutze _ um Leerzeichen am Ende und Anfang zu nutzen"
-  clickToCopy: "Klicke zum kopieren: <blue><input-1>"
+  clickToCopy: "Klicke zum Kopieren: <blue><input-1>"
   finish: "Fertig"
   playtime: "Spielzeit:"
-  endSuccess: "Challenge succeed!\n<input-1> killed" #v1
-  kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
-  ban: "§9§m                            §9[ §lGame Over§9 ]§m                            §r\n\n§c≫ You died and got kicked ≪§r\n§6Thanks for playing!§r\n\n§9§m                            §9[ §lGame Over§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
+  endSuccess: "Challenge erfolgreich!\n<input-1> getötet" #v1
+  kick: "<blue><st>                            </st>[ <b>Spiel vorbei</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> Du bist gestorben und wurdest gekickt </red>≪</color>\n<gold>Danke für das Mitspielen!</gold>\n\n<blue><st>                            </st>[ <b>Spiel vorbei</b> ]<st>                            </st></blue>"
+  ban: "§9§m                            §9[ §lSpiel vorbei§9 ]§m                            §r\n\n§c≫ Du bist gestorben und wurdest gekickt ≪§r\n§6Danke für das mitspielen!§r\n\n§9§m                            §9[ §lSpiel vorbei§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -78,16 +78,16 @@ items:
     arrowRight:
       n: "<lime>Rechts Navigieren"
       l:
-        - "<blue>Click ≫ +1 Seite"
-        - "<blue>Sneak-Click ≫ +5 Seiten"
+        - "<blue>Klick ≫ +1 Seite"
+        - "<blue>Sneak-Klick ≫ +5 Seiten"
     arrowLeft:
       n: "<lime>Links Navigieren"
       l:
-        - "<blue>Click ≫ -1 Seite"
-        - "<blue>Sneak-Click ≫ -5 Seiten"
+        - "<blue>Klick ≫ -1 Seite"
+        - "<blue>Sneak-Klick ≫ -5 Seiten"
     pageIndicator:
       l:
-        - "Klicke um ein kompaktes GUI"
+        - "Klicke, um ein kompaktes GUI"
         - "mit Schnellzugriff zu öffnen"
   design:
     n: "Timer Design"
@@ -99,8 +99,8 @@ items:
     n: "Timer Regeln"
     l:
       - "Setze die Regeln für deinen"
-      - "Server solange der Timer läuft"
-      - "is active"
+      - "Server, solange der Timer läuft"
+      - "ist aktiv"
   goals:
     n: "Timer Ziele"
     l:
@@ -124,7 +124,7 @@ items:
       - "von Grund auf. Animationen sind"
       - "in der Vorschau nicht animiert!"
   designName:
-    n: "Design Name"
+    n: "Designname"
     l:
       - "Setze einen passenden Namen, er"
       - "ist in der lokalen und öffentlichen"
@@ -181,14 +181,14 @@ items:
       - "Zeige die Todesposition im Chat,"
       - "wenn der Timer automatisch stoppt"
   specOnDeath:
-    n: "Spectator beim Tod"
+    n: "Zuschauer beim Tod"
     l:
-      - "Werde in den Spectator Modus"
+      - "Werde in den Zuschauer Modus"
       - "gesetzt beim Tod."
   specOnJoin:
-    n: "Spectator beim Joinen"
+    n: "Zuschauer beim Joinen"
     l:
-      - "Werde in den Spectator Modus"
+      - "Werde in den Zuschauer Modus"
       - "gesetzt beim joinen."
   punishment:
     n: "Todesbestrafung"
@@ -196,9 +196,9 @@ items:
       - "Bestrafe tote Spieler mit"
       - "gewissen Aktionen."
   freezeWorld:
-    n: "Freeze World"
+    n: "Welt einfrieren"
     l:
-      - "Freeze the world on timer"
-      - "pause. This will prevent any"
-      - "player interactions and pauses"
-      - "all AIs and game logics"
+      - "Friert die Welt, ein wenn der Timer"
+      - "pausiert ist. Dies verhindert"
+      - "jegliche Spieler Interaktionen und"
+      - "pausiert alle KIs und Spiellogik"

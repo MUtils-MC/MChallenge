@@ -14,38 +14,38 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
-  click: "Click"
-  sneak: "Sneak"
-  none: "None"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  boolTrue: "Aktiviert"
+  boolFalse: "Deaktiviert"
+  left: "Links"
+  right: "Rechts"
+  click: "Klick"
+  sneak: "Schleichen"
+  none: "Nichts"
+  confirm: "Bestätigen"
+  cancel: "Abbrechen"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
-  notRegistered: "<red>Activate the module to use this command!"
+  notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
   death:
-    tron: "<red><input-1> stepped into a line and died!"
+    tron: "<red><input-1> hat eine Linie betreten und ist gestorben!"
     disable:
-      break: "<red><input-1> tried to break a block!"
-      place: "<red><input-1> tried to place a block!"
-      craft: "<red><input-1> tried to use the crafting table!"
-      xp: "<red><input-1> tried to pickup XP!"
-      item: "<red><input-1> tried to pickup an item!"
-      trade: "<red><input-1> tried to trade!"
+      break: "<red><input-1> hat versucht einen Block abzubauen!"
+      place: "<red><input-1> hat versucht einen Block zu platzieren!"
+      craft: "<red><input-1> hat versucht eine Werkbank zu benutzen!"
+      xp: "<red><input-1> hat versucht Erfahrung aufzusammeln!"
+      item: "<red><input-1> hat versucht ein Gegenstand aufzusammeln!"
+      trade: "<red><input-1> hat versucht zu handeln!"
   mobHunt:
-    collect: "<green><input-1> found <input-2>!"
-    success: "<green>Congratulations! You found all mobs"
+    collect: "<green><input-1> hat <input-2> gefunden!"
+    success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -57,375 +57,375 @@ items:
     FLY:
       n: "F.L.Y. Challenge"
       l:
-        - "Fly with a new power through"
-        - "the sky like a hero!"
-        - "Sneak in midair to activate"
+        - "Fliege mit einer neuen Kraft durch"
+        - "den Himmel wie ein Superheld!"
+        - "Zum Aktivieren schleiche in der Luft"
     IN_TIME:
       n: "InTime Challenge"
       l:
-        - "Every Entity has a limited time"
-        - "to live. You too! Kill mobs to"
-        - "steal their time"
+        - "Jedes Lebewesen hat eine limitierte Zeit"
+        - "zu leben - auch du! Töte sie um"
+        - "ihre Zeit zu stehlen"
     MOB_BLOCKS:
       n: "Mob Blocks Randomizer"
       l:
-        - "Every block contains a random mob."
-        - "Break the block to release it and"
-        - "only after killing it, the item drops"
+        - "In jedem Block versteckt sich ein zufälliger Mob."
+        - "Zerstöre den Block, um es freizulassen und"
+        - "töte es, um den Block zu erhalten"
     CHECKPOINTS:
-      n: "Rewind Challenge"
+      n: "Zeitreise Challenge"
       l:
-        - "Create Checkpoints (F) to travel"
-        - "back in time! But be warned... Time"
-        - "traveling is dangerous"
+        - "Erstelle Checkpoints (F) um durch die Zeit"
+        - "zu reisen! Aber vorsichtig..."
+        - "Zeitreisen sind gefährlich!"
     DIM_SWAP:
       n: "Dimension Swap Challenge"
       l:
-        - "All portals are shuffled! Now you"
-        - "have to fight the Ender Dragon in..."
-        - "the Overworld?"
-        - "Nether -> End -> Overworld"
+        - "Alle Portale sind vertauscht! Jetzt"
+        - "musst du den Ender Dragon in..."
+        - "der Overworld besiegen?"
+        - "Nether -> Ende -> Overworld"
     SNAKE:
-      n: "Snake Challenges"
+      n: "Snake Challenge"
       l:
-        - "You can only move on your personal"
-        - "snake, which permanently move in"
-        - "your viewing direction"
+        - "Du kannst dich nur auf deiner persönlichen"
+        - "Schlange bewegen, welche sich permanent in"
+        - "deine Blickrichtung bewegt"
     REALISTIC:
-      n: "Realistic Minecraft"
+      n: "Realistisches Minecraft"
       l:
-        - "Is MC to unrealistic? This Challenge"
-        - "will change everything to discover"
-        - "a full new Minecraft"
+        - "Ist dir Minecraft zu unrealistisch? Diese"
+        - "Challenge ändert alles um ein komplett"
+        - "neues Minecraft zu entdecken!"
     CAPTIVE:
-      n: "Captive Challenge"
+      n: "Captive Herausforderung"
       l:
-        - "The world shrunk down to small"
-        - "field and it's your task to"
-        - "grow it through Level"
+        - "Die Welt schrumpft auf ein kleines"
+        - "Feld und es ist deine Aufgabe"
+        - "diese durch Level zu vergrößern"
     GHOST:
-      n: "Ghost Challenge"
+      n: "Ghost Herausforderung"
       l:
-        - "Discover the depths with your new"
-        - "ability to travel through blocks!"
-        - "But be aware... Ghosts are weak"
+        - "Entdecke die Tiefen mit deiner neuen"
+        - "Fähigkeit, durch Blöcke zu reisen!"
+        - "Aber sei dir bewusst... Geister sind schwach"
     BLOCK_ASYNC:
-      n: "Block Async Challenge"
+      n: "Black Async Herausforderung"
       l:
-        - "Every player sees his own world!"
-        - "But should a player interact with a"
-        - "block modified by a different player"
-        - "he dies. Communication is key"
+        - "Jeder Spieler sieht seine eigene Welt!"
+        - "Aber sollte ein Spieler mit einem"
+        - "von einem anderen Spieler veränderten Block"
+        - "interagieren, stirbt er. Kommunikation ist der Schlüssel"
     NO_SAME_ITEM:
-      n: "No Same Items"
+      n: "Keine gleichen Items"
       l:
-        - "If you collect a item, wich"
-        - "was already collected, you loose"
-        - "one heart"
+        - "Wenn du ein Item einsammelst, welches"
+        - "bereits eingesammelt wurde, du verlierst"
+        - "ein Herz"
     LIMITED_SKILLS:
-      n: "Limited Skills"
+      n: "Begrenzte Fähigkeiten"
       l:
-        - "Only one player can see mobs"
-        - "but can't damage them. The other"
-        - "can't see mobs but can deal damage"
+        - "Nur ein Spieler kann Mobs sehen,"
+        - "aber kann sie nicht angreifen. Der andere"
+        - "kann Mobs nicht sehen, aber ihnen Schaden zufügen"
     RUN_RANDOMIZER:
       n: "Run Randomizer"
       l:
-        - "The only way to gather items"
-        - "is running! Every X-Blocks you"
-        - "get a random stack of items"
+        - "Der einzige Weg um Items zu sammeln"
+        - "ist laufen! Alle X-Blöcke"
+        - "bekommst du einen zufälligen Stack an Items"
     SPLIT_HP:
-      n: "Split HP"
+      n: "Geteilte HP"
       l:
-        - "Every player share their"
-        - "hearts. Damage and regeneration"
-        - "counts to everyone"
+        - "Jeder Spieler teilt seine"
+        - "Herzen. Schaden und Regeneration"
+        - "zählen für alle"
     DAMAGE_DUELL:
-      n: "Damage Duell"
+      n: "Schadensduell"
       l:
-        - "If you deal damage, all"
-        - "other players also get"
-        - "damaged by a percentage"
+        - "Wenn du Schaden zufügst,"
+        - "bekommen alle anderen Spieler auch"
+        - "Schaden anhand eines Prozentsatzes"
     ONE_BIOME:
-      n: "One Biome World"
+      n: "Ein Biom Welt"
       l:
-        - "The whole world contains"
-        - "only one biome. The biome"
-        - "switches every X seconds"
+        - "Die ganze Welt beinhaltet"
+        - "nur ein einziges Biom. Dieses Biom"
+        - "wechselt alle X Sekunden"
     BOOST_UP:
       n: "Boost'em UP"
       l:
-        - "Every entity/mob in your"
-        - "range will be boosted in"
-        - "the sky"
+        - "Jede Entität/Mob in deiner"
+        - "Reichweite wird"
+        - "in den Himmel geboostet"
     RIGHT_TOOL:
-      n: "Only Right Tools"
+      n: "Nur richtige Tools"
       l:
-        - "You can only break blocks"
-        - "with the correct tool"
+        - "Du kannst nur"
+        - "mit dem richtigen Tool Blöcke zerstören"
     CHUNK_BLOCK_BREAK:
-      n: "Chunk Breaker"
+      n: "Chunk Zerstörer"
       l:
-        - "Breaking a block will"
-        - "break all blocks of the"
-        - "same time in the chunk"
+        - "Das Zerstören eines Blocks wird"
+        - "alle anderen Blöcke"
+        - "im Chunk gleichzeitig zerstören"
     SNEAK_SPAWN:
       n: "Sneak Spawner"
       l:
-        - "Be prepared... Every sneak"
-        - "will spawn a random mob"
-        - "on your position"
+        - "Sei vorbereitet... Jedes Mal, wenn du sneakst"
+        - "wird"
+        - "an deiner aktuellen Position ein zufälliges Mob spawnen"
     WORLD_PEACE:
-      n: "World Peace"
+      n: "Weltfrieden"
       l:
-        - "Instead of fighting to the top"
-        - "just communicate and trade"
-        - "with your opponents!"
-        - "<i>Symbol against the Ukraine-Russian war"
+        - "Anstatt sich an die Spitze zu kämpfen"
+        - "einfach nur mit deinen Gegnern"
+        - "kommunizieren und handeln"
+        - "<i>Ein Symbol gegen den Ukraine-Russland Krieg"
     GRAVITY:
-      n: "Gravity Switch"
+      n: "Gravitationswechsel"
       l:
-        - "The world gone crazy and"
-        - "every few seconds the gravity"
-        - "switches between 4 new gravities"
+        - "Die Welt ist verrückt und"
+        - "alle paar Sekunden ändert sich die Schwerkraft"
+        - "zwischen 4 unterschiedlichen neuen Schwerkräften"
     STAY_AWAY:
-      n: "Stay Awaay"
+      n: "Bleibe fern"
       l:
-        - "Getting to close to other"
-        - "mobs or players causes damage."
-        - "Time for some social distancing"
+        - "Wenn du zu nahe an andere "
+        - "Mobs oder Spieler kommst, verursacht das Schaden."
+        - "Zeit für soziale Distanz"
     RANDOMIZER_BLOCK:
       n: "Block Randomizer"
       l:
-        - "Block drops are shuffled"
-        - "(or random)"
+        - "Die Block Drops sind gemischt"
+        - "(oder zufällig)"
     RANDOMIZER_ENTITY:
       n: "Mob Drop Randomizer"
       l:
-        - "Mob drops are shuffled"
-        - "(or random)"
+        - "Die Mob Drops sind gemischt"
+        - "(oder zufällig)"
     RANDOMIZER_BIOMES:
-      n: "Biome Randomizer"
+      n: "Biom Randomizer"
       l:
-        - "World biomes are shuffled"
-        - "(or random)"
+        - "Die Biome in der Welt sind gemischt"
+        - "(oder zufällig)"
     RANDOMIZER_MOBS:
       n: "Mob Randomizer"
       l:
-        - "Mob spawning is shuffled"
-        - "(or random)"
+        - "Das Mob-Spawning ist gemischt"
+        - "(oder zufällig)"
     FORCE_COLLECT:
       n: "Force Collect"
       l:
-        - "You are forced to collect"
-        - "the prompted item to survive"
+        - "Du bist gezwungen zu sammeln"
+        - "das gegebene Item um zu überleben"
     RANDOMIZER_DAMAGE:
-      n: "Damage Randomizer"
+      n: "Schaden Randomizer"
       l:
-        - "Damage is shuffled like"
-        - "2hp will be always 5hp"
-        - "(or random)"
+        - "Der schaden ist randomized wie"
+        - "2hp werden immer 5hp sein"
+        - "(oder zufällig)"
     NO_DOUBLE_KILL:
-      n: "No Double Kills"
+      n: "Keine Doppelkills"
       l:
-        - "You are not allowed to kill"
-        - "the same mob twice in a row"
+        - "Du darfst nicht töten"
+        - "den selben Mob zweimal in Folge"
     DAMAGER:
-      n: "Damager Challenge"
+      n: "Damager Herausforderung"
       l:
-        - "You will be confronted with"
-        - "constantly damage from the"
-        - "chosen event. Can you survive?"
+        - "Du wirst konfrontiert mit"
+        - "konstantem schaden vom"
+        - "gewählten Event. Kannst du überleben?"
     RIVALS_COLLECT:
-      n: "Collection Rivals"
+      n: "Kollektionrivalen"
       l:
-        - "Collect/find/kill the prompted"
-        - "goal to get the next. Player"
-        - "with the most points win"
+        - "Sammle/Finde/töte das gegebene"
+        - "ziel um das nächste zu erhalten. Spieler"
+        - "mit den meisten Punkten gewinnen"
     ROCKET:
-      n: "Rocket Mode"
+      n: "Raketenmodus"
       l:
-        - "Sneak to fly up. But be aware!"
-        - "Flying with a rocket is hard..."
-        - "And hold an eye on your heat"
+        - "Sneak zum Fliegen. Aber sei vorsichtig!"
+        - "Mit einer Rakete zu fliegen ist hart..."
+        - "Und halte ein Auge auf die Hitze"
     VAMPIRE:
-      n: "Vampire Challenge"
+      n: "Vampir herausforderung"
       l:
-        - "Welcome to the world of darkness!"
-        - "Light will drain your blood. Kill"
-        - "mobs to gain their blood and sneak on"
-        - "killing to gather a blood pack (heal)"
+        - "Willkommen zur Welt der Finsternis!"
+        - "Licht wird dein Blut aussaugen. Töte"
+        - "mobs um ihr Blut zu erhalten und sneake auf"
+        - "töte um Blutpacks zu erhalten (heal)"
     TRAFFIC_LIGHT:
-      n: "Traffic Lights"
+      n: "Ampeln"
       l:
-        - "You are trapped on the road."
-        - "You are only allowed to move"
-        - "on green lights. If you move"
-        - "on red, you get punished"
+        - "Du bist auf der Straße gefangen."
+        - "Du darfst dich nur bewegen"
+        - "wenn das grüne licht leuchtet. Wenn du dich bewegst"
+        - "während das rote Licht leuchtet, wirst du bestraft"
     TRON:
-      n: "Snake Path"
+      n: "Schlangenpfad"
       l:
-        - "Every player creates a path"
-        - "on walking. But be carefully!"
-        - "You are not allowed to touch it"
-        - "ever again..."
+        - "Jeder spieler generiert einen Pfad"
+        - "zum laufen. Aber sei vorsichtig!"
+        - "Du darfst ihn nicht berühren"
+        - "nie wieder..."
     DISABLED:
-      n: "Disable Features"
+      n: "Deaktiviere features"
       l:
-        - "Disable certain key features"
-        - "to challenge your self."
-        - "Additionally a damage punishment"
-        - "can be added"
+        - "Deaktiviere bestimmte Features"
+        - "sich selbst herauszufordern."
+        - "Zusätzlich eine Schadensstrafe"
+        - "kann hinzugefügt werden"
   chS:
     FLY:
       power:
-        n: "Power"
+        n: "Kraft"
     IN_TIME:
       pTime:
-        n: "Player Time"
+        n: "Spielerzeit"
       eTime:
-        n: "Entity Time"
+        n: "Entitäts-Zeit"
       hpTime:
-        n: "Time per HP"
+        n: "Zeit pro HP"
     MOB_BLOCKS:
       rnd:
-        n: "Random"
+        n: "Zufällig"
     CHECKPOINTS:
       onlyTP:
-        n: "Only Position"
+        n: "Nur Position"
     DIM_SWAP:
       starter:
-        n: "Starter Pickaxe"
+        n: "Starter Spitzhacke"
     SNAKE:
       speed:
-        n: "Speed"
+        n: "Tempo"
     GHOST:
       radius:
         n: "Radius"
       adventure:
-        n: "Adventure Ghost"
+        n: "Abenteuergeist"
       glide:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
-        n: "Lives"
+        n: "Leben"
       sync:
-        n: "Lives = HP"
+        n: "Leben = HP"
       info:
-        n: "Announce Mode"
+        n: "Ankündigungsmodus"
     LIMITED_SKILLS:
-      random: "Random Roles"
+      random: "Zufällige Rollen"
     RUN_RANDOMIZER:
       goal:
-        n: "Block Goal"
+        n: "Blockziel"
     DAMAGE_DUELL:
       percent:
-        n: "Percentage"
+        n: "Prozent"
     ONE_BIOME:
       delay:
-        n: "Delay"
+        n: "Verzögerung"
     BOOST_UP:
       radius:
-        n: "Effect Radius"
+        n: "Effekt Radius"
       boost:
-        n: "Boost Power"
+        n: "Boost Kraft"
       mode:
-        n: "Only Mobs"
+        n: "Nur Monster"
     CHUNK_BLOCK_BREAK:
       bundle:
-        n: "Bundle Drops"
+        n: "Paketdrops"
     SNEAK_SPAWN:
       onlyMob:
-        n: "Only Mobs"
+        n: "Nur Monster"
     GRAVITY:
       delay:
-        n: "Delay"
+        n: "Verzögerung"
     STAY_AWAY:
       distance:
-        n: "Damage Distance"
+        n: "Schadensdistanz"
     RANDOMIZER_BLOCK:
       random:
-        n: "Full Random"
+        n: "Komplett zufällig"
     RANDOMIZER_ENTITY:
       random:
-        n: "Full Random"
+        n: "Komplett zufällig"
     RANDOMIZER_BIOMES:
       random:
-        n: "Full Random"
+        n: "Voll zufällig"
     RANDOMIZER_MOBS:
       random:
-        n: "Full Random"
+        n: "Extrem Randomizer"
     FORCE_COLLECT:
       minCooldown:
-        n: "Min Cooldown"
+        n: "Minimale Abklingzeit"
       maxCooldown:
-        n: "Max Cooldown"
+        n: "Maximale Abklingzeit"
       minTime:
-        n: "Min Collect Time"
+        n: "Minimale Sammelzeit"
       maxTime:
-        n: "Max Collect Time"
+        n: "Maximale Sammelzeit"
     RANDOMIZER_DAMAGE:
       random:
-        n: "Full Random"
+        n: "Komplett zufällig"
     NO_DOUBLE_KILL:
       global:
-        n: "Count Global"
+        n: "Gesamtzahl"
     DAMAGER:
       mode:
-        n: "Damage Event"
+        n: "Schadensereignis"
       damage:
-        n: "Damage"
+        n: "Schaden"
     RIVALS_COLLECT:
       mode:
-        n: "Search Type"
+        n: "Suchtyp"
       joker:
         n: "Joker"
     ROCKET:
       capacity:
-        n: "Fuel Capacity"
+        n: "Treibstoffkapazität"
     VAMPIRE:
       startBlood:
         n: "Start Blood"
       maxBlood:
         n: "Blood Capacity"
       healthToBlood:
-        n: "HP - Blood"
+        n: "HP - Blut"
       bloodLoose:
         n: "Blood Drain"
     TRAFFIC_LIGHT:
       min:
-        n: "Min Duration"
+        n: "Minimale Dauer"
       max:
-        n: "Max Duration"
+        n: "Maximale Dauer"
       damage:
-        n: "Damage on red"
+        n: "Schaden bei Rot"
       green:
-        n: "Green Phase"
+        n: "Grün Phase"
       yellow:
         n: "Yellow Phase"
       red:
-        n: "Red Phase"
+        n: "Rot-Phase"
     TRON:
       visible:
-        n: "Visible Path"
+        n: "Sichtbarer Pfad"
     DISABLED:
       block:
         n: "Block Category"
       break:
-        n: "Disable Breaking"
+        n: "Abbauen deaktivieren"
       place:
-        n: "Disable Placing"
+        n: "Platzierung deaktivieren"
       interact:
         n: "Interact Category"
       craft:
-        n: "Disable Crafting Table"
+        n: "Werkbank deaktivieren"
       trade:
-        n: "Disable Trading"
+        n: "Handel deaktivieren"
       misc:
-        n: "Misc Category"
+        n: "Sonstige Kategorie"
       xp:
-        n: "Disable XP Pickup"
+        n: "XP Aufhebung deaktivieren"
       items:
-        n: "Disable Item Pickup"
+        n: "Item Aufhebung deaktivieren"
       damage:
-        n: "Damage"
+        n: "Schaden"
