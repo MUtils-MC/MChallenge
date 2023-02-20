@@ -45,7 +45,7 @@ event:
       trade: "<red><input-1> hat versucht zu handeln!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
-    success: "<green>Alle Mobs wurden erfolgreich gefunden!"
+    success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -57,7 +57,7 @@ items:
     FLY:
       n: "F.L.Y. Challenge"
       l:
-        - "Fliege mit einer neuen Power durch"
+        - "Fliege mit einer neuen Kraft durch"
         - "den Himmel wie ein Superheld!"
         - "Zum Aktivieren schleiche in der Luft"
     IN_TIME:
@@ -69,33 +69,33 @@ items:
     MOB_BLOCKS:
       n: "Mob Blocks Randomizer"
       l:
-        - "In jedem Block versteckt sich ein zufälliges Lebewesen."
+        - "In jedem Block versteckt sich ein zufälliger Mob."
         - "Zerstöre den Block, um es freizulassen und"
-        - "nur nachdem du es getötet hast, wird der Gegenstand fallengelassen"
+        - "töte es, um den Block zu erhalten"
     CHECKPOINTS:
-      n: "Wiederholungs Challenge"
+      n: "Zeitreise Challenge"
       l:
         - "Erstelle Checkpoints (F) um durch die Zeit"
         - "zu reisen! Aber vorsichtig..."
-        - "Zeitreisen ist gefährlich!"
+        - "Zeitreisen sind gefährlich!"
     DIM_SWAP:
       n: "Dimension Swap Challenge"
       l:
         - "Alle Portale sind vertauscht! Jetzt"
         - "musst du den Ender Dragon in..."
         - "der Overworld besiegen?"
-        - "Nether -> das Ende -> Overworld"
+        - "Nether -> Ende -> Overworld"
     SNAKE:
       n: "Snake Challenge"
       l:
         - "Du kannst dich nur auf deiner persönlichen"
-        - "Snake bewegen, welche sich permanent in"
-        - "deine Blickrichtung bewegt."
+        - "Schlange bewegen, welche sich permanent in"
+        - "deine Blickrichtung bewegt"
     REALISTIC:
-      n: "Realistic Minecraft"
+      n: "Realistisches Minecraft"
       l:
-        - "Ist dir Minecraft zu unrealistisch? Diese Challenge"
-        - "ändert alles um ein komplett"
+        - "Ist dir Minecraft zu unrealistisch? Diese"
+        - "Challenge ändert alles um ein komplett"
         - "neues Minecraft zu entdecken!"
     CAPTIVE:
       n: "Captive Herausforderung"
@@ -284,7 +284,7 @@ items:
       pTime:
         n: "Spielerzeit"
       eTime:
-        n: "Entity Time"
+        n: "Entitäts-Zeit"
       hpTime:
         n: "Zeit pro HP"
     MOB_BLOCKS:
@@ -292,7 +292,7 @@ items:
         n: "Zufällig"
     CHECKPOINTS:
       onlyTP:
-        n: "Only Position"
+        n: "Nur Position"
     DIM_SWAP:
       starter:
         n: "Starter Spitzhacke"
@@ -333,7 +333,7 @@ items:
         n: "Nur Monster"
     CHUNK_BLOCK_BREAK:
       bundle:
-        n: "Bundle Drops"
+        n: "Paketdrops"
     SNEAK_SPAWN:
       onlyMob:
         n: "Nur Monster"
@@ -354,7 +354,7 @@ items:
         n: "Voll zufällig"
     RANDOMIZER_MOBS:
       random:
-        n: "Full Random"
+        n: "Extrem Randomizer"
     FORCE_COLLECT:
       minCooldown:
         n: "Minimale Abklingzeit"
@@ -377,7 +377,7 @@ items:
         n: "Schaden"
     RIVALS_COLLECT:
       mode:
-        n: "Search Type"
+        n: "Suchtyp"
       joker:
         n: "Joker"
     ROCKET:
@@ -404,7 +404,7 @@ items:
       yellow:
         n: "Yellow Phase"
       red:
-        n: "Red Phase"
+        n: "Rot-Phase"
     TRON:
       visible:
         n: "Sichtbarer Pfad"
@@ -412,7 +412,7 @@ items:
       block:
         n: "Block Category"
       break:
-        n: "Disable Breaking"
+        n: "Abbauen deaktivieren"
       place:
         n: "Platzierung deaktivieren"
       interact:
