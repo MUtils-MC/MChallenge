@@ -29,9 +29,9 @@ command:
   help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
   resume: "<green>Timer wurde <b>aktiviert</b>!<grey> (<input-1>)" #v1
   pause: "<red>Timer wurde <b>pausiert</b>!<grey> (<input-1>)" #v1
-  alreadyOn: "<red>Timer ist bereits am laufen!"
+  alreadyOn: "<red>Timer ist bereits am Laufen!"
   alreadyOff: "<red>Timer ist bereits pausiert!"
-  reset: "<grey>Timer erfolgreich zurück auf 0 gesetzt!"
+  reset: "<grey>Timer erfolgreich zurück auf 0 gesetzt"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -51,7 +51,7 @@ event:
   forcedTwoDigits: "Immer 2 Zeichen"
   visibleOnNull: "Sichtbar wenn 0"
   spaceInfo: "Nutze _ um Leerzeichen am Ende und Anfang zu nutzen"
-  clickToCopy: "Klicke zum kopieren: <blue><input-1>"
+  clickToCopy: "Klicke zum Kopieren: <blue><input-1>"
   finish: "Fertig"
   playtime: "Spielzeit:"
   endSuccess: "Challenge succeed!\n<input-1> killed" #v1
@@ -78,16 +78,16 @@ items:
     arrowRight:
       n: "<lime>Rechts Navigieren"
       l:
-        - "<blue>Click ≫ +1 Seite"
-        - "<blue>Sneak-Click ≫ +5 Seiten"
+        - "<blue>Klick ≫ +1 Seite"
+        - "<blue>Sneak-Klick ≫ +5 Seiten"
     arrowLeft:
       n: "<lime>Links Navigieren"
       l:
-        - "<blue>Click ≫ -1 Seite"
-        - "<blue>Sneak-Click ≫ -5 Seiten"
+        - "<blue>Klick ≫ -1 Seite"
+        - "<blue>Sneak-Klick ≫ -5 Seiten"
     pageIndicator:
       l:
-        - "Klicke um ein kompaktes GUI"
+        - "Klicke, um ein kompaktes GUI"
         - "mit Schnellzugriff zu öffnen"
   design:
     n: "Timer Design"
@@ -99,7 +99,7 @@ items:
     n: "Timer Regeln"
     l:
       - "Setze die Regeln für deinen"
-      - "Server solange der Timer läuft"
+      - "Server, solange der Timer läuft"
       - "is active"
   goals:
     n: "Timer Ziele"
@@ -181,14 +181,14 @@ items:
       - "Zeige die Todesposition im Chat,"
       - "wenn der Timer automatisch stoppt"
   specOnDeath:
-    n: "Spectator beim Tod"
+    n: "Zuschauer beim Tod"
     l:
-      - "Werde in den Spectator Modus"
+      - "Werde in den Zuschauer Modus"
       - "gesetzt beim Tod."
   specOnJoin:
-    n: "Spectator beim Joinen"
+    n: "Zuschauer beim Joinen"
     l:
-      - "Werde in den Spectator Modus"
+      - "Werde in den Zuschauer Modus"
       - "gesetzt beim joinen."
   punishment:
     n: "Todesbestrafung"
