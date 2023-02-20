@@ -198,7 +198,7 @@ items:
   freezeWorld:
     n: "Welt einfrieren"
     l:
-      - "Freeze the world on timer"
-      - "pause. This will prevent any"
-      - "player interactions and pauses"
-      - "all AIs and game logics"
+      - "Friert die Welt, ein wenn der Timer"
+      - "pausiert ist. Dies verhindert"
+      - "jegliche Spieler Interaktionen und"
+      - "pausiert alle KIs und Spiellogik"
