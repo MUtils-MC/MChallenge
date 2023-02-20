@@ -286,7 +286,7 @@ items:
       eTime:
         n: "Entity Time"
       hpTime:
-        n: "Time per HP"
+        n: "Zeit pro HP"
     MOB_BLOCKS:
       rnd:
         n: "Zufällig"
@@ -295,7 +295,7 @@ items:
         n: "Only Position"
     DIM_SWAP:
       starter:
-        n: "Starter Pickaxe"
+        n: "Starter Spitzhacke"
     SNAKE:
       speed:
         n: "Tempo"
@@ -303,18 +303,18 @@ items:
       radius:
         n: "Radius"
       adventure:
-        n: "Adventure Ghost"
+        n: "Abenteuergeist"
       glide:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
         n: "Leben"
       sync:
-        n: "Lives = HP"
+        n: "Leben = HP"
       info:
-        n: "Announce Mode"
+        n: "Ankündigungsmodus"
     LIMITED_SKILLS:
-      random: "Random Roles"
+      random: "Zufällige Rollen"
     RUN_RANDOMIZER:
       goal:
         n: "Blockziel"
@@ -323,12 +323,12 @@ items:
         n: "Prozent"
     ONE_BIOME:
       delay:
-        n: "Delay"
+        n: "Verzögerung"
     BOOST_UP:
       radius:
-        n: "Effect Radius"
+        n: "Effekt Radius"
       boost:
-        n: "Boost Power"
+        n: "Boost Kraft"
       mode:
         n: "Nur Monster"
     CHUNK_BLOCK_BREAK:
@@ -336,28 +336,28 @@ items:
         n: "Bundle Drops"
     SNEAK_SPAWN:
       onlyMob:
-        n: "Only Mobs"
+        n: "Nur Monster"
     GRAVITY:
       delay:
-        n: "Delay"
+        n: "Verzögerung"
     STAY_AWAY:
       distance:
-        n: "Damage Distance"
+        n: "Schadensdistanz"
     RANDOMIZER_BLOCK:
       random:
         n: "Komplett zufällig"
     RANDOMIZER_ENTITY:
       random:
-        n: "Full Random"
+        n: "Komplett zufällig"
     RANDOMIZER_BIOMES:
       random:
-        n: "Full Random"
+        n: "Voll zufällig"
     RANDOMIZER_MOBS:
       random:
         n: "Full Random"
     FORCE_COLLECT:
       minCooldown:
-        n: "Min Cooldown"
+        n: "Minimale Abklingzeit"
       maxCooldown:
         n: "Maximale Abklingzeit"
       minTime:
@@ -366,15 +366,15 @@ items:
         n: "Maximale Sammelzeit"
     RANDOMIZER_DAMAGE:
       random:
-        n: "Full Random"
+        n: "Komplett zufällig"
     NO_DOUBLE_KILL:
       global:
-        n: "Count Global"
+        n: "Gesamtzahl"
     DAMAGER:
       mode:
-        n: "Damage Event"
+        n: "Schadensereignis"
       damage:
-        n: "Damage"
+        n: "Schaden"
     RIVALS_COLLECT:
       mode:
         n: "Search Type"
@@ -389,7 +389,7 @@ items:
       maxBlood:
         n: "Blood Capacity"
       healthToBlood:
-        n: "HP - Blood"
+        n: "HP - Blut"
       bloodLoose:
         n: "Blood Drain"
     TRAFFIC_LIGHT:
@@ -407,25 +407,25 @@ items:
         n: "Red Phase"
     TRON:
       visible:
-        n: "Visible Path"
+        n: "Sichtbarer Pfad"
     DISABLED:
       block:
         n: "Block Category"
       break:
         n: "Disable Breaking"
       place:
-        n: "Disable Placing"
+        n: "Platzierung deaktivieren"
       interact:
         n: "Interact Category"
       craft:
-        n: "Disable Crafting Table"
+        n: "Werkbank deaktivieren"
       trade:
-        n: "Disable Trading"
+        n: "Handel deaktivieren"
       misc:
-        n: "Misc Category"
+        n: "Sonstige Kategorie"
       xp:
-        n: "Disable XP Pickup"
+        n: "XP Aufhebung deaktivieren"
       items:
-        n: "Disable Item Pickup"
+        n: "Item Aufhebung deaktivieren"
       damage:
-        n: "Damage"
+        n: "Schaden"
