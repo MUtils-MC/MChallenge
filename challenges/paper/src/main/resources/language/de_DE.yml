@@ -98,38 +98,38 @@ items:
         - "Challenge ändert alles um ein komplett"
         - "neues Minecraft zu entdecken!"
     CAPTIVE:
-      n: "Captive Herausforderung"
+      n: "Captive Challenge"
       l:
         - "Die Welt schrumpft auf ein kleines"
         - "Feld und es ist deine Aufgabe"
         - "diese durch Level zu vergrößern"
     GHOST:
-      n: "Ghost Herausforderung"
+      n: "Geister Challenge"
       l:
         - "Entdecke die Tiefen mit deiner neuen"
         - "Fähigkeit, durch Blöcke zu reisen!"
         - "Aber sei dir bewusst... Geister sind schwach"
     BLOCK_ASYNC:
-      n: "Black Async Herausforderung"
+      n: "Block Async Challenge"
       l:
         - "Jeder Spieler sieht seine eigene Welt!"
         - "Aber sollte ein Spieler mit einem"
         - "von einem anderen Spieler veränderten Block"
-        - "interagieren, stirbt er. Kommunikation ist der Schlüssel"
+        - "interagieren, stirbt er. Kommunikation ist wichtig"
     NO_SAME_ITEM:
-      n: "Keine gleichen Items"
+      n: "Keine Gleichen Items"
       l:
         - "Wenn du ein Item einsammelst, welches"
-        - "bereits eingesammelt wurde, du verlierst"
-        - "ein Herz"
+        - "bereits eingesammelt wurde, verlierst"
+        - "du ein Herz"
     LIMITED_SKILLS:
       n: "Begrenzte Fähigkeiten"
       l:
         - "Nur ein Spieler kann Mobs sehen,"
         - "aber kann sie nicht angreifen. Der andere"
-        - "kann Mobs nicht sehen, aber ihnen Schaden zufügen"
+        - "kann Mobs nicht sehen, aber sie angreifen"
     RUN_RANDOMIZER:
-      n: "Run Randomizer"
+      n: "Lauf Randomizer"
       l:
         - "Der einzige Weg um Items zu sammeln"
         - "ist laufen! Alle X-Blöcke"
@@ -143,7 +143,7 @@ items:
     DAMAGE_DUELL:
       n: "Schadensduell"
       l:
-        - "Wenn du Schaden zufügst,"
+        - "Wenn du Schaden austeilst,"
         - "bekommen alle anderen Spieler auch"
         - "Schaden anhand eines Prozentsatzes"
     ONE_BIOME:
@@ -159,7 +159,7 @@ items:
         - "Reichweite wird"
         - "in den Himmel geboostet"
     RIGHT_TOOL:
-      n: "Nur richtige Tools"
+      n: "Nur Richtige Tools"
       l:
         - "Du kannst nur"
         - "mit dem richtigen Tool Blöcke zerstören"
@@ -173,14 +173,14 @@ items:
       n: "Sneak Spawner"
       l:
         - "Sei vorbereitet... Jedes Mal, wenn du sneakst"
-        - "wird"
-        - "an deiner aktuellen Position ein zufälliges Mob spawnen"
+        - "wird an deiner aktuellen Position"
+        - " ein zufälliges Mob spawnen"
     WORLD_PEACE:
       n: "Weltfrieden"
       l:
         - "Anstatt sich an die Spitze zu kämpfen"
         - "einfach nur mit deinen Gegnern"
-        - "kommunizieren und handeln"
+        - "kommunizieren und handeln!"
         - "<i>Ein Symbol gegen den Ukraine-Russland Krieg"
     GRAVITY:
       n: "Gravitationswechsel"
@@ -189,7 +189,7 @@ items:
         - "alle paar Sekunden ändert sich die Schwerkraft"
         - "zwischen 4 unterschiedlichen neuen Schwerkräften"
     STAY_AWAY:
-      n: "Bleibe fern"
+      n: "Abstand Bitte"
       l:
         - "Wenn du zu nahe an andere "
         - "Mobs oder Spieler kommst, verursacht das Schaden."
@@ -215,7 +215,7 @@ items:
         - "Das Mob-Spawning ist gemischt"
         - "(oder zufällig)"
     FORCE_COLLECT:
-      n: "Force Collect"
+      n: "Sammel Aufgabe"
       l:
         - "Du bist gezwungen zu sammeln"
         - "das gegebene Item um zu überleben"
@@ -391,7 +391,7 @@ items:
       healthToBlood:
         n: "HP - Blut"
       bloodLoose:
-        n: "Blood Drain"
+        n: "Blutabsaugen"
     TRAFFIC_LIGHT:
       min:
         n: "Minimale Dauer"
@@ -416,7 +416,7 @@ items:
       place:
         n: "Platzierung deaktivieren"
       interact:
-        n: "Interact Category"
+        n: "Interaktive Kategorie"
       craft:
         n: "Werkbank deaktivieren"
       trade:
