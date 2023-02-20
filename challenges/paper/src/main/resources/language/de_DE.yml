@@ -98,19 +98,19 @@ items:
         - "ändert alles um ein komplett"
         - "neues Minecraft zu entdecken!"
     CAPTIVE:
-      n: "Captive Challenge"
+      n: "Captive Herausforderung"
       l:
         - "Die Welt schrumpft auf ein kleines"
         - "Feld und es ist deine Aufgabe"
         - "diese durch Level zu vergrößern"
     GHOST:
-      n: "Ghost Challenge"
+      n: "Ghost Herausforderung"
       l:
         - "Entdecke die Tiefen mit deiner neuen"
         - "Fähigkeit, durch Blöcke zu reisen!"
         - "Aber sei dir bewusst... Geister sind schwach"
     BLOCK_ASYNC:
-      n: "Block Async Challenge"
+      n: "Black Async Herausforderung"
       l:
         - "Jeder Spieler sieht seine eigene Welt!"
         - "Aber sollte ein Spieler mit einem"
@@ -176,7 +176,7 @@ items:
         - "wird"
         - "an deiner aktuellen Position ein zufälliges Mob spawnen"
     WORLD_PEACE:
-      n: "World Peace"
+      n: "Weltfrieden"
       l:
         - "Anstatt sich an die Spitze zu kämpfen"
         - "einfach nur mit deinen Gegnern"
@@ -205,7 +205,7 @@ items:
         - "Die Mob Drops sind gemischt"
         - "(oder zufällig)"
     RANDOMIZER_BIOMES:
-      n: "Biome Randomizer"
+      n: "Biom Randomizer"
       l:
         - "Die Biome in der Welt sind gemischt"
         - "(oder zufällig)"
@@ -217,64 +217,64 @@ items:
     FORCE_COLLECT:
       n: "Force Collect"
       l:
-        - "You are forced to collect"
-        - "the prompted item to survive"
+        - "Du bist gezwungen zu sammeln"
+        - "das gegebene Item um zu überleben"
     RANDOMIZER_DAMAGE:
-      n: "Damage Randomizer"
+      n: "Schaden Randomizer"
       l:
-        - "Damage is shuffled like"
-        - "2hp will be always 5hp"
+        - "Der schaden ist randomized wie"
+        - "2hp werden immer 5hp sein"
         - "(oder zufällig)"
     NO_DOUBLE_KILL:
-      n: "No Double Kills"
+      n: "Keine Doppelkills"
       l:
-        - "You are not allowed to kill"
-        - "the same mob twice in a row"
+        - "Du darfst nicht töten"
+        - "den selben Mob zweimal in Folge"
     DAMAGER:
-      n: "Damager Challenge"
+      n: "Damager Herausforderung"
       l:
-        - "You will be confronted with"
-        - "constantly damage from the"
-        - "chosen event. Can you survive?"
+        - "Du wirst konfrontiert mit"
+        - "konstantem schaden vom"
+        - "gewählten Event. Kannst du überleben?"
     RIVALS_COLLECT:
-      n: "Collection Rivals"
+      n: "Kollektionrivalen"
       l:
-        - "Collect/find/kill the prompted"
-        - "goal to get the next. Player"
-        - "with the most points win"
+        - "Sammle/Finde/töte das gegebene"
+        - "ziel um das nächste zu erhalten. Spieler"
+        - "mit den meisten Punkten gewinnen"
     ROCKET:
-      n: "Rocket Mode"
+      n: "Raketenmodus"
       l:
-        - "Sneak to fly up. But be aware!"
-        - "Flying with a rocket is hard..."
-        - "And hold an eye on your heat"
+        - "Sneak zum Fliegen. Aber sei vorsichtig!"
+        - "Mit einer Rakete zu fliegen ist hart..."
+        - "Und halte ein Auge auf die Hitze"
     VAMPIRE:
-      n: "Vampire Challenge"
+      n: "Vampir herausforderung"
       l:
-        - "Welcome to the world of darkness!"
-        - "Light will drain your blood. Kill"
-        - "mobs to gain their blood and sneak on"
-        - "killing to gather a blood pack (heal)"
+        - "Willkommen zur Welt der Finsternis!"
+        - "Licht wird dein Blut aussaugen. Töte"
+        - "mobs um ihr Blut zu erhalten und sneake auf"
+        - "töte um Blutpacks zu erhalten (heal)"
     TRAFFIC_LIGHT:
-      n: "Traffic Lights"
+      n: "Ampeln"
       l:
-        - "You are trapped on the road."
-        - "You are only allowed to move"
-        - "on green lights. If you move"
-        - "on red, you get punished"
+        - "Du bist auf der Straße gefangen."
+        - "Du darfst dich nur bewegen"
+        - "wenn das grüne licht leuchtet. Wenn du dich bewegst"
+        - "während das rote Licht leuchtet, wirst du bestraft"
     TRON:
-      n: "Snake Path"
+      n: "Schlangenpfad"
       l:
-        - "Every player creates a path"
-        - "on walking. But be carefully!"
-        - "You are not allowed to touch it"
-        - "ever again..."
+        - "Jeder spieler generiert einen Pfad"
+        - "zum laufen. Aber sei vorsichtig!"
+        - "Du darfst ihn nicht berühren"
+        - "nie wieder..."
     DISABLED:
-      n: "Disable Features"
+      n: "Deaktiviere features"
       l:
-        - "Disable certain key features"
+        - "Deaktiviere bestimmte Features"
         - "sich selbst herauszufordern."
-        - "Additionally a damage punishment"
+        - "Zusätzlich eine Schadensstrafe"
         - "kann hinzugefügt werden"
   chS:
     FLY:
