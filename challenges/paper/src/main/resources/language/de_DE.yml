@@ -98,7 +98,7 @@ items:
       n: "<red>Herunterscrollen"
       l:
         - "You can not scroll any"
-        - "further down"
+        - "weiter nach unten"
     pageIndicator:
       l:
         - "Click to open a compact"
@@ -327,11 +327,11 @@ items:
         - "Zusätzlich eine Schadensstrafe"
         - "kann hinzugefügt werden"
     MOB_HUNT:
-      n: "Mob Hunt"
+      n: "Mob Jagd"
       l:
         - "Kill all Mobs in a given"
-        - "order to finish!"
-        - "Use /mobhunt to modify"
+        - "um zu beenden!"
+        - "Benutze /mobhunt zum ändern"
     ITEM_HUNT:
       n: "Gegenstandssuche"
       l:
@@ -339,21 +339,21 @@ items:
         - "um zu beenden!"
         - "Benutze /itemhunt zum ändern"
     MIRROR:
-      n: "Mirror Challenge"
+      n: "Spiegel Herausforderung"
       l:
-        - "Mirror certain things from"
-        - "you to all other players (sync)"
+        - "Spiegele bestimmte Dinge von"
+        - "du an alle anderen Spieler (Sync)"
     CHUNK_FLATTENER:
-      n: "Chunk Flattener"
+      n: "Chunk Flacher"
       l:
-        - "Watch out your steps!"
-        - "Your current chunk slowly"
-        - "shrinks down"
+        - "Achte auf deine Schritte!"
+        - "Ihr aktueller Chunk langsam"
+        - "schrumpft ab"
     CHUNK_DECAY:
-      n: "Chunk Decay"
+      n: "Chunk Zerfall"
       l:
-        - "Your current chunk randomly"
-        - "decays till it's gone"
+        - "Ihr aktueller Chunk zufällig"
+        - "verfällt bis es vorbei ist"
   chS:
     FLY:
       power:
@@ -383,7 +383,7 @@ items:
       adventure:
         n: "Abenteuergeist"
       glide:
-        n: "Ghost Glide"
+        n: "Geister Flug"
     NO_SAME_ITEM:
       lives:
         n: "Leben"
@@ -393,7 +393,7 @@ items:
         n: "Ankündigungsmodus"
     LIMITED_SKILLS:
       random:
-        n: "Random Roles"
+        n: "Zufällige Rollen"
     RUN_RANDOMIZER:
       goal:
         n: "Blockziel"
@@ -510,22 +510,22 @@ items:
         n: "Schaden"
     MIRROR:
       hearts:
-        n: "Sync Health"
+        n: "Synchronisiere Gesundheit"
       food:
-        n: "Sync Food"
+        n: "Synchronisiere Nahrung"
       potions:
-        n: "Sync Potions"
+        n: "Synchronisiere Tränke"
       hotbar:
-        n: "Sync Hotbar"
+        n: "Synchronisiere Hotbar"
     CHUNK_FLATTENER:
       delay:
-        n: "Delay"
+        n: "Verzögerung"
       shouldBreak:
-        n: "Drop Blocks"
+        n: "Blöcke ablegen"
     CHUNK_DECAY:
       delay:
-        n: "Delay"
+        n: "Verzögerung"
       percentage:
-        n: "Decay Percentage"
+        n: "Prozentsatz verfall"
       shouldBreak:
-        n: "Drop Blocks"
+        n: "Blöcke ablegen"
