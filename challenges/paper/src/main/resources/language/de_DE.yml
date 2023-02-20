@@ -345,7 +345,7 @@ items:
         n: "Damage Distance"
     RANDOMIZER_BLOCK:
       random:
-        n: "Komplett Zufällig"
+        n: "Komplett zufällig"
     RANDOMIZER_ENTITY:
       random:
         n: "Full Random"
