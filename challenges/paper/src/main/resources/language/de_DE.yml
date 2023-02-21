@@ -83,12 +83,12 @@ items:
       n: "<green>Scrolle nach oben"
       l:
         - "<blue>Klicke ≫ - 1Seite"
-        - "<blue>Sneak-Click ≫ -3 pages"
+        - "<blue>Schleich-Klick ≫ -3 Seiten"
     arrowDownGreen:
       n: "<green>Scrolle nach unten"
       l:
         - "<blue>Klicke ≫ +1 Seite"
-        - "<blue>Sneak-Click ≫ +3 pages"
+        - "<blue>Schleich-Klick ≫ +3 Seiten"
     arrowUpRed:
       n: "<red>Scrolle nach oben"
       l:
@@ -97,12 +97,12 @@ items:
     arrowDownRed:
       n: "<red>Scrolle nach unten"
       l:
-        - "You can not scroll any"
+        - "Du kannst nicht weiter"
         - "nach unten scrollen"
     pageIndicator:
       l:
-        - "Click to open a compact"
-        - "GUI with quick access"
+        - "Klicke, um ein kompaktes GUI zu öffnen"
+        - "GUI mit Schnellzugriff"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -329,13 +329,13 @@ items:
     MOB_HUNT:
       n: "Mob Jagd"
       l:
-        - "Kill all Mobs in a given"
+        - "Töte alle Mobs in einem gegebenen"
         - "um zu beenden!"
         - "Benutze /mobhunt zum Modifizieren"
     ITEM_HUNT:
       n: "Item Jagd"
       l:
-        - "Collect all Items in a given"
+        - "Sammle alle Items in einem gegebenen"
         - "um zu beenden!"
         - "Benutze /itemhunt zum Modifizieren"
     MIRROR:
