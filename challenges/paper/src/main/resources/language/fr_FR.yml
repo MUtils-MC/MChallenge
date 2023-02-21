@@ -16,8 +16,8 @@ version: 1.0.0
 common:
   boolTrue: "Enabled"
   boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
+  left: "Gauche"
+  right: "Droite"
   click: "Click"
   sneak: "Sneak"
   none: "None"
