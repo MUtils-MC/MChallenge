@@ -268,45 +268,45 @@ items:
       n: "Sammel Aufgabe"
       l:
         - "Du musst das vorgegebene"
-        - "das gegebene Item um zu überleben"
+        - "Item sammeln um zu überleben"
     RANDOMIZER_DAMAGE:
       n: "Schaden Randomizer"
       l:
-        - "Der schaden ist randomized wie"
+        - "Der Schaden ist vertauscht wie"
         - "2hp werden immer 5hp sein"
         - "(oder zufällig)"
     NO_DOUBLE_KILL:
       n: "Keine Doppelkills"
       l:
-        - "Du darfst nicht töten"
-        - "den selben Mob zweimal in Folge"
+        - "Du darfst nicht den selben"
+        - "Mob zweimal in Folge töten"
     DAMAGER:
-      n: "Damager Herausforderung"
+      n: "Schadens Challenge"
       l:
         - "Du wirst konfrontiert mit"
-        - "konstantem schaden vom"
+        - "konstantem Schaden von"
         - "gewählten Event. Kannst du überleben?"
     RIVALS_COLLECT:
-      n: "Kollektionrivalen"
+      n: "Sammelkampf"
       l:
-        - "Sammle/Finde/töte das gegebene"
-        - "ziel um das nächste zu erhalten. Spieler"
-        - "mit den meisten Punkten gewinnen"
+        - "Sammle/finde/töte das gegebene"
+        - "Ziel, um das nächste zu erhalten. Spieler"
+        - "mit den meisten Punkten gewinnt"
     ROCKET:
-      n: "Raketenmodus"
+      n: "Raketen-Modus"
       l:
         - "Sneak zum Fliegen. Aber sei vorsichtig!"
         - "Mit einer Rakete zu fliegen ist hart..."
-        - "Und halte ein Auge auf die Hitze"
+        - "Und halte ein Auge aufs Überhitzen"
     VAMPIRE:
-      n: "Vampir herausforderung"
+      n: "Vampir Herausforderung"
       l:
         - "Willkommen zur Welt der Finsternis!"
         - "Licht wird dein Blut aussaugen. Töte"
-        - "mobs um ihr Blut zu erhalten und sneake auf"
-        - "töte um Blutpacks zu erhalten (heal)"
+        - "Mobs um ihr Blut zu erhalten und sneake beim"
+        - "töten, um Blutpacks zu erhalten (Heilung)"
     TRAFFIC_LIGHT:
-      n: "Ampeln"
+      n: "Ampel Challenge"
       l:
         - "Du bist auf der Straße gefangen."
         - "Du darfst dich nur bewegen"
@@ -315,45 +315,45 @@ items:
     TRON:
       n: "Schlangenpfad"
       l:
-        - "Jeder spieler generiert einen Pfad"
+        - "Jeder Spieler generiert einen Pfad"
         - "zum laufen. Aber sei vorsichtig!"
         - "Du darfst ihn nicht berühren"
         - "nie wieder..."
     DISABLED:
-      n: "Deaktiviere features"
+      n: "Deaktivierte Funktionen"
       l:
-        - "Deaktiviere bestimmte Features"
-        - "sich selbst herauszufordern."
-        - "Zusätzlich eine Schadensstrafe"
-        - "kann hinzugefügt werden"
+        - "Deaktiviere bestimmte Funktionen"
+        - "um dich herauszufordern."
+        - "Zusätzlich kann eine Strafe"
+        - "hinzugefügt werden"
     MOB_HUNT:
       n: "Mob Jagd"
       l:
         - "Kill all Mobs in a given"
         - "um zu beenden!"
-        - "Benutze /mobhunt zum ändern"
+        - "Benutze /mobhunt zum Modifizieren"
     ITEM_HUNT:
-      n: "Gegenstandssuche"
+      n: "Item Jagd"
       l:
         - "Collect all Items in a given"
         - "um zu beenden!"
-        - "Benutze /itemhunt zum ändern"
+        - "Benutze /itemhunt zum Modifizieren"
     MIRROR:
-      n: "Spiegel Herausforderung"
+      n: "Spiegel Challenge"
       l:
         - "Spiegele bestimmte Dinge von"
-        - "du an alle anderen Spieler (Sync)"
+        - "dir zu anderen Spielern (Sync)"
     CHUNK_FLATTENER:
-      n: "Chunk Flacher"
+      n: "Chunk Abbau"
       l:
         - "Achte auf deine Schritte!"
-        - "Ihr aktueller Chunk langsam"
-        - "schrumpft ab"
+        - "Dein aktueller Chunk "
+        - "schrumpft langsam runter"
     CHUNK_DECAY:
       n: "Chunk Zerfall"
       l:
-        - "Ihr aktueller Chunk zufällig"
-        - "verfällt bis es vorbei ist"
+        - "Dein aktueller Chunk verfällt"
+        - "zufällig bis nichts verbleibt"
   chS:
     FLY:
       power:
@@ -362,7 +362,7 @@ items:
       pTime:
         n: "Spielerzeit"
       eTime:
-        n: "Entitäts-Zeit"
+        n: "Entity-Zeit"
       hpTime:
         n: "Zeit pro HP"
     MOB_BLOCKS:
@@ -381,7 +381,7 @@ items:
       radius:
         n: "Radius"
       adventure:
-        n: "Abenteuergeist"
+        n: "Abenteuermodus"
       glide:
         n: "Geister Flug"
     NO_SAME_ITEM:
@@ -526,6 +526,6 @@ items:
       delay:
         n: "Verzögerung"
       percentage:
-        n: "Prozentsatz verfall"
+        n: "Prozentualer Verfall"
       shouldBreak:
         n: "Blöcke ablegen"
