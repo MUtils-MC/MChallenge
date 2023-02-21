@@ -40,7 +40,7 @@ event:
   biomeProvider: "Biom Generator"
   noiseProvider: "Welt Generator"
   teleportToWorld: "Teleportiere zu <input-1>" #v - world name
-  noOverride: "<red>Activate global override to modify the value!"
+  noOverride: "<red>Aktiviere sie die globale Überschreibung, um den Wert zu ändern!"
   sneakExit: "Schleiche zum verlassen"
   newWorld: "Erstelle neue Welt..."
   newWorldSub: "Bitte habe ein wenig Geduld..."
@@ -76,12 +76,12 @@ items:
         - "Du kannst nicht weiter"
         - "nach Links scrollen."
     arrowRight:
-      n: "<green>Scroll Right"
+      n: "<green>Scrolle nach rechts"
       l:
         - "<blue>Klick ≫ +1 Seite"
         - "<blue>Schleich-Klick ≫ +5 Seiten"
     arrowLeft:
-      n: "<green>Scroll Left"
+      n: "<green>Scrolle nach links"
       l:
         - "<blue>Klick ≫ - 1Seite"
         - "<blue>Schleich-Klick ≫ -5 Seiten"
@@ -131,10 +131,10 @@ items:
     seed:
       n: "Welt Seed"
       l:
-        - "Set a seed that is used to"
-        - "change the world generation."
-        - "Worlds with the same seed"
-        - "generate equal"
+        - "Setze einen Seed, der verwendet wird"
+        - "ändere die Welt Generierung."
+        - "Welten mit dem gleichen Seed"
+        - "generiere Gleichheit"
       s: "Seed"
     env:
       n: "Dimension"
@@ -168,7 +168,7 @@ items:
         - "ändern der vanilla Generierung."
         - "<#CF6679>Veränder diese nur, wenn du"
         - "<#CF6679>weißt was du tust!"
-      s1: "Noise Generation"
+      s1: "Geräusch Generation"
       s2: "Höhlen Generation"
       s3: "Oberflächen Generation"
       s4: "Gewächs Generation"
@@ -186,24 +186,24 @@ items:
         - "mit allen Einstellungen und"
         - "Fortschritten (Gelände & Entitäten)"
     preview:
-      n: "Prerender Current Rule"
+      n: "Aktuelle Regel vorverarbeiten"
       l:
         - "Vorschau der aktuellen Regeln"
-        - "in an abstract prerender"
+        - "in einem abstrakten Pendler"
     category:
-      n: "Sync Category"
+      n: "Kategorie synchronisieren"
       l:
-        - "Enter a custom category"
-        - "to create a separat player"
-        - "saving. Switching between categories"
-        - "will load the needed player data"
+        - "Benutzerdefinierte Kategorie eingeben"
+        - "einen separaten Spieler erstellen"
+        - "speichern. Wechsel zwischen Kategorien"
+        - "lädt die benötigten Spielerdaten"
       s: "Kategorie"
     worldSet:
-      n: "Create World Set"
+      n: "Welten-Set erstellen"
       l:
-        - "Create an overworld, nether"
-        - "and end world from your settings"
-        - "and put them all in one category"
+        - "Eine Overworld und nether erstellen"
+        - "und End von deinen Einstellungen"
+        - "und legen Sie alle in eine Kategorie"
     singleWorld:
       n: "Welt erstellen"
       l:
@@ -251,49 +251,49 @@ items:
     SOLID_THICKNESS:
       n: "Dicke-Solid"
       l:
-        - "The thickness of the"
-        - "solid part that is not"
-        - "replaced with air"
+        - "Die Dicke des"
+        - "fester Teil, der nicht"
+        - "ersetzt durch Luft"
     HOLE_THICKNESS:
       n: "Dicke-Luft"
       l:
-        - "The thickness of the"
-        - "void part that is replaced"
-        - "with air"
+        - "Die Dicke des"
+        - "ungültiger Teil der ersetzt wird"
+        - "mit Luft"
     X_DIRECTION:
       n: "Richtung-X"
       l:
-        - "The pattern direction."
-        - "Deactivate it for a z"
+        - "Die Musterrichtung."
+        - "Deaktivieren für ein z"
         - "Richtung"
     INVERTED:
       n: "Invertiert"
       l:
-        - "Switch the hole and"
-        - "solid part"
+        - "Loch wechseln und"
+        - "fester Teil"
     RANDOM:
       n: "Zufällig"
       l:
-        - "Overrides the thickness"
-        - "or scaling values with an"
-        - "random value for every repetition"
+        - "Überschreibt die Dicke"
+        - "oder Skalierungswerte mit einem"
+        - "zufällige Werte für jede Wiederholung"
     VANILLA:
       n: "Vanilla"
       l:
         - "Standard Biomgenerierung"
         - "wie in Vanilla-Welten"
     CHUNKED_BIOMES:
-      n: "Chunked Biomes"
+      n: "Gespaltene Biome"
       l:
-        - "Every chunk contains a random biome."
-        - "You can define the chunk size"
+        - "Jeder Chunk enthält ein zufälliges Biom."
+        - "Sie können die Größe des Chunks festlegen"
     RANDOM_BIOMES:
       n: "Zufällige Biome"
       l:
-        - "Every block contains a random biome."
-        - "This counts for heights and depths"
+        - "Jeder Block enthält ein zufälliges Biom."
+        - "Das zählt für Höhen und Tiefen"
     SINGLE_BIOME:
-      n: "Single Biome"
+      n: "Einzelnes Biom"
       l:
         - "Die Welt enthält nur ein Biom."
         - "Dies wirkt sich auf Strukturen- und"
