@@ -329,14 +329,14 @@ items:
     MOB_HUNT:
       n: "Mob Jagd"
       l:
-        - "Töte alle Mobs in einem gegebenen"
-        - "um zu beenden!"
+        - "Töte alle Mobs in einer gegebenen"
+        - "Reihenfolge um zu gewinnen!"
         - "Benutze /mobhunt zum Modifizieren"
     ITEM_HUNT:
       n: "Item Jagd"
       l:
-        - "Sammle alle Items in einem gegebenen"
-        - "um zu beenden!"
+        - "Sammle alle Items in einer gegebenen"
+        - "Reihenfolge um zu gewinnen!"
         - "Benutze /itemhunt zum Modifizieren"
     MIRROR:
       n: "Spiegel Challenge"
@@ -412,7 +412,7 @@ items:
         n: "Nur Monster"
     CHUNK_BLOCK_BREAK:
       bundle:
-        n: "Paketdrops"
+        n: "Gebündelt"
     SNEAK_SPAWN:
       onlyMob:
         n: "Nur Monster"
@@ -430,10 +430,10 @@ items:
         n: "Komplett zufällig"
     RANDOMIZER_BIOMES:
       random:
-        n: "Voll zufällig"
+        n: "Komplett zufällig"
     RANDOMIZER_MOBS:
       random:
-        n: "Extrem Randomizer"
+        n: "Komplett zufällig"
     FORCE_COLLECT:
       minCooldown:
         n: "Minimale Abklingzeit"
@@ -448,7 +448,7 @@ items:
         n: "Komplett zufällig"
     NO_DOUBLE_KILL:
       global:
-        n: "Gesamtzahl"
+        n: "Globale Wirkung"
     DAMAGER:
       mode:
         n: "Schadensereignis"
@@ -464,13 +464,13 @@ items:
         n: "Treibstoffkapazität"
     VAMPIRE:
       startBlood:
-        n: "Starte Blut"
+        n: "Start Blut"
       maxBlood:
         n: "Blutkapazität"
       healthToBlood:
         n: "HP - Blut"
       bloodLoose:
-        n: "Blutabsaugen"
+        n: "Blutverlust"
     TRAFFIC_LIGHT:
       min:
         n: "Minimale Dauer"
@@ -479,11 +479,11 @@ items:
       damage:
         n: "Schaden bei Rot"
       green:
-        n: "Grün Phase"
+        n: "Grünphase"
       yellow:
         n: "Gelbphase"
       red:
-        n: "Rot-Phase"
+        n: "Rotphase"
     TRON:
       visible:
         n: "Sichtbarer Pfad"
@@ -493,9 +493,9 @@ items:
       break:
         n: "Abbauen deaktivieren"
       place:
-        n: "Platzierung deaktivieren"
+        n: "Platzieren deaktivieren"
       interact:
-        n: "Interaktive Kategorie"
+        n: "Interaktionskategorie"
       craft:
         n: "Werkbank deaktivieren"
       trade:
