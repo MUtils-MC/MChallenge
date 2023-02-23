@@ -83,12 +83,12 @@ items:
       n: "<green>Scrolle nach oben"
       l:
         - "<blue>Klicke ≫ - 1Seite"
-        - "<blue>Schleich-Klick ≫ -3 Seiten"
+        - "<blue>Sneak-Klick ≫ -3 Seiten"
     arrowDownGreen:
       n: "<green>Scrolle nach unten"
       l:
         - "<blue>Klicke ≫ +1 Seite"
-        - "<blue>Schleich-Klick ≫ +3 Seiten"
+        - "<blue>Sneak-Klick ≫ +3 Seiten"
     arrowUpRed:
       n: "<red>Scrolle nach oben"
       l:
@@ -101,8 +101,8 @@ items:
         - "nach unten scrollen"
     pageIndicator:
       l:
-        - "Klicke, um ein kompaktes GUI zu öffnen"
-        - "GUI mit Schnellzugriff"
+        - "Klicke, um ein kompaktes GUI"
+        - "mit Schnellzugriff zu öffnen"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
