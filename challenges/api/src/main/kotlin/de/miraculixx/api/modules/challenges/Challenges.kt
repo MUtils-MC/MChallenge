@@ -21,7 +21,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     ITEM_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon("ENDER_CHEST"), true),
     MIRROR(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.MULTIPLAYER), Icon("GLASS"), true),
     CHUNK_FLATTENER(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("IRON_TRAPDOOR"), true),
-    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM), Icon("TNT"), true),
+    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("TNT"), true),
     CHUNK_DECAY(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("OAK_LEAVES"), true),
     CHUNK_CLEARER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("DRAGON_BREATH"), true),
     ANVIL_CRUSHER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("ANVIL"), true),

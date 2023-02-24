@@ -1,3 +1,4 @@
+
 plugins {
     `kotlin-script`
     `paper-script`
@@ -11,6 +12,16 @@ dependencies {
 
     implementation(project(":challenges:api")) // Internal API
     implementation(project(":world-creator:api")) // External API
+}
+
+tasks {
+    sourceSets {
+        main {
+            resources {
+                this.include("$rootDir/challenges/data/language", "*")
+            }
+        }
+    }
 }
 
 group = "de.miraculixx.challenges"
