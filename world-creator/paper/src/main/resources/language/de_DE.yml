@@ -67,7 +67,7 @@ items:
   general:
     arrowRightEnd:
       n: "<red>Scrolle Rechts"
-      l: "You can not scroll any<br>further to the right"
+      l: "Du kannst nicht weiter<br>nach rechts scrollen"
     arrowLeftEnd:
       n: "<red>Scrolle nach Links"
       l: "You can not scroll any<br>further to the left"
