@@ -86,7 +86,8 @@
   {
     "key": "MOB_BLOCKS",
     "version": "1.0.0",
-    "icon": "zombie_head",
+    "icon": "player_head",
+    "texture": "64528b3229660f3dfab42414f59ee8fd01e80081dd3df30869536ba9b414e089",
     "tags": ["FUN", "RANDOMIZER"]
   },
   {
