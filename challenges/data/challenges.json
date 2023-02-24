@@ -1,0 +1,99 @@
+[
+  {
+    "key": "VAMPIRE",
+    "icon": "ghast_tear",
+    "version": "1.0.0",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "TRAFFIC_LIGHT",
+    "icon": "redstone_lamp",
+    "version": "1.0.0",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "TRON",
+    "version": "1.0.0",
+    "icon": "light_blue_concrete",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "DISABLED",
+    "version": "1.0.0",
+    "icon": "iron_bars",
+    "tags": ["FUN", "FREE"]
+  },
+  {
+    "key": "MOB_HUNT",
+    "version": "1.0.0",
+    "icon": "phantom_spawn_egg",
+    "tags": ["FUN", "FREE", "FORCE"]
+  },
+  {
+    "key": "ITEM_HUNT",
+    "version": "1.0.0",
+    "icon": "ender_chest",
+    "tags": ["FUN", "FREE", "FORCE"]
+  },
+  {
+    "key": "MIRROR",
+    "version": "1.0.0",
+    "icon": "GLASS",
+    "tags": ["FUN", "FREE", "MULTIPLAYER"]
+  },
+  {
+    "key": "CHUNK_FLATTENER",
+    "version": "1.0.0",
+    "icon": "iron_trapdoor",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "CHUNK_BLOCK_BREAK",
+    "version": "1.0.0",
+    "icon": "tnt",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "CHUNK_DECAY",
+    "version": "1.0.0",
+    "icon": "oak_leaves",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "CHUNK_CLEARER",
+    "version": "1.0.0",
+    "icon": "dragon_breath",
+    "tags": ["HARD", "FREE"]
+  },
+  {
+    "key": "ANVIL_CRUSHER",
+    "version": "1.0.0",
+    "icon": "anvil",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "FLY",
+    "version": "1.0.0",
+    "icon": "elytra",
+    "tags": ["FUN"]
+  },
+  {
+    "key": "IN_TIME",
+    "version": "1.0.0",
+    "icon": "clock",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "MOB_BLOCKS",
+    "version": "1.0.0",
+    "icon": "zombie_head",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "CHECKPOINTS",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02",
+    "tags": ["FUN"]
+  }
+]
