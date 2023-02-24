@@ -61,64 +61,64 @@ items:
   general:
     arrowRightEnd:
       n: "<red>Scrolle nach rechts"
-      l: "You can not scroll any<br>further to the right"
+      l: "Du kannst nicht weiter<br>nach rechts scrollen"
     arrowLeftEnd:
       n: "<red>Scrolle nach links"
-      l: "You can not scroll any<br>further to the left"
+      l: "Du kannst nicht weiter<br>nach links scrollen"
     arrowRight:
       n: "<green>Scrolle nach rechts"
-      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
+      l: "<blue>Klicke ≫ +1 Seite<br><blue>Sneak-Click ≫ +5 Seiten"
     arrowLeft:
       n: "<green>Scrolle nach links"
-      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
+      l: "<blue>Klicke ≫ -1 Seite<br><blue>Sneak-Click ≫ -5 Seiten"
     arrowUpGreen:
       n: "<green>Scrolle nach oben"
-      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -3 pages"
+      l: "<blue>Klicke ≫ -1 Seite<br><blue>Sneak-Click ≫ -3 Seiten"
     arrowDownGreen:
       n: "<green>Scrolle nach unten"
-      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +3 pages"
+      l: "<blue>Klicke ≫ +1 Seite<br><blue>Sneak-Click ≫ +3 Seiten"
     arrowUpRed:
       n: "<red>Scrolle nach oben"
-      l: "You can not scroll any<br>further up"
+      l: "Du kannst nicht weiter<br>nach oben scrollen"
     arrowDownRed:
       n: "<red>Scrolle nach unten"
-      l: "You can not scroll any<br>further down"
+      l: "Du kannst nicht weiter<br>nach unten scrollen"
     pageIndicator:
-      l: "Click to open a compact<br>GUI with quick access"
+      l: "Klicke, um eine kompakte<br>GUI mit schnellem Zugriff zu öffnen"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
-      l: "Fly with a new power through<br>the sky like a hero!<br>Sneak in midair to activate"
+      l: "Fliege mit einer neuen Kraft durch<br>den Himmel wie ein Held!<br>Schleiche in Midair um zu aktivieren"
     IN_TIME:
       n: "InTime Challenge"
-      l: "Every Entity has a limited time<br>to live. You too! Kill mobs to<br>steal their time"
+      l: "Jede Entität hat eine begrenzte Zeit<br>, um zu leben. Du auch! Töte Mobs zu<br>stehlen deren Zeit"
     MOB_BLOCKS:
       n: "Mob Blocks Randomizer"
-      l: "Every block contains a random mob.<br>Break the block to release it and<br>only after killing it, the item drops"
+      l: "Jeder Block enthält einen zufälligen Mob.<br>Zerbreche den Block um ihn freizugeben und<br>nur nach dem Töten fällt der Gegenstand"
     CHECKPOINTS:
       n: "Zeitreise Challenge"
-      l: "Create Checkpoints (F) to travel<br>back in time! But be warned... Time<br>traveling is dangerous"
+      l: "Erstelle Kontrollpunkte (F), um<br>zurück in die Zeit zu reisen! Aber sei gewarnt... Zeit<br>Reisen ist gefährlich"
     DIM_SWAP:
       n: "Dimension Swap Challenge"
-      l: "All portals are shuffled! Now you<br>have to fight the Ender Dragon in...<br>the Overworld?<br>Nether -> End -> Overworld"
+      l: "Alle Portale sind gemischt! Jetzt musst du<br>gegen den Enderdrachen kämpfen...<br>die Überwelt?<br>Hölle -> Ende -> Oberwelt"
     SNAKE:
       n: "Snake Challenge"
-      l: "You can only move on your personal<br>snake, which permanently move in<br>your viewing direction"
+      l: "Du kannst dich nur auf deiner persönlichen<br>Schlange bewegen, die sich dauerhaft in<br>deiner Sichtrichtung bewegt"
     REALISTIC:
       n: "Realistisches Minecraft"
-      l: "Is MC to unrealistic? This Challenge<br>will change everything to discover<br>a full new Minecraft"
+      l: "Ist Minecraft unrealistisch? Diese Herausforderung<br>wird alles ändern um<br>ein neues Minecraft zu entdecken"
     CAPTIVE:
       n: "Captive Challenge"
-      l: "The world shrunk down to small<br>field and it's your task to<br>grow it through Level"
+      l: "Die Welt ist auf ein kleines<br>-Feld geschrumpft, und es ist deine Aufgabe,<br>durch Level zu wachsen"
     GHOST:
       n: "Geister Challenge"
-      l: "Discover the depths with your new<br>ability to travel through blocks!<br>But be aware... Ghosts are weak"
+      l: "Entdecke die Tiefen mit deiner neuen<br>Fähigkeit durch Blöcke zu reisen!<br>Aber sei dir bewusst... Geister sind schwach"
     BLOCK_ASYNC:
       n: "Block Async Challenge"
-      l: "Every player sees his own world!<br>But should a player interact with a<br>block modified by a different player<br>he dies. Communication is key"
+      l: "Jeder Spieler sieht seine eigene Welt!<br>Aber sollte ein Spieler mit einem<br>Block interagieren, der von einem anderen Spieler verändert wurde<br>er stirbt. Kommunikation ist Schlüssel"
     NO_SAME_ITEM:
       n: "Keine Gleichen Items"
-      l: "If you collect a item, wich<br>was already collected, you loose<br>one heart"
+      l: "Wenn du ein Item sammelst, das<br>bereits gesammelt wurde, verlierst du<br>ein Herz"
     LIMITED_SKILLS:
       n: "Begrenzte Fähigkeiten"
       l: "Only one player can see mobs<br>but can't damage them. The other<br>can't see mobs but can deal damage"
