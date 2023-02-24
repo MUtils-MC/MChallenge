@@ -102,7 +102,7 @@ items:
       s: "Name"
     seed:
       n: "Welt Seed"
-      l: "Lege einen Seed fest, welcher zur<br>Änderung der Weltgeneration genutzt wird.<br>Welten mit dem gleichen Seed<br>generieren gleich"
+      l: "Lege einen Seed fest, welcher zur<br>Weltgeneration genutzt wird.<br>Welten mit dem gleichen Seed<br>generieren gleich"
       s: "Seed"
     env:
       n: "Dimension"
@@ -114,7 +114,7 @@ items:
       s: "Strukturen"
     worldType:
       n: "Weltart"
-      l: "Change the vanilla world<br>generation. These work differently<br>on different versions"
+      l: "Ändere die Vanilla Weltgeneration.<br>Dies funktioniert unterschiedlich<br>für verschiedene Versionen"
       s: "Art"
     biomeAlgo:
       n: "Biome Algorithmus"
