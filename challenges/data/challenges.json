@@ -32,7 +32,8 @@
   {
     "key": "ITEM_HUNT",
     "version": "1.0.0",
-    "icon": "ender_chest",
+    "icon": "player_head",
+    "texture": "a6cc486c2be1cb9dfcb2e53dd9a3e9a883bfadb27cb956f1896d602b4067",
     "tags": ["FUN", "FREE", "FORCE"]
   },
   {
