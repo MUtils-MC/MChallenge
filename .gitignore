@@ -4,7 +4,7 @@
 **/run/
 /.gitignore
 /MUtils.iml
-/gradle/wrapper/
+#/gradle/wrapper/
 /kpaper-light/
 buildSrc/.gradle
 zBackup/
