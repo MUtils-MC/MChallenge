@@ -67,107 +67,61 @@ items:
   general:
     arrowRightEnd:
       n: "<red>Scrolle Rechts"
-      l:
-        - "Du kannst nicht weiter"
-        - "nach Rechts scrollen."
+      l: "You can not scroll any<br>further to the right"
     arrowLeftEnd:
       n: "<red>Scrolle nach Links"
-      l:
-        - "Du kannst nicht weiter"
-        - "nach Links scrollen."
+      l: "You can not scroll any<br>further to the left"
     arrowRight:
       n: "<green>Scrolle nach rechts"
-      l:
-        - "<blue>Klick ≫ +1 Seite"
-        - "<blue>Schleich-Klick ≫ +5 Seiten"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
       n: "<green>Scrolle nach links"
-      l:
-        - "<blue>Klick ≫ - 1Seite"
-        - "<blue>Schleich-Klick ≫ -5 Seiten"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
-      l:
-        - "Klicke, um ein kompaktes GUI zu öffnen"
-        - "GUI mit Schnellzugriff"
+      l: "Click to open a compact<br>GUI with quick access"
   menu:
     worldOverview:
       n: "Welten Übersicht"
-      l:
-        - "Liste aller geladenen Welten"
-        - "mit Schnellzugriff zu"
-        - "teleportieren oder löschen"
+      l: "List of all loaded worlds<br>with fast access to teleport<br>or delete"
     worldCreator:
       n: "Welten Ersteller"
-      l:
-        - "Erstelle neue Welten von"
-        - "Grund auf, oder nutze"
-        - "eine Vorlage"
+      l: "Create new worlds from<br>a template or completely<br>from scratch"
     worldDatas:
       n: "Lokale Welten Daten"
-      l:
-        - "Welten spezifische Dateien"
-        - "wie Datapacks oder Ressourcepacks,"
-        - "welche über resets erhalten"
+      l: "World specific resources<br>like datapacks that should<br>persist through resets"
     worldSettings:
       n: "Welteinstellungen"
-      l:
-        - "Greife auf spezifische"
-        - "Einstellungen einer Welt zu,"
-        - "wie Gamerules"
+      l: "Access and edit world<br>settings like gamerules for<br>each world"
     worldSettingsGlobal:
       n: "Globale Welteinstellungen"
-      l:
-        - "Definiere globale Regeln"
-        - "für alle neu erstellten"
-        - "Welten"
+      l: "Define global world<br>settings that apply for<br>all new worlds"
   creator:
     name:
       n: "Weltname"
-      l:
-        - "Setze einen Namen, unter"
-        - "welchem die Welt gespeichert"
-        - "wird und erreichbar ist"
+      l: "Set your favourite world name<br>that is used to save or access<br>the new world"
       s: "Name"
     seed:
       n: "Welt Seed"
-      l:
-        - "Setze einen Seed, der verwendet wird"
-        - "ändere die Welt Generierung."
-        - "Welten mit dem gleichen Seed"
-        - "generiere Gleichheit"
+      l: "Set a seed that is used to<br>change the world generation.<br>Worlds with the same seed<br>generate equal"
       s: "Seed"
     env:
       n: "Dimension"
-      l:
-        - "Setze die Welt Dimension."
-        - "Dies verändert die vanilla"
+      l: "Set the world Environment<br>(Dimension)"
       s: "Dimension"
     structures:
       n: "Strukturen Generation"
-      l:
-        - "Stelle ein, ob Strukturen"
-        - "generieren sollen"
+      l: "Toggle structure generation<br>in your new world"
       s: "Strukturen"
     worldType:
       n: "Weltart"
-      l:
-        - "Ändere den vanilla Weltgenerator."
-        - "Diese Einstellung funktioniert"
-        - "unterschiedlich in anderen Versionen"
+      l: "Change the vanilla world<br>generation. These work differently<br>on different versions"
       s: "Art"
     biomeAlgo:
       n: "Biome Algorithmus"
-      l:
-        - "Ändere die Biome Generierung."
-        - "Jeder Generator lässt sich"
-        - "einstellen"
+      l: "Change the biome generation<br>to new custom one. Every algorithm<br>can be modified"
     noiseAlgo:
       n: "Vanilla Generierung"
-      l:
-        - "Vertiefte Einstellungen zum"
-        - "ändern der vanilla Generierung."
-        - "<#CF6679>Veränder diese nur, wenn du"
-        - "<#CF6679>weißt was du tust!"
+      l: "Advanced settings to modify<br>the vanilla world generation.<br><#CF6679>Only edit if you know what you are<br><#CF6679>doing!"
       s1: "Geräusch Generation"
       s2: "Höhlen Generation"
       s3: "Oberflächen Generation"
@@ -176,131 +130,72 @@ items:
       s6: "Strukturen Generierung"
     copy:
       n: "Kopiere Welteinstellungen"
-      l:
-        - "Kopiere nur die Welteinstellungen"
-        - "und generiere neues Gelände."
+      l: "Copy only the world settings<br>and generate new terrain."
     copyFull:
       n: "Kopiere die gesamte Welt"
-      l:
-        - "Kopiere die gesamte Welt"
-        - "mit allen Einstellungen und"
-        - "Fortschritten (Gelände & Entitäten)"
+      l: "Copy the whole world<br>with all settings and<br>progress (terrain & entities)"
     preview:
       n: "Aktuelle Regel vorverarbeiten"
-      l:
-        - "Vorschau der aktuellen Regeln"
-        - "in einem abstrakten Pendler"
+      l: "Preview your current rule<br>in an abstract prerender"
     category:
       n: "Kategorie synchronisieren"
-      l:
-        - "Benutzerdefinierte Kategorie eingeben"
-        - "einen separaten Spieler erstellen"
-        - "speichern. Wechsel zwischen Kategorien"
-        - "lädt die benötigten Spielerdaten"
+      l: "Enter a custom category<br>to create a separat player<br>saving. Switching between categories<br>will load the needed player data"
       s: "Kategorie"
     worldSet:
       n: "Welten-Set erstellen"
-      l:
-        - "Eine Overworld und nether erstellen"
-        - "und End von deinen Einstellungen"
-        - "und legen Sie alle in eine Kategorie"
+      l: "Create an overworld, nether<br>and end world from your settings<br>and put them all in one category"
     singleWorld:
       n: "Welt erstellen"
-      l:
-        - "Erstelle eine einzige Welt"
-        - "aus deinen Einstellungen"
+      l: "Create a single world from<br>your settings"
   algo:
     CHESS:
       n: "Schach Algorithmus"
-      l:
-        - "Stempelt Vierecklöcher in die"
-        - "Welt wie ein Schachbrett. Die"
-        - "weißen Felder werden zu Luft"
+      l: "Shapes your world in squares.<br>Like chess, the white squares will<br>be replaced with air"
     LINE:
       n: "Linien Algorithmus"
-      l:
-        - "Zeichne Linien in die Welt."
-        - "Die Richtung und Liniendicke"
-        - "ist einstellbar"
+      l: "Draw void lines in your world.<br>The line and void thickness can<br>be modified individual"
     DIAGONAL_LINE:
       n: "Diagonale Linien Algorithmus"
-      l:
-        - "Zeichne diagonale Linien in die"
-        - "Welt. Die Richtung und"
-        - "Liniendicke ist einstellbar"
+      l: "Draw diagonal void lines in your<br>world. The line and void thickness<br>can be modified individual"
     SQUARE:
       n: "Chunk Ecken Algorithmus"
-      l:
-        - "Stemple Vierecke in alle"
-        - "Chunks. Die Ränderdicke ist"
+      l: "Print square holes in your chunks<br>with individual border sizes"
     CIRCLE:
       n: "Kreis Algorithmus"
-      l:
-        - "Stemple Kreislöcher in deine"
-        - "Welt oder lasse nur noch Kreisböden"
+      l: "Print circle holes in your world<br>or only leave circles as floor"
     SCALE_X:
       n: "Skalierung-X"
-      l:
-        - "Hoch oder herunterskalieren der"
-        - "X-Achse"
+      l: "Up or downscale the<br>X direction"
     SCALE_Z:
       n: "Skalierung-Z"
-      l:
-        - "Hoch oder herunterskalieren der"
-        - "Z-Achse"
+      l: "Up or downscale the<br>Z direction"
     SOLID_THICKNESS:
       n: "Dicke-Solid"
-      l:
-        - "Die Dicke des"
-        - "fester Teil, der nicht"
-        - "ersetzt durch Luft"
+      l: "The thickness of the<br>solid part that is not<br>replaced with air"
     HOLE_THICKNESS:
       n: "Dicke-Luft"
-      l:
-        - "Die Dicke des"
-        - "ungültiger Teil der ersetzt wird"
-        - "mit Luft"
+      l: "The thickness of the<br>void part that is replaced<br>with air"
     X_DIRECTION:
       n: "Richtung-X"
-      l:
-        - "Die Musterrichtung."
-        - "Deaktivieren für ein z"
-        - "Richtung"
+      l: "The pattern direction.<br>Deactivate it for a z<br>direction"
     INVERTED:
       n: "Invertiert"
-      l:
-        - "Loch wechseln und"
-        - "fester Teil"
+      l: "Switch the hole and<br>solid part"
     RANDOM:
       n: "Zufällig"
-      l:
-        - "Überschreibt die Dicke"
-        - "oder Skalierungswerte mit einem"
-        - "zufällige Werte für jede Wiederholung"
+      l: "Overrides the thickness<br>or scaling values with an<br>random value for every repetition"
     VANILLA:
       n: "Vanilla"
-      l:
-        - "Standard Biomgenerierung"
-        - "wie in Vanilla-Welten"
+      l: "Default biome generation<br>like in vanilla worlds"
     CHUNKED_BIOMES:
       n: "Gespaltene Biome"
-      l:
-        - "Jeder Chunk enthält ein zufälliges Biom."
-        - "Sie können die Größe des Chunks festlegen"
+      l: "Every chunk contains a random biome.<br>You can define the chunk size"
     RANDOM_BIOMES:
       n: "Zufällige Biome"
-      l:
-        - "Jeder Block enthält ein zufälliges Biom."
-        - "Das zählt für Höhen und Tiefen"
+      l: "Every block contains a random biome.<br>This counts for heights and depths"
     SINGLE_BIOME:
       n: "Einzelnes Biom"
-      l:
-        - "Die Welt enthält nur ein Biom."
-        - "Dies wirkt sich auf Strukturen- und"
-        - "Mob-Spawning aus"
+      l: "The world only contains one biome.<br>This affects structure and mob<br>spawning"
     SWITCHED_BIOMES:
       n: "Gewechselte Biome"
-      l:
-        - "Alle Biome werden mit anderen"
-        - "zufälligen Biomen ausgetauscht. Die"
-        - "Vanilla-Biom Struktur bleibt gleich"
+      l: "All biomes are swapped with other<br>random biomes. The vanilla biome<br>structure stays the same"
