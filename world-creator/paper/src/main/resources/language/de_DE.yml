@@ -85,32 +85,32 @@ items:
       l: "Liste von allen geladenen Welten<br>mit Schnellzugriff auf eine Teleport-<br> und eine Löschoption"
     worldCreator:
       n: "Welten Ersteller"
-      l: "Create new worlds from<br>a template or completely<br>from scratch"
+      l: "Erstelle neue Welten<br>von einer Vorlage oder<br>komplett neu"
     worldDatas:
       n: "Lokale Welten Daten"
-      l: "World specific resources<br>like datapacks that should<br>persist through resets"
+      l: "Weltspezifische Ressourcen<br>wie Data Packs werden bei<br>einem Reset beibehalten"
     worldSettings:
       n: "Welteinstellungen"
-      l: "Access and edit world<br>settings like gamerules for<br>each world"
+      l: "Ansicht und Bearbeitung von<br>Welteinstellungen wie Gamerules<br>für jede Welt"
     worldSettingsGlobal:
       n: "Globale Welteinstellungen"
-      l: "Define global world<br>settings that apply for<br>all new worlds"
+      l: "Einrichtung von globalen<br>Welteinstellungen, welche für<br>alle Welten gelten"
   creator:
     name:
       n: "Weltname"
-      l: "Set your favourite world name<br>that is used to save or access<br>the new world"
+      l: "Lege einen Namen als Favorit fest,<br>womit du eine neue Welt speichern<br>und auf sie zugreifen willst"
       s: "Name"
     seed:
       n: "Welt Seed"
-      l: "Set a seed that is used to<br>change the world generation.<br>Worlds with the same seed<br>generate equal"
+      l: "Lege einen Seed fest, welcher zur<br>Änderung der Weltgeneration genutzt wird.<br>Welten mit dem gleichen Seed<br>generieren gleich"
       s: "Seed"
     env:
       n: "Dimension"
-      l: "Set the world Environment<br>(Dimension)"
+      l: "Lege fest, mit welcher Umgebung<br>die Welt erstellt werden soll (Dimension)"
       s: "Dimension"
     structures:
       n: "Strukturen Generation"
-      l: "Toggle structure generation<br>in your new world"
+      l: "Generierung von Strukturen<br>in der Welt aus- oder anschalten"
       s: "Strukturen"
     worldType:
       n: "Weltart"
