@@ -121,97 +121,97 @@ items:
       l: "Wenn du ein Item sammelst, das<br>bereits gesammelt wurde, verlierst du<br>ein Herz"
     LIMITED_SKILLS:
       n: "Begrenzte Fähigkeiten"
-      l: "Only one player can see mobs<br>but can't damage them. The other<br>can't see mobs but can deal damage"
+      l: "Nur ein Spieler kann Monster<br>sehen, kann sie aber nicht schädigen. Der andere<br>kann keine Monster sehen, kann aber Schaden zufügen"
     RUN_RANDOMIZER:
       n: "Lauf Randomizer"
-      l: "The only way to gather items<br>is running! Every X-Blocks you<br>get a random stack of items"
+      l: "Der einzige Weg um Gegenstände zu sammeln<br>ist laufen! Jede X-Blöcke kannst du<br>erhalten einen zufälligen Stapel von Items"
     SPLIT_HP:
       n: "Geteilte HP"
-      l: "Every player share their<br>hearts. Damage and regeneration<br>counts to everyone"
+      l: "Jeder Spieler teilt sein<br>Herzen. Schaden und Regeneration<br>zählen für alle"
     DAMAGE_DUELL:
       n: "Schadensduell"
-      l: "If you deal damage, all<br>other players also get<br>damaged by a percentage"
+      l: "Wenn du Schaden zufügst, werden auch alle<br>anderen Spieler<br>durch einen Prozentsatz beschädigt"
     ONE_BIOME:
       n: "Ein Biom Welt"
-      l: "The whole world contains<br>only one biome. The biome<br>switches every X seconds"
+      l: "Die ganze Welt enthält<br>nur ein Biom. Das Biom<br>wechselt alle X Sekunden"
     BOOST_UP:
       n: "Boost'em UP"
-      l: "Every entity/mob in your<br>range will be boosted in<br>the sky"
+      l: "Jede Entität/Mob in deiner<br>-Reichweite wird in<br>dem Himmel geboostet"
     RIGHT_TOOL:
       n: "Nur Richtige Tools"
-      l: "You can only break blocks<br>with the correct tool"
+      l: "Du kannst nur Blöcke<br>mit dem richtigen Werkzeug brechen"
     CHUNK_BLOCK_BREAK:
       n: "Chunk Zerstörer"
-      l: "Breaking a block will<br>break all blocks of the<br>same time in the chunk"
+      l: "Das Zerbrechen eines Blocks wird<br>alle Blöcke der<br>gleichzeitig im Chunk zerstören"
     SNEAK_SPAWN:
       n: "Sneak Spawner"
-      l: "Be prepared... Every sneak<br>will spawn a random mob<br>on your position"
+      l: "Sei vorbereitet... Jede Schlange<br>spawnt einen zufälligen Mob<br>an deiner Position"
     WORLD_PEACE:
       n: "Weltfrieden"
-      l: "Instead of fighting to the top<br>just communicate and trade<br>with your opponents!<br><i>Symbol against the Ukraine-Russian war"
+      l: "Anstatt nach oben<br>zu kämpfen, kommuniziere einfach<br>mit deinen Gegnern!<br><i>Symbol gegen den Ukraine-Russischen Krieg"
     GRAVITY:
       n: "Gravitationswechsel"
-      l: "The world gone crazy and<br>every few seconds the gravity<br>switches between 4 new gravities"
+      l: "Die Welt ist verrückt und<br>alle paar Sekunden wechselt die Schwerkraft<br>zwischen 4 neuen Gravitationen"
     STAY_AWAY:
       n: "Abstand Bitte"
-      l: "Getting to close to other<br>mobs or players causes damage.<br>Time for some social distancing"
+      l: "Die Nähe zu anderen<br>Kreaturen oder Spielern verursacht Schaden.<br>Zeit für soziale Distanzen"
     RANDOMIZER_BLOCK:
       n: "Block Randomizer"
-      l: "Block drops are shuffled<br>(or random)"
+      l: "Blockdrops werden gemischt<br>(oder zufällig)"
     RANDOMIZER_ENTITY:
       n: "Mob Drop Randomizer"
-      l: "Mob drops are shuffled<br>(or random)"
+      l: "Mob-Drops werden gemischt<br>(oder zufällig)"
     RANDOMIZER_BIOMES:
       n: "Biom Randomizer"
-      l: "World biomes are shuffled<br>(or random)"
+      l: "Weltbiome werden gemischt<br>(oder zufällig)"
     RANDOMIZER_MOBS:
       n: "Mob Randomizer"
-      l: "Mob spawning is shuffled<br>(or random)"
+      l: "Mob-Erzeugung ist gemischt<br>(oder zufällig)"
     FORCE_COLLECT:
       n: "Sammel Aufgabe"
-      l: "You are forced to collect<br>the prompted item to survive"
+      l: "Du bist gezwungen,<br>das angeforderte Item zu sammeln, um zu überleben"
     RANDOMIZER_DAMAGE:
       n: "Schaden Randomizer"
-      l: "Damage is shuffled like<br>2hp will be always 5hp<br>(or random)"
+      l: "Schaden wird gemischt wie<br>2hp immer 5hp<br>(oder zufällig)"
     NO_DOUBLE_KILL:
       n: "Keine Doppelkills"
-      l: "You are not allowed to kill<br>the same mob twice in a row"
+      l: "Du darfst<br>nicht zweimal in Folge den gleichen Mob töten"
     DAMAGER:
       n: "Schadens Challenge"
-      l: "You will be confronted with<br>constantly damage from the<br>chosen event. Can you survive?"
+      l: "Du wirst mit<br>konstanten Schaden des<br>ausgewählten Ereignisses konfrontiert. Kannst du überleben?"
     RIVALS_COLLECT:
       n: "Sammelkampf"
-      l: "Collect/find/kill the prompted<br>goal to get the next. Player<br>with the most points win"
+      l: "Sammle das<br>Ziel ein, um das nächste zu bekommen. Spieler<br>mit den meisten Punkten gewinnen"
     ROCKET:
       n: "Raketen-Modus"
-      l: "Sneak to fly up. But be aware!<br>Flying with a rocket is hard...<br>And hold an eye on your heat"
+      l: "Schleiche zum nach oben Fliegen. Aber sei dir bewusst!<br>Fliegen mit einer Rakete ist schwer...<br>Und halte ein Auge auf deine Hitze"
     VAMPIRE:
       n: "Vampir Herausforderung"
-      l: "Welcome to the world of darkness!<br>Light will drain your blood. Kill<br>mobs to gain their blood and sneak on<br>killing to gather a blood pack (heal)"
+      l: "Willkommen in der Welt der Dunkelheit!<br>Licht wird dein Blut entziehen. Töte<br>Mobs, um ihr Blut zu erhalten und schleichen auf<br>zu töten, um ein Blutpack zu sammeln (heilen)"
     TRAFFIC_LIGHT:
       n: "Ampel Challenge"
-      l: "You are trapped on the road.<br>You are only allowed to move<br>on green lights. If you move<br>on red, you get punished"
+      l: "Du bist auf der Straße gefangen.<br>Du darfst nur<br>bei Grünen Lichtern dich bewegen. Wenn du<br>dich bei Rot bewegst, wirst du bestraft"
     TRON:
       n: "Schlangenpfad"
       l: "Every player creates a path<br>on walking. But be carefully!<br>You are not allowed to touch it<br>ever again..."
     DISABLED:
       n: "Deaktivierte Funktionen"
-      l: "Disable certain key features<br>to challenge your self.<br>Additionally a damage punishment<br>can be added"
+      l: "Deaktiviere bestimmte Schlüsselfunktionen<br>, um dich selbst herauszufordern.<br>Zusätzlich kann eine Schadensstrafe<br>hinzugefügt werden"
     MOB_HUNT:
       n: "Mob Jagd"
-      l: "Kill all Mobs in a given<br>order to finish!<br>Use /mobhunt to modify"
+      l: "Töte alle Mobs in einer gegebenen<br>-Bestellung zum Beenden!<br>Benutze /mobhunt um zu ändern"
     ITEM_HUNT:
       n: "Item Jagd"
-      l: "Collect all Items in a given<br>order to finish!<br>Use /itemhunt to modify"
+      l: "Sammle alle Items in einer gegebenen<br>-Bestellung zum Beenden!<br>Benutze /itemhunt um zu ändern"
     MIRROR:
       n: "Spiegel Challenge"
-      l: "Mirror certain things from<br>you to all other players (sync)"
+      l: "Spiegele bestimmte Dinge von<br>an alle anderen Spieler (sync)"
     CHUNK_FLATTENER:
       n: "Chunk Abbau"
-      l: "Watch out your steps!<br>Your current chunk slowly<br>shrinks down"
+      l: "Achte auf deine Schritte!<br>Dein aktueller Chunk langsam<br>schrumpft nach unten"
     CHUNK_DECAY:
       n: "Chunk Zerfall"
-      l: "Your current chunk randomly<br>decays till it's gone"
+      l: "Dein aktueller Chunk verfällt zufällig<br>bis er vorbei ist"
   chS:
     FLY:
       power:
