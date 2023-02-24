@@ -70,19 +70,19 @@ items:
       l: "Du kannst nicht weiter<br>nach rechts scrollen"
     arrowLeftEnd:
       n: "<red>Scrolle nach Links"
-      l: "You can not scroll any<br>further to the left"
+      l: "Du kannst nicht weiter<br>nach links scrollen"
     arrowRight:
       n: "<green>Scrolle nach rechts"
-      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
+      l: "<blue>Klick ≫ +1 Seite<br><blue>Schleichen+Klick ≫ +5 Seiten"
     arrowLeft:
       n: "<green>Scrolle nach links"
-      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
+      l: "<blue>Klick ≫ -1 Seite<br><blue>Schleichen+Klick ≫ -5 Seiten"
     pageIndicator:
-      l: "Click to open a compact<br>GUI with quick access"
+      l: "Klicke hier, um ein kompakteres GUI<br>mit Schnellzugriffen zu öffnen"
   menu:
     worldOverview:
       n: "Welten Übersicht"
-      l: "List of all loaded worlds<br>with fast access to teleport<br>or delete"
+      l: "Liste von allen geladenen Welten<br>mit Schnellzugriff auf eine Teleport-<br> und eine Löschoption"
     worldCreator:
       n: "Welten Ersteller"
       l: "Create new worlds from<br>a template or completely<br>from scratch"
