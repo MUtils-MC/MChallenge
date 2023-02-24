@@ -67,138 +67,78 @@ items:
   general:
     arrowRightEnd:
       n: "<red>Scroll Right"
-      l:
-        - "You can not scroll any"
-        - "further to the right"
+      l: "You can not scroll any<br>further to the right"
     arrowLeftEnd:
       n: "<red>Scroll Left"
-      l:
-        - "You can not scroll any"
-        - "further to the left"
+      l: "You can not scroll any<br>further to the left"
     arrowRight:
       n: "<lime>Scroll Right"
-      l:
-        - "<blue>Click ≫ +1 page"
-        - "<blue>Sneak-Click ≫ +5 pages"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
       n: "<lime>Scroll Left"
-      l:
-        - "<blue>Click ≫ -1 page"
-        - "<blue>Sneak-Click ≫ -5 pages"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
-      l:
-        - "Click to open a compact"
-        - "GUI with quick access"
+      l: "Click to open a compact<br>GUI with quick access"
   design:
     n: "Timer Design"
-    l:
-      - "Customize your timer design"
-      - "from simple colorizing to"
-      - "complex animations and texts"
+    l: "Customize your timer design<br>from simple colorizing to<br>complex animations and texts"
   rules:
     n: "Timer Rules"
-    l:
-      - "Define what rules apply to"
-      - "your Server while the timer"
-      - "is active"
+    l: "Define what rules apply to<br>your Server while the timer<br>is active"
   goals:
     n: "Timer Goals"
-    l:
-      - "Automate your timer with"
-      - "certain events to start"
-      - "or stop it"
+    l: "Automate your timer with<br>certain events to start<br>or stop it"
   isActive:
     n: "Visibility"
-    l:
-      - "Global timer is always rendered"
-      - "over personal timers"
+    l: "Global timer is always rendered<br>over personal timers"
   direction:
     n: "Timer Direction"
-    l:
-      - "Define your timer direction."
-      - "Hitting time zero will stop it"
+    l: "Define your timer direction.<br>Hitting time zero will stop it"
   createDesign:
     n: "New Design"
-    l:
-      - "Create a new design from"
-      - "scratch. Animations are not"
-      - "animated in the editor"
+    l: "Create a new design from<br>scratch. Animations are not<br>animated in the editor"
   designName:
     n: "Design Name"
-    l:
-      - "Choose a fitting name, it is"
-      - "visible in the local & public"
-      - "timer design list"
+    l: "Choose a fitting name, it is<br>visible in the local & public<br>timer design list"
   designRunning:
     n: "Running State"
-    l:
-      - "Customize the running state"
-      - "of your timer"
+    l: "Customize the running state<br>of your timer"
   designIdle:
     n: "Idle State"
-    l:
-      - "Customize the idle state"
-      - "of your timer"
+    l: "Customize the idle state<br>of your timer"
   dragonDeath:
     n: "Ender Dragon Death"
-    l:
-      - "Kill an Ender Dragon to"
-      - "finish the timer"
+    l: "Kill an Ender Dragon to<br>finish the timer"
   witherDeath:
     n: "Wither Death"
-    l:
-      - "Kill a Wither to"
-      - "finish the timer"
+    l: "Kill a Wither to<br>finish the timer"
   elderDeath:
     n: "Elder Guardian Death"
-    l:
-      - "Kill a Elder Guardian to"
-      - "finish the timer"
+    l: "Kill a Elder Guardian to<br>finish the timer"
   wardenDeath:
     n: "Warden Death"
-    l:
-      - "Kill a Warden to"
-      - "finish the timer (1.19+)"
+    l: "Kill a Warden to<br>finish the timer (1.19+)"
   playerDeath:
     n: "Player Death"
-    l:
-      - "Any player death fails"
-      - "the timer"
+    l: "Any player death fails<br>the timer"
   lastPlayer:
     n: "Empty Server"
-    l:
-      - "Pause the timer when"
-      - "the last player leaves"
-      - "the server"
+    l: "Pause the timer when<br>the last player leaves<br>the server"
   announceSeed:
     n: "Announce Seed"
-    l:
-      - "Announce world seed on timer"
-      - "fail or success in chat"
+    l: "Announce world seed on timer<br>fail or success in chat"
   announceLocation:
     n: "Announce Location"
-    l:
-      - "Announce death location on timer"
-      - "fail in chat"
+    l: "Announce death location on timer<br>fail in chat"
   specOnDeath:
     n: "Spectator on death"
-    l:
-      - "Enter spectator mode on"
-      - "death (only on running)"
+    l: "Enter spectator mode on<br>death (only on running)"
   specOnJoin:
     n: "Spectator on join"
-    l:
-      - "Enter spectator mode on"
-      - "server join (only on running)"
+    l: "Enter spectator mode on<br>server join (only on running)"
   punishment:
     n: "Death Punishment"
-    l:
-      - "Punish player deaths with"
-      - "certain actions (only on running)"
+    l: "Punish player deaths with<br>certain actions (only on running)"
   freezeWorld:
     n: "Freeze World"
-    l:
-      - "Freeze the world on timer"
-      - "pause. This will prevent any"
-      - "player interactions and pauses"
-      - "all AIs and game logics"
+    l: "Freeze the world on timer<br>pause. This will prevent any<br>player interactions and pauses<br>all AIs and game logics"
