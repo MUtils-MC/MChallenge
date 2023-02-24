@@ -28,6 +28,11 @@ common:
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
+  challenge:
+    stop: "Challenges wurden <red><b>gestoppt</b></red>! (<input-1>)"
+    start: "Challenges wurden <green><b>gestartet</b></green>! (<input-1>)"
+    pause: "Challenges temporär <red>pausiert</red>! (<input-1>)"
+    continue: "Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
 #-----------------------------------------#
 #Events                  #
@@ -53,6 +58,51 @@ event:
 #l -> Item Lore                  #
 #-----------------------------------------#
 items:
+  general:
+    arrowRightEnd:
+      n: "<red>Scrolle nach rechts"
+      l:
+        - "Du kannst nicht weiter"
+        - "nach rechts scrollen"
+    arrowLeftEnd:
+      n: "<red>Scrolle nach links"
+      l:
+        - "Du kannst nicht weiter"
+        - "nach links scrollen"
+    arrowRight:
+      n: "<green>Scrolle nach rechts"
+      l:
+        - "<blue>Klicke ≫ +1 Seite"
+        - "<blue>Sneak-Klick ≫ +5 Seiten"
+    arrowLeft:
+      n: "<green>Scrolle nach links"
+      l:
+        - "<blue>Klicke ≫ - 1Seite"
+        - "<blue>Sneak-Klick ≫ -5 Seiten"
+    arrowUpGreen:
+      n: "<green>Scrolle nach oben"
+      l:
+        - "<blue>Klicke ≫ - 1Seite"
+        - "<blue>Sneak-Klick ≫ -3 Seiten"
+    arrowDownGreen:
+      n: "<green>Scrolle nach unten"
+      l:
+        - "<blue>Klicke ≫ +1 Seite"
+        - "<blue>Sneak-Klick ≫ +3 Seiten"
+    arrowUpRed:
+      n: "<red>Scrolle nach oben"
+      l:
+        - "Du kannst nicht weiter"
+        - "nach oben scrollen"
+    arrowDownRed:
+      n: "<red>Scrolle nach unten"
+      l:
+        - "Du kannst nicht weiter"
+        - "nach unten scrollen"
+    pageIndicator:
+      l:
+        - "Klicke, um ein kompaktes GUI"
+        - "mit Schnellzugriff zu öffnen"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -98,38 +148,38 @@ items:
         - "Challenge ändert alles um ein komplett"
         - "neues Minecraft zu entdecken!"
     CAPTIVE:
-      n: "Captive Herausforderung"
+      n: "Captive Challenge"
       l:
         - "Die Welt schrumpft auf ein kleines"
         - "Feld und es ist deine Aufgabe"
         - "diese durch Level zu vergrößern"
     GHOST:
-      n: "Ghost Herausforderung"
+      n: "Geister Challenge"
       l:
         - "Entdecke die Tiefen mit deiner neuen"
         - "Fähigkeit, durch Blöcke zu reisen!"
         - "Aber sei dir bewusst... Geister sind schwach"
     BLOCK_ASYNC:
-      n: "Black Async Herausforderung"
+      n: "Block Async Challenge"
       l:
         - "Jeder Spieler sieht seine eigene Welt!"
         - "Aber sollte ein Spieler mit einem"
         - "von einem anderen Spieler veränderten Block"
-        - "interagieren, stirbt er. Kommunikation ist der Schlüssel"
+        - "interagieren, stirbt er. Kommunikation ist wichtig"
     NO_SAME_ITEM:
-      n: "Keine gleichen Items"
+      n: "Keine Gleichen Items"
       l:
         - "Wenn du ein Item einsammelst, welches"
-        - "bereits eingesammelt wurde, du verlierst"
-        - "ein Herz"
+        - "bereits eingesammelt wurde, verlierst"
+        - "du ein Herz"
     LIMITED_SKILLS:
       n: "Begrenzte Fähigkeiten"
       l:
         - "Nur ein Spieler kann Mobs sehen,"
         - "aber kann sie nicht angreifen. Der andere"
-        - "kann Mobs nicht sehen, aber ihnen Schaden zufügen"
+        - "kann Mobs nicht sehen, aber sie angreifen"
     RUN_RANDOMIZER:
-      n: "Run Randomizer"
+      n: "Lauf Randomizer"
       l:
         - "Der einzige Weg um Items zu sammeln"
         - "ist laufen! Alle X-Blöcke"
@@ -143,7 +193,7 @@ items:
     DAMAGE_DUELL:
       n: "Schadensduell"
       l:
-        - "Wenn du Schaden zufügst,"
+        - "Wenn du Schaden austeilst,"
         - "bekommen alle anderen Spieler auch"
         - "Schaden anhand eines Prozentsatzes"
     ONE_BIOME:
@@ -159,7 +209,7 @@ items:
         - "Reichweite wird"
         - "in den Himmel geboostet"
     RIGHT_TOOL:
-      n: "Nur richtige Tools"
+      n: "Nur Richtige Tools"
       l:
         - "Du kannst nur"
         - "mit dem richtigen Tool Blöcke zerstören"
@@ -173,14 +223,14 @@ items:
       n: "Sneak Spawner"
       l:
         - "Sei vorbereitet... Jedes Mal, wenn du sneakst"
-        - "wird"
-        - "an deiner aktuellen Position ein zufälliges Mob spawnen"
+        - "wird an deiner aktuellen Position"
+        - " ein zufälliges Mob spawnen"
     WORLD_PEACE:
       n: "Weltfrieden"
       l:
         - "Anstatt sich an die Spitze zu kämpfen"
         - "einfach nur mit deinen Gegnern"
-        - "kommunizieren und handeln"
+        - "kommunizieren und handeln!"
         - "<i>Ein Symbol gegen den Ukraine-Russland Krieg"
     GRAVITY:
       n: "Gravitationswechsel"
@@ -189,7 +239,7 @@ items:
         - "alle paar Sekunden ändert sich die Schwerkraft"
         - "zwischen 4 unterschiedlichen neuen Schwerkräften"
     STAY_AWAY:
-      n: "Bleibe fern"
+      n: "Abstand Bitte"
       l:
         - "Wenn du zu nahe an andere "
         - "Mobs oder Spieler kommst, verursacht das Schaden."
@@ -215,48 +265,48 @@ items:
         - "Das Mob-Spawning ist gemischt"
         - "(oder zufällig)"
     FORCE_COLLECT:
-      n: "Force Collect"
+      n: "Sammel Aufgabe"
       l:
-        - "Du bist gezwungen zu sammeln"
-        - "das gegebene Item um zu überleben"
+        - "Du musst das vorgegebene"
+        - "Item sammeln um zu überleben"
     RANDOMIZER_DAMAGE:
       n: "Schaden Randomizer"
       l:
-        - "Der schaden ist randomized wie"
+        - "Der Schaden ist vertauscht wie"
         - "2hp werden immer 5hp sein"
         - "(oder zufällig)"
     NO_DOUBLE_KILL:
       n: "Keine Doppelkills"
       l:
-        - "Du darfst nicht töten"
-        - "den selben Mob zweimal in Folge"
+        - "Du darfst nicht den selben"
+        - "Mob zweimal in Folge töten"
     DAMAGER:
-      n: "Damager Herausforderung"
+      n: "Schadens Challenge"
       l:
         - "Du wirst konfrontiert mit"
-        - "konstantem schaden vom"
+        - "konstantem Schaden von"
         - "gewählten Event. Kannst du überleben?"
     RIVALS_COLLECT:
-      n: "Kollektionrivalen"
+      n: "Sammelkampf"
       l:
-        - "Sammle/Finde/töte das gegebene"
-        - "ziel um das nächste zu erhalten. Spieler"
-        - "mit den meisten Punkten gewinnen"
+        - "Sammle/finde/töte das gegebene"
+        - "Ziel, um das nächste zu erhalten. Spieler"
+        - "mit den meisten Punkten gewinnt"
     ROCKET:
-      n: "Raketenmodus"
+      n: "Raketen-Modus"
       l:
         - "Sneak zum Fliegen. Aber sei vorsichtig!"
         - "Mit einer Rakete zu fliegen ist hart..."
-        - "Und halte ein Auge auf die Hitze"
+        - "Und halte ein Auge aufs Überhitzen"
     VAMPIRE:
-      n: "Vampir herausforderung"
+      n: "Vampir Herausforderung"
       l:
         - "Willkommen zur Welt der Finsternis!"
         - "Licht wird dein Blut aussaugen. Töte"
-        - "mobs um ihr Blut zu erhalten und sneake auf"
-        - "töte um Blutpacks zu erhalten (heal)"
+        - "Mobs um ihr Blut zu erhalten und sneake beim"
+        - "töten, um Blutpacks zu erhalten (Heilung)"
     TRAFFIC_LIGHT:
-      n: "Ampeln"
+      n: "Ampel Challenge"
       l:
         - "Du bist auf der Straße gefangen."
         - "Du darfst dich nur bewegen"
@@ -265,17 +315,45 @@ items:
     TRON:
       n: "Schlangenpfad"
       l:
-        - "Jeder spieler generiert einen Pfad"
+        - "Jeder Spieler generiert einen Pfad"
         - "zum laufen. Aber sei vorsichtig!"
         - "Du darfst ihn nicht berühren"
         - "nie wieder..."
     DISABLED:
-      n: "Deaktiviere features"
+      n: "Deaktivierte Funktionen"
       l:
-        - "Deaktiviere bestimmte Features"
-        - "sich selbst herauszufordern."
-        - "Zusätzlich eine Schadensstrafe"
-        - "kann hinzugefügt werden"
+        - "Deaktiviere bestimmte Funktionen"
+        - "um dich herauszufordern."
+        - "Zusätzlich kann eine Strafe"
+        - "hinzugefügt werden"
+    MOB_HUNT:
+      n: "Mob Jagd"
+      l:
+        - "Töte alle Mobs in einer gegebenen"
+        - "Reihenfolge um zu gewinnen!"
+        - "Benutze /mobhunt zum Modifizieren"
+    ITEM_HUNT:
+      n: "Item Jagd"
+      l:
+        - "Sammle alle Items in einer gegebenen"
+        - "Reihenfolge um zu gewinnen!"
+        - "Benutze /itemhunt zum Modifizieren"
+    MIRROR:
+      n: "Spiegel Challenge"
+      l:
+        - "Spiegele bestimmte Dinge von"
+        - "dir zu anderen Spielern (Sync)"
+    CHUNK_FLATTENER:
+      n: "Chunk Abbau"
+      l:
+        - "Achte auf deine Schritte!"
+        - "Dein aktueller Chunk "
+        - "schrumpft langsam runter"
+    CHUNK_DECAY:
+      n: "Chunk Zerfall"
+      l:
+        - "Dein aktueller Chunk verfällt"
+        - "zufällig bis nichts verbleibt"
   chS:
     FLY:
       power:
@@ -284,7 +362,7 @@ items:
       pTime:
         n: "Spielerzeit"
       eTime:
-        n: "Entitäts-Zeit"
+        n: "Entity-Zeit"
       hpTime:
         n: "Zeit pro HP"
     MOB_BLOCKS:
@@ -303,9 +381,9 @@ items:
       radius:
         n: "Radius"
       adventure:
-        n: "Abenteuergeist"
+        n: "Abenteuermodus"
       glide:
-        n: "Ghost Glide"
+        n: "Geister Flug"
     NO_SAME_ITEM:
       lives:
         n: "Leben"
@@ -314,7 +392,8 @@ items:
       info:
         n: "Ankündigungsmodus"
     LIMITED_SKILLS:
-      random: "Zufällige Rollen"
+      random:
+        n: "Zufällige Rollen"
     RUN_RANDOMIZER:
       goal:
         n: "Blockziel"
@@ -333,7 +412,7 @@ items:
         n: "Nur Monster"
     CHUNK_BLOCK_BREAK:
       bundle:
-        n: "Paketdrops"
+        n: "Gebündelt"
     SNEAK_SPAWN:
       onlyMob:
         n: "Nur Monster"
@@ -351,10 +430,10 @@ items:
         n: "Komplett zufällig"
     RANDOMIZER_BIOMES:
       random:
-        n: "Voll zufällig"
+        n: "Komplett zufällig"
     RANDOMIZER_MOBS:
       random:
-        n: "Extrem Randomizer"
+        n: "Komplett zufällig"
     FORCE_COLLECT:
       minCooldown:
         n: "Minimale Abklingzeit"
@@ -369,7 +448,7 @@ items:
         n: "Komplett zufällig"
     NO_DOUBLE_KILL:
       global:
-        n: "Gesamtzahl"
+        n: "Globale Wirkung"
     DAMAGER:
       mode:
         n: "Schadensereignis"
@@ -385,13 +464,13 @@ items:
         n: "Treibstoffkapazität"
     VAMPIRE:
       startBlood:
-        n: "Start Blood"
+        n: "Start Blut"
       maxBlood:
-        n: "Blood Capacity"
+        n: "Blutkapazität"
       healthToBlood:
         n: "HP - Blut"
       bloodLoose:
-        n: "Blood Drain"
+        n: "Blutverlust"
     TRAFFIC_LIGHT:
       min:
         n: "Minimale Dauer"
@@ -400,23 +479,23 @@ items:
       damage:
         n: "Schaden bei Rot"
       green:
-        n: "Grün Phase"
+        n: "Grünphase"
       yellow:
-        n: "Yellow Phase"
+        n: "Gelbphase"
       red:
-        n: "Rot-Phase"
+        n: "Rotphase"
     TRON:
       visible:
         n: "Sichtbarer Pfad"
     DISABLED:
       block:
-        n: "Block Category"
+        n: "Blockkategorie"
       break:
         n: "Abbauen deaktivieren"
       place:
-        n: "Platzierung deaktivieren"
+        n: "Platzieren deaktivieren"
       interact:
-        n: "Interact Category"
+        n: "Interaktionskategorie"
       craft:
         n: "Werkbank deaktivieren"
       trade:
@@ -429,3 +508,24 @@ items:
         n: "Item Aufhebung deaktivieren"
       damage:
         n: "Schaden"
+    MIRROR:
+      hearts:
+        n: "Synchronisiere Gesundheit"
+      food:
+        n: "Synchronisiere Nahrung"
+      potions:
+        n: "Synchronisiere Tränke"
+      hotbar:
+        n: "Synchronisiere Hotbar"
+    CHUNK_FLATTENER:
+      delay:
+        n: "Verzögerung"
+      shouldBreak:
+        n: "Blöcke ablegen"
+    CHUNK_DECAY:
+      delay:
+        n: "Verzögerung"
+      percentage:
+        n: "Prozentualer Verfall"
+      shouldBreak:
+        n: "Blöcke ablegen"
