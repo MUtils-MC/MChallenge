@@ -118,10 +118,10 @@ items:
       s: "Art"
     biomeAlgo:
       n: "Biome Algorithmus"
-      l: "Change the biome generation<br>to new custom one. Every algorithm<br>can be modified"
+      l: "Ändere die Biom-Generation<br>zu einer neuen benutzerdefiniert. Jeder Algorithmus<br>kann geändert werden"
     noiseAlgo:
       n: "Vanilla Generierung"
-      l: "Advanced settings to modify<br>the vanilla world generation.<br><#CF6679>Only edit if you know what you are<br><#CF6679>doing!"
+      l: "Erweiterte Einstellungen zum Ändern von<br>der Vanille-Welt-Generation.<br><#CF6679>Nur ändern, wenn du weißt, was du bist<br><#CF6679>tun!"
       s1: "Geräusch Generation"
       s2: "Höhlen Generation"
       s3: "Oberflächen Generation"
@@ -130,27 +130,27 @@ items:
       s6: "Strukturen Generierung"
     copy:
       n: "Kopiere Welteinstellungen"
-      l: "Copy only the world settings<br>and generate new terrain."
+      l: "Kopiere nur die Welteinstellungen<br>und erstelle neues Gelände."
     copyFull:
       n: "Kopiere die gesamte Welt"
-      l: "Copy the whole world<br>with all settings and<br>progress (terrain & entities)"
+      l: "Kopiere die ganze Welt<br>mit allen Einstellungen und<br>Fortschritt (Gelände- & Entitäten)"
     preview:
       n: "Aktuelle Regel vorverarbeiten"
-      l: "Preview your current rule<br>in an abstract prerender"
+      l: "Vorschau der aktuellen Regel<br>in einem abstrakten Prerender"
     category:
       n: "Kategorie synchronisieren"
-      l: "Enter a custom category<br>to create a separat player<br>saving. Switching between categories<br>will load the needed player data"
+      l: "Geben Sie eine benutzerdefinierte Kategorie<br>ein, um einen separaten Spieler<br>zu speichern. Beim Wechsel zwischen Kategorien<br>werden die benötigten Spielerdaten geladen"
       s: "Kategorie"
     worldSet:
       n: "Welten-Set erstellen"
-      l: "Create an overworld, nether<br>and end world from your settings<br>and put them all in one category"
+      l: "Erstellen Sie eine Oberwelt, Nether<br>und beenden Sie die Welt aus Ihren Einstellungen<br>und legen Sie sie alle in eine Kategorie"
     singleWorld:
       n: "Welt erstellen"
-      l: "Create a single world from<br>your settings"
+      l: "Erstelle eine einzige Welt aus<br>deinen Einstellungen"
   algo:
     CHESS:
       n: "Schach Algorithmus"
-      l: "Shapes your world in squares.<br>Like chess, the white squares will<br>be replaced with air"
+      l: "Formt deine Welt in Quadraten.<br>Wie Schach werden die weißen Quadrate<br>durch Luft ersetzt"
     LINE:
       n: "Linien Algorithmus"
       l: "Draw void lines in your world.<br>The line and void thickness can<br>be modified individual"
