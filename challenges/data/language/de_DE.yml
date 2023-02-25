@@ -29,10 +29,10 @@ common:
 #-----------------------------------------#
 command:
   challenge:
-    stop: "Challenges wurden <red><b>gestoppt</b></red>! (<input-1>)"
-    start: "Challenges wurden <green><b>gestartet</b></green>! (<input-1>)"
-    pause: "Challenges temporär <red>pausiert</red>! (<input-1>)"
-    continue: "Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
+    stop: "<grey>Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "<grey>Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "<grey>Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "<grey>Challenges <green>resumed</green>! (<input-1>)"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
 #-----------------------------------------#
 #Events                  #
