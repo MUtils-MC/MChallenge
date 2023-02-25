@@ -153,49 +153,49 @@ items:
       l: "Formt deine Welt in Quadraten.<br>Wie Schach werden die weißen Quadrate<br>durch Luft ersetzt"
     LINE:
       n: "Linien Algorithmus"
-      l: "Draw void lines in your world.<br>The line and void thickness can<br>be modified individual"
+      l: "Zeichne leere Linien in deiner Welt.<br>Die Linien- und Leerdicke kann<br>individuell geändert werden"
     DIAGONAL_LINE:
       n: "Diagonale Linien Algorithmus"
-      l: "Draw diagonal void lines in your<br>world. The line and void thickness<br>can be modified individual"
+      l: "Zeichne diagonale Voide linien in deiner<br>-Welt. Die Linien- und Void Dicke<br>kann individuell geändert werden"
     SQUARE:
       n: "Chunk Ecken Algorithmus"
-      l: "Print square holes in your chunks<br>with individual border sizes"
+      l: "Drucken Sie quadratische Löcher in Ihren Chunks<br>mit individuellen Randgrößen"
     CIRCLE:
       n: "Kreis Algorithmus"
-      l: "Print circle holes in your world<br>or only leave circles as floor"
+      l: "Drucken Sie Kreislöcher in Ihrer Welt<br>oder lassen Sie Kreise nur als Boden"
     SCALE_X:
       n: "Skalierung-X"
-      l: "Up or downscale the<br>X direction"
+      l: "Hoch- oder herunterskalieren der<br>X-Richtung"
     SCALE_Z:
       n: "Skalierung-Z"
-      l: "Up or downscale the<br>Z direction"
+      l: "Hoch- oder herunterskalieren der<br>Z Richtung"
     SOLID_THICKNESS:
       n: "Dicke-Solid"
-      l: "The thickness of the<br>solid part that is not<br>replaced with air"
+      l: "Die Dicke des<br>festen Teils das nicht<br>durch Luft ersetzt wird"
     HOLE_THICKNESS:
       n: "Dicke-Luft"
-      l: "The thickness of the<br>void part that is replaced<br>with air"
+      l: "Die Dicke des<br>Leeren Teils das<br>durch Luft ersetzt wird"
     X_DIRECTION:
       n: "Richtung-X"
-      l: "The pattern direction.<br>Deactivate it for a z<br>direction"
+      l: "Die Richtung des Musters.<br>Deaktivieren für eine z<br>Richtung"
     INVERTED:
       n: "Invertiert"
-      l: "Switch the hole and<br>solid part"
+      l: "Wechsle das Loch und den<br>festen Teil"
     RANDOM:
       n: "Zufällig"
-      l: "Overrides the thickness<br>or scaling values with an<br>random value for every repetition"
+      l: "Überschreibt die Dicke<br>oder Skalierungswerte mit einem<br>zufälligen Wert für jede Wiederholung"
     VANILLA:
       n: "Vanilla"
-      l: "Default biome generation<br>like in vanilla worlds"
+      l: "Standard Biom-Generation<br>wie in Vanilla Welten"
     CHUNKED_BIOMES:
       n: "Gespaltene Biome"
-      l: "Every chunk contains a random biome.<br>You can define the chunk size"
+      l: "Jeder Chunk enthält ein zufälliges Biom.<br>Du kannst die Chunk-Größe definieren"
     RANDOM_BIOMES:
       n: "Zufällige Biome"
-      l: "Every block contains a random biome.<br>This counts for heights and depths"
+      l: "Jeder Block enthält ein zufälliges Biom.<br>Dies zählt für Höhen und Tiefen"
     SINGLE_BIOME:
       n: "Einzelnes Biom"
-      l: "The world only contains one biome.<br>This affects structure and mob<br>spawning"
+      l: "Die Welt enthält nur ein Biom.<br>Dies wirkt sich auf Struktur und Mob<br>aus"
     SWITCHED_BIOMES:
       n: "Gewechselte Biome"
-      l: "All biomes are swapped with other<br>random biomes. The vanilla biome<br>structure stays the same"
+      l: "Alle Biome werden mit anderen<br>zufälligen Biomen ausgetauscht. Die Vanillebiome<br>Struktur bleibt unverändert"
