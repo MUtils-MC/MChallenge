@@ -115,5 +115,156 @@
     "version": "1.0.0",
     "icon": "oak_sapling",
     "tags": ["HARD"]
+  },
+  {
+    "key": "GHOST",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02",
+    "tags": ["FUN"]
+  },
+  {
+    "key": "BLOCK_ASYNC",
+    "version": "1.0.0",
+    "icon": "wither_rose",
+    "tags": ["FUN", "MULTIPLAYER"]
+  },
+  {
+    "key": "NO_SAME_ITEM",
+    "version": "1.0.0",
+    "icon": "wither_rose",
+    "tags": ["MEDIUM", "MULTIPLAYER"]
+  },
+  {
+    "key": "LIMITED_SKILLS",
+    "version": "1.0.0",
+    "icon": "turtle_helmet",
+    "tags": ["HARD", "MULTIPLAYER"]
+  },
+  {
+    "key": "SPLIT_HP",
+    "version": "1.0.0",
+    "icon": "beetroot",
+    "tags": ["MEDIUM", "MULTIPLAYER"]
+  },
+  {
+    "key": "DAMAGE_DUELL",
+    "version": "1.0.0",
+    "icon": "iron_sword",
+    "tags": ["FUN", "MULTIPLAYER"]
+  },
+  {
+    "key": "ONE_BIOME",
+    "version": "1.0.0",
+    "icon": "filled_map",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "BOOST_UP",
+    "version": "1.0.0",
+    "icon": "shulker_shell",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "RIGHT_TOOL",
+    "version": "1.0.0",
+    "icon": "wooden_axe",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "SNEAK_SPAWN",
+    "version": "1.0.0",
+    "icon": "hopper",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "WORLD_PEACE",
+    "version": "1.0.0",
+    "icon": "cornflower",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "GRAVITY",
+    "version": "1.0.0",
+    "icon": "sand",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "STAY_AWAY",
+    "version": "1.0.0",
+    "icon": "tnt",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "RANDOMIZER_BLOCK",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_BLOCK",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_ENTITY",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "6b40e5db21cedac4c972b7b22ebb64cf4add61b3b54b131435eedd307598b7",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_BIOMES",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "76bdf52222b4f092e1122831b388164c462fa41df1d49428d448a8794339b34b",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_MOBS",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "915f7c313bca9c2f958e68ab14ab393867d67503affff8f20cb13fbe917fd31",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "FORCE_COLLECT",
+    "version": "1.0.0",
+    "icon": "chest",
+    "tags": ["MEDIUM", "FORCE"]
+  },
+  {
+    "key": "RANDOMIZER_DAMAGE",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87",
+    "tags": ["MEDIUM", "RANDOMIZER"]
+  },
+  {
+    "key": "NO_DOUBLE_KILL",
+    "version": "1.0.0",
+    "icon": "repeater",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "DAMAGER",
+    "version": "1.0.0",
+    "icon": "diamond_sword",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "RIVALS_COLLECT",
+    "version": "1.0.0",
+    "icon": "chest_minecraft",
+    "tags": ["FUN", "FORCE", "MULTIPLAYER"]
+  },
+  {
+    "key": "ROCKET",
+    "version": "1.0.0",
+    "icon": "firework_rocket",
+    "tags": ["MEDIUM"]
   }
 ]

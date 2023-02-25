@@ -56,7 +56,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     FORCE_COLLECT(listOf(StorageFilter.MEDIUM, StorageFilter.FORCE), Icon("CHEST")),
     RANDOMIZER_DAMAGE(listOf(StorageFilter.MEDIUM, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_RED)),
     NO_DOUBLE_KILL(listOf(StorageFilter.MEDIUM), Icon("REPEATER")),
-    DAMAGER(listOf(StorageFilter.MEDIUM, StorageFilter.HARD), Icon("DIAMOND_SWORD")),
+    DAMAGER(listOf(StorageFilter.HARD), Icon("DIAMOND_SWORD")),
     RIVALS_COLLECT(listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), Icon("CHEST_MINECART")),
     ROCKET(listOf(StorageFilter.MEDIUM), Icon("FIREWORK_ROCKET")),
 
