@@ -103,5 +103,17 @@
     "version": "1.0.0",
     "icon": "end_portal_frame",
     "tags": ["MEDIUM"]
+  },
+  {
+    "key": "SNAKE",
+    "version": "1.0.0",
+    "icon": "red_concrete_powder",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "REALISTIC",
+    "version": "1.0.0",
+    "icon": "oak_sapling",
+    "tags": ["HARD"]
   }
 ]
