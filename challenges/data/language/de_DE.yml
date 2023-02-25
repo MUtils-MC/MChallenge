@@ -193,7 +193,7 @@ items:
       l: "Du bist auf der Straße gefangen.<br>Du darfst nur<br>bei Grünen Lichtern dich bewegen. Wenn du<br>dich bei Rot bewegst, wirst du bestraft"
     TRON:
       n: "Schlangenpfad"
-      l: "Every player creates a path<br>on walking. But be carefully!<br>You are not allowed to touch it<br>ever again..."
+      l: "Jeder Spieler erstellt einen Weg<br>beim Laufen. Aber sei vorsichtig!<br>Du darfst ihn nie wieder<br>berühren..."
     DISABLED:
       n: "Deaktivierte Funktionen"
       l: "Deaktiviere bestimmte Schlüsselfunktionen<br>, um dich selbst herauszufordern.<br>Zusätzlich kann eine Schadensstrafe<br>hinzugefügt werden"
@@ -212,6 +212,12 @@ items:
     CHUNK_DECAY:
       n: "Chunk Zerfall"
       l: "Dein aktueller Chunk verfällt zufällig<br>bis er vorbei ist"
+    CHUNK_CLEARER:
+      n: "Chunk Clearer"
+      l: "If you enter a chunk or<br>touch a new block the whole<br>chunk will be cleared"
+    ANVIL_CRUSHER:
+      n: "Anvil Crusher"
+      l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
   chS:
     FLY:
       power:
