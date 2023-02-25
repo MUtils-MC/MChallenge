@@ -212,6 +212,12 @@ items:
     CHUNK_DECAY:
       n: "Chunk Decay"
       l: "Your current chunk randomly<br>decays till it's gone"
+    CHUNK_CLEARER:
+      n: "Chunk Clearer"
+      l: "If you enter a chunk or<br>touch a new block the whole<br>chunk will be cleared"
+    ANVIL_CRUSHER:
+      n: "Anvil Crusher"
+      l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
   chS:
     FLY:
       power:
