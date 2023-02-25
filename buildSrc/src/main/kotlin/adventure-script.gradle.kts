@@ -3,9 +3,10 @@ plugins {
     kotlin("jvm")
 }
 
+val adventureVersion = "4.12.0"
 dependencies {
-    implementation("net.kyori:adventure-api:4.11.0")
-    implementation("net.kyori:adventure-text-minimessage:4.11.0")
-    implementation("net.kyori:adventure-text-serializer-plain:4.11.0")
-    implementation("net.kyori:adventure-text-serializer-gson:4.11.0")
+    implementation("net.kyori:adventure-api:$adventureVersion")
+    implementation("net.kyori:adventure-text-minimessage:$adventureVersion")
+    implementation("net.kyori:adventure-text-serializer-plain:$adventureVersion")
+    implementation("net.kyori:adventure-text-serializer-gson:$adventureVersion")
 }
