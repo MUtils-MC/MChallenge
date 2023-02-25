@@ -29,10 +29,8 @@ fun msgString(key: String, input: List<String> = emptyList()) = localization?.ge
  * @param inline Inline string before every line (useful for listing)
  */
 fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<grey>   ") = msgString(key, input).split("<br>").map {
-        miniMessages.deserialize(inline + "<!i>" + it)
-    }?.ifEmpty {
-        listOf(cmp(inline + key, cError))
-    } ?: listOf(cmp(inline + key, cError))
+        miniMessages.deserialize("$inline<!i>$it")
+    }.ifEmpty { listOf(cmp(inline + key, cError)) }
 
 fun getLocal(): Locale {
     return try {
