@@ -213,11 +213,11 @@ items:
       n: "Chunk Zerfall"
       l: "Dein aktueller Chunk verfällt zufällig<br>bis er vorbei ist"
     CHUNK_CLEARER:
-      n: "Chunk Clearer"
-      l: "If you enter a chunk or<br>touch a new block the whole<br>chunk will be cleared"
+      n: "Chunk Reiniger"
+      l: "Wenn Sie einen Chunk eingeben oder<br>einen neuen Block berühren, wird der gesamte<br>Chunk gelöscht"
     ANVIL_CRUSHER:
-      n: "Anvil Crusher"
-      l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
+      n: "Amboss Zerstörer"
+      l: "Es regnet... Amboss?<br>Achte auf deine Schritte, der<br>Himmel versucht, dich zu töten"
   chS:
     FLY:
       power:
