@@ -97,5 +97,11 @@
     "icon": "player_head",
     "texture": "de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02",
     "tags": ["FUN"]
+  },
+  {
+    "key": "DIM_SWAP",
+    "version": "1.0.0",
+    "icon": "end_portal_frame",
+    "tags": ["MEDIUM"]
   }
 ]
