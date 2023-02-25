@@ -33,9 +33,10 @@ abstract class MChallengeAPI {
      * @return true if startup was successfully, otherwise false (missing challenge requirements, errors, ...)
      */
     fun startChallenges(): Boolean {
-        if (status != ChallengeStatus.STOPPED) stopChallenges()
+        if (status == ChallengeStatus.RUNNING) return false
         activatedChallenges.clear()
         activatedChallenges.addAll(statusChanger.startChallenges() ?: return false)
+        status = ChallengeStatus.RUNNING
         return true
     }
 
@@ -46,6 +47,7 @@ abstract class MChallengeAPI {
     fun stopChallenges(): Boolean {
         if (status == ChallengeStatus.STOPPED) return false
         statusChanger.stopChallenges(activatedChallenges)
+        status = ChallengeStatus.STOPPED
         return true
     }
 
@@ -53,9 +55,10 @@ abstract class MChallengeAPI {
      * Unregister all running challenges. That will stop them from working but saves cached data
      * @return false if challenges are not running
      */
-    fun unregisterChallenges(): Boolean {
-        if (status != ChallengeStatus.STOPPED) return false
+    fun pauseChallenges(): Boolean {
+        if (status != ChallengeStatus.RUNNING) return false
         statusChanger.unregisterChallenges(activatedChallenges)
+        status = ChallengeStatus.PAUSED
         return true
     }
 
@@ -63,16 +66,17 @@ abstract class MChallengeAPI {
      * Register all paused challenges. That will resume with cached data
      * @return false if challenges are not paused
      */
-    fun registerChallenges(): Boolean {
+    fun resumeChallenges(): Boolean {
         if (status != ChallengeStatus.PAUSED) return false
         statusChanger.registerChallenges(activatedChallenges)
+        status = ChallengeStatus.RUNNING
         return true
     }
 
     /**
      * Unregister and stop all activated challenges. Mostly used on reloads or server shutdowns.
      *
-     * This function should no used for runtime stopping, no attempt will be made to save data. Use [stopChallenges] and [unregisterChallenges] instead!
+     * This function should no used for runtime stopping, no attempt will be made to save data. Use [stopChallenges] and [pauseChallenges] instead!
      */
     fun shutDown() {
         activatedChallenges.forEach {

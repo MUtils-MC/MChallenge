@@ -8,6 +8,8 @@ import de.miraculixx.kpaper.extensions.bukkit.allBlocks
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.modules.spectator.Spectator
+import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
@@ -51,6 +53,7 @@ class ChunkDecay : Challenge {
             if (paused) return@task
             if (countdown <= 0) {
                 onlinePlayers.forEach { p ->
+                    if (Spectator.isSpectator(p.uniqueId) || p.gameMode == GameMode.SPECTATOR) return@forEach
                     val chunk = p.chunk
                     val blocks = chunk.allBlocks.filter { b ->
                         val isFlowing = if (b.type == Material.WATER || b.type == Material.LAVA) {

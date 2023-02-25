@@ -203,13 +203,6 @@
     "tags": ["FUN", "RANDOMIZER"]
   },
   {
-    "key": "RANDOMIZER_BLOCK",
-    "version": "1.0.0",
-    "icon": "player_head",
-    "texture": "1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b",
-    "tags": ["FUN", "RANDOMIZER"]
-  },
-  {
     "key": "RANDOMIZER_ENTITY",
     "version": "1.0.0",
     "icon": "player_head",
@@ -231,17 +224,17 @@
     "tags": ["FUN", "RANDOMIZER"]
   },
   {
-    "key": "FORCE_COLLECT",
-    "version": "1.0.0",
-    "icon": "chest",
-    "tags": ["MEDIUM", "FORCE"]
-  },
-  {
     "key": "RANDOMIZER_DAMAGE",
     "version": "1.0.0",
     "icon": "player_head",
     "texture": "5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87",
     "tags": ["MEDIUM", "RANDOMIZER"]
+  },
+  {
+    "key": "FORCE_COLLECT",
+    "version": "1.0.0",
+    "icon": "chest",
+    "tags": ["MEDIUM", "FORCE"]
   },
   {
     "key": "NO_DOUBLE_KILL",
