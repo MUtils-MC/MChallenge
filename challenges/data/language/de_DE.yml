@@ -52,8 +52,8 @@ event:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
   itemDecay:
-    time: "Decay in"
-    paused: "Paused display (selected)"
+    time: "Verschwindet in"
+    paused: "Anzeige pausiert (ausgewählt)"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
