@@ -40,6 +40,7 @@ class Mirror : Challenge {
         onHeartUp.register()
         onChangeHunger.register()
         onHotbarChange.register()
+        onPotion.register()
     }
 
     override fun unregister() {
@@ -47,6 +48,7 @@ class Mirror : Challenge {
         onHeartUp.unregister()
         onChangeHunger.unregister()
         onHotbarChange.unregister()
+        onPotion.unregister()
     }
 
     private val onHeartDown = listen<EntityDamageEvent>(register = false) {

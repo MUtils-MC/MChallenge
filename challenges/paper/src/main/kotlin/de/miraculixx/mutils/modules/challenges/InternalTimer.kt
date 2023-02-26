@@ -1,21 +1,32 @@
 package de.miraculixx.mutils.modules.challenges
 
+import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.KSpigotRunnable
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.messages.cmp
+import org.bukkit.inventory.ItemStack
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class InternalTimer(
     startTime: Duration,
+    private val item: ItemStack,
     private val onNull: (KSpigotRunnable) -> Unit,
-    private val onUpdate: (KSpigotRunnable, Duration) -> Unit
+    private val onUpdate: (KSpigotRunnable, Duration) -> Unit,
 ) {
     private var time = startTime
+    var running = true
+    var stopped = false
+
+    fun getTime() = time
 
     val scheduler = task(false, 0, 20) {
+        if (stopped) it.cancel()
+        if (!running) return@task
         if (time == 0.seconds) {
+            time -= 1.seconds
             onNull.invoke(it)
-        } else {
+        } else if (time > 0.seconds) {
             time -= 1.seconds
             onUpdate.invoke(it, time)
         }

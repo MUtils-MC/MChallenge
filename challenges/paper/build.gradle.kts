@@ -14,13 +14,9 @@ dependencies {
     implementation(project(":world-creator:api")) // External API
 }
 
-tasks {
-    sourceSets {
-        main {
-            resources {
-                this.include("$rootDir/challenges/data/language", "*")
-            }
-        }
+sourceSets {
+    main {
+        resources.srcDirs("$rootDir/challenges/data/")
     }
 }
 
