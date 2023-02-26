@@ -51,6 +51,9 @@ event:
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
+  itemDecay:
+    time: "Decay in"
+    paused: "Paused display (selected)"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
