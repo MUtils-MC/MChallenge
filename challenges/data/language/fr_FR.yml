@@ -51,6 +51,9 @@ event:
   mobHunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
+  itemDecay:
+    time: "Decay in"
+    paused: "Paused display (selected)"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
