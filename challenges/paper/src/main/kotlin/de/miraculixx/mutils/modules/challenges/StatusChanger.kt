@@ -17,6 +17,7 @@ import de.miraculixx.mutils.modules.mods.ghost.Ghost
 import de.miraculixx.mutils.modules.mods.huntItems.ItemHunt
 import de.miraculixx.mutils.modules.mods.huntMob.MobHunt
 import de.miraculixx.mutils.modules.mods.inTime.InTime
+import de.miraculixx.mutils.modules.mods.itemDecay.ItemDecay
 import de.miraculixx.mutils.modules.mods.mirror.Mirror
 import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
 import de.miraculixx.mutils.modules.mods.snake.Snake
@@ -71,6 +72,7 @@ class StatusChanger: StatusChangerAPI {
             Challenges.CHUNK_DECAY -> ChunkDecay()
             Challenges.CHUNK_CLEARER -> ChunkClearer()
             Challenges.ANVIL_CRUSHER -> AnvilCrusher()
+            Challenges.ITEM_DECAY -> ItemDecay()
         }
     }
 }

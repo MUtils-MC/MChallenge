@@ -25,6 +25,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     CHUNK_DECAY(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("OAK_LEAVES"), true),
     CHUNK_CLEARER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("DRAGON_BREATH"), true),
     ANVIL_CRUSHER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("ANVIL"), true),
+    ITEM_DECAY(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("COMPARATOR"), true),
 
 
     FLY(listOf(StorageFilter.FUN), Icon("ELYTRA")),
@@ -224,6 +225,9 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                     "amplifierRadius" to ChallengeIntSetting("COMPARATOR", 5, "b", max = 5, min = 0),
                 )),
                 "height" to ChallengeIntSetting("RABBIT_FOOT", 5, "b", max = 15, min = 2)
+            )
+            ITEM_DECAY -> mapOf(
+                "time" to ChallengeIntSetting("CLOCK", 300, "s", max = 1800, min = 10, step = 10)
             )
         }
     }

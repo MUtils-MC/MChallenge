@@ -73,6 +73,13 @@
     "tags": ["MEDIUM", "FREE"]
   },
   {
+    "key": "ITEM_DECAY",
+    "version": "1.0.0",
+    "icon": "comparator",
+    "tags": ["HARD", "FREE"]
+  },
+
+  {
     "key": "FLY",
     "version": "1.0.0",
     "icon": "elytra",
@@ -126,7 +133,7 @@
   {
     "key": "BLOCK_ASYNC",
     "version": "1.0.0",
-    "icon": "wither_rose",
+    "icon": "red_stained_glass",
     "tags": ["FUN", "MULTIPLAYER"]
   },
   {
