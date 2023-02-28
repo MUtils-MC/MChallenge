@@ -388,11 +388,11 @@ items:
       delay:
         n: "Verzögerung"
       shouldBreak:
-        n: "Blöcke ablegen"
+        n: "Blockdrops"
     CHUNK_DECAY:
       delay:
         n: "Verzögerung"
       percentage:
         n: "Prozentualer Verfall"
       shouldBreak:
-        n: "Blöcke ablegen"
+        n: "Blockdrops"
