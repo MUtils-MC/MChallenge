@@ -67,138 +67,78 @@ items:
   general:
     arrowRightEnd:
       n: "<red>Rechts Navigieren"
-      l:
-        - "Du kannst nicht weiter"
-        - "nach rechts navigieren"
+      l: "Du kannst nicht weiter<br>nach rechts scrollen"
     arrowLeftEnd:
       n: "<red>Links Navigieren"
-      l:
-        - "Du kannst nicht weiter"
-        - "nach links navigieren"
+      l: "Du kannst nicht weiter<br>nach links scrollen"
     arrowRight:
       n: "<lime>Rechts Navigieren"
-      l:
-        - "<blue>Klick ≫ +1 Seite"
-        - "<blue>Sneak-Klick ≫ +5 Seiten"
+      l: "<blue>Klick ≫ +1 Seite<br><blue>Sneak-Click ≫ +5 Seiten"
     arrowLeft:
       n: "<lime>Links Navigieren"
-      l:
-        - "<blue>Klick ≫ -1 Seite"
-        - "<blue>Sneak-Klick ≫ -5 Seiten"
+      l: "<blue>Klick ≫ -1 Seite<br><blue>Sneak-Click ≫ -5 Seiten"
     pageIndicator:
-      l:
-        - "Klicke, um ein kompaktes GUI"
-        - "mit Schnellzugriff zu öffnen"
+      l: "Klicke hier, um ein kompakteres GUI<br>mit Schnellzugriffen zu öffnen"
   design:
     n: "Timer Design"
-    l:
-      - "Ändere dein Timer Design"
-      - "von einer simplen Farbe hin zu"
-      - "einer komplexen Animation mit Text"
+    l: "Passe dein Timer-Design<br>von einfachen Farbgebung bis hin zu<br>komplexen Animationen und Texten an"
   rules:
     n: "Timer Regeln"
-    l:
-      - "Setze die Regeln für deinen"
-      - "Server, solange der Timer läuft"
-      - "ist aktiv"
+    l: "Definiere die Regeln für<br>deinen Server während der Timer<br>aktiv ist"
   goals:
     n: "Timer Ziele"
-    l:
-      - "Automatisiere deinen Timer"
-      - "mit bestimmten Zielen um ihn zu"
-      - "starten oder zu stoppen"
+    l: "Automatisiere deinen Timer mit<br>bestimmten Ereignissen, um ihn zu starten<br>oder stoppen"
   isActive:
     n: "Sichtbarkeit"
-    l:
-      - "Der globale Timer wird immer"
-      - "über den persönlichen Timer angezeigt,"
+    l: "Globaler Timer wird immer über persönliche Timer<br>gerendert"
   direction:
     n: "Timer Richtung"
-    l:
-      - "Setze die Zählrichtung."
-      - "Sobald die Zeit 0 erreicht wird"
+    l: "Definiere deine Timer-Richtung.<br>Wenn die Zeit Null erreicht,<br>wird der Timer gestoppt"
   createDesign:
     n: "Neues Design"
-    l:
-      - "Erstelle ein neues Design"
-      - "von Grund auf. Animationen sind"
-      - "in der Vorschau nicht animiert!"
+    l: "Erstelle ein neues Design von<br>Scratch. Animationen sind nicht<br>im Editor animiert"
   designName:
     n: "Designname"
-    l:
-      - "Setze einen passenden Namen, er"
-      - "ist in der lokalen und öffentlichen"
-      - "Design Liste sichtbar"
+    l: "Wähle einen passenden Namen, er ist<br>in der lokalen & öffentlichen<br>Timer Designliste sichtbar"
   designRunning:
     n: "Laufende Anzeige"
-    l:
-      - "Bearbeite das laufende Timer"
-      - "Design"
+    l: "Passe den laufenden Status<br>des Timers an"
   designIdle:
     n: "Pausierte Anzeige"
-    l:
-      - "Bearbeite das pausierte Timer"
-      - "Design"
+    l: "Passe den pausierten Status<br>des Timers an"
   dragonDeath:
     n: "Ender Dragon Tod"
-    l:
-      - "Töte einen Ender Dragon um"
-      - "den Timer zu beenden (gewonnen)"
+    l: "Töte einen Enderdrachen zum<br>beenden des Timers"
   witherDeath:
     n: "Wither Tod"
-    l:
-      - "Töte einen Wither um"
-      - "dem Timer zu beenden (gewonnen)"
+    l: "Töte einen Wither zum<br>beenden des Timers"
   elderDeath:
     n: "Elder Guardian Tod"
-    l:
-      - "Töte einen Elder Guardian um"
-      - "dem Timer zu beenden (gewonnen)"
+    l: "Töte einen Elder Guaridan zum<br>beenden des Timers"
   wardenDeath:
     n: "Warden Tod"
-    l:
-      - "Töte einen Warden um"
-      - "dem Timer zu beenden (1.19+)"
+    l: "Töte einen Warden zum<br>beenden des Timers (1.19+)"
   playerDeath:
-    n: "Player Tod"
-    l:
-      - "Sobald ein Spieler stirbt,"
-      - "wird der Timer pausiert (verloren)"
+    n: "Spieler Tod"
+    l: "Jeder Spielertod beendet<br>den Timer (scheitern)"
   lastPlayer:
     n: "Leerer Server"
-    l:
-      - "Der Timer wird pausiert, sobald"
-      - "der letzte Spieler den Server"
-      - "verlassen hat"
+    l: "Pausiert den Timer, wenn<br>der letzte Spieler den Server verlässt"
   announceSeed:
     n: "Seed Anzeigen"
-    l:
-      - "Zeige den Welten Seed im Chat,"
-      - "wenn der Timer automatisch stoppt"
+    l: "Zeige den Welten-Seed im Chat,<br>wenn der Timer beendet wird"
   announceLocation:
     n: "Position Anzeigen"
-    l:
-      - "Zeige die Todesposition im Chat,"
-      - "wenn der Timer automatisch stoppt"
+    l: "Zeige die Todesposition im Chat,<br>wenn der Timer beendet wird"
   specOnDeath:
     n: "Zuschauer beim Tod"
-    l:
-      - "Werde in den Zuschauer Modus"
-      - "gesetzt beim Tod."
+    l: "Aktiviere den Zuschauermodus beim<br>sterben (nur wenn Timer läuft)"
   specOnJoin:
     n: "Zuschauer beim Joinen"
-    l:
-      - "Werde in den Zuschauer Modus"
-      - "gesetzt beim joinen."
+    l: "Aktiviere den Zuschauermodus beim<br>beitreten des Servers (nur wenn Timer läuft)"
   punishment:
     n: "Todesbestrafung"
-    l:
-      - "Bestrafe tote Spieler mit"
-      - "gewissen Aktionen."
+    l: "Bestrafe Spielertode mit<br>bestimmten Aktionen (nur wenn Timer läuft)"
   freezeWorld:
-    n: "Welt einfrieren"
-    l:
-      - "Friert die Welt, ein wenn der Timer"
-      - "pausiert ist. Dies verhindert"
-      - "jegliche Spieler Interaktionen und"
-      - "pausiert alle KIs und Spiellogik"
+    n: "Welt Einfrieren"
+    l: "Einfrieren der Welt bei Timer<br>pausieren. Dies verhindert jegliche<br>Spieler Interaktionen und pausiert<br>alle KIs und Spiellogiken"

@@ -29,10 +29,10 @@ common:
 #-----------------------------------------#
 command:
   challenge:
-    stop: "Challenges <red><b>stopped</b></red>! (<input-1>)"
-    start: "Challenges <green><b>started</b></green>! (<input-1>)"
-    pause: "Challenges temporary <red>paused</red>! (<input-1>)"
-    continue: "Challenges <green>resumed</green>! (<input-1>)"
+    stop: "<grey>Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "<grey>Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "<grey>Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "<grey>Challenges <green>resumed</green>! (<input-1>)"
   notRegistered: "<red>Activate the module to use this command!"
 #-----------------------------------------#
 #Events                  #
@@ -51,6 +51,9 @@ event:
   mobHunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
+  itemDecay:
+    time: "Decay in"
+    paused: "Paused display (selected)"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -61,299 +64,163 @@ items:
   general:
     arrowRightEnd:
       n: "<red>Scroll Right"
-      l:
-        - "You can not scroll any"
-        - "further to the right"
+      l: "You can not scroll any<br>further to the right"
     arrowLeftEnd:
       n: "<red>Scroll Left"
-      l:
-        - "You can not scroll any"
-        - "further to the left"
+      l: "You can not scroll any<br>further to the left"
     arrowRight:
       n: "<green>Scroll Right"
-      l:
-        - "<blue>Click ≫ +1 page"
-        - "<blue>Sneak-Click ≫ +5 pages"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
       n: "<green>Scroll Left"
-      l:
-        - "<blue>Click ≫ -1 page"
-        - "<blue>Sneak-Click ≫ -5 pages"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     arrowUpGreen:
       n: "<green>Scroll Up"
-      l:
-        - "<blue>Click ≫ -1 page"
-        - "<blue>Sneak-Click ≫ -3 pages"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -3 pages"
     arrowDownGreen:
       n: "<green>Scroll Down"
-      l:
-        - "<blue>Click ≫ +1 page"
-        - "<blue>Sneak-Click ≫ +3 pages"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +3 pages"
     arrowUpRed:
       n: "<red>Scroll Up"
-      l:
-        - "You can not scroll any"
-        - "further up"
+      l: "You can not scroll any<br>further up"
     arrowDownRed:
       n: "<red>Scroll Down"
-      l:
-        - "You can not scroll any"
-        - "further down"
+      l: "You can not scroll any<br>further down"
     pageIndicator:
-      l:
-        - "Click to open a compact"
-        - "GUI with quick access"
+      l: "Click to open a compact<br>GUI with quick access"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
-      l:
-        - "Fly with a new power through"
-        - "the sky like a hero!"
-        - "Sneak in midair to activate"
+      l: "Fly with a new power through<br>the sky like a hero!<br>Sneak in midair to activate"
     IN_TIME:
       n: "InTime Challenge"
-      l:
-        - "Every Entity has a limited time"
-        - "to live. You too! Kill mobs to"
-        - "steal their time"
+      l: "Every Entity has a limited time<br>to live. You too! Kill mobs to<br>steal their time"
     MOB_BLOCKS:
       n: "Mob Blocks Randomizer"
-      l:
-        - "Every block contains a random mob."
-        - "Break the block to release it and"
-        - "only after killing it, the item drops"
+      l: "Every block contains a random mob.<br>Break the block to release it and<br>only after killing it, the item drops"
     CHECKPOINTS:
       n: "Rewind Challenge"
-      l:
-        - "Create Checkpoints (F) to travel"
-        - "back in time! But be warned... Time"
-        - "traveling is dangerous"
+      l: "Create Checkpoints (F) to travel<br>back in time! But be warned... Time<br>traveling is dangerous"
     DIM_SWAP:
       n: "Dimension Swap Challenge"
-      l:
-        - "All portals are shuffled! Now you"
-        - "have to fight the Ender Dragon in..."
-        - "the Overworld?"
-        - "Nether -> End -> Overworld"
+      l: "All portals are shuffled! Now you<br>have to fight the Ender Dragon in...<br>the Overworld?<br>Nether -> End -> Overworld"
     SNAKE:
       n: "Snake Challenges"
-      l:
-        - "You can only move on your personal"
-        - "snake, which permanently move in"
-        - "your viewing direction"
+      l: "You can only move on your personal<br>snake, which permanently move in<br>your viewing direction"
     REALISTIC:
       n: "Realistic Minecraft"
-      l:
-        - "Is MC to unrealistic? This Challenge"
-        - "will change everything to discover"
-        - "a full new Minecraft"
+      l: "Is MC to unrealistic? This Challenge<br>will change everything to discover<br>a full new Minecraft"
     CAPTIVE:
       n: "Captive Challenge"
-      l:
-        - "The world shrunk down to small"
-        - "field and it's your task to"
-        - "grow it through Level"
+      l: "The world shrunk down to small<br>field and it's your task to<br>grow it through Level"
     GHOST:
       n: "Ghost Challenge"
-      l:
-        - "Discover the depths with your new"
-        - "ability to travel through blocks!"
-        - "But be aware... Ghosts are weak"
+      l: "Discover the depths with your new<br>ability to travel through blocks!<br>But be aware... Ghosts are weak"
     BLOCK_ASYNC:
       n: "Block Async Challenge"
-      l:
-        - "Every player sees his own world!"
-        - "But should a player interact with a"
-        - "block modified by a different player"
-        - "he dies. Communication is key"
+      l: "Every player sees his own world!<br>But should a player interact with a<br>block modified by a different player<br>he dies. Communication is key"
     NO_SAME_ITEM:
       n: "No Same Items"
-      l:
-        - "If you collect a item, wich"
-        - "was already collected, you loose"
-        - "one heart"
+      l: "If you collect a item, wich<br>was already collected, you loose<br>one heart"
     LIMITED_SKILLS:
       n: "Limited Skills"
-      l:
-        - "Only one player can see mobs"
-        - "but can't damage them. The other"
-        - "can't see mobs but can deal damage"
+      l: "Only one player can see mobs<br>but can't damage them. The other<br>can't see mobs but can deal damage"
     RUN_RANDOMIZER:
       n: "Run Randomizer"
-      l:
-        - "The only way to gather items"
-        - "is running! Every X-Blocks you"
-        - "get a random stack of items"
+      l: "The only way to gather items<br>is running! Every X-Blocks you<br>get a random stack of items"
     SPLIT_HP:
       n: "Split HP"
-      l:
-        - "Every player share their"
-        - "hearts. Damage and regeneration"
-        - "counts to everyone"
+      l: "Every player share their<br>hearts. Damage and regeneration<br>counts to everyone"
     DAMAGE_DUELL:
       n: "Damage Duell"
-      l:
-        - "If you deal damage, all"
-        - "other players also get"
-        - "damaged by a percentage"
+      l: "If you deal damage, all<br>other players also get<br>damaged by a percentage"
     ONE_BIOME:
       n: "One Biome World"
-      l:
-        - "The whole world contains"
-        - "only one biome. The biome"
-        - "switches every X seconds"
+      l: "The whole world contains<br>only one biome. The biome<br>switches every X seconds"
     BOOST_UP:
       n: "Boost'em UP"
-      l:
-        - "Every entity/mob in your"
-        - "range will be boosted in"
-        - "the sky"
+      l: "Every entity/mob in your<br>range will be boosted in<br>the sky"
     RIGHT_TOOL:
       n: "Only Right Tools"
-      l:
-        - "You can only break blocks"
-        - "with the correct tool"
+      l: "You can only break blocks<br>with the correct tool"
     CHUNK_BLOCK_BREAK:
       n: "Chunk Breaker"
-      l:
-        - "Breaking a block will"
-        - "break all blocks of the"
-        - "same time in the chunk"
+      l: "Breaking a block will<br>break all blocks of the<br>same time in the chunk"
     SNEAK_SPAWN:
       n: "Sneak Spawner"
-      l:
-        - "Be prepared... Every sneak"
-        - "will spawn a random mob"
-        - "on your position"
+      l: "Be prepared... Every sneak<br>will spawn a random mob<br>on your position"
     WORLD_PEACE:
       n: "World Peace"
-      l:
-        - "Instead of fighting to the top"
-        - "just communicate and trade"
-        - "with your opponents!"
-        - "<i>Symbol against the Ukraine-Russian war"
+      l: "Instead of fighting to the top<br>just communicate and trade<br>with your opponents!<br><i>Symbol against the Ukraine-Russian war"
     GRAVITY:
       n: "Gravity Switch"
-      l:
-        - "The world gone crazy and"
-        - "every few seconds the gravity"
-        - "switches between 4 new gravities"
+      l: "The world gone crazy and<br>every few seconds the gravity<br>switches between 4 new gravities"
     STAY_AWAY:
       n: "Stay Awaay"
-      l:
-        - "Getting to close to other"
-        - "mobs or players causes damage."
-        - "Time for some social distancing"
+      l: "Getting to close to other<br>mobs or players causes damage.<br>Time for some social distancing"
     RANDOMIZER_BLOCK:
       n: "Block Randomizer"
-      l:
-        - "Block drops are shuffled"
-        - "(or random)"
+      l: "Block drops are shuffled<br>(or random)"
     RANDOMIZER_ENTITY:
       n: "Mob Drop Randomizer"
-      l:
-        - "Mob drops are shuffled"
-        - "(or random)"
+      l: "Mob drops are shuffled<br>(or random)"
     RANDOMIZER_BIOMES:
       n: "Biome Randomizer"
-      l:
-        - "World biomes are shuffled"
-        - "(or random)"
+      l: "World biomes are shuffled<br>(or random)"
     RANDOMIZER_MOBS:
       n: "Mob Randomizer"
-      l:
-        - "Mob spawning is shuffled"
-        - "(or random)"
+      l: "Mob spawning is shuffled<br>(or random)"
     FORCE_COLLECT:
       n: "Force Collect"
-      l:
-        - "You are forced to collect"
-        - "the prompted item to survive"
+      l: "You are forced to collect<br>the prompted item to survive"
     RANDOMIZER_DAMAGE:
       n: "Damage Randomizer"
-      l:
-        - "Damage is shuffled like"
-        - "2hp will be always 5hp"
-        - "(or random)"
+      l: "Damage is shuffled like<br>2hp will be always 5hp<br>(or random)"
     NO_DOUBLE_KILL:
       n: "No Double Kills"
-      l:
-        - "You are not allowed to kill"
-        - "the same mob twice in a row"
+      l: "You are not allowed to kill<br>the same mob twice in a row"
     DAMAGER:
       n: "Damager Challenge"
-      l:
-        - "You will be confronted with"
-        - "constantly damage from the"
-        - "chosen event. Can you survive?"
+      l: "You will be confronted with<br>constantly damage from the<br>chosen event. Can you survive?"
     RIVALS_COLLECT:
       n: "Collection Rivals"
-      l:
-        - "Collect/find/kill the prompted"
-        - "goal to get the next. Player"
-        - "with the most points win"
+      l: "Collect/find/kill the prompted<br>goal to get the next. Player<br>with the most points win"
     ROCKET:
       n: "Rocket Mode"
-      l:
-        - "Sneak to fly up. But be aware!"
-        - "Flying with a rocket is hard..."
-        - "And hold an eye on your heat"
+      l: "Sneak to fly up. But be aware!<br>Flying with a rocket is hard...<br>And hold an eye on your heat"
     VAMPIRE:
       n: "Vampire Challenge"
-      l:
-        - "Welcome to the world of darkness!"
-        - "Light will drain your blood. Kill"
-        - "mobs to gain their blood and sneak on"
-        - "killing to gather a blood pack (heal)"
+      l: "Welcome to the world of darkness!<br>Light will drain your blood. Kill<br>mobs to gain their blood and sneak on<br>killing to gather a blood pack (heal)"
     TRAFFIC_LIGHT:
       n: "Traffic Lights"
-      l:
-        - "You are trapped on the road."
-        - "You are only allowed to move"
-        - "on green lights. If you move"
-        - "on red, you get punished"
+      l: "You are trapped on the road.<br>You are only allowed to move<br>on green lights. If you move<br>on red, you get punished"
     TRON:
       n: "Snake Path"
-      l:
-        - "Every player creates a path"
-        - "on walking. But be carefully!"
-        - "You are not allowed to touch it"
-        - "ever again..."
+      l: "Every player creates a path<br>on walking. But be carefully!<br>You are not allowed to touch it<br>ever again..."
     DISABLED:
       n: "Disable Features"
-      l:
-        - "Disable certain key features"
-        - "to challenge your self."
-        - "Additionally a damage punishment"
-        - "can be added"
+      l: "Disable certain key features<br>to challenge your self.<br>Additionally a damage punishment<br>can be added"
     MOB_HUNT:
       n: "Mob Hunt"
-      l:
-        - "Kill all Mobs in a given"
-        - "order to finish!"
-        - "Use /mobhunt to modify"
+      l: "Kill all Mobs in a given<br>order to finish!<br>Use /mobhunt to modify"
     ITEM_HUNT:
       n: "Item Hunt"
-      l:
-        - "Collect all Items in a given"
-        - "order to finish!"
-        - "Use /itemhunt to modify"
+      l: "Collect all Items in a given<br>order to finish!<br>Use /itemhunt to modify"
     MIRROR:
       n: "Mirror Challenge"
-      l:
-        - "Mirror certain things from"
-        - "you to all other players (sync)"
+      l: "Mirror certain things from<br>you to all other players (sync)"
     CHUNK_FLATTENER:
       n: "Chunk Flattener"
-      l:
-        - "Watch out your steps!"
-        - "Your current chunk slowly"
-        - "shrinks down"
+      l: "Watch out your steps!<br>Your current chunk slowly<br>shrinks down"
     CHUNK_DECAY:
       n: "Chunk Decay"
-      l:
-        - "Your current chunk randomly"
-        - "decays till it's gone"
+      l: "Your current chunk randomly<br>decays till it's gone"
+    CHUNK_CLEARER:
+      n: "Chunk Clearer"
+      l: "If you enter a chunk or<br>touch a new block the whole<br>chunk will be cleared"
+    ANVIL_CRUSHER:
+      n: "Anvil Crusher"
+      l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
   chS:
     FLY:
       power:
