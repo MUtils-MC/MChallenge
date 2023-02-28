@@ -46,12 +46,12 @@ class ChallengeCommand : TabExecutor {
                 broadcast(prefix + msg("command.challenge.start", listOf(sender.name)))
             } else sender.sendMessage(prefix + msg("command.challenge.failed"))
 
-            "pause" -> if (ChallengeManager.unregisterChallenges()) {
+            "pause" -> if (ChallengeManager.pauseChallenges()) {
                 ChallengeManager.status = ChallengeStatus.PAUSED
                 broadcast(prefix + msg("command.challenge.pause", listOf(sender.name)))
             } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
 
-            "resume" -> if (ChallengeManager.registerChallenges()) {
+            "resume" -> if (ChallengeManager.resumeChallenges()) {
                 ChallengeManager.status = ChallengeStatus.RUNNING
                 broadcast(prefix + msg("command.challenge.continue", listOf(sender.name)))
             } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))

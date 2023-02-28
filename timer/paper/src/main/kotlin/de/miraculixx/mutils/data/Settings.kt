@@ -16,6 +16,7 @@ data class Rules(
     var specOnDeath: Boolean = true,
     var specOnJoin: Boolean = false,
     var punishmentSetting: PunishmentSetting = PunishmentSetting(),
+    var syncWithChallenge: Boolean = true,
 )
 
 @Serializable

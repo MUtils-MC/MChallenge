@@ -1,0 +1,270 @@
+[
+  {
+    "key": "VAMPIRE",
+    "icon": "ghast_tear",
+    "version": "1.0.0",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "TRAFFIC_LIGHT",
+    "icon": "redstone_lamp",
+    "version": "1.0.0",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "TRON",
+    "version": "1.0.0",
+    "icon": "light_blue_concrete",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "DISABLED",
+    "version": "1.0.0",
+    "icon": "iron_bars",
+    "tags": ["FUN", "FREE"]
+  },
+  {
+    "key": "MOB_HUNT",
+    "version": "1.0.0",
+    "icon": "phantom_spawn_egg",
+    "tags": ["FUN", "FREE", "FORCE"]
+  },
+  {
+    "key": "ITEM_HUNT",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "a6cc486c2be1cb9dfcb2e53dd9a3e9a883bfadb27cb956f1896d602b4067",
+    "tags": ["FUN", "FREE", "FORCE"]
+  },
+  {
+    "key": "MIRROR",
+    "version": "1.0.0",
+    "icon": "glass",
+    "tags": ["FUN", "FREE", "MULTIPLAYER"]
+  },
+  {
+    "key": "CHUNK_FLATTENER",
+    "version": "1.0.0",
+    "icon": "iron_trapdoor",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "CHUNK_BLOCK_BREAK",
+    "version": "1.0.0",
+    "icon": "tnt",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "CHUNK_DECAY",
+    "version": "1.0.0",
+    "icon": "oak_leaves",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "CHUNK_CLEARER",
+    "version": "1.0.0",
+    "icon": "dragon_breath",
+    "tags": ["HARD", "FREE"]
+  },
+  {
+    "key": "ANVIL_CRUSHER",
+    "version": "1.0.0",
+    "icon": "anvil",
+    "tags": ["MEDIUM", "FREE"]
+  },
+  {
+    "key": "ITEM_DECAY",
+    "version": "1.0.0",
+    "icon": "comparator",
+    "tags": ["HARD", "FREE"]
+  },
+
+  {
+    "key": "FLY",
+    "version": "1.0.0",
+    "icon": "elytra",
+    "tags": ["FUN"]
+  },
+  {
+    "key": "IN_TIME",
+    "version": "1.0.0",
+    "icon": "clock",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "MOB_BLOCKS",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "64528b3229660f3dfab42414f59ee8fd01e80081dd3df30869536ba9b414e089",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "CHECKPOINTS",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02",
+    "tags": ["FUN"]
+  },
+  {
+    "key": "DIM_SWAP",
+    "version": "1.0.0",
+    "icon": "end_portal_frame",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "SNAKE",
+    "version": "1.0.0",
+    "icon": "red_concrete_powder",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "REALISTIC",
+    "version": "1.0.0",
+    "icon": "oak_sapling",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "GHOST",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02",
+    "tags": ["FUN"]
+  },
+  {
+    "key": "BLOCK_ASYNC",
+    "version": "1.0.0",
+    "icon": "red_stained_glass",
+    "tags": ["FUN", "MULTIPLAYER"]
+  },
+  {
+    "key": "NO_SAME_ITEM",
+    "version": "1.0.0",
+    "icon": "wither_rose",
+    "tags": ["MEDIUM", "MULTIPLAYER"]
+  },
+  {
+    "key": "LIMITED_SKILLS",
+    "version": "1.0.0",
+    "icon": "turtle_helmet",
+    "tags": ["HARD", "MULTIPLAYER"]
+  },
+  {
+    "key": "SPLIT_HP",
+    "version": "1.0.0",
+    "icon": "beetroot",
+    "tags": ["MEDIUM", "MULTIPLAYER"]
+  },
+  {
+    "key": "DAMAGE_DUELL",
+    "version": "1.0.0",
+    "icon": "iron_sword",
+    "tags": ["FUN", "MULTIPLAYER"]
+  },
+  {
+    "key": "ONE_BIOME",
+    "version": "1.0.0",
+    "icon": "filled_map",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "BOOST_UP",
+    "version": "1.0.0",
+    "icon": "shulker_shell",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "RIGHT_TOOL",
+    "version": "1.0.0",
+    "icon": "wooden_axe",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "SNEAK_SPAWN",
+    "version": "1.0.0",
+    "icon": "hopper",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "WORLD_PEACE",
+    "version": "1.0.0",
+    "icon": "cornflower",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "GRAVITY",
+    "version": "1.0.0",
+    "icon": "sand",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "STAY_AWAY",
+    "version": "1.0.0",
+    "icon": "tnt",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "RANDOMIZER_BLOCK",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_ENTITY",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "6b40e5db21cedac4c972b7b22ebb64cf4add61b3b54b131435eedd307598b7",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_BIOMES",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "76bdf52222b4f092e1122831b388164c462fa41df1d49428d448a8794339b34b",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_MOBS",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "915f7c313bca9c2f958e68ab14ab393867d67503affff8f20cb13fbe917fd31",
+    "tags": ["FUN", "RANDOMIZER"]
+  },
+  {
+    "key": "RANDOMIZER_DAMAGE",
+    "version": "1.0.0",
+    "icon": "player_head",
+    "texture": "5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87",
+    "tags": ["MEDIUM", "RANDOMIZER"]
+  },
+  {
+    "key": "FORCE_COLLECT",
+    "version": "1.0.0",
+    "icon": "chest",
+    "tags": ["MEDIUM", "FORCE"]
+  },
+  {
+    "key": "NO_DOUBLE_KILL",
+    "version": "1.0.0",
+    "icon": "repeater",
+    "tags": ["MEDIUM"]
+  },
+  {
+    "key": "DAMAGER",
+    "version": "1.0.0",
+    "icon": "diamond_sword",
+    "tags": ["HARD"]
+  },
+  {
+    "key": "RIVALS_COLLECT",
+    "version": "1.0.0",
+    "icon": "chest_minecart",
+    "tags": ["FUN", "FORCE", "MULTIPLAYER"]
+  },
+  {
+    "key": "ROCKET",
+    "version": "1.0.0",
+    "icon": "firework_rocket",
+    "tags": ["MEDIUM"]
+  }
+]

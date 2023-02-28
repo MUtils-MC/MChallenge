@@ -8,6 +8,7 @@ import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.*
+import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.player.Player
@@ -56,12 +57,12 @@ class ScrollGUI(
                 it.isCancelled = true
                 page += (if (it.click == GUIClick.SHIFT_CLICK) 5
                 else 1).coerceAtLeast(0)
-                player.click()
                 update()
             }
             9003 -> {
                 it.isCancelled = true
-                player.click()
+                player.identity()
+                Audience.audience()
                 InventoryManager.storageBuilder("$id-STORAGE") {
                     this.title = title
                     this.players = viewers.keys.toList()

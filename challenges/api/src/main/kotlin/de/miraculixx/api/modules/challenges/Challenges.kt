@@ -21,10 +21,11 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     ITEM_HUNT(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.FORCE), Icon("ENDER_CHEST"), true),
     MIRROR(listOf(StorageFilter.FUN, StorageFilter.FREE, StorageFilter.MULTIPLAYER), Icon("GLASS"), true),
     CHUNK_FLATTENER(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("IRON_TRAPDOOR"), true),
-    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM), Icon("TNT"), true),
+    CHUNK_BLOCK_BREAK(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("TNT"), true),
     CHUNK_DECAY(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("OAK_LEAVES"), true),
     CHUNK_CLEARER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("DRAGON_BREATH"), true),
     ANVIL_CRUSHER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("ANVIL"), true),
+    ITEM_DECAY(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("COMPARATOR"), true),
 
 
     FLY(listOf(StorageFilter.FUN), Icon("ELYTRA")),
@@ -56,7 +57,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     FORCE_COLLECT(listOf(StorageFilter.MEDIUM, StorageFilter.FORCE), Icon("CHEST")),
     RANDOMIZER_DAMAGE(listOf(StorageFilter.MEDIUM, StorageFilter.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_RED)),
     NO_DOUBLE_KILL(listOf(StorageFilter.MEDIUM), Icon("REPEATER")),
-    DAMAGER(listOf(StorageFilter.MEDIUM, StorageFilter.HARD), Icon("DIAMOND_SWORD")),
+    DAMAGER(listOf(StorageFilter.HARD), Icon("DIAMOND_SWORD")),
     RIVALS_COLLECT(listOf(StorageFilter.FUN, StorageFilter.FORCE, StorageFilter.MULTIPLAYER), Icon("CHEST_MINECART")),
     ROCKET(listOf(StorageFilter.MEDIUM), Icon("FIREWORK_ROCKET")),
 
@@ -224,6 +225,9 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                     "amplifierRadius" to ChallengeIntSetting("COMPARATOR", 5, "b", max = 5, min = 0),
                 )),
                 "height" to ChallengeIntSetting("RABBIT_FOOT", 5, "b", max = 15, min = 2)
+            )
+            ITEM_DECAY -> mapOf(
+                "time" to ChallengeIntSetting("CLOCK", 300, "s", max = 1800, min = 10, step = 10)
             )
         }
     }
