@@ -119,11 +119,11 @@ items:
     n: "Warden Tod"
     l: "Töte einen Warden zum<br>beenden des Timers (1.19+)"
   playerDeath:
-    n: "Player Tod"
-    l: "Jeder Spielertod scheitert<br>an dem Timer"
+    n: "Spieler Tod"
+    l: "Jeder Spielertod beendet<br>den Timer (scheitern)"
   lastPlayer:
     n: "Leerer Server"
-    l: "Pausiert den Timer, wenn<br>der letzte Spieler den Server verlässt<br>"
+    l: "Pausiert den Timer, wenn<br>der letzte Spieler den Server verlässt"
   announceSeed:
     n: "Seed Anzeigen"
     l: "Welt-Seed für Timer<br>ankündigen oder im Chat erfolgreich"
