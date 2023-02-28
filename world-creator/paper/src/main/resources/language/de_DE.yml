@@ -20,7 +20,7 @@ common:
   left: "Links"
   right: "Rechts"
   click: "Klick"
-  sneak: "Schleichen"
+  sneak: "Sneak"
   none: "Leer"
   confirm: "Bestätigen"
   cancel: "Abbrechen"
@@ -40,17 +40,17 @@ event:
   biomeProvider: "Biom Generator"
   noiseProvider: "Welt Generator"
   teleportToWorld: "Teleportiere zu <input-1>" #v - world name
-  noOverride: "<red>Aktiviere sie die globale Überschreibung, um den Wert zu ändern!"
-  sneakExit: "Schleiche zum verlassen"
+  noOverride: "<red>Aktiviere die globale Überschreibung, um den Wert zu ändern!"
+  sneakExit: "Sneake zum verlassen"
   newWorld: "Erstelle neue Welt..."
-  newWorldSub: "Bitte habe ein wenig Geduld..."
+  newWorldSub: "Dies kann ein paar Sekunden dauern"
   teleportFromDelete: "Die Welt, in der du warst, wurde gelöscht..."
   category: "Kategorie"
   worldCreated: "Eine neue Welt wurde erfolgreich erstellt"
   worldInfo: "Informationen zur aktuellen Welt"
   env:
-    NORMAL: "Overworld"
-    THE_END: "End"
+    NORMAL: "Hauptwelt"
+    THE_END: "Ende"
     NETHER: "Nether"
   gen:
     NORMAL: "Normal"
@@ -66,17 +66,17 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scrolle Rechts"
+      n: "<red>Scrolle nach rechts"
       l: "Du kannst nicht weiter<br>nach rechts scrollen"
     arrowLeftEnd:
-      n: "<red>Scrolle nach Links"
+      n: "<red>Scrolle nach links"
       l: "Du kannst nicht weiter<br>nach links scrollen"
     arrowRight:
       n: "<green>Scrolle nach rechts"
-      l: "<blue>Klick ≫ +1 Seite<br><blue>Schleichen+Klick ≫ +5 Seiten"
+      l: "<blue>Klick ≫ +1 Seite<br><blue>Sneak-Click ≫ +5 Seiten"
     arrowLeft:
       n: "<green>Scrolle nach links"
-      l: "<blue>Klick ≫ -1 Seite<br><blue>Schleichen+Klick ≫ -5 Seiten"
+      l: "<blue>Klick ≫ -1 Seite<br><blue>Sneak-Click ≫ -5 Seiten"
     pageIndicator:
       l: "Klicke hier, um ein kompakteres GUI<br>mit Schnellzugriffen zu öffnen"
   menu:
@@ -121,8 +121,8 @@ items:
       l: "Ändere die Biomgeneration zu<br>einer neuen benutzerdefinierten Variante. Jeder<br>Algorithmus kann modifiziert werden"
     noiseAlgo:
       n: "Vanilla Generierung"
-      l: "Erweiterte Einstellungen zum Ändern von<br>der Vanille-Welt-Generation.<br><#CF6679>Nur ändern, wenn du weißt, was du bist<br><#CF6679>tun!"
-      s1: "Geräusch Generation"
+      l: "Erweiterte Einstellungen zum Ändern von<br>der Vanille-Welt-Generation.<br><#CF6679>Nur ändern, wenn du weißt, was du<br><#CF6679>tust!"
+      s1: "Flächen Generation"
       s2: "Höhlen Generation"
       s3: "Oberflächen Generation"
       s4: "Gewächs Generation"
@@ -135,15 +135,15 @@ items:
       n: "Kopiere die gesamte Welt"
       l: "Kopiere die ganze Welt<br>mit allen Einstellungen und<br>Fortschritt (Gelände- & Entitäten)"
     preview:
-      n: "Aktuelle Regel vorverarbeiten"
-      l: "Vorschau der aktuellen Regel<br>in einem abstrakten Prerender"
+      n: "Visualisiere Aktuelle Einstellungen"
+      l: "Vorschau der aktuellen Einstellungen<br>in einer abstrakten Visualisierung"
     category:
-      n: "Kategorie synchronisieren"
-      l: "Geben Sie eine benutzerdefinierte Kategorie<br>ein, um einen separaten Spieler<br>zu speichern. Beim Wechsel zwischen Kategorien<br>werden die benötigten Spielerdaten geladen"
+      n: "Sync Kategorie"
+      l: "Gebe eine benutzerdefinierte Kategorie<br>ein, um einen separaten Spielestand<br>zu speichern. Beim Wechsel zwischen Kategorien<br>werden die benötigten Spielerdaten geladen"
       s: "Kategorie"
     worldSet:
-      n: "Welten-Set erstellen"
-      l: "Erstellen Sie eine Oberwelt, Nether<br>und beenden Sie die Welt aus Ihren Einstellungen<br>und legen Sie sie alle in eine Kategorie"
+      n: "Welten-Set Erstellen"
+      l: "Erstelle eine Hauptwelt, Nether<br>und Ende aus den aktuellen Einstellungen<br>und lege alle in eine Kategorie"
     singleWorld:
       n: "Welt erstellen"
       l: "Erstelle eine einzige Welt aus<br>deinen Einstellungen"
