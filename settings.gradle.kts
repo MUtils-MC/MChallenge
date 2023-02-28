@@ -12,16 +12,24 @@ include("vanilla")
 include("core-paper")
 include("core-fabric")
 
+// API Bridge
+include("bridge:paper")
+include("bridge:api")
+
+// Custom Challenges
 include("custom-challenges:paper")
 include("custom-challenges:fabric")
 
+// Timer
 include("timer:paper")
 include("timer:fabric")
 
+// Challenges
 include("challenges:paper")
 include("challenges:fabric")
 include("challenges:api")
 
+// World Creator
 include("world-creator:paper")
 include("world-creator:fabric")
 include("world-creator:api")
