@@ -160,7 +160,7 @@ items:
       l: "Die Nähe zu anderen<br>Kreaturen oder Spielern verursacht Schaden.<br>Zeit für soziale Distanzen"
     RANDOMIZER_BLOCK:
       n: "Block Randomizer"
-      l: "Blockdrops werden gemischt<br>(oder zufällig)"
+      l: "Block-Drops werden gemischt<br>(oder zufällig)"
     RANDOMIZER_ENTITY:
       n: "Mob Drop Randomizer"
       l: "Mob-Drops werden gemischt<br>(oder zufällig)"
@@ -169,28 +169,28 @@ items:
       l: "Weltbiome werden gemischt<br>(oder zufällig)"
     RANDOMIZER_MOBS:
       n: "Mob Randomizer"
-      l: "Mob-Erzeugung ist gemischt<br>(oder zufällig)"
+      l: "Mob-Generierung ist gemischt<br>(oder zufällig)"
     FORCE_COLLECT:
       n: "Sammel Aufgabe"
-      l: "Du bist gezwungen,<br>das angeforderte Item zu sammeln, um zu überleben"
+      l: "Du bist gezwungen,<br>das angeforderte Item zu sammeln,<br>um zu überleben"
     RANDOMIZER_DAMAGE:
       n: "Schaden Randomizer"
-      l: "Schaden wird gemischt wie<br>2hp immer 5hp<br>(oder zufällig)"
+      l: "Schaden wird gemischt wie<br>zb. 2hp immer 5hp Schaden sein<br>(oder zufällig)"
     NO_DOUBLE_KILL:
       n: "Keine Doppelkills"
-      l: "Du darfst<br>nicht zweimal in Folge den gleichen Mob töten"
+      l: "Du darfst nicht zweimal<br>in Folge den gleichen Mob töten"
     DAMAGER:
       n: "Schadens Challenge"
-      l: "Du wirst mit<br>konstanten Schaden des<br>ausgewählten Ereignisses konfrontiert. Kannst du überleben?"
+      l: "Du wirst mit konstantem<br>Schaden des ausgewählten Ereignisses<br>konfrontiert. Kannst du überleben?"
     RIVALS_COLLECT:
       n: "Sammelkampf"
-      l: "Sammle das<br>Ziel ein, um das nächste zu bekommen. Spieler<br>mit den meisten Punkten gewinnen"
+      l: "Sammle/finde/töte das<br>Ziel, um das nächste zu bekommen. Spieler<br>mit den meisten Punkten gewinnen"
     ROCKET:
       n: "Raketen-Modus"
-      l: "Schleiche zum nach oben Fliegen. Aber sei dir bewusst!<br>Fliegen mit einer Rakete ist schwer...<br>Und halte ein Auge auf deine Hitze"
+      l: "Schleiche zum nach oben fliegen. Aber sei dir bewusst!<br>Fliegen mit einer Rakete ist schwer...<br>Und halte ein Auge auf deine Hitze"
     VAMPIRE:
       n: "Vampir Herausforderung"
-      l: "Willkommen in der Welt der Dunkelheit!<br>Licht wird dein Blut entziehen. Töte<br>Mobs, um ihr Blut zu erhalten und schleichen auf<br>zu töten, um ein Blutpack zu sammeln (heilen)"
+      l: "Willkommen in der Welt der Dunkelheit!<br>Licht wird dein Blut entziehen. Töte<br>Mobs, um ihr Blut zu erhalten und schleichen beim<br>töten, um ein Blutpack zu sammeln (heilen)"
     TRAFFIC_LIGHT:
       n: "Ampel Challenge"
       l: "Du bist auf der Straße gefangen.<br>Du darfst nur<br>bei Grünen Lichtern dich bewegen. Wenn du<br>dich bei Rot bewegst, wirst du bestraft"
@@ -202,25 +202,25 @@ items:
       l: "Deaktiviere bestimmte Schlüsselfunktionen<br>, um dich selbst herauszufordern.<br>Zusätzlich kann eine Schadensstrafe<br>hinzugefügt werden"
     MOB_HUNT:
       n: "Mob Jagd"
-      l: "Töte alle Mobs in einer gegebenen<br>-Bestellung zum Beenden!<br>Benutze /mobhunt um zu ändern"
+      l: "Töte alle Mobs in einer gegebenen<br>Reihenfolge zum Beenden!<br>Benutze /mobhunt zum modifizieren"
     ITEM_HUNT:
       n: "Item Jagd"
-      l: "Sammle alle Items in einer gegebenen<br>-Bestellung zum Beenden!<br>Benutze /itemhunt um zu ändern"
+      l: "Sammle alle Items in einer gegebenen<br>Reihenfolge zum Beenden!<br>Benutze /itemhunt zum modifizieren"
     MIRROR:
       n: "Spiegel Challenge"
-      l: "Spiegele bestimmte Dinge von<br>an alle anderen Spieler (sync)"
+      l: "Spiegele bestimmte Dinge von dir<br>an alle anderen Spieler (sync)"
     CHUNK_FLATTENER:
       n: "Chunk Abbau"
-      l: "Achte auf deine Schritte!<br>Dein aktueller Chunk langsam<br>schrumpft nach unten"
+      l: "Achte auf deine Schritte!<br>Dein aktueller Chunk<br>schrumpft langsam nach unten"
     CHUNK_DECAY:
       n: "Chunk Zerfall"
-      l: "Dein aktueller Chunk verfällt zufällig<br>bis er vorbei ist"
+      l: "Dein aktueller Chunk verfällt zufällig<br>bis er weg ist"
     CHUNK_CLEARER:
-      n: "Chunk Reiniger"
-      l: "Wenn Sie einen Chunk eingeben oder<br>einen neuen Block berühren, wird der gesamte<br>Chunk gelöscht"
+      n: "Chunk Zerstörer"
+      l: "Wenn du einen Chunk betrittst, oder<br>einen neuen Block berührst, wird der gesamte<br>Chunk gelöscht"
     ANVIL_CRUSHER:
-      n: "Amboss Zerstörer"
-      l: "Es regnet... Amboss?<br>Achte auf deine Schritte, der<br>Himmel versucht, dich zu töten"
+      n: "Amboss Regen"
+      l: "Es regnet... Ambosse?<br>Achte auf deine Schritte, der<br>Himmel versucht dich zu töten"
   chS:
     FLY:
       power:
@@ -370,9 +370,9 @@ items:
       misc:
         n: "Sonstige Kategorie"
       xp:
-        n: "XP Aufhebung deaktivieren"
+        n: "XP Einsammeln deaktivieren"
       items:
-        n: "Item Aufhebung deaktivieren"
+        n: "Item Einsammeln deaktivieren"
       damage:
         n: "Schaden"
     MIRROR:
