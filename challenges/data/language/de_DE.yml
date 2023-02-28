@@ -29,10 +29,10 @@ common:
 #-----------------------------------------#
 command:
   challenge:
-    stop: "<grey>Die Challenges wurden<red><b>gestoppt</b></red>! (<input-1>)"
-    start: "<grey>Die Challenges wurden<green><b>gestartet</b></green>! (<input-1>)"
-    pause: "<grey>Die Challenges wurden<red>pausiert</b></red>! (<input-1>)"
-    continue: "<grey>Die Challenges wurden<green>fortgesetzt</green>! (<input-1>)"
+    stop: "<grey>Die Challenges wurden <red><b>gestoppt</b></red>! (<input-1>)"
+    start: "<grey>Die Challenges wurden <green><b>gestartet</b></green>! (<input-1>)"
+    pause: "<grey>Die Challenges wurden <red>pausiert</red>! (<input-1>)"
+    continue: "<grey>Die Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
 #-----------------------------------------#
 #Events                  #
@@ -91,19 +91,19 @@ items:
   ch:
     FLY:
       n: "F.L.Y. Challenge"
-      l: "Fliege mit einer neuen Kraft durch<br>den Himmel wie ein Held!<br>Schleiche in Midair um zu aktivieren"
+      l: "Fliege mit einer neuen Kraft durch<br>den Himmel wie ein Held!<br>Schleiche in der Luft zum aktivieren"
     IN_TIME:
       n: "InTime Challenge"
-      l: "Jede Entität hat eine begrenzte Zeit<br>, um zu leben. Du auch! Töte Mobs zu<br>stehlen deren Zeit"
+      l: "Jede Entität hat eine begrenzte Zeit,<br> um zu leben. Du auch! Töte Mobs zum<br>stehlen deren Zeit"
     MOB_BLOCKS:
       n: "Mob Blocks Randomizer"
       l: "Jeder Block enthält einen zufälligen Mob.<br>Zerbreche den Block um ihn freizugeben und<br>nur nach dem Töten fällt der Gegenstand"
     CHECKPOINTS:
       n: "Zeitreise Challenge"
-      l: "Erstelle Kontrollpunkte (F), um<br>zurück in die Zeit zu reisen! Aber sei gewarnt... Zeit<br>Reisen ist gefährlich"
+      l: "Erstelle Kontrollpunkte (F), um<br>zurück in der Zeit zu reisen! Aber sei gewarnt... <br>Zeitreisen ist gefährlich"
     DIM_SWAP:
       n: "Dimension Swap Challenge"
-      l: "Alle Portale sind gemischt! Jetzt musst du<br>gegen den Enderdrachen kämpfen...<br>die Überwelt?<br>Hölle -> Ende -> Oberwelt"
+      l: "Alle Portale sind gemischt! Jetzt musst du<br>gegen den Enderdrachen kämpfen...<br>in der Hauptwelt?<br>Hölle -> Ende -> Hauptwelt"
     SNAKE:
       n: "Snake Challenge"
       l: "Du kannst dich nur auf deiner persönlichen<br>Schlange bewegen, die sich dauerhaft in<br>deiner Sichtrichtung bewegt"
@@ -112,46 +112,46 @@ items:
       l: "Ist Minecraft unrealistisch? Diese Herausforderung<br>wird alles ändern um<br>ein neues Minecraft zu entdecken"
     CAPTIVE:
       n: "Captive Challenge"
-      l: "Die Welt ist auf ein kleines<br>-Feld geschrumpft, und es ist deine Aufgabe,<br>durch Level zu wachsen"
+      l: "Die Welt ist auf ein kleines<br>Feld geschrumpft, und es ist deine Aufgabe,<br>diese durch Level zu vergrößern"
     GHOST:
       n: "Geister Challenge"
       l: "Entdecke die Tiefen mit deiner neuen<br>Fähigkeit durch Blöcke zu reisen!<br>Aber sei dir bewusst... Geister sind schwach"
     BLOCK_ASYNC:
       n: "Block Async Challenge"
-      l: "Jeder Spieler sieht seine eigene Welt!<br>Aber sollte ein Spieler mit einem<br>Block interagieren, der von einem anderen Spieler verändert wurde<br>er stirbt. Kommunikation ist Schlüssel"
+      l: "Jeder Spieler sieht seine eigene Welt!<br>Aber sollte ein Spieler mit einem<br>Block interagieren, der von einem anderen Spieler verändert wurde<br>stirbt er. Kommunikation ist wichtig"
     NO_SAME_ITEM:
       n: "Keine Gleichen Items"
       l: "Wenn du ein Item sammelst, das<br>bereits gesammelt wurde, verlierst du<br>ein Herz"
     LIMITED_SKILLS:
       n: "Begrenzte Fähigkeiten"
-      l: "Nur ein Spieler kann Monster<br>sehen, kann sie aber nicht schädigen. Der andere<br>kann keine Monster sehen, kann aber Schaden zufügen"
+      l: "Nur ein Spieler kann Monster<br>sehen, kann sie aber nicht berühren. Der andere<br>kann keine Monster sehen, kann aber Schaden zufügen"
     RUN_RANDOMIZER:
       n: "Lauf Randomizer"
-      l: "Der einzige Weg um Gegenstände zu sammeln<br>ist laufen! Jede X-Blöcke kannst du<br>erhalten einen zufälligen Stapel von Items"
+      l: "Der einzige Weg um Gegenstände zu sammeln<br>ist laufen! Jede X-Blöcke erhältst<br>du einen zufälligen Stapel von Items"
     SPLIT_HP:
       n: "Geteilte HP"
-      l: "Jeder Spieler teilt sein<br>Herzen. Schaden und Regeneration<br>zählen für alle"
+      l: "Jeder Spieler teilt seine<br>Herzen. Schaden und Regeneration<br>zählen für alle"
     DAMAGE_DUELL:
       n: "Schadensduell"
-      l: "Wenn du Schaden zufügst, werden auch alle<br>anderen Spieler<br>durch einen Prozentsatz beschädigt"
+      l: "Wenn du Schaden zufügst, erhalten auch<br>alle anderen Spieler<br>zum Teil Schaden"
     ONE_BIOME:
       n: "Ein Biom Welt"
       l: "Die ganze Welt enthält<br>nur ein Biom. Das Biom<br>wechselt alle X Sekunden"
     BOOST_UP:
       n: "Boost'em UP"
-      l: "Jede Entität/Mob in deiner<br>-Reichweite wird in<br>dem Himmel geboostet"
+      l: "Jede Entität/Mob in deiner<br>Reichweite wird in<br>den Himmel geboostet"
     RIGHT_TOOL:
       n: "Nur Richtige Tools"
-      l: "Du kannst nur Blöcke<br>mit dem richtigen Werkzeug brechen"
+      l: "Du kannst nur Blöcke<br>mit dem richtigen Werkzeug abbauen"
     CHUNK_BLOCK_BREAK:
       n: "Chunk Zerstörer"
-      l: "Das Zerbrechen eines Blocks wird<br>alle Blöcke der<br>gleichzeitig im Chunk zerstören"
+      l: "Das Zerbrechen eines Blocks wird<br>alle Blöcke der selben Art<br>gleichzeitig im Chunk zerstören"
     SNEAK_SPAWN:
       n: "Sneak Spawner"
-      l: "Sei vorbereitet... Jede Schlange<br>spawnt einen zufälligen Mob<br>an deiner Position"
+      l: "Sei vorbereitet... Jedes Schleichen<br>spawnt einen zufälligen Mob<br>an deiner Position"
     WORLD_PEACE:
       n: "Weltfrieden"
-      l: "Anstatt nach oben<br>zu kämpfen, kommuniziere einfach<br>mit deinen Gegnern!<br><i>Symbol gegen den Ukraine-Russischen Krieg"
+      l: "Anstatt nach den Weg frei<br>zu kämpfen, kommuniziere einfach<br>mit deinen Gegnern!<br><i>Symbol gegen den Ukraine-Russischen Krieg"
     GRAVITY:
       n: "Gravitationswechsel"
       l: "Die Welt ist verrückt und<br>alle paar Sekunden wechselt die Schwerkraft<br>zwischen 4 neuen Gravitationen"
