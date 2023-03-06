@@ -19,7 +19,7 @@ common:
   left: "Izquierda"
   right: "Derecha"
   click: "Clic"
-  sneak: "Sneak"
+  sneak: "Visite"
   none: "Ninguna"
   confirm: "Confirmar"
   cancel: "Cancelar"
@@ -43,17 +43,17 @@ event:
     tron: "<red><input-1> se metió en una fila y murió!"
     disable:
       break: "<red><input-1> intentó destruir un bloque!"
-      place: "<red><input-1> tried to place a block!"
-      craft: "<red><input-1> tried to use the crafting table!"
-      xp: "<red><input-1> tried to pickup XP!"
-      item: "<red><input-1> tried to pickup an item!"
-      trade: "<red><input-1> tried to trade!"
+      place: "<red><input-1>intentó colocar un bloque!"
+      craft: "<red><input-1>intentó usar la mesa de manualidades!"
+      xp: "<red><input-1> Intentó recoger XP!"
+      item: "<red><input-1> Intentó recoger un artículo!"
+      trade: "<red><input-1> Intentó comerciar!"
   mobHunt:
-    collect: "<green><input-1> found <input-2>!"
-    success: "<green>Congratulations! You found all mobs"
+    collect: "<green><input-1> encontrado <input-2>!"
+    success: "<green> ¡Felicidades! Has encontrado todos los mobs"
   itemDecay:
-    time: "Decay in"
-    paused: "Paused display (selected)"
+    time: "Decaimiento en"
+    paused: "Pantalla en pausa (seleccionada)"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -63,73 +63,73 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scroll Right"
-      l: "You can not scroll any<br>further to the right"
+      n: "<red>Desplazarse a la derecha"
+      l: "No puede desplazarse<br>más a la derecha"
     arrowLeftEnd:
-      n: "<red>Scroll Left"
-      l: "You can not scroll any<br>further to the left"
+      n: "<red>Desplazarse a la izquierda"
+      l: "No puede desplazarse<br>más a la izquierda"
     arrowRight:
-      n: "<green>Scroll Right"
-      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
+      n: "<green>Desplazarse a la derecha"
+      l: "<blue>Click ≫ +1 página<br><blue>Sneak-Click ≫ +5 páginas"
     arrowLeft:
-      n: "<green>Scroll Left"
-      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
+      n: "<green>Desplazarse a la izquierda"
+      l: "<blue>Click ≫ -1 página<br><blue>Sneak-Click ≫ -5 páginas"
     arrowUpGreen:
-      n: "<green>Scroll Up"
-      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -3 pages"
+      n: "<green>Desplazarse hacia arriba"
+      l: "<blue>Click ≫ -1 página<br><blue>Sneak-Click ≫ -3 páginas"
     arrowDownGreen:
-      n: "<green>Scroll Down"
-      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +3 pages"
+      n: "<green>Desplazarse hacia abajo"
+      l: "<blue>Click ≫ +1 página<br><blue>Sneak-Click ≫ +3 páginas"
     arrowUpRed:
-      n: "<red>Scroll Up"
-      l: "You can not scroll any<br>further up"
+      n: "<red>Desplazarse hacia arriba"
+      l: "No puede desplazarse<br>más arriba"
     arrowDownRed:
-      n: "<red>Scroll Down"
-      l: "You can not scroll any<br>further down"
+      n: "<red>Desplazarse hacia abajo"
+      l: "No puede desplazarse<br>más abajo"
     pageIndicator:
-      l: "Click to open a compact<br>GUI with quick access"
+      l: "Haz clic para abrir una<br>GUI compacta de acceso rápido"
   ch:
     FLY:
-      n: "F.L.Y. Challenge"
-      l: "Fly with a new power through<br>the sky like a hero!<br>Sneak in midair to activate"
+      n: "F.L.Y. Desafío"
+      l: "Vuela con un nuevo poder<br>por el cielo como un héroe!<br>Colarse en el aire para activar"
     IN_TIME:
       n: "InTime Challenge"
-      l: "Every Entity has a limited time<br>to live. You too! Kill mobs to<br>steal their time"
+      l: "Cada Entidad tiene un tiempo<br>limitado de vida. Tú también!<br>Mata mobs para robarles su tiempo"
     MOB_BLOCKS:
-      n: "Mob Blocks Randomizer"
-      l: "Every block contains a random mob.<br>Break the block to release it and<br>only after killing it, the item drops"
+      n: "Mob Blocks Aleatorio"
+      l: "Cada bloque contiene un mob aleatorio.<br>Rompe el bloque para liberarlo y<br>sólo después de matarlo, el item cae"
     CHECKPOINTS:
-      n: "Rewind Challenge"
-      l: "Create Checkpoints (F) to travel<br>back in time! But be warned... Time<br>traveling is dangerous"
+      n: "Rewind Desafío"
+      l: "Crea puntos de control (F)<br>para viajar al pasado. Pero atención...<br>Viajar en el tiempo es peligroso"
     DIM_SWAP:
       n: "Dimension Swap Challenge"
-      l: "All portals are shuffled! Now you<br>have to fight the Ender Dragon in...<br>the Overworld?<br>Nether -> End -> Overworld"
+      l: "¡Todos los portales se barajan! Ahora<br>tienes que luchar contra el Dragón Ender en...<br>¿el Overworld?<br>Nether -> End -> Overworld"
     SNAKE:
-      n: "Snake Challenges"
-      l: "You can only move on your personal<br>snake, which permanently move in<br>your viewing direction"
+      n: "Desafíos de la serpiente"
+      l: "Sólo puedes moverte en tu<br>serpiente personal, que se mueve permanentemente en<br>tu dirección de visión"
     REALISTIC:
-      n: "Realistic Minecraft"
-      l: "Is MC to unrealistic? This Challenge<br>will change everything to discover<br>a full new Minecraft"
+      n: "Minecraft realista"
+      l: "¿Es MC poco realista? Este Desafío <br>cambiará todo para descubrir <br>un Minecraft completamente nuevo"
     CAPTIVE:
-      n: "Captive Challenge"
-      l: "The world shrunk down to small<br>field and it's your task to<br>grow it through Level"
+      n: "Desafío cautivo"
+      l: "El mundo se redujo a un pequeño<br>campo y tu tarea es<br>hacerlo crecer a través del Nivel"
     GHOST:
-      n: "Ghost Challenge"
-      l: "Discover the depths with your new<br>ability to travel through blocks!<br>But be aware... Ghosts are weak"
+      n: "Desafío fantasma"
+      l: "Descubre las profundidades con tu nueva<br>capacidad de viajar a través de los bloques<br>Pero ten cuidado... Los fantasmas son débiles"
     BLOCK_ASYNC:
-      n: "Block Async Challenge"
-      l: "Every player sees his own world!<br>But should a player interact with a<br>block modified by a different player<br>he dies. Communication is key"
+      n: "Desafío Async en bloque"
+      l: "Cada jugador ve su propio mundo!<br>Pero si un jugador interactúa con un<br>bloque modificado por otro jugador<br>muere. La comunicación es fundamental"
     NO_SAME_ITEM:
-      n: "No Same Items"
-      l: "If you collect a item, wich<br>was already collected, you loose<br>one heart"
+      n: "No hay artículos iguales"
+      l: "Si recoges un objeto que<br>ya habías recogido, <br>pierdes un corazón"
     LIMITED_SKILLS:
-      n: "Limited Skills"
+      n: "Habilidades limitadas"
       l: "Only one player can see mobs<br>but can't damage them. The other<br>can't see mobs but can deal damage"
     RUN_RANDOMIZER:
       n: "Run Randomizer"
       l: "The only way to gather items<br>is running! Every X-Blocks you<br>get a random stack of items"
     SPLIT_HP:
-      n: "Split HP"
+      n: "HP dividado"
       l: "Every player share their<br>hearts. Damage and regeneration<br>counts to everyone"
     DAMAGE_DUELL:
       n: "Damage Duell"
@@ -150,13 +150,13 @@ items:
       n: "Sneak Spawner"
       l: "Be prepared... Every sneak<br>will spawn a random mob<br>on your position"
     WORLD_PEACE:
-      n: "World Peace"
+      n: "Paz Mundial"
       l: "Instead of fighting to the top<br>just communicate and trade<br>with your opponents!<br><i>Symbol against the Ukraine-Russian war"
     GRAVITY:
       n: "Gravity Switch"
       l: "The world gone crazy and<br>every few seconds the gravity<br>switches between 4 new gravities"
     STAY_AWAY:
-      n: "Stay Awaay"
+      n: "Mantener"
       l: "Getting to close to other<br>mobs or players causes damage.<br>Time for some social distancing"
     RANDOMIZER_BLOCK:
       n: "Block Randomizer"
@@ -177,7 +177,7 @@ items:
       n: "Damage Randomizer"
       l: "Damage is shuffled like<br>2hp will be always 5hp<br>(or random)"
     NO_DOUBLE_KILL:
-      n: "No Double Kills"
+      n: "No Eliminaciones Dobles"
       l: "You are not allowed to kill<br>the same mob twice in a row"
     DAMAGER:
       n: "Damager Challenge"
@@ -201,7 +201,7 @@ items:
       n: "Disable Features"
       l: "Disable certain key features<br>to challenge your self.<br>Additionally a damage punishment<br>can be added"
     MOB_HUNT:
-      n: "Mob Hunt"
+      n: "Cacería de Mobs"
       l: "Kill all Mobs in a given<br>order to finish!<br>Use /mobhunt to modify"
     ITEM_HUNT:
       n: "Item Hunt"
@@ -234,7 +234,7 @@ items:
         n: "Time per HP"
     MOB_BLOCKS:
       rnd:
-        n: "Random"
+        n: "Al azar"
     CHECKPOINTS:
       onlyTP:
         n: "Only Position"
@@ -243,19 +243,19 @@ items:
         n: "Starter Pickaxe"
     SNAKE:
       speed:
-        n: "Speed"
+        n: "Velocidad"
     GHOST:
       radius:
-        n: "Radius"
+        n: "Radio"
       adventure:
         n: "Adventure Ghost"
       glide:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
-        n: "Lives"
+        n: "Vidas"
       sync:
-        n: "Lives = HP"
+        n: "Vidas = HP"
       info:
         n: "Announce Mode"
     LIMITED_SKILLS:
@@ -266,7 +266,7 @@ items:
         n: "Block Goal"
     DAMAGE_DUELL:
       percent:
-        n: "Percentage"
+        n: "Porcentaje"
     ONE_BIOME:
       delay:
         n: "Delay"
@@ -291,39 +291,39 @@ items:
         n: "Damage Distance"
     RANDOMIZER_BLOCK:
       random:
-        n: "Full Random"
+        n: "Aleatorio total"
     RANDOMIZER_ENTITY:
       random:
-        n: "Full Random"
+        n: "Aleatorio total"
     RANDOMIZER_BIOMES:
       random:
-        n: "Full Random"
+        n: "Aleatorio total"
     RANDOMIZER_MOBS:
       random:
-        n: "Full Random"
+        n: "Aleatorio total"
     FORCE_COLLECT:
       minCooldown:
-        n: "Min Cooldown"
+        n: "Enfriamiento mínimo"
       maxCooldown:
-        n: "Max Cooldown"
+        n: "Enfriamiento máximo"
       minTime:
         n: "Min Collect Time"
       maxTime:
         n: "Max Collect Time"
     RANDOMIZER_DAMAGE:
       random:
-        n: "Full Random"
+        n: "Aleatorio total"
     NO_DOUBLE_KILL:
       global:
         n: "Count Global"
     DAMAGER:
       mode:
-        n: "Damage Event"
+        n: "Evento de daño"
       damage:
-        n: "Damage"
+        n: "Daño"
     RIVALS_COLLECT:
       mode:
-        n: "Search Type"
+        n: "Tipo de búsqueda"
       joker:
         n: "Joker"
     ROCKET:
@@ -331,11 +331,11 @@ items:
         n: "Fuel Capacity"
     VAMPIRE:
       startBlood:
-        n: "Start Blood"
+        n: "Iniciar sangre"
       maxBlood:
         n: "Blood Capacity"
       healthToBlood:
-        n: "HP - Blood"
+        n: "HP - Sangre"
       bloodLoose:
         n: "Blood Drain"
     TRAFFIC_LIGHT:
@@ -346,11 +346,11 @@ items:
       damage:
         n: "Damage on red"
       green:
-        n: "Green Phase"
+        n: "Fase verde"
       yellow:
-        n: "Yellow Phase"
+        n: "Fase amarilla"
       red:
-        n: "Red Phase"
+        n: "Fase Roja"
     TRON:
       visible:
         n: "Visible Path"
@@ -374,12 +374,12 @@ items:
       items:
         n: "Disable Item Pickup"
       damage:
-        n: "Damage"
+        n: "Daño"
     MIRROR:
       hearts:
         n: "Sync Health"
       food:
-        n: "Sync Food"
+        n: "Sincronizar comida"
       potions:
         n: "Sync Potions"
       hotbar:
@@ -388,11 +388,11 @@ items:
       delay:
         n: "Delay"
       shouldBreak:
-        n: "Drop Blocks"
+        n: "Soltar Bloques"
     CHUNK_DECAY:
       delay:
         n: "Delay"
       percentage:
         n: "Decay Percentage"
       shouldBreak:
-        n: "Drop Blocks"
+        n: "Soltar Bloques"
