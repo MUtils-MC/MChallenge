@@ -14,13 +14,13 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
-  click: "Click"
-  sneak: "Sneak"
-  none: "None"
+  boolTrue: "Habilitado"
+  boolFalse: "Deshabilitado"
+  left: "Izquierda"
+  right: "Derecha"
+  click: "Clic"
+  sneak: "Disparar"
+  none: "Ninguna"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -29,7 +29,7 @@ command:
   help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
   resume: "<green><b>Resuming</b> the timer <grey>(<input-1>)" #v1
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
-  alreadyOn: "<red>Timer is already running!"
+  alreadyOn: "<red>Ya se está utilizando el Timer!"
   alreadyOff: "<red>Timer is already paused!"
   reset: "<grey>Timer successfully resettet to time 0"
 #-----------------------------------------#
@@ -37,22 +37,22 @@ command:
 #Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
-  millis: "Milliseconds"
-  seconds: "Seconds"
-  minutes: "Minutes"
-  hours: "Hours"
-  days: "Days"
-  active: "Active"
-  disabled: "Disabled"
-  prefix: "Prefix"
-  suffix: "Suffix"
-  animation: "Animation Speed"
-  syntax: "Syntax"
-  forcedTwoDigits: "Forced 2 Digits"
+  millis: "Milisegundos"
+  seconds: "Segundos"
+  minutes: "Minutos"
+  hours: "Horas"
+  days: "Días"
+  active: "Habilitado"
+  disabled: "Deshabilitado"
+  prefix: "Prefijo"
+  suffix: "Sufijo"
+  animation: "Velocidad animación"
+  syntax: "Sintaxis"
+  forcedTwoDigits: "Forzar 2 dígitos"
   visibleOnNull: "Visible on Null"
   spaceInfo: "Use _ to add spaces before and after your message"
   clickToCopy: "Click to copy: <blue><input-1>"
-  finish: "Finish"
+  finish: "Finalizado"
   playtime: "Spielzeit:"
   endSuccess: "Challenge succeed!\n<input-1> killed" #v1
   kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
@@ -66,24 +66,24 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scroll Right"
-      l: "You can not scroll any<br>further to the right"
+      n: "<red>Desplazar a la derecha"
+      l: "No puedes desplazar<br>más a la derecha"
     arrowLeftEnd:
-      n: "<red>Scroll Left"
-      l: "You can not scroll any<br>further to the left"
+      n: "<red>Desplazar a la izquierda"
+      l: "No puedes desplazar<br>más a la izquierda"
     arrowRight:
-      n: "<lime>Scroll Right"
+      n: "<lime>Desplazar a la derecha"
       l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
-      n: "<lime>Scroll Left"
+      n: "<lime>Desplazar a la izquierda"
       l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"
   design:
-    n: "Timer Design"
+    n: "Diseño de Timer"
     l: "Customize your timer design<br>from simple colorizing to<br>complex animations and texts"
   rules:
-    n: "Timer Rules"
+    n: "Reglas de Timer"
     l: "Define what rules apply to<br>your Server while the timer<br>is active"
   goals:
     n: "Timer Goals"
