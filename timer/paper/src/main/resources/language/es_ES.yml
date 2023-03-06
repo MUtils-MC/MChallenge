@@ -31,7 +31,7 @@ command:
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
   alreadyOn: "<red>Ya se está utilizando el Timer!"
   alreadyOff: "<red>Timer is already paused!"
-  reset: "<grey>Timer successfully resettet to time 0"
+  reset: "<grey>El Timer se ha reseteado con éxito a tiempo 0"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -95,37 +95,37 @@ items:
     n: "Timer Direction"
     l: "Define your timer direction.<br>Hitting time zero will stop it"
   createDesign:
-    n: "New Design"
+    n: "Nuevo diseño"
     l: "Create a new design from<br>scratch. Animations are not<br>animated in the editor"
   designName:
-    n: "Design Name"
+    n: "Nombre del diseño"
     l: "Choose a fitting name, it is<br>visible in the local & public<br>timer design list"
   designRunning:
     n: "Running State"
     l: "Customize the running state<br>of your timer"
   designIdle:
-    n: "Idle State"
+    n: "Estado inactivo"
     l: "Customize the idle state<br>of your timer"
   dragonDeath:
     n: "Ender Dragon Death"
     l: "Kill an Ender Dragon to<br>finish the timer"
   witherDeath:
-    n: "Wither Death"
-    l: "Kill a Wither to<br>finish the timer"
+    n: "Muerte de Wither"
+    l: "Mata a un Wither para<br>terminar el Timer"
   elderDeath:
     n: "Elder Guardian Death"
     l: "Kill a Elder Guardian to<br>finish the timer"
   wardenDeath:
-    n: "Warden Death"
-    l: "Kill a Warden to<br>finish the timer (1.19+)"
+    n: "Muerte de Warden"
+    l: "Mata a un Warden para<br>terminar el Timer (1.19+)"
   playerDeath:
-    n: "Player Death"
+    n: "Muerte del jugador"
     l: "Any player death fails<br>the timer"
   lastPlayer:
-    n: "Empty Server"
+    n: "Servidor vacío"
     l: "Pause the timer when<br>the last player leaves<br>the server"
   announceSeed:
-    n: "Announce Seed"
+    n: "Anuncio Seed"
     l: "Announce world seed on timer<br>fail or success in chat"
   announceLocation:
     n: "Announce Location"
