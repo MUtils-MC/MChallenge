@@ -14,15 +14,15 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
-  click: "Click"
+  boolTrue: "Habilitado"
+  boolFalse: "Deshabilitado"
+  left: "Izquierda"
+  right: "Derecha"
+  click: "Clic"
   sneak: "Sneak"
-  none: "None"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  none: "Ninguna"
+  confirm: "Confirmar"
+  cancel: "Cancelar"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -33,16 +33,16 @@ command:
     start: "Challenges <green><b>started</b></green>! (<input-1>)"
     pause: "Challenges temporary <red>paused</red>! (<input-1>)"
     continue: "Challenges <green>resumed</green>! (<input-1>)"
-  notRegistered: "<red>Activate the module to use this command!"
+  notRegistered: "<red>¡Activa el módulo para usar este comando!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
   death:
-    tron: "<red><input-1> stepped into a line and died!"
+    tron: "<red><input-1> se metió en una fila y murió!"
     disable:
-      break: "<red><input-1> tried to break a block!"
+      break: "<red><input-1> intentó destruir un bloque!"
       place: "<red><input-1> tried to place a block!"
       craft: "<red><input-1> tried to use the crafting table!"
       xp: "<red><input-1> tried to pickup XP!"
