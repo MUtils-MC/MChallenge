@@ -269,7 +269,7 @@ items:
         n: "Percentage"
     ONE_BIOME:
       delay:
-        n: "Delay"
+        n: "Délai"
     BOOST_UP:
       radius:
         n: "Effect Radius"
@@ -285,7 +285,7 @@ items:
         n: "Only Mobs"
     GRAVITY:
       delay:
-        n: "Delay"
+        n: "Délai"
     STAY_AWAY:
       distance:
         n: "Damage Distance"
@@ -386,12 +386,12 @@ items:
         n: "Sync Hotbar"
     CHUNK_FLATTENER:
       delay:
-        n: "Delay"
+        n: "Délai"
       shouldBreak:
         n: "Drop Blocks"
     CHUNK_DECAY:
       delay:
-        n: "Delay"
+        n: "Délai"
       percentage:
         n: "Decay Percentage"
       shouldBreak:
