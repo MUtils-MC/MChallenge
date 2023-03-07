@@ -10,5 +10,5 @@ interface ItemProvider {
      * @param to exclusive
      */
     fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> { return emptyMap() }
-    fun getItemList(): List<ItemStack> { return emptyList() }
+    fun getItemList(from: Int = 0, to: Int = 0): List<ItemStack> { return emptyList() }
 }

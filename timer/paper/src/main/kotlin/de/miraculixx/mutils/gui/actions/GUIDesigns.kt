@@ -1,6 +1,7 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mutils.MUtilsBridge
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerPresets
 import de.miraculixx.mutils.extensions.*
@@ -9,6 +10,7 @@ import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignEditor
 import de.miraculixx.mutils.gui.items.ItemsOverview
+import de.miraculixx.mutils.messages.msgNoBridge
 import de.miraculixx.mutils.messages.namespace
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
@@ -43,6 +45,17 @@ class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GU
                 design.owner = player.name
                 TimerManager.addDesign(design, uuid)
                 TimerGUI.DESIGN_EDITOR.buildInventory(player, player.uniqueId.toString(), ItemsDesignEditor(design, uuid), GUIDesignEditor(design, uuid, isPersonal))
+            }
+
+            2 -> {
+                player.closeInventory()
+                val bridge = MUtilsBridge.INSTANCE
+                if (bridge == null) {
+                    player.soundError()
+                    player.sendMessage(msgNoBridge)
+                } else {
+                    //Open GUI
+                }
             }
 
             10 -> {

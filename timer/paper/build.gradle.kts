@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":kpaper-light"))
 
     implementation(project(":challenges:api")) // Internal API
+    implementation(project(":bridge:api")) // Bridge
 }
 
 group = "de.miraculixx.timer"

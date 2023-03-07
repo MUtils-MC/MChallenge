@@ -1,5 +1,7 @@
 package de.miraculixx.mutils.command
 
+import de.miraculixx.api.utils.gui.GUITypes
+import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.module.TimerManager
@@ -8,13 +10,20 @@ import de.miraculixx.mutils.extensions.soundEnable
 import de.miraculixx.mutils.gui.actions.GUIOverview
 import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.items.ItemsOverview
+import de.miraculixx.mutils.gui.items.TestProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
+import de.miraculixx.mutils.utils.InstallBridge
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
+import org.bukkit.event.player.PlayerCommandPreprocessEvent
 import kotlin.time.Duration
 
 class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabCompleter {
@@ -83,6 +92,10 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 }
             }
 
+            "test" -> {
+                TimerGUI.TEST.buildInventory(sender as Player, "TEST", TestProvider(), GUIOverview(true))
+            }
+
             else -> sender.sendMessage(prefix + msg("command.help"))
         }
         return true
@@ -122,5 +135,26 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 }
             }
         }.filter { it.startsWith(args?.lastOrNull() ?: "", ignoreCase = true) }.toMutableList()
+    }
+
+    private val onCmd = listen<PlayerCommandPreprocessEvent> {
+        val content = it.message
+        if (content == "/mutils-bridge:install") {
+            it.isCancelled = true
+            val player = it.player
+            player.sendMessage(prefix + cmp("Downloading MUtils-Bridge..."))
+            CoroutineScope(Dispatchers.Default).launch {
+                val bridgeInstall = InstallBridge("MUtils-Timer")
+                val success = bridgeInstall.install(Bukkit.getPluginManager())
+                if (success) {
+                    player.soundEnable()
+                    player.sendMessage(prefix + cmp("MUtils-Bridge is now installed!", cSuccess))
+                    player.sendMessage(prefix + cmp("(Please restart your server in near future)"))
+                } else {
+                    player.soundDisable()
+                    player.sendMessage(prefix + cmp("Failed to automatically enable MUtils-Bridge! Restart your server to active it", cError))
+                }
+            }
+        }
     }
 }

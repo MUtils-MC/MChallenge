@@ -16,6 +16,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.SkullMeta
 
 enum class TimerGUI(private val title: Component) {
+    TEST(cmp("TEST")),
     RULES(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Timer Rules", cHighlight)),
     GOALS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Timer Goals", cHighlight)),
     DESIGN_PART_EDITOR(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Timer Design Editor", cHighlight)),
@@ -38,14 +39,24 @@ enum class TimerGUI(private val title: Component) {
                 this.player = player
                 this.itemProvider = itemProvider
                 this.clickAction = clickAction.run
-                this.header = itemStack(Material.PLAYER_HEAD) {
-                    meta {
-                        name = cmp(msgString("items.createDesign.n"), cHighlight)
-                        lore(msgList("items.createDesign.l", inline = "<grey>"))
-                        customModel = 1
+                this.headers = listOf(
+                    itemStack(Material.PLAYER_HEAD) {
+                        meta {
+                            name = cmp(msgString("items.createDesign.n"), cHighlight)
+                            lore(msgList("items.createDesign.l", inline = "<grey>"))
+                            customModel = 1
+                        }
+                        itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.PLUS_GREEN.value)
+                    },
+                    itemStack(Material.PLAYER_HEAD) {
+                        meta {
+                            name = cmp(msgString("items.openLibrary.n"), cHighlight)
+                            lore(msgList("items.openLibrary.l", inline = "<grey>"))
+                            customModel = 2
+                        }
+                        itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
                     }
-                    itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.PLUS_GREEN.value)
-                }
+                )
             }
 
             DESIGN_EDITOR -> InventoryManager.inventoryBuilder(id) {
@@ -65,6 +76,13 @@ enum class TimerGUI(private val title: Component) {
             }
 
             GOALS, RULES -> InventoryManager.scrollBuilder(id) {
+                this.title = this@TimerGUI.title
+                this.player = player
+                this.itemProvider = itemProvider
+                this.clickAction = clickAction.run
+            }
+
+            TEST -> InventoryManager.libraryBuilder(id) {
                 this.title = this@TimerGUI.title
                 this.player = player
                 this.itemProvider = itemProvider

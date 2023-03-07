@@ -1,5 +1,6 @@
 package de.miraculixx.api.modules.challenges
 
+import de.miraculixx.api.modules.mods.areaTimer.AreaTimerMode
 import de.miraculixx.api.modules.mods.damager.ChDamager
 import de.miraculixx.api.modules.mods.noSameItem.NoSameItemEnum
 import de.miraculixx.api.modules.mods.rivalsCollect.RivalCollectMode
@@ -26,6 +27,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     CHUNK_CLEARER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("DRAGON_BREATH"), true),
     ANVIL_CRUSHER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("ANVIL"), true),
     ITEM_DECAY(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("COMPARATOR"), true),
+    AREA_TIMER(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("GRASS_BLOCK"), true),
 
 
     FLY(listOf(StorageFilter.FUN), Icon("ELYTRA")),
@@ -228,6 +230,11 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
             )
             ITEM_DECAY -> mapOf(
                 "time" to ChallengeIntSetting("CLOCK", 300, "s", max = 1800, min = 10, step = 10)
+            )
+            AREA_TIMER -> mapOf(
+                "time" to ChallengeIntSetting("CLOCK", 600, "s", max = 3600, min = 60, step = 10),
+                "global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true),
+                "mode" to ChallengeEnumSetting("CRAFTING_TABLE", "BIOMES", options = AreaTimerMode.values().map { it.name })
             )
         }
     }
