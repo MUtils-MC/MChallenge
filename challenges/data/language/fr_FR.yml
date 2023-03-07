@@ -14,26 +14,26 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
+  boolTrue: "Activé"
+  boolFalse: "Désactivé"
   left: "Gauche"
   right: "Droite"
-  click: "Click"
+  click: "Cliquez"
   sneak: "Sneak"
   none: "None"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  confirm: "Confirmer"
+  cancel: "Annuler"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
   challenge:
-    stop: "<grey>Challenges <red><b>stopped</b></red>! (<input-1>)"
-    start: "<grey>Challenges <green><b>started</b></green>! (<input-1>)"
-    pause: "<grey>Challenges temporary <red>paused</red>! (<input-1>)"
-    continue: "<grey>Challenges <green>resumed</green>! (<input-1>)"
-  notRegistered: "<red>Activate the module to use this command!"
+    stop: "Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "Challenges <green>resumed</green>! (<input-1>)"
+  notRegistered: "<red>Activer le module pour utiliser cette commande !"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -269,7 +269,7 @@ items:
         n: "Percentage"
     ONE_BIOME:
       delay:
-        n: "Delay"
+        n: "Délai"
     BOOST_UP:
       radius:
         n: "Effect Radius"
@@ -285,7 +285,7 @@ items:
         n: "Only Mobs"
     GRAVITY:
       delay:
-        n: "Delay"
+        n: "Délai"
     STAY_AWAY:
       distance:
         n: "Damage Distance"
@@ -386,12 +386,12 @@ items:
         n: "Sync Hotbar"
     CHUNK_FLATTENER:
       delay:
-        n: "Delay"
+        n: "Délai"
       shouldBreak:
         n: "Drop Blocks"
     CHUNK_DECAY:
       delay:
-        n: "Delay"
+        n: "Délai"
       percentage:
         n: "Decay Percentage"
       shouldBreak:

@@ -14,10 +14,10 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
+  boolTrue: "Activé"
+  boolFalse: "Désactivé"
+  left: "Gauche"
+  right: "Droite"
   click: "Click"
   sneak: "Sneak"
   none: "None"
@@ -38,12 +38,12 @@ command:
 #-----------------------------------------#
 event:
   millis: "Milliseconds"
-  seconds: "Seconds"
+  seconds: "Secondes"
   minutes: "Minutes"
-  hours: "Hours"
-  days: "Days"
+  hours: "Heures"
+  days: "Jours"
   active: "Active"
-  disabled: "Disabled"
+  disabled: "Désactivé"
   prefix: "Prefix"
   suffix: "Suffix"
   animation: "Animation Speed"
