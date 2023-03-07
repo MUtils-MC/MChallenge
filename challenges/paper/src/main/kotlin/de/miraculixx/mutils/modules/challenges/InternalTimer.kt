@@ -1,16 +1,12 @@
 package de.miraculixx.mutils.modules.challenges
 
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.KSpigotRunnable
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.messages.cmp
-import org.bukkit.inventory.ItemStack
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class InternalTimer(
     startTime: Duration,
-    private val item: ItemStack,
     private val onNull: (KSpigotRunnable) -> Unit,
     private val onUpdate: (KSpigotRunnable, Duration) -> Unit,
 ) {
@@ -33,7 +29,7 @@ class InternalTimer(
     }
 }
 
-fun Duration.getTime(): String {
+fun Duration.getFormatted(): String {
     return buildString {
         toComponents { days, hours, minutes, seconds, _ ->
             if (days > 0) append("$days ")

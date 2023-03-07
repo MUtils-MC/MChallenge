@@ -30,7 +30,7 @@ class AwaitSoundSelections(player: Player, filter: String, random: Boolean, call
     private val lore = listOf(emptyComponent(), msgClick + cmp("Choose Sound"))
 
     class Items(private val filter: String, private val lore: List<Component>) : ItemProvider {
-        override fun getItemList(): List<ItemStack> {
+        override fun getItemList(from: Int, to: Int): List<ItemStack> {
             return Sound.values().filter { it.name.contains(filter.replace(' ', '_'), ignoreCase = true) }
                 .map {
                     itemStack(Material.JUKEBOX) {

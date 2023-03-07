@@ -25,7 +25,7 @@ class AwaitItemSelection(player: Player, filter: String, random: Boolean, callba
     private val lore = listOf(emptyComponent(), msgClick + cmp("Choose Item"))
 
     class Items(private val filter: String, private val lore: List<Component>): ItemProvider {
-        override fun getItemList(): List<ItemStack> {
+        override fun getItemList(from: Int, to: Int): List<ItemStack> {
             return Material.values()
                 .filter { it.isItem && it.creativeCategory != null && it.name.contains(filter.uppercase().replace(' ', '_')) }
                 .map {

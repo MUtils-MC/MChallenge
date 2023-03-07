@@ -15,15 +15,15 @@ locale: ENGLISH
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
+  boolTrue: "Activé"
+  boolFalse: "Désactivé"
+  left: "Gauche"
   right: "Right"
   click: "Click"
   sneak: "Sneak"
   none: "None"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  confirm: "Confirmer"
+  cancel: "Annuler"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -45,7 +45,7 @@ event:
   newWorld: "Creating new world..."
   newWorldSub: "This could take a few seconds"
   teleportFromDelete: "The world you were in was deleted..."
-  category: "Category"
+  category: "Catégorie"
   worldCreated: "New world successfully created"
   worldInfo: "Current world information"
   env:
@@ -55,7 +55,7 @@ event:
   gen:
     NORMAL: "Normal"
     AMPLIFIED: "Amplified"
-    FLAT: "Flat"
+    FLAT: "Plate"
     LARGE_BIOMES: "Larger Biomes"
 #-----------------------------------------#
 #Items                  #
@@ -99,7 +99,7 @@ items:
     name:
       n: "World Name"
       l: "Set your favourite world name<br>that is used to save or access<br>the new world"
-      s: "Name"
+      s: "Nom"
     seed:
       n: "World Seed"
       l: "Set a seed that is used to<br>change the world generation.<br>Worlds with the same seed<br>generate equal"

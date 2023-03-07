@@ -7,7 +7,6 @@ import de.miraculixx.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.kpaper.runnables.sync
@@ -15,10 +14,9 @@ import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mutils.extensions.toUUID
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.challenges.InternalTimer
-import de.miraculixx.mutils.modules.challenges.getTime
+import de.miraculixx.mutils.modules.challenges.getFormatted
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
-import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.World
 import org.bukkit.entity.Item
@@ -30,11 +28,11 @@ import org.bukkit.event.player.PlayerItemHeldEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
-import java.util.UUID
+import java.util.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-class ItemDecay: Challenge {
+class ItemDecay : Challenge {
     override val challenge: Challenges = Challenges.ITEM_DECAY
     private val startTime: Int
     private val itemTimers: MutableMap<UUID, InternalTimer> = mutableMapOf()
@@ -120,9 +118,12 @@ class ItemDecay: Challenge {
                         if (e !is Item) return@async
                         val id = e.itemStack.itemMeta.persistentDataContainer.get(timerNamespace, PersistentDataType.STRING) ?: return@async
                         val uuid = id.toUUID() ?: return@async
-                        val time = itemTimers[uuid]?.getTime()?.inWholeSeconds
+                        val timer = itemTimers[uuid] ?: return@async
+                        val time = timer.getTime().inWholeSeconds
                         if (time == -1L) {
                             sync { e.remove() }
+                            timer.running = false
+                            timer.stopped = true
                             itemTimers.remove(uuid)
                         }
                     }
@@ -155,9 +156,9 @@ class ItemDecay: Challenge {
 
     private fun Duration.calcLore(seconds: Long): Component {
         return when (seconds) {
-            in 0..30 -> cmp(getTime(), NamedTextColor.RED)
-            in 30..120 -> cmp(getTime(), NamedTextColor.YELLOW)
-            else -> cmp(getTime(), NamedTextColor.GREEN)
+            in 0..30 -> cmp(getFormatted(), NamedTextColor.RED)
+            in 30..120 -> cmp(getFormatted(), NamedTextColor.YELLOW)
+            else -> cmp(getFormatted(), NamedTextColor.GREEN)
         }
     }
 
@@ -165,7 +166,7 @@ class ItemDecay: Challenge {
         val meta = itemMeta
         val data = meta.persistentDataContainer
         if (!data.has(timerNamespace)) {
-            val timer = InternalTimer(startTime.seconds, this, {}) { _, _ -> }
+            val timer = InternalTimer(startTime.seconds, {}) { _, _ -> }
             val uuid = UUID.randomUUID()
             data.set(timerNamespace, PersistentDataType.STRING, uuid.toString())
             val time = timer.getTime()

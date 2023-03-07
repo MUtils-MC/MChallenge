@@ -21,7 +21,7 @@ var debug = false
 /**
  * Message prefix
  */
-val prefix = cmp("MUtils", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY)
+val prefix = cmp("MUtils", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
 
 /**
  * 1.**19**.1

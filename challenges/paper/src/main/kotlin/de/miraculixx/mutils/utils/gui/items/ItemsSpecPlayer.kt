@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 
 class ItemsSpecPlayer(private val owner: Player) : ItemProvider {
-    override fun getItemList(): List<ItemStack> {
+    override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return buildList {
             onlinePlayers.forEach { player ->
                 if (player == owner) return@forEach

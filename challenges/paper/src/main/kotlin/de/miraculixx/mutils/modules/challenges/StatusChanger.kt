@@ -4,6 +4,7 @@ import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.api.modules.challenges.StatusChangerAPI
 import de.miraculixx.mutils.modules.mods.anvilCrusher.AnvilCrusher
+import de.miraculixx.mutils.modules.mods.areaTimer.AreaTimer
 import de.miraculixx.mutils.modules.mods.fly.FLY
 import de.miraculixx.mutils.modules.mods.rocket.Rocket
 import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
@@ -73,6 +74,7 @@ class StatusChanger: StatusChangerAPI {
             Challenges.CHUNK_CLEARER -> ChunkClearer()
             Challenges.ANVIL_CRUSHER -> AnvilCrusher()
             Challenges.ITEM_DECAY -> ItemDecay()
+            Challenges.AREA_TIMER -> AreaTimer()
         }
     }
 }

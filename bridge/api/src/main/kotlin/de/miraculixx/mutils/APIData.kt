@@ -1,6 +1,6 @@
 @file:Suppress("PropertyName")
 
-package de.miraculixx.mutils.api
+package de.miraculixx.mutils
 
 import de.miraculixx.mutils.data.UUIDSerializer
 import kotlinx.serialization.Serializable

@@ -123,4 +123,5 @@ sealed interface ChallengeSetting<T> {
     fun toDouble() = this as? ChallengeDoubleSetting
     fun toBool() = this as? ChallengeBoolSetting
     fun toSection() = this as? ChallengeSectionSetting<*>
+    fun toEnum() = this as? ChallengeEnumSetting
 }

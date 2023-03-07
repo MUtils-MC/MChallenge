@@ -31,7 +31,7 @@ class AwaitMobSelection(player: Player, filter: String, random: Boolean, callbac
     private val lore = listOf(emptyComponent(), msgClick + cmp("Choose Mob"))
 
     class Items(private val filter: String, private val lore: List<Component>) : ItemProvider {
-        override fun getItemList(): List<ItemStack> {
+        override fun getItemList(from: Int, to: Int): List<ItemStack> {
             return getLivingMobs(false).filter { it.name.contains(filter.replace(' ', '_'), ignoreCase = true) }
                 .map {
                     itemStack(enumOf<Material>("${it.name}_SPAWN_EGG") ?: Material.POLAR_BEAR_SPAWN_EGG) {

@@ -1,9 +1,6 @@
 package de.miraculixx.mutils.gui.data
 
-import de.miraculixx.mutils.gui.CustomGUI
-import de.miraculixx.mutils.gui.ScrollGUI
-import de.miraculixx.mutils.gui.SettingsGUI
-import de.miraculixx.mutils.gui.StorageGUI
+import de.miraculixx.mutils.gui.*
 
 object InventoryManager {
     /**
@@ -79,4 +76,11 @@ object InventoryManager {
      * @author Miraculixx
      */
     inline fun settingsBuilder(id: String, builder: SettingsGUI.Builder.() -> Unit) = SettingsGUI.Builder(id).apply(builder).build()
+
+    /**
+     * Inline Builder for GUI type - Library
+     *
+     * @author Miraculixx
+     */
+    inline fun libraryBuilder(id: String, builder: LibraryGUI.Builder.() -> Unit) = LibraryGUI.Builder(id).apply(builder).build()
 }

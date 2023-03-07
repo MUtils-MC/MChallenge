@@ -8,22 +8,22 @@
 #------------------------------------------------------------#
 creator: MUtils
 version: 1.0.0
-locale: ENGLISH
+locale: INGLÉS
 #-----------------------------------------#
 #Common Translations           #
 #Translation keys that persist in every  #
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
-  click: "Click"
+  boolTrue: "Habilitado"
+  boolFalse: "Deshabilitado"
+  left: "Izquierda"
+  right: "Derecha"
+  click: "Clic"
   sneak: "Sneak"
-  none: "None"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  none: "Ninguna"
+  confirm: "Confirmar"
+  cancel: "Cancelar"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -35,18 +35,18 @@ command:
 #-----------------------------------------#
 event:
   seed: "Seed"
-  dimension: "Dimension"
-  type: "World Type"
-  biomeProvider: "Biome Generator"
-  noiseProvider: "World Generator"
+  dimension: "Dimensión"
+  type: "Tipo de mundo"
+  biomeProvider: "Generación del bioma"
+  noiseProvider: "Generación del Mundo"
   teleportToWorld: "Teleported to <input-1>" #v - world name
   noOverride: "<red>Activate global override to modify the value!"
-  sneakExit: "Sneak to exit"
-  newWorld: "Creating new world..."
-  newWorldSub: "This could take a few seconds"
-  teleportFromDelete: "The world you were in was deleted..."
-  category: "Category"
-  worldCreated: "New world successfully created"
+  sneakExit: "Sneak para salir"
+  newWorld: "Creando mundo nuevo..."
+  newWorldSub: "Esto podría tomar algunos segundos"
+  teleportFromDelete: "El mundo en el que estabas fue eliminado..."
+  category: "Categoría"
+  worldCreated: "Nuevo mundo creado correctamente"
   worldInfo: "Current world information"
   env:
     NORMAL: "Overworld"
@@ -54,9 +54,9 @@ event:
     NETHER: "Nether"
   gen:
     NORMAL: "Normal"
-    AMPLIFIED: "Amplified"
-    FLAT: "Flat"
-    LARGE_BIOMES: "Larger Biomes"
+    AMPLIFIED: "Amplificado"
+    FLAT: "Plano"
+    LARGE_BIOMES: "Biomas más grandes"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -66,17 +66,17 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Scroll Right"
-      l: "You can not scroll any<br>further to the right"
+      n: "<red>Desplazarse a la derecha"
+      l: "No puede desplazarse<br>más a la derecha"
     arrowLeftEnd:
-      n: "<red>Scroll Left"
-      l: "You can not scroll any<br>further to the left"
+      n: "<red>Desplazarse a la izquierda"
+      l: "No puede desplazarse<br>más a la izquierda"
     arrowRight:
-      n: "<green>Scroll Right"
-      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
+      n: "<green>Desplazarse a la derecha"
+      l: "<blue>Click ≫ +1 página<br><blue>Sneak-Click ≫ +5 páginas"
     arrowLeft:
-      n: "<green>Scroll Left"
-      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
+      n: "<green>Desplazarse a la izquierda"
+      l: "<blue>Click ≫ -1 página<br><blue>Sneak-Click ≫ -5 páginas"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"
   menu:
@@ -84,38 +84,38 @@ items:
       n: "World Overview"
       l: "List of all loaded worlds<br>with fast access to teleport<br>or delete"
     worldCreator:
-      n: "World Creator"
+      n: "Generador mundial"
       l: "Create new worlds from<br>a template or completely<br>from scratch"
     worldDatas:
       n: "Custom World Data"
       l: "World specific resources<br>like datapacks that should<br>persist through resets"
     worldSettings:
-      n: "World Settings"
+      n: "Configuración del Mundo"
       l: "Access and edit world<br>settings like gamerules for<br>each world"
     worldSettingsGlobal:
       n: "Global World Settings"
       l: "Define global world<br>settings that apply for<br>all new worlds"
   creator:
     name:
-      n: "World Name"
+      n: "Nombre del mundo"
       l: "Set your favourite world name<br>that is used to save or access<br>the new world"
-      s: "Name"
+      s: "Nombre"
     seed:
-      n: "World Seed"
+      n: "Seed del Mundo"
       l: "Set a seed that is used to<br>change the world generation.<br>Worlds with the same seed<br>generate equal"
       s: "Seed"
     env:
-      n: "Environment"
+      n: "Medio ambiente"
       l: "Set the world Environment<br>(Dimension)"
-      s: "Environment"
+      s: "Medio ambiente"
     structures:
-      n: "Structure Generation"
+      n: "Generación de estructuras"
       l: "Toggle structure generation<br>in your new world"
-      s: "Structures"
+      s: "Estructuras"
     worldType:
-      n: "World Type"
+      n: "Tipo de mundo"
       l: "Change the vanilla world<br>generation. These work differently<br>on different versions"
-      s: "Type"
+      s: "Tipo"
     biomeAlgo:
       n: "Biome Algorithm"
       l: "Change the biome generation<br>to new custom one. Every algorithm<br>can be modified"
@@ -127,7 +127,7 @@ items:
       s3: "Surface Generation"
       s4: "Foliage Generation"
       s5: "Mobs Generation"
-      s6: "Structure Generation"
+      s6: "Generación de estructuras"
     copy:
       n: "Copy World Settings"
       l: "Copy only the world settings<br>and generate new terrain."
@@ -140,7 +140,7 @@ items:
     category:
       n: "Sync Category"
       l: "Enter a custom category<br>to create a separat player<br>saving. Switching between categories<br>will load the needed player data"
-      s: "Category"
+      s: "Categoría"
     worldSet:
       n: "Create World Set"
       l: "Create an overworld, nether<br>and end world from your settings<br>and put them all in one category"
@@ -149,10 +149,10 @@ items:
       l: "Create a single world from<br>your settings"
   algo:
     CHESS:
-      n: "Chess Algorithm"
+      n: "Algoritmo de ajedrez"
       l: "Shapes your world in squares.<br>Like chess, the white squares will<br>be replaced with air"
     LINE:
-      n: "Line Algorithm"
+      n: "Algoritmo de línea"
       l: "Draw void lines in your world.<br>The line and void thickness can<br>be modified individual"
     DIAGONAL_LINE:
       n: "Diagonal Line Algorithm"
@@ -164,10 +164,10 @@ items:
       n: "Circle Algorithm"
       l: "Print circle holes in your world<br>or only leave circles as floor"
     SCALE_X:
-      n: "Scaling-X"
+      n: "Escalado-X"
       l: "Up or downscale the<br>X direction"
     SCALE_Z:
-      n: "Scaling-Z"
+      n: "Escalado-Z"
       l: "Up or downscale the<br>Z direction"
     SOLID_THICKNESS:
       n: "Thickness-Solid"
@@ -176,13 +176,13 @@ items:
       n: "Thickness-Hole"
       l: "The thickness of the<br>void part that is replaced<br>with air"
     X_DIRECTION:
-      n: "Direction-X"
+      n: "Dirección-X"
       l: "The pattern direction.<br>Deactivate it for a z<br>direction"
     INVERTED:
-      n: "Inverted"
+      n: "Invertido"
       l: "Switch the hole and<br>solid part"
     RANDOM:
-      n: "Random"
+      n: "Al azar"
       l: "Overrides the thickness<br>or scaling values with an<br>random value for every repetition"
     VANILLA:
       n: "Vanilla"

@@ -78,6 +78,14 @@
     "icon": "comparator",
     "tags": ["HARD", "FREE"]
   },
+  {
+    "key": "AREA_TIMER",
+    "version": "1.0.0",
+    "icon": "grass_block",
+    "tags": ["MEDIUM", "FREE"]
+  },
+
+
 
   {
     "key": "FLY",

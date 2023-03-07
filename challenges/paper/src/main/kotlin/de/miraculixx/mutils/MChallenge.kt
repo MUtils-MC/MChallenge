@@ -1,19 +1,18 @@
 package de.miraculixx.mutils
 
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.SettingsData
+import de.miraculixx.api.utils.cotm
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
-import de.miraculixx.mutils.api.MUtilsAPI
 import de.miraculixx.mutils.commands.ChallengeCommand
 import de.miraculixx.mutils.commands.ModuleCommand
 import de.miraculixx.mutils.commands.ResetCommand
-import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.modules.global.DeathListener
-import de.miraculixx.api.utils.cotm
-import de.miraculixx.api.settings.SettingsData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +24,6 @@ class MChallenge : KSpigot() {
         lateinit var INSTANCE: KSpigot
         val configFolder = File("plugins/MUtils/Challenges")
         lateinit var localization: Localization
-        lateinit var api: MUtilsAPI
     }
 
     private lateinit var configFile: File
@@ -63,12 +61,6 @@ class MChallenge : KSpigot() {
         val settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
         localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
 //        Spectator.loadData()
-
-        // Connect to API
-        CoroutineScope(Dispatchers.Default).launch {
-            api = MUtilsAPI("challenges", description.version.toInt(), configFolder, "${server.ip}:${server.port}")
-            cotm = enumOf<Challenges>(api.getCOTM()) ?: Challenges.FLY
-        }
     }
 
 

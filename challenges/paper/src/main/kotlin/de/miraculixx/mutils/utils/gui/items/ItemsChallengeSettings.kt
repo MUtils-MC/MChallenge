@@ -19,7 +19,7 @@ import org.bukkit.persistence.PersistentDataType
 class ItemsChallengeSettings(private val challengeSettings: Map<String, ChallengeSetting<*>>, private val challenge: Challenges) : ItemProvider {
     private val msgSetting = listOf(emptyComponent(), cmp("∙ ") + cmp("Settings", cHighlight, underlined = true))
 
-    override fun getItemList(): List<ItemStack> {
+    override fun getItemList(from: Int, to: Int): List<ItemStack> {
         val chName = challenge.name
 
         return challengeSettings.map {
