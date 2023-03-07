@@ -22,13 +22,26 @@ import org.bukkit.event.player.PlayerInteractEvent
 
 class RunRandomizer : Challenge {
     override val challenge = Challenge.RUN_RANDOMIZER
-    private var runRandomObj: RunRandomizerData? = null
+    private val goal: Int
+    private val global: Boolean
+    private val progressMap = mutableMapOf<UUID, RunRandomizerData>()
+    private val globalID = UUID.randomUUID()
+
+    init {
+        val settings = challenges.getSettings(challenge).settings
+        goal = settings["goal"]?.toInt()?.getValue() ?: 250
+        global = settings["global"]?.toBool()?.getValue() ?: false
+    }
 
     override fun start(): Boolean {
-        val config = ConfigManager.getConfig(Configs.MODULES)
-        runRandomObj = RunRandomizerData(config.getInt("RUN_RANDOMIZER.Goal"))
-        onlinePlayers.forEach {
-            runRandomObj!!.resetStats(it)
+        if (global) {
+            val obj = RunRandomizerData(globalID, goal, true)
+            progressMap[globalID] = obj
+            onlinePlayers.forEach { p -> obj.resetStats(p) }
+        }
+        onlinePlayers.forEach { p ->
+            if (Spectator.isSpectator(p.uniqueID)) return@forEach
+
         }
         return true
     }
@@ -71,10 +84,10 @@ class RunRandomizer : Challenge {
     }
 
     private val onInteract = listen<PlayerInteractEvent>(register = false) {
-        if (it.clickedBlock == null) return@listen
-        if (it.clickedBlock!!.type == Material.CHEST) {
-            it.clickedBlock!!.type = Material.BARREL
-            it.player.playSound(it.clickedBlock!!.location, Sound.ENTITY_ITEM_PICKUP, 1f, 2F)
+        val block = it.clickedBlock ?: return@listen
+        if (block.type == Material.CHEST) {
+            block.type = Material.BARREL
+            it.player.playSound(block.location, Sound.ENTITY_ITEM_PICKUP, 1f, 2F)
         }
     }
 

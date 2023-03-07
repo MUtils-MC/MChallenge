@@ -64,8 +64,8 @@ class RunRandomizerData(private var goal: Int) {
                 i += player.getStatistic(Statistic.SPRINT_ONE_CM)
                 i += player.getStatistic(Statistic.CROUCH_ONE_CM)
                 i += player.getStatistic(Statistic.SWIM_ONE_CM)
+                i += player.getStatistic(Statistic.JUMP) * 100
                 i += player.getStatistic(Statistic.FLY_ONE_CM)
-                i += player.getStatistic(Statistic.HORSE_ONE_CM)
                 i += player.getStatistic(Statistic.FALL_ONE_CM)
                 i /= 100
 
