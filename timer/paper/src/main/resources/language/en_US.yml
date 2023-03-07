@@ -35,7 +35,7 @@ command:
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
   alreadyOn: "<red>Timer is already running!"
   alreadyOff: "<red>Timer is already paused!"
-  reset: "<grey>Timer successfully reset to time 0"
+  reset: "<grey>Timer successfully resettet to time 0"
 
 
 #-----------------------------------------#
