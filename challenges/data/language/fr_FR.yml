@@ -221,6 +221,12 @@ items:
     ANVIL_CRUSHER:
       n: "Anvil Crusher"
       l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
+    ITEM_DECAY:
+      n: "Item Decay"
+      l: "Act fast! All your<br>items have a limited lifespan<br>till they disappear"
+    AREA_TIMER:
+      n: "Area Timer"
+      l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
   chS:
     FLY:
       power:
@@ -396,3 +402,41 @@ items:
         n: "Decay Percentage"
       shouldBreak:
         n: "Drop Blocks"
+    CHUNK_CLEARER:
+      breakAll:
+        n: "Break All"
+      shouldBreak:
+        n: "Drop Items"
+      bundle:
+        n: "Bundle Items"
+    ANVIL_CRUSHER:
+      delay:
+        n: "Anvil Delay"
+      startDelay:
+        n: "Base"
+      amplifierDelay:
+        n: "Faster per DMG"
+      density:
+        n: "Anvil Density"
+      startDensity:
+        n: "Base"
+      amplifierDensity:
+        n: "Higher per DMG"
+      radius:
+        n: "Anvil Radius"
+      startRadius:
+        n: "Base"
+      amplifierRadius:
+        n: "Bigger per DMG"
+      height:
+        n: "Anvil Height"
+    ITEM_DECAY:
+      time:
+        n: "Decay Time"
+    AREA_TIMER:
+      time:
+        n: "Max Time"
+      global:
+        n: "Count Global"
+      mode:
+        n: "Area Mode"
