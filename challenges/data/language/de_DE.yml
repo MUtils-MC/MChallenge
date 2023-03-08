@@ -419,13 +419,13 @@ items:
       density:
         n: "Anvil Density"
       startDensity:
-        n: "Base"
+        n: "Basis"
       amplifierDensity:
         n: "Higher per DMG"
       radius:
         n: "Anvil Radius"
       startRadius:
-        n: "Base"
+        n: "Basis"
       amplifierRadius:
         n: "Bigger per DMG"
       height:
@@ -435,7 +435,7 @@ items:
         n: "Decay Time"
     AREA_TIMER:
       time:
-        n: "Max Time"
+        n: "Max. Zeit"
       global:
         n: "Count Global"
       mode:
