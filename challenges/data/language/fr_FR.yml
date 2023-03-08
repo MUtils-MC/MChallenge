@@ -259,7 +259,7 @@ items:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
-        n: "Lives"
+        n: "Vies"
       sync:
         n: "Lives = HP"
       info:
