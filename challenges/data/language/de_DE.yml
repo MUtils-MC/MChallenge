@@ -223,7 +223,7 @@ items:
       l: "Es regnet... Ambosse?<br>Achte auf deine Schritte, der<br>Himmel versucht dich zu töten"
     ITEM_DECAY:
       n: "Item Decay"
-      l: "Act fast! All your<br>items have a limited lifespan<br>till they disappear"
+      l: "Denke schnell! Alle deine <br>items haben eine begrenzte Lebensdauer<br>bis sie verschwinden"
     AREA_TIMER:
       n: "Area Timer"
       l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
