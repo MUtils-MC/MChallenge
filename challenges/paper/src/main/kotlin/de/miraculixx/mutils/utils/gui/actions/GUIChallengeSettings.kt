@@ -4,6 +4,7 @@ import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.api.settings.*
 import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
@@ -21,8 +22,9 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
         val player = it.whoClicked as? Player ?: return@event
         val item = it.currentItem ?: return@event
         val meta = item.itemMeta
+        val id = meta?.customModel ?: 0
 
-        if ((meta?.customModel ?: 0) == 0) {
+        if (id == 0) {
             previousInv.open(player)
             previousInv.update()
             player.click()
@@ -35,6 +37,16 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
         else {
             val challenge = enumOf<Challenges>(challengeKey) ?: return@event
             challenges.getSetting(challenge).settings
+        }
+
+        if (id == 3001) {
+            //Reset
+            AwaitConfirm(player, {
+//                settingsData.forEach { key, data -> data.setValue(data.getDefault()) }
+                player.soundDelete()
+                inv.open(player)
+            }) { inv.open(player) }
+            return@event
         }
 
         val click = it.click

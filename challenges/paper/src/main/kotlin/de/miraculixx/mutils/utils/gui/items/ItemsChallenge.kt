@@ -114,7 +114,8 @@ class ItemsChallenge : ItemFilterProvider {
             val prefix = if (isSection) cmp("    → ", NamedTextColor.DARK_GRAY) else cmp("   ")
             val info = if (data is ChallengeBoolSetting) data.getValue().msg() to data.getDefault().msg()
             else data.getValue().toString() to data.getValue().toString()
-            listOf(prefix + cmp(msgString("items.chS.$name.$key.n")) + cmp(": ") + cmp("${info.first}${data.getUnit()}", cHighlight) + cmp(" (Default ${info.second})"))
+//            val suffix = if (showDefault) cmp(" (Default ${info.second})") else cmp(" ")
+            listOf(prefix + cmp(msgString("items.chS.$name.$key.n")) + cmp(": ") + cmp("${info.first}${data.getUnit()}", cHighlight))
         }
     }
 }

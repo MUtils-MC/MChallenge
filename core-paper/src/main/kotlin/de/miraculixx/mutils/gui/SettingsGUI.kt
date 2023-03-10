@@ -1,16 +1,20 @@
 package de.miraculixx.mutils.gui
 
+import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
+import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.items.ItemProvider
+import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.inventory.meta.SkullMeta
 
 class SettingsGUI(
     override val itemProvider: ItemProvider?,
@@ -22,6 +26,14 @@ class SettingsGUI(
 ) : CustomInventory(3 * 9, title, clickEvent, closeEvent) {
     private val i = get()
     override val defaultClickAction = null
+    private val resetButton = itemStack(Material.PLAYER_HEAD) {
+        meta {
+            name = cmp(msgString("items.general.reset.n"), cError)
+            lore(msgList("items.general.reset.l"))
+            customModel = 3001
+        }
+        itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RESET.value)
+    }
 
     private constructor(builder: Builder) : this(
         builder.itemProvider,
@@ -72,7 +84,8 @@ class SettingsGUI(
 
         if (full) {
             i.contents = (0..26).map { primaryPlaceholder }.toTypedArray()
-            listOf(0, 1, 7, 8, 9, 17, 18, 19, 25, 26).forEach { i.setItem(it, secondaryPlaceholder) }
+            listOf(0, 1, 7, 8, 9, 17, 18, 19, 25).forEach { i.setItem(it, secondaryPlaceholder) }
+            i.setItem(26, resetButton)
         } else listOf(10,11,12,13,14,15,16).forEach { i.setItem(it, primaryPlaceholder) }
     }
 

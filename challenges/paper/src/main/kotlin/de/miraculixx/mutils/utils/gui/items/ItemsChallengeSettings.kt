@@ -48,7 +48,7 @@ class ItemsChallengeSettings(private val challengeSettings: Map<String, Challeng
             }
         } else {
             val info = if (this is ChallengeBoolSetting) getValue().msg() to getDefault().msg()
-            else getValue().toString() to getValue().toString()
+            else getValue().toString() to getDefault().toString()
             listOf(cmp("   ") + cmp(msgString("items.chS.${challenge}.$key.n")) + cmp(": ") + cmp("${info.first}${getUnit()}", cHighlight) + cmp(" (Default ${info.second})"))
         }
     }

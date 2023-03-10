@@ -21,6 +21,7 @@ import de.miraculixx.mutils.modules.mods.inTime.InTime
 import de.miraculixx.mutils.modules.mods.itemDecay.ItemDecay
 import de.miraculixx.mutils.modules.mods.mirror.Mirror
 import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
+import de.miraculixx.mutils.modules.mods.runRandom.RunRandomizer
 import de.miraculixx.mutils.modules.mods.snake.Snake
 import de.miraculixx.mutils.modules.mods.trafficlight.TrafficLight
 import de.miraculixx.mutils.modules.mods.tron.Tron
@@ -41,7 +42,7 @@ class StatusChanger: StatusChangerAPI {
             Challenges.BLOCK_ASYNC -> TODO()
             Challenges.NO_SAME_ITEM -> TODO()
             Challenges.LIMITED_SKILLS -> TODO()
-            Challenges.RUN_RANDOMIZER -> TODO()
+            Challenges.RUN_RANDOMIZER -> RunRandomizer()
             Challenges.SPLIT_HP -> TODO()
             Challenges.DAMAGE_DUELL -> TODO()
             Challenges.ONE_BIOME -> TODO()

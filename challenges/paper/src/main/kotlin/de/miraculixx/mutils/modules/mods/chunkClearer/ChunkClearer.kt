@@ -36,7 +36,7 @@ class ChunkClearer : Challenge {
         onMove.unregister()
     }
 
-    private val onMove = listen<PlayerMoveEvent> {
+    private val onMove = listen<PlayerMoveEvent>(register = false) {
         val to = it.to
         val from = it.from
         val player = it.player

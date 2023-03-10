@@ -7,7 +7,7 @@ import de.miraculixx.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.kpaper.extensions.geometry.*
+import de.miraculixx.kpaper.extensions.geometry.filledCirclePositionSet
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
@@ -17,9 +17,8 @@ import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageEvent
-import org.bukkit.util.Vector
 
-class AnvilCrusher: Challenge {
+class AnvilCrusher : Challenge {
     override val challenge: Challenges = Challenges.ANVIL_CRUSHER
     private val startDelay: Int
     private val amplifierDelay: Int
@@ -69,7 +68,7 @@ class AnvilCrusher: Challenge {
         stopped = true
     }
 
-    private val onDamage = listen<EntityDamageEvent> {
+    private val onDamage = listen<EntityDamageEvent>(register = false) {
         val entity = it.entity
         if (entity !is Player) return@listen
         val hearts = it.finalDamage / 2

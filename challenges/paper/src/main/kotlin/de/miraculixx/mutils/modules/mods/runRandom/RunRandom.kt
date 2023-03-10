@@ -1,15 +1,22 @@
-package de.miraculixx.mutils.modules.challenge.mods.runRandomizer
+package de.miraculixx.mutils.modules.mods.runRandom
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.onlinePlayers
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.modules.mods.runRandom.RunRandomData
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.runnables.taskRunLater
+import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.modules.spectator.Spectator
+import de.miraculixx.mutils.utils.getMaterials
+import net.kyori.adventure.bossbar.BossBar
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockExplodeEvent
 import org.bukkit.event.entity.EntityDeathEvent
@@ -19,39 +26,44 @@ import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
+import org.bukkit.event.player.PlayerMoveEvent
+import org.bukkit.inventory.ItemStack
+import java.util.*
 
 class RunRandomizer : Challenge {
-    override val challenge = Challenge.RUN_RANDOMIZER
-    private val goal: Int
+    override val challenge = Challenges.RUN_RANDOMIZER
+    private val goal: Double
     private val global: Boolean
-    private val items = GET ITEMS HERE
+    private val items = getMaterials(false)
     private val dataMap = mutableMapOf<UUID, RunRandomData>()
     private val globalID = UUID.randomUUID()
     private val msgGoal = msgString("event.randomizer.goal")
 
     init {
-        val settings = challenges.getSettings(challenge).settings
-        goal = settings["goal"]?.toInt()?.getValue()? ?: 250.0
+        val settings = challenges.getSetting(challenge).settings
+        goal = settings["goal"]?.toInt()?.getValue()?.toDouble() ?: 250.0
         global = settings["global"]?.toBool()?.getValue() ?: false
     }
 
     override fun start(): Boolean {
         if (global) {
-            val obj = RunRandomizerData(0, BossBar.bar(cmp("Waiting on server...", cError), 1.0, SOLID))
+            val obj = RunRandomData(0.0, BossBar.bossBar(cmp("Waiting on server...", cError), 1.0f, BossBar.Color.RED, BossBar.Overlay.PROGRESS))
             dataMap[globalID] = obj
         } else {
             onlinePlayers.forEach { p ->
-                val uuid = p.uniqueID
+                val uuid = p.uniqueId
                 if (Spectator.isSpectator(uuid)) return@forEach
-                dataMap[uuid] = RunRandomizerData(0, BossBar.bar(cmp("Waiting on server...", cError), 1.0, SOLID))
+                dataMap[uuid] = RunRandomData(0.0, BossBar.bossBar(cmp("Waiting on server...", cError), 1.0f, BossBar.Color.RED, BossBar.Overlay.PROGRESS))
             }
         }
         return true
     }
 
     override fun stop() {
-        runRandomObj?.removeAll()
-        runRandomObj = null
+        if (global) {
+            val bar = dataMap[globalID]?.bar ?: return
+            onlinePlayers.forEach { p -> p.hideBossBar(bar) }
+        } else onlinePlayers.forEach { p -> dataMap[p.uniqueId]?.bar?.let { p.hideBossBar(it) } }
     }
 
     override fun register() {
@@ -65,6 +77,7 @@ class RunRandomizer : Challenge {
         onCollect.register()
         onMove.register()
     }
+
     override fun unregister() {
         onBreak.unregister()
         onInteract.unregister()
@@ -79,21 +92,25 @@ class RunRandomizer : Challenge {
 
     private val onMove = listen<PlayerMoveEvent>(register = false) {
         val distance = it.from.distance(it.to)
-        val uuid = it.player.uniqueID
+        if (distance <= 0) {
 
+            return@listen
+        }
+        val player = it.player
+        update(player, distance)
     }
 
     private fun update(player: Player, distance: Double) {
         val data = if (global) {
             val d = dataMap[globalID]!!
-            onlinePlayers.forEach { p -> p.showBar(d.bar) }
+            onlinePlayers.forEach { p -> p.showBossBar(d.bar) }
             d
         } else {
-            val d = dataMap.getOrSet(player.uniqueID) { RunRandomizerData(0, BossBar.bar(cmp("Waiting on server...", cError), 1.0, SOLID)) }
-            player.showBar(d.bar)
+            val d = dataMap.getOrPut(player.uniqueId) { RunRandomData(0.0, BossBar.bossBar(cmp("Waiting on server...", cError), 1.0f, BossBar.Color.RED, BossBar.Overlay.PROGRESS)) }
+            player.showBossBar(d.bar)
             d
         }
-        
+
         val prev = data.distance
         data.distance += distance
         if (prev >= goal) return //Prevent visual updates on flashing
@@ -102,25 +119,24 @@ class RunRandomizer : Challenge {
         if (data.distance >= goal) {
             val goalString = goal.toInt().toString()
             bar.progress(1f)
-            bar.color(GREEN)
+            bar.color(BossBar.Color.GREEN)
             bar.name(cmp("$msgGoal: $goalString/$goalString"))
             if (global) {
-                onlinePlayers.forEach { p -> 
-                    p.inventory.addItem(ItemStack(items.random(), 6)
+                onlinePlayers.forEach { p ->
+                    p.inventory.addItem(ItemStack(items.random(), 6))
                     //Sound
                 }
             } else {
                 player.inventory.addItem(ItemStack(items.random(), 64))
                 //Sound
             }
-            runTaskLater(30) { data.distance -= goal }
+            taskRunLater(30) { data.distance -= goal }
         } else {
-            bar.progress(goal / data.distance)
-            bar.color(YELLOW)
+            bar.progress((goal / data.distance).toFloat())
+            bar.color(BossBar.Color.YELLOW)
             bar.name(cmp("$msgGoal: ") + cmp(data.distance.toInt().toString(), cSuccess) + cmp("/") + cmp(goal.toInt().toString(), cError))
         }
     }
-
 
 
     private val onCollect = listen<EntityPickupItemEvent>(register = false) {
