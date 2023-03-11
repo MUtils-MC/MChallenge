@@ -1,5 +1,6 @@
 package de.miraculixx.mutils
 
+import de.miraculixx.api.MChallengeAPI
 import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.api.settings.SettingsData
 import de.miraculixx.api.utils.cotm
@@ -8,6 +9,7 @@ import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.commands.ChallengeCommand
 import de.miraculixx.mutils.commands.ModuleCommand
 import de.miraculixx.mutils.commands.ResetCommand
+import de.miraculixx.mutils.config.APICheck
 import de.miraculixx.mutils.extensions.enumOf
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
@@ -17,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
+import org.bukkit.Bukkit
 import java.io.File
 
 class MChallenge : KSpigot() {
@@ -46,6 +49,14 @@ class MChallenge : KSpigot() {
         INSTANCE = this
         consoleAudience = console
         debug = false
+
+        CoroutineScope(Dispatchers.Default).launch {
+            if (!APICheck().checkIsBeta()) {
+                console.sendMessage(prefix + cmp("You are using an BETA version but the official BETA is over! Please update your MUtils", cError))
+                server.pluginManager.disablePlugin(this@MChallenge)
+            }
+        }
+        MChallengeAPI.instance
 
         // Define version
         val versionSplit = server.minecraftVersion.split('.')

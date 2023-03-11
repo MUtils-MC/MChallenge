@@ -5,7 +5,7 @@
 /.gitignore
 /MUtils.iml
 #/gradle/wrapper/
-/kpaper-light/
+#/kpaper-light/
 buildSrc/.gradle
 zBackup/
 bridge/paper

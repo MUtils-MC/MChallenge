@@ -120,19 +120,19 @@ class RunRandomizer : Challenge {
             val goalString = goal.toInt().toString()
             bar.progress(1f)
             bar.color(BossBar.Color.GREEN)
-            bar.name(cmp("$msgGoal: $goalString/$goalString"))
+            bar.name(cmp("$msgGoal: $goalString/$goalString", cSuccess))
             if (global) {
                 onlinePlayers.forEach { p ->
                     p.inventory.addItem(ItemStack(items.random(), 6))
-                    //Sound
+                    p.playSound(p, Sound.ENTITY_PUFFER_FISH_BLOW_UP, 1f, 1.2f)
                 }
             } else {
                 player.inventory.addItem(ItemStack(items.random(), 64))
-                //Sound
+                player.playSound(player, Sound.ENTITY_PUFFER_FISH_BLOW_UP, 1f, 1.2f)
             }
             taskRunLater(30) { data.distance -= goal }
         } else {
-            bar.progress((goal / data.distance).toFloat())
+            bar.progress((data.distance / goal).toFloat())
             bar.color(BossBar.Color.YELLOW)
             bar.name(cmp("$msgGoal: ") + cmp(data.distance.toInt().toString(), cSuccess) + cmp("/") + cmp(goal.toInt().toString(), cError))
         }
