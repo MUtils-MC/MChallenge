@@ -48,12 +48,16 @@ event:
       xp: "<red><input-1> hat versucht Erfahrung aufzusammeln!"
       item: "<red><input-1> hat versucht ein Gegenstand aufzusammeln!"
       trade: "<red><input-1> hat versucht zu handeln!"
+    blockAsync: "<red><input-1> clicked on a fake block!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
   itemDecay:
     time: "Verschwindet in"
     paused: "Anzeige pausiert (ausgewählt)"
+  hide:
+    hide: "All players are now <red>hidden"
+    show: "All players are now <green>visible"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -88,6 +92,9 @@ items:
       l: "Du kannst nicht weiter<br>nach unten scrollen"
     pageIndicator:
       l: "Klicke, um eine kompakte<br>GUI mit schnellem Zugriff zu öffnen"
+    reset:
+      n: "Reset Settings"
+      l: "This action cannot be<br>reverted!"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -270,6 +277,8 @@ items:
     RUN_RANDOMIZER:
       goal:
         n: "Blockziel"
+      global:
+        n: "Count Global"
     DAMAGE_DUELL:
       percent:
         n: "Prozent"
@@ -440,3 +449,6 @@ items:
         n: "Count Global"
       mode:
         n: "Area Mode"
+    BLOCK_ASYNC:
+      hide:
+        n: "Hide Players"
