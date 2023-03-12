@@ -54,12 +54,16 @@ event:
       xp: "<red><input-1> tried to pickup XP!"
       item: "<red><input-1> tried to pickup an item!"
       trade: "<red><input-1> tried to trade!"
+    blockAsync: "<red><input-1> clicked on a fake block!"
   mobHunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
   itemDecay:
     time: "Decay in"
     paused: "Paused display (selected)"
+  hide:
+    hide: "All players are now <red>hidden"
+    show: "All players are now <green>visible"
 
 
 #-----------------------------------------#
@@ -96,6 +100,9 @@ items:
       l: "You can not scroll any<br>further down"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"
+    reset:
+      n: "Reset Settings"
+      l: "This action cannot be<br>reverted!"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -278,6 +285,8 @@ items:
     RUN_RANDOMIZER:
       goal:
         n: "Block Goal"
+      global:
+        n: "Count Global"
     DAMAGE_DUELL:
       percent:
         n: "Percentage"
@@ -448,3 +457,6 @@ items:
         n: "Count Global"
       mode:
         n: "Area Mode"
+    BLOCK_ASYNC:
+      hide:
+        n: "Hide Players"
