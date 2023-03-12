@@ -5,6 +5,8 @@ import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.api.modules.challenges.StatusChangerAPI
 import de.miraculixx.mutils.modules.mods.anvilCrusher.AnvilCrusher
 import de.miraculixx.mutils.modules.mods.areaTimer.AreaTimer
+import de.miraculixx.mutils.modules.mods.blockAsync.BlockAsync
+import de.miraculixx.mutils.modules.mods.boostUp.BoostUp
 import de.miraculixx.mutils.modules.mods.fly.FLY
 import de.miraculixx.mutils.modules.mods.rocket.Rocket
 import de.miraculixx.mutils.modules.mods.checkpoints.Checkpoints
@@ -21,8 +23,11 @@ import de.miraculixx.mutils.modules.mods.inTime.InTime
 import de.miraculixx.mutils.modules.mods.itemDecay.ItemDecay
 import de.miraculixx.mutils.modules.mods.mirror.Mirror
 import de.miraculixx.mutils.modules.mods.mobBlocks.MobBlocks
+import de.miraculixx.mutils.modules.mods.noSameItems.NoSameItem
 import de.miraculixx.mutils.modules.mods.runRandom.RunRandomizer
 import de.miraculixx.mutils.modules.mods.snake.Snake
+import de.miraculixx.mutils.modules.mods.sneakSpawn.SneakSpawn
+import de.miraculixx.mutils.modules.mods.stayAway.StayAway
 import de.miraculixx.mutils.modules.mods.trafficlight.TrafficLight
 import de.miraculixx.mutils.modules.mods.tron.Tron
 import de.miraculixx.mutils.modules.mods.vampire.Vampire
@@ -39,20 +44,19 @@ class StatusChanger: StatusChangerAPI {
             Challenges.REALISTIC -> TODO()
             //Challenges.CAPTIVE -> Captive()
             Challenges.GHOST -> Ghost()
-            Challenges.BLOCK_ASYNC -> TODO()
-            Challenges.NO_SAME_ITEM -> TODO()
+            Challenges.BLOCK_ASYNC -> BlockAsync()
+            Challenges.NO_SAME_ITEM -> NoSameItem()
             Challenges.LIMITED_SKILLS -> TODO()
             Challenges.RUN_RANDOMIZER -> RunRandomizer()
-            Challenges.SPLIT_HP -> TODO()
             Challenges.DAMAGE_DUELL -> TODO()
             Challenges.ONE_BIOME -> TODO()
-            Challenges.BOOST_UP -> TODO()
+            Challenges.BOOST_UP -> BoostUp()
             Challenges.RIGHT_TOOL -> TODO()
             Challenges.CHUNK_BLOCK_BREAK -> ChunkBlockBreaker()
-            Challenges.SNEAK_SPAWN -> TODO()
+            Challenges.SNEAK_SPAWN -> SneakSpawn()
             Challenges.WORLD_PEACE -> TODO()
             Challenges.GRAVITY -> TODO()
-            Challenges.STAY_AWAY -> TODO()
+            Challenges.STAY_AWAY -> StayAway()
             Challenges.RANDOMIZER_BLOCK -> TODO()
             Challenges.RANDOMIZER_ENTITY -> TODO()
             Challenges.RANDOMIZER_BIOMES -> TODO()

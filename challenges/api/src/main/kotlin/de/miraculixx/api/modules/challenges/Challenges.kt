@@ -43,7 +43,6 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     NO_SAME_ITEM(listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER), Icon("WITHER_ROSE")),
     LIMITED_SKILLS(listOf(StorageFilter.HARD, StorageFilter.MULTIPLAYER), Icon("TURTLE_HELMET")),
     RUN_RANDOMIZER(listOf(StorageFilter.FUN, StorageFilter.RANDOMIZER), Icon("GOLDEN_BOOTS")),
-    SPLIT_HP(listOf(StorageFilter.MEDIUM, StorageFilter.MULTIPLAYER), Icon("BEETROOT")),
     DAMAGE_DUELL(listOf(StorageFilter.FUN, StorageFilter.MULTIPLAYER), Icon("IRON_SWORD")),
     ONE_BIOME(listOf(StorageFilter.MEDIUM), Icon("FILLED_MAP")),
     BOOST_UP(listOf(StorageFilter.MEDIUM), Icon("SHULKER_SHELL")),
@@ -90,7 +89,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                 "glide" to ChallengeBoolSetting("FEATHER", true),
             )
 
-            BLOCK_ASYNC -> emptyMap()
+            BLOCK_ASYNC -> mapOf("hide" to ChallengeBoolSetting("GLASS_BOTTLE", true))
             NO_SAME_ITEM -> mapOf(
                 "lives" to ChallengeIntSetting("BEETROOT", 5, max = 10, min = 1),
                 "sync" to ChallengeBoolSetting("REDSTONE", false),
@@ -98,12 +97,14 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
             )
 
             LIMITED_SKILLS -> mapOf("random" to ChallengeBoolSetting("DROPPER", true))
-            RUN_RANDOMIZER -> mapOf("goal" to ChallengeIntSetting("CHEST", 500, "b", max = 5000, min = 50, step = 50))
-            SPLIT_HP -> emptyMap()
+            RUN_RANDOMIZER -> mapOf(
+                "goal" to ChallengeIntSetting("CHEST", 500, "b", max = 5000, min = 50, step = 50),
+                "global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true)
+            )
             DAMAGE_DUELL -> mapOf("percent" to ChallengeIntSetting("IRON_SWORD", 50, "%", max = 100, min = 5, step = 5))
             ONE_BIOME -> mapOf("delay" to ChallengeIntSetting("CLOCK", 300, "s", max = 1000, min = 30, step = 15))
             BOOST_UP -> mapOf(
-                "radius" to ChallengeIntSetting("SNOWBALL", 5, "b", max = 15, min = 1),
+                "radius" to ChallengeDoubleSetting("SNOWBALL", 4.0, "b", max = 15.0, min = 0.5),
                 "boost" to ChallengeIntSetting("ARROW", 5, max = 20, min = 1),
                 "mode" to ChallengeBoolSetting("POLAR_BEAR_SPAWN_EGG", true)
             )
@@ -113,7 +114,10 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
             SNEAK_SPAWN -> mapOf("onlyMob" to ChallengeBoolSetting("POLAR_BEAR_SPAWN_EGG", true))
             WORLD_PEACE -> emptyMap()
             GRAVITY -> mapOf("delay" to ChallengeIntSetting("CLOCK", 180, "s", max = 500, min = 30, step = 10))
-            STAY_AWAY -> mapOf("distance" to ChallengeDoubleSetting("SNOWBALL", 3.0, "b", max = 10.0, min = 0.5))
+            STAY_AWAY -> mapOf(
+                "distance" to ChallengeDoubleSetting("SNOWBALL", 3.0, "b", max = 10.0, min = 0.5),
+                "warning" to ChallengeBoolSetting("CRIMSON_FUNGUS", true)
+            )
             RANDOMIZER_BLOCK -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             RANDOMIZER_ENTITY -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             RANDOMIZER_BIOMES -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))

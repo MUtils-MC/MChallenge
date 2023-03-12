@@ -8,6 +8,7 @@ import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
+import de.miraculixx.mutils.messages.debug
 import de.miraculixx.mutils.messages.namespace
 import de.miraculixx.mutils.utils.gui.buildInventory
 import de.miraculixx.mutils.utils.gui.items.ItemsChallengeSettings
@@ -41,11 +42,16 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
 
         if (id == 3001) {
             //Reset
+            player.click()
             AwaitConfirm(player, {
-//                settingsData.forEach { key, data -> data.setValue(data.getDefault()) }
+                resetSettings(settingsData)
                 player.soundDelete()
+                inv.update()
                 inv.open(player)
-            }) { inv.open(player) }
+            }) {
+                inv.open(player)
+                player.click()
+            }
             return@event
         }
 
@@ -138,5 +144,21 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
             else -> return@event
         }
         inv.update()
+    }
+
+    private fun resetSettings(settings: Map<String, ChallengeSetting<out Any?>>) {
+        settings.forEach { (_, data) ->
+            when (data) {
+                is ChallengeIntSetting -> data.setValue(data.getDefault())
+                is ChallengeDoubleSetting -> data.setValue(data.getDefault())
+                is ChallengeBoolSetting -> data.setValue(data.getDefault())
+                is ChallengeEnumSetting -> data.setValue(data.getDefault())
+                is ChallengeSectionSetting<*> -> resetSettings(data.getValue())
+
+                else -> {
+                    if (debug) println("No Settings -> ${data.materialKey} - ${data.getValue()}")
+                }
+            }
+        }
     }
 }
