@@ -38,6 +38,7 @@ class NoSameItem : Challenge {
     private val playerCollections: MutableMap<UUID, MutableSet<Material>> = mutableMapOf()
     private val collectionOrder: MutableMap<Material, MutableSet<UUID>> = mutableMapOf()
     private val barMap: MutableMap<UUID, BossBar> = mutableMapOf()
+    private val hearts: MutableMap<UUID, Int> = mutableMapOf()
 
     init {
         val settings = challenges.getSetting(Challenges.NO_SAME_ITEM).settings
@@ -135,20 +136,32 @@ class NoSameItem : Challenge {
     }
 
     private fun addItems(player: Player, items: Set<Material>, type: String) {
-        var changes = false
+        var dupes = 0
         val uuid = player.uniqueId
         items.forEach { item ->
             val collected = playerCollections.getOrPut(uuid) { mutableSetOf() }
             if (collected.contains(item)) return //Player already collected this item
             collected.add(item)
-            collectionOrder.getOrPut(item) { mutableSetOf() }.add(uuid)
+            val order = collectionOrder.getOrPut(item) { mutableSetOf() }
+            if (!order.isEmpty()) { //An other player already collected it
+                dupes++
+                val firstPlayer = Bukkit.getPlayer(order.first())
+                player.sendMessage(prefix + msg("event.noSameItem.duplicate", listOf(firstPlayer.name, item.name)))
+            }
+            order.add(uuid)
             if (infoMode == NoSameItemEnum.EVERYTHING) player.sendMessage(cmp("+ ", cSuccess) + cmp(item.name) + cmp("($type)", NamedTextColor.DARK_GRAY))
-            changes = true
         }
-        if (changes) calcDupes()
-    }
 
-    private fun calcDupes() {
-
+        if (dupes > 0) {
+            val title = cmp("- ", cError) + cmp(buildString { repeat(dupes) { append("❤") } }, NamedTextColor.DARK_RED)
+            val duration = Duration.ofMillis(500)
+            player.showTitle(Title.title(emptyComponent(), title, Title.Times.times(duration, duration, duration)))
+            val newHearts = hearts.getOrDefault(uuid) { lives } - dupes
+            hearts[uuid] = newHearts
+            player.damage(0.01)
+            if (newHearts <= 0) {
+                player.sendMessage(prefix + msg("event.death.noSameItem"))
+            }
+        }
     }
 }
