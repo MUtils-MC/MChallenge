@@ -10,15 +10,14 @@ import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.extensions.enumOf
-import de.miraculixx.mutils.messages.cSuccess
-import de.miraculixx.mutils.messages.cmp
-import de.miraculixx.mutils.messages.msg
-import de.miraculixx.mutils.messages.plus
+import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.spectator.Spectator
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityPickupItemEvent
@@ -27,6 +26,8 @@ import org.bukkit.event.inventory.CraftItemEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.persistence.PersistentDataType
+import java.time.Duration
 import java.util.UUID
 
 class NoSameItem : Challenge {
@@ -36,7 +37,7 @@ class NoSameItem : Challenge {
     private val sync: Boolean
 
     private val playerCollections: MutableMap<UUID, MutableSet<Material>> = mutableMapOf()
-    private val collectionOrder: MutableMap<Material, MutableSet<UUID>> = mutableMapOf()
+    private val collectionOrder: MutableMap<Material, MutableList<UUID>> = mutableMapOf()
     private val barMap: MutableMap<UUID, BossBar> = mutableMapOf()
     private val hearts: MutableMap<UUID, Int> = mutableMapOf()
 
@@ -142,11 +143,11 @@ class NoSameItem : Challenge {
             val collected = playerCollections.getOrPut(uuid) { mutableSetOf() }
             if (collected.contains(item)) return //Player already collected this item
             collected.add(item)
-            val order = collectionOrder.getOrPut(item) { mutableSetOf() }
-            if (!order.isEmpty()) { //An other player already collected it
+            val order = collectionOrder.getOrPut(item) { mutableListOf() }
+            if (order.isNotEmpty()) { //Another player already collected it
                 dupes++
                 val firstPlayer = Bukkit.getPlayer(order.first())
-                player.sendMessage(prefix + msg("event.noSameItem.duplicate", listOf(firstPlayer.name, item.name)))
+                player.sendMessage(prefix + msg("event.noSameItem.duplicate", listOf(firstPlayer?.name ?: "Unknown", item.name)))
             }
             order.add(uuid)
             if (infoMode == NoSameItemEnum.EVERYTHING) player.sendMessage(cmp("+ ", cSuccess) + cmp(item.name) + cmp("($type)", NamedTextColor.DARK_GRAY))
@@ -156,12 +157,29 @@ class NoSameItem : Challenge {
             val title = cmp("- ", cError) + cmp(buildString { repeat(dupes) { append("❤") } }, NamedTextColor.DARK_RED)
             val duration = Duration.ofMillis(500)
             player.showTitle(Title.title(emptyComponent(), title, Title.Times.times(duration, duration, duration)))
-            val newHearts = hearts.getOrDefault(uuid) { lives } - dupes
+            val newHearts = hearts.getOrPut(uuid) { 1 } - dupes
             hearts[uuid] = newHearts
-            player.damage(0.01)
+
             if (newHearts <= 0) {
-                player.sendMessage(prefix + msg("event.death.noSameItem"))
+                player.persistentDataContainer.set(NamespacedKey(namespace, "death.custom"), PersistentDataType.STRING, "noSameItem")
+                player.damage(999.0)
+            } else player.damage(0.01)
+        }
+    }
+
+    private fun removePlayer(player: Player) {
+        val uuid = player.uniqueId
+        val items = playerCollections[uuid] ?: return
+        //Check if player is first on any item and remove him from the order
+        val heartsBack = buildMap {
+            items.forEach { item ->
+                val order = collectionOrder[item] ?: return@forEach
+                if (order.firstOrNull() == uuid) { //Player is first
+                    order.getOrNull(1)?.let { set(uuid,  getOrElse(uuid) { 0 } + 1) }
+                }
+                order.remove(uuid)
             }
         }
+        items.clear()
     }
 }
