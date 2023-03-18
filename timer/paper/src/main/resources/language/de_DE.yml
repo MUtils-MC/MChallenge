@@ -31,7 +31,7 @@ command:
   pause: "<red>Timer wurde <b>pausiert</b>!<grey> (<input-1>)" #v1
   alreadyOn: "<red>Timer ist bereits am Laufen!"
   alreadyOff: "<red>Timer ist bereits pausiert!"
-  reset: "<grey>Timer successfully reset to time 0"
+  reset: "<grey>Timer erfolgreich auf 0 zurückgesetzt"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
