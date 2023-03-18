@@ -56,7 +56,7 @@ event:
     time: "Verschwindet in"
     paused: "Anzeige pausiert (ausgewählt)"
   hide:
-    hide: "All players are now <red>hidden"
+    hide: "Alle Spieler sind nun <red>versteckt"
     show: "All players are now <green>visible"
 #-----------------------------------------#
 #Items                  #
@@ -441,7 +441,7 @@ items:
         n: "Anvil Height"
     ITEM_DECAY:
       time:
-        n: "Decay Time"
+        n: "Abkling Zeit"
     AREA_TIMER:
       time:
         n: "Max. Zeit"
@@ -451,4 +451,4 @@ items:
         n: "Area Mode"
     BLOCK_ASYNC:
       hide:
-        n: "Hide Players"
+        n: "Spieler ausblenden"
