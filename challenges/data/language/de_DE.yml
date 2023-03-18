@@ -57,7 +57,7 @@ event:
     paused: "Anzeige pausiert (ausgewählt)"
   hide:
     hide: "Alle Spieler sind nun <red>versteckt"
-    show: "All players are now <green>visible"
+    show: "Alle Spieler sind nun <green>sichtbar"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -93,8 +93,8 @@ items:
     pageIndicator:
       l: "Klicke, um eine kompakte<br>GUI mit schnellem Zugriff zu öffnen"
     reset:
-      n: "Reset Settings"
-      l: "This action cannot be<br>reverted!"
+      n: "Einstellungen zurücksetzen"
+      l: "Diese Aktion kann nicht<br>rückgängig gemacht werden!"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -413,16 +413,16 @@ items:
         n: "Blockdrops"
     CHUNK_CLEARER:
       breakAll:
-        n: "Break All"
+        n: "Alle zerstören"
       shouldBreak:
-        n: "Drop Items"
+        n: "Gegenstände fallen lassen"
       bundle:
         n: "Bundle Items"
     ANVIL_CRUSHER:
       delay:
         n: "Anvil Delay"
       startDelay:
-        n: "Base"
+        n: "Basis"
       amplifierDelay:
         n: "Faster per DMG"
       density:
