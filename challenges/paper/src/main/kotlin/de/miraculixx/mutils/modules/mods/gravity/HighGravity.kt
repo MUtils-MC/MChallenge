@@ -1,9 +1,9 @@
-package de.miraculixx.mutils.modules.challenge.mods.gravity
+package de.miraculixx.mutils.modules.mods.gravity
 
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.extensions.onlinePlayers
-import net.axay.kspigot.runnables.task
-import net.axay.kspigot.runnables.taskRunLater
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.kpaper.runnables.taskRunLater
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.block.BlastFurnace
@@ -23,11 +23,13 @@ import org.bukkit.util.Vector
 class HighGravity : Gravity {
     override var active = true
     override fun start() {
-        onlinePlayers.forEach { p ->
-            p.setGravity(true)
-            p.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 200, false, false, false))
-        }
+        onlinePlayers.forEach { p -> modifyPlayer(p) }
         mobPusher()
+    }
+
+    override fun modifyPlayer(player: Player) {
+        player.setGravity(true)
+        player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 200, false, false, false))
     }
 
     private fun mobPusher() {
@@ -38,8 +40,8 @@ class HighGravity : Gravity {
                 return@task
             }
             onlinePlayers.forEach { p ->
-                p.getNearbyEntities(30.0, 20.0, 30.0).forEach { entity ->
-                    if (entity is Player) return@forEach
+                p.getNearbyEntities(30.0, 20.0, 30.0).forEach entities@{ entity ->
+                    if (entity is Player) return@entities
                     val result = entity.velocity.clone().add(vector)
                     entity.velocity = result
                 }
@@ -80,10 +82,17 @@ class HighGravity : Gravity {
         val player = it.player
         player.getNearbyEntities(0.5, 1.0, 0.5).forEach { entity ->
             if (entity.type == EntityType.DROPPED_ITEM) {
-                if ((entity as Item).pickupDelay > 0) return@listen
-                player.playPickupItemAnimation(entity)
-                //player.playSound(player.location, Sound.ENTITY_ITEM_PICKUP, 0.2f, 2f)
-                entity.remove()
+                val item = entity as Item
+                if (item.pickupDelay > 0) return@listen
+                val remaining = player.inventory.addItem(item.itemStack)
+                player.playPickupItemAnimation(item)
+                if (remaining.isEmpty()) entity.remove()
+                else {
+                    val size = remaining[remaining.keys.first()]?.amount ?: 0
+                    val newItemStack = entity.itemStack
+                    newItemStack.amount = size
+                    entity.itemStack = newItemStack
+                }
             } else if (entity.type == EntityType.BOAT) {
                 entity.setGravity(true)
                 entity.velocity = entity.velocity.clone().setY(-0.05)
@@ -91,7 +100,7 @@ class HighGravity : Gravity {
         }
         if (player.gameMode != GameMode.SURVIVAL) return@listen
 
-        val subblock = it.to.clone().add(.0,-1.0,.0).block.type
+        val subblock = it.to.clone().add(.0, -1.0, .0).block.type
         if (subblock.isAir || subblock == Material.WATER) {
             player.removePotionEffect(PotionEffectType.LEVITATION)
             val vector = Vector(0, -1, 0)

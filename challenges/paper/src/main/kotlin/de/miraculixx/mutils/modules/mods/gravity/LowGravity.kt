@@ -1,9 +1,8 @@
-package de.miraculixx.mutils.modules.challenge.mods.gravity
+package de.miraculixx.mutils.modules.mods.gravity
 
-import net.axay.kspigot.event.SingleListener
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.extensions.onlinePlayers
-import net.axay.kspigot.runnables.taskRunLater
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.runnables.taskRunLater
 import org.bukkit.Statistic
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
@@ -20,19 +19,21 @@ class LowGravity : Gravity {
     override var active = true
 
     override fun start() {
-        onlinePlayers.forEach { p ->
-            p.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 999999, 0, false, false, false))
-            for (entity in p.getNearbyEntities(300.0, 200.0, 300.0)) {
-                if (entity is Player) continue
-                if (entity is LivingEntity) {
-                    entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, Int.MAX_VALUE, 99, false))
-                    entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP, Int.MAX_VALUE, 4, false))
-                    entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, Int.MAX_VALUE, 0, false))
-                } else {
-                    entity.setGravity(false)
-                    val vector = Vector(0.0, -0.1, 0.0)
-                    entity.velocity = vector
-                }
+        onlinePlayers.forEach { p -> modifyPlayer(p) }
+    }
+
+    override fun modifyPlayer(player: Player) {
+        player.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 999999, 0, false, false, false))
+        for (entity in player.getNearbyEntities(300.0, 200.0, 300.0)) {
+            if (entity is Player) continue
+            if (entity is LivingEntity) {
+                entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, Int.MAX_VALUE, 99, false, false, false))
+                entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP, Int.MAX_VALUE, 4, false, false, false))
+                entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, Int.MAX_VALUE, 0, false, false, false))
+            } else {
+                entity.setGravity(false)
+                val vector = Vector(0.0, -0.1, 0.0)
+                entity.velocity = vector
             }
         }
     }
@@ -66,9 +67,9 @@ class LowGravity : Gravity {
 
     private val onSpawn = listen<CreatureSpawnEvent> {
         val entity = it.entity
-        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 99, false))
-        entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP, 999999, 4, false))
-        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 999999, 0, false))
+        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 99, false, false, false))
+        entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP, 999999, 4, false, false, false))
+        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 999999, 0, false, false, false))
     }
 
 
@@ -131,7 +132,7 @@ class LowGravity : Gravity {
         }
     }
 
-    override val classes: List<SingleListener<*>> = listOf(
+    override val classes = listOf(
         onDrop, onHit, onBreak, onKill, onSpawn, onShoot, onMove, onMerge
     )
 }

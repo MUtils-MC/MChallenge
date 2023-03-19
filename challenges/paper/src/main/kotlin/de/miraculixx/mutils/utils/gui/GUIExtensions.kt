@@ -34,7 +34,7 @@ fun GUITypes.buildInventory(player: Player, id: String, itemProvider: ItemProvid
             this.clickAction = clickAction.run
         }
 
-        GUITypes.CHALLENGE_SETTINGS -> InventoryManager.settingsBuilder(id) {
+        GUITypes.CHALLENGE_SETTINGS, GUITypes.CH_LIMITED_SKILLS -> InventoryManager.settingsBuilder(id) {
             this.title = this@buildInventory.title
             this.player = player
             this.itemProvider = itemProvider

@@ -1,7 +1,7 @@
-package de.miraculixx.mutils.modules.challenge.mods.gravity
+package de.miraculixx.mutils.modules.mods.gravity
 
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.extensions.onlinePlayers
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
@@ -17,26 +17,26 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.bukkit.util.Vector
 
-@Suppress("LABEL_NAME_CLASH")
 class NoGravity : Gravity {
     override var active = true
     override fun start() {
-        onlinePlayers.forEach { p ->
-            p.setGravity(true)
-            p.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 20, 0, false, false, false))
-            p.getNearbyEntities(300.0, 200.0, 300.0).forEach { entity ->
-                if (entity is Player) return@forEach
-                entity.setGravity(false)
-                if (entity is LivingEntity) {
-                    entity.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 20, 0, false, false))
-                } else {
-                    val vector = Vector(0.0, 0.2, 0.0)
-                    entity.velocity = vector
-                }
+        onlinePlayers.forEach { p -> modifyPlayer(p) }
+    }
+
+    override fun modifyPlayer(player: Player) {
+        player.setGravity(true)
+        player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 20, 0, false, false, false))
+        player.getNearbyEntities(300.0, 200.0, 300.0).forEach entities@{ entity ->
+            if (entity is Player) return@entities
+            entity.setGravity(false)
+            if (entity is LivingEntity) {
+                entity.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 20, 0, false, false))
+            } else {
+                val vector = Vector(0.0, 0.2, 0.0)
+                entity.velocity = vector
             }
         }
     }
-
 
     private val onMove = listen<PlayerMoveEvent> {
         val player = it.player
@@ -69,7 +69,7 @@ class NoGravity : Gravity {
     private val onBreak = listen<BlockBreakEvent> {
         val block = it.block
         block.drops.forEach { drop ->
-            val item = block.world.dropItem(block.location.add(.5,.5,.5), drop)
+            val item = block.world.dropItem(block.location.add(.5, .5, .5), drop)
             item.setGravity(false)
             val vector = Vector(0.0, 0.2, 0.0)
             item.velocity = vector

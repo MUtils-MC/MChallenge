@@ -109,11 +109,14 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                 "mode" to ChallengeBoolSetting("POLAR_BEAR_SPAWN_EGG", true)
             )
 
-            RIGHT_TOOL -> emptyMap()
+            RIGHT_TOOL -> mapOf("starter" to ChallengeBoolSetting("WOODEN_PICKAXE", true))
             CHUNK_BLOCK_BREAK -> mapOf("bundle" to ChallengeBoolSetting("HOPPER", true))
             SNEAK_SPAWN -> mapOf("onlyMob" to ChallengeBoolSetting("POLAR_BEAR_SPAWN_EGG", true))
             WORLD_PEACE -> emptyMap()
-            GRAVITY -> mapOf("delay" to ChallengeIntSetting("CLOCK", 180, "s", max = 500, min = 30, step = 10))
+            GRAVITY -> mapOf(
+                "delay" to ChallengeIntSetting("CLOCK", 180, "s", max = 600, min = 20, step = 10),
+                "duration" to ChallengeIntSetting("REPEATER", 120, "s", max = 600, min = 20, step = 10)
+            )
             STAY_AWAY -> mapOf(
                 "distance" to ChallengeDoubleSetting("SNOWBALL", 3.0, "b", max = 10.0, min = 0.5),
                 "warning" to ChallengeBoolSetting("CRIMSON_FUNGUS", true)
@@ -133,7 +136,8 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
             NO_DOUBLE_KILL -> mapOf("global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true))
             DAMAGER -> mapOf(
                 "mode" to ChallengeEnumSetting("KNOWLEDGE_BOOK", ChDamager.SLOT_CHANGE.name, options = ChDamager.values().map { it.name }),
-                "damage" to ChallengeIntSetting("BEETROOT", 1, "hp", max = 20, min = 1)
+                "damage" to ChallengeIntSetting("BEETROOT", 1, "hp", max = 20, min = 1),
+                "interval" to ChallengeIntSetting("CLOCK", 1, "s", max = 600, min = 1)
             )
 
             RIVALS_COLLECT -> mapOf(

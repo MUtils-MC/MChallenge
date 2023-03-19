@@ -50,7 +50,10 @@ class NoSameItem : Challenge {
 
     override fun start(): Boolean {
         onlinePlayers.forEach { player ->
+            val uuid = player.uniqueId
+            hearts[uuid] = lives
             player.showBossBar(getBossBar(player.uniqueId))
+            updateBossBar(uuid)
             if (sync) player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = lives * 2.0
         }
         return true
@@ -84,11 +87,13 @@ class NoSameItem : Challenge {
     private val onJoin = listen<PlayerJoinEvent>(register = false) {
         val uuid = it.player.uniqueId
         if (Spectator.isSpectator(uuid)) return@listen
+        hearts.putIfAbsent(uuid, lives)
         it.player.showBossBar(getBossBar(uuid))
+        updateBossBar(uuid)
     }
 
     private val onDie = listen<PlayerDeathEvent>(register = false) {
-        manager.removePlayer(it.entity)
+        removePlayer(it.player)
     }
 
     private val onCraft = listen<CraftItemEvent>(register = false) {
@@ -109,11 +114,11 @@ class NoSameItem : Challenge {
         before.addAll(playerCollections.getOrElse(player.uniqueId) { emptySet() })
 
         // Add all inventory items to 'after'
-        after.addAll(player.inventory.mapNotNull { item -> item.type })
+        after.addAll(player.inventory.mapNotNull { item -> item?.type })
         val topInv = view.topInventory
         if (topInv.type == InventoryType.CRAFTING || it.view.topInventory.type == InventoryType.WORKBENCH) {
             topInv.setItem(0, null)
-            after.addAll(topInv.mapNotNull { item -> item.type })
+            after.addAll(topInv.mapNotNull { item -> item?.type })
         }
         val cursor = view.cursor
         if (cursor != null && !cursor.type.isAir) after.add(cursor.type)
@@ -150,7 +155,7 @@ class NoSameItem : Challenge {
                 player.sendMessage(prefix + msg("event.noSameItem.duplicate", listOf(firstPlayer?.name ?: "Unknown", item.name)))
             }
             order.add(uuid)
-            if (infoMode == NoSameItemEnum.EVERYTHING) player.sendMessage(cmp("+ ", cSuccess) + cmp(item.name) + cmp("($type)", NamedTextColor.DARK_GRAY))
+            if (infoMode == NoSameItemEnum.EVERYTHING) player.sendMessage(cmp("+ ", cSuccess) + cmp(item.name) + cmp(" ($type)", NamedTextColor.DARK_GRAY))
         }
 
         if (dupes > 0) {
@@ -164,6 +169,7 @@ class NoSameItem : Challenge {
                 player.persistentDataContainer.set(NamespacedKey(namespace, "death.custom"), PersistentDataType.STRING, "noSameItem")
                 player.damage(999.0)
             } else player.damage(0.01)
+            updateBossBar(uuid)
         }
     }
 
@@ -175,11 +181,32 @@ class NoSameItem : Challenge {
             items.forEach { item ->
                 val order = collectionOrder[item] ?: return@forEach
                 if (order.firstOrNull() == uuid) { //Player is first
-                    order.getOrNull(1)?.let { set(uuid,  getOrElse(uuid) { 0 } + 1) }
+                    order.getOrNull(1)?.let { target -> set(target,  getOrElse(target) { 0 } + 1) }
                 }
                 order.remove(uuid)
             }
         }
+        heartsBack.forEach { (uuid, hpBack) ->
+            val newHearts = hearts.getOrDefault(uuid, 0) + hpBack
+            hearts[uuid] = newHearts
+            val title = cmp("+ ", cSuccess) + cmp(buildString { repeat(newHearts) { append("❤") } }, NamedTextColor.DARK_RED)
+            val duration = Duration.ofMillis(500)
+            player.showTitle(Title.title(emptyComponent(), title, Title.Times.times(duration, duration, duration)))
+            updateBossBar(uuid)
+        }
         items.clear()
+    }
+
+    private fun updateBossBar(uuid: UUID) {
+        val bar = getBossBar(uuid)
+        val hearts = hearts.getOrPut(uuid) { lives }
+        val name = if (hearts <= 0) msg("event.noSameItem.deathTitle")
+        else {
+            val redHearts = buildString { repeat(hearts) { append("❤") } }
+            val greyHearts = buildString { repeat(lives - hearts) { append("❤") } }
+            cmp("[ ") + cmp(redHearts, NamedTextColor.DARK_RED) + cmp(greyHearts, NamedTextColor.DARK_GRAY) + cmp(" ]")
+        }
+        bar.name(name)
+        bar.progress((hearts.toFloat() / lives).coerceIn(0f..1f))
     }
 }

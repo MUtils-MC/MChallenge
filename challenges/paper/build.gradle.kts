@@ -12,6 +12,7 @@ dependencies {
 
     implementation(project(":challenges:api")) // Internal API
     implementation(project(":world-creator:api")) // External API
+    implementation(project(":bridge:api")) // External API
 }
 
 sourceSets {

@@ -1,41 +1,41 @@
-package de.miraculixx.mutils.modules.challenge.mods.randomizer
+package de.miraculixx.mutils.modules.mods.randomizer
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.worlds
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.worlds
+import de.miraculixx.mutils.utils.getLivingMobs
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.entity.Projectile
 import org.bukkit.event.entity.EntityDamageByEntityEvent
-import java.util.*
 import kotlin.random.Random
 import kotlin.random.nextInt
 
 class EntityDamageRandomizer : Challenge {
-    override val challenge = Challenge.RANDOMIZER_ENTITY_DAMAGE
+    override val challenge = Challenges.RANDOMIZER_DAMAGE
     private var random = true
-    private val map = HashMap<EntityType, Int>()
+    private val map: MutableMap<EntityType, Int> = mutableMapOf()
+
+    init {
+        val settings = challenges.getSetting(challenge).settings
+        random = settings["random"]?.toBool()?.getValue() ?: true
+    }
 
     override fun start(): Boolean {
-        val c = ConfigManager.getConfig(Configs.MODULES)
         val rnd = Random(worlds.first().seed)
-        random = c.getBoolean("RANDOMIZER_ENTITY_DAMAGE.Random")
-        val types = kotlin.collections.ArrayList<EntityType>(Arrays.stream(EntityType.values()).filter { type ->
-            type.entityClass != null && LivingEntity::class.java.isAssignableFrom(type.entityClass) && type != EntityType.PLAYER
-        }.toList()).shuffled(rnd)
+        val types = getLivingMobs(true).shuffled(rnd)
         if (!random) {
             map.clear()
             types.forEach { type ->
                 map[type] = Random.nextInt(1..19)
             }
         }
-
         return true
     }
 

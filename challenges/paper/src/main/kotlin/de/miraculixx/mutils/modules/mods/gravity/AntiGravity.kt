@@ -1,9 +1,8 @@
-@file:Suppress("LABEL_NAME_CLASH")
+package de.miraculixx.mutils.modules.mods.gravity
 
-package de.miraculixx.mutils.modules.challenge.mods.gravity
-
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.extensions.onlinePlayers
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.mutils.messages.msg
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
@@ -19,22 +18,23 @@ import org.bukkit.util.Vector
 class AntiGravity : Gravity {
     override var active = true
     override fun start() {
-        onlinePlayers.forEach { p ->
-            p.setGravity(false)
-            p.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 2, false, false, false))
-            p.getNearbyEntities(300.0, 200.0, 300.0).forEach { entity ->
-                if (entity is Player) return@forEach
-                entity.setGravity(false)
-                if (entity is LivingEntity) {
-                    entity.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 2, false, false))
-                } else {
-                    val vector = Vector(0.0, 0.5, 0.0)
-                    entity.velocity = vector
-                }
+        onlinePlayers.forEach { p -> modifyPlayer(p) }
+    }
+
+    override fun modifyPlayer(player: Player) {
+        player.setGravity(false)
+        player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 2, false, false, false))
+        player.getNearbyEntities(300.0, 200.0, 300.0).forEach entities@{ entity ->
+            if (entity is Player) return@entities
+            entity.setGravity(false)
+            if (entity is LivingEntity) {
+                entity.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 2, false, false))
+            } else {
+                val vector = Vector(0.0, 0.5, 0.0)
+                entity.velocity = vector
             }
         }
     }
-
 
     private val onMove = listen<PlayerMoveEvent> {
         val player = it.player
@@ -65,8 +65,8 @@ class AntiGravity : Gravity {
     }
 
     private val onDeath = listen<PlayerDeathEvent> {
-        if (it.entity.location.blockY > 250) {
-            it.deathMessage = it.entity.player?.name + " ist im All erfroren"
+        if (it.player.location.blockY > 250) {
+            it.deathMessage(msg("event.death.gravity", listOf(it.player.name)))
         }
     }
 

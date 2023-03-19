@@ -59,7 +59,7 @@ object InventoryManager {
      * Use storage GUIs to display a lot of content with a minimal of placeholders. They can be filtered, scrollable and supports menus
      * @author Miraculixx
      */
-    inline fun storageBuilder(id: String, builder: StorageGUI.Builder.() -> Unit) = StorageGUI.Builder(id).apply(builder).build()
+    inline fun storageBuilder(id: String, builder: StorageGUI.Builder.() -> Unit) = add(id, StorageGUI.Builder(id).apply(builder).build())
 
     /**
      * Inline Builder for GUI type - Scrolling
@@ -67,7 +67,7 @@ object InventoryManager {
      * Use scroll GUIs to display activation status for your settings. Should not contain more than 64 settings for best experience.
      * @author Miraculixx
      */
-    inline fun scrollBuilder(id: String, builder: ScrollGUI.Builder.() -> Unit) = ScrollGUI.Builder(id).apply(builder).build()
+    inline fun scrollBuilder(id: String, builder: ScrollGUI.Builder.() -> Unit) = add(id, ScrollGUI.Builder(id).apply(builder).build())
 
     /**
      * Inline Builder for GUI type - Settings
@@ -75,12 +75,12 @@ object InventoryManager {
      * Use settings GUIs to display 1-4 items in a central and compact design. Items will align to the center and with a one slot gap between
      * @author Miraculixx
      */
-    inline fun settingsBuilder(id: String, builder: SettingsGUI.Builder.() -> Unit) = SettingsGUI.Builder(id).apply(builder).build()
+    inline fun settingsBuilder(id: String, builder: SettingsGUI.Builder.() -> Unit) = add(id, SettingsGUI.Builder(id).apply(builder).build())
 
     /**
      * Inline Builder for GUI type - Library
      *
      * @author Miraculixx
      */
-    inline fun libraryBuilder(id: String, builder: LibraryGUI.Builder.() -> Unit) = LibraryGUI.Builder(id).apply(builder).build()
+    inline fun libraryBuilder(id: String, builder: LibraryGUI.Builder.() -> Unit) = add(id, LibraryGUI.Builder(id).apply(builder).build())
 }

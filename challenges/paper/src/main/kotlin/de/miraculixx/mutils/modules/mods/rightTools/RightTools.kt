@@ -1,21 +1,42 @@
-package de.miraculixx.mutils.modules.challenge.mods
+package de.miraculixx.mutils.modules.mods.rightTools
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import org.bukkit.Location
-import org.bukkit.Particle
-import org.bukkit.Tag
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.items.itemStack
+import de.miraculixx.kpaper.items.meta
+import org.bukkit.*
 import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageByEntityEvent
+import org.bukkit.inventory.meta.Damageable
 
 class RightTools : Challenge {
-    override val challenge = Challenge.RIGHT_TOOL
+    override val challenge = Challenges.RIGHT_TOOL
+    private val starterAxe: Boolean
+
+    init {
+        val settings = challenges.getSetting(challenge).settings
+        starterAxe = settings["starter"]?.toBool()?.getValue() ?: true
+    }
 
     override fun start(): Boolean {
+        if (starterAxe) {
+            val axe = itemStack(Material.WOODEN_AXE) {
+                meta<Damageable> {
+                    damage = maxItemUseDuration / 2
+                }
+            }
+            onlinePlayers.forEach { player ->
+                if (player.gameMode == GameMode.SURVIVAL)
+                    player.inventory.addItem()
+            }
+        }
         return true
     }
 
@@ -52,15 +73,18 @@ class RightTools : Challenge {
         val block = it.block
         val blockType = block.type
         val valid = when {
-            Tag.MINEABLE_AXE.isTagged(blockType) && itemType.endsWith("_AXE") -> true
+            (Tag.MINEABLE_AXE.isTagged(blockType) || Tag.BEDS.isTagged(blockType)) && itemType.endsWith("_AXE") -> true
             Tag.MINEABLE_PICKAXE.isTagged(blockType) && itemType.endsWith("_PICKAXE") -> true
             Tag.MINEABLE_SHOVEL.isTagged(blockType) && itemType.endsWith("_SHOVEL") -> true
             Tag.MINEABLE_HOE.isTagged(blockType) && itemType.endsWith("_HOE") -> true
             itemType == "SHEARS" -> Tag.WOOL.isTagged(blockType) || Tag.REPLACEABLE_PLANTS.isTagged(blockType) || Tag.FLOWERS.isTagged(blockType)
                     || Tag.LEAVES.isTagged(blockType)
+
+            blockType.name.endsWith("TORCH") || blockType == Material.SEA_PICKLE -> true
             else -> false
         }
-        if (!valid) {
+        val dropBlocks = block.getDrops(item, it.player).isNotEmpty()
+        if (!valid || !dropBlocks) {
             it.isCancelled = true
             spawnParticle(block.location)
         }

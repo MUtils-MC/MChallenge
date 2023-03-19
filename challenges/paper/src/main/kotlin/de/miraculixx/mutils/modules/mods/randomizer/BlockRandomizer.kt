@@ -1,13 +1,13 @@
-package de.miraculixx.mutils.modules.challenge.mods.randomizer
+package de.miraculixx.mutils.modules.mods.randomizer
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.worlds
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.worlds
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.event.block.BlockBreakEvent
@@ -17,15 +17,18 @@ import org.bukkit.inventory.ItemStack
 import kotlin.random.Random
 
 class BlockRandomizer : Challenge {
-    override val challenge = Challenge.RANDOMIZER_BLOCK
-    private var random = true
-    private val map = HashMap<Material, Material>()
-    private val list = ArrayList<Material>()
+    override val challenge = Challenges.RANDOMIZER_BLOCK
+    private var random: Boolean
+    private val map: MutableMap<Material, Material> = mutableMapOf()
+    private val list: MutableList<Material> = mutableListOf()
+
+    init {
+        val settings = challenges.getSetting(Challenges.RANDOMIZER_BLOCK).settings
+        random = settings["random"]?.toBool()?.getValue() ?: true
+    }
 
     override fun start(): Boolean {
-        val c = ConfigManager.getConfig(Configs.MODULES)
         val rnd = Random(worlds.first().seed)
-        random = c.getBoolean("RANDOMIZER_BLOCK.Random")
         if (!random) {
             val drops = Material.values().filter { it.isItem }.shuffled(rnd)
             var block = mutableListOf<Material>()
@@ -39,9 +42,7 @@ class BlockRandomizer : Challenge {
                 block.removeAt(0)
             }
         } else {
-            Material.values().forEach {
-                list.add(it)
-            }
+            list.addAll(Material.values())
             list.shuffle(rnd)
         }
         return true

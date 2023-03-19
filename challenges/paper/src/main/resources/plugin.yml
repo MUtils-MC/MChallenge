@@ -3,7 +3,7 @@ load: STARTUP
 version: 1
 main: de.miraculixx.mutils.MChallenge
 api-version: 1.16
-authors: [ Miraculixx ]
+authors: [ Miraculixx, "The REAL NoRisk" ]
 description: MUtils Challenges - Play various Challenges that can modify the game slightly to completely against or in coop with your friends!
 website: https://mutils.de/
 libraries:
