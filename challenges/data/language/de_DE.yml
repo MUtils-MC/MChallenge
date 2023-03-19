@@ -49,6 +49,7 @@ event:
       item: "<red><input-1> hat versucht ein Gegenstand aufzusammeln!"
       trade: "<red><input-1> hat versucht zu handeln!"
     blockAsync: "<red><input-1> clicked on a fake block!"
+    gravity: "<red><input-1> froze to death in space!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -58,6 +59,8 @@ event:
   hide:
     hide: "Alle Spieler sind nun <red>versteckt"
     show: "Alle Spieler sind nun <green>sichtbar"
+  gravity:
+    switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -95,6 +98,13 @@ items:
     reset:
       n: "Einstellungen zurücksetzen"
       l: "Diese Aktion kann nicht<br>rückgängig gemacht werden!"
+  event:
+    LIMITED_SEE:
+      n: "See - No Damage"
+      l: "Choose to see all mobs<br>but to be unable to<br>damage them"
+    LIMITED_DAMAGE:
+      n: "No See - Damage"
+      l: "Choose to damage all mobs<br>but to be unable to<br>see them"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -452,3 +462,6 @@ items:
     BLOCK_ASYNC:
       hide:
         n: "Spieler ausblenden"
+    RIGHT_TOOLS:
+      starter:
+        n: "Starter Axe"
