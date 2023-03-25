@@ -4,6 +4,7 @@ import de.miraculixx.api.MChallengeAPI
 import de.miraculixx.api.modules.challenges.ChallengeStatus
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.data.TimerDesignValue
 import de.miraculixx.mutils.data.TimerPresets
 import de.miraculixx.mutils.messages.miniMessages
@@ -31,17 +32,17 @@ class Timer(
     var running = false
         set(value) {
             field = value
-            val chApi = MChallengeAPI.instance ?: return
+            val api = MTimer.chAPI
 
             if (value) {
                 listener?.activateTimer()
                 if (rules.syncWithChallenge) {
-                    if (chApi.status == ChallengeStatus.STOPPED) chApi.startChallenges()
-                    else chApi.resumeChallenges()
+                    if (api != null && api.status == ChallengeStatus.STOPPED) api.startChallenges()
+                    else api?.resumeChallenges()
                 }
             } else {
                 listener?.deactivateTimer()
-                if (rules.syncWithChallenge) chApi.pauseChallenges()
+                if (rules.syncWithChallenge) api?.pauseChallenges()
             }
         }
     var countUp = true

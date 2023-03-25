@@ -12,11 +12,14 @@ class SwitchBiomes(biomeData: GeneratorData) : BiomeProvider() {
     private val biomeMap = HashMap<Biome, Biome>()
     private var biomeList: List<Biome>? = null
     private val random = biomeData.rnd ?: false
+    private var vanillaProvider: BiomeProvider? = null
 
     override fun getBiome(worldInfo: WorldInfo, x: Int, y: Int, z: Int): Biome {
-        val provider = worldInfo.vanillaBiomeProvider()
         return if (random) biomeList?.random() ?: Biome.PLAINS
-        else biomeMap[provider.getBiome(worldInfo, x, y, z)] ?: Biome.PLAINS
+        else {
+            if (vanillaProvider == null) vanillaProvider = worldInfo.vanillaBiomeProvider()
+            biomeMap[vanillaProvider?.getBiome(worldInfo, x, y, z)] ?: Biome.PLAINS
+        }
     }
 
     override fun getBiomes(worldInfo: WorldInfo): MutableList<Biome> {

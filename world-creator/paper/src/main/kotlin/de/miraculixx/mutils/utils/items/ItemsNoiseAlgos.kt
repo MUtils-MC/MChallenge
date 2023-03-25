@@ -18,7 +18,7 @@ class ItemsNoiseAlgos: ItemProvider {
     private val infoLore = listOf(emptyComponent(), cmp("• ") + cmp("Info", cHighlight, underlined = true))
     private val clickLore = listOf(emptyComponent(), msgClick + cmp("Add Algorithm"))
 
-    override fun getItemList(): List<ItemStack> {
+    override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return GeneratorAlgorithm.values().map {
             itemStack(Material.PLAYER_HEAD) {
                 meta {

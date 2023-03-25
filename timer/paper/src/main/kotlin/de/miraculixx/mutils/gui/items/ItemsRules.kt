@@ -15,7 +15,7 @@ class ItemsRules : ItemProvider {
 
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
-            (from..to).forEach {
+            (from until to).forEach {
                 val itemData = getItem(it)
                 itemData.first?.let { item -> put(item, itemData.second) }
             }

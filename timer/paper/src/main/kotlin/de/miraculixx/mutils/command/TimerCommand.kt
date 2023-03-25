@@ -70,7 +70,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 sender.sendMessage(prefix + msg("command.reset"))
             }
 
-            "config" -> if (!isPersonal && sender.hasPermission("mutils.command.timer-config")) {
+            "config" -> if (isPersonal && !sender.hasPermission("mutils.command.timer-config")) {
                 sender.sendMessage(prefix + msg("command.help"))
                 return false
             } else when (args.getOrNull(1)?.lowercase()) {
@@ -90,10 +90,6 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 } else if (MTimer.localization.setLanguage(key)) {
                     sender.sendMessage(prefix + msg("command.language"))
                 }
-            }
-
-            "test" -> {
-                TimerGUI.TEST.buildInventory(sender as Player, "TEST", TestProvider(), GUIOverview(true))
             }
 
             else -> sender.sendMessage(prefix + msg("command.help"))

@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack
 class ItemsBuilderType : ItemProvider {
     private val infoLore = listOf(emptyComponent(), cmp("• ") + cmp("Info", cHighlight, underlined = true))
 
-    override fun getItemList(): List<ItemStack> {
+    override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return listOf(
             itemStack(Material.BEETROOT_SEEDS) {
                 meta {

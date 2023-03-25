@@ -11,6 +11,8 @@ import de.miraculixx.mutils.extensions.round
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.TextComponent
+import net.kyori.adventure.text.TranslatableComponent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
@@ -131,10 +133,11 @@ class ItemsDesignPartEditor(
             add(cmp("   ∙ ", NamedTextColor.DARK_GRAY) + dummyTimer.buildFormatted(isRunning))
             add(emptyComponent())
             if (timerValue != null) {
-                add(msgClickLeft + cmp("Switch $msg1"))
-                add(msgClickRight + cmp("Switch $msg2"))
-                add(cmp("Sneak-Left-Click", cHighlight) + cmp(" ≫ ") + cmp("Change $msg3"))
-                add(cmp("Sneak-Right-Click", cHighlight) + cmp(" ≫ ")  + cmp("Change $msg4"))
+                val msgButton = cmp(msgString("common.button") + " ", cHighlight)
+                add(msgButton + Component.keybind("key.hotbar.1", cHighlight) + cmp(" ≫ ") + cmp("Switch $msg1"))
+                add(msgButton + Component.keybind("key.hotbar.2", cHighlight) + cmp(" ≫ ") + cmp("Switch $msg2"))
+                add(msgButton + Component.keybind("key.hotbar.3", cHighlight) + cmp(" ≫ ") + cmp("Change $msg3"))
+                add(msgButton + Component.keybind("key.hotbar.4", cHighlight) + cmp(" ≫ ") + cmp("Change $msg4"))
             } else if (!blanc) add(msgClick + cmp("Change $name"))
         }
     }

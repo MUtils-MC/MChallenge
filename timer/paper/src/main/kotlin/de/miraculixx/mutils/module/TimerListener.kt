@@ -15,7 +15,6 @@ import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameMode
 import org.bukkit.GameRule
-import org.bukkit.Location
 import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
@@ -26,7 +25,6 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerQuitEvent
 
 class TimerListener {
-    private var lastLocation: Location? = null
 
     fun disableAll() {
         onDamage.unregister()
@@ -92,28 +90,29 @@ class TimerListener {
             timer.running = false
             //challenges = ChallengeStatus.PAUSED
             //chManger.unregisterChallenges(ModuleManager.getChallenges())
-            lastLocation = loc
             val dash = cmp("\n======================\n", NamedTextColor.DARK_AQUA, bold = true, strikethrough = true)
-            var cmp = dash + msg("modules.timer.gameOver", listOf(player.name))
+            var cmp = dash + cmp(msgString("event.gameOver", listOf(player.name)), cError, bold = true)
 
             if (rules.announceLocation)
-                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp(msgString("event.location"), NamedTextColor.GOLD) + cmp("${loc.blockX} ${loc.blockY} ${loc.blockZ}", NamedTextColor.YELLOW))
+                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp(msgString("event.location"), NamedTextColor.GOLD, true) + cmp("${loc.blockX} ${loc.blockY} ${loc.blockZ}", NamedTextColor.YELLOW))
                     .addHover(
-                        cmp(msgString("event.exactLocation"), cHighlight, bold = true) + cmp(" ${loc.toSimpleString()}") +
-                                cmp(msgString("event.world"), cHighlight, bold = true) + cmp(loc.world.name)
+                        cmp(msgString("event.exactLocation"), cHighlight) + cmp(" ${loc.toSimpleString()}\n") +
+                                cmp(msgString("event.world"), cHighlight) + cmp(" ${loc.world.name}")
                     )
 
             if (rules.announceSeed) {
                 val seed = loc.world.seed.toString()
-                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("Seed", NamedTextColor.GOLD) + cmp(seed, NamedTextColor.YELLOW))
-                    .addHover(cmp(msgString("event.clickCopy"), cHighlight))
+                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("Seed: ", NamedTextColor.GOLD, true) + cmp(seed, NamedTextColor.YELLOW))
+                    .addHover(cmp(msgString("event.clickToCopy", listOf(seed)), cHighlight))
                     .clickEvent(ClickEvent.copyToClipboard(seed))
             }
 
-            cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + cmp(msgString("event.playtime"), NamedTextColor.GOLD) + cmp(timer.buildSimple(), NamedTextColor.YELLOW)
+            cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + cmp(msgString("event.playtime"), NamedTextColor.GOLD, true) + cmp(timer.buildSimple(), NamedTextColor.YELLOW)
 
-            if (rules.announceBack)
-                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + msg("event.backPrompt")
+            if (rules.announceBack) {
+                val cmd = "/execute in ${loc.world.key().asString()} run teleport @s ${loc.blockX} ${loc.blockY} ${loc.blockZ}"
+                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("") + msg("event.backPrompt").addHover(cmp(cmd)).clickEvent(ClickEvent.runCommand(cmd)).color(NamedTextColor.GOLD))
+            }
 
             broadcast(cmp + dash)
         } else {
@@ -169,16 +168,17 @@ class TimerListener {
         //challenges = ChallengeStatus.PAUSED
         val dash = cmp("\n======================\n", NamedTextColor.DARK_AQUA, bold = true, strikethrough = true)
         val dashes = cmp("\n>> ", NamedTextColor.DARK_GRAY)
-        var final = dash + dashes + msg("event.endSuccess", listOf(entity.name))
+        var final = dash + cmp(msgString("event.endSuccess"), cSuccess, true) +
+                dashes + cmp(entity.name, NamedTextColor.GOLD, true)
 
         if (rules.announceSeed) {
             val seed = entity.world.seed.toString()
-            final += dashes + (cmp("Seed: ", NamedTextColor.GOLD) + cmp(seed, NamedTextColor.YELLOW))
+            final += dashes + (cmp("Seed: ", NamedTextColor.GOLD, true) + cmp(seed, NamedTextColor.YELLOW))
                 .addHover(cmp(msgString("event.clickCopy"), cHighlight))
                 .clickEvent(ClickEvent.copyToClipboard(seed))
         }
 
-        broadcast(final + dashes + cmp(msgString("event.playtime"), NamedTextColor.GOLD) + cmp(" ${timer.buildSimple()}") + dash)
+        broadcast(final + dashes + cmp(msgString("event.playtime"), NamedTextColor.GOLD, true) + cmp(" ${timer.buildSimple()}") + dash)
     }
 
 

@@ -4,7 +4,6 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.gui.Head64
 import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.gui.items.skullTexture
@@ -16,6 +15,8 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.SkullMeta
 
 enum class TimerGUI(private val title: Component) {
+    COLOR(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Color Picker", cHighlight)),
+
     TEST(cmp("TEST")),
     RULES(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Timer Rules", cHighlight)),
     GOALS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Timer Goals", cHighlight)),
@@ -59,7 +60,7 @@ enum class TimerGUI(private val title: Component) {
                 )
             }
 
-            DESIGN_EDITOR -> InventoryManager.inventoryBuilder(id) {
+            DESIGN_EDITOR, COLOR -> InventoryManager.inventoryBuilder(id) {
                 this.title = this@TimerGUI.title
                 this.player = player
                 this.size = 3

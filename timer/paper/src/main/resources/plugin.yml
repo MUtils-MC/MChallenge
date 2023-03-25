@@ -28,3 +28,5 @@ commands:
   ptimer:
     permission: "mutils.command.ptimer"
     description: "Setup your own global MUtils-Timer"
+  colorful:
+    description: "Build a color"

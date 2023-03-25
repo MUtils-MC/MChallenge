@@ -13,7 +13,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 
 class GUIGoals : GUIEvent {
-    override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, _: CustomInventory ->
+    override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
         val item = it.currentItem ?: return@event
@@ -29,7 +29,9 @@ class GUIGoals : GUIEvent {
             0 -> {
                 player.click()
                 TimerGUI.OVERVIEW.buildInventory(player, "TIMER_GLOBAL", ItemsOverview(TimerManager.getGlobalTimer(), false), GUIOverview(false))
+                return@event
             }
         }
+        inv.update()
     }
 }

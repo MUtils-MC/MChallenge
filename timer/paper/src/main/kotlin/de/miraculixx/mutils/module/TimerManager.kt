@@ -117,5 +117,9 @@ object TimerManager {
         pTimerOut.forEach { pt -> pt.playerUUID?.let { personalTimer[it] = resolveTimer(pt) } }
         rules = json.decodeFromString(File("${folder.path}/rules.json").readJsonString(true))
         goals = json.decodeFromString(File("${folder.path}/goals.json").readJsonString(true))
+
+        if (!globalTimer.running) {
+            globalTimer.running = false
+        }
     }
 }

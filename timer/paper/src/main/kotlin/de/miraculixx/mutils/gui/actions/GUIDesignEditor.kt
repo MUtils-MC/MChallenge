@@ -12,6 +12,7 @@ import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignPartEditor
 import de.miraculixx.mutils.gui.items.ItemsDesigns
+import de.miraculixx.mutils.messages.cmp
 import de.miraculixx.mutils.module.TimerManager
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -27,7 +28,7 @@ class GUIDesignEditor(
         val player = it.whoClicked as? Player ?: return@event
         val item = it.currentItem
         when (item?.itemMeta?.customModel ?: 0) {
-            1 -> AwaitChatMessage(false, player, "design name", 30, design.name, {
+            1 -> AwaitChatMessage(false, player, "design name", 30, design.name, false, cmp("\n"), {
                 design.name = if (it.length > 30) it.dropLast(it.length - 30) else it
                 player.soundEnable()
             }) {

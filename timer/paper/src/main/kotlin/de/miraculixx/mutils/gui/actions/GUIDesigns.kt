@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.MUtilsBridge
+import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerPresets
 import de.miraculixx.mutils.extensions.*
@@ -10,10 +10,10 @@ import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignEditor
 import de.miraculixx.mutils.gui.items.ItemsOverview
-import de.miraculixx.mutils.messages.msgNoBridge
-import de.miraculixx.mutils.messages.namespace
+import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
+import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
@@ -49,11 +49,17 @@ class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GU
 
             2 -> {
                 player.closeInventory()
-                val bridge = MUtilsBridge.INSTANCE
+                val bridge = MTimer.bridgeAPI
                 if (bridge == null) {
                     player.soundError()
-                    player.sendMessage(msgNoBridge)
+                    player.sendMessage(
+                        prefix + cmp("The public library is not implemented yet!\nCheckout ", cError) +
+                                cmp("MUtils.de", cError, underlined = true).clickEvent(ClickEvent.openUrl("https://mutils.de")) +
+                                cmp(" for more information", cError)
+                    )
+//                    player.sendMessage(msgNoBridge)
                 } else {
+                    TODO()
                     //Open GUI
                 }
             }
@@ -70,7 +76,8 @@ class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GU
                         val design = item.getDesign(player) ?: return@event
                         player.click()
                         player.closeInventory()
-                        TimerGUI.DESIGN_EDITOR.buildInventory(player, player.uniqueId.toString(),
+                        TimerGUI.DESIGN_EDITOR.buildInventory(
+                            player, player.uniqueId.toString(),
                             ItemsDesignEditor(design.first, design.second), GUIDesignEditor(design.first, design.second, isPersonal)
                         )
                     }

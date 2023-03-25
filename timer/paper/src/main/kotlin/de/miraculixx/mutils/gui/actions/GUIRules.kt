@@ -35,7 +35,8 @@ class GUIRules : GUIEvent {
                 }
             }
             6 -> rules.freezeWorld = rules.freezeWorld.toggle(player)
-            7 -> rules.syncWithChallenge = rules.syncWithChallenge.toggle(player)
+            7 -> rules.announceBack = rules.announceBack.toggle(player)
+            8 -> rules.syncWithChallenge = rules.syncWithChallenge.toggle(player)
 
             0 -> {
                 player.click()

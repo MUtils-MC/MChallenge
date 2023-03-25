@@ -13,7 +13,7 @@ class ItemsCopy: ItemProvider {
     private val infoLore = listOf(emptyComponent(), cmp("• ") + cmp("Settings", cHighlight, underlined = true))
     private val infoClick = listOf(emptyComponent(), msgClick + cmp("Select"))
 
-    override fun getItemList(): List<ItemStack> {
+    override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return listOf(
             itemStack(Material.CHEST) {
                 meta {
