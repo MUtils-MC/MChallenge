@@ -164,6 +164,9 @@ items:
   syncWithChallenges:
     n: "Sync Challenges"
     l: "Start/stop all challenges from<br>MUtils-Challenges with the timer.<br>This requires MChallenges to be installed!"
+  publicLibrary:
+    n: "Design Workshop"
+    l: "Access designs from users all<br>over the world! Or share<br>your owns with everyone."
   color:
     type:
       n: "Color Type"
