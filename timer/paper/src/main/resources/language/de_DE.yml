@@ -21,6 +21,7 @@ common:
   click: "Klick"
   sneak: "Sneak"
   none: "Leer"
+  button: "Button"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -32,6 +33,8 @@ command:
   alreadyOn: "<red>Timer ist bereits am Laufen!"
   alreadyOff: "<red>Timer ist bereits pausiert!"
   reset: "<grey>Timer erfolgreich auf 0 zurückgesetzt"
+  noPlayer: "<red>This command can only be used by players!"
+  noCommand: "<red>Invalid subcommand!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -57,6 +60,11 @@ event:
   endSuccess: "Challenge erfolgreich!\n<input-1> getötet" #v1
   kick: "<blue><st>                            </st>[ <b>Spiel vorbei</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> Du bist gestorben und wurdest gekickt </red>≪</color>\n<gold>Danke für das Mitspielen!</gold>\n\n<blue><st>                            </st>[ <b>Spiel vorbei</b> ]<st>                            </st></blue>"
   ban: "§9§m                            §9[ §lSpiel vorbei§9 ]§m                            §r\n\n§c≫ Du bist gestorben und wurdest gekickt ≪§r\n§6Danke für das mitspielen!§r\n\n§9§m                            §9[ §lSpiel vorbei§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
+  location: "Death Point: "
+  exactLocation: "Exact Location"
+  world: "World"
+  backPrompt: "<gold>Teleport Back <gray>(click)"
+  gameOver: "Game Over"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -142,3 +150,30 @@ items:
   freezeWorld:
     n: "Welt Einfrieren"
     l: "Einfrieren der Welt bei Timer<br>pausieren. Dies verhindert jegliche<br>Spieler Interaktionen und pausiert<br>alle KIs und Spiellogiken"
+  announceBack:
+    n: "Announce Teleport Back"
+    l: "Announce the back command<br>after death"
+  syncWithChallenges:
+    n: "Sync Challenges"
+    l: "Start/stop all challenges from<br>MUtils-Challenges with the timer.<br>This requires MChallenges to be installed!"
+  publicLibrary:
+    n: "Design Workshop"
+    l: "Access designs from users all<br>over the world! Or share<br>your owns with everyone."
+  color:
+    type:
+      n: "Color Type"
+      l: "Choose a color type to input<br>a new color. Confirm<br>to copy it"
+    hex:
+      n: "Hexcode Input"
+    vanilla:
+      n: "Vanilla Colors"
+    red:
+      n: "Red Value"
+    green:
+      n: "Green Value"
+    blue:
+      n: "Blue Value"
+    animate:
+      n: "Gradient Animation"
+      s: "Animation"
+      l: "Add animation to your<br>final gradient. This animation<br>will loop"
