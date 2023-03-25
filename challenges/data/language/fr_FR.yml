@@ -48,12 +48,19 @@ event:
       xp: "<red><input-1> tried to pickup XP!"
       item: "<red><input-1> tried to pickup an item!"
       trade: "<red><input-1> tried to trade!"
+    blockAsync: "<red><input-1> clicked on a fake block!"
+    gravity: "<red><input-1> froze to death in space!"
   mobHunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
   itemDecay:
     time: "Decay in"
     paused: "Paused display (selected)"
+  hide:
+    hide: "All players are now <red>hidden"
+    show: "All players are now <green>visible"
+  gravity:
+    switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -88,6 +95,16 @@ items:
       l: "You can not scroll any<br>further down"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"
+    reset:
+      n: "Reset Settings"
+      l: "This action cannot be<br>reverted!"
+  event:
+    LIMITED_SEE:
+      n: "See - No Damage"
+      l: "Choose to see all mobs<br>but to be unable to<br>damage them"
+    LIMITED_DAMAGE:
+      n: "No See - Damage"
+      l: "Choose to damage all mobs<br>but to be unable to<br>see them"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -221,6 +238,12 @@ items:
     ANVIL_CRUSHER:
       n: "Anvil Crusher"
       l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
+    ITEM_DECAY:
+      n: "Item Decay"
+      l: "Act fast! All your<br>items have a limited lifespan<br>till they disappear"
+    AREA_TIMER:
+      n: "Area Timer"
+      l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
   chS:
     FLY:
       power:
@@ -253,7 +276,7 @@ items:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
-        n: "Lives"
+        n: "Vies"
       sync:
         n: "Lives = HP"
       info:
@@ -264,6 +287,8 @@ items:
     RUN_RANDOMIZER:
       goal:
         n: "Block Goal"
+      global:
+        n: "Count Global"
     DAMAGE_DUELL:
       percent:
         n: "Percentage"
@@ -396,3 +421,47 @@ items:
         n: "Decay Percentage"
       shouldBreak:
         n: "Drop Blocks"
+    CHUNK_CLEARER:
+      breakAll:
+        n: "Break All"
+      shouldBreak:
+        n: "Drop Items"
+      bundle:
+        n: "Bundle Items"
+    ANVIL_CRUSHER:
+      delay:
+        n: "Anvil Delay"
+      startDelay:
+        n: "Base"
+      amplifierDelay:
+        n: "Faster per DMG"
+      density:
+        n: "Anvil Density"
+      startDensity:
+        n: "Base"
+      amplifierDensity:
+        n: "Higher per DMG"
+      radius:
+        n: "Anvil Radius"
+      startRadius:
+        n: "Base"
+      amplifierRadius:
+        n: "Bigger per DMG"
+      height:
+        n: "Anvil Height"
+    ITEM_DECAY:
+      time:
+        n: "Decay Time"
+    AREA_TIMER:
+      time:
+        n: "Max Time"
+      global:
+        n: "Count Global"
+      mode:
+        n: "Area Mode"
+    BLOCK_ASYNC:
+      hide:
+        n: "Hide Players"
+    RIGHT_TOOLS:
+      starter:
+        n: "Starter Axe"

@@ -18,7 +18,7 @@ common:
   boolFalse: "Désactivé"
   left: "Gauche"
   right: "Droite"
-  click: "Click"
+  click: "Cliquez"
   sneak: "Sneak"
   none: "None"
 #-----------------------------------------#
@@ -31,7 +31,7 @@ command:
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
   alreadyOn: "<red>Timer is already running!"
   alreadyOff: "<red>Timer is already paused!"
-  reset: "<grey>Timer successfully resettet to time 0"
+  reset: "<grey>La Timer a été réinitialisée avec succès à 0"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -47,7 +47,7 @@ event:
   prefix: "Prefix"
   suffix: "Suffix"
   animation: "Animation Speed"
-  syntax: "Syntax"
+  syntax: "Syntaxe"
   forcedTwoDigits: "Forced 2 Digits"
   visibleOnNull: "Visible on Null"
   spaceInfo: "Use _ to add spaces before and after your message"
