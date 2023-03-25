@@ -101,7 +101,7 @@ items:
   event:
     LIMITED_SEE:
       n: "Siehe - Kein Schaden"
-      l: "Choose to see all mobs<br>but to be unable to<br>damage them"
+      l: "Wähle dies aus, um alle<br>Mobs zu sehen, aber ohne<br>sie angreifen zu können"
     LIMITED_DAMAGE:
       n: "Nicht gesehen - Schaden"
       l: "Wähle um allen Mobs schaden zu machen<br>aber es ist nicht möglich sie<br>zu sehen"
@@ -243,7 +243,7 @@ items:
       l: "Denke schnell! Alle deine <br>items haben eine begrenzte Lebensdauer<br>bis sie verschwinden"
     AREA_TIMER:
       n: "Bereich Zeit"
-      l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
+      l: "Ausgewählte Bereiche wie Biome,<br>Chunks, Welten, oder auch Höhen<br>können nur begrenzt lange aufgesucht<br> werden. Spiele schnell!"
   chS:
     FLY:
       power:
@@ -288,7 +288,7 @@ items:
       goal:
         n: "Blockziel"
       global:
-        n: "Count Global"
+        n: "Globale Anzahl"
     DAMAGE_DUELL:
       percent:
         n: "Prozent"
@@ -427,28 +427,28 @@ items:
       shouldBreak:
         n: "Gegenstände fallen lassen"
       bundle:
-        n: "Bundle Items"
+        n: "Bundle Gegenstände"
     ANVIL_CRUSHER:
       delay:
-        n: "Anvil Delay"
+        n: "Amboss Verzögerung"
       startDelay:
         n: "Basis"
       amplifierDelay:
-        n: "Faster per DMG"
+        n: "Schneller pro DMG"
       density:
-        n: "Anvil Density"
+        n: "Amboss dichte"
       startDensity:
         n: "Basis"
       amplifierDensity:
-        n: "Higher per DMG"
+        n: "Höher pro DMG"
       radius:
-        n: "Anvil Radius"
+        n: "Amboss Radius"
       startRadius:
         n: "Basis"
       amplifierRadius:
-        n: "Bigger per DMG"
+        n: "Größer pro DMG"
       height:
-        n: "Anvil Height"
+        n: "Amboss Höhe"
     ITEM_DECAY:
       time:
         n: "Abkling Zeit"
@@ -456,12 +456,12 @@ items:
       time:
         n: "Max. Zeit"
       global:
-        n: "Count Global"
+        n: "Globale Anzahl"
       mode:
-        n: "Area Mode"
+        n: "Flächenmodus"
     BLOCK_ASYNC:
       hide:
         n: "Spieler ausblenden"
     RIGHT_TOOLS:
       starter:
-        n: "Starter Axe"
+        n: "Starter-Axt"
