@@ -48,8 +48,8 @@ event:
       xp: "<red><input-1> hat versucht Erfahrung aufzusammeln!"
       item: "<red><input-1> hat versucht ein Gegenstand aufzusammeln!"
       trade: "<red><input-1> hat versucht zu handeln!"
-    blockAsync: "<red><input-1> clicked on a fake block!"
-    gravity: "<red><input-1> froze to death in space!"
+    blockAsync: "<red><input-1> hat auf einen gefälschten Block geklickt!"
+    gravity: "<red><input-1> ist im Weltraum erfroren!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -60,7 +60,7 @@ event:
     hide: "Alle Spieler sind nun <red>versteckt"
     show: "Alle Spieler sind nun <green>sichtbar"
   gravity:
-    switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
+    switch: "<red>⚠ Die Schwerkraft ändert sich in <b><input-1></b> Sekunden ⚠</red>"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -100,11 +100,11 @@ items:
       l: "Diese Aktion kann nicht<br>rückgängig gemacht werden!"
   event:
     LIMITED_SEE:
-      n: "See - No Damage"
+      n: "Siehe - Kein Schaden"
       l: "Choose to see all mobs<br>but to be unable to<br>damage them"
     LIMITED_DAMAGE:
-      n: "No See - Damage"
-      l: "Choose to damage all mobs<br>but to be unable to<br>see them"
+      n: "Nicht gesehen - Schaden"
+      l: "Wähle um allen Mobs schaden zu machen<br>aber es ist nicht möglich sie<br>zu sehen"
   ch:
     FLY:
       n: "F.L.Y. Challenge"
@@ -239,10 +239,10 @@ items:
       n: "Amboss Regen"
       l: "Es regnet... Ambosse?<br>Achte auf deine Schritte, der<br>Himmel versucht dich zu töten"
     ITEM_DECAY:
-      n: "Item Decay"
+      n: "Item verfällt"
       l: "Denke schnell! Alle deine <br>items haben eine begrenzte Lebensdauer<br>bis sie verschwinden"
     AREA_TIMER:
-      n: "Area Timer"
+      n: "Bereich Zeit"
       l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
   chS:
     FLY:
