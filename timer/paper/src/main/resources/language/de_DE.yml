@@ -152,28 +152,28 @@ items:
     l: "Einfrieren der Welt bei Timer<br>pausieren. Dies verhindert jegliche<br>Spieler Interaktionen und pausiert<br>alle KIs und Spiellogiken"
   announceBack:
     n: "Zeige Rückteleportation"
-    l: "Announce the back command<br>after death"
+    l: "Zeige den Rückteleportationsbefehl<br>nach dem Tod"
   syncWithChallenges:
     n: "Sync Challenges"
-    l: "Start/stop all challenges from<br>MUtils-Challenges with the timer.<br>This requires MChallenges to be installed!"
+    l: "Starte/stoppe alle Challenges von<br>MUtils-Challenges mit dem Timer.<br>Dies benötigt installiertes MChallenges!"
   publicLibrary:
-    n: "Design Workshop"
-    l: "Access designs from users all<br>over the world! Or share<br>your owns with everyone."
+    n: "Design-Workshop"
+    l: "Greife auf Designs von Nutzern auf<br>der ganzen Welt zu! Oder teile<br>deine eigenen mit jedem."
   color:
     type:
-      n: "Color Type"
-      l: "Choose a color type to input<br>a new color. Confirm<br>to copy it"
+      n: "Farbtyp"
+      l: "Wähle einen Farbtyp für die Eingabe<br>einer neuen Farbe. Bestätige<br>um ihn zu kopieren"
     hex:
-      n: "Hexcode Input"
+      n: "Hexcode Eingabe"
     vanilla:
-      n: "Vanilla Colors"
+      n: "Vanilla Farben"
     red:
-      n: "Red Value"
+      n: "Roter Wert"
     green:
-      n: "Green Value"
+      n: "Grüner Wert"
     blue:
-      n: "Blue Value"
+      n: "Blauer Wert"
     animate:
-      n: "Gradient Animation"
+      n: "Verlaufsanimation"
       s: "Animation"
-      l: "Add animation to your<br>final gradient. This animation<br>will loop"
+      l: "Füge eine Animation zu dem<br>Farbverlauf hinzu. Diese Animation<br>wiederholt sich unendlich"
