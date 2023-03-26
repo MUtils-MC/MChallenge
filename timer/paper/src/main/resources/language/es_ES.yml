@@ -21,17 +21,20 @@ common:
   click: "Clic"
   sneak: "Disparar"
   none: "Ninguna"
+  button: "Button"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
-  help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
+  help: "<grey>Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
   resume: "<green><b>Resuming</b> the timer <grey>(<input-1>)" #v1
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
   alreadyOn: "<red>Ya se está utilizando el Timer!"
   alreadyOff: "<red>Timer is already paused!"
   reset: "<grey>El Timer se ha reseteado con éxito a tiempo 0"
+  noPlayer: "<red>This command can only be used by players!"
+  noCommand: "<red>Invalid subcommand!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -53,10 +56,15 @@ event:
   spaceInfo: "Use _ to add spaces before and after your message"
   clickToCopy: "Click to copy: <blue><input-1>"
   finish: "Finalizado"
-  playtime: "Spielzeit:"
-  endSuccess: "Challenge succeed!\n<input-1> killed" #v1
+  playtime: "Play Time: "
+  endSuccess: "Challenge succeed!" #v1
   kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
   ban: "§9§m                            §9[ §lGame Over§9 ]§m                            §r\n\n§c≫ You died and got kicked ≪§r\n§6Thanks for playing!§r\n\n§9§m                            §9[ §lGame Over§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
+  location: "Death Point: "
+  exactLocation: "Exact Location"
+  world: "World"
+  backPrompt: "<gold>Teleport Back <gray>(click)"
+  gameOver: "Game Over"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -142,3 +150,30 @@ items:
   freezeWorld:
     n: "Freeze World"
     l: "Freeze the world on timer<br>pause. This will prevent any<br>player interactions and pauses<br>all AIs and game logics"
+  announceBack:
+    n: "Announce Teleport Back"
+    l: "Announce the back command<br>after death"
+  syncWithChallenges:
+    n: "Sync Challenges"
+    l: "Start/stop all challenges from<br>MUtils-Challenges with the timer.<br>This requires MChallenges to be installed!"
+  publicLibrary:
+    n: "Design Workshop"
+    l: "Access designs from users all<br>over the world! Or share<br>your owns with everyone."
+  color:
+    type:
+      n: "Color Type"
+      l: "Choose a color type to input<br>a new color. Confirm<br>to copy it"
+    hex:
+      n: "Hexcode Input"
+    vanilla:
+      n: "Vanilla Colors"
+    red:
+      n: "Red Value"
+    green:
+      n: "Green Value"
+    blue:
+      n: "Blue Value"
+    animate:
+      n: "Gradient Animation"
+      s: "Animation"
+      l: "Add animation to your<br>final gradient. This animation<br>will loop"

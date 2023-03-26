@@ -100,10 +100,10 @@ items:
       l: "Diese Aktion kann nicht<br>rückgängig gemacht werden!"
   event:
     LIMITED_SEE:
-      n: "Siehe - Kein Schaden"
+      n: "Sehen - Kein Schaden"
       l: "Wähle dies aus, um alle<br>Mobs zu sehen, aber ohne<br>sie angreifen zu können"
     LIMITED_DAMAGE:
-      n: "Nicht gesehen - Schaden"
+      n: "Nicht Sehen - Schaden"
       l: "Wähle um allen Mobs schaden zu machen<br>aber es ist nicht möglich sie<br>zu sehen"
   ch:
     FLY:
@@ -239,10 +239,10 @@ items:
       n: "Amboss Regen"
       l: "Es regnet... Ambosse?<br>Achte auf deine Schritte, der<br>Himmel versucht dich zu töten"
     ITEM_DECAY:
-      n: "Item verfällt"
+      n: "Item Verfall"
       l: "Denke schnell! Alle deine <br>items haben eine begrenzte Lebensdauer<br>bis sie verschwinden"
     AREA_TIMER:
-      n: "Bereich Zeit"
+      n: "Bereich Timer"
       l: "Ausgewählte Bereiche wie Biome,<br>Chunks, Welten, oder auch Höhen<br>können nur begrenzt lange aufgesucht<br> werden. Spiele schnell!"
   chS:
     FLY:
@@ -288,7 +288,7 @@ items:
       goal:
         n: "Blockziel"
       global:
-        n: "Globale Anzahl"
+        n: "Globaler Timer"
     DAMAGE_DUELL:
       percent:
         n: "Prozent"
@@ -425,9 +425,9 @@ items:
       breakAll:
         n: "Alle zerstören"
       shouldBreak:
-        n: "Gegenstände fallen lassen"
+        n: "Item Drop"
       bundle:
-        n: "Bundle Gegenstände"
+        n: "Gebündelte Items"
     ANVIL_CRUSHER:
       delay:
         n: "Amboss Verzögerung"
@@ -436,7 +436,7 @@ items:
       amplifierDelay:
         n: "Schneller pro DMG"
       density:
-        n: "Amboss dichte"
+        n: "Amboss Dichte"
       startDensity:
         n: "Basis"
       amplifierDensity:
@@ -451,17 +451,17 @@ items:
         n: "Amboss Höhe"
     ITEM_DECAY:
       time:
-        n: "Abkling Zeit"
+        n: "Ablaufzeit"
     AREA_TIMER:
       time:
         n: "Max. Zeit"
       global:
-        n: "Globale Anzahl"
+        n: "Global Zählen"
       mode:
         n: "Flächenmodus"
     BLOCK_ASYNC:
       hide:
-        n: "Spieler ausblenden"
+        n: "Spieler Ausblenden"
     RIGHT_TOOLS:
       starter:
         n: "Starter-Axt"
