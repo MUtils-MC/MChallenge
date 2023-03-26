@@ -21,20 +21,20 @@ common:
   click: "Klick"
   sneak: "Sneak"
   none: "Leer"
-  button: "Button"
+  button: "Knopf"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
-  help: "Nutzte <blue>/timer</blue>, um auf den globalen Timer zuzugreifen und nutzte <blue>/ptimer<blue>, um auf deinen persönlichen Timer zuzugreifen. Nur der globale Timer kann auf die Regeln und Welt Einstellungen zugreifen. Nutzte <blue>/timer language</blue>, um die Plugin Sprache zu ändern"
+  help: "<grey>Nutzte <blue>/timer</blue>, um auf den globalen Timer zuzugreifen und nutzte <blue>/ptimer<blue>, um auf deinen persönlichen Timer zuzugreifen. Nur der globale Timer kann auf die Regeln und Welt Einstellungen zugreifen. Nutzte <blue>/timer language</blue>, um die Plugin Sprache zu ändern"
   resume: "<green>Timer wurde <b>aktiviert</b>!<grey> (<input-1>)" #v1
   pause: "<red>Timer wurde <b>pausiert</b>!<grey> (<input-1>)" #v1
   alreadyOn: "<red>Timer ist bereits am Laufen!"
   alreadyOff: "<red>Timer ist bereits pausiert!"
   reset: "<grey>Timer erfolgreich auf 0 zurückgesetzt"
-  noPlayer: "<red>This command can only be used by players!"
-  noCommand: "<red>Invalid subcommand!"
+  noPlayer: "<red>Dieser Befehl kann nur von Spielern genutzt werden!"
+  noCommand: "<red>Ungültiger Unterbefehl!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -56,15 +56,15 @@ event:
   spaceInfo: "Nutze _ um Leerzeichen am Ende und Anfang zu nutzen"
   clickToCopy: "Klicke zum Kopieren: <blue><input-1>"
   finish: "Fertig"
-  playtime: "Spielzeit:"
-  endSuccess: "Challenge erfolgreich!\n<input-1> getötet" #v1
+  playtime: "Spielzeit: "
+  endSuccess: "Challenge erfolgreich!" #v1
   kick: "<blue><st>                            </st>[ <b>Spiel vorbei</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> Du bist gestorben und wurdest gekickt </red>≪</color>\n<gold>Danke für das Mitspielen!</gold>\n\n<blue><st>                            </st>[ <b>Spiel vorbei</b> ]<st>                            </st></blue>"
   ban: "§9§m                            §9[ §lSpiel vorbei§9 ]§m                            §r\n\n§c≫ Du bist gestorben und wurdest gekickt ≪§r\n§6Danke für das mitspielen!§r\n\n§9§m                            §9[ §lSpiel vorbei§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
-  location: "Death Point: "
-  exactLocation: "Exact Location"
-  world: "World"
-  backPrompt: "<gold>Teleport Back <gray>(click)"
-  gameOver: "Game Over"
+  location: "Todespunkt: "
+  exactLocation: "Genaue Position"
+  world: "Welt"
+  backPrompt: "<gold>Teleportiere Zurück <gray>(klick)"
+  gameOver: "Spielende"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -151,7 +151,7 @@ items:
     n: "Welt Einfrieren"
     l: "Einfrieren der Welt bei Timer<br>pausieren. Dies verhindert jegliche<br>Spieler Interaktionen und pausiert<br>alle KIs und Spiellogiken"
   announceBack:
-    n: "Announce Teleport Back"
+    n: "Zeige Rückteleportation"
     l: "Announce the back command<br>after death"
   syncWithChallenges:
     n: "Sync Challenges"
