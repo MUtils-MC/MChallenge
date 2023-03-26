@@ -40,7 +40,7 @@ command:
 #-----------------------------------------#
 event:
   death:
-    tron: "<red><input-1> stepped into a line and died!"
+    tron: "est allé sûr une ligne et est mort !"
     disable:
       break: "<red><input-1> tried to break a block!"
       place: "<red><input-1> tried to place a block!"
