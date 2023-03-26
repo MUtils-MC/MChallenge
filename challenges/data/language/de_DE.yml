@@ -451,7 +451,7 @@ items:
         n: "Amboss Höhe"
     ITEM_DECAY:
       time:
-        n: "Abkling Zeit"
+        n: "Ablaufzeit"
     AREA_TIMER:
       time:
         n: "Max. Zeit"
