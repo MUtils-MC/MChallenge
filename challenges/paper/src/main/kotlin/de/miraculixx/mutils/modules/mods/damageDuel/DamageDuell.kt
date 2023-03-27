@@ -1,28 +1,35 @@
-package de.miraculixx.mutils.modules.challenge.mods
+package de.miraculixx.mutils.modules.mods.damageDuel
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.modules.spectator.Spectator
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.onlinePlayers
 import org.bukkit.entity.Player
 import org.bukkit.entity.Projectile
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 
 class DamageDuell : Challenge {
-    override val challenge = Challenge.DAMAGE_DUELL
+    override val challenge = Challenges.DAMAGE_DUELL
+    private val percentage: Int
+
+    init {
+        val settings = challenges.getSetting(challenge).settings
+        percentage = settings["percent"]?.toInt()?.getValue() ?: 50
+    }
 
     override fun start(): Boolean {
         return true
     }
-    override fun stop() {}
+
     override fun register() {
         onMelee.register()
     }
+
     override fun unregister() {
         onMelee.unregister()
     }
@@ -33,8 +40,7 @@ class DamageDuell : Challenge {
             val shooter = (it.damager as Projectile).shooter ?: return@listen
             if (shooter !is Player) return@listen
         }
-        val config = ConfigManager.getConfig(Configs.MODULES)
-        val damage = it.finalDamage * (config.getDouble("Settings.DamageDuell.Percent") / 100.0)
+        val damage = it.finalDamage * (percentage / 100.0)
         onlinePlayers.forEach { player ->
             if (!Spectator.isSpectator(player.uniqueId)) {
                 if (player.health < 2) player.health += 0.01

@@ -34,6 +34,7 @@ abstract class MChallengeAPI {
      */
     fun startChallenges(): Boolean {
         if (status == ChallengeStatus.RUNNING) return false
+        println("Challenges start")
         activatedChallenges.clear()
         activatedChallenges.addAll(statusChanger.startChallenges() ?: return false)
         status = ChallengeStatus.RUNNING
@@ -57,6 +58,7 @@ abstract class MChallengeAPI {
      */
     fun pauseChallenges(): Boolean {
         if (status != ChallengeStatus.RUNNING) return false
+        println("Challenges paused")
         statusChanger.unregisterChallenges(activatedChallenges)
         status = ChallengeStatus.PAUSED
         return true
@@ -68,6 +70,7 @@ abstract class MChallengeAPI {
      */
     fun resumeChallenges(): Boolean {
         if (status != ChallengeStatus.PAUSED) return false
+        println("Challenges resumed")
         statusChanger.registerChallenges(activatedChallenges)
         status = ChallengeStatus.RUNNING
         return true

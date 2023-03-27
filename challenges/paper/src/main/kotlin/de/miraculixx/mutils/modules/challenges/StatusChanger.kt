@@ -14,6 +14,7 @@ import de.miraculixx.mutils.modules.mods.chunkBreaker.ChunkBlockBreaker
 import de.miraculixx.mutils.modules.mods.chunkClearer.ChunkClearer
 import de.miraculixx.mutils.modules.mods.chunkDecay.ChunkDecay
 import de.miraculixx.mutils.modules.mods.chunkFlattener.ChunkFlattener
+import de.miraculixx.mutils.modules.mods.damageDuel.DamageDuell
 import de.miraculixx.mutils.modules.mods.damager.Damager
 import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
 import de.miraculixx.mutils.modules.mods.disabled.Disabled
@@ -53,7 +54,7 @@ class StatusChanger: StatusChangerAPI {
             Challenges.NO_SAME_ITEM -> NoSameItem()
             Challenges.LIMITED_SKILLS -> LimitedSkills()
             Challenges.RUN_RANDOMIZER -> RunRandomizer()
-            Challenges.DAMAGE_DUELL -> TODO()
+            Challenges.DAMAGE_DUELL -> DamageDuell()
             Challenges.ONE_BIOME -> TODO()
             Challenges.BOOST_UP -> BoostUp()
             Challenges.RIGHT_TOOL -> RightTools()

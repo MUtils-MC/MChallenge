@@ -56,6 +56,8 @@ event:
       trade: "<red><input-1> tried to trade!"
     blockAsync: "<red><input-1> clicked on a fake block!"
     gravity: "<red><input-1> froze to death in space!"
+    noSameItem: "<red><input-1> collected too many duplicates!"
+    stayAway: "<red><input-1> got to close!"
   mobHunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
@@ -67,6 +69,10 @@ event:
     show: "All players are now <green>visible"
   gravity:
     switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
+  noSameItem:
+    duplicate: "<red><input-2></red> was already collected by <red><input-1></red>!"
+    deathTitle: "<red>You are dead"
+
 
 
 #-----------------------------------------#
@@ -319,9 +325,13 @@ items:
     GRAVITY:
       delay:
         n: "Delay"
+      duration:
+        n: "Duration"
     STAY_AWAY:
       distance:
         n: "Damage Distance"
+      warning:
+        n: "Warning Damage"
     RANDOMIZER_BLOCK:
       random:
         n: "Full Random"

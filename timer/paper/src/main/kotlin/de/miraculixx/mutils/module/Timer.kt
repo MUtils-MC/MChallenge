@@ -1,14 +1,12 @@
 package de.miraculixx.mutils.module
 
-import de.miraculixx.api.MChallengeAPI
 import de.miraculixx.api.modules.challenges.ChallengeStatus
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.data.TimerDesignValue
 import de.miraculixx.mutils.data.TimerPresets
-import de.miraculixx.mutils.messages.miniMessages
-import de.miraculixx.mutils.messages.msg
+import de.miraculixx.mutils.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.title.Title
 import org.bukkit.OfflinePlayer
@@ -37,12 +35,21 @@ class Timer(
             if (value) {
                 listener?.activateTimer()
                 if (rules.syncWithChallenge) {
-                    if (api != null && api.status == ChallengeStatus.STOPPED) api.startChallenges()
-                    else api?.resumeChallenges()
+                    if (api != null) {
+                        when (api.status) {
+                            ChallengeStatus.STOPPED -> api.startChallenges()
+                            ChallengeStatus.PAUSED -> api.resumeChallenges()
+                            ChallengeStatus.RUNNING -> if (debug) consoleAudience.sendMessage(prefix + cmp("Challenges already running!", cError))
+                        }
+                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
                 }
             } else {
                 listener?.deactivateTimer()
-                if (rules.syncWithChallenge) api?.pauseChallenges()
+                if (rules.syncWithChallenge) {
+                    if (api != null) {
+                        api.pauseChallenges()
+                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
+                }
             }
         }
     var countUp = true

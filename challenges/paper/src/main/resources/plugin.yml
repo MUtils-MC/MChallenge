@@ -30,3 +30,5 @@ commands:
   mobhunt:
     permission: mutils.command.mobhunt
     description: Modify the Mob-Hunt challenge
+  invsee:
+    permission: mutils.command.invsee

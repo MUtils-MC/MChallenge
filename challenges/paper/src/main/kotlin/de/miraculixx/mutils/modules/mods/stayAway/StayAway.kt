@@ -42,7 +42,7 @@ class StayAway : Challenge {
         if (Spectator.isSpectator(player.uniqueId)) return@listen
         player.getNearbyEntities(distance + 2, distance + 2, distance + 2).forEach { e ->
             if (e is LivingEntity) {
-                if (e is Player && Spectator.isSpectator(e.uniqueId)) return@forEach
+                if (e is Player && (Spectator.isSpectator(e.uniqueId) || e.gameMode != GameMode.SURVIVAL)) return@forEach
                 if (e.location.distance(player.location) <= distance) {
                     player.persistentDataContainer.set(NamespacedKey(namespace, "death.custom"), PersistentDataType.STRING, "stayAway")
                     player.damage(999.0)

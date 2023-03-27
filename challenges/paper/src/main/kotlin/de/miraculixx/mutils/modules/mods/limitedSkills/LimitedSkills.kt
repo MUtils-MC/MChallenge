@@ -46,6 +46,7 @@ class LimitedSkills : Challenge {
             onlinePlayers.shuffled().forEachIndexed { index, player ->
                 selection[player.uniqueId] = index % 2 == 1
             }
+            startGame()
         } else {
             onlinePlayers.forEach {
                 GUITypes.CH_LIMITED_SKILLS.buildInventory(it, "LIMITED_SKILLS", LimitSkillsItems(this), LimitGUI(this))
@@ -85,9 +86,13 @@ class LimitedSkills : Challenge {
         val playerSee = selection.filter { it.value }.mapNotNull { Bukkit.getPlayer(it.key) }
         val playerNoSee = selection.filter { !it.value }.mapNotNull { Bukkit.getPlayer(it.key) }
         playerNoSee.forEach { player ->
+            player.closeInventory()
+            val times = Duration.ofSeconds(3)
+            player.showTitle(Title.title(cmp(msgString("items.event.LIMITED_DAMAGE.n"), cHighlight), emptyComponent(), Title.Times.times(Duration.ofMillis(500), times, times)))
             player.world.entities.forEach { e -> player.hideEntity(PluginManager, e) }
         }
         playerSee.forEach { player ->
+            player.closeInventory()
             val times = Duration.ofSeconds(3)
             player.showTitle(Title.title(cmp(msgString("items.event.LIMITED_SEE.n"), cHighlight), emptyComponent(), Title.Times.times(Duration.ofMillis(500), times, times)))
         }
