@@ -50,6 +50,8 @@ event:
       trade: "<red><input-1> hat versucht zu handeln!"
     blockAsync: "<red><input-1> hat auf einen gefälschten Block geklickt!"
     gravity: "<red><input-1> ist im Weltraum erfroren!"
+    noSameItem: "<red><input-1> collected too many duplicates!"
+    stayAway: "<red><input-1> got to close!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -61,6 +63,9 @@ event:
     show: "Alle Spieler sind nun <green>sichtbar"
   gravity:
     switch: "<red>⚠ Die Schwerkraft ändert sich in <b><input-1></b> Sekunden ⚠</red>"
+  noSameItem:
+    duplicate: "<red><input-2></red> was already collected by <red><input-1></red>!"
+    deathTitle: "<red>You are dead"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -311,9 +316,13 @@ items:
     GRAVITY:
       delay:
         n: "Verzögerung"
+      duration:
+        n: "Duration"
     STAY_AWAY:
       distance:
         n: "Schadensdistanz"
+      warning:
+        n: "Warning Damage"
     RANDOMIZER_BLOCK:
       random:
         n: "Komplett zufällig"
