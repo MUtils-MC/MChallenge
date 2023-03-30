@@ -1,6 +1,6 @@
 name: MUtils-Challenges
 load: STARTUP
-version: 1
+version: 100
 main: de.miraculixx.mutils.MChallenge
 api-version: 1.16
 authors: [ Miraculixx, "The REAL NoRisk" ]

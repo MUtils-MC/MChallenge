@@ -92,6 +92,22 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 }
             }
 
+            "bridge-install" -> {
+                sender.sendMessage(prefix + cmp("Downloading MUtils-Bridge..."))
+                CoroutineScope(Dispatchers.Default).launch {
+                    val bridgeInstall = InstallBridge("MUtils-Timer")
+                    val success = bridgeInstall.install(Bukkit.getPluginManager())
+                    if (success) {
+                        sender.soundEnable()
+                        sender.sendMessage(prefix + cmp("MUtils-Bridge is now installed!", cSuccess))
+                        sender.sendMessage(prefix + cmp("(Please restart your server in near future)"))
+                    } else {
+                        sender.soundDisable()
+                        sender.sendMessage(prefix + cmp("Failed to automatically enable MUtils-Bridge! Restart your server to active it", cError))
+                    }
+                }
+            }
+
             else -> sender.sendMessage(prefix + msg("command.help"))
         }
         return true
@@ -131,26 +147,5 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 }
             }
         }.filter { it.startsWith(args?.lastOrNull() ?: "", ignoreCase = true) }.toMutableList()
-    }
-
-    private val onCmd = listen<PlayerCommandPreprocessEvent> {
-        val content = it.message
-        if (content == "/mutils-bridge:install") {
-            it.isCancelled = true
-            val player = it.player
-            player.sendMessage(prefix + cmp("Downloading MUtils-Bridge..."))
-            CoroutineScope(Dispatchers.Default).launch {
-                val bridgeInstall = InstallBridge("MUtils-Timer")
-                val success = bridgeInstall.install(Bukkit.getPluginManager())
-                if (success) {
-                    player.soundEnable()
-                    player.sendMessage(prefix + cmp("MUtils-Bridge is now installed!", cSuccess))
-                    player.sendMessage(prefix + cmp("(Please restart your server in near future)"))
-                } else {
-                    player.soundDisable()
-                    player.sendMessage(prefix + cmp("Failed to automatically enable MUtils-Bridge! Restart your server to active it", cError))
-                }
-            }
-        }
     }
 }

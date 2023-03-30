@@ -55,6 +55,10 @@ class ChallengeCommand : TabExecutor {
                 ChallengeManager.status = ChallengeStatus.RUNNING
                 broadcast(prefix + msg("command.challenge.continue", listOf(sender.name)))
             } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+
+            "bridge-install" -> {
+
+            }
         }
         return true
     }

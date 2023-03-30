@@ -9,6 +9,7 @@ import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.utils.getMaterials
 import kotlinx.serialization.Serializable
@@ -19,6 +20,7 @@ import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
 import org.bukkit.Material
+import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import java.io.File
@@ -27,7 +29,7 @@ class ItemHunt: Challenge {
     override val challenge: Challenges = Challenges.MOB_HUNT
     private val dataFile = File("${MChallenge.configFolder.path}/data/item_hunt.json")
     private val bar = BossBar.bossBar(cmp("Waiting for server..."), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
-    private val maxItems = getMaterials(true)
+    private val maxItems = getMaterials(true).size
     private val remainingItems: MutableList<Material> = mutableListOf()
     private var currentItem: Material? = null
     private val blacklist: MutableList<Material> = mutableListOf()
@@ -52,6 +54,7 @@ class ItemHunt: Challenge {
             currentItem = remainingItems.random()
             remainingItems.remove(currentItem)
         }
+        onlinePlayers.forEach { it.showBossBar(bar) }
         return true
     }
 
@@ -61,15 +64,19 @@ class ItemHunt: Challenge {
     }
 
     private val onCollect = listen<EntityPickupItemEvent>(register = false) {
-
+        val entity = it.entity
+        if (entity !is Player) return@listen
+        if (currentItem == it.item.itemStack.type) collectItem(entity)
     }
 
     private val onInvClose = listen<InventoryCloseEvent>(register = false) {
-
+        val player = it.player
+        if (player !is Player) return@listen
+        it.inventory.forEach { item -> if (item.type == currentItem) collectItem(player) }
     }
 
-    private fun collectItem() {
-
+    private fun collectItem(player: Player) {
+        nextItem(player.name, player)
     }
 
     fun addBlacklist(material: Material) {
@@ -87,7 +94,7 @@ class ItemHunt: Challenge {
         return blacklist
     }
 
-    fun nextMob(playerName: String, audience: Audience) {
+    private fun nextItem(playerName: String, audience: Audience) {
         broadcast(prefix + msg("event.itemHunt.collect", listOf(playerName, currentItem?.name?.fancy() ?: "")))
         audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
         val size = remainingItems.size
@@ -101,8 +108,8 @@ class ItemHunt: Challenge {
     }
 
     private fun calcBar() {
-        val collectedAmount = ""
-        //bar.name(miniMessages.deserialize("<gray>Target:</gray> <blue><b>$target</b></blue>  <dark_gray>(<gray><green>$collectedAmount</green>/<red>$maxEntities</red></gray>)</dark_gray>"))
+        val collectedAmount = maxItems - remainingItems.size
+        bar.name(miniMessages.deserialize("<gray>Item:</gray> <blue><b>${currentItem?.name}</b></blue>  <dark_gray>(<gray><green>$collectedAmount</green>/<red>$maxItems</red></gray>)</dark_gray>"))
     }
 
     @Serializable

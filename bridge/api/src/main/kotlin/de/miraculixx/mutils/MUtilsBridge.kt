@@ -24,5 +24,7 @@ abstract class MUtilsBridge {
 
     abstract suspend fun receiveData(t: String): String
 
+    abstract suspend fun likeData(t: String, id: String): Boolean
+
     abstract fun saveData(key: String? = null, uuid: UUID? = null, autoUpdate: Boolean? = null)
 }

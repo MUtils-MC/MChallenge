@@ -38,8 +38,13 @@ object Spectator {
     }
 
     fun loadData() {
-        val output = json.decodeFromString<Map<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>>(file.readJsonString(true))
-        output.forEach { (uuid, s) -> specSettings[uuid] = s }
+        try {
+            val output = json.decodeFromString<Map<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>>(file.readJsonString(true))
+            output.forEach { (uuid, s) -> specSettings[uuid] = s }
+        } catch (e: Exception) {
+            consoleAudience.sendMessage(prefix + cmp(e.message.toString(), cError))
+            consoleAudience.sendMessage(prefix + cmp("Failed to load Spectator data! ^ Reason above ^", cError))
+        }
     }
 
     fun register() {
