@@ -34,6 +34,19 @@ command:
     pause: "<grey>Die Challenges wurden <red>pausiert</red>! (<input-1>)"
     continue: "<grey>Die Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
+  heal:
+    single: "<green>You healed yourself"
+    multiple: "<green>You healed <input-1> players"
+  reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
+  position:
+    get: "<grey>Position <input-1> >> <blue><input-2>"
+    new: "<grey>Created new position <blue><input-1> <grey>(<input-2>)"
+    remove: "<grey>Removed position <blue><input-1>"
+    reset: "<red>Resetted all saved positions!"
+  backpack:
+    setGlobal: "<grey>Switched backpack type to <blue><input-1>"
+    setSize: "<grey>Changed backpack size to <blue><input-1></blue> rows"
+    reset: "<red>Cleared all backpacks including the global!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
