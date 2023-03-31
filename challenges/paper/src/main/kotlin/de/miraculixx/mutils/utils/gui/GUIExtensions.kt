@@ -39,6 +39,7 @@ fun GUITypes.buildInventory(player: Player, id: String, itemProvider: ItemProvid
             this.player = player
             this.itemProvider = itemProvider
             this.clickAction = clickAction.run
+            this.closeAction = clickAction.close
         }
     }
 }

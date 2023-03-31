@@ -3,14 +3,14 @@ package de.miraculixx.mutils.gui
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
-import de.miraculixx.mutils.gui.Head64
+import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.extensions.soundDisable
 import de.miraculixx.mutils.extensions.soundEnable
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.skullTexture
+import de.miraculixx.mutils.messages.emptyComponent
 import de.miraculixx.mutils.messages.msg
 import de.miraculixx.mutils.messages.msgList
-import net.kyori.adventure.audience.Audience
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.Sound
@@ -23,6 +23,9 @@ import org.bukkit.persistence.PersistentDataContainer
 import org.bukkit.persistence.PersistentDataType
 
 object InventoryUtils {
+    val phPrimary = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { name = emptyComponent() } }
+    val phSecondary = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { name = emptyComponent() } }
+
     fun getCustomItem(key: String, id: Int, texture: Head64): ItemStack {
         return itemStack(Material.PLAYER_HEAD) {
             meta<SkullMeta> {

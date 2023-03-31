@@ -4,5 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SettingsData(
-    val language: String = "en_US",
+    var language: String = "en_US",
+    var reset: Boolean = false,
+    val worlds: MutableList<String> = mutableListOf(),
 )

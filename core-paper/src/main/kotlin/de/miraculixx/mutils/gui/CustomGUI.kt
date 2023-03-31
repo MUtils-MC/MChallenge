@@ -51,7 +51,9 @@ class CustomGUI(
 
     override fun update() {
         val content = itemProvider?.getSlotMap()
-        content?.forEach { (item, slot) ->
+        val maxSize = i.size
+        content?.forEach { (slot, item) ->
+            if (slot >= maxSize) return
             i.setItem(slot, item)
         }
     }

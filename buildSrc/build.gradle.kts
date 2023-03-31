@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    kotlin("plugin.serialization") version embeddedKotlinVersion
+    kotlin("plugin.serialization") version "1.8.10"
 }
 
 repositories {
@@ -10,24 +10,24 @@ repositories {
     maven("https://server.bbkr.space/artifactory/libs-release/")
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://maven.quiltmc.org/repository/release/")
+    maven("https://repo.codemc.org/repository/maven-public/")
 }
 
 dependencies {
     fun pluginDep(id: String, version: String) = "${id}:${id}.gradle.plugin:${version}"
-    val kotlinVersion = "1.7.21"
+    val kotlinVersion = "1.8.20"
 
-    compileOnly(kotlin("gradle-plugin", "1.7.21"))
+    compileOnly(kotlin("gradle-plugin", kotlinVersion))
     runtimeOnly(kotlin("gradle-plugin", kotlinVersion))
-    compileOnly(pluginDep("org.jetbrains.kotlin.plugin.serialization", "1.7.21"))
+    compileOnly(pluginDep("org.jetbrains.kotlin.plugin.serialization", kotlinVersion))
     runtimeOnly(pluginDep("org.jetbrains.kotlin.plugin.serialization", kotlinVersion))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
     // Fabric implementation
-    implementation("net.fabricmc:fabric-loom:1.0-SNAPSHOT")
-    implementation("io.github.juuxel:loom-quiltflower:1.7.4")
+    implementation("net.fabricmc:fabric-loom:1.1-SNAPSHOT")
 
     // Paper implementation
-    implementation("io.papermc.paperweight.userdev:io.papermc.paperweight.userdev.gradle.plugin:1.3.9")
+    implementation("io.papermc.paperweight.userdev:io.papermc.paperweight.userdev.gradle.plugin:1.5.0")
     implementation(pluginDep("xyz.jpenilla.run-paper", "1.1.0"))
 
     implementation("gradle.plugin.com.github.johnrengelman:shadow:7.1.2")

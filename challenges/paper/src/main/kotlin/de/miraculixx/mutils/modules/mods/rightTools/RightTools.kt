@@ -34,7 +34,7 @@ class RightTools : Challenge {
             }
             onlinePlayers.forEach { player ->
                 if (player.gameMode == GameMode.SURVIVAL)
-                    player.inventory.addItem()
+                    player.inventory.addItem(axe)
             }
         }
         return true

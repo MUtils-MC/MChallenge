@@ -1,5 +1,8 @@
 package de.miraculixx.mutils.modules.mods.huntMob
 
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.modules.mods.huntStuff.HuntObject
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -8,10 +11,8 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.MChallenge
 import de.miraculixx.mutils.PluginManager
 import de.miraculixx.mutils.commands.ModuleCommand
-import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.utils.getLivingMobs
 import kotlinx.serialization.Serializable
@@ -21,6 +22,7 @@ import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
+import org.bukkit.Material
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
@@ -28,13 +30,14 @@ import org.bukkit.entity.Projectile
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import java.io.File
 
-class MobHunt : Challenge {
+class MobHunt : Challenge, HuntObject<EntityType> {
     override val challenge: Challenges = Challenges.MOB_HUNT
     private val dataFile = File("${MChallenge.configFolder.path}/data/mob_hunt.json")
-    private val maxEntities = getLivingMobs(true).size
-    private val remainingMobs: MutableList<EntityType> = mutableListOf()
     private var currentTarget: EntityType? = null
-    private var bar = BossBar.bossBar(cmp("Waiting for server...", cError), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
+    override val maxEntries = getLivingMobs(true).size
+    override val remainingEntries = mutableListOf<EntityType>()
+    override val blacklist = mutableListOf<EntityType>()
+    override val bar = BossBar.bossBar(cmp("Waiting for server..."), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
 
     override fun register() {
         onKill.register()
@@ -48,14 +51,14 @@ class MobHunt : Challenge {
         val content = if (!dataFile.exists()) "" else dataFile.readJsonString(false)
         currentTarget = if (content.length > 5) {
             val input = json.decodeFromString<MobHuntData>(content)
-            remainingMobs.addAll(input.remainingMobs)
+            remainingEntries.addAll(input.remainingMobs)
             input.target
         } else {
-            remainingMobs.addAll(getLivingMobs(true))
-            remainingMobs.random()
+            remainingEntries.addAll(getLivingMobs(true))
+            remainingEntries.random()
         }
-        remainingMobs.remove(currentTarget)
-        calcBossBar()
+        remainingEntries.remove(currentTarget)
+        calcBar(getCurrentEntryName())
         onlinePlayers.forEach { it.showBossBar(bar) }
         val cmdClass = MobHuntCommand(this)
         val cmdInstance = PluginManager.getCommand("mobhunt") ?: return false
@@ -66,7 +69,7 @@ class MobHunt : Challenge {
 
     override fun stop() {
         if (!dataFile.exists()) dataFile.parentFile.mkdirs()
-        dataFile.writeText(json.encodeToString(MobHuntData(currentTarget, remainingMobs)))
+        dataFile.writeText(json.encodeToString(MobHuntData(currentTarget, remainingEntries)))
         onlinePlayers.forEach { it.hideBossBar(bar) }
         ModuleCommand("mobhunt")
     }
@@ -84,40 +87,28 @@ class MobHunt : Challenge {
         val type = target.type
         if (type != currentTarget) return@listen
 
-        nextMob(player.name, player)
+        nextEntry(player.name, player)
     }
 
-    fun nextMob(playerName: String, audience: Audience) {
+    override fun nextEntry(playerName: String, audience: Audience) {
         broadcast(prefix + msg("event.mobHunt.collect", listOf(playerName, currentTarget?.name?.fancy() ?: "")))
         audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
-        val size = remainingMobs.size
+        val size = remainingEntries.size
         currentTarget = if (size == 0) {
             broadcast(prefix + msg("event.mobHunt.success"))
             ChallengeManager.stopChallenges()
             null
-        } else remainingMobs.random()
-        remainingMobs.remove(currentTarget)
-        calcBossBar()
+        } else remainingEntries.random()
+        remainingEntries.remove(currentTarget)
+        calcBar(getCurrentEntryName())
     }
 
-    fun reset() {
-        remainingMobs.clear()
-        remainingMobs.addAll(getLivingMobs(true))
-        currentTarget = remainingMobs.random()
-        remainingMobs.remove(currentTarget)
-        calcBossBar()
-    }
-
-    private fun calcBossBar() {
-        val target = currentTarget?.name?.fancy() ?: "<green>Finished</green>"
-        val collectedAmount = maxEntities - (remainingMobs.size + 1)
-        bar.name(miniMessages.deserialize("<gray>Target:</gray> <blue><b>$target</b></blue>  <dark_gray>(<gray><green>$collectedAmount</green>/<red>$maxEntities</red></gray>)</dark_gray>"))
-        bar.progress(collectedAmount.toFloat() / maxEntities)
-    }
+    override fun getCurrentEntryName() = currentTarget?.name
 
     @Serializable
     private data class MobHuntData(
         val target: EntityType? = null,
         val remainingMobs: List<EntityType> = emptyList(),
+        val blacklist: List<Material> = emptyList()
     )
 }

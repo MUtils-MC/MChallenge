@@ -3,7 +3,7 @@ package de.miraculixx.mutils.gui.items
 import org.bukkit.inventory.ItemStack
 
 interface ItemProvider {
-    fun getSlotMap(): Map<ItemStack, Int> { return emptyMap() }
+    fun getSlotMap(): Map<Int, ItemStack> { return emptyMap() }
 
     /**
      * @param from Inclusive

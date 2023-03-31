@@ -1,7 +1,7 @@
 
 plugins {
     id("fabric-loom")
-    id("io.github.juuxel.loom-quiltflower")
+//    id("io.github.juuxel.loom-quiltflower")
 }
 
 repositories {
@@ -9,12 +9,11 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.19.2")
-    mappings(loom.layered {
-        officialMojangMappings()
-    })
+    minecraft("com.mojang:minecraft:1.19.4")
+    mappings(loom.officialMojangMappings())
 
-    modCompileOnly("net.fabricmc:fabric-loader:0.12.11")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.68.0+1.19.2")
+    modCompileOnly("net.fabricmc:fabric-loader:0.14.18")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.76.0+1.19.4")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.9.2+kotlin.1.8.10")
     modImplementation(include("net.kyori:adventure-platform-fabric:5.5.0")!!)
 }

@@ -3,7 +3,7 @@ plugins {
     kotlin("jvm")
 }
 
-val adventureVersion = "4.12.0"
+val adventureVersion = "4.13.0"
 dependencies {
 //    modImplementation(include("net.kyori:adventure-platform-fabric:5.6.1")!!)
     implementation("net.kyori:adventure-text-minimessage:$adventureVersion")

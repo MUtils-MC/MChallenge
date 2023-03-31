@@ -64,6 +64,7 @@ class Localization(private val folder: File, active: String, keys: List<Pair<Str
             if (debug) consoleAudience.sendMessage(prefix + cmp("LANG - $key file is not a valid language config"))
             return false
         }
+        consoleAudience.sendMessage(exactPrefix + cmp("Changed language to ") + cmp(key, cHighlight))
         localization = config
         return true
     }

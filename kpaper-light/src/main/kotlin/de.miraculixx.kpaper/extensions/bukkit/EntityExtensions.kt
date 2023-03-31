@@ -132,19 +132,6 @@ fun Player.showOnlinePlayers() {
 }
 
 /**
- * Spawns an entity without any variations in color, type etc...
- */
-@Deprecated("This function is unstable and it cannot be guaranteed that it will work at any time in the future.")
-@NMS_General
-fun Location.spawnCleanEntity(entityType: EntityType): Entity? {
-    val craftWorld = world as? org.bukkit.craftbukkit.v1_19_R1.CraftWorld ?: return null
-    return craftWorld.createEntity(this, entityType.entityClass)?.let {
-        craftWorld.handle.addFreshEntity(it)
-        return@let it.bukkitEntity
-    }
-}
-
-/**
  * @param mainText title text
  * @param subText subtitle text
  * @param fadeIn time in ticks for titles to fade in

@@ -24,6 +24,11 @@ var debug = false
 val prefix = cmp("MUtils", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
 
 /**
+ * Exact prefix
+ */
+val exactPrefix = cmp("MChallenge", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
+
+/**
  * 1.**19**.1
  */
 var majorVersion: Int = 0

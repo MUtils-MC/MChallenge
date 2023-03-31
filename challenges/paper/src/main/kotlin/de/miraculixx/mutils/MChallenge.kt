@@ -6,55 +6,81 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.pluginManager
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.commands.ChallengeCommand
-import de.miraculixx.mutils.commands.InvSeeCommand
 import de.miraculixx.mutils.commands.ModuleCommand
-import de.miraculixx.mutils.commands.ResetCommand
+import de.miraculixx.mutils.commands.utils.*
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.gui.StorageFilter
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.modules.global.DeathListener
 import de.miraculixx.mutils.modules.spectator.Spectator
+import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import java.io.File
+import java.nio.file.Paths
+import kotlin.time.Duration.Companion.milliseconds
+
 
 class MChallenge : KSpigot() {
     companion object {
         lateinit var INSTANCE: KSpigot
         val configFolder = File("plugins/MUtils/Challenges")
         lateinit var localization: Localization
+        lateinit var settings: SettingsData
+
         var bridgeAPI: MUtilsBridge? = null
     }
 
     private lateinit var configFile: File
     private lateinit var settingsFile: File
+    private lateinit var positionCommand: PositionCommand
+    private lateinit var backpackCommand: BackpackCommand
 
     private var isLoaded = false
     private var isAllowedToStart = true
 
     override fun startup() {
-        getCommand("challenge")?.let {
-            ResetCommand()
-            val cmd = ChallengeCommand()
-            it.setExecutor(cmd)
-            it.tabCompleter = cmd
-        }
-        ModuleCommand("mobhunt")
-        InvSeeCommand("invsee")
+        CommandAPI.onEnable(this)
 
-        DeathListener
+        CoroutineScope(Dispatchers.Default).launch {
+            while (!isLoaded) { delay(100.milliseconds) }
+            if (!isAllowedToStart) return@launch
+
+            // Command Setup
+            getCommand("challenge")?.let {
+                val cmd = ChallengeCommand()
+                it.setExecutor(cmd)
+                it.tabCompleter = cmd
+            }
+            ModuleCommand("mobhunt")
+            ModuleCommand("itemhunt")
+            InvSeeCommand()
+            HealCommand()
+            ResetCommand()
+            positionCommand = PositionCommand()
+            backpackCommand = BackpackCommand()
+
+            // Global Listener Registration
+            DeathListener
 //        Spectator.register() TODO
+        }
     }
 
     override fun load() {
-        CoroutineScope(Dispatchers.Default).launch {
-            INSTANCE = this@MChallenge
-            consoleAudience = console
-            debug = false
+        INSTANCE = this@MChallenge
+        consoleAudience = console
+        debug = false
 
+        CommandAPI.onLoad(CommandAPIConfig().verboseOutput(debug).silentLogs(!debug))
+        val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
+
+        CoroutineScope(Dispatchers.Default).launch {
             // Define version
             val versionSplit = server.minecraftVersion.split('.')
             majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
@@ -71,12 +97,12 @@ class MChallenge : KSpigot() {
                         data.active = false
                     }
 
-                    consoleAudience.sendMessage(prefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
+                    consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
                 }
 
             } else {
-                consoleAudience.sendMessage(prefix + cmp("MBridge is not installed! MUtils is not able to log you in without it", cError))
-                consoleAudience.sendMessage(prefix + cmp("Use /ch bridge-install to automatically install it"))
+                consoleAudience.sendMessage(exactPrefix + cmp("MBridge is not installed! MUtils is not able to log you in without it", cError))
+                consoleAudience.sendMessage(exactPrefix + cmp("Use /ch bridge-install to automatically install it"))
             }
 
             // Load configuration
@@ -84,10 +110,26 @@ class MChallenge : KSpigot() {
             configFile = File("${configFolder.path}/settings.json")
             settingsFile = File("${configFolder.path}/config.json")
             ChallengeManager.load(configFile)
-            val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
-            val settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
+
+            settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
             localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
-//            Spectator.loadData() TODO
+            Spectator.loadData()
+
+            // Reset World
+            if (settings.reset) {
+                console.sendMessage(prefix + cmp("Delete loaded worlds..."))
+                settings.worlds.forEach {
+                    val currentRelativePath = Paths.get(it)
+                    val path = currentRelativePath.toAbsolutePath().toString()
+                    console.sendMessage(prefix + cmp("World Path: $path"))
+                    File(path).listFiles()?.forEach { file ->
+                        file.deleteRecursively()
+                        File("$path/playerdata").mkdirs()
+                    }
+                }
+                settings.reset = false
+                settings.worlds.clear()
+            }
 
             // Finish loading - starting setup
             isLoaded = true
@@ -96,11 +138,15 @@ class MChallenge : KSpigot() {
 
 
     override fun shutdown() {
+        CommandAPI.onDisable()
         ChallengeManager.shutDown()
         ChallengeManager.save(configFile)
-        Spectator.saveData()
+//        Spectator.saveData()
+
+        settingsFile.writeText(json.encodeToString(settings))
+        positionCommand.saveFile()
+        backpackCommand.saveFile()
     }
 }
 
 val PluginManager by lazy { MChallenge.INSTANCE }
-

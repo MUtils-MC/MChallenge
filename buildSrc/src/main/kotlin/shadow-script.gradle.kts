@@ -8,7 +8,11 @@ plugins {
 tasks {
     shadowJar {
         dependencies {
+            include(dependency("dev.jorel:commandapi-shade"))
+            include(dependency("dev.jorel:commandapi-kotlin"))
             include {
+                if (it.moduleGroup.startsWith("dev.jorel")) return@include true
+
                 val moduleName = properties["module_name"]
                 val split = it.moduleGroup.split('.')
                 val prefix = "${split.getOrNull(0)}.${split.getOrNull(1)}"
@@ -18,5 +22,6 @@ tasks {
                 prefix == "de.miraculixx" && (!isAPI || isModuleAPI)
             }
         }
+        relocate("dev.jorel.commandapi", "de.miraculixx.commandapi")
     }
 }

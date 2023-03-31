@@ -1,15 +1,18 @@
 package de.miraculixx.mutils.modules.mods.huntItems
 
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.modules.mods.huntStuff.HuntObject
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.MChallenge
-import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.mutils.PluginManager
+import de.miraculixx.mutils.commands.ModuleCommand
 import de.miraculixx.mutils.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.modules.ChallengeManager
 import de.miraculixx.mutils.utils.getMaterials
 import kotlinx.serialization.Serializable
@@ -25,14 +28,14 @@ import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import java.io.File
 
-class ItemHunt: Challenge {
+class ItemHunt : Challenge, HuntObject<Material> {
     override val challenge: Challenges = Challenges.MOB_HUNT
     private val dataFile = File("${MChallenge.configFolder.path}/data/item_hunt.json")
-    private val bar = BossBar.bossBar(cmp("Waiting for server..."), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
-    private val maxItems = getMaterials(true).size
-    private val remainingItems: MutableList<Material> = mutableListOf()
     private var currentItem: Material? = null
-    private val blacklist: MutableList<Material> = mutableListOf()
+    override val maxEntries = getMaterials(true).size
+    override val remainingEntries = mutableListOf<Material>()
+    override val blacklist = mutableListOf<Material>()
+    override val bar = BossBar.bossBar(cmp("Waiting for server..."), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
 
     override fun register() {
         onCollect.register()
@@ -47,20 +50,28 @@ class ItemHunt: Challenge {
     override fun start(): Boolean {
         val content = json.decodeFromString<ItemHuntData>(dataFile.readJsonString(true))
         blacklist.addAll(content.blacklist)
-        if (content.remaining.isEmpty()) remainingItems.addAll(getMaterials(true))
-        else remainingItems.addAll(content.remaining)
+        if (content.remaining.isEmpty()) remainingEntries.addAll(getMaterials(true))
+        else remainingEntries.addAll(content.remaining)
+        remainingEntries.removeAll(blacklist)
         if (content.target != null) currentItem = content.target
         else {
-            currentItem = remainingItems.random()
-            remainingItems.remove(currentItem)
+            currentItem = remainingEntries.random()
+            remainingEntries.remove(currentItem)
         }
         onlinePlayers.forEach { it.showBossBar(bar) }
+        calcBar(getCurrentEntryName())
+        val cmdClass = ItemHuntCommand(this)
+        val cmdInstance = PluginManager.getCommand("itemhunt") ?: return false
+        cmdInstance.setExecutor(cmdClass)
+        cmdInstance.tabCompleter = cmdClass
         return true
     }
 
     override fun stop() {
-        val data = ItemHuntData(currentItem, remainingItems, blacklist)
-        dataFile.writeText(json.encodeToString(data))
+        if (!dataFile.exists()) dataFile.parentFile.mkdirs()
+        dataFile.writeText(json.encodeToString(ItemHuntData(currentItem, remainingEntries)))
+        onlinePlayers.forEach { it.hideBossBar(bar) }
+        ModuleCommand("itemhunt")
     }
 
     private val onCollect = listen<EntityPickupItemEvent>(register = false) {
@@ -72,45 +83,27 @@ class ItemHunt: Challenge {
     private val onInvClose = listen<InventoryCloseEvent>(register = false) {
         val player = it.player
         if (player !is Player) return@listen
-        it.inventory.forEach { item -> if (item.type == currentItem) collectItem(player) }
+        it.inventory.forEach { item -> if (item?.type == currentItem) collectItem(player) }
     }
 
     private fun collectItem(player: Player) {
-        nextItem(player.name, player)
+        nextEntry(player.name, player)
     }
 
-    fun addBlacklist(material: Material) {
-        blacklist.add(material)
-        remainingItems.remove(material)
-        calcBar()
-    }
-
-    fun removeBlacklist(material: Material) {
-        if (blacklist.remove(material))
-            remainingItems.add(material)
-    }
-
-    fun getBlacklist(): List<Material> {
-        return blacklist
-    }
-
-    private fun nextItem(playerName: String, audience: Audience) {
+    override fun nextEntry(playerName: String, audience: Audience) {
         broadcast(prefix + msg("event.itemHunt.collect", listOf(playerName, currentItem?.name?.fancy() ?: "")))
         audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
-        val size = remainingItems.size
+        val size = remainingEntries.size
         currentItem = if (size == 0) {
             broadcast(prefix + msg("event.itemHunt.success"))
             ChallengeManager.stopChallenges()
             null
-        } else remainingItems.random()
-        remainingItems.remove(currentItem)
-        calcBar()
+        } else remainingEntries.random()
+        remainingEntries.remove(currentItem)
+        calcBar(getCurrentEntryName())
     }
 
-    private fun calcBar() {
-        val collectedAmount = maxItems - remainingItems.size
-        bar.name(miniMessages.deserialize("<gray>Item:</gray> <blue><b>${currentItem?.name}</b></blue>  <dark_gray>(<gray><green>$collectedAmount</green>/<red>$maxItems</red></gray>)</dark_gray>"))
-    }
+    override fun getCurrentEntryName() = currentItem?.name
 
     @Serializable
     private data class ItemHuntData(

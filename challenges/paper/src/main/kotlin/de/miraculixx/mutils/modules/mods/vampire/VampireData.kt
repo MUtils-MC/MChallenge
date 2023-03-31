@@ -86,7 +86,7 @@ class VampireData(private val uuid: UUID) {
                     customModel = 100
                     color = Color.fromRGB(146, 0, 0)
                     name = cmp(msgBlood, cError) + cmp(" (${rewardedBlood.div(2)}hp)")
-                    addItemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+                    addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS)
                     persistentDataContainer.set(keyBloodPack, PersistentDataType.INTEGER, rewardedBlood / 2)
                 }
             }

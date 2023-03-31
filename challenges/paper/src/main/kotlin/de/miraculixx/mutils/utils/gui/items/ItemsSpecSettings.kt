@@ -24,15 +24,15 @@ class ItemsSpecSettings(private val settings: SpecCollection) : ItemProvider {
     private val msgInfo = listOf(emptyComponent(), cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
     private val msgToggle = listOf(emptyComponent(), msgClick + cmp("Toggle"))
 
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         return mapOf(
-            itemStack(Material.ENDER_EYE) {
+            10 to itemStack(Material.ENDER_EYE) {
                 getToggleAble(1, "items.spec.visibility", settings.hide == Visibility.HIDDEN, true)
-            } to 10,
-            itemStack(if (majorVersion >= 17) Material.SPYGLASS else Material.ENDER_EYE) {
+            },
+            11 to itemStack(if (majorVersion >= 17) Material.SPYGLASS else Material.ENDER_EYE) {
                 getToggleAble(2, "items.spec.visibilityOther", settings.selfHide == Visibility.HIDDEN, true)
-            } to 11,
-            itemStack(Material.FEATHER) {
+            },
+            13 to itemStack(Material.FEATHER) {
                 meta {
                     customModel = 3
                     name = cmp(msgString("items.spec.flySpeed.n"), cHighlight) + cmp(" (${settings.flySpeed})")
@@ -43,14 +43,14 @@ class ItemsSpecSettings(private val settings: SpecCollection) : ItemProvider {
                         )
                     )
                 }
-            } to 13,
-            itemStack(Material.HOPPER) {
+            },
+            15 to itemStack(Material.HOPPER) {
                 getToggleAble(4, "items.spec.items", settings.itemPickup == Activation.DISABLED, false)
-            } to 15,
-            itemStack(Material.DIAMOND_PICKAXE) {
+            },
+            16 to itemStack(Material.DIAMOND_PICKAXE) {
                 getToggleAble(5, "items.spec.blocks", settings.blockBreak == Activation.DISABLED, false)
                 meta { addItemFlags(ItemFlag.HIDE_ATTRIBUTES) }
-            } to 16,
+            },
         )
     }
 

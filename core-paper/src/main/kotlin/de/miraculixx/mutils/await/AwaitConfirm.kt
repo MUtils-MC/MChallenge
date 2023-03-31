@@ -47,22 +47,22 @@ class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) 
     }
 
     private class InternalItemProvider: ItemProvider {
-        override fun getSlotMap(): Map<ItemStack, Int> {
+        override fun getSlotMap(): Map<Int, ItemStack> {
             return mapOf(
-                itemStack(Material.PLAYER_HEAD) {
+                12 to itemStack(Material.PLAYER_HEAD) {
                     meta {
                         customModel = 1
                         name = cmp(msgString("common.confirm"), cSuccess)
                     }
                     itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CHECKMARK_GREEN.value)
-                } to 12,
-                itemStack(Material.PLAYER_HEAD) {
+                },
+                14 to itemStack(Material.PLAYER_HEAD) {
                     meta {
                         customModel = 2
                         name = cmp(msgString("common.cancel"), cError)
                     }
                     itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.X_RED.value)
-                } to 14
+                }
             )
         }
     }

@@ -8,10 +8,13 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven("https://repo.codemc.org/repository/maven-public/")
 }
 
 dependencies {
-    paperDevBundle("${minecraftVersion}-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("${minecraftVersion}-R0.1-SNAPSHOT")
+    implementation("dev.jorel:commandapi-shade:8.8.0")
+    implementation("dev.jorel:commandapi-kotlin:8.8.0")
 }
 
 tasks {

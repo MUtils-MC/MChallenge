@@ -29,7 +29,7 @@ import java.util.*
 
 object Spectator {
     private val specs = ArrayList<UUID>()
-    private val specSettings = HashMap<UUID, SpecCollection>()
+    private val specSettings = HashMap<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>()
     private val file = File("${MChallenge.configFolder.path}/spectator.json")
 
     fun saveData() {
