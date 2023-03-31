@@ -36,7 +36,7 @@ command:
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
   heal:
     single: "<green>You healed yourself"
-    multiple: "<green>You healed <input-1> players"
+    multiple: "<green>You healed <input-1> player/s"
   reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
@@ -47,6 +47,11 @@ command:
     setGlobal: "<grey>Switched backpack type to <blue><input-1>"
     setSize: "<grey>Changed backpack size to <blue><input-1></blue> rows"
     reset: "<red>Cleared all backpacks including the global!"
+  hide:
+    hide: "<grey>You are now <red>hidden"
+    show: "<grey>You are now <green>visible"
+    hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
+    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
