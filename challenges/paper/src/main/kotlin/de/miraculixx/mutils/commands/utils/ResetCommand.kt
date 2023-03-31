@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.event.player.PlayerKickEvent
 
 class ResetCommand {
+    @Suppress("unused")
     val reset = commandTree("reset", { sender: CommandSender -> sender.hasPermission("mutils.command.reset") }) {
         anyExecutor { commandSender, _ ->
             onlinePlayers.forEach { player -> player.kick(msg("command.reset", listOf(commandSender.name)), PlayerKickEvent.Cause.RESTART_COMMAND) }

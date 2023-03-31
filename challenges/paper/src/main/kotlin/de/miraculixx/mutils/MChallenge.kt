@@ -63,6 +63,7 @@ class MChallenge : KSpigot() {
             InvSeeCommand()
             HealCommand()
             ResetCommand()
+            HideCommand()
             positionCommand = PositionCommand()
             backpackCommand = BackpackCommand()
 

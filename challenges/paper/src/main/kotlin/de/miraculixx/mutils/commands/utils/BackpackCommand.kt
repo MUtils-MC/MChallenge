@@ -41,6 +41,7 @@ class BackpackCommand {
         Data(true, 3, mutableMapOf())
     }
 
+    @Suppress("unused")
     val command = commandTree("backpack") {
         withAliases("bp")
         playerExecutor { player, _ ->

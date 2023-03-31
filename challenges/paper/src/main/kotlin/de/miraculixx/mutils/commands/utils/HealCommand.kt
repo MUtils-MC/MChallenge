@@ -15,6 +15,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 class HealCommand {
+    @Suppress("unused")
     val heal = commandTree("heal", { sender: CommandSender -> sender.hasPermission("mutils.command.heal") }) {
         playerExecutor { player, _ ->
             player.sendMessage(prefix + msg("command.heal.single"))

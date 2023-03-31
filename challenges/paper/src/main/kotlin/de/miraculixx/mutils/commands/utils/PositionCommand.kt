@@ -24,6 +24,7 @@ class PositionCommand {
         positions = json.decodeFromString(file.readJsonString(true))
     }
 
+    @Suppress("unused")
     val command = commandTree("position") {
         withAliases("pos", "location", "loc")
         literalArgument("get") {
