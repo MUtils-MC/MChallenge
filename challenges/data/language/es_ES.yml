@@ -69,7 +69,7 @@ event:
     blockAsync: "<red><input-1> clicked on a fake block!"
     gravity: "<red><input-1> froze to death in space!"
     noSameItem: "<red><input-1> collected too many duplicates!"
-    stayAway: "<red><input-1> got to close!"
+    stayAway: "<red><input-1> got too close!"
   mobHunt:
     collect: "<green><input-1> encontrado <input-2>!"
     success: "<green> ¡Felicidades! Has encontrado todos los mobs"
@@ -354,14 +354,24 @@ items:
       random:
         n: "Aleatorio total"
     FORCE_COLLECT:
+      times:
+        n: "Timings"
       minCooldown:
         n: "Enfriamiento mínimo"
       maxCooldown:
         n: "Enfriamiento máximo"
       minTime:
-        n: "Min Collect Time"
+        n: "Min Hunt Time"
       maxTime:
-        n: "Max Collect Time"
+        n: "Max Hunt Time"
+      objects:
+        n: "Goals"
+      items:
+        n: "Force Item"
+      biomes:
+        n: "Force Biome"
+      height:
+        n: "Force Height"
     RANDOMIZER_DAMAGE:
       random:
         n: "Aleatorio total"
