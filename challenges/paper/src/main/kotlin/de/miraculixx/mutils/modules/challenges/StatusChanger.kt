@@ -18,6 +18,7 @@ import de.miraculixx.mutils.modules.mods.damageDuel.DamageDuell
 import de.miraculixx.mutils.modules.mods.damager.Damager
 import de.miraculixx.mutils.modules.mods.dimSwap.DimSwap
 import de.miraculixx.mutils.modules.mods.disabled.Disabled
+import de.miraculixx.mutils.modules.mods.forceHunt.ForceHunt
 import de.miraculixx.mutils.modules.mods.ghost.Ghost
 import de.miraculixx.mutils.modules.mods.gravity.GravityManager
 import de.miraculixx.mutils.modules.mods.huntItems.ItemHunt
@@ -68,7 +69,7 @@ class StatusChanger: StatusChangerAPI {
             Challenges.RANDOMIZER_BIOMES -> BiomeRandomizer()
             Challenges.RANDOMIZER_MOBS -> MobSwitchRandomizer()
             Challenges.RANDOMIZER_DAMAGE -> EntityDamageRandomizer()
-            Challenges.FORCE_COLLECT -> TODO()
+            Challenges.FORCE_COLLECT -> ForceHunt()
             Challenges.NO_DOUBLE_KILL -> TODO()
             Challenges.DAMAGER -> Damager()
             Challenges.RIVALS_COLLECT -> TODO()

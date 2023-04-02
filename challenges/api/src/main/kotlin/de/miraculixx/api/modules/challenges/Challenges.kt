@@ -126,10 +126,17 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
             RANDOMIZER_BIOMES -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             RANDOMIZER_MOBS -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             FORCE_COLLECT -> mapOf(
-                "minCooldown" to ChallengeIntSetting("GOLD_NUGGET", 250, "s", max = 900, min = 15, step = 15),
-                "maxCooldown" to ChallengeIntSetting("GOLD_INGOT", 350, "s", max = 900, min = 15, step = 15),
-                "minTime" to ChallengeIntSetting("IRON_NUGGET", 180, "s", max = 900, min = 15, step = 15),
-                "maxTime" to ChallengeIntSetting("IRON_INGOT", 360, "s", max = 900, min = 15, step = 15),
+                "times" to ChallengeSectionSetting("CLOCK", mapOf(
+                    "minCooldown" to ChallengeIntSetting("GOLD_NUGGET", 255, "s", max = 900, min = 15, step = 15),
+                    "maxCooldown" to ChallengeIntSetting("GOLD_INGOT", 345, "s", max = 900, min = 15, step = 15),
+                    "minTime" to ChallengeIntSetting("IRON_NUGGET", 180, "s", max = 900, min = 15, step = 15),
+                    "maxTime" to ChallengeIntSetting("IRON_INGOT", 360, "s", max = 900, min = 15, step = 15),
+                )),
+                "objects" to ChallengeSectionSetting("CHEST", mapOf(
+                    "items" to ChallengeBoolSetting("HOPPER", true),
+                    "biomes" to ChallengeBoolSetting("MAP", false),
+                    "height" to ChallengeBoolSetting("LADDER", false)
+                ))
             )
 
             RANDOMIZER_DAMAGE -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))

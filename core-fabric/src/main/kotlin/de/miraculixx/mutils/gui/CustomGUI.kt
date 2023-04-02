@@ -7,6 +7,7 @@ import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.itemStack
 import de.miraculixx.mutils.gui.item.setName
+import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack

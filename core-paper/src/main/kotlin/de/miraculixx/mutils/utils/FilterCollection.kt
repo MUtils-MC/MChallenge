@@ -23,15 +23,30 @@ fun getLivingMobs(natural: Boolean): MutableList<EntityType> {
     return list
 }
 
-fun getMaterials(survival: Boolean): List<Material> {
+fun getMaterials(survival: Boolean, hard: Boolean = true): List<Material> {
     val list = Material.values().filter {
         val name = it.name
         it.isItem
                 && !it.isAir
-                && (it.creativeCategory != null || !survival)
                 && (!name.startsWith("INFESTED_") || !survival)
                 && (!name.endsWith("_SPAWN_EGG") || !survival)
+                && (!name.contains("COMMAND_BLOCK") || !survival)
+                && (!name.endsWith("SHULKER_BOX") || hard)
+                && (!name.endsWith("HEAD") || hard)
+                && (!name.contains("OXIDIZED"))
+                && (name != "LIGHT" || !survival)
+                && (name != "REINFORCED_DEEPSLATE" || !survival)
     }.toMutableList()
-    if (survival) list.remove(Material.BEDROCK)
+    if (survival) {
+        list.removeAll(listOf(
+            Material.BEDROCK,
+            Material.JIGSAW,
+            Material.STRUCTURE_BLOCK,
+            Material.STRUCTURE_VOID,
+            Material.DEBUG_STICK,
+            Material.BARRIER,
+            Material.SPAWNER,
+        ))
+    }
     return list
 }
