@@ -70,6 +70,7 @@ event:
     gravity: "<red><input-1> ist im Weltraum erfroren!"
     noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
     stayAway: "<red><input-1> got too close!"
+    forceHunt: "<red><input-1> failed to complete the goal!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -84,6 +85,11 @@ event:
   noSameItem:
     duplicate: "<red><input-2></red> wurde schon von <red><input-1></red> eingesammelt!"
     deathTitle: "<red>Du bist gestorben"
+  forceHunt:
+    height: "On Height"
+    item: "Collect Item"
+    biome: "Visit Biome"
+    waiting: "Waiting for new goal..."
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
