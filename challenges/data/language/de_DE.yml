@@ -42,16 +42,16 @@ command:
     get: "<grey>Position <input-1> >> <blue><input-2>"
     new: "<grey>Neue Position erstellt <blue><input-1> <grey>(<input-2>)"
     remove: "<grey>Position entfernt <blue><input-1>"
-    reset: "<red>Resetted all saved positions!"
+    reset: "<red>Alle gespeicherten Positionen zurückgesetzt!"
   backpack:
-    setGlobal: "<grey>Switched backpack type to <blue><input-1>"
-    setSize: "<grey>Changed backpack size to <blue><input-1></blue> rows"
-    reset: "<red>Cleared all backpacks including the global!"
+    setGlobal: "<grey>Backpack-Typ auf <blue><input-1> geändert"
+    setSize: "<grey>Backpack-Größe auf <blue><input-1></blue> Reihen geändert"
+    reset: "<red>Alle Backpacks einschließlich des globalen Backpacks geleert!"
   hide:
-    hide: "<grey>You are now <red>hidden"
-    show: "<grey>You are now <green>visible"
-    hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
-    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+    hide: "<grey>Du bist jetzt <red>versteckt"
+    show: "<grey>Du bist jetzt <green>sichtbar"
+    hideMultiple: "<grey>Du hast <input-1> Spieler <red>versteckt"
+    showMultiple: "<grey>Du hast <input-2> Spieler <green>sichtbar gemacht"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -68,8 +68,8 @@ event:
       trade: "<red><input-1> hat versucht zu handeln!"
     blockAsync: "<red><input-1> hat auf einen gefälschten Block geklickt!"
     gravity: "<red><input-1> ist im Weltraum erfroren!"
-    noSameItem: "<red><input-1> collected too many duplicates!"
-    stayAway: "<red><input-1> got to close!"
+    noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
+    stayAway: "<red><input-1> got too close!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -82,8 +82,8 @@ event:
   gravity:
     switch: "<red>⚠ Die Schwerkraft ändert sich in <b><input-1></b> Sekunden ⚠</red>"
   noSameItem:
-    duplicate: "<red><input-2></red> was already collected by <red><input-1></red>!"
-    deathTitle: "<red>You are dead"
+    duplicate: "<red><input-2></red> wurde schon von <red><input-1></red> eingesammelt!"
+    deathTitle: "<red>Du bist gestorben"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -335,12 +335,12 @@ items:
       delay:
         n: "Verzögerung"
       duration:
-        n: "Duration"
+        n: "Dauer"
     STAY_AWAY:
       distance:
         n: "Schadensdistanz"
       warning:
-        n: "Warning Damage"
+        n: "Warnschaden"
     RANDOMIZER_BLOCK:
       random:
         n: "Komplett zufällig"
@@ -354,14 +354,24 @@ items:
       random:
         n: "Komplett zufällig"
     FORCE_COLLECT:
+      times:
+        n: "Timings"
       minCooldown:
         n: "Minimale Abklingzeit"
       maxCooldown:
         n: "Maximale Abklingzeit"
       minTime:
-        n: "Minimale Sammelzeit"
+        n: "Min Hunt Time"
       maxTime:
-        n: "Maximale Sammelzeit"
+        n: "Max Hunt Time"
+      objects:
+        n: "Goals"
+      items:
+        n: "Force Item"
+      biomes:
+        n: "Force Biome"
+      height:
+        n: "Force Height"
     RANDOMIZER_DAMAGE:
       random:
         n: "Komplett zufällig"
