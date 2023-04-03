@@ -1,6 +1,7 @@
 package de.miraculixx.mutils
 
 import de.miraculixx.api.MChallengeAPI
+import de.miraculixx.api.MUtilsBridge
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mutils.command.HelperCommand

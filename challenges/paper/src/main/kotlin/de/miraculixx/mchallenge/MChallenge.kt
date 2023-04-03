@@ -11,7 +11,7 @@ import de.miraculixx.mchallenge.commands.utils.*
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.mutils.MUtilsBridge
+import de.miraculixx.api.MUtilsBridge
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mvanilla.messages.*

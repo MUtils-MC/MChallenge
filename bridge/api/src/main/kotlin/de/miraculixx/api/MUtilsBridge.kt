@@ -1,4 +1,4 @@
-package de.miraculixx.mutils
+package de.miraculixx.api
 
 import java.io.File
 import java.util.*
