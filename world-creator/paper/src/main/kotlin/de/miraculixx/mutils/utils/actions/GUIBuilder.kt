@@ -5,7 +5,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mutils.await.AwaitChatMessage
+import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.api.data.WorldData
 import de.miraculixx.api.data.enums.BiomeAlgorithm
@@ -21,6 +21,8 @@ import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.items.*
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.World
@@ -57,7 +59,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
         when (val id = item.itemMeta?.customModel) {
             1 -> {
                 player.click()
-                AwaitChatMessage(false, player, "World Name", 60, worldData.worldName, {
+                de.miraculixx.mcore.await.AwaitChatMessage(false, player, "World Name", 60, worldData.worldName, {
                     worldData.worldName = it.replace(' ', '_')
                     player.soundUp()
                 }) {
@@ -69,7 +71,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
 
             2 -> {
                 player.click()
-                AwaitChatMessage(false, player, msgString("event.category"), 60, worldData.seed.toString(), {
+                de.miraculixx.mcore.await.AwaitChatMessage(false, player, msgString("event.category"), 60, worldData.seed.toString(), {
                     worldData.category = it
                 }) {
                     inv.update()
@@ -80,7 +82,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
 
             3 -> {
                 player.click()
-                AwaitChatMessage(false, player, "Seed", 60, worldData.seed.toString(), {
+                de.miraculixx.mcore.await.AwaitChatMessage(false, player, "Seed", 60, worldData.seed.toString(), {
                     try {
                         worldData.seed = it.toLong(36)
                     } catch (_: Exception) {

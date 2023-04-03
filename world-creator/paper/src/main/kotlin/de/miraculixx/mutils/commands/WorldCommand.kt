@@ -4,11 +4,11 @@ import de.miraculixx.kpaper.extensions.bukkit.register
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.api.data.printInfo
-import de.miraculixx.mutils.extensions.soundDelete
-import de.miraculixx.mutils.extensions.soundDisable
-import de.miraculixx.mutils.messages.msg
-import de.miraculixx.mutils.messages.plus
-import de.miraculixx.mutils.messages.prefix
+import de.miraculixx.mvanilla.extensions.soundDelete
+import de.miraculixx.mvanilla.extensions.soundDisable
+import de.miraculixx.mvanilla.messages.msg
+import de.miraculixx.mvanilla.messages.plus
+import de.miraculixx.mvanilla.messages.prefix
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.actions.GUIBuilderType

@@ -1,10 +1,10 @@
 package de.miraculixx.api.utils
 
 import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.mutils.messages.cHighlight
-import de.miraculixx.mutils.messages.cMark
-import de.miraculixx.mutils.messages.cmp
-import de.miraculixx.mutils.messages.plus
+import de.miraculixx.mvanilla.messages.cHighlight
+import de.miraculixx.mvanilla.messages.cMark
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.plus
 import net.kyori.adventure.text.Component
 
 var cotm: Challenges = Challenges.FLY

@@ -3,9 +3,10 @@ package de.miraculixx.mutils.module
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.data.*
-import de.miraculixx.mutils.extensions.readJsonString
-import de.miraculixx.mutils.extensions.toUUID
+import de.miraculixx.mvanilla.extensions.readJsonString
+import de.miraculixx.mvanilla.extensions.toUUID
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.bukkit.Bukkit

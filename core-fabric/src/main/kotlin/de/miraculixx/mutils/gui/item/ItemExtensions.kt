@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.gui.item
 
 
-import de.miraculixx.mutils.messages.jsonSerializer
+import de.miraculixx.mvanilla.messages.jsonSerializer
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag

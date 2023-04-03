@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.commands
 
 import de.miraculixx.kpaper.extensions.bukkit.register
-import de.miraculixx.mutils.messages.msg
+import de.miraculixx.mvanilla.messages.msg
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.actions.GUIWorlds
 import de.miraculixx.mutils.utils.items.ItemsWorlds

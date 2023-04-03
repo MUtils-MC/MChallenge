@@ -1,14 +1,14 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.await.AwaitChatMessage
-import de.miraculixx.mutils.extensions.click
-import de.miraculixx.mutils.extensions.soundEnable
+import de.miraculixx.mcore.await.AwaitChatMessage
+import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.emptyComponent
-import de.miraculixx.mutils.messages.msg
-import de.miraculixx.mutils.messages.title
+import de.miraculixx.mvanilla.messages.emptyComponent
+import de.miraculixx.mvanilla.messages.msg
+import de.miraculixx.mvanilla.messages.title
 import de.miraculixx.mutils.module.WorldManager
 import org.bukkit.Sound
 import org.bukkit.World
@@ -27,7 +27,7 @@ class GUICopy(world: World, gui: CustomInventory): GUIEvent {
 
         when (val id = item.itemMeta?.customModel) {
             1, 2 -> {
-                AwaitChatMessage(true, player, "world name", 60, null, {
+                de.miraculixx.mcore.await.AwaitChatMessage(true, player, "world name", 60, null, {
                     player.closeInventory()
                     player.addPotionEffect(PotionEffect(PotionEffectType.BLINDNESS, 99999, 1, false, false, false))
                     player.playSound(player, Sound.BLOCK_CONDUIT_ACTIVATE, 1f, 0.8f)

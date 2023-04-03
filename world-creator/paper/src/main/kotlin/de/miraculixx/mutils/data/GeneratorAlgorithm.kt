@@ -11,6 +11,7 @@ import de.miraculixx.api.data.enums.BiomeAlgorithm
 import de.miraculixx.api.data.enums.GeneratorAlgorithm
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta

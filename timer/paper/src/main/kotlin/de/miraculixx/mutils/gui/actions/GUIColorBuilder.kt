@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.await.AwaitChatMessage
+import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mutils.data.ColorBuilder
 import de.miraculixx.mutils.data.ColorType
 import de.miraculixx.mutils.data.GradientBuilder
@@ -9,6 +9,8 @@ import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
@@ -37,7 +39,7 @@ class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null): GUI
             4 -> data.g = player.calcNumber(data.g, it.click)
             5 -> data.b = player.calcNumber(data.b, it.click)
 
-            6 -> AwaitChatMessage(false, player, "Hexcode (#000000)", 60, data.input, false, emptyComponent(), { input ->
+            6 -> de.miraculixx.mcore.await.AwaitChatMessage(false, player, "Hexcode (#000000)", 60, data.input, false, emptyComponent(), { input ->
                 val newColor = TextColor.fromHexString(input)
                 if (newColor == null) player.soundError()
                 else data.input = input
@@ -50,7 +52,8 @@ class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null): GUI
                 if (prevInv == null) {
                     val formatted = "<color:${data.getColor().asHexString()}>"
                     player.closeInventory()
-                    player.sendMessage(prefix + (cmp(formatted, cMark) + cmp(" (click to copy)")).addHover(cmp("Paste/use this color with ctrl + v\n$formatted"))
+                    player.sendMessage(
+                        prefix + (cmp(formatted, cMark) + cmp(" (click to copy)")).addHover(cmp("Paste/use this color with ctrl + v\n$formatted"))
                         .clickEvent(ClickEvent.copyToClipboard(formatted)))
                     player.soundEnable()
                 } else {

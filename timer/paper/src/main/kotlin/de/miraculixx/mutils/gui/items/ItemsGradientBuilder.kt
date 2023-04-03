@@ -6,9 +6,10 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.data.ColorBuilder
 import de.miraculixx.mutils.data.GradientBuilder
-import de.miraculixx.mutils.extensions.msg
-import de.miraculixx.mutils.gui.Head64
+import de.miraculixx.mvanilla.extensions.msg
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Color
 import org.bukkit.Material

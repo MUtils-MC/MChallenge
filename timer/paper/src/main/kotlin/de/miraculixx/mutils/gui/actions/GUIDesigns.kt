@@ -13,6 +13,8 @@ import de.miraculixx.mutils.gui.items.ItemsOverview
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player

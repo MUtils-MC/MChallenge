@@ -3,9 +3,9 @@ package de.miraculixx.mutils.utils.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.api.data.GeneratorDefaults
-import de.miraculixx.mutils.extensions.click
-import de.miraculixx.mutils.extensions.soundDisable
-import de.miraculixx.mutils.extensions.soundEnable
+import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.soundDisable
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
 import org.bukkit.entity.Player

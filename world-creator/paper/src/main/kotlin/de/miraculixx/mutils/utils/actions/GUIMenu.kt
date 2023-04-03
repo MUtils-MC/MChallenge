@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.extensions.click
+import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.utils.GUITypes

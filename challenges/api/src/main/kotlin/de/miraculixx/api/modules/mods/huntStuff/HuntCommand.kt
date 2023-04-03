@@ -1,9 +1,9 @@
 package de.miraculixx.api.modules.mods.huntStuff
 
-import de.miraculixx.mutils.messages.cError
-import de.miraculixx.mutils.messages.cmp
-import de.miraculixx.mutils.messages.plus
-import de.miraculixx.mutils.messages.prefix
+import de.miraculixx.mvanilla.messages.cError
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.plus
+import de.miraculixx.mvanilla.messages.prefix
 import net.kyori.adventure.audience.Audience
 
 interface HuntCommand <T> {

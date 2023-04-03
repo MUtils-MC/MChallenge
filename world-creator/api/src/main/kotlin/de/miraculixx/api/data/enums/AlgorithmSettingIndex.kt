@@ -1,8 +1,9 @@
 package de.miraculixx.api.data.enums
 
 import de.miraculixx.api.data.GeneratorData
-import de.miraculixx.mutils.extensions.msg
+import de.miraculixx.mvanilla.extensions.msg
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 
 enum class AlgorithmSettingIndex {

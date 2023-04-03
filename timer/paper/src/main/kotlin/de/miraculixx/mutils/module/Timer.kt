@@ -7,6 +7,7 @@ import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.data.TimerDesignValue
 import de.miraculixx.mutils.data.TimerPresets
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.title.Title
 import org.bukkit.OfflinePlayer

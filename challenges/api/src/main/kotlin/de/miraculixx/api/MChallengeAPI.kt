@@ -6,8 +6,8 @@ import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.api.modules.challenges.StatusChangerAPI
 import de.miraculixx.api.settings.ChallengeData
 import de.miraculixx.api.settings.challenges
-import de.miraculixx.mutils.extensions.readJsonString
-import de.miraculixx.mutils.messages.json
+import de.miraculixx.mvanilla.extensions.readJsonString
+import de.miraculixx.mvanilla.messages.json
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File

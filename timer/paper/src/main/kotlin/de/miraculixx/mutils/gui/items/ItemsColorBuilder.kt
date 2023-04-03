@@ -6,8 +6,9 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.data.ColorBuilder
 import de.miraculixx.mutils.data.ColorType
-import de.miraculixx.mutils.gui.Head64
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor

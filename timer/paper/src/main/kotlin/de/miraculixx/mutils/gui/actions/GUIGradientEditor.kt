@@ -10,6 +10,8 @@ import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsColorBuilder
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent

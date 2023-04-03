@@ -1,7 +1,7 @@
 package de.miraculixx.api.modules.mods.huntStuff
 
-import de.miraculixx.mutils.messages.fancy
-import de.miraculixx.mutils.messages.miniMessages
+import de.miraculixx.mvanilla.messages.fancy
+import de.miraculixx.mvanilla.messages.miniMessages
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.bossbar.BossBar
 

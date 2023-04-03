@@ -7,6 +7,7 @@ import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.*
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material

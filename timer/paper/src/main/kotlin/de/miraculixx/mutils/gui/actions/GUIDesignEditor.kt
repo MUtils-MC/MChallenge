@@ -3,16 +3,16 @@ package de.miraculixx.mutils.gui.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.mutils.MTimer
-import de.miraculixx.mutils.await.AwaitChatMessage
+import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mutils.data.TimerDesign
-import de.miraculixx.mutils.extensions.click
-import de.miraculixx.mutils.extensions.soundEnable
+import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignPartEditor
 import de.miraculixx.mutils.gui.items.ItemsDesigns
-import de.miraculixx.mutils.messages.cmp
+import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mutils.module.TimerManager
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -28,7 +28,7 @@ class GUIDesignEditor(
         val player = it.whoClicked as? Player ?: return@event
         val item = it.currentItem
         when (item?.itemMeta?.customModel ?: 0) {
-            1 -> AwaitChatMessage(false, player, "design name", 30, design.name, false, cmp("\n"), {
+            1 -> de.miraculixx.mcore.await.AwaitChatMessage(false, player, "design name", 30, design.name, false, cmp("\n"), {
                 design.name = if (it.length > 30) it.dropLast(it.length - 30) else it
                 player.soundEnable()
             }) {

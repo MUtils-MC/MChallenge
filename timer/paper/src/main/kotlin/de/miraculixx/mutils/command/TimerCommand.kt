@@ -5,8 +5,8 @@ import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mutils.extensions.soundDisable
-import de.miraculixx.mutils.extensions.soundEnable
+import de.miraculixx.mvanilla.extensions.soundDisable
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mutils.gui.actions.GUIOverview
 import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.items.ItemsOverview
@@ -14,6 +14,7 @@ import de.miraculixx.mutils.gui.items.TestProvider
 import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.utils.InstallBridge
+import de.miraculixx.mvanilla.messages.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

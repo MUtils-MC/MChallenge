@@ -1,20 +1,20 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.extensions.click
+import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mutils.extensions.soundDisable
-import de.miraculixx.mutils.extensions.soundEnable
+import de.miraculixx.mvanilla.extensions.soundDisable
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesigns
 import de.miraculixx.mutils.gui.items.ItemsGoals
 import de.miraculixx.mutils.gui.items.ItemsRules
-import de.miraculixx.mutils.messages.emptyComponent
-import de.miraculixx.mutils.messages.msg
-import de.miraculixx.mutils.messages.plus
-import de.miraculixx.mutils.messages.prefix
+import de.miraculixx.mvanilla.messages.emptyComponent
+import de.miraculixx.mvanilla.messages.msg
+import de.miraculixx.mvanilla.messages.plus
+import de.miraculixx.mvanilla.messages.prefix
 import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType

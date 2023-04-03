@@ -1,11 +1,12 @@
 name: MUtils-Challenges
 load: STARTUP
 version: 100
-main: de.miraculixx.mutils.MChallenge
+main: de.miraculixx.mchallenge.MChallenge
 api-version: 1.16
 authors: [ Miraculixx, "The REAL NoRisk" ]
 description: MUtils Challenges - Play various Challenges that can modify the game slightly to completely against or in coop with your friends!
 website: https://mutils.de/
+softdepend: [ MUtils-Bridge, MUtils-Timer ]
 libraries:
   - "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
   - "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
@@ -24,14 +25,9 @@ commands:
       - ch
     permission: mutils.command.challenge
     description: Access all challenges and modify your settings
-  reset:
-    permission: mutils.command.reset
-    description: Resets the main world after a server restart
   mobhunt:
     permission: mutils.command.mobhunt
     description: Modify the Mob-Hunt challenge
   itemhunt:
     permission: mutils.command.itemhunt
     description: Modify the Item-Hunt challenge
-  invsee:
-    permission: mutils.command.invsee

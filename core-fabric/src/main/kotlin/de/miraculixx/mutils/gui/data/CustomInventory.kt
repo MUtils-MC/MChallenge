@@ -4,6 +4,7 @@ import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.event.GUIEventHandler
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.Container

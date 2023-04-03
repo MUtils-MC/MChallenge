@@ -8,8 +8,9 @@ import de.miraculixx.api.data.enums.AlgorithmSettingIndex
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.namespace
+import de.miraculixx.mvanilla.messages.namespace
 import de.miraculixx.mutils.module.MapRender
+import de.miraculixx.mvanilla.extensions.*
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType

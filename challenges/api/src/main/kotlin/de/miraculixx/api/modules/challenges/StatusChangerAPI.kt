@@ -3,9 +3,13 @@ package de.miraculixx.api.modules.challenges
 import de.miraculixx.api.settings.challenges
 import de.miraculixx.api.settings.getSetting
 import de.miraculixx.api.utils.cotm
+import de.miraculixx.mvanilla.gui.StorageFilter
+import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 
 interface StatusChangerAPI {
     fun getClass(module: Challenges): Challenge
+    fun getStatus(): Boolean
 
     /**
      * Start all loaded Challenges, as long as enough permissions are granted
@@ -14,11 +18,19 @@ interface StatusChangerAPI {
     fun startChallenges(): ArrayList<Challenge>? {
         val activated = ArrayList<Challenge>()
         var success = false
-        val available = if (false) arrayOf(cotm) else Challenges.values() //TODO
+        val status = getStatus()
+        val available = Challenges.values()
 
         available.forEach {
             val settings = challenges.getSetting(it)
             if (!settings.active) return@forEach
+
+            if (!status) {
+                if (it != cotm && !it.matchingFilter(StorageFilter.FREE)) {
+                    consoleAudience.sendMessage(prefix + cmp("Challenge ${it.name} requires a connected account to play!", cError))
+                    return@forEach
+                }
+            }
 
             val challenge = getClass(it)
             if (challenge.start()) {

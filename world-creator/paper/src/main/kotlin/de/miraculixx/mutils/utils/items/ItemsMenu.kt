@@ -4,10 +4,11 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.gui.Head64
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta

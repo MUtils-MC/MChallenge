@@ -2,7 +2,7 @@
 
 package de.miraculixx.mutils
 
-import de.miraculixx.mutils.data.UUIDSerializer
+import de.miraculixx.mvanilla.data.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.UUID
 

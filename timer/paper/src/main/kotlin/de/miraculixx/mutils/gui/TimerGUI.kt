@@ -8,6 +8,8 @@ import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.gui.Head64
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material

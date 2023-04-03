@@ -4,10 +4,10 @@ import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.*
-import de.miraculixx.mutils.messages.cHighlight
-import de.miraculixx.mutils.messages.cmp
-import de.miraculixx.mutils.messages.emptyComponent
-import de.miraculixx.mutils.messages.plus
+import de.miraculixx.mvanilla.messages.cHighlight
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.emptyComponent
+import de.miraculixx.mvanilla.messages.plus
 import net.kyori.adventure.text.Component
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack

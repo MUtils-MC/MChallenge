@@ -7,11 +7,12 @@ import de.miraculixx.kpaper.items.name
 import de.miraculixx.api.data.WorldData
 import de.miraculixx.api.data.enums.Dimension
 import de.miraculixx.mutils.data.getIcon
-import de.miraculixx.mutils.gui.Head64
-import de.miraculixx.mutils.extensions.msg
+import de.miraculixx.mvanilla.gui.Head64
+import de.miraculixx.mvanilla.extensions.msg
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.gui.items.skullTexture
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.NamespacedKey

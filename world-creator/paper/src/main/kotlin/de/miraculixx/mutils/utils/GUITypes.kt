@@ -3,10 +3,10 @@ package de.miraculixx.mutils.utils
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.items.ItemProvider
-import de.miraculixx.mutils.messages.cHighlight
-import de.miraculixx.mutils.messages.cmp
-import de.miraculixx.mutils.messages.namespace
-import de.miraculixx.mutils.messages.plus
+import de.miraculixx.mvanilla.messages.cHighlight
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.namespace
+import de.miraculixx.mvanilla.messages.plus
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.NamespacedKey

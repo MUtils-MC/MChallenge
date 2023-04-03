@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.await.AwaitChatMessage
+import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerDesignValue
 import de.miraculixx.mutils.extensions.*
@@ -10,6 +10,8 @@ import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignEditor
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
@@ -42,11 +44,11 @@ class GUIDesignPartEditor(
                 TimerGUI.DESIGN_EDITOR.buildInventory(player, player.uniqueId.toString(), ItemsDesignEditor(design, uuid), GUIDesignEditor(design, uuid, isPersonal))
             }
 
-            1 -> AwaitChatMessage(false, player, "prefix", maxSeconds, part.prefix,
+            1 -> de.miraculixx.mcore.await.AwaitChatMessage(false, player, "prefix", maxSeconds, part.prefix,
                 true, awaitInfoMessage, {
-                part.prefix = if (it.length > 300) it.dropLast(it.length - 300) else it
-                player.soundEnable()
-            }) { openThis(player, inv) }
+                    part.prefix = if (it.length > 300) it.dropLast(it.length - 300) else it
+                    player.soundEnable()
+                }) { openThis(player, inv) }
 
             2 -> player.setupValue(part.days, inv, it.hotbarButton)
             3 -> player.setupValue(part.hours, inv, it.hotbarButton)
@@ -54,11 +56,11 @@ class GUIDesignPartEditor(
             5 -> player.setupValue(part.seconds, inv, it.hotbarButton)
             6 -> player.setupValue(part.millis, inv, it.hotbarButton)
 
-            7 -> AwaitChatMessage(false, player, "suffix", maxSeconds, part.suffix,
+            7 -> de.miraculixx.mcore.await.AwaitChatMessage(false, player, "suffix", maxSeconds, part.suffix,
                 true, awaitInfoMessage, {
-                part.suffix = if (it.length > 300) it.dropLast(it.length - 300) else it
-                player.soundEnable()
-            }) { openThis(player, inv) }
+                    part.suffix = if (it.length > 300) it.dropLast(it.length - 300) else it
+                    player.soundEnable()
+                }) { openThis(player, inv) }
 
             8 -> {
                 when (it.click) {
@@ -82,11 +84,11 @@ class GUIDesignPartEditor(
 
             9 -> {
                 player.sendMessage(prefix + msg("event.syntaxInfo", listOf(player.name)))
-                AwaitChatMessage(false, player, "syntax", maxSeconds, part.syntax,
+                de.miraculixx.mcore.await.AwaitChatMessage(false, player, "syntax", maxSeconds, part.syntax,
                     true, awaitInfoMessage, {
-                    part.syntax = if (it.length > 300) it.dropLast(it.length - 300) else it
-                    player.soundEnable()
-                }) { openThis(player, inv) }
+                        part.syntax = if (it.length > 300) it.dropLast(it.length - 300) else it
+                        player.soundEnable()
+                    }) { openThis(player, inv) }
             }
         }
     }
@@ -102,18 +104,18 @@ class GUIDesignPartEditor(
                 value.visibleOnNull = !value.visibleOnNull
             }
             2 -> {
-                AwaitChatMessage(false, this, "prefix", maxSeconds, value.prefix,
+                de.miraculixx.mcore.await.AwaitChatMessage(false, this, "prefix", maxSeconds, value.prefix,
                     true, awaitInfoMessage, {
-                    value.prefix = if (it.length > 300) it.dropLast(it.length - 300) else it
-                    soundEnable()
-                }) { openThis(this, inv) }
+                        value.prefix = if (it.length > 300) it.dropLast(it.length - 300) else it
+                        soundEnable()
+                    }) { openThis(this, inv) }
             }
             3 -> {
-                AwaitChatMessage(false, this, "suffix", maxSeconds, value.suffix,
+                de.miraculixx.mcore.await.AwaitChatMessage(false, this, "suffix", maxSeconds, value.suffix,
                     true, awaitInfoMessage, {
-                    value.suffix = if (it.length > 300) it.dropLast(it.length - 300) else it
-                    soundEnable()
-                }) { openThis(this, inv) }
+                        value.suffix = if (it.length > 300) it.dropLast(it.length - 300) else it
+                        soundEnable()
+                    }) { openThis(this, inv) }
             }
             else -> soundStone()
         }

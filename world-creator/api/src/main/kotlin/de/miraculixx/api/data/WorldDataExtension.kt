@@ -1,7 +1,7 @@
 package de.miraculixx.api.data
 
-import de.miraculixx.mutils.messages.miniMessages
-import de.miraculixx.mutils.messages.msgString
+import de.miraculixx.mvanilla.messages.miniMessages
+import de.miraculixx.mvanilla.messages.msgString
 
 fun WorldData.printInfo(isNew: Boolean) = miniMessages.deserialize(
     "<grey><gold>┐</gold> <green>${if (isNew) msgString("event.worldCreated") else msgString("event.worldInfo")}</green>\n" +

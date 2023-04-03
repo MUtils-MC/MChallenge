@@ -1,13 +1,14 @@
 package de.miraculixx.mutils.gui
 
 import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.extensions.click
+import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.GUIClick
 import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
 import net.minecraft.sounds.SoundEvents

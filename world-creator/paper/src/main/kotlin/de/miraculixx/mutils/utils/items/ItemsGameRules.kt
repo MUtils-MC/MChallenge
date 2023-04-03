@@ -8,6 +8,7 @@ import de.miraculixx.kpaper.items.name
 import de.miraculixx.mutils.globalRules
 import de.miraculixx.mutils.gui.items.ItemProvider
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameRule

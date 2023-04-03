@@ -4,9 +4,9 @@ import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mutils.MWorlds
-import de.miraculixx.mutils.messages.cError
-import de.miraculixx.mutils.messages.cmp
-import de.miraculixx.mutils.messages.debug
+import de.miraculixx.mvanilla.messages.cError
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.debug
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World

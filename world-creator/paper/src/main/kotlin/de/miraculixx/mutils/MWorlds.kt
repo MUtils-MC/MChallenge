@@ -8,6 +8,7 @@ import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.BukkitConfig
+import de.miraculixx.mvanilla.messages.*
 import java.io.File
 
 class MWorlds : KSpigot() {

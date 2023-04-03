@@ -10,8 +10,9 @@ import de.miraculixx.api.data.GeneratorProviderData
 import de.miraculixx.api.data.WorldData
 import de.miraculixx.mutils.MWorlds
 import de.miraculixx.mutils.data.*
-import de.miraculixx.mutils.extensions.readJsonString
+import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.kyori.adventure.util.TriState

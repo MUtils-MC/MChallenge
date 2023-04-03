@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.data
 
+import de.miraculixx.mvanilla.data.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.*
 import kotlin.time.Duration

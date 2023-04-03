@@ -3,7 +3,7 @@ package de.miraculixx.mutils.utils.actions
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mutils.await.AwaitConfirm
-import de.miraculixx.mutils.gui.StorageFilter
+import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mutils.extensions.*
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.data.CustomInventory
@@ -13,6 +13,8 @@ import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.checkPermission
 import de.miraculixx.mutils.utils.items.ItemsCopy
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.Sound

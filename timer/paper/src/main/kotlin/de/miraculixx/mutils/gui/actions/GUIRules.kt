@@ -2,10 +2,10 @@ package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mutils.data.Punishment
-import de.miraculixx.mutils.extensions.click
-import de.miraculixx.mutils.extensions.enumRotate
-import de.miraculixx.mutils.extensions.soundUp
-import de.miraculixx.mutils.extensions.toggle
+import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.enumRotate
+import de.miraculixx.mvanilla.extensions.soundUp
+import de.miraculixx.mvanilla.extensions.toggle
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.data.CustomInventory

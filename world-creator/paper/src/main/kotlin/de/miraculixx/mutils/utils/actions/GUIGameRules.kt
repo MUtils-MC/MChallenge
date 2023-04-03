@@ -7,12 +7,13 @@ import de.miraculixx.mutils.globalRules
 import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.InventoryUtils.get
 import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.msg
-import de.miraculixx.mutils.messages.namespace
-import de.miraculixx.mutils.messages.plus
-import de.miraculixx.mutils.messages.prefix
+import de.miraculixx.mvanilla.messages.msg
+import de.miraculixx.mvanilla.messages.namespace
+import de.miraculixx.mvanilla.messages.plus
+import de.miraculixx.mvanilla.messages.prefix
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.items.ItemsMenu
+import de.miraculixx.mvanilla.extensions.*
 import org.bukkit.GameRule
 import org.bukkit.NamespacedKey
 import org.bukkit.World

@@ -10,6 +10,7 @@ import de.miraculixx.mutils.gui.actions.GUIGradientEditor
 import de.miraculixx.mutils.gui.items.ItemsColorBuilder
 import de.miraculixx.mutils.gui.items.ItemsGradientBuilder
 import de.miraculixx.mutils.messages.*
+import de.miraculixx.mvanilla.messages.*
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
