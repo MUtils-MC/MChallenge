@@ -33,6 +33,9 @@ command:
     start: "Challenges <green><b>started</b></green>! (<input-1>)"
     pause: "Challenges temporary <red>paused</red>! (<input-1>)"
     continue: "Challenges <green>resumed</green>! (<input-1>)"
+    failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
+    alreadyOn: "<red>Challenges are already started!"
+    alreadyOff: "<red>Challenges are already stopped!"
   notRegistered: "<red>¡Activa el módulo para usar este comando!"
   heal:
     single: "<green>You healed yourself"
@@ -52,6 +55,10 @@ command:
     show: "<grey>You are now <green>visible"
     hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
     showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+  debug: "<grey>Switched debug mode to <blue><input-1>"
+  lang:
+    success: "<grey>Successfully switched language to <green><input-1>"
+    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
