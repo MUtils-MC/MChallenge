@@ -101,7 +101,7 @@ class MChallenge : KSpigot() {
             Spectator.loadData()
 
             // Connect Bridge
-            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.port)
+            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port)
             bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0)
             bridgeAPI.login {
                 ChallengeManager.stopChallenges()

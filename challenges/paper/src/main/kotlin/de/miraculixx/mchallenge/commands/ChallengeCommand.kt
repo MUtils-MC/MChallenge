@@ -78,12 +78,11 @@ class ChallengeCommand {
                     taskRunLater(20 * 3) { apiCooldown = false }
 
                     player.sendMessage(prefix + cmp("Trying to log in..."))
-                    MChallenge.bridgeAPI.saveData(key, player.uniqueId)
                     MChallenge.bridgeAPI.activate {
                         if (it) {
                             player.sendMessage(prefix + cmp("Successfully logged in your account!", cSuccess))
                             player.sendMessage(prefix + cmp("Please perform a server restart in near future"))
-                            MChallenge.bridgeAPI.saveData(autoUpdate = true)
+                            MChallenge.bridgeAPI.saveData(key = key, uuid = player.uniqueId, autoUpdate = true)
                             player.soundEnable()
                         } else {
                             player.sendMessage(prefix + cmp("Failed to login! More information in console", cError))
