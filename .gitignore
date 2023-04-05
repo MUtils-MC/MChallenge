@@ -9,4 +9,4 @@
 buildSrc/.gradle
 zBackup/
 bridge/paper
-bridge/fabric
+bridge
