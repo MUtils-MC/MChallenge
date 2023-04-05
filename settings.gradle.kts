@@ -13,8 +13,7 @@ include("core-paper")
 include("core-fabric")
 
 // API Bridge
-include("bridge:paper")
-include("bridge:api")
+include("bridge")
 
 // Custom Challenges
 include("custom-challenges:paper")
