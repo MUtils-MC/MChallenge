@@ -1,11 +1,11 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
+import de.miraculixx.mcore.utils.checkPermission
 import de.miraculixx.mvanilla.extensions.click
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.utils.GUITypes
-import de.miraculixx.mutils.utils.checkPermission
 import de.miraculixx.mutils.utils.items.ItemsBuilderType
 import de.miraculixx.mutils.utils.items.ItemsGameRules
 import de.miraculixx.mutils.utils.items.ItemsWorlds

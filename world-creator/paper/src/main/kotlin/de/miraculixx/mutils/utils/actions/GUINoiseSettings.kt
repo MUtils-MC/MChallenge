@@ -5,9 +5,8 @@ import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.api.data.GeneratorData
 import de.miraculixx.api.data.GeneratorProviderData
 import de.miraculixx.api.data.enums.AlgorithmSettingIndex
-import de.miraculixx.mutils.extensions.*
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mvanilla.messages.namespace
 import de.miraculixx.mutils.module.MapRender
 import de.miraculixx.mvanilla.extensions.*

@@ -2,12 +2,11 @@ package de.miraculixx.mutils
 
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
+import de.miraculixx.mcore.utils.BukkitConfig
 import de.miraculixx.mutils.commands.WorldCommand
 import de.miraculixx.mutils.commands.WorldsCommand
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
-import de.miraculixx.mutils.utils.BukkitConfig
 import de.miraculixx.mvanilla.messages.*
 import java.io.File
 

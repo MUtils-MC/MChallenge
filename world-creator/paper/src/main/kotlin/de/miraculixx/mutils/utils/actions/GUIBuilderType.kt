@@ -2,9 +2,9 @@ package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.api.data.WorldData
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mvanilla.extensions.click
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.items.ItemsBuilder
 import de.miraculixx.mutils.utils.items.ItemsMenu

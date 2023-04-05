@@ -9,9 +9,8 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.mutils.data.ChunkCalcData
 import de.miraculixx.api.data.GeneratorProviderData
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.data.getGenerator
-import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.bossbar.BossBar
 import org.bukkit.Bukkit

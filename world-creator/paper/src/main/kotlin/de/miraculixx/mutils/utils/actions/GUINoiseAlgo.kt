@@ -6,12 +6,12 @@ import de.miraculixx.api.data.GeneratorData
 import de.miraculixx.api.data.GeneratorProviderData
 import de.miraculixx.api.data.WorldData
 import de.miraculixx.api.data.enums.GeneratorAlgorithm
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mvanilla.messages.namespace
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player

@@ -6,16 +6,14 @@ import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mcore.await.AwaitChatMessage
-import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.api.data.WorldData
 import de.miraculixx.api.data.enums.BiomeAlgorithm
 import de.miraculixx.api.data.enums.Dimension
 import de.miraculixx.api.data.enums.VanillaGenerator
 import de.miraculixx.api.data.printInfo
-import de.miraculixx.mutils.extensions.*
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mcore.await.AwaitConfirm
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.module.MapRender
 import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
@@ -59,7 +57,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
         when (val id = item.itemMeta?.customModel) {
             1 -> {
                 player.click()
-                de.miraculixx.mcore.await.AwaitChatMessage(false, player, "World Name", 60, worldData.worldName, {
+                AwaitChatMessage(false, player, "World Name", 60, worldData.worldName, false, cmp(""), {
                     worldData.worldName = it.replace(' ', '_')
                     player.soundUp()
                 }) {
@@ -71,7 +69,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
 
             2 -> {
                 player.click()
-                de.miraculixx.mcore.await.AwaitChatMessage(false, player, msgString("event.category"), 60, worldData.seed.toString(), {
+                AwaitChatMessage(false, player, msgString("event.category"), 60, worldData.seed.toString(), false, cmp(""), {
                     worldData.category = it
                 }) {
                     inv.update()
@@ -82,7 +80,7 @@ class GUIBuilder(worldData: WorldData, isSet: Boolean) : GUIEvent {
 
             3 -> {
                 player.click()
-                de.miraculixx.mcore.await.AwaitChatMessage(false, player, "Seed", 60, worldData.seed.toString(), {
+                AwaitChatMessage(false, player, "Seed", 60, worldData.seed.toString(), false, cmp(""), {
                     try {
                         worldData.seed = it.toLong(36)
                     } catch (_: Exception) {

@@ -3,11 +3,11 @@ package de.miraculixx.mutils.utils.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.api.data.GeneratorDefaults
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent

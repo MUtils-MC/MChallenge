@@ -1,8 +1,8 @@
 package de.miraculixx.mutils.utils
 
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.InventoryManager
-import de.miraculixx.mutils.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.InventoryManager
+import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.namespace

@@ -5,11 +5,10 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.api.data.BiomeProviderData
+import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mutils.data.getIcon
 import de.miraculixx.mvanilla.gui.Head64
-import de.miraculixx.mutils.gui.items.ItemProvider
-import de.miraculixx.mutils.gui.items.skullTexture
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -20,20 +19,20 @@ import org.bukkit.persistence.PersistentDataType
 class ItemsBiomeSettings(private val biomeProviderData: BiomeProviderData): ItemProvider {
     private val settingLore = listOf(emptyComponent(), cmp("• ") + cmp("Settings", cHighlight, underlined = true))
 
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         return buildMap {
             val gen = biomeProviderData.algorithm
-            put(gen.getIcon(biomeProviderData.settings, 0), 20)
-            put(itemStack(Material.PLAYER_HEAD) {
+            put(20, gen.getIcon(biomeProviderData.settings, 0))
+            put(22, itemStack(Material.PLAYER_HEAD) {
                 meta {
                     name = emptyComponent()
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RIGHT_WHITE.value)
-            }, 22)
+            })
 
             var index = 1
             gen.settings.forEach { (settingIndex, setting) ->
-                put(itemStack(setting.getIcon()) {
+                put(getSlot(index), itemStack(setting.getIcon()) {
                     meta {
                         customModel = 1
                         persistentDataContainer.set(NamespacedKey(namespace, "gui.biome.setting"), PersistentDataType.STRING, settingIndex.name)
@@ -45,16 +44,16 @@ class ItemsBiomeSettings(private val biomeProviderData: BiomeProviderData): Item
                             ) + settingIndex.getClickLore()
                         )
                     }
-                }, getSlot(index))
+                })
                 index++
             }
             while (index < 7) {
-                put(itemStack(Material.BARRIER) {
+                put(getSlot(index), itemStack(Material.BARRIER) {
                     meta {
                         customModel = index + 10
                         name = emptyComponent()
                     }
-                }, getSlot(index))
+                })
                 index++
             }
         }

@@ -2,8 +2,9 @@ package de.miraculixx.mutils.commands
 
 import de.miraculixx.kpaper.extensions.bukkit.register
 import de.miraculixx.kpaper.extensions.worlds
-import de.miraculixx.mutils.await.AwaitConfirm
 import de.miraculixx.api.data.printInfo
+import de.miraculixx.mcore.await.AwaitConfirm
+import de.miraculixx.mcore.utils.checkPermission
 import de.miraculixx.mvanilla.extensions.soundDelete
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.messages.msg
@@ -13,7 +14,6 @@ import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
 import de.miraculixx.mutils.utils.actions.GUIBuilderType
 import de.miraculixx.mutils.utils.actions.GUIMenu
-import de.miraculixx.mutils.utils.checkPermission
 import de.miraculixx.mutils.utils.items.ItemsBuilderType
 import de.miraculixx.mutils.utils.items.ItemsMenu
 import org.bukkit.Sound

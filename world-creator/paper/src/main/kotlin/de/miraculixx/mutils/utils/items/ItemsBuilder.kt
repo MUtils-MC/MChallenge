@@ -6,12 +6,11 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.api.data.WorldData
 import de.miraculixx.api.data.enums.Dimension
+import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mutils.data.getIcon
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.extensions.msg
-import de.miraculixx.mutils.gui.items.ItemProvider
-import de.miraculixx.mutils.gui.items.skullTexture
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
@@ -24,17 +23,17 @@ import java.util.*
 class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean) : ItemProvider {
     private val settingsLore = listOf(emptyComponent(), cmp("• ") + cmp("Settings", cHighlight, underlined = true))
 
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         return buildMap {
-            put(itemStack(Material.NAME_TAG) {
+            put(10, itemStack(Material.NAME_TAG) {
                 getCustomMeta("name", 1, getCategory1())
-            }, 10)
-            put(itemStack(Material.BEETROOT_SEEDS) {
+            })
+            put(11, itemStack(Material.BEETROOT_SEEDS) {
                 getCustomMeta("category", 2, getCategory1())
-            }, 11)
-            put(itemStack(Material.WHEAT_SEEDS) {
+            })
+            put(12, itemStack(Material.WHEAT_SEEDS) {
                 getCustomMeta("seed", 3, getCategory1())
-            }, 12)
+            })
 
             if (!isSet) {
                 val envItem = when (worldData.environment) {
@@ -42,27 +41,27 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
                     Dimension.NETHER -> Material.NETHERRACK
                     Dimension.THE_END -> Material.END_STONE
                 }
-                put(itemStack(envItem) {
+                put(14, itemStack(envItem) {
                     getCustomMeta("env", 10, getCategory1())
-                }, 14)
+                })
             }
 
-            put(itemStack(Material.BIRCH_SAPLING) {
+            put(15, itemStack(Material.BIRCH_SAPLING) {
                 getCustomMeta("worldType", 5, getCategory1())
-            }, 15)
-            put(itemStack(Material.SPRUCE_SAPLING) {
+            })
+            put(16, itemStack(Material.SPRUCE_SAPLING) {
                 getCustomMeta("biomeAlgo", 6, getCategory2())
-            }, 16)
-            put(itemStack(Material.PLAYER_HEAD) {
+            })
+            put(40, itemStack(Material.PLAYER_HEAD) {
                 meta {
                     customModel = 8
                     name = cmp("Create World", cSuccess)
                     lore(listOf(emptyComponent(), msgClickLeft + cmp("Create World"), msgClickRight + cmp("Preview")))
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CHECKMARK_GREEN.value)
-            }, 40)
+            })
 
-            put(itemStack(Material.PLAYER_HEAD) {
+            put(28, itemStack(Material.PLAYER_HEAD) {
                 meta {
                     customModel = 9
                     name = cmp(msgString("items.creator.noiseAlgo.n"), cHighlight)
@@ -81,27 +80,27 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
                     )
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
-            }, 28)
-            put(itemStack(Material.PLAYER_HEAD) {
+            })
+            put(29, itemStack(Material.PLAYER_HEAD) {
                 meta {
                     customModel = 0
                     name = emptyComponent()
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RIGHT_WHITE.value)
-            }, 29)
+            })
 
             val chunkProviders = worldData.chunkProviders
             (0..4).forEach { index ->
                 val data = chunkProviders.getOrNull(index)
                 if (data == null) {
-                    put(itemStack(Material.BARRIER) {
+                    put(index + 30, itemStack(Material.BARRIER) {
                         meta {
                             name = cmp("✖", cError)
                             customModel = 7
                             persistentDataContainer.set(NamespacedKey(namespace, "wc.id"), PersistentDataType.STRING, UUID.randomUUID().toString())
                         }
-                    }, index + 30)
-                } else put(data.algorithm.getIcon(data.settings, 100 + index), index + 30)
+                    })
+                } else put(index + 30, data.algorithm.getIcon(data.settings, 100 + index))
             }
         }
     }

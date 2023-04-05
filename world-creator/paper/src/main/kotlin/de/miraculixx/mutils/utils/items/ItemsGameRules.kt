@@ -5,9 +5,8 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
+import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mutils.globalRules
-import de.miraculixx.mutils.gui.items.ItemProvider
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor

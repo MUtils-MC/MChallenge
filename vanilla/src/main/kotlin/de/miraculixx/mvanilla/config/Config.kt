@@ -2,7 +2,6 @@
 
 package de.miraculixx.mvanilla.config
 
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mvanilla.messages.*
 import org.yaml.snakeyaml.DumperOptions

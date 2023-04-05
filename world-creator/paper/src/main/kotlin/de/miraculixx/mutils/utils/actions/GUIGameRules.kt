@@ -2,11 +2,9 @@ package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.extensions.*
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.globalRules
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.InventoryUtils.get
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mvanilla.messages.msg
 import de.miraculixx.mvanilla.messages.namespace
 import de.miraculixx.mvanilla.messages.plus
@@ -20,6 +18,7 @@ import org.bukkit.World
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.persistence.PersistentDataType
 
 class GUIGameRules(world: World?) : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
@@ -33,7 +32,7 @@ class GUIGameRules(world: World?) : GUIEvent {
             player.click()
             return@event
         } else if (meta.customModel != 1) return@event
-        val ruleKey = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.gamerules.key")) ?: return@event
+        val ruleKey = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.gamerules.key"), PersistentDataType.STRING) ?: return@event
         val gameRule = GameRule.getByName(ruleKey) ?: return@event
         val isGlobal = world == null
         val click = it.click

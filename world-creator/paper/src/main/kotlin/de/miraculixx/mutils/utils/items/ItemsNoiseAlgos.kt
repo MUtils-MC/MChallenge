@@ -5,9 +5,8 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.api.data.enums.GeneratorAlgorithm
-import de.miraculixx.mutils.gui.items.ItemProvider
-import de.miraculixx.mutils.gui.items.skullTexture
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
