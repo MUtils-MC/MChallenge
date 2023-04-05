@@ -33,14 +33,14 @@ command:
     start: "<grey>Die Challenges wurden <green><b>gestartet</b></green>! (<input-1>)"
     pause: "<grey>Die Challenges wurden <red>pausiert</red>! (<input-1>)"
     continue: "<grey>Die Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
-    failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
-    alreadyOn: "<red>Challenges are already started!"
-    alreadyOff: "<red>Challenges are already stopped!"
+    failed: "<red>Fehler beim Starten der Challenges! Es muss mindestens eine Challenge aktiviert und genügend Spieler für Mehrspieler Challenges online sein"
+    alreadyOn: "<red>Challenges sind bereits gestartet!"
+    alreadyOff: "<red>Challenges sind bereits gestoppt!"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
   heal:
     single: "<green>Du hast dich selbst geheilt"
     multiple: "<green>Du hast <input-1> Spieler geheilt"
-  reset: "<red><b>Serverwelten zurückgesetzt\n<white>(Ausgeführt von <input-1>)"
+  reset: "<red><b>Serverwelten werden zurückgesetzt\n<white>(Ausgeführt von <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
     new: "<grey>Neue Position erstellt <blue><input-1> <grey>(<input-2>)"
@@ -55,10 +55,10 @@ command:
     show: "<grey>Du bist jetzt <green>sichtbar"
     hideMultiple: "<grey>Du hast <input-1> Spieler <red>versteckt"
     showMultiple: "<grey>Du hast <input-2> Spieler <green>sichtbar gemacht"
-  debug: "<grey>Switched debug mode to <blue><input-1>"
+  debug: "<grey>Debug Modus zu <blue><input-1></blue> gewechselt"
   lang:
-    success: "<grey>Successfully switched language to <green><input-1>"
-    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
+    success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
+    fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -76,8 +76,8 @@ event:
     blockAsync: "<red><input-1> hat auf einen gefälschten Block geklickt!"
     gravity: "<red><input-1> ist im Weltraum erfroren!"
     noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
-    stayAway: "<red><input-1> got too close!"
-    forceHunt: "<red><input-1> failed to complete the goal!"
+    stayAway: "<red><input-1> ist zu nah gekommen!"
+    forceHunt: "<red><input-1> hat das Ziel nicht erfüllt!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -93,10 +93,10 @@ event:
     duplicate: "<red><input-2></red> wurde schon von <red><input-1></red> eingesammelt!"
     deathTitle: "<red>Du bist gestorben"
   forceHunt:
-    height: "On Height"
-    item: "Collect Item"
-    biome: "Visit Biome"
-    waiting: "Waiting for new goal..."
+    height: "Auf Höhe"
+    item: "Sammle Item"
+    biome: "Besuche Biom"
+    waiting: "Warte auf neues Ziel..."
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -368,23 +368,23 @@ items:
         n: "Komplett zufällig"
     FORCE_COLLECT:
       times:
-        n: "Timings"
+        n: "Zeiten"
       minCooldown:
         n: "Minimale Abklingzeit"
       maxCooldown:
         n: "Maximale Abklingzeit"
       minTime:
-        n: "Min Hunt Time"
+        n: "Min Force Zeit"
       maxTime:
-        n: "Max Hunt Time"
+        n: "Max Force Zeit"
       objects:
-        n: "Goals"
+        n: "Ziele"
       items:
         n: "Force Item"
       biomes:
-        n: "Force Biome"
+        n: "Force Biom"
       height:
-        n: "Force Height"
+        n: "Force Höhe"
     RANDOMIZER_DAMAGE:
       random:
         n: "Komplett zufällig"
