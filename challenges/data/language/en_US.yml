@@ -37,6 +37,9 @@ command:
     start: "<grey>Challenges <green><b>started</b></green>! (<input-1>)"
     pause: "<grey>Challenges temporary <red>paused</red>! (<input-1>)"
     continue: "<grey>Challenges <green>resumed</green>! (<input-1>)"
+    failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
+    alreadyOn: "<red>Challenges are already started!"
+    alreadyOff: "<red>Challenges are already stopped!"
   notRegistered: "<red>Activate the module to use this command!"
   heal:
     single: "<green>You healed yourself"

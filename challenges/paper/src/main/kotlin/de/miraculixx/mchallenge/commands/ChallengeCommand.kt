@@ -3,6 +3,7 @@ package de.miraculixx.mchallenge.commands
 import de.miraculixx.api.modules.challenges.ChallengeStatus
 import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
@@ -16,7 +17,9 @@ import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.command.CommandSender
 
 class ChallengeCommand {
-    val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("mutils.command.challenge") }) {
+    private var apiCooldown = false
+
+    private val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("mutils.command.challenge") }) {
         withAliases("ch")
         playerExecutor { player, _ ->
             GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
@@ -65,6 +68,15 @@ class ChallengeCommand {
             stringArgument("key") {
                 playerExecutor { player, args ->
                     val key = args[0] as String
+
+                    if (apiCooldown) {
+                        player.sendMessage(prefix + cmp("Please wait a bit between logins", cError))
+                        player.soundError()
+                        return@playerExecutor
+                    }
+                    apiCooldown = true
+                    taskRunLater(20 * 3) { apiCooldown = false }
+
                     player.sendMessage(prefix + cmp("Trying to log in..."))
                     MChallenge.bridgeAPI.saveData(key, player.uniqueId)
                     MChallenge.bridgeAPI.activate {
