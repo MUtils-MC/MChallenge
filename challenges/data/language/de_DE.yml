@@ -33,7 +33,32 @@ command:
     start: "<grey>Die Challenges wurden <green><b>gestartet</b></green>! (<input-1>)"
     pause: "<grey>Die Challenges wurden <red>pausiert</red>! (<input-1>)"
     continue: "<grey>Die Challenges wurden <green>fortgesetzt</green>! (<input-1>)"
+    failed: "<red>Fehler beim Starten der Challenges! Es muss mindestens eine Challenge aktiviert und genügend Spieler für Mehrspieler Challenges online sein"
+    alreadyOn: "<red>Challenges sind bereits gestartet!"
+    alreadyOff: "<red>Challenges sind bereits gestoppt!"
   notRegistered: "<red>Aktiviere das Modul, um diesen Befehl zu verwenden!"
+  heal:
+    single: "<green>Du hast dich selbst geheilt"
+    multiple: "<green>Du hast <input-1> Spieler geheilt"
+  reset: "<red><b>Serverwelten werden zurückgesetzt\n<white>(Ausgeführt von <input-1>)"
+  position:
+    get: "<grey>Position <input-1> >> <blue><input-2>"
+    new: "<grey>Neue Position erstellt <blue><input-1> <grey>(<input-2>)"
+    remove: "<grey>Position entfernt <blue><input-1>"
+    reset: "<red>Alle gespeicherten Positionen zurückgesetzt!"
+  backpack:
+    setGlobal: "<grey>Backpack-Typ auf <blue><input-1> geändert"
+    setSize: "<grey>Backpack-Größe auf <blue><input-1></blue> Reihen geändert"
+    reset: "<red>Alle Backpacks einschließlich des globalen Backpacks geleert!"
+  hide:
+    hide: "<grey>Du bist jetzt <red>versteckt"
+    show: "<grey>Du bist jetzt <green>sichtbar"
+    hideMultiple: "<grey>Du hast <input-1> Spieler <red>versteckt"
+    showMultiple: "<grey>Du hast <input-2> Spieler <green>sichtbar gemacht"
+  debug: "<grey>Debug Modus zu <blue><input-1></blue> gewechselt"
+  lang:
+    success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
+    fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -50,6 +75,9 @@ event:
       trade: "<red><input-1> hat versucht zu handeln!"
     blockAsync: "<red><input-1> hat auf einen gefälschten Block geklickt!"
     gravity: "<red><input-1> ist im Weltraum erfroren!"
+    noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
+    stayAway: "<red><input-1> ist zu nah gekommen!"
+    forceHunt: "<red><input-1> hat das Ziel nicht erfüllt!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -61,6 +89,14 @@ event:
     show: "Alle Spieler sind nun <green>sichtbar"
   gravity:
     switch: "<red>⚠ Die Schwerkraft ändert sich in <b><input-1></b> Sekunden ⚠</red>"
+  noSameItem:
+    duplicate: "<red><input-2></red> wurde schon von <red><input-1></red> eingesammelt!"
+    deathTitle: "<red>Du bist gestorben"
+  forceHunt:
+    height: "Auf Höhe"
+    item: "Sammle Item"
+    biome: "Besuche Biom"
+    waiting: "Warte auf neues Ziel..."
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -311,9 +347,13 @@ items:
     GRAVITY:
       delay:
         n: "Verzögerung"
+      duration:
+        n: "Dauer"
     STAY_AWAY:
       distance:
         n: "Schadensdistanz"
+      warning:
+        n: "Warnschaden"
     RANDOMIZER_BLOCK:
       random:
         n: "Komplett zufällig"
@@ -327,14 +367,24 @@ items:
       random:
         n: "Komplett zufällig"
     FORCE_COLLECT:
+      times:
+        n: "Zeiten"
       minCooldown:
         n: "Minimale Abklingzeit"
       maxCooldown:
         n: "Maximale Abklingzeit"
       minTime:
-        n: "Minimale Sammelzeit"
+        n: "Min Force Zeit"
       maxTime:
-        n: "Maximale Sammelzeit"
+        n: "Max Force Zeit"
+      objects:
+        n: "Ziele"
+      items:
+        n: "Force Item"
+      biomes:
+        n: "Force Biom"
+      height:
+        n: "Force Höhe"
     RANDOMIZER_DAMAGE:
       random:
         n: "Komplett zufällig"
