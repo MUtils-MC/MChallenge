@@ -39,7 +39,7 @@ command:
   notRegistered: "<red>Activer le module pour utiliser cette commande !"
   heal:
     single: "<green>You healed yourself"
-    multiple: "<green>You healed <input-1> player/s"
+    multiple: "<green>You healed <input-1> players"
   reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
@@ -76,7 +76,7 @@ event:
     blockAsync: "<red><input-1> clicked on a fake block!"
     gravity: "<red><input-1> froze to death in space!"
     noSameItem: "<red><input-1> collected too many duplicates!"
-    stayAway: "<red><input-1> got too close!"
+    stayAway: "<red><input-1> got to close!"
     forceHunt: "<red><input-1> failed to complete the goal!"
   mobHunt:
     collect: "<green><input-1> found <input-2>!"
@@ -374,9 +374,9 @@ items:
       maxCooldown:
         n: "Max Cooldown"
       minTime:
-        n: "Min Hunt Time"
+        n: "Min Collect Time"
       maxTime:
-        n: "Max Hunt Time"
+        n: "Max Collect Time"
       objects:
         n: "Goals"
       items:
