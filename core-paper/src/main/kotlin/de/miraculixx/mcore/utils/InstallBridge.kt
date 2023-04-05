@@ -1,6 +1,5 @@
 package de.miraculixx.mcore.utils
 
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import io.ktor.client.*
 import io.ktor.client.call.*

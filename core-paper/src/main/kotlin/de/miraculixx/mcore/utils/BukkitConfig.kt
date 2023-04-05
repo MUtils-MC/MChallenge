@@ -1,6 +1,5 @@
 package de.miraculixx.mcore.utils
 
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration

@@ -4,7 +4,6 @@ import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.text.Component

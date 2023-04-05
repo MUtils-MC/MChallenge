@@ -10,7 +10,6 @@ import de.miraculixx.mvanilla.data.UUIDSerializer
 import de.miraculixx.api.modules.spectator.Activation
 import de.miraculixx.api.modules.spectator.Visibility
 import de.miraculixx.mvanilla.extensions.readJsonString
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -31,7 +30,7 @@ import java.util.*
 object Spectator {
     private val specs = ArrayList<UUID>()
     private val specSettings = HashMap<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>()
-    private val file = File("${de.miraculixx.mchallenge.MChallenge.configFolder.path}/spectator.json")
+    private val file = File("${MChallenge.configFolder.path}/spectator.json")
 
     fun saveData() {
         if (!file.exists()) file.parentFile.mkdirs()
@@ -181,7 +180,7 @@ object Spectator {
             player.sendMessage(prefix + msg("modules.spectator.join"))
         } else onlinePlayers.forEach { target ->
             val targetID = target.uniqueId
-            if (isSpectator(targetID) && specSettings[targetID]?.hide == Visibility.HIDDEN) player.hidePlayer(de.miraculixx.mchallenge.PluginManager, target)
+            if (isSpectator(targetID) && specSettings[targetID]?.hide == Visibility.HIDDEN) player.hidePlayer(PluginManager, target)
         }
     }
 
@@ -247,10 +246,10 @@ object Spectator {
         for (target in onlinePlayers) {
             if (target.uniqueId != player.uniqueId) {
                 if (!isSpectator(target.uniqueId)) {
-                    target.hidePlayer(de.miraculixx.mchallenge.PluginManager, player)
+                    target.hidePlayer(PluginManager, player)
                     continue
                 }
-                player.showPlayer(de.miraculixx.mchallenge.PluginManager, target)
+                player.showPlayer(PluginManager, target)
             }
         }
     }
@@ -259,9 +258,9 @@ object Spectator {
         for (target in onlinePlayers) {
             if (target.uniqueId != player.uniqueId) {
                 if (isSpectator(target.uniqueId)) {
-                    player.hidePlayer(de.miraculixx.mchallenge.PluginManager, target)
+                    player.hidePlayer(PluginManager, target)
                 } else {
-                    player.showPlayer(de.miraculixx.mchallenge.PluginManager, target)
+                    player.showPlayer(PluginManager, target)
                 }
             }
         }
@@ -271,10 +270,10 @@ object Spectator {
         for (target in onlinePlayers) {
             if (target.uniqueId != player.uniqueId) {
                 if (!isSpectator(target.uniqueId)) {
-                    target.showPlayer(de.miraculixx.mchallenge.PluginManager, player)
+                    target.showPlayer(PluginManager, player)
                     continue
                 }
-                player.hidePlayer(de.miraculixx.mchallenge.PluginManager, target)
+                player.hidePlayer(PluginManager, target)
             }
         }
     }
@@ -282,7 +281,7 @@ object Spectator {
     fun performSelfReveal(player: Player) {
         for (target in onlinePlayers) {
             if (target.uniqueId != player.uniqueId) {
-                player.showPlayer(de.miraculixx.mchallenge.PluginManager, target)
+                player.showPlayer(PluginManager, target)
             }
         }
     }

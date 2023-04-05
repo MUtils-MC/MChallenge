@@ -3,15 +3,16 @@ package de.miraculixx.mchallenge
 import de.miraculixx.api.settings.SettingsData
 import de.miraculixx.api.settings.challenges
 import de.miraculixx.kpaper.extensions.console
-import de.miraculixx.kpaper.extensions.pluginManager
 import de.miraculixx.kpaper.main.KSpigot
+import de.miraculixx.mbridge.MUtilsBridge
+import de.miraculixx.mbridge.MUtilsModule
+import de.miraculixx.mbridge.MUtilsPlatform
 import de.miraculixx.mchallenge.commands.ChallengeCommand
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.commands.utils.*
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.api.MUtilsBridge
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mvanilla.messages.*
@@ -34,8 +35,7 @@ class MChallenge : KSpigot() {
         val configFolder = File("plugins/MUtils/Challenges")
         lateinit var localization: Localization
         lateinit var settings: SettingsData
-
-        var bridgeAPI: MUtilsBridge? = null
+        lateinit var bridgeAPI: MUtilsBridge
     }
 
     private lateinit var configFile: File
@@ -79,34 +79,28 @@ class MChallenge : KSpigot() {
     override fun load() {
         INSTANCE = this@MChallenge
         consoleAudience = console
-        debug = false
+        debug = true
 
         CommandAPI.onLoad(CommandAPIConfig().verboseOutput(debug).silentLogs(!debug))
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
 
+        // Define version
+        val versionSplit = server.minecraftVersion.split('.')
+        majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
+        minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
+
+        // Login with MUtils account
         CoroutineScope(Dispatchers.Default).launch {
-            // Define version
-            val versionSplit = server.minecraftVersion.split('.')
-            majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
-            minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
-
-            // Login with MUtils account
-            if (pluginManager.isPluginEnabled("MUtils-Bridge")) {
-                bridgeAPI = MUtilsBridge.Companion.INSTANCE
-                isAllowedToStart = bridgeAPI?.versionCheck(description.version.toIntOrNull() ?: 0, "MUtils-Challenge") ?: true
-                bridgeAPI?.login {
-                    ChallengeManager.stopChallenges()
-                    challenges.forEach { (challenge, data) ->
-                        if (challenge.filter.contains(StorageFilter.FREE)) return@forEach
-                        data.active = false
-                    }
-
-                    consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
+            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.port)
+            bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0)
+            bridgeAPI.login {
+                ChallengeManager.stopChallenges()
+                challenges.forEach { (challenge, data) ->
+                    if (challenge.filter.contains(StorageFilter.FREE)) return@forEach
+                    data.active = false
                 }
 
-            } else {
-                consoleAudience.sendMessage(exactPrefix + cmp("MBridge is not installed! MUtils is not able to log you in without it", cError))
-                consoleAudience.sendMessage(exactPrefix + cmp("Use /ch bridge-install to automatically install it"))
+                consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
             }
 
             // Load configuration

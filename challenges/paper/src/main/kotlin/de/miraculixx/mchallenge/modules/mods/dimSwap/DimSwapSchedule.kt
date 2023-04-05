@@ -8,7 +8,6 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.api.settings.challenges
 import de.miraculixx.api.settings.getSetting
 import de.miraculixx.mvanilla.messages.*

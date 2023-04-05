@@ -4,7 +4,6 @@ import de.miraculixx.api.settings.challenges
 import de.miraculixx.api.settings.getSetting
 import de.miraculixx.api.utils.cotm
 import de.miraculixx.mvanilla.gui.StorageFilter
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 
 interface StatusChangerAPI {

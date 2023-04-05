@@ -4,16 +4,14 @@ plugins {
 }
 
 
-
 tasks {
     shadowJar {
         dependencies {
+            val moduleName = properties["module_name"]
             include(dependency("dev.jorel:commandapi-shade"))
             include(dependency("dev.jorel:commandapi-kotlin"))
+            include(dependency("io.ktor::"))
             include {
-                if (it.moduleGroup.startsWith("dev.jorel")) return@include true
-
-                val moduleName = properties["module_name"]
                 val split = it.moduleGroup.split('.')
                 val prefix = "${split.getOrNull(0)}.${split.getOrNull(1)}"
                 val isAPI = split.lastOrNull() == "api"
@@ -22,6 +20,12 @@ tasks {
                 prefix == "de.miraculixx" && (!isAPI || isModuleAPI)
             }
         }
-        relocate("dev.jorel.commandapi", "de.miraculixx.commandapi")
+        val moduleName = properties["module_name"]
+        relocate("de.miraculixx.mcore", "de.miraculixx.$moduleName.core")
+        relocate("de.miraculixx.mvanilla", "de.miraculixx.$moduleName.vanilla")
+        relocate("de.miraculixx.kpaper", "de.miraculixx.$moduleName.kpaper")
+        relocate("de.miraculixx.mbridge", "de.miraculixx.$moduleName.bridge")
+        relocate("io.ktor", "de.miraculixx.$moduleName.ktor")
+        relocate("dev.jorel.commandapi", "de.miraculixx.$moduleName.command")
     }
 }
