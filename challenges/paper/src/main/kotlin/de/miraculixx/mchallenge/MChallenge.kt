@@ -56,19 +56,8 @@ class MChallenge : KSpigot() {
             if (!isAllowedToStart) return@launch
 
             // Command Setup
-            getCommand("challenge")?.let {
-                val cmd = ChallengeCommand()
-                it.setExecutor(cmd)
-                it.tabCompleter = cmd
-            }
             ModuleCommand("mobhunt")
             ModuleCommand("itemhunt")
-            InvSeeCommand()
-            HealCommand()
-            ResetCommand()
-            HideCommand()
-            positionCommand = PositionCommand()
-            backpackCommand = BackpackCommand()
 
             // Global Listener Registration
             DeathListener
@@ -81,7 +70,7 @@ class MChallenge : KSpigot() {
         consoleAudience = console
         debug = true
 
-        CommandAPI.onLoad(CommandAPIConfig().verboseOutput(debug).silentLogs(!debug))
+        CommandAPI.onLoad(CommandAPIConfig().verboseOutput(false).silentLogs(true))
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
 
         // Define version
@@ -89,8 +78,29 @@ class MChallenge : KSpigot() {
         majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
+        // Configure Brigadier commands
+        ChallengeCommand()
+        InvSeeCommand()
+        HealCommand()
+        ResetCommand()
+        HideCommand()
+        positionCommand = PositionCommand()
+        backpackCommand = BackpackCommand()
+
         // Login with MUtils account
         CoroutineScope(Dispatchers.Default).launch {
+            // Load configuration
+            if (!configFolder.exists()) configFolder.mkdirs()
+            configFile = File("${configFolder.path}/settings.json")
+            settingsFile = File("${configFolder.path}/config.json")
+            ChallengeManager.load(configFile)
+
+            settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
+            debug = settings.debug
+            localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
+            Spectator.loadData()
+
+            // Connect Bridge
             bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.port)
             bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0)
             bridgeAPI.login {
@@ -99,19 +109,8 @@ class MChallenge : KSpigot() {
                     if (challenge.filter.contains(StorageFilter.FREE)) return@forEach
                     data.active = false
                 }
-
                 consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
             }
-
-            // Load configuration
-            if (!configFolder.exists()) configFolder.mkdirs()
-            configFile = File("${configFolder.path}/settings.json")
-            settingsFile = File("${configFolder.path}/config.json")
-            ChallengeManager.load(configFile)
-
-            settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
-            localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
-            Spectator.loadData()
 
             // Reset World
             if (settings.reset) {

@@ -20,11 +20,6 @@ libraries:
   - "org.yaml:snakeyaml:1.33"
 
 commands:
-  challenge:
-    aliases:
-      - ch
-    permission: mutils.command.challenge
-    description: Access all challenges and modify your settings
   mobhunt:
     permission: mutils.command.mobhunt
     description: Modify the Mob-Hunt challenge

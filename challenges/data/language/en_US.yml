@@ -56,6 +56,10 @@ command:
     show: "<grey>You are now <green>visible"
     hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
     showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+  debug: "<grey>Switched debug mode to <blue><input-1>"
+  lang:
+    success: "<grey>Successfully switched language to <green><input-1>"
+    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
 
 
 #-----------------------------------------#

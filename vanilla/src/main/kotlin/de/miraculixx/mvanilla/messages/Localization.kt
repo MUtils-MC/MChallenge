@@ -80,7 +80,7 @@ class Localization(private val folder: File, active: String, keys: List<Pair<Str
     init {
         if (!folder.exists()) folder.mkdirs()
         keys.forEach {
-            if (debug) consoleAudience.sendMessage(prefix + cmp("LANG - Default language '${it.first}' - ${it.second != null}"))
+            if (debug) consoleAudience.sendMessage(prefix + cmp("LANG - Detect default language '${it.first}' - Corrupted: ${it.second == null}"))
             it.second?.readAllBytes()?.let { bytes -> File("${folder.path}/${it.first}.yml").writeBytes(bytes) }
         }
         checkFiles()

@@ -3,85 +3,110 @@ package de.miraculixx.mchallenge.commands
 import de.miraculixx.api.modules.challenges.ChallengeStatus
 import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.kpaper.extensions.broadcast
-import de.miraculixx.kpaper.extensions.bukkit.register
+import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallenge
-import de.miraculixx.mcore.utils.InstallBridge
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.bukkit.Bukkit
-import org.bukkit.command.Command
+import dev.jorel.commandapi.arguments.LiteralArgument
+import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.command.CommandSender
-import org.bukkit.command.TabExecutor
-import org.bukkit.entity.Player
 
-class ChallengeCommand : TabExecutor {
-    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>?): MutableList<String> {
-        return buildList {
-            when (args?.size ?: 0) {
-                0, 1 -> addAll(listOf("stop", "start", "pause", "resume"))
-            }
-        }.toMutableList()
-    }
-
-    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
-        if (args == null || args.isEmpty()) {
-            if (sender is Player) GUITypes.CHALLENGE_MENU.buildInventory(sender, sender.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
-            else sender.sendMessage(prefix + msg("command.noPlayer"))
-            return true
+class ChallengeCommand {
+    val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("mutils.command.challenge") }) {
+        withAliases("ch")
+        playerExecutor { player, _ ->
+            GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
         }
 
-        when (args.getOrNull(0)?.lowercase()) {
-            "stop" -> if (ChallengeManager.stopChallenges()) {
-                ChallengeManager.status = ChallengeStatus.STOPPED
-                broadcast(prefix + msg("command.challenge.stop", listOf(sender.name)))
-            } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+        literalArgument("stop") {
+            anyExecutor { sender, _ ->
+                if (ChallengeManager.stopChallenges()) {
+                    ChallengeManager.status = ChallengeStatus.STOPPED
+                    broadcast(prefix + msg("command.challenge.stop", listOf(sender.name)))
+                } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+            }
+        }
 
-            "start" -> if (ChallengeManager.status == ChallengeStatus.RUNNING) {
-                sender.sendMessage(prefix + msg("command.challenge.alreadyOn"))
-                return false
-            } else if (ChallengeManager.startChallenges()) {
-                ChallengeManager.status = ChallengeStatus.RUNNING
-                broadcast(prefix + msg("command.challenge.start", listOf(sender.name)))
-            } else sender.sendMessage(prefix + msg("command.challenge.failed"))
+        literalArgument("start") {
+            anyExecutor { sender, _ ->
+                if (ChallengeManager.status == ChallengeStatus.RUNNING) {
+                    sender.sendMessage(prefix + msg("command.challenge.alreadyOn"))
+                } else if (ChallengeManager.startChallenges()) {
+                    ChallengeManager.status = ChallengeStatus.RUNNING
+                    broadcast(prefix + msg("command.challenge.start", listOf(sender.name)))
+                } else sender.sendMessage(prefix + msg("command.challenge.failed"))
+            }
+        }
 
-            "pause" -> if (ChallengeManager.pauseChallenges()) {
-                ChallengeManager.status = ChallengeStatus.PAUSED
-                broadcast(prefix + msg("command.challenge.pause", listOf(sender.name)))
-            } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+        literalArgument("pause") {
+            anyExecutor { sender, _ ->
+                if (ChallengeManager.pauseChallenges()) {
+                    ChallengeManager.status = ChallengeStatus.PAUSED
+                    broadcast(prefix + msg("command.challenge.pause", listOf(sender.name)))
+                } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+            }
+        }
 
-            "resume" -> if (ChallengeManager.resumeChallenges()) {
-                ChallengeManager.status = ChallengeStatus.RUNNING
-                broadcast(prefix + msg("command.challenge.continue", listOf(sender.name)))
-            } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+        literalArgument("resume") {
+            anyExecutor { sender, _ ->
+                if (ChallengeManager.resumeChallenges()) {
+                    ChallengeManager.status = ChallengeStatus.RUNNING
+                    broadcast(prefix + msg("command.challenge.continue", listOf(sender.name)))
+                } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
+            }
+        }
 
-            "bridge-install" -> {
-                sender.sendMessage(prefix + cmp("Downloading MUtils-Bridge..."))
-                CoroutineScope(Dispatchers.Default).launch {
-                    val bridgeInstall = InstallBridge("MUtils-Timer")
-                    val success = bridgeInstall.install(Bukkit.getPluginManager())
-                    if (success) {
-                        sender.soundEnable()
-                        sender.sendMessage(prefix + cmp("MUtils-Bridge is now installed!", cSuccess))
-                        sender.sendMessage(prefix + cmp("(Please restart your server in near future)"))
-                    } else {
-                        sender.soundError()
-                        sender.sendMessage(prefix + cmp("Failed to automatically enable MUtils-Bridge! Restart your server to active it", cError))
+        argument(LiteralArgument("login").withPermission("mutils.command.login")) {
+            anyExecutor { sender, _ -> sender.sendMessage(prefix + cmp("Please provide a valid key", cError)) }
+            stringArgument("key") {
+                playerExecutor { player, args ->
+                    val key = args[0] as String
+                    player.sendMessage(prefix + cmp("Trying to log in..."))
+                    MChallenge.bridgeAPI.saveData(key, player.uniqueId)
+                    MChallenge.bridgeAPI.activate {
+                        if (it) {
+                            player.sendMessage(prefix + cmp("Successfully logged in your account!", cSuccess))
+                            player.sendMessage(prefix + cmp("Please perform a server restart in near future"))
+                            MChallenge.bridgeAPI.saveData(autoUpdate = true)
+                            player.soundEnable()
+                        } else {
+                            player.sendMessage(prefix + cmp("Failed to login! More information in console", cError))
+                            player.soundError()
+                        }
+                    }
+                }
+                anyExecutor { sender, _ ->
+                    sender.sendMessage(prefix + cmp("Please execute this command as a player", cError))
+                }
+            }
+        }
+
+        argument(LiteralArgument("settings").withPermission("mutils.command.settings")) {
+            literalArgument("debug") {
+                booleanArgument("active") {
+                    anyExecutor { sender, args ->
+                        val active = args[0] as Boolean
+                        debug = active
+                        MChallenge.settings.debug = active
+                        sender.sendMessage(prefix + msg("command.debug", listOf(active.toString())))
+                    }
+                }
+            }
+            literalArgument("language") {
+                stringArgument("lang") {
+                    anyExecutor { sender, args ->
+                        val key = args[0] as String
+                        if (MChallenge.localization.setLanguage(key)) {
+                            MChallenge.settings.language = key
+                            sender.sendMessage(prefix + msg("command.lang.success", listOf(key)))
+                        } else sender.sendMessage(prefix + msg("command.lang.fail", listOf(key)))
                     }
                 }
             }
         }
-        return true
-    }
-
-    init {
-        register("ch")
-        register("challenge")
     }
 }
