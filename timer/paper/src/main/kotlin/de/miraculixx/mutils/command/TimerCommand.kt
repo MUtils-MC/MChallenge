@@ -1,19 +1,15 @@
 package de.miraculixx.mutils.command
 
-import de.miraculixx.api.utils.gui.GUITypes
-import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.mcore.utils.InstallBridge
 import de.miraculixx.mutils.MTimer
+import de.miraculixx.mutils.gui.TimerGUI
+import de.miraculixx.mutils.gui.actions.GUIOverview
+import de.miraculixx.mutils.gui.items.ItemsOverview
+import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
-import de.miraculixx.mutils.gui.actions.GUIOverview
-import de.miraculixx.mutils.gui.TimerGUI
-import de.miraculixx.mutils.gui.items.ItemsOverview
-import de.miraculixx.mutils.gui.items.TestProvider
-import de.miraculixx.mutils.messages.*
-import de.miraculixx.mutils.module.Timer
-import de.miraculixx.mutils.utils.InstallBridge
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +20,6 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
-import org.bukkit.event.player.PlayerCommandPreprocessEvent
 import kotlin.time.Duration
 
 class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabCompleter {
@@ -142,6 +137,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                         else if (input?.startsWith('l') == true) add("language")
                     }
                 }
+
                 2 -> when (args?.getOrNull(0)) {
                     "config" -> addAll(listOf("save", "load"))
                     "language" -> addAll(MTimer.localization.getLoadedKeys())
