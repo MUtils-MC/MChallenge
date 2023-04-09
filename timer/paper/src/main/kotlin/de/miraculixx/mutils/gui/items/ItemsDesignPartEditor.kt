@@ -5,21 +5,19 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerDesignValue
-import de.miraculixx.mvanilla.gui.Head64
-import de.miraculixx.mvanilla.extensions.round
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
+import de.miraculixx.mvanilla.extensions.round
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.TextComponent
-import net.kyori.adventure.text.TranslatableComponent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
-import java.util.UUID
+import java.util.*
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
@@ -30,67 +28,67 @@ class ItemsDesignPartEditor(
     private val design: TimerDesign,
     uuid: UUID,
     private val isRunning: Boolean
-): ItemProvider {
+) : ItemProvider {
     private val msg1 = msgString("event.forcedTwoDigits")
     private val msg2 = msgString("event.visibleOnNull")
     private val msg3 = msgString("event.prefix")
     private val msg4 = msgString("event.suffix")
     private val dummyTimer = Timer(true, null, uuid, isRunning)
 
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         dummyTimer.setTime(1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds)
         val part = if (isRunning) design.running else design.idle
         return mapOf(
-            itemStack(Material.MAP) {
+            10 to itemStack(Material.MAP) {
                 meta {
                     name = cmp(msg3, cHighlight)
                     lore(buildLore("<prefix>", null, msg3, part.prefix))
                     customModel = 1
                 }
-            } to 10,
-            itemStack(Material.GOLD_BLOCK) {
+            },
+            11 to itemStack(Material.GOLD_BLOCK) {
                 meta {
                     name = cmp(msgString("event.days"), cHighlight)
                     lore(buildLore("<d>", part.days))
                     customModel = 2
                 }
-            } to 11,
-            itemStack(Material.RAW_GOLD) {
+            },
+            12 to itemStack(Material.RAW_GOLD) {
                 meta {
                     name = cmp(msgString("event.hours"), cHighlight)
                     lore(buildLore("<h>", part.hours))
                     customModel = 3
                 }
-            } to 12,
-            itemStack(Material.GOLD_INGOT) {
+            },
+            13 to itemStack(Material.GOLD_INGOT) {
                 meta {
                     name = cmp(msgString("event.minutes"), cHighlight)
                     lore(buildLore("<m>", part.minutes))
                     customModel = 4
                 }
-            } to 13,
-            itemStack(Material.SUNFLOWER) {
+            },
+            14 to itemStack(Material.SUNFLOWER) {
                 meta {
                     name = cmp(msgString("event.seconds"), cHighlight)
                     lore(buildLore("<s>", part.seconds))
                     customModel = 5
                 }
-            } to 14,
-            itemStack(Material.GOLD_NUGGET) {
+            },
+            15 to itemStack(Material.GOLD_NUGGET) {
                 meta {
                     name = cmp(msgString("event.millis"), cHighlight)
                     lore(buildLore("<ms>", part.millis))
                     customModel = 6
                 }
-            } to 15,
-            itemStack(Material.MAP) {
+            },
+            16 to itemStack(Material.MAP) {
                 meta {
                     name = cmp(msg4, cHighlight)
                     lore(buildLore("<suffix>", null, msg4, part.suffix))
                     customModel = 7
                 }
-            } to 16,
-            itemStack(Material.REDSTONE) {
+            },
+            21 to itemStack(Material.REDSTONE) {
                 meta {
                     val n = msgString("event.animation")
                     name = cmp(n, cHighlight)
@@ -100,26 +98,26 @@ class ItemsDesignPartEditor(
                     )
                     customModel = 8
                 }
-            } to 21,
-            itemStack(Material.BOOK) {
+            },
+            23 to itemStack(Material.BOOK) {
                 meta {
                     val n = msgString("event.syntax")
                     name = cmp(n, cHighlight)
                     lore(buildLore(null, null, n, part.syntax))
                     customModel = 9
                 }
-            } to 23,
-            itemStack(Material.PLAYER_HEAD) {
+            },
+            31 to itemStack(Material.PLAYER_HEAD) {
                 meta {
                     name = cmp(msgString("event.finish"), cSuccess)
                     customModel = 10
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CHECKMARK_GREEN.value)
-            } to 31,
+            },
         )
     }
 
-    private fun buildLore(key: String?, timerValue: TimerDesignValue?, name: String? = null, value: String? = null, blanc: Boolean = false) : List<Component> {
+    private fun buildLore(key: String?, timerValue: TimerDesignValue?, name: String? = null, value: String? = null, blanc: Boolean = false): List<Component> {
         return buildList {
             if (key != null) add(cmp("Syntax Key: $key"))
             add(emptyComponent())

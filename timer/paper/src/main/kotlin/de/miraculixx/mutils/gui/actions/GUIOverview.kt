@@ -1,16 +1,16 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mvanilla.extensions.click
-import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mvanilla.extensions.soundDisable
-import de.miraculixx.mvanilla.extensions.soundEnable
-import de.miraculixx.mutils.gui.GUIEvent
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.TimerGUI
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesigns
 import de.miraculixx.mutils.gui.items.ItemsGoals
 import de.miraculixx.mutils.gui.items.ItemsRules
+import de.miraculixx.mutils.module.TimerManager
+import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.soundDisable
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.messages.emptyComponent
 import de.miraculixx.mvanilla.messages.msg
 import de.miraculixx.mvanilla.messages.plus
@@ -20,7 +20,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 
-class GUIOverview(private val isPersonal: Boolean): GUIEvent {
+class GUIOverview(private val isPersonal: Boolean) : GUIEvent {
     private val noPersonalTimer = prefix + msg("event.noPersonalTimer")
 
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
@@ -40,7 +40,7 @@ class GUIOverview(private val isPersonal: Boolean): GUIEvent {
                 TimerGUI.DESIGN.buildInventory(player, guiID, ItemsDesigns(timer), GUIDesigns(isPersonal, timer))
             }
 
-            6 -> if  (timer.countUp) {
+            6 -> if (timer.countUp) {
                 timer.countUp = false
                 player.soundDisable()
             } else {
@@ -71,7 +71,7 @@ class GUIOverview(private val isPersonal: Boolean): GUIEvent {
                 return@event
             }
 
-            1,2,3,4 -> {
+            1, 2, 3, 4 -> {
                 // Time Settings
                 val timeAdded = when (it.click) {
                     ClickType.LEFT -> {
@@ -83,6 +83,7 @@ class GUIOverview(private val isPersonal: Boolean): GUIEvent {
                             else -> false
                         }
                     }
+
                     ClickType.RIGHT -> {
                         when (id) {
                             1 -> timer.addTime(sec = -1)
@@ -92,6 +93,7 @@ class GUIOverview(private val isPersonal: Boolean): GUIEvent {
                             else -> false
                         }
                     }
+
                     ClickType.SHIFT_LEFT -> {
                         when (id) {
                             1 -> timer.addTime(sec = 10)
@@ -102,6 +104,7 @@ class GUIOverview(private val isPersonal: Boolean): GUIEvent {
                         }
 
                     }
+
                     ClickType.SHIFT_RIGHT -> {
                         when (id) {
                             1 -> timer.addTime(sec = -10)
@@ -111,12 +114,14 @@ class GUIOverview(private val isPersonal: Boolean): GUIEvent {
                             else -> false
                         }
                     }
+
                     else -> false
                 }
 
                 if (timeAdded) player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BIT, 1f, 1.5f)
                 else player.playSound(player, Sound.BLOCK_STONE_FALL, 1f, 1f)
             }
+
             else -> return@event
         }
 

@@ -1,21 +1,17 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mutils.MTimer
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerPresets
-import de.miraculixx.mutils.extensions.*
-import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.TimerGUI
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignEditor
 import de.miraculixx.mutils.gui.items.ItemsOverview
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
 import de.miraculixx.mvanilla.extensions.*
-import de.miraculixx.mvanilla.messages.*
-import net.kyori.adventure.text.event.ClickEvent
+import de.miraculixx.mvanilla.messages.namespace
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
@@ -49,21 +45,21 @@ class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GU
                 TimerGUI.DESIGN_EDITOR.buildInventory(player, player.uniqueId.toString(), ItemsDesignEditor(design, uuid), GUIDesignEditor(design, uuid, isPersonal))
             }
 
-            2 -> {
-                player.closeInventory()
-                val bridge = MTimer.bridgeAPI
-                if (bridge == null) {
-                    player.soundError()
-                    player.sendMessage(
-                        prefix + cmp("The public library is not implemented yet!\nCheckout ", cError) +
-                                cmp("MUtils.de", cError, underlined = true).clickEvent(ClickEvent.openUrl("https://mutils.de")) +
-                                cmp(" for more information", cError)
-                    )
-//                    player.sendMessage(msgNoBridge)
-                } else {
-                    TODO()
-                    //Open GUI
-                }
+            2 -> { // TODO
+//                player.closeInventory()
+//                val bridge = MTimer.bridgeAPI
+//                if (bridge == null) {
+//                    player.soundError()
+//                    player.sendMessage(
+//                        prefix + cmp("The public library is not implemented yet!\nCheckout ", cError) +
+//                                cmp("MUtils.de", cError, underlined = true).clickEvent(ClickEvent.openUrl("https://mutils.de")) +
+//                                cmp(" for more information", cError)
+//                    )
+////                    player.sendMessage(msgNoBridge)
+//                } else {
+//                    TODO()
+//                    //Open GUI
+//                }
             }
 
             10 -> {

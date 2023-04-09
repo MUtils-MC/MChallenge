@@ -1,17 +1,17 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.data.Punishment
+import de.miraculixx.mutils.gui.TimerGUI
+import de.miraculixx.mutils.gui.items.ItemsOverview
+import de.miraculixx.mutils.module.TimerManager
+import de.miraculixx.mutils.module.rules
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.enumRotate
 import de.miraculixx.mvanilla.extensions.soundUp
 import de.miraculixx.mvanilla.extensions.toggle
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.TimerGUI
-import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.gui.items.ItemsOverview
-import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mutils.module.rules
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 
@@ -34,6 +34,7 @@ class GUIRules : GUIEvent {
                     inv.update()
                 }
             }
+
             6 -> rules.freezeWorld = rules.freezeWorld.toggle(player)
             7 -> rules.announceBack = rules.announceBack.toggle(player)
             8 -> rules.syncWithChallenge = rules.syncWithChallenge.toggle(player)

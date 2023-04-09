@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.gui.items
 
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
 import de.miraculixx.mvanilla.messages.*
@@ -11,7 +11,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-class ItemsDesigns(private val timer: Timer): ItemProvider {
+class ItemsDesigns(private val timer: Timer) : ItemProvider {
     private val timerFake = Timer(true, null, null, false)
     private val timerReal = Timer(true, null, null, false)
 
@@ -26,8 +26,10 @@ class ItemsDesigns(private val timer: Timer): ItemProvider {
                 msgShiftClickRight + cmp("Delete")
             )
             TimerManager.getDesigns().forEach { (uuid, design) ->
-                put(converter.getItem(design, uuid).apply { lore(lore()?.plus(loreAddon)) },
-                    timer.design == design)
+                put(
+                    converter.getItem(design, uuid).apply { lore(lore()?.plus(loreAddon)) },
+                    timer.design == design
+                )
             }
         }
     }

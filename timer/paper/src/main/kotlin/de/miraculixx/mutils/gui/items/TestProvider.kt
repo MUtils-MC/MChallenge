@@ -1,5 +1,6 @@
 package de.miraculixx.mutils.gui.items
 
+import de.miraculixx.mcore.gui.items.ItemProvider
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 

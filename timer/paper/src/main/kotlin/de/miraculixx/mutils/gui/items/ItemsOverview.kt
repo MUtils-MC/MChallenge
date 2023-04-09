@@ -4,8 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.*
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
@@ -13,11 +12,11 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
-class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): ItemProvider {
+class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean) : ItemProvider {
     private val msgActive = cmp(msgString("event.active"), cSuccess)
     private val msgDisabled = cmp(msgString("event.disabled"), cError)
 
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         val time = timer.buildSimple()
         val setupLore = listOf(
             emptyComponent(),
@@ -29,35 +28,35 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): 
         )
 
         return mapOf(
-            itemStack(Material.SUNFLOWER) {
+            10 to itemStack(Material.SUNFLOWER) {
                 meta {
                     customModel = 1
                     name = cmp(msgString("event.seconds"), cHighlight)
                     lore(timeLore("s", time))
                 }
-            } to 10,
-            itemStack(Material.GOLD_INGOT) {
+            },
+            11 to itemStack(Material.GOLD_INGOT) {
                 meta {
                     customModel = 2
                     name = cmp(msgString("event.minutes"), cHighlight)
                     lore(timeLore("min", time))
                 }
-            } to 11,
-            itemStack(Material.RAW_GOLD) {
+            },
+            19 to itemStack(Material.RAW_GOLD) {
                 meta {
                     customModel = 3
                     name = cmp(msgString("event.hours"), cHighlight)
                     lore(timeLore("h", time))
                 }
-            } to 19,
-            itemStack(Material.GOLD_BLOCK) {
+            },
+            20 to itemStack(Material.GOLD_BLOCK) {
                 meta {
                     customModel = 4
                     name = cmp(msgString("event.days"), cHighlight)
                     lore(timeLore("d", time))
                 }
-            } to 20,
-            itemStack(Material.CLOCK) {
+            },
+            15 to itemStack(Material.CLOCK) {
                 meta {
                     customModel = 7
                     name = cmp(msgString("items.isActive.n"), cHighlight)
@@ -67,14 +66,14 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): 
                         add(msgClick + cmp("Toggle"))
                     })
                 }
-            } to 15,
-            itemStack(if (timer.visible) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
+            },
+            15 + 9 to itemStack(if (timer.visible) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
                 meta {
                     customModel = 7
                     name = if (timer.visible) msgActive else msgDisabled
                 }
-            } to 15 + 9,
-            itemStack(Material.MAGENTA_GLAZED_TERRACOTTA) {
+            },
+            16 to itemStack(Material.MAGENTA_GLAZED_TERRACOTTA) {
                 meta {
                     customModel = 6
                     name = cmp(msgString("items.direction.n"), cHighlight)
@@ -84,14 +83,14 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): 
                         add(msgClick + cmp("Toggle"))
                     })
                 }
-            } to 16,
-            itemStack(if (timer.countUp) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
+            },
+            16 + 9 to itemStack(if (timer.countUp) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
                 meta {
                     customModel = 6
                     name = if (timer.countUp) cmp("Count Up", cSuccess) else cmp("Count Down", cError)
                 }
-            } to 16 + 9,
-            itemStack(Material.NAME_TAG) {
+            },
+            13 to itemStack(Material.NAME_TAG) {
                 meta {
                     customModel = 5
                     name = cmp(msgString("items.design.n"), cHighlight)
@@ -104,10 +103,10 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): 
                         add(msgClick + cmp("Open Menu"))
                     })
                 }
-            } to 13
+            }
         ).plus(buildMap {
             if (!isPersonal) {
-                put(itemStack(Material.SHEARS) {
+                put(14, itemStack(Material.SHEARS) {
                     meta {
                         customModel = 8
                         name = cmp(msgString("items.rules.n"), cHighlight)
@@ -117,8 +116,8 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): 
                             add(msgClick + cmp("Open Menu"))
                         })
                     }
-                }, 14)
-                put(itemStack(Material.DRAGON_EGG) {
+                })
+                put(23, itemStack(Material.DRAGON_EGG) {
                     meta {
                         customModel = 9
                         name = cmp(msgString("items.goals.n"), cHighlight)
@@ -128,7 +127,7 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean): 
                             add(msgClick + cmp("Open Menu"))
                         })
                     }
-                }, 23)
+                })
             }
         })
     }

@@ -1,15 +1,12 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mcore.await.AwaitChatMessage
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.data.TimerDesign
 import de.miraculixx.mutils.data.TimerDesignValue
-import de.miraculixx.mutils.extensions.*
-import de.miraculixx.mutils.gui.GUIEvent
 import de.miraculixx.mutils.gui.TimerGUI
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsDesignEditor
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
@@ -17,7 +14,6 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import java.util.*
-import kotlin.math.max
 
 class GUIDesignPartEditor(
     private val design: TimerDesign,
@@ -99,10 +95,12 @@ class GUIDesignPartEditor(
                 if (value.forcedTwoDigits) soundDisable() else soundEnable()
                 value.forcedTwoDigits = !value.forcedTwoDigits
             }
+
             1 -> {
                 if (value.visibleOnNull) soundDisable() else soundEnable()
                 value.visibleOnNull = !value.visibleOnNull
             }
+
             2 -> {
                 de.miraculixx.mcore.await.AwaitChatMessage(false, this, "prefix", maxSeconds, value.prefix,
                     true, awaitInfoMessage, {
@@ -110,6 +108,7 @@ class GUIDesignPartEditor(
                         soundEnable()
                     }) { openThis(this, inv) }
             }
+
             3 -> {
                 de.miraculixx.mcore.await.AwaitChatMessage(false, this, "suffix", maxSeconds, value.suffix,
                     true, awaitInfoMessage, {
@@ -117,6 +116,7 @@ class GUIDesignPartEditor(
                         soundEnable()
                     }) { openThis(this, inv) }
             }
+
             else -> soundStone()
         }
         inv.update()

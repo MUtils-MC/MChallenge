@@ -4,16 +4,17 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
+import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mutils.data.TimerDesign
-import de.miraculixx.mvanilla.gui.Head64
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.Timer
 import de.miraculixx.mutils.module.TimerManager
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
-import java.util.UUID
+import java.util.*
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
@@ -24,12 +25,12 @@ class ItemsDesignEditor(
     private val design: TimerDesign,
     private val uuid: UUID
 ) : ItemProvider {
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         val dummyTimer = Timer(true, null, null, false)
         dummyTimer.setTime(1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
         val converter = ItemDesignConverter(TimerManager.getGlobalTimer(), dummyTimer)
         return mapOf(
-            itemStack(Material.BOOK) {
+            11 to itemStack(Material.BOOK) {
                 meta {
                     name = cmp(msgString("items.designName.n"), cHighlight)
                     customModel = 1
@@ -42,9 +43,9 @@ class ItemsDesignEditor(
                         add(msgClick + cmp("Change"))
                     })
                 }
-            } to 11,
-            converter.getItem(design, uuid) to 13,
-            itemStack(Material.PLAYER_HEAD) {
+            },
+            13 to converter.getItem(design, uuid),
+            15 to itemStack(Material.PLAYER_HEAD) {
                 meta {
                     name = cmp(msgString("items.designRunning.n"), cHighlight)
                     customModel = 2
@@ -55,8 +56,8 @@ class ItemsDesignEditor(
                     })
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CONTINUE_GREEN.value)
-            } to 15,
-            itemStack(Material.PLAYER_HEAD) {
+            },
+            16 to itemStack(Material.PLAYER_HEAD) {
                 meta {
                     name = cmp(msgString("items.designIdle.n"), cHighlight)
                     customModel = 3
@@ -67,14 +68,14 @@ class ItemsDesignEditor(
                     })
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.PAUSE_RED.value)
-            } to 16,
-            itemStack(Material.PLAYER_HEAD) {
+            },
+            22 to itemStack(Material.PLAYER_HEAD) {
                 meta {
                     name = cmp(msgString("event.finish"), cSuccess)
                     customModel = 4
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CHECKMARK_GREEN.value)
-            } to 22,
+            },
         )
     }
 }

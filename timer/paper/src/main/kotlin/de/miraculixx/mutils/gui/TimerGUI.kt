@@ -4,10 +4,10 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.gui.data.InventoryManager
-import de.miraculixx.mutils.gui.items.ItemProvider
-import de.miraculixx.mutils.gui.items.skullTexture
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.InventoryManager
+import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
@@ -50,14 +50,6 @@ enum class TimerGUI(private val title: Component) {
                             customModel = 1
                         }
                         itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.PLUS_GREEN.value)
-                    },
-                    itemStack(Material.PLAYER_HEAD) {
-                        meta {
-                            name = cmp(msgString("items.openLibrary.n"), cHighlight)
-                            lore(msgList("items.openLibrary.l", inline = "<grey>"))
-                            customModel = 2
-                        }
-                        itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
                     }
                 )
             }

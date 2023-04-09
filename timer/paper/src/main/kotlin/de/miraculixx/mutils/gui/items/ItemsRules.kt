@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mutils.module.rules
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
@@ -46,6 +46,7 @@ class ItemsRules : ItemProvider {
                     )
                 }
             } to rules.punishmentSetting.active
+
             6 -> Material.ENDER_PEARL.buildItem(7, "announceBack", rules.announceBack)
             7 -> Material.ENDER_EYE.buildItem(8, "syncWithChallenge", rules.syncWithChallenge)
 

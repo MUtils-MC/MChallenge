@@ -1,14 +1,14 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mvanilla.extensions.click
-import de.miraculixx.mvanilla.extensions.toggle
-import de.miraculixx.mutils.gui.GUIEvent
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.TimerGUI
-import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.items.ItemsOverview
 import de.miraculixx.mutils.module.TimerManager
 import de.miraculixx.mutils.module.goals
+import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.toggle
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 

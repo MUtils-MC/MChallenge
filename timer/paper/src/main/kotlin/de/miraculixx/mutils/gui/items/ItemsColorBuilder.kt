@@ -4,13 +4,13 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
+import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mutils.data.ColorBuilder
 import de.miraculixx.mutils.data.ColorType
 import de.miraculixx.mvanilla.gui.Head64
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import org.bukkit.Color
 import org.bukkit.Material
@@ -25,21 +25,21 @@ class ItemsColorBuilder(private val data: ColorBuilder) : ItemProvider {
     private val msgSettings = cmp("∙ ") + cmp("Settings", cHighlight, underlined = true)
     private val msgOutput = cmp("∙ ") + cmp("Output", cHighlight, underlined = true)
 
-    override fun getSlotMap(): Map<ItemStack, Int> {
+    override fun getSlotMap(): Map<Int, ItemStack> {
         val currentColor = data.getColor()
         return buildMap {
-            put(itemStack(Material.MAGMA_CREAM) {
+            put(11, itemStack(Material.MAGMA_CREAM) {
                 meta {
                     name = msgTypeName
                     lore(msgTypeLore + buildLore(currentColor) + (msgClick + cmp("Switch")))
                     customModel = 1
                 }
-            }, 11)
+            })
             when (data.type) {
                 ColorType.VANILLA -> {
-                    put(itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 99; emptyComponent() } }, 13)
-                    put(itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 98; emptyComponent() } }, 15)
-                    put(itemStack(Material.LEATHER_CHESTPLATE) {
+                    put(13, itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 99; emptyComponent() } }) //TODO
+                    put(15, itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 98; emptyComponent() } })
+                    put(14, itemStack(Material.LEATHER_CHESTPLATE) {
                         meta<LeatherArmorMeta> {
                             name = cmp(msgString("items.color.vanilla.n"), cHighlight)
                             lore(buildLore(currentColor) + (msgClick + cmp("Switch")))
@@ -47,38 +47,38 @@ class ItemsColorBuilder(private val data: ColorBuilder) : ItemProvider {
                             setColor(Color.fromRGB(currentColor.value()))
                             addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
                         }
-                    }, 14)
+                    })
                 }
 
                 ColorType.RGB -> {
                     val clickLore = listOf(msgClickLeft + cmp("+1"), msgClickRight + cmp("-1"), msgShiftClickLeft + cmp("+10"), msgShiftClickRight + cmp("-10"))
-                    put(itemStack(Material.RED_DYE) {
+                    put(13, itemStack(Material.RED_DYE) {
                         meta {
                             name = cmp(msgString("items.color.red.n"), cHighlight)
                             lore(buildLore(currentColor) + clickLore)
                             customModel = 3
                         }
-                    }, 13)
-                    put(itemStack(Material.GREEN_DYE) {
+                    })
+                    put(14, itemStack(Material.GREEN_DYE) {
                         meta {
                             name = cmp(msgString("items.color.green.n"), cHighlight)
                             lore(buildLore(currentColor) + clickLore)
                             customModel = 4
                         }
-                    }, 14)
-                    put(itemStack(Material.BLUE_DYE) {
+                    })
+                    put(15, itemStack(Material.BLUE_DYE) {
                         meta {
                             name = cmp(msgString("items.color.blue.n"), cHighlight)
                             lore(buildLore(currentColor) + clickLore)
                             customModel = 5
                         }
-                    }, 15)
+                    })
                 }
 
                 ColorType.HEX_CODE -> {
-                    put(itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 99; emptyComponent() } }, 13)
-                    put(itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 98; emptyComponent() } }, 15)
-                    put(itemStack(Material.LEATHER_CHESTPLATE) {
+                    put(13, itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 99; emptyComponent() } })
+                    put(15, itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { customModel = 98; emptyComponent() } })
+                    put(14, itemStack(Material.LEATHER_CHESTPLATE) {
                         meta<LeatherArmorMeta> {
                             name = cmp(msgString("items.color.hex.n"), cHighlight)
                             lore(buildLore(currentColor) + (msgClick + cmp("Enter")))
@@ -86,16 +86,16 @@ class ItemsColorBuilder(private val data: ColorBuilder) : ItemProvider {
                             setColor(Color.fromRGB(currentColor.value()))
                             addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE)
                         }
-                    }, 14)
+                    })
                 }
             }
-            put(itemStack(Material.PLAYER_HEAD) {
+            put(22, itemStack(Material.PLAYER_HEAD) {
                 meta {
                     name = cmp(msgString("event.finish"), cHighlight)
                     customModel = 10
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CHECKMARK_GREEN.value)
-            }, 22)
+            })
         }
     }
 

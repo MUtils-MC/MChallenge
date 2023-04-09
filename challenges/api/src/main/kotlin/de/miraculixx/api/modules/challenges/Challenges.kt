@@ -251,6 +251,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                 "global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true),
                 "mode" to ChallengeEnumSetting("CRAFTING_TABLE", "BIOMES", options = AreaTimerMode.values().map { it.name })
             )
+            COLLECT_BATTLE -> TODO()
         }
     }
 

@@ -1,14 +1,10 @@
 package de.miraculixx.mutils.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mcore.await.AwaitChatMessage
+import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.data.ColorBuilder
 import de.miraculixx.mutils.data.ColorType
-import de.miraculixx.mutils.data.GradientBuilder
-import de.miraculixx.mutils.extensions.*
-import de.miraculixx.mutils.gui.GUIEvent
-import de.miraculixx.mutils.gui.data.CustomInventory
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
@@ -18,7 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 
-class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null): GUIEvent {
+class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null) : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -29,12 +25,14 @@ class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null): GUI
                 data.type = ColorType.values().enumRotate(data.type)
                 player.click()
             }
+
             2 -> {
                 val allNames = NamedTextColor.NAMES
                 val current = allNames.valueOr(data.input, NamedTextColor.WHITE)
                 data.input = allNames.values().toTypedArray().enumRotate(current).toString()
                 player.click()
             }
+
             3 -> data.r = player.calcNumber(data.r, it.click)
             4 -> data.g = player.calcNumber(data.g, it.click)
             5 -> data.b = player.calcNumber(data.b, it.click)
@@ -54,7 +52,8 @@ class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null): GUI
                     player.closeInventory()
                     player.sendMessage(
                         prefix + (cmp(formatted, cMark) + cmp(" (click to copy)")).addHover(cmp("Paste/use this color with ctrl + v\n$formatted"))
-                        .clickEvent(ClickEvent.copyToClipboard(formatted)))
+                            .clickEvent(ClickEvent.copyToClipboard(formatted))
+                    )
                     player.soundEnable()
                 } else {
                     prevInv.update()
@@ -81,18 +80,22 @@ class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null): GUI
                 soundUp()
                 1
             }
+
             ClickType.RIGHT -> {
                 soundDown()
                 -1
             }
+
             ClickType.SHIFT_LEFT -> {
                 soundUp()
                 10
             }
+
             ClickType.SHIFT_RIGHT -> {
                 soundDown()
                 -10
             }
+
             else -> 0
         }).coerceIn(0..255)
     }
