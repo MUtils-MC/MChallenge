@@ -28,7 +28,7 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
     ANVIL_CRUSHER(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("ANVIL"), true),
     ITEM_DECAY(listOf(StorageFilter.HARD, StorageFilter.FREE), Icon("COMPARATOR"), true),
     AREA_TIMER(listOf(StorageFilter.MEDIUM, StorageFilter.FREE), Icon("GRASS_BLOCK"), true),
-
+    COLLECT_BATTLE(listOf(StorageFilter.FUN, StorageFilter.FORCE), Icon("HEART_OF_THE_SEA")),
 
     FLY(listOf(StorageFilter.FUN), Icon("ELYTRA")),
     IN_TIME(listOf(StorageFilter.MEDIUM), Icon("CLOCK")),

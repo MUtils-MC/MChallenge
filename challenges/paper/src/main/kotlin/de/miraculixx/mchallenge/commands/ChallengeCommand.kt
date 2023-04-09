@@ -6,6 +6,7 @@ import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.modules.mods.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallenge
@@ -78,11 +79,11 @@ class ChallengeCommand {
                     taskRunLater(20 * 3) { apiCooldown = false }
 
                     player.sendMessage(prefix + cmp("Trying to log in..."))
-                    MChallenge.bridgeAPI.activate {
+                    MChallenge.bridgeAPI.activate(player.uniqueId, key) {
                         if (it) {
                             player.sendMessage(prefix + cmp("Successfully logged in your account!", cSuccess))
                             player.sendMessage(prefix + cmp("Please perform a server restart in near future"))
-                            MChallenge.bridgeAPI.saveData(key = key, uuid = player.uniqueId, autoUpdate = true)
+                            MChallenge.bridgeAPI.saveData(autoUpdate = true)
                             player.soundEnable()
                         } else {
                             player.sendMessage(prefix + cmp("Failed to login! More information in console", cError))
@@ -117,6 +118,14 @@ class ChallengeCommand {
                         } else sender.sendMessage(prefix + msg("command.lang.fail", listOf(key)))
                     }
                 }
+            }
+        }
+
+
+
+        literalArgument("test") {
+            playerExecutor { player, _ ->
+                player.teleport(MineFieldWorld().createWorld()!!.spawnLocation)
             }
         }
     }

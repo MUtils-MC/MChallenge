@@ -1,16 +1,14 @@
 package de.miraculixx.mutils
 
 import de.miraculixx.api.MChallengeAPI
-import de.miraculixx.api.MUtilsBridge
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
+import de.miraculixx.mcore.utils.registerCommand
 import de.miraculixx.mutils.command.HelperCommand
 import de.miraculixx.mutils.command.TimerCommand
 import de.miraculixx.mutils.data.Settings
-import de.miraculixx.mvanilla.extensions.readJsonString
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.module.TimerManager
-import de.miraculixx.mutils.utils.registerCommand
+import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
 import org.bukkit.Bukkit
@@ -22,7 +20,6 @@ class MTimer : KSpigot() {
         val configFolder = File("plugins/MUtils/Timer")
         lateinit var localization: Localization
         var chAPI: MChallengeAPI? = null
-        var bridgeAPI: MUtilsBridge? = null
     }
 
     override fun startup() {
@@ -45,8 +42,6 @@ class MTimer : KSpigot() {
 
         val chPlugin = Bukkit.getPluginManager().getPlugin("MUtils-Challenges")
         if (chPlugin != null) chAPI = MChallengeAPI.instance
-        val bridgePlugin = Bukkit.getPluginManager().getPlugin("MUtils-Bridge")
-        if (bridgePlugin != null) bridgeAPI = MUtilsBridge.INSTANCE
 
         TimerManager.load(configFolder)
     }
