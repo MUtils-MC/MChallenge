@@ -10,7 +10,6 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mutils.data.Punishment
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
@@ -95,7 +94,10 @@ class TimerListener {
             var cmp = dash + cmp(msgString("event.gameOver", listOf(player.name)), cError, bold = true)
 
             if (rules.announceLocation)
-                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp(msgString("event.location"), NamedTextColor.GOLD, true) + cmp("${loc.blockX} ${loc.blockY} ${loc.blockZ}", NamedTextColor.YELLOW))
+                cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp(msgString("event.location"), NamedTextColor.GOLD, true) + cmp(
+                    "${loc.blockX} ${loc.blockY} ${loc.blockZ}",
+                    NamedTextColor.YELLOW
+                ))
                     .addHover(
                         cmp(msgString("event.exactLocation"), cHighlight) + cmp(" ${loc.toSimpleString()}\n") +
                                 cmp(msgString("event.world"), cHighlight) + cmp(" ${loc.world.name}")

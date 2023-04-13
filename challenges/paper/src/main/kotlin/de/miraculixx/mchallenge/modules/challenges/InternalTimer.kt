@@ -16,6 +16,10 @@ class InternalTimer(
 
     fun getTime() = time
 
+    fun setTime(duration: Duration) {
+        time = duration
+    }
+
     val scheduler = task(false, 0, 20) {
         if (stopped) it.cancel()
         if (!running) return@task
@@ -25,6 +29,7 @@ class InternalTimer(
         } else if (time > 0.seconds) {
             time -= 1.seconds
             onUpdate.invoke(it, time)
+            it.cancel()
         }
     }
 }

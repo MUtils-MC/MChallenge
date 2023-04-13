@@ -1,6 +1,5 @@
 package de.miraculixx.mchallenge.modules.mods.collectBattle
 
-import com.google.common.collect.ConcurrentHashMultiset
 import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.api.modules.challenges.Challenges
 import de.miraculixx.api.settings.challenges
@@ -29,12 +28,13 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
-import java.util.UUID
+import java.util.*
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.ZERO
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-class CollectBattle: Challenge {
+class CollectBattle : Challenge {
     override val challenge = Challenges.COLLECT_BATTLE
     private val itemGoals: MutableMap<UUID, TargetData> = mutableMapOf()
     private val itemPresets: MutableMap<UUID, TargetData> = mutableMapOf()
@@ -93,7 +93,6 @@ class CollectBattle: Challenge {
         item.checkCollected(it.whoClicked as? Player ?: return@listen)
     }
 
-    //TODO
     private val onF = listen<PlayerSwapHandItemsEvent>(register = false) {
         if (isHunting) return@listen
         val item = it.offHandItem ?: return@listen
@@ -107,14 +106,13 @@ class CollectBattle: Challenge {
             //Edit state data
             val uuid = player.uniqueId
             activePlayer.remove(uuid)
-            val data = itemGoals[player.uniqueId] ?: return@listen
+            val data = itemPresets[player.uniqueId] ?: return@listen
             data.time.running = false
             data.target = type
             val bar = data.bar
             bar.color(BossBar.Color.GREEN)
             bar.progress(1f)
             bar.name(msgFinished)
-            //TODO check if everyone is ready
         } else {
             player.soundError()
             player.sendMessage(msgNotAllowed)
@@ -156,16 +154,17 @@ class CollectBattle: Challenge {
     }
 
     private fun startNewRound() {
-        val playablePlayers = onlinePlayers.map { it.uniqueId }.filter { !Spectator.isSpectator(it) }
+        val playablePlayers = onlinePlayers.map { it.uniqueId }.filter { !Spectator.isSpectator(it) }.shuffled()
         activePlayer.addAll(playablePlayers)
 
         playablePlayers.forEach { player ->
             val bar = BossBar.bossBar(cmp(""), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS)
-            itemGoals[player] = TargetData(Material.AIR, InternalTimer(maxSetItemTime, {
+            itemPresets[player] = TargetData(Material.AIR, InternalTimer(maxSetItemTime, {
                 deathPlayer.add(player)
                 val onlinePlayer = Bukkit.getPlayer(player) ?: return@InternalTimer
                 onlinePlayer.persistentDataContainer.set(NamespacedKey(namespace, "death.custom"), PersistentDataType.STRING, "event.death.collectBattle.noPreset")
                 onlinePlayer.playSound(onlinePlayer, Sound.BLOCK_BEACON_DEACTIVATE, 1f, 1f)
+                deathPlayer.add(player)
                 onlinePlayer.kill()
 
             }) { _, duration ->
@@ -176,9 +175,22 @@ class CollectBattle: Challenge {
             onlinePlayer.soundEnable()
         }
 
-        val timer = InternalTimer(maxSetItemTime, {}) { _,_ -> }
-        task() {
-
+        val timer = InternalTimer(maxSetItemTime, {}) { _, _ -> }
+        task(false, 0, 20) {
+            //All players done or timer zero
+            if (activePlayer.isEmpty() || timer.getTime() == ZERO) {
+                //Start next phase
+                val players = itemPresets.map { it.key }
+                val objects = itemPresets.map { it.value }
+                players.forEachIndexed { index, uuid ->
+                    val data = objects.getOrNull(index + 1) ?: objects[0]
+                    data.time.setTime(maxSetItemTime - data.time.getTime())
+                    val player = Bukkit.getPlayer(uuid)
+                    data.bar.name(cmp("$msgTimeLeft ") + cmp(data.time.getTime().getFormatted(), cHighlight) + cmp(" - ") + Component.translatable(data.target.translationKey()).color(cMark))
+                    player?.soundEnable()
+                    itemGoals[uuid] = data
+                }
+            }
         }
     }
 

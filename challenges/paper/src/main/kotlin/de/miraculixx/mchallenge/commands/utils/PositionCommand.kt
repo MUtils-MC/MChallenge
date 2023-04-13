@@ -18,7 +18,7 @@ import java.io.File
 
 class PositionCommand {
     private val positions: MutableMap<String, LiteLocation>
-    private val file = File("${de.miraculixx.mchallenge.MChallenge.configFolder.path}/data/positions.json")
+    private val file = File("${MChallenge.configFolder.path}/data/positions.json")
 
     init {
         positions = json.decodeFromString(file.readJsonString(true))

@@ -14,6 +14,7 @@ import de.miraculixx.mchallenge.modules.mods.chunkBreaker.ChunkBlockBreaker
 import de.miraculixx.mchallenge.modules.mods.chunkClearer.ChunkClearer
 import de.miraculixx.mchallenge.modules.mods.chunkDecay.ChunkDecay
 import de.miraculixx.mchallenge.modules.mods.chunkFlattener.ChunkFlattener
+import de.miraculixx.mchallenge.modules.mods.collectBattle.CollectBattle
 import de.miraculixx.mchallenge.modules.mods.damageDuel.DamageDuell
 import de.miraculixx.mchallenge.modules.mods.damager.Damager
 import de.miraculixx.mchallenge.modules.mods.dimSwap.DimSwap
@@ -88,6 +89,7 @@ class StatusChanger: StatusChangerAPI {
             Challenges.ANVIL_CRUSHER -> AnvilCrusher()
             Challenges.ITEM_DECAY -> ItemDecay()
             Challenges.AREA_TIMER -> AreaTimer()
+            Challenges.COLLECT_BATTLE -> CollectBattle()
         }
     }
 
