@@ -1,0 +1,517 @@
+#----------------------- Translation ------------------------#
+#Content of all messages in MUtils-Challenge.         #
+#------------------------------------------------------------#
+#Some messages support MiniMessage styling (marked with #m) #
+#and extra variables (marked with #v).             #
+#Syntax: <input-i> ->                                       #
+#i is a number from 0 to the message max            #
+#------------------------------------------------------------#
+creator: MUtils
+version: 1.0.0
+#-----------------------------------------#
+#Common Translations           #
+#Translation keys that persist in every  #
+#project for simple values        #
+#-----------------------------------------#
+common:
+  boolTrue: "Enabled"
+  boolFalse: "Disabled"
+  left: "Left"
+  right: "Right"
+  click: "Click"
+  sneak: "Sneak"
+  none: "None"
+  confirm: "Confirm"
+  cancel: "Cancel"
+#-----------------------------------------#
+#Command Responses            #
+#Every command supports MiniMessages   #
+#-----------------------------------------#
+command:
+  challenge:
+    stop: "<grey>Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "<grey>Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "<grey>Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "<grey>Challenges <green>resumed</green>! (<input-1>)"
+    failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
+    alreadyOn: "<red>Challenges are already started!"
+    alreadyOff: "<red>Challenges are already stopped!"
+  notRegistered: "<red>Activate the module to use this command!"
+  heal:
+    single: "<green>You healed yourself"
+    multiple: "<green>You healed <input-1> player/s"
+  reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
+  position:
+    get: "<grey>Position <input-1> >> <blue><input-2>"
+    new: "<grey>Created new position <blue><input-1> <grey>(<input-2>)"
+    remove: "<grey>Removed position <blue><input-1>"
+    reset: "<red>Resetted all saved positions!"
+  backpack:
+    setGlobal: "<grey>Switched backpack type to <blue><input-1>"
+    setSize: "<grey>Changed backpack size to <blue><input-1></blue> rows"
+    reset: "<red>Cleared all backpacks including the global!"
+  hide:
+    hide: "<grey>You are now <red>hidden"
+    show: "<grey>You are now <green>visible"
+    hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
+    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+  debug: "<grey>Switched debug mode to <blue><input-1>"
+  lang:
+    success: "<grey>Successfully switched language to <green><input-1>"
+    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
+#-----------------------------------------#
+#Events                  #
+#Messages that occur on multiple places  #
+#-----------------------------------------#
+event:
+  death:
+    tron: "<red><input-1> stepped into a line and died!"
+    disable:
+      break: "<red><input-1> tried to break a block!"
+      place: "<red><input-1> tried to place a block!"
+      craft: "<red><input-1> tried to use the crafting table!"
+      xp: "<red><input-1> tried to pickup XP!"
+      item: "<red><input-1> tried to pickup an item!"
+      trade: "<red><input-1> tried to trade!"
+    blockAsync: "<red><input-1> clicked on a fake block!"
+    gravity: "<red><input-1> froze to death in space!"
+    noSameItem: "<red><input-1> collected too many duplicates!"
+    stayAway: "<red><input-1> got too close!"
+    forceHunt: "<red><input-1> failed to complete the goal!"
+  mobHunt:
+    collect: "<green><input-1> found <input-2>!"
+    success: "<green>Congratulations! You found all mobs"
+  itemDecay:
+    time: "Decay in"
+    paused: "Paused display (selected)"
+  hide:
+    hide: "All players are now <red>hidden"
+    show: "All players are now <green>visible"
+  gravity:
+    switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
+  noSameItem:
+    duplicate: "<red><input-2></red> was already collected by <red><input-1></red>!"
+    deathTitle: "<red>You are dead"
+  forceHunt:
+    height: "On Height"
+    item: "Collect Item"
+    biome: "Visit Biome"
+    waiting: "Waiting for new goal..."
+#-----------------------------------------#
+#Items                  #
+#Messages only visible on GUI items    #
+#Syntax: n -> Item Name                  #
+#l -> Item Lore                  #
+#-----------------------------------------#
+items:
+  general:
+    arrowRightEnd:
+      n: "<red>Scroll Right"
+      l: "You can not scroll any<br>further to the right"
+    arrowLeftEnd:
+      n: "<red>Scroll Left"
+      l: "You can not scroll any<br>further to the left"
+    arrowRight:
+      n: "<green>Scroll Right"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
+    arrowLeft:
+      n: "<green>Scroll Left"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
+    arrowUpGreen:
+      n: "<green>Scroll Up"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -3 pages"
+    arrowDownGreen:
+      n: "<green>Scroll Down"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +3 pages"
+    arrowUpRed:
+      n: "<red>Scroll Up"
+      l: "You can not scroll any<br>further up"
+    arrowDownRed:
+      n: "<red>Scroll Down"
+      l: "You can not scroll any<br>further down"
+    pageIndicator:
+      l: "Click to open a compact<br>GUI with quick access"
+    reset:
+      n: "Reset Settings"
+      l: "This action cannot be<br>reverted!"
+  event:
+    LIMITED_SEE:
+      n: "See - No Damage"
+      l: "Choose to see all mobs<br>but to be unable to<br>damage them"
+    LIMITED_DAMAGE:
+      n: "No See - Damage"
+      l: "Choose to damage all mobs<br>but to be unable to<br>see them"
+  ch:
+    FLY:
+      n: "F.L.Y. Challenge"
+      l: "Fly with a new power through<br>the sky like a hero!<br>Sneak in midair to activate"
+    IN_TIME:
+      n: "InTime Challenge"
+      l: "Every Entity has a limited time<br>to live. You too! Kill mobs to<br>steal their time"
+    MOB_BLOCKS:
+      n: "Mob Blocks Randomizer"
+      l: "Every block contains a random mob.<br>Break the block to release it and<br>only after killing it, the item drops"
+    CHECKPOINTS:
+      n: "Rewind Challenge"
+      l: "Create Checkpoints (F) to travel<br>back in time! But be warned... Time<br>traveling is dangerous"
+    DIM_SWAP:
+      n: "Dimension Swap Challenge"
+      l: "All portals are shuffled! Now you<br>have to fight the Ender Dragon in...<br>the Overworld?<br>Nether -> End -> Overworld"
+    SNAKE:
+      n: "Snake Challenges"
+      l: "You can only move on your personal<br>snake, which permanently move in<br>your viewing direction"
+    REALISTIC:
+      n: "Realistic Minecraft"
+      l: "Is MC to unrealistic? This Challenge<br>will change everything to discover<br>a full new Minecraft"
+    CAPTIVE:
+      n: "Captive Challenge"
+      l: "The world shrunk down to small<br>field and it's your task to<br>grow it through Level"
+    GHOST:
+      n: "Ghost Challenge"
+      l: "Discover the depths with your new<br>ability to travel through blocks!<br>But be aware... Ghosts are weak"
+    BLOCK_ASYNC:
+      n: "Block Async Challenge"
+      l: "Every player sees his own world!<br>But should a player interact with a<br>block modified by a different player<br>he dies. Communication is key"
+    NO_SAME_ITEM:
+      n: "No Same Items"
+      l: "If you collect a item, wich<br>was already collected, you loose<br>one heart"
+    LIMITED_SKILLS:
+      n: "Limited Skills"
+      l: "Only one player can see mobs<br>but can't damage them. The other<br>can't see mobs but can deal damage"
+    RUN_RANDOMIZER:
+      n: "Run Randomizer"
+      l: "The only way to gather items<br>is running! Every X-Blocks you<br>get a random stack of items"
+    SPLIT_HP:
+      n: "Split HP"
+      l: "Every player share their<br>hearts. Damage and regeneration<br>counts to everyone"
+    DAMAGE_DUELL:
+      n: "Damage Duell"
+      l: "If you deal damage, all<br>other players also get<br>damaged by a percentage"
+    ONE_BIOME:
+      n: "One Biome World"
+      l: "The whole world contains<br>only one biome. The biome<br>switches every X seconds"
+    BOOST_UP:
+      n: "Boost'em UP"
+      l: "Every entity/mob in your<br>range will be boosted in<br>the sky"
+    RIGHT_TOOL:
+      n: "Only Right Tools"
+      l: "You can only break blocks<br>with the correct tool"
+    CHUNK_BLOCK_BREAK:
+      n: "Chunk Breaker"
+      l: "Breaking a block will<br>break all blocks of the<br>same time in the chunk"
+    SNEAK_SPAWN:
+      n: "Sneak Spawner"
+      l: "Be prepared... Every sneak<br>will spawn a random mob<br>on your position"
+    WORLD_PEACE:
+      n: "World Peace"
+      l: "Instead of fighting to the top<br>just communicate and trade<br>with your opponents!<br><i>Symbol against the Ukraine-Russian war"
+    GRAVITY:
+      n: "Gravity Switch"
+      l: "The world gone crazy and<br>every few seconds the gravity<br>switches between 4 new gravities"
+    STAY_AWAY:
+      n: "Stay Awaay"
+      l: "Getting to close to other<br>mobs or players causes damage.<br>Time for some social distancing"
+    RANDOMIZER_BLOCK:
+      n: "Block Randomizer"
+      l: "Block drops are shuffled<br>(or random)"
+    RANDOMIZER_ENTITY:
+      n: "Mob Drop Randomizer"
+      l: "Mob drops are shuffled<br>(or random)"
+    RANDOMIZER_BIOMES:
+      n: "Biome Randomizer"
+      l: "World biomes are shuffled<br>(or random)"
+    RANDOMIZER_MOBS:
+      n: "Mob Randomizer"
+      l: "Mob spawning is shuffled<br>(or random)"
+    FORCE_COLLECT:
+      n: "Force Collect"
+      l: "You are forced to collect<br>the prompted item to survive"
+    RANDOMIZER_DAMAGE:
+      n: "Damage Randomizer"
+      l: "Damage is shuffled like<br>2hp will be always 5hp<br>(or random)"
+    NO_DOUBLE_KILL:
+      n: "No Double Kills"
+      l: "You are not allowed to kill<br>the same mob twice in a row"
+    DAMAGER:
+      n: "Damager Challenge"
+      l: "You will be confronted with<br>constantly damage from the<br>chosen event. Can you survive?"
+    RIVALS_COLLECT:
+      n: "Collection Rivals"
+      l: "Collect/find/kill the prompted<br>goal to get the next. Player<br>with the most points win"
+    ROCKET:
+      n: "Rocket Mode"
+      l: "Sneak to fly up. But be aware!<br>Flying with a rocket is hard...<br>And hold an eye on your heat"
+    VAMPIRE:
+      n: "Vampire Challenge"
+      l: "Welcome to the world of darkness!<br>Light will drain your blood. Kill<br>mobs to gain their blood and sneak on<br>killing to gather a blood pack (heal)"
+    TRAFFIC_LIGHT:
+      n: "Traffic Lights"
+      l: "You are trapped on the road.<br>You are only allowed to move<br>on green lights. If you move<br>on red, you get punished"
+    TRON:
+      n: "Snake Path"
+      l: "Every player creates a path<br>on walking. But be carefully!<br>You are not allowed to touch it<br>ever again..."
+    DISABLED:
+      n: "Disable Features"
+      l: "Disable certain key features<br>to challenge your self.<br>Additionally a damage punishment<br>can be added"
+    MOB_HUNT:
+      n: "Mob Hunt"
+      l: "Kill all Mobs in a given<br>order to finish!<br>Use /mobhunt to modify"
+    ITEM_HUNT:
+      n: "Item Hunt"
+      l: "Collect all Items in a given<br>order to finish!<br>Use /itemhunt to modify"
+    MIRROR:
+      n: "Mirror Challenge"
+      l: "Mirror certain things from<br>you to all other players (sync)"
+    CHUNK_FLATTENER:
+      n: "Chunk Flattener"
+      l: "Watch out your steps!<br>Your current chunk slowly<br>shrinks down"
+    CHUNK_DECAY:
+      n: "Chunk Decay"
+      l: "Your current chunk randomly<br>decays till it's gone"
+    CHUNK_CLEARER:
+      n: "Chunk Clearer"
+      l: "If you enter a chunk or<br>touch a new block the whole<br>chunk will be cleared"
+    ANVIL_CRUSHER:
+      n: "Anvil Crusher"
+      l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
+    ITEM_DECAY:
+      n: "Item Decay"
+      l: "Act fast! All your<br>items have a limited lifespan<br>till they disappear"
+    AREA_TIMER:
+      n: "Area Timer"
+      l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
+  chS:
+    FLY:
+      power:
+        n: "Power"
+    IN_TIME:
+      pTime:
+        n: "Player Time"
+      eTime:
+        n: "Entity Time"
+      hpTime:
+        n: "Time per HP"
+    MOB_BLOCKS:
+      rnd:
+        n: "Random"
+    CHECKPOINTS:
+      onlyTP:
+        n: "Only Position"
+    DIM_SWAP:
+      starter:
+        n: "Starter Pickaxe"
+    SNAKE:
+      speed:
+        n: "Speed"
+    GHOST:
+      radius:
+        n: "Radius"
+      adventure:
+        n: "Adventure Ghost"
+      glide:
+        n: "Ghost Glide"
+    NO_SAME_ITEM:
+      lives:
+        n: "Lives"
+      sync:
+        n: "Lives = HP"
+      info:
+        n: "Announce Mode"
+    LIMITED_SKILLS:
+      random:
+        n: "Random Roles"
+    RUN_RANDOMIZER:
+      goal:
+        n: "Block Goal"
+      global:
+        n: "Count Global"
+    DAMAGE_DUELL:
+      percent:
+        n: "Percentage"
+    ONE_BIOME:
+      delay:
+        n: "Delay"
+    BOOST_UP:
+      radius:
+        n: "Effect Radius"
+      boost:
+        n: "Boost Power"
+      mode:
+        n: "Only Mobs"
+    CHUNK_BLOCK_BREAK:
+      bundle:
+        n: "Bundle Drops"
+    SNEAK_SPAWN:
+      onlyMob:
+        n: "Only Mobs"
+    GRAVITY:
+      delay:
+        n: "Delay"
+      duration:
+        n: "Duration"
+    STAY_AWAY:
+      distance:
+        n: "Damage Distance"
+      warning:
+        n: "Warning Damage"
+    RANDOMIZER_BLOCK:
+      random:
+        n: "Full Random"
+    RANDOMIZER_ENTITY:
+      random:
+        n: "Full Random"
+    RANDOMIZER_BIOMES:
+      random:
+        n: "Full Random"
+    RANDOMIZER_MOBS:
+      random:
+        n: "Full Random"
+    FORCE_COLLECT:
+      times:
+        n: "Timings"
+      minCooldown:
+        n: "Min Cooldown"
+      maxCooldown:
+        n: "Max Cooldown"
+      minTime:
+        n: "Min Hunt Time"
+      maxTime:
+        n: "Max Hunt Time"
+      objects:
+        n: "Goals"
+      items:
+        n: "Force Item"
+      biomes:
+        n: "Force Biome"
+      height:
+        n: "Force Height"
+    RANDOMIZER_DAMAGE:
+      random:
+        n: "Full Random"
+    NO_DOUBLE_KILL:
+      global:
+        n: "Count Global"
+    DAMAGER:
+      mode:
+        n: "Damage Event"
+      damage:
+        n: "Damage"
+    RIVALS_COLLECT:
+      mode:
+        n: "Search Type"
+      joker:
+        n: "Joker"
+    ROCKET:
+      capacity:
+        n: "Fuel Capacity"
+    VAMPIRE:
+      startBlood:
+        n: "Start Blood"
+      maxBlood:
+        n: "Blood Capacity"
+      healthToBlood:
+        n: "HP - Blood"
+      bloodLoose:
+        n: "Blood Drain"
+    TRAFFIC_LIGHT:
+      min:
+        n: "Min Duration"
+      max:
+        n: "Max Duration"
+      damage:
+        n: "Damage on red"
+      green:
+        n: "Green Phase"
+      yellow:
+        n: "Yellow Phase"
+      red:
+        n: "Red Phase"
+    TRON:
+      visible:
+        n: "Visible Path"
+    DISABLED:
+      block:
+        n: "Block Category"
+      break:
+        n: "Disable Breaking"
+      place:
+        n: "Disable Placing"
+      interact:
+        n: "Interact Category"
+      craft:
+        n: "Disable Crafting Table"
+      trade:
+        n: "Disable Trading"
+      misc:
+        n: "Misc Category"
+      xp:
+        n: "Disable XP Pickup"
+      items:
+        n: "Disable Item Pickup"
+      damage:
+        n: "Damage"
+    MIRROR:
+      hearts:
+        n: "Sync Health"
+      food:
+        n: "Sync Food"
+      potions:
+        n: "Sync Potions"
+      hotbar:
+        n: "Sync Hotbar"
+    CHUNK_FLATTENER:
+      delay:
+        n: "Delay"
+      shouldBreak:
+        n: "Drop Blocks"
+    CHUNK_DECAY:
+      delay:
+        n: "Delay"
+      percentage:
+        n: "Decay Percentage"
+      shouldBreak:
+        n: "Drop Blocks"
+    CHUNK_CLEARER:
+      breakAll:
+        n: "Break All"
+      shouldBreak:
+        n: "Drop Items"
+      bundle:
+        n: "Bundle Items"
+    ANVIL_CRUSHER:
+      delay:
+        n: "Anvil Delay"
+      startDelay:
+        n: "Base"
+      amplifierDelay:
+        n: "Faster per DMG"
+      density:
+        n: "Anvil Density"
+      startDensity:
+        n: "Base"
+      amplifierDensity:
+        n: "Higher per DMG"
+      radius:
+        n: "Anvil Radius"
+      startRadius:
+        n: "Base"
+      amplifierRadius:
+        n: "Bigger per DMG"
+      height:
+        n: "Anvil Height"
+    ITEM_DECAY:
+      time:
+        n: "Decay Time"
+    AREA_TIMER:
+      time:
+        n: "Max Time"
+      global:
+        n: "Count Global"
+      mode:
+        n: "Area Mode"
+    BLOCK_ASYNC:
+      hide:
+        n: "Hide Players"
+    RIGHT_TOOLS:
+      starter:
+        n: "Starter Axe"
