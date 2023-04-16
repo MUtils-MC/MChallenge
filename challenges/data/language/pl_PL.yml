@@ -14,15 +14,15 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Enabled"
-  boolFalse: "Disabled"
-  left: "Left"
-  right: "Right"
-  click: "Click"
+  boolTrue: "Włączone"
+  boolFalse: "Wyłączone"
+  left: "Lewo"
+  right: "Prawo"
+  click: "Kliknij"
   sneak: "Sneak"
-  none: "None"
-  confirm: "Confirm"
-  cancel: "Cancel"
+  none: "Żadne6"
+  confirm: "Potwierdzić"
+  cancel: "Anuluj"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
