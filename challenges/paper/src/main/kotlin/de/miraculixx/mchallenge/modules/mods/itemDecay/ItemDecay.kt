@@ -83,7 +83,7 @@ class ItemDecay : Challenge {
         val id = data.get(timerNamespace, PersistentDataType.STRING)
         if (id != null) {
             val uuid = id.toUUID()
-            val timer = itemTimers[uuid]?.getTime() ?: return@listen
+            val timer = itemTimers[uuid]?.time ?: return@listen
             item.lore(listOf(msgTimeDisplay + timer.calcLore(timer.inWholeSeconds)))
         } else item.registerTimer()
     }
@@ -119,7 +119,7 @@ class ItemDecay : Challenge {
                         val id = e.itemStack.itemMeta.persistentDataContainer.get(timerNamespace, PersistentDataType.STRING) ?: return@async
                         val uuid = id.toUUID() ?: return@async
                         val timer = itemTimers[uuid] ?: return@async
-                        val time = timer.getTime().inWholeSeconds
+                        val time = timer.time.inWholeSeconds
                         if (time == -1L) {
                             sync { e.remove() }
                             timer.running = false
@@ -142,7 +142,7 @@ class ItemDecay : Challenge {
             }
             val uuid = id.toUUID() ?: return@forEachIndexed
             val timer = itemTimers[uuid] ?: return@forEachIndexed
-            val time = timer.getTime()
+            val time = timer.time
             val seconds = time.inWholeSeconds
             if (seconds == -1L) {
                 player.inventory.setItem(index, null)
@@ -169,7 +169,7 @@ class ItemDecay : Challenge {
             val timer = InternalTimer(startTime.seconds, {}) { _, _ -> }
             val uuid = UUID.randomUUID()
             data.set(timerNamespace, PersistentDataType.STRING, uuid.toString())
-            val time = timer.getTime()
+            val time = timer.time
             lore(listOf(msgTimeDisplay + time.calcLore(startTime.toLong())))
             itemMeta = meta
             itemTimers[uuid] = timer

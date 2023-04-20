@@ -10,15 +10,9 @@ class InternalTimer(
     private val onNull: (KSpigotRunnable) -> Unit,
     private val onUpdate: (KSpigotRunnable, Duration) -> Unit,
 ) {
-    private var time = startTime
+    var time = startTime
     var running = true
     var stopped = false
-
-    fun getTime() = time
-
-    fun setTime(duration: Duration) {
-        time = duration
-    }
 
     val scheduler = task(false, 0, 20) {
         if (stopped) it.cancel()
@@ -26,10 +20,10 @@ class InternalTimer(
         if (time == 0.seconds) {
             time -= 1.seconds
             onNull.invoke(it)
+            it.cancel()
         } else if (time > 0.seconds) {
             time -= 1.seconds
             onUpdate.invoke(it, time)
-            it.cancel()
         }
     }
 }

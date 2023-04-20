@@ -251,7 +251,11 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
                 "global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true),
                 "mode" to ChallengeEnumSetting("CRAFTING_TABLE", "BIOMES", options = AreaTimerMode.values().map { it.name })
             )
-            COLLECT_BATTLE -> TODO()
+            COLLECT_BATTLE -> mapOf(
+                "maxSetTime" to ChallengeIntSetting("CLOCK", 600, "s", max = 1200, min = 60, step = 10),
+                "cooldown" to ChallengeIntSetting("HOPPER", 180, "s", max = 600, min = 30, step = 10),
+                "bufferTime" to ChallengeIntSetting("NETHER_STAR", 10, "s", max = 120, min = 0, step = 5)
+            )
         }
     }
 

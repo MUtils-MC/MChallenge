@@ -2,4 +2,4 @@ package de.miraculixx.mchallenge.utils
 
 import de.miraculixx.mchallenge.MChallenge
 
-fun getAccountStatus() = de.miraculixx.mchallenge.MChallenge.bridgeAPI?.getAccountStatus() ?: false
+fun getAccountStatus() = true //MChallenge.bridgeAPI.getAccountStatus() ?: false

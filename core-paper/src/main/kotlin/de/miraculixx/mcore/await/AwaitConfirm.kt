@@ -46,7 +46,7 @@ class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) 
         onClose.unregister()
     }
 
-    private class InternalItemProvider: ItemProvider {
+    private class InternalItemProvider : ItemProvider {
         override fun getSlotMap(): Map<Int, ItemStack> {
             return mapOf(
                 12 to itemStack(Material.PLAYER_HEAD) {
@@ -67,7 +67,7 @@ class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) 
         }
     }
 
-    private class InternalClickProvider(player: Player, onConfirm: () -> Unit, onCancel: () -> Unit, confirmer: AwaitConfirm): GUIEvent {
+    private class InternalClickProvider(player: Player, onConfirm: () -> Unit, onCancel: () -> Unit, confirmer: AwaitConfirm) : GUIEvent {
         override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, _: CustomInventory ->
             it.isCancelled = true
             if (it.whoClicked != player) return@event
@@ -77,10 +77,12 @@ class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) 
                     player.closeInventory()
                     onConfirm.invoke()
                 }
+
                 2 -> {
                     player.closeInventory()
                     onCancel.invoke()
                 }
+
                 else -> return@event
             }
             confirmer.disable()

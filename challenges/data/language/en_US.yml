@@ -103,6 +103,14 @@ event:
     item: "Collect Item"
     biome: "Visit Biome"
     waiting: "Waiting for new goal..."
+  collectBattle:
+    finished: "Finished current task"
+    notAllowed: "Only new gathered items are allowed!"
+    timeLeft: "Time left:"
+    cooldown: "No current task"
+    register: "You registered <green><input-1></green> as your item! Now you have to wait for all other players to register their items"
+    startHunt: "<grey>All players gathered their items! Now you have to find <blue><input-1></blue> faster then <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Round <input-1> finished!</green>"
 
 
 #-----------------------------------------#
@@ -288,6 +296,9 @@ items:
     AREA_TIMER:
       n: "Area Timer"
       l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
+    COLLECT_BATTLE:
+      n: "Collect Battle"
+      l: "Compete against all other players<br>in this round based game!<br>First, you gather an item as fast as possible.<br>In the second phase, a random other<br>player needs to gather the same item faster!<br>You can still beat the game?"
   chS:
     FLY:
       power:
@@ -523,3 +534,8 @@ items:
     RIGHT_TOOLS:
       starter:
         n: "Starter Axe"
+    COLLECT_BATTLE:
+      maxSetTime:
+        n: "Max Set-Time"
+      cooldown:
+        n: "Time Between Rounds"
