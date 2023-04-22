@@ -78,6 +78,7 @@ event:
     noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
     stayAway: "<red><input-1> ist zu nah gekommen!"
     forceHunt: "<red><input-1> hat das Ziel nicht erfüllt!"
+    noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -97,6 +98,14 @@ event:
     item: "Sammle Item"
     biome: "Besuche Biom"
     waiting: "Warte auf neues Ziel..."
+  collectBattle:
+    finished: "Finished current task"
+    notAllowed: "Only new gathered items are allowed!"
+    timeLeft: "Time left:"
+    cooldown: "No current task"
+    register: "You registered <green><input-1></green> as your item! Now you have to wait for all other players to register their items"
+    startHunt: "<grey>All players gathered their items! Now you have to find <blue><input-1></blue> faster then <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Round <input-1> finished!</green>"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -280,6 +289,9 @@ items:
     AREA_TIMER:
       n: "Bereich Timer"
       l: "Ausgewählte Bereiche wie Biome,<br>Chunks, Welten, oder auch Höhen<br>können nur begrenzt lange aufgesucht<br> werden. Spiele schnell!"
+    COLLECT_BATTLE:
+      n: "Collect Battle"
+      l: "Compete against all other players<br>in this round based game!<br>First, you gather an item as fast as possible.<br>In the second phase, a random other<br>player needs to gather the same item faster!<br>You can still beat the game?"
   chS:
     FLY:
       power:
@@ -515,3 +527,8 @@ items:
     RIGHT_TOOLS:
       starter:
         n: "Starter-Axt"
+    COLLECT_BATTLE:
+      maxSetTime:
+        n: "Max Set-Time"
+      cooldown:
+        n: "Time Between Rounds"
