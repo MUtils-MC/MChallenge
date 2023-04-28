@@ -99,11 +99,11 @@ items:
   isActive:
     n: "Sichtbarkeit"
     l: "Globaler Timer wird immer über persönliche Timer<br>gerendert"
-    s: "Visible"
+    s: "Sichtbar"
   direction:
     n: "Timer Richtung"
     l: "Definiere deine Timer-Richtung.<br>Wenn die Zeit Null erreicht,<br>wird der Timer gestoppt"
-    s: "Count Up"
+    s: "Hochzählen"
   createDesign:
     n: "Neues Design"
     l: "Erstelle ein neues Design von<br>Scratch. Animationen sind nicht<br>im Editor animiert"
@@ -161,7 +161,7 @@ items:
   publicLibrary:
     n: "Design-Workshop"
     l: "Greife auf Designs von Nutzern auf<br>der ganzen Welt zu! Oder teile<br>deine eigenen mit jedem."
-  time: "Time"
+  time: "Zeit"
   color:
     type:
       n: "Farbtyp"
