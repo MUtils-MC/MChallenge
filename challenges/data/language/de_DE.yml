@@ -78,6 +78,7 @@ event:
     noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
     stayAway: "<red><input-1> ist zu nah gekommen!"
     forceHunt: "<red><input-1> hat das Ziel nicht erfüllt!"
+    noDoubleKill: "<red><input-1> hat den gleichen Mob zweimal hintereinander getötet!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -97,6 +98,17 @@ event:
     item: "Sammle Item"
     biome: "Besuche Biom"
     waiting: "Warte auf neues Ziel..."
+  collectBattle:
+    finished: "Aktuelle Aufgabe abgeschlossen"
+    notAllowed: "Nur neu gesammelte Items sind erlaubt!"
+    timeLeft: "Verbleibende Zeit:"
+    cooldown: "Keine aktuelle Aufgabe"
+    register: "Du hast <green><input-1></green> als Gegenstand registriert! Jetzt musst du warten, bis alle anderen Spieler ihre Items registrieren"
+    startHunt: "<grey>Alle Spieler haben ihre Gegenstände gesammelt! Jetzt musst du <blue><input-1></blue> schneller finden als <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Runde <input-1> beendet!</green>"
+  rivalCollect:
+    itemFound: "<input-1> hat gerade <blue><input-2></blue> gefunden!"
+    newItem: "Deine nächste Aufgabe ist <input-1> zu finden/töten"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -280,6 +292,9 @@ items:
     AREA_TIMER:
       n: "Bereich Timer"
       l: "Ausgewählte Bereiche wie Biome,<br>Chunks, Welten, oder auch Höhen<br>können nur begrenzt lange aufgesucht<br> werden. Spiele schnell!"
+    COLLECT_BATTLE:
+      n: "Collect Battle"
+      l: "Spiele gegen alle anderen Spieler<br>in diesem Runden basierten Modus!<br>Zuerst sammelst du ein Item so schnell wie möglich.<br>In der zweiten Phase muss ein anderer<br>zufälliger Spieler dieses Item schneller sammeln!<br>Kannst du trotzdem MC durchspielen?"
   chS:
     FLY:
       power:
@@ -515,3 +530,8 @@ items:
     RIGHT_TOOLS:
       starter:
         n: "Starter-Axt"
+    COLLECT_BATTLE:
+      maxSetTime:
+        n: "Max. Set-Zeit"
+      cooldown:
+        n: "Zeit zwischen Runden"

@@ -14,13 +14,13 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Habilitado"
-  boolFalse: "Deshabilitado"
-  left: "Izquierda"
-  right: "Derecha"
-  click: "Clic"
-  sneak: "Disparar"
-  none: "Ninguna"
+  boolTrue: "Enabled"
+  boolFalse: "Disabled"
+  left: "Left"
+  right: "Right"
+  click: "Click"
+  sneak: "Sneak"
+  none: "None"
   button: "Button"
 #-----------------------------------------#
 #Command Responses            #
@@ -30,9 +30,9 @@ command:
   help: "<grey>Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
   resume: "<green><b>Resuming</b> the timer <grey>(<input-1>)" #v1
   pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
-  alreadyOn: "<red>Ya se está utilizando el Timer!"
+  alreadyOn: "<red>Timer is already running!"
   alreadyOff: "<red>Timer is already paused!"
-  reset: "<grey>El Timer se ha reseteado con éxito a tiempo 0"
+  reset: "<grey>Timer successfully reset to time 0"
   noPlayer: "<red>This command can only be used by players!"
   noCommand: "<red>Invalid subcommand!"
 #-----------------------------------------#
@@ -40,22 +40,22 @@ command:
 #Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
-  millis: "Milisegundos"
-  seconds: "Segundos"
-  minutes: "Minutos"
-  hours: "Horas"
-  days: "Días"
-  active: "Habilitado"
-  disabled: "Deshabilitado"
-  prefix: "Prefijo"
-  suffix: "Sufijo"
-  animation: "Velocidad animación"
-  syntax: "Sintaxis"
-  forcedTwoDigits: "Forzar 2 dígitos"
+  millis: "Milliseconds"
+  seconds: "Seconds"
+  minutes: "Minutes"
+  hours: "Hours"
+  days: "Days"
+  active: "Active"
+  disabled: "Disabled"
+  prefix: "Prefix"
+  suffix: "Suffix"
+  animation: "Animation Speed"
+  syntax: "Syntax"
+  forcedTwoDigits: "Forced 2 Digits"
   visibleOnNull: "Visible on Null"
   spaceInfo: "Use _ to add spaces before and after your message"
   clickToCopy: "Click to copy: <blue><input-1>"
-  finish: "Finalizado"
+  finish: "Finish"
   playtime: "Play Time: "
   endSuccess: "Challenge succeed!" #v1
   kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
@@ -74,24 +74,24 @@ event:
 items:
   general:
     arrowRightEnd:
-      n: "<red>Desplazar a la derecha"
-      l: "No puedes desplazar<br>más a la derecha"
+      n: "<red>Scroll Right"
+      l: "You can not scroll any<br>further to the right"
     arrowLeftEnd:
-      n: "<red>Desplazar a la izquierda"
-      l: "No puedes desplazar<br>más a la izquierda"
+      n: "<red>Scroll Left"
+      l: "You can not scroll any<br>further to the left"
     arrowRight:
-      n: "<lime>Desplazar a la derecha"
+      n: "<lime>Scroll Right"
       l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
-      n: "<lime>Desplazar a la izquierda"
+      n: "<lime>Scroll Left"
       l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"
   design:
-    n: "Diseño de Timer"
+    n: "Timer Design"
     l: "Customize your timer design<br>from simple colorizing to<br>complex animations and texts"
   rules:
-    n: "Reglas de Timer"
+    n: "Timer Rules"
     l: "Define what rules apply to<br>your Server while the timer<br>is active"
   goals:
     n: "Timer Goals"
@@ -105,37 +105,37 @@ items:
     l: "Define your timer direction.<br>Hitting time zero will stop it"
     s: "Count Up"
   createDesign:
-    n: "Nuevo diseño"
+    n: "New Design"
     l: "Create a new design from<br>scratch. Animations are not<br>animated in the editor"
   designName:
-    n: "Nombre del diseño"
+    n: "Design Name"
     l: "Choose a fitting name, it is<br>visible in the local & public<br>timer design list"
   designRunning:
     n: "Running State"
     l: "Customize the running state<br>of your timer"
   designIdle:
-    n: "Estado inactivo"
+    n: "Idle State"
     l: "Customize the idle state<br>of your timer"
   dragonDeath:
     n: "Ender Dragon Death"
     l: "Kill an Ender Dragon to<br>finish the timer"
   witherDeath:
-    n: "Muerte de Wither"
-    l: "Mata a un Wither para<br>terminar el Timer"
+    n: "Wither Death"
+    l: "Kill a Wither to<br>finish the timer"
   elderDeath:
     n: "Elder Guardian Death"
     l: "Kill a Elder Guardian to<br>finish the timer"
   wardenDeath:
-    n: "Muerte de Warden"
-    l: "Mata a un Warden para<br>terminar el Timer (1.19+)"
+    n: "Warden Death"
+    l: "Kill a Warden to<br>finish the timer (1.19+)"
   playerDeath:
-    n: "Muerte del jugador"
+    n: "Player Death"
     l: "Any player death fails<br>the timer"
   lastPlayer:
-    n: "Servidor vacío"
+    n: "Empty Server"
     l: "Pause the timer when<br>the last player leaves<br>the server"
   announceSeed:
-    n: "Anuncio Seed"
+    n: "Announce Seed"
     l: "Announce world seed on timer<br>fail or success in chat"
   announceLocation:
     n: "Announce Location"

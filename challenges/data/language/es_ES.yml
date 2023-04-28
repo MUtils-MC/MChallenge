@@ -39,7 +39,7 @@ command:
   notRegistered: "<red>¡Activa el módulo para usar este comando!"
   heal:
     single: "<green>You healed yourself"
-    multiple: "<green>You healed <input-1> player/s"
+    multiple: "<green>You healed <input-1> players"
   reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
@@ -76,8 +76,9 @@ event:
     blockAsync: "<red><input-1> clicked on a fake block!"
     gravity: "<red><input-1> froze to death in space!"
     noSameItem: "<red><input-1> collected too many duplicates!"
-    stayAway: "<red><input-1> got too close!"
+    stayAway: "<red><input-1> got to close!"
     forceHunt: "<red><input-1> failed to complete the goal!"
+    noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
   mobHunt:
     collect: "<green><input-1> encontrado <input-2>!"
     success: "<green> ¡Felicidades! Has encontrado todos los mobs"
@@ -97,6 +98,17 @@ event:
     item: "Collect Item"
     biome: "Visit Biome"
     waiting: "Waiting for new goal..."
+  collectBattle:
+    finished: "Finished current task"
+    notAllowed: "Only new gathered items are allowed!"
+    timeLeft: "Time left:"
+    cooldown: "No current task"
+    register: "You registered <green><input-1></green> as your item! Now you have to wait for all other players to register their items"
+    startHunt: "<grey>All players gathered their items! Now you have to find <blue><input-1></blue> faster then <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Round <input-1> finished!</green>"
+  rivalCollect:
+    itemFound: "<input-1> just found <blue><input-2></blue>!"
+    newItem: "Your next task is to find/kill <input-1>"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -280,6 +292,9 @@ items:
     AREA_TIMER:
       n: "Area Timer"
       l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
+    COLLECT_BATTLE:
+      n: "Collect Battle"
+      l: "Compete against all other players<br>in this round based game!<br>First, you gather an item as fast as possible.<br>In the second phase, a random other<br>player needs to gather the same item faster!<br>You can still beat the game?"
   chS:
     FLY:
       power:
@@ -374,9 +389,9 @@ items:
       maxCooldown:
         n: "Enfriamiento máximo"
       minTime:
-        n: "Min Hunt Time"
+        n: "Min Collect Time"
       maxTime:
-        n: "Max Hunt Time"
+        n: "Max Collect Time"
       objects:
         n: "Goals"
       items:
@@ -515,3 +530,8 @@ items:
     RIGHT_TOOLS:
       starter:
         n: "Starter Axe"
+    COLLECT_BATTLE:
+      maxSetTime:
+        n: "Max Set-Time"
+      cooldown:
+        n: "Time Between Rounds"

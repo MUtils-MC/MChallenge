@@ -14,32 +14,32 @@ version: 1.0.0
 #project for simple values        #
 #-----------------------------------------#
 common:
-  boolTrue: "Activé"
-  boolFalse: "Désactivé"
-  left: "Gauche"
-  right: "Droite"
-  click: "Cliquez"
+  boolTrue: "Włączone"
+  boolFalse: "Wyłączone"
+  left: "Lewo"
+  right: "Prawo"
+  click: "Kliknij"
   sneak: "Sneak"
-  none: "None"
-  confirm: "Confirmer"
-  cancel: "Annuler"
+  none: "Żadne6"
+  confirm: "Potwierdzić"
+  cancel: "Anuluj"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
   challenge:
-    stop: "Challenges <red><b>stopped</b></red>! (<input-1>)"
-    start: "Challenges <green><b>started</b></green>! (<input-1>)"
-    pause: "Challenges temporary <red>paused</red>! (<input-1>)"
-    continue: "Challenges <green>resumed</green>! (<input-1>)"
+    stop: "<grey>Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "<grey>Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "<grey>Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "<grey>Challenges <green>resumed</green>! (<input-1>)"
     failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
     alreadyOn: "<red>Challenges are already started!"
     alreadyOff: "<red>Challenges are already stopped!"
-  notRegistered: "<red>Activer le module pour utiliser cette commande !"
+  notRegistered: "<red>Activate the module to use this command!"
   heal:
     single: "<green>You healed yourself"
-    multiple: "<green>You healed <input-1> players"
+    multiple: "<green>You healed <input-1> player/s"
   reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
@@ -65,7 +65,7 @@ command:
 #-----------------------------------------#
 event:
   death:
-    tron: "est allé sûr une ligne et est mort !"
+    tron: "<red><input-1> stepped into a line and died!"
     disable:
       break: "<red><input-1> tried to break a block!"
       place: "<red><input-1> tried to place a block!"
@@ -76,7 +76,7 @@ event:
     blockAsync: "<red><input-1> clicked on a fake block!"
     gravity: "<red><input-1> froze to death in space!"
     noSameItem: "<red><input-1> collected too many duplicates!"
-    stayAway: "<red><input-1> got to close!"
+    stayAway: "<red><input-1> got too close!"
     forceHunt: "<red><input-1> failed to complete the goal!"
     noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
   mobHunt:
@@ -327,7 +327,7 @@ items:
         n: "Ghost Glide"
     NO_SAME_ITEM:
       lives:
-        n: "Vies"
+        n: "Lives"
       sync:
         n: "Lives = HP"
       info:
@@ -345,7 +345,7 @@ items:
         n: "Percentage"
     ONE_BIOME:
       delay:
-        n: "Délai"
+        n: "Delay"
     BOOST_UP:
       radius:
         n: "Effect Radius"
@@ -361,7 +361,7 @@ items:
         n: "Only Mobs"
     GRAVITY:
       delay:
-        n: "Délai"
+        n: "Delay"
       duration:
         n: "Duration"
     STAY_AWAY:
@@ -389,9 +389,9 @@ items:
       maxCooldown:
         n: "Max Cooldown"
       minTime:
-        n: "Min Collect Time"
+        n: "Min Hunt Time"
       maxTime:
-        n: "Max Collect Time"
+        n: "Max Hunt Time"
       objects:
         n: "Goals"
       items:
@@ -476,12 +476,12 @@ items:
         n: "Sync Hotbar"
     CHUNK_FLATTENER:
       delay:
-        n: "Délai"
+        n: "Delay"
       shouldBreak:
         n: "Drop Blocks"
     CHUNK_DECAY:
       delay:
-        n: "Délai"
+        n: "Delay"
       percentage:
         n: "Decay Percentage"
       shouldBreak:
