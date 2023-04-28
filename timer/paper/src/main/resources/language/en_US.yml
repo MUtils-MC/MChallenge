@@ -107,9 +107,11 @@ items:
   isActive:
     n: "Visibility"
     l: "Global timer is always rendered<br>over personal timers"
+    s: "Visible"
   direction:
     n: "Timer Direction"
     l: "Define your timer direction.<br>Hitting time zero will stop it"
+    s: "Count Up"
   createDesign:
     n: "New Design"
     l: "Create a new design from<br>scratch. Animations are not<br>animated in the editor"
@@ -167,6 +169,7 @@ items:
   publicLibrary:
     n: "Design Workshop"
     l: "Access designs from users all<br>over the world! Or share<br>your owns with everyone."
+  time: "Time"
   color:
     type:
       n: "Color Type"
