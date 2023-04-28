@@ -78,7 +78,7 @@ event:
     noSameItem: "<red><input-1> hat zu viele Duplikate eingesammelt!"
     stayAway: "<red><input-1> ist zu nah gekommen!"
     forceHunt: "<red><input-1> hat das Ziel nicht erfüllt!"
-    noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
+    noDoubleKill: "<red><input-1> hat den gleichen Mob zweimal hintereinander getötet!"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -99,16 +99,16 @@ event:
     biome: "Besuche Biom"
     waiting: "Warte auf neues Ziel..."
   collectBattle:
-    finished: "Finished current task"
-    notAllowed: "Only new gathered items are allowed!"
-    timeLeft: "Time left:"
-    cooldown: "No current task"
-    register: "You registered <green><input-1></green> as your item! Now you have to wait for all other players to register their items"
-    startHunt: "<grey>All players gathered their items! Now you have to find <blue><input-1></blue> faster then <blue><input-2></blue> (<input-3>)</grey>"
-    startCooldown: "<green>Round <input-1> finished!</green>"
+    finished: "Aktuelle Aufgabe abgeschlossen"
+    notAllowed: "Nur neu gesammelte Items sind erlaubt!"
+    timeLeft: "Verbleibende Zeit:"
+    cooldown: "Keine aktuelle Aufgabe"
+    register: "Du hast <green><input-1></green> als Gegenstand registriert! Jetzt musst du warten, bis alle anderen Spieler ihre Items registrieren"
+    startHunt: "<grey>Alle Spieler haben ihre Gegenstände gesammelt! Jetzt musst du <blue><input-1></blue> schneller finden als <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Runde <input-1> beendet!</green>"
   rivalCollect:
-    itemFound: "<input-1> just found <blue><input-2></blue>!"
-    newItem: "Your next task is to find/kill <input-1>"
+    itemFound: "<input-1> hat gerade <blue><input-2></blue> gefunden!"
+    newItem: "Deine nächste Aufgabe ist <input-1> zu finden/töten"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -294,7 +294,7 @@ items:
       l: "Ausgewählte Bereiche wie Biome,<br>Chunks, Welten, oder auch Höhen<br>können nur begrenzt lange aufgesucht<br> werden. Spiele schnell!"
     COLLECT_BATTLE:
       n: "Collect Battle"
-      l: "Compete against all other players<br>in this round based game!<br>First, you gather an item as fast as possible.<br>In the second phase, a random other<br>player needs to gather the same item faster!<br>You can still beat the game?"
+      l: "Spiele gegen alle anderen Spieler<br>in diesem Runden basierten Modus!<br>Zuerst sammelst du ein Item so schnell wie möglich.<br>In der zweiten Phase muss ein anderer<br>zufälliger Spieler dieses Item schneller sammeln!<br>Kannst du trotzdem MC durchspielen?"
   chS:
     FLY:
       power:
@@ -532,6 +532,6 @@ items:
         n: "Starter-Axt"
     COLLECT_BATTLE:
       maxSetTime:
-        n: "Max Set-Time"
+        n: "Max. Set-Zeit"
       cooldown:
-        n: "Time Between Rounds"
+        n: "Zeit zwischen Runden"
