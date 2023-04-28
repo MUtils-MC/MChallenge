@@ -2,6 +2,7 @@ package de.miraculixx.mvanilla.messages
 
 import de.miraculixx.mvanilla.config.Config
 import de.miraculixx.mvanilla.extensions.enumOf
+import net.kyori.adventure.text.Component
 import java.io.File
 import java.io.InputStream
 import java.util.Locale
@@ -46,7 +47,7 @@ private fun String.replaceInput(input: List<String>): String {
     return msg
 }
 
-class Localization(private val folder: File, active: String, keys: List<Pair<String, InputStream?>>) {
+class Localization(private val folder: File, active: String, keys: List<Pair<String, InputStream?>>, private val prefix: Component) {
     private val languages: MutableList<String> = mutableListOf()
 
     fun getLoadedKeys(): List<String> {
@@ -64,7 +65,7 @@ class Localization(private val folder: File, active: String, keys: List<Pair<Str
             if (debug) consoleAudience.sendMessage(prefix + cmp("LANG - $key file is not a valid language config"))
             return false
         }
-        consoleAudience.sendMessage(exactPrefix + cmp("Changed language to ") + cmp(key, cHighlight))
+        consoleAudience.sendMessage(prefix + cmp("Changed language to ") + cmp(key, cHighlight))
         localization = config
         return true
     }

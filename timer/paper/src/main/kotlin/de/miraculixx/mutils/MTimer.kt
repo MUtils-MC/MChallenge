@@ -7,6 +7,7 @@ import de.miraculixx.mcore.utils.registerCommand
 import de.miraculixx.mutils.command.HelperCommand
 import de.miraculixx.mutils.command.TimerCommand
 import de.miraculixx.mutils.data.Settings
+import de.miraculixx.mutils.module.TimerAPIImplementation
 import de.miraculixx.mutils.module.TimerManager
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
@@ -25,7 +26,7 @@ class MTimer : KSpigot() {
     override fun startup() {
         INSTANCE = this
         consoleAudience = console
-        debug = true
+        debug = false
 
         val versionSplit = server.minecraftVersion.split('.')
         majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
@@ -34,7 +35,7 @@ class MTimer : KSpigot() {
         if (!configFolder.exists()) configFolder.mkdirs()
         val settings = json.decodeFromString<Settings>(File("${configFolder.path}/settings.json").readJsonString(true))
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
-        localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
+        localization = Localization(File("${configFolder.path}/language"), settings.language, languages, timerPrefix)
 
         registerCommand("timer", TimerCommand(false))
         registerCommand("ptimer", TimerCommand(true))
@@ -44,6 +45,7 @@ class MTimer : KSpigot() {
         if (chPlugin != null) chAPI = MChallengeAPI.instance
 
         TimerManager.load(configFolder)
+        TimerAPIImplementation
     }
 
     override fun shutdown() {

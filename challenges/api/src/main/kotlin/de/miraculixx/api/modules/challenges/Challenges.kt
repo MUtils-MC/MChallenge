@@ -3,7 +3,6 @@ package de.miraculixx.api.modules.challenges
 import de.miraculixx.api.modules.mods.areaTimer.AreaTimerMode
 import de.miraculixx.api.modules.mods.damager.ChDamager
 import de.miraculixx.api.modules.mods.noSameItem.NoSameItemEnum
-import de.miraculixx.api.modules.mods.rivalsCollect.RivalCollectMode
 import de.miraculixx.api.settings.*
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.gui.StorageFilter
@@ -148,7 +147,11 @@ enum class Challenges(val filter: List<StorageFilter>, val icon: Icon, val statu
             )
 
             RIVALS_COLLECT -> mapOf(
-                "mode" to ChallengeEnumSetting("KNOWLEDGE_BOOK", RivalCollectMode.ITEMS.name, options = RivalCollectMode.values().map { it.name }),
+                "mode" to ChallengeSectionSetting("KNOWLEDGE_BOOK", mapOf(
+                    "items" to ChallengeBoolSetting("CHEST", true),
+                    "biomes" to ChallengeBoolSetting("OAK_SAPLING", false),
+                    "mobs" to ChallengeBoolSetting("PHANTOM_SPAWN_EGG", false)
+                )),
                 "joker" to ChallengeIntSetting("ENDER_CHEST", 3, max = 64, min = 0)
             )
 

@@ -48,7 +48,7 @@ class ItemsRules : ItemProvider {
             } to rules.punishmentSetting.active
 
             6 -> Material.ENDER_PEARL.buildItem(7, "announceBack", rules.announceBack)
-            7 -> Material.ENDER_EYE.buildItem(8, "syncWithChallenge", rules.syncWithChallenge)
+            7 -> Material.ENDER_EYE.buildItem(8, "syncWithChallenges", rules.syncWithChallenge)
 
             else -> null to false
         }

@@ -22,8 +22,8 @@ class ItemsOverview(private val timer: Timer, private val isPersonal: Boolean) :
             emptyComponent(),
             cmp("∙ ") + cmp("Settings", cHighlight, underlined = true),
             cmp("   ${msgString("items.time")}: ") + cmp(time, cHighlight),
-            cmp("   ${msgString("items.isActive")}: ") + cmp(timer.visible.toString(), cHighlight),
-            cmp("   ${msgString("items.countUp")}: ") + cmp(timer.countUp.toString(), cHighlight),
+            cmp("   ${msgString("items.isActive.s")}: ") + cmp(timer.visible.toString(), cHighlight),
+            cmp("   ${msgString("items.direction.s")}: ") + cmp(timer.countUp.toString(), cHighlight),
             emptyComponent()
         )
 

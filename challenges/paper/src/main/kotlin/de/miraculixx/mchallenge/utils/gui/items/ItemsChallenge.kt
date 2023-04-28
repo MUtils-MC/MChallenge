@@ -5,6 +5,7 @@ import de.miraculixx.api.settings.*
 import de.miraculixx.api.utils.cotm
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.name
+import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mvanilla.extensions.msg
 import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mcore.gui.items.ItemFilterProvider
@@ -28,7 +29,7 @@ class ItemsChallenge : ItemFilterProvider {
             val range = if (from >= amount) mutableListOf() else challenges
                 .subList(from, to.coerceAtMost(amount))
             val status = getAccountStatus()
-//            println("$from - $to >> $range")
+            val hideAllPremiumStuff = MChallenge.settings.iReallyDontWantAnyPremiumFeatures
 
             // Adding all other Challenges - globals first
             range.forEach { challenge ->
@@ -38,9 +39,12 @@ class ItemsChallenge : ItemFilterProvider {
                         it.name = it.name?.color(cSuccess)
                         it.lore(it.lore()?.apply { add(0, cmp("Challenge of the Month", cSuccess)) })
                     }
-                    !status && !challenge.status -> data.first.editMeta {
-                        it.name = it.name?.color(cError)
-                        it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
+                    !status && !challenge.status -> {
+                        data.first.editMeta {
+                            it.name = it.name?.color(cError)
+                            it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
+                        }
+                        if (hideAllPremiumStuff) return@forEach
                     }
                     else -> data.first.editMeta { it.name = it.name?.color(cHighlight) }
                 }

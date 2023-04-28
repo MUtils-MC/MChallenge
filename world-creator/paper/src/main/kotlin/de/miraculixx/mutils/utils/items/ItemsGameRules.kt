@@ -34,7 +34,7 @@ class ItemsGameRules(private val world: World?) : ItemProvider {
                 val isSet = value != null
 
                 put(itemStack(getIcon(it)) {
-                    meta {
+                    meta<Any> {
                         name = cmp(fancyName(it.name), cHighlight)
                         customModel = 1
                         persistentDataContainer.set(NamespacedKey(namespace, "gui.gamerules.key"), PersistentDataType.STRING, it.name)

@@ -5,7 +5,6 @@ import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.data.*
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.extensions.toUUID
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -48,8 +47,9 @@ object TimerManager {
         return personalTimer[uuid]
     }
 
-    fun addPersonalTimer(uuid: UUID, timer: Timer) {
+    fun addPersonalTimer(uuid: UUID, timer: Timer): Timer {
         personalTimer[uuid] = timer
+        return timer
     }
 
     fun removePersonalTimer(uuid: UUID): Boolean {

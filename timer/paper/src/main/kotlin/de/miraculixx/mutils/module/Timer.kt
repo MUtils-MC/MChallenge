@@ -58,6 +58,22 @@ class Timer(
     private var remove = false
     private val listener = if (isPersonal) null else TimerListener()
 
+    private val tickLogics: MutableList<(() -> Duration)> = mutableListOf()
+    private val stopLogics: MutableList<(() -> Unit)> = mutableListOf()
+    private val startLogics: MutableList<(() -> Unit)> = mutableListOf()
+
+    fun addTickLogic(onTick: () -> Duration) {
+        tickLogics.add(onTick)
+    }
+
+    fun addStopLogic(onStop: () -> Unit) {
+        stopLogics.add(onStop)
+    }
+
+    fun addStartLogic(onStart: () -> Unit) {
+        startLogics.add(onStart)
+    }
+
     fun disableTimer() {
         remove = true
         visible = false

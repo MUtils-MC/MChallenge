@@ -1,31 +1,34 @@
-package de.miraculixx.mutils.modules.challenge.mods
+package de.miraculixx.mchallenge.modules.mods.noDoubleKill
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.challenge.modules.Challenge
-import de.miraculixx.mutils.system.config.ConfigManager
-import de.miraculixx.mutils.system.config.Configs
-import de.miraculixx.mutils.utils.text.msg
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.broadcast
+import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.api.settings.challenges
+import de.miraculixx.api.settings.getSetting
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.mchallenge.modules.global.DeathListener
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageByEntityEvent
+import org.bukkit.persistence.PersistentDataType
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.util.*
 
 class NoDoubleKills : Challenge {
-    override val challenge = Challenge.NO_DOUBLE_KILL
+    override val challenge = Challenges.NO_DOUBLE_KILL
     private var lastEntity = EntityType.PLAYER
     private val lastEntities = HashMap<UUID, EntityType>()
-    private var global = true
+    private var global: Boolean
+
+    init {
+        val settings = challenges.getSetting(challenge).settings
+        global = settings["global"]?.toBool()?.getValue() ?: true
+    }
 
     override fun start(): Boolean {
-        val conf = ConfigManager.getConfig(Configs.MODULES)
-        global = conf.getBoolean("NO_DOUBLE_KILL.Global")
         return true
     }
 
@@ -68,8 +71,8 @@ class NoDoubleKills : Challenge {
     }
 
     private fun doubleKill(entity: LivingEntity, player: Player) {
-        player.damage(99.0)
-        broadcast(msg("modules.ch.noDoubleKill.failed", player, entity.name))
+        player.persistentDataContainer.set(DeathListener.key, PersistentDataType.STRING, "noDoubleKill")
+        player.damage(999.0)
         entity.isGlowing = true
         entity.addPotionEffect(PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 200, false, false))
     }

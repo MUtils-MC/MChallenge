@@ -1,7 +1,6 @@
 package de.miraculixx.mutils.command
 
 import de.miraculixx.kpaper.extensions.broadcast
-import de.miraculixx.mcore.utils.InstallBridge
 import de.miraculixx.mutils.MTimer
 import de.miraculixx.mutils.gui.TimerGUI
 import de.miraculixx.mutils.gui.actions.GUIOverview
@@ -11,10 +10,6 @@ import de.miraculixx.mutils.module.TimerManager
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.messages.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -85,22 +80,6 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                     sender.sendMessage(prefix + cmp("Please provide a valid language key!", cError))
                 } else if (MTimer.localization.setLanguage(key)) {
                     sender.sendMessage(prefix + msg("command.language"))
-                }
-            }
-
-            "bridge-install" -> {
-                sender.sendMessage(prefix + cmp("Downloading MUtils-Bridge..."))
-                CoroutineScope(Dispatchers.Default).launch {
-                    val bridgeInstall = InstallBridge("MUtils-Timer")
-                    val success = bridgeInstall.install(Bukkit.getPluginManager())
-                    if (success) {
-                        sender.soundEnable()
-                        sender.sendMessage(prefix + cmp("MUtils-Bridge is now installed!", cSuccess))
-                        sender.sendMessage(prefix + cmp("(Please restart your server in near future)"))
-                    } else {
-                        sender.soundDisable()
-                        sender.sendMessage(prefix + cmp("Failed to automatically enable MUtils-Bridge! Restart your server to active it", cError))
-                    }
                 }
             }
 

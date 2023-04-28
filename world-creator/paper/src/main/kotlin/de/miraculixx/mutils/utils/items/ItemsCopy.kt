@@ -16,14 +16,14 @@ class ItemsCopy: ItemProvider {
     override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return listOf(
             itemStack(Material.CHEST) {
-                meta {
+                meta<Any> {
                     customModel = 1
                     name = cmp(msgString("items.creator.copy.n"), cHighlight)
                     lore(infoLore + msgList("items.creator.copy.l") + infoClick)
                 }
             },
             itemStack(Material.ENDER_CHEST) {
-                meta {
+                meta<Any> {
                     customModel = 2
                     name = cmp(msgString("items.creator.copyFull.n"), cHighlight)
                     lore(infoLore + msgList("items.creator.copyFull.l") + infoClick)

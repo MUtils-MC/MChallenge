@@ -45,7 +45,7 @@ class ItemsWorlds(private val currentWorld: UUID) : ItemFilterProvider {
                 }
                 val uuid = world.uid
                 put(itemStack(material) {
-                    meta {
+                    meta<Any> {
                         val worldData = WorldManager.getWorldData(uuid)
                         name = cmp(world.name, cHighlight)
                         lore(listOf(

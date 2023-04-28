@@ -29,6 +29,11 @@ val prefix = cmp("MUtils", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + 
 val exactPrefix = cmp("MChallenge", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
 
 /**
+ * Timer Prefix
+ */
+val timerPrefix = cmp("MTimer", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
+
+/**
  * 1.**19**.1
  */
 var majorVersion: Int = 0

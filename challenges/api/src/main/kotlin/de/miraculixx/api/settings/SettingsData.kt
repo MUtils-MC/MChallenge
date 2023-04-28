@@ -8,4 +8,5 @@ data class SettingsData(
     var language: String = "en_US",
     var reset: Boolean = false,
     val worlds: MutableSet<String> = mutableSetOf(),
+    val iReallyDontWantAnyPremiumFeatures: Boolean = false
 )

@@ -15,14 +15,14 @@ class ItemsBuilderType : ItemProvider {
     override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return listOf(
             itemStack(Material.BEETROOT_SEEDS) {
-                meta {
+                meta<Any> {
                     customModel = 1
                     name = cmp(msgString("items.creator.worldSet.n"), cHighlight)
                     lore(infoLore + msgList("items.creator.worldSet.l") + listOf(emptyComponent(), msgClick + cmp("Select")))
                 }
             },
             itemStack(Material.OAK_BUTTON) {
-                meta {
+                meta<Any> {
                     customModel = 2
                     name = cmp(msgString("items.creator.singleWorld.n"), cHighlight)
                     lore(infoLore + msgList("items.creator.singleWorld.l") + listOf(emptyComponent(), msgClick + cmp("Select")))

@@ -27,14 +27,14 @@ class ItemsMenu : ItemProvider {
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
             },
             11 to itemStack(Material.CRAFTING_TABLE) {
-                meta {
+                meta<Any> {
                     name = cmp(msgString("items.menu.worldCreator.n"), cHighlight)
                     customModel = 2
                     lore(infoLore + msgList("items.menu.worldCreator.l") + clickLore)
                 }
             },
             13 to itemStack(Material.PLAYER_HEAD) {
-                meta {
+                meta<Any> {
                     name = cmp(msgString("items.menu.worldDatas.n"), cHighlight)
                     customModel = 3
                     lore(infoLore + msgList("items.menu.worldDatas.l") + clickLore)
@@ -42,14 +42,14 @@ class ItemsMenu : ItemProvider {
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ENDER_CHEST.value)
             },
             15 to itemStack(Material.GLOWSTONE_DUST) {
-                meta {
+                meta<Any> {
                     name = cmp(msgString("items.menu.worldSettings.n"), cHighlight)
                     customModel = 4
                     lore(infoLore + msgList("items.menu.worldSettings.l") + clickLore)
                 }
             },
             16 to itemStack(Material.REDSTONE) {
-                meta {
+                meta<Any> {
                     name = cmp(msgString("items.menu.worldSettingsGlobal.n"), cHighlight)
                     customModel = 5
                     lore(infoLore + msgList("items.menu.worldSettingsGlobal.l") + clickLore)

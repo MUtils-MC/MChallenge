@@ -21,7 +21,7 @@ class ItemsNoiseAlgos: ItemProvider {
     override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return GeneratorAlgorithm.values().map {
             itemStack(Material.PLAYER_HEAD) {
-                meta {
+                meta<Any> {
                     customModel = 1
                     name = cmp(msgString("items.algo.${it.name}.n"), cHighlight)
                     lore(infoLore + msgList("items.algo.${it.name}.l") + clickLore)

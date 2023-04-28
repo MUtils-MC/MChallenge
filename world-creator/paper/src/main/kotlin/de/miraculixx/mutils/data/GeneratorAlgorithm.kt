@@ -116,7 +116,7 @@ fun BiomeAlgorithm.getIcon(generatorData: GeneratorData, id: Int): ItemStack {
 
 
 private fun ItemStack.getIconMeta(key: String, id: Int, settings: Map<AlgorithmSettingIndex, AlgorithmSetting>, data: GeneratorData) {
-    meta {
+    meta<Any> {
         name = cmp(msgString("items.algo.$key.n"), cHighlight)
         customModel = id
         lore(msgList("items.algo.$key.l", inline = "<grey>") + buildList {

@@ -29,9 +29,11 @@ import de.miraculixx.mchallenge.modules.mods.itemDecay.ItemDecay
 import de.miraculixx.mchallenge.modules.mods.limitedSkills.LimitedSkills
 import de.miraculixx.mchallenge.modules.mods.mirror.Mirror
 import de.miraculixx.mchallenge.modules.mods.mobBlocks.MobBlocks
+import de.miraculixx.mchallenge.modules.mods.noDoubleKill.NoDoubleKills
 import de.miraculixx.mchallenge.modules.mods.noSameItems.NoSameItem
 import de.miraculixx.mchallenge.modules.mods.randomizer.*
 import de.miraculixx.mchallenge.modules.mods.rightTools.RightTools
+import de.miraculixx.mchallenge.modules.mods.rivalCollect.RivalCollect
 import de.miraculixx.mchallenge.modules.mods.runRandom.RunRandomizer
 import de.miraculixx.mchallenge.modules.mods.snake.Snake
 import de.miraculixx.mchallenge.modules.mods.sneakSpawn.SneakSpawn
@@ -72,9 +74,9 @@ class StatusChanger: StatusChangerAPI {
             Challenges.RANDOMIZER_MOBS -> MobSwitchRandomizer()
             Challenges.RANDOMIZER_DAMAGE -> EntityDamageRandomizer()
             Challenges.FORCE_COLLECT -> ForceHunt()
-            Challenges.NO_DOUBLE_KILL -> TODO()
+            Challenges.NO_DOUBLE_KILL -> NoDoubleKills()
             Challenges.DAMAGER -> Damager()
-            Challenges.RIVALS_COLLECT -> TODO()
+            Challenges.RIVALS_COLLECT -> RivalCollect()
             Challenges.ROCKET -> Rocket()
             Challenges.VAMPIRE -> Vampire()
             Challenges.TRAFFIC_LIGHT -> TrafficLight()

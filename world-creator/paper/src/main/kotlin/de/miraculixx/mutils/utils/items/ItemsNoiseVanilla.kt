@@ -27,7 +27,7 @@ class ItemsNoiseVanilla(private val defaults: GeneratorDefaults) : ItemProvider 
 
         return mapOf(
             20 to itemStack(Material.PLAYER_HEAD) {
-                meta {
+                meta<Any> {
                     name = cmp(msgString("items.creator.noiseAlgo.n"), cHighlight)
                     lore(
                         msgList("items.creator.noiseAlgo.l") + settingLore + listOf(
@@ -43,47 +43,47 @@ class ItemsNoiseVanilla(private val defaults: GeneratorDefaults) : ItemProvider 
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
             },
             22 to itemStack(Material.PLAYER_HEAD) {
-                meta { name = emptyComponent() }
+                meta<Any> { name = emptyComponent() }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RIGHT_WHITE.value)
             },
 
             15 to itemStack(Material.OBSERVER) {
-                meta {
+                meta<Any> {
                     name = cmp(s1, cHighlight)
                     customModel = 1
                     lore(settingLore + listOf(cmp("   Active: ") + cmp(defaults.vanillaNoise.msg()), emptyComponent(), msgClick + cmp("Toggle")))
                 }
             },
             24 to itemStack(Material.MOSSY_COBBLESTONE) {
-                meta {
+                meta<Any> {
                     name = cmp(s2, cHighlight)
                     customModel = 2
                     lore(settingLore + listOf(cmp("   Active: ") + cmp(defaults.vanillaCaves.msg()), emptyComponent(), msgClick + cmp("Toggle")))
                 }
             },
             33 to itemStack(Material.GRASS_BLOCK) {
-                meta {
+                meta<Any> {
                     name = cmp(s3, cHighlight)
                     customModel = 3
                     lore(settingLore + listOf(cmp("   Active: ") + cmp(defaults.vanillaSurface.msg()), emptyComponent(), msgClick + cmp("Toggle")))
                 }
             },
             16 to itemStack(Material.GRASS) {
-                meta {
+                meta<Any> {
                     name = cmp(s4, cHighlight)
                     customModel = 4
                     lore(settingLore + listOf(cmp("   Active: ") + cmp(defaults.vanillaFoliage.msg()), emptyComponent(), msgClick + cmp("Toggle")))
                 }
             },
             25 to itemStack(Material.TURTLE_EGG) {
-                meta {
+                meta<Any> {
                     name = cmp(s5, cHighlight)
                     customModel = 5
                     lore(settingLore + listOf(cmp("   Active: ") + cmp(defaults.vanillaMobs.msg()), emptyComponent(), msgClick + cmp("Toggle")))
                 }
             },
             34 to itemStack(Material.SCAFFOLDING) {
-                meta {
+                meta<Any> {
                     name = cmp(s6, cHighlight)
                     customModel = 6
                     lore(settingLore + listOf(cmp("   Active: ") + cmp(defaults.vanillaCaves.msg()), emptyComponent(), msgClick + cmp("Toggle")))

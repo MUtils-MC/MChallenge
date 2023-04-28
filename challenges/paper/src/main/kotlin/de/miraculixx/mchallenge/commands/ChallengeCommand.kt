@@ -7,6 +7,7 @@ import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.mineField.MineFieldWorld
+import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallenge
@@ -70,6 +71,12 @@ class ChallengeCommand {
                 playerExecutor { player, args ->
                     val key = args[0] as String
 
+                    if (getAccountStatus()) {
+                        player.sendMessage(prefix + cmp("You are already logged in. To disconnect this server, remove it from your account dashboard", cError))
+                        player.soundError()
+                        return@playerExecutor
+                    }
+
                     if (apiCooldown) {
                         player.sendMessage(prefix + cmp("Please wait a bit between logins", cError))
                         player.soundError()
@@ -79,14 +86,15 @@ class ChallengeCommand {
                     taskRunLater(20 * 3) { apiCooldown = false }
 
                     player.sendMessage(prefix + cmp("Trying to log in..."))
-                    MChallenge.bridgeAPI.activate(player.uniqueId, key) {
-                        if (it) {
+                    MChallenge.bridgeAPI.activate(player.uniqueId, key) { success: Boolean, message: String ->
+                        if (success) {
                             player.sendMessage(prefix + cmp("Successfully logged in your account!", cSuccess))
                             player.sendMessage(prefix + cmp("Please perform a server restart in near future"))
                             MChallenge.bridgeAPI.saveData(autoUpdate = true)
                             player.soundEnable()
                         } else {
-                            player.sendMessage(prefix + cmp("Failed to login! More information in console", cError))
+                            player.sendMessage(prefix + cmp("Failed to login!", cError))
+                            player.sendMessage(prefix + cmp(message, cError))
                             player.soundError()
                         }
                     }
