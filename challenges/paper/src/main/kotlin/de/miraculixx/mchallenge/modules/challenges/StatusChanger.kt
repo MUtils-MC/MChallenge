@@ -44,6 +44,7 @@ import de.miraculixx.mchallenge.modules.mods.stayAway.StayAway
 import de.miraculixx.mchallenge.modules.mods.trafficlight.TrafficLight
 import de.miraculixx.mchallenge.modules.mods.tron.Tron
 import de.miraculixx.mchallenge.modules.mods.vampire.Vampire
+import de.miraculixx.mchallenge.modules.mods.worldPeace.WorldPeace
 import de.miraculixx.mchallenge.utils.cotm
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mvanilla.messages.*
@@ -69,7 +70,7 @@ class StatusChanger {
             Challenges.RIGHT_TOOL -> RightTools()
             Challenges.CHUNK_BLOCK_BREAK -> ChunkBlockBreaker()
             Challenges.SNEAK_SPAWN -> SneakSpawn()
-            Challenges.WORLD_PEACE -> TODO()
+            Challenges.WORLD_PEACE -> WorldPeace()
             Challenges.GRAVITY -> GravityManager()
             Challenges.STAY_AWAY -> StayAway()
             Challenges.RANDOMIZER_BLOCK -> BlockRandomizer()

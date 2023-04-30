@@ -57,10 +57,11 @@ object ChallengeManager : MChallengeAPI() {
         return true
     }
 
-    override fun addChallenge(key: UUID, challenge: Challenge, challengeData: ChallengeData, icon: Icon, tags: Set<ChallengeTags>): Boolean {
-        if (customChallengeMap.containsKey(key)) return false
-        customChallengeMap[key] = CustomChallengeData(key, challenge, challengeData, icon, tags)
-        return true
+    override fun addChallenge(key: UUID, data: CustomChallengeData): CustomChallengeData? {
+        if (customChallengeMap.containsKey(key)) return null
+        val finalData = data.copy(tags = data.tags.plus(ChallengeTags.ADDON))
+        customChallengeMap[key] = finalData
+        return finalData
     }
 
     override fun getChallenge(key: UUID): CustomChallengeData? {

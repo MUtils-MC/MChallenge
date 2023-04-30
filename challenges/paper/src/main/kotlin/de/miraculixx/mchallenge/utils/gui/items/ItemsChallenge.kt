@@ -15,6 +15,7 @@ import de.miraculixx.mvanilla.extensions.msg
 import de.miraculixx.mcore.gui.items.ItemFilterProvider
 import de.miraculixx.mchallenge.utils.cotm
 import de.miraculixx.mchallenge.utils.getAccountStatus
+import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
@@ -23,11 +24,14 @@ import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
 class ItemsChallenge : ItemFilterProvider {
     override var filter = ChallengeTags.NO_FILTER.name
+    private val challengeKey = NamespacedKey(namespace, "gui.challenge")
+    private val customChallengeKey = NamespacedKey(namespace, "gui.customchallenge")
 
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
@@ -76,14 +80,17 @@ class ItemsChallenge : ItemFilterProvider {
 
     //Utilities
     private fun getChallengeItem(itemData: ChallengeItemData): Pair<ItemStack, Boolean> {
-        val item = itemStack(enumOf<Material>(itemData.icon.material) ?: Material.BARRIER) {
+        val icon = itemData.icon
+        val item = itemStack(enumOf<Material>(icon.material) ?: Material.BARRIER) {
             meta {
                 customModel = 1
-                displayName(getName(itemData.icon, itemData.key))
-                lore(getLore(itemData.icon, itemData.key, itemData.settings, itemData.tags))
+                displayName(getName(icon, itemData.key))
+                lore(getLore(icon, itemData.key, itemData.settings, itemData.tags))
                 addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
-                persistentDataContainer.set(NamespacedKey(namespace, "gui.challenge"), PersistentDataType.STRING, (itemData.key ?: itemData.customUUID ?: "unknown").toString())
+                itemData.key?.let { persistentDataContainer.set(challengeKey, PersistentDataType.STRING, it.name) }
+                itemData.customUUID?.let { persistentDataContainer.set(customChallengeKey, PersistentDataType.STRING, it.toString()) }
             }
+            icon.texture?.value?.let { itemMeta = (itemMeta as SkullMeta).skullTexture(it)}
         }
         return item to itemData.settings.active
     }
@@ -97,7 +104,7 @@ class ItemsChallenge : ItemFilterProvider {
     }
 
     private fun getName(icon: Icon, key: Challenges?): Component {
-        return if (icon.naming?.name != null) (icon.naming?.name ?: cmp("Unknown", cError))
+        return if (icon.naming?.name != null) (icon.naming?.name?.decorate(bold = true, italic = false) ?: cmp("Unknown", cError, bold = true))
         else cmp("", cHighlight, bold = true) + msg("items.ch.${key?.name}.n")
     }
 
@@ -107,7 +114,7 @@ class ItemsChallenge : ItemFilterProvider {
             val hasSettings = settings.isNotEmpty()
             add(emptyComponent())
             add(cmp("∙ ") + cmp("Info", cHighlight, underlined = true))
-            if (icon.naming?.lore != null) addAll(icon.naming?.lore ?: emptyList())
+            if (icon.naming?.lore != null) addAll(icon.naming?.lore?.map { cmp("   ") + it } ?: emptyList())
             else addAll(msgList("items.ch.${key?.name}.l"))
 
             add(emptyComponent())

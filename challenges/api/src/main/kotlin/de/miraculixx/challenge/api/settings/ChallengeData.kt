@@ -23,7 +23,7 @@ fun MutableMap<Challenges, ChallengeData>.getSetting(challenge: Challenges): Cha
 @Serializable
 data class ChallengeData(
     val settings: Map<String, ChallengeSetting<out @Contextual Any>> = emptyMap(),
-    val settingNames: Map<String, IconNaming>,
+    val settingNames: Map<String, IconNaming> = emptyMap(),
     var active: Boolean = false,
 )
 

@@ -46,17 +46,10 @@ abstract class MChallengeAPI {
      * Add a new Challenge handled by your addon to MUtils-Challenges. 3rd party challenges are marked as addons and must be loaded on each startup.
      * All persistent data like challenge settings must be saved by the addon.
      * @param key The unique key to modify later
-     * @param challenge The challenge object
-     * @param challengeData Challenge settings (automatically generate ui)
-     * @return False if the key already exist
+     * @param data All challenge data. This object can **not** be modified later
+     * @return The final challenge data object. It can be used to modify the challenge data
      */
-    abstract fun addChallenge(
-        key: UUID,
-        challenge: Challenge,
-        challengeData: ChallengeData,
-        icon: Icon,
-        tags: Set<ChallengeTags>
-    ): Boolean
+    abstract fun addChallenge(key: UUID, data: CustomChallengeData): CustomChallengeData?
 
     /**
      * Remove a custom Challenge by their [UUID]

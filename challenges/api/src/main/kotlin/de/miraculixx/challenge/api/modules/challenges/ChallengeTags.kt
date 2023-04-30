@@ -2,7 +2,6 @@ package de.miraculixx.challenge.api.modules.challenges
 
 enum class ChallengeTags {
     NO_FILTER,
-    HIDE,
 
     //CHALLENGE FILTER
     FUN,
@@ -10,8 +9,6 @@ enum class ChallengeTags {
     HARD,
     RANDOMIZER,
     FORCE,
-    VERSION_BOUND,
-    BETA,
     MULTIPLAYER,
     FREE,
     ADDON
