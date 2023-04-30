@@ -1,32 +1,26 @@
-package de.miraculixx.mutils.modules.challenge.mods.worldPeace
+package de.miraculixx.mchallenge.modules.mods.worldPeace
 
-import de.miraculixx.mutils.utils.enums.Challenge
-import de.miraculixx.mutils.utils.enums.challenges.ChallengeStatus
-import de.miraculixx.mutils.modules.ModuleManager
-import de.miraculixx.mutils.challenge.modules.Challenge
-import de.miraculixx.mutils.challenge.modules.StatusChanger
-import de.miraculixx.mutils.challenge.utils.BasicItem
-import de.miraculixx.mutils.modules.challenges
-import de.miraculixx.mutils.utils.prefix
-import de.miraculixx.mutils.utils.text.broadcastSound
-import de.miraculixx.mutils.utils.text.msg
-import net.axay.kspigot.event.listen
-import net.axay.kspigot.event.register
-import net.axay.kspigot.event.unregister
-import net.axay.kspigot.extensions.broadcast
-import net.axay.kspigot.extensions.onlinePlayers
-import net.axay.kspigot.runnables.task
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mchallenge.utils.BasicItem
+import de.miraculixx.mvanilla.messages.msg
+import de.miraculixx.mvanilla.messages.plus
+import de.miraculixx.mvanilla.messages.prefix
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.util.RandomSource
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import org.bukkit.Material
 import org.bukkit.Sound
-import org.bukkit.SoundCategory
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftLivingEntity
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer
+import org.bukkit.craftbukkit.v1_19_R3.entity.CraftLivingEntity
+import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer
 import org.bukkit.entity.EnderDragon
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
@@ -38,7 +32,6 @@ import org.bukkit.potion.PotionEffectType
 import kotlin.random.Random
 
 class WorldPeace : Challenge {
-    override val challenge = Challenge.WORLD_PEACE
     private val foodPlants = ArrayList<Material>()
     private val water = ArrayList<Material>()
     private val saplings = ArrayList<Material>()
@@ -120,11 +113,11 @@ class WorldPeace : Challenge {
 
     private val onNaturalDamage = listen<EntityDeathEvent>(register = false) {
         var nearby = false
-        it.entity.getNearbyEntities(1.0,15.0,15.0).forEach { e ->
+        it.entity.getNearbyEntities(1.0, 15.0, 15.0).forEach { e ->
             if (e is Player) nearby = true
         }
         if (nearby) {
-            broadcast("$prefix Das Mob §9${it.entity.type.name}§7 ist gestorben :(")
+            broadcast(prefix + msg("event.worldPeace.death", listOf(it.entity.type.name)))
             if (onlinePlayers.isNotEmpty())
                 onlinePlayers.first().damage(99.0)
         }
@@ -142,62 +135,59 @@ class WorldPeace : Challenge {
             if (dragonStart) return@listen
             dragonStart = true
             entity.phase = EnderDragon.Phase.FLY_TO_PORTAL
-            val counter = 0
+            var counter = 0
             task(true, 10, 10) {
                 if (counter >= 20) {
                     entity.phase = EnderDragon.Phase.LAND_ON_PORTAL
-
                 }
                 when (counter) {
                     0 -> {
                         broadcast("\n$prefix §dIhr habt es bis zum Ende geschafft ohne einmal jemandem Schaden zu zu fügen...")
-                        broadcastSound(Sound.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1f, 1f)
+                        onlinePlayers.forEach { p -> p.playSound(p, Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1f) }
                     }
+
                     2 -> broadcast("$prefix §dRespekt...")
                     20 -> {
                         broadcast("$prefix §dNun... Nehmt mein letztes Geschenk")
-                        broadcastSound(Sound.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1f, 1f)
+                        onlinePlayers.forEach { p -> p.playSound(p, Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1f) }
                     }
+
                     24 -> broadcast("$prefix §dViel Erfolg!")
                     26 -> {
                         onlinePlayers.forEach { op ->
                             op.addPotionEffect(PotionEffect(PotionEffectType.BLINDNESS, 20, 1, true))
                             op.playSound(entity.location, Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1f)
                         }
-                        ModuleManager.setTimerStatus(false)
-                        val manager = StatusChanger()
-                        manager.stopChallenges(ModuleManager.getChallenges())
-                        challenges = ChallengeStatus.PAUSED
-                        broadcast("\n§3§l§m======================\n§6§l- Die Challenge wurde erfolgreich bestanden!")
-                        broadcast(msg("modules.timer.playtime", input = ModuleManager.getTime()) + "§3§l§m======================")
+                        //TODO Timer integration
                     }
                 }
             }
 
+            counter++
             return@listen
         }
 
         if (alreadyTraded.contains(entity)) {
-            player.sendMessage("\n$prefix Du hast bereits mit mir getraded :) Vielen Dank dafür!")
+            player.sendMessage(prefix + msg("event.worldPeace.alreadyTraded"))
             return@listen
         }
         if (untradeable.contains(entity)) {
-            player.sendMessage("\n$prefix Aktuell kann ich dir leider nichts bieten, aber trotzdem schön das du zurück bist :)")
+            player.sendMessage(prefix + msg("event.worldPeace.noTrade"))
             return@listen
         }
 
         val message = when (Random.nextInt(0, 3)) {
-            0 -> "\n$prefix Hey ${player.name}! Bitte tu mir nicht weh :("
-            1 -> "\n$prefix Lass heute mal nicht mit einander kämpfen!"
-            2 -> "\n$prefix Wollen wir nicht lieber handeln anstelle von Kämpfen?"
-            else -> "\n$prefix Wollen wir nicht lieber handeln anstelle von Kämpfen?"
+            0 -> msg("event.worldPeace.msg1")
+            1 -> msg("event.worldPeace.msg2")
+            2 -> msg("event.worldPeace.msg3")
+            else -> msg("event.worldPeace.msg3")
         }
-        player.sendMessage(message)
+        player.sendMessage(prefix + message)
 
         if (!trades.containsKey(entity)) {
             if (Random.nextInt(0, 10) == 0) {
                 untradeable.add(entity)
-                player.sendMessage("$prefix Aktuell kann ich dir leider nichts bieten...")
+                player.sendMessage(prefix + msg("event.worldPeace.noTrade"))
                 return@listen
             }
             val mat = when (WorldPeaceTrades.values().random()) {
@@ -225,7 +215,7 @@ class WorldPeace : Challenge {
             val drops = (entity as CraftLivingEntity).handle.randomLoot((player as CraftPlayer).handle)
             val amount = Random.nextInt(1, 5)
             val name = drops?.bukkitStack?.type?.name
-            player.sendMessage("$prefix Vielen Dank für deine tollen Items! Gerne gebe ich dir meine §9$amount $name")
+            player.sendMessage(prefix + msg("event.worldPeace.trade", listOf("$amount", name ?: "Unknown")))
             player.inventory.addItem(org.bukkit.inventory.ItemStack(drops?.bukkitStack!!.type, amount))
             trades.remove(entity)
             val newEntity = entity.world.spawnEntity(entity.location, entity.type) as LivingEntity
@@ -238,10 +228,9 @@ class WorldPeace : Challenge {
 
     private fun net.minecraft.world.entity.LivingEntity.randomLoot(player: ServerPlayer): ItemStack? {
         val lootContext = LootContext.Builder(player.getLevel())
-            .withRandom(java.util.Random())
+            .withRandom(RandomSource.create())
             .withParameter(LootContextParams.THIS_ENTITY, this)
             .withParameter(LootContextParams.ORIGIN, position())
-            .withParameter(LootContextParams.DAMAGE_SOURCE, DamageSource.GENERIC)
             .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, player)
             .withOptionalParameter(LootContextParams.KILLER_ENTITY, player)
             .withOptionalParameter(LootContextParams.DIRECT_KILLER_ENTITY, player)
@@ -257,10 +246,10 @@ class WorldPeace : Challenge {
         if (drop == null || drop.type.isAir) {
             trades.remove(entity)
             untradeable.add(entity)
-            player.sendMessage("$prefix Aktuell kann ich dir leider nichts bieten...")
+            player.sendMessage(prefix + msg("event.worldPeace.noTrade"))
             return
         }
-        player.sendMessage("$prefix Könntest du mir §9${item.getAmount()} ${item.getMaterial().name}§7 bringen?")
-        player.sendMessage("$prefix Als Gegenzug würde ich dir auch ein paar §9${drop.type.name}§7 geben!")
+        player.sendMessage(prefix + msg("event.worldPeace.tradeOffer", listOf(item.getAmount().toString(), item.getMaterial().name)))
+        player.sendMessage(prefix + msg("event.worldPeace.tradeOffer2", listOf(drop.type.name)))
     }
 }
