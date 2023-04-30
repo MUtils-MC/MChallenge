@@ -109,6 +109,16 @@ event:
   rivalCollect:
     itemFound: "<input-1> just found <blue><input-2></blue>!"
     newItem: "Your next task is to find/kill <input-1>"
+  worldPeace:
+    death: "The mob <blue><input-1></blue> died :("
+    alreadyTraded: "You already traded with me. Thank you for the item :)"
+    noTrade: "I have nothing to trade with you, but nice to see you!"
+    msg1: "Lets trade instead of fighting today!"
+    msg2: "Please don't hurt me :( I can trade with you!"
+    msg3: "Do we want to trade instead of fight?"
+    trade: "Thank you for the items! Here, you can have <blue><input-1></blue> of my <blue><input-2></blue>!"
+    tradeOffer: "Could your bring <blue><input-1> <input-2></blue>?"
+    tradeOffer2: "In return i would give some of my <blue><input-1></blue>! "
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -411,6 +421,8 @@ items:
         n: "Evento de daño"
       damage:
         n: "Daño"
+      interval:
+        n: "Interval"
     RIVALS_COLLECT:
       mode:
         n: "Tipo de búsqueda"
@@ -527,7 +539,7 @@ items:
     BLOCK_ASYNC:
       hide:
         n: "Hide Players"
-    RIGHT_TOOLS:
+    RIGHT_TOOL:
       starter:
         n: "Starter Axe"
     COLLECT_BATTLE:
@@ -535,3 +547,5 @@ items:
         n: "Max Set-Time"
       cooldown:
         n: "Time Between Rounds"
+      bufferTime:
+        n: "Extra Time"
