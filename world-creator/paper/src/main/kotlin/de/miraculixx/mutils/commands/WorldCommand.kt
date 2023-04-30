@@ -2,7 +2,7 @@ package de.miraculixx.mutils.commands
 
 import de.miraculixx.kpaper.extensions.bukkit.register
 import de.miraculixx.kpaper.extensions.worlds
-import de.miraculixx.api.data.printInfo
+import de.miraculixx.challenge.api.data.printInfo
 import de.miraculixx.mcore.await.AwaitConfirm
 import de.miraculixx.mcore.utils.checkPermission
 import de.miraculixx.mvanilla.extensions.soundDelete

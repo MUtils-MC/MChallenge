@@ -1,13 +1,13 @@
 package de.miraculixx.mchallenge.utils.gui.items
 
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.*
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.*
+import de.miraculixx.challenge.api.utils.CustomHeads
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mvanilla.extensions.msg
-import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mchallenge.modules.challenges.getMaterial
@@ -20,7 +20,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
 
-class ItemsChallengeSettings(private val challengeSettings: Map<String, ChallengeSetting<*>>, private val challenge: Challenges) : ItemProvider {
+class ItemsChallengeSettings(private val challengeSettings: Map<String, ChallengeSetting<*>>, private val challenge: de.miraculixx.challenge.api.modules.challenges.Challenges) : ItemProvider {
     private val msgSetting = listOf(emptyComponent(), cmp("∙ ") + cmp("Settings", cHighlight, underlined = true))
 
     override fun getItemList(from: Int, to: Int): List<ItemStack> {
@@ -53,7 +53,7 @@ class ItemsChallengeSettings(private val challengeSettings: Map<String, Challeng
                     lore(msgList("items.general.reset.l", inline = "<grey>"))
                     persistentDataContainer.set(NamespacedKey(namespace, "gui.challenge.ch"), PersistentDataType.STRING, challenge.name)
                 }
-                itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RESET.value)
+                itemMeta = (itemMeta as SkullMeta).skullTexture(CustomHeads.ARROW_RESET.value)
             }
         )
     }

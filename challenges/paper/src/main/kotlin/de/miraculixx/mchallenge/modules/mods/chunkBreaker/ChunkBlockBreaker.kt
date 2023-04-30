@@ -1,20 +1,18 @@
 package de.miraculixx.mchallenge.modules.mods.chunkBreaker
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.bukkit.allBlocks
 import org.bukkit.Material
-import org.bukkit.enchantments.Enchantment
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.inventory.ItemStack
 
 class ChunkBlockBreaker : Challenge {
-    override val challenge = Challenges.CHUNK_BLOCK_BREAK
     private val bundle: Boolean
 
     init {

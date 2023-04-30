@@ -1,7 +1,8 @@
 package de.miraculixx.mchallenge
 
-import de.miraculixx.api.settings.SettingsData
-import de.miraculixx.api.settings.challenges
+import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
+import de.miraculixx.challenge.api.settings.SettingsData
+import de.miraculixx.challenge.api.settings.challenges
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mbridge.MUtilsBridge
@@ -14,7 +15,6 @@ import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mvanilla.extensions.readJsonString
-import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIConfig
@@ -97,7 +97,7 @@ class MChallenge : KSpigot() {
 
             settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
             debug = settings.debug
-            localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
+            localization = Localization(File("${configFolder.path}/language"), settings.language, languages, exactPrefix)
             Spectator.loadData()
 
             // Connect Bridge
@@ -106,7 +106,7 @@ class MChallenge : KSpigot() {
             bridgeAPI.login {
                 ChallengeManager.stopChallenges()
                 challenges.forEach { (challenge, data) ->
-                    if (challenge.filter.contains(StorageFilter.FREE)) return@forEach
+                    if (challenge.filter.contains(de.miraculixx.challenge.api.modules.challenges.ChallengeTags.FREE)) return@forEach
                     data.active = false
                 }
                 consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))

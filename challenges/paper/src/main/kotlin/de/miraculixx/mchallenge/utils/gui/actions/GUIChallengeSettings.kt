@@ -1,8 +1,8 @@
 package de.miraculixx.mchallenge.utils.gui.actions
 
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.*
-import de.miraculixx.api.utils.gui.GUITypes
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.*
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallengeSettings
@@ -36,7 +36,7 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
         val settingKey = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.challenge.setting"), PersistentDataType.STRING)
         val settingsData = if (section != null) section.getValue()
         else {
-            val challenge = enumOf<Challenges>(challengeKey) ?: return@event
+            val challenge = enumOf<de.miraculixx.challenge.api.modules.challenges.Challenges>(challengeKey) ?: return@event
             challenges.getSetting(challenge).settings
         }
 
@@ -130,7 +130,7 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
             }
 
             is ChallengeSectionSetting<*> -> {
-                val challenge = enumOf<Challenges>(challengeKey) ?: return@event
+                val challenge = enumOf<de.miraculixx.challenge.api.modules.challenges.Challenges>(challengeKey) ?: return@event
                 GUITypes.CHALLENGE_SETTINGS.buildInventory(
                     player,
                     "CH-$challengeKey-$settingKey",

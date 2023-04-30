@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.randomizer
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -17,13 +17,12 @@ import org.bukkit.event.entity.CreatureSpawnEvent
 import kotlin.random.Random
 
 class MobSwitchRandomizer : Challenge {
-    override val challenge = Challenges.RANDOMIZER_MOBS
     private val random: Boolean
     private var list: MutableList<EntityType> = mutableListOf()
     private val map: MutableMap<EntityType, EntityType> = mutableMapOf()
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.RANDOMIZER_MOBS).settings
         random = settings["random"]?.toBool()?.getValue() ?: false
     }
 

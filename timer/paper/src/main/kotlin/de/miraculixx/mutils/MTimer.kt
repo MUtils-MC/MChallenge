@@ -1,6 +1,6 @@
 package de.miraculixx.mutils
 
-import de.miraculixx.api.MChallengeAPI
+import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mcore.utils.registerCommand

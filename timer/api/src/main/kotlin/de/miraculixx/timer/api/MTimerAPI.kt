@@ -48,7 +48,7 @@ abstract class MTimerAPI {
      * Add a new logic that is called on each tick (not seconds) as long as the public timer is running
      * @param onTick Tick logic extending the current time as a [Duration]
      */
-    abstract fun addTickLogic(onTick: () -> Duration)
+    abstract fun addTickLogic(onTick: (Duration) -> Unit)
 
     /**
      * Add a new logic that is called on public timer stopping

@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.chunkClearer
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -15,7 +15,6 @@ import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.inventory.ItemStack
 
 class ChunkClearer : Challenge {
-    override val challenge: Challenges = Challenges.CHUNK_CLEARER
     private val breakAll: Boolean
     private val shouldBreak: Boolean
     private val bundle: Boolean

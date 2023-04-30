@@ -1,6 +1,6 @@
 package de.miraculixx.mchallenge.modules.mods.huntItems
 
-import de.miraculixx.api.modules.mods.huntStuff.HuntCommand
+import de.miraculixx.mchallenge.modules.mods.huntMob.HuntCommand
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mcore.utils.getMaterials
 import org.bukkit.Material

@@ -1,13 +1,12 @@
 package de.miraculixx.mchallenge.modules.mods.huntMob
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.huntStuff.HuntObject
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mcore.utils.getLivingMobs
@@ -29,8 +28,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent
 import java.io.File
 
 class MobHunt : Challenge, HuntObject<EntityType> {
-    override val challenge: Challenges = Challenges.MOB_HUNT
-    private val dataFile = File("${de.miraculixx.mchallenge.MChallenge.configFolder.path}/data/mob_hunt.json")
+    private val dataFile = File("${MChallenge.configFolder.path}/data/mob_hunt.json")
     private var currentTarget: EntityType? = null
     override val maxEntries = getLivingMobs(true).size
     override val remainingEntries = mutableListOf<EntityType>()

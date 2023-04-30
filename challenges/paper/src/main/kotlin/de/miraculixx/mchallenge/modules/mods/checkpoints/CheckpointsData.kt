@@ -1,8 +1,8 @@
 package de.miraculixx.mchallenge.modules.mods.checkpoints
 
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material

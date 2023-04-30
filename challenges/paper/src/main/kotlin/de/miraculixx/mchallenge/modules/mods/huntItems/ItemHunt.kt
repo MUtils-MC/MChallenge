@@ -1,15 +1,16 @@
 package de.miraculixx.mchallenge.modules.mods.huntItems
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.huntStuff.HuntObject
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.mchallenge.MChallenge
+import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.modules.mods.huntMob.HuntObject
 import de.miraculixx.mcore.utils.getMaterials
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
@@ -27,8 +28,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import java.io.File
 
 class ItemHunt : Challenge, HuntObject<Material> {
-    override val challenge: Challenges = Challenges.MOB_HUNT
-    private val dataFile = File("${de.miraculixx.mchallenge.MChallenge.configFolder.path}/data/item_hunt.json")
+    private val dataFile = File("${MChallenge.configFolder.path}/data/item_hunt.json")
     private var currentItem: Material? = null
     override val maxEntries = getMaterials(true).size
     override val remainingEntries = mutableListOf<Material>()
@@ -59,7 +59,7 @@ class ItemHunt : Challenge, HuntObject<Material> {
         onlinePlayers.forEach { it.showBossBar(bar) }
         calcBar(getCurrentEntryName())
         val cmdClass = ItemHuntCommand(this)
-        val cmdInstance = de.miraculixx.mchallenge.PluginManager.getCommand("itemhunt") ?: return false
+        val cmdInstance = PluginManager.getCommand("itemhunt") ?: return false
         cmdInstance.setExecutor(cmdClass)
         cmdInstance.tabCompleter = cmdClass
         return true

@@ -1,7 +1,7 @@
 package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.api.data.WorldData
+import de.miraculixx.challenge.api.data.WorldData
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mvanilla.extensions.click

@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.rightTools
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -17,11 +17,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.inventory.meta.Damageable
 
 class RightTools : Challenge {
-    override val challenge = Challenges.RIGHT_TOOL
     private val starterAxe: Boolean
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.RIGHT_TOOL).settings
         starterAxe = settings["starter"]?.toBool()?.getValue() ?: true
     }
 

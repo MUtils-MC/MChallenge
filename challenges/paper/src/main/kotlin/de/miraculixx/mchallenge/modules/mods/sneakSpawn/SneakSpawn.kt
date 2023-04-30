@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.sneakSpawn
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -14,13 +14,12 @@ import org.bukkit.event.player.PlayerToggleSneakEvent
 import org.bukkit.inventory.ItemStack
 
 class SneakSpawn : Challenge {
-    override val challenge = Challenges.SNEAK_SPAWN
     private val mobs: Boolean
     private var livings: MutableList<EntityType> = mutableListOf()
     private var materials: MutableList<Material> = mutableListOf()
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.SNEAK_SPAWN).settings
         mobs = settings["onlyMob"]?.toBool()?.getValue() ?: true
     }
 

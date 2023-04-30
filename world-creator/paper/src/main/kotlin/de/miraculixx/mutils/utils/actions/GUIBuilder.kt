@@ -6,11 +6,11 @@ import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mcore.await.AwaitChatMessage
-import de.miraculixx.api.data.WorldData
-import de.miraculixx.api.data.enums.BiomeAlgorithm
-import de.miraculixx.api.data.enums.Dimension
-import de.miraculixx.api.data.enums.VanillaGenerator
-import de.miraculixx.api.data.printInfo
+import de.miraculixx.challenge.api.data.WorldData
+import de.miraculixx.challenge.api.data.enums.BiomeAlgorithm
+import de.miraculixx.challenge.api.data.enums.Dimension
+import de.miraculixx.challenge.api.data.enums.VanillaGenerator
+import de.miraculixx.challenge.api.data.printInfo
 import de.miraculixx.mcore.await.AwaitConfirm
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory

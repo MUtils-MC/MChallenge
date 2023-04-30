@@ -7,6 +7,10 @@ import java.util.*
 import kotlin.time.Duration
 
 object TimerAPIImplementation : MTimerAPI() {
+    init {
+        instance = this
+    }
+
     override fun getTimerStatus(): Boolean {
         return TimerManager.getGlobalTimer().running
     }
@@ -43,7 +47,7 @@ object TimerAPIImplementation : MTimerAPI() {
         return true
     }
 
-    override fun addTickLogic(onTick: () -> Duration) {
+    override fun addTickLogic(onTick: (Duration) -> Unit) {
         TimerManager.getGlobalTimer().addTickLogic(onTick)
     }
 

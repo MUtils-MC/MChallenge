@@ -1,6 +1,5 @@
 package de.miraculixx.mchallenge.utils.gui
 
-import de.miraculixx.api.utils.gui.GUITypes
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.InventoryManager
 import de.miraculixx.mcore.gui.items.ItemProvider

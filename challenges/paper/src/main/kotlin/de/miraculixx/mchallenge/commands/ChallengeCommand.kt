@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge.commands
 
-import de.miraculixx.api.modules.challenges.ChallengeStatus
-import de.miraculixx.api.utils.gui.GUITypes
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
@@ -30,7 +30,7 @@ class ChallengeCommand {
         literalArgument("stop") {
             anyExecutor { sender, _ ->
                 if (ChallengeManager.stopChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.STOPPED
+                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.STOPPED
                     broadcast(prefix + msg("command.challenge.stop", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
             }
@@ -38,10 +38,10 @@ class ChallengeCommand {
 
         literalArgument("start") {
             anyExecutor { sender, _ ->
-                if (ChallengeManager.status == ChallengeStatus.RUNNING) {
+                if (ChallengeManager.status == de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.RUNNING) {
                     sender.sendMessage(prefix + msg("command.challenge.alreadyOn"))
                 } else if (ChallengeManager.startChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.RUNNING
+                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.RUNNING
                     broadcast(prefix + msg("command.challenge.start", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.failed"))
             }
@@ -50,7 +50,7 @@ class ChallengeCommand {
         literalArgument("pause") {
             anyExecutor { sender, _ ->
                 if (ChallengeManager.pauseChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.PAUSED
+                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.PAUSED
                     broadcast(prefix + msg("command.challenge.pause", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
             }
@@ -59,7 +59,7 @@ class ChallengeCommand {
         literalArgument("resume") {
             anyExecutor { sender, _ ->
                 if (ChallengeManager.resumeChallenges()) {
-                    ChallengeManager.status = ChallengeStatus.RUNNING
+                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.RUNNING
                     broadcast(prefix + msg("command.challenge.continue", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
             }

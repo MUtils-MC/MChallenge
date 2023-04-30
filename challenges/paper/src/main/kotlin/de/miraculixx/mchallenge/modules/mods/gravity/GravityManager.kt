@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.gravity
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.gravity.GravityState
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.modules.mods.gravity.GravityState
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -23,7 +23,6 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.potion.PotionEffectType
 
 class GravityManager : Challenge {
-    override val challenge = Challenges.GRAVITY
     private val bar = BossBar.bossBar(cmp("⇔ Normal Gravity ⇔", NamedTextColor.YELLOW), 1f, BossBar.Color.YELLOW, BossBar.Overlay.PROGRESS)
     private val delayDefault: Int
     private val durationCustom: Int
@@ -34,7 +33,7 @@ class GravityManager : Challenge {
     private var stop = false
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.GRAVITY).settings
         delayDefault = settings["delay"]?.toInt()?.getValue() ?: 180
         durationCustom = settings["duration"]?.toInt()?.getValue() ?: 120
     }

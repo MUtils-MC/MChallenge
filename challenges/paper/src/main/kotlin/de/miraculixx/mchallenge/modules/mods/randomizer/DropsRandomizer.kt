@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.randomizer
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -20,14 +20,13 @@ import org.bukkit.loot.LootTables
 import kotlin.random.Random
 
 class DropsRandomizer : Challenge {
-    override val challenge = Challenges.RANDOMIZER_ENTITY
     private val random: Boolean
     private val map: MutableMap<EntityType, EntityType> = mutableMapOf()
     private val list: MutableList<EntityType> = mutableListOf()
     private val announced: MutableSet<EntityType> = mutableSetOf()
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.RANDOMIZER_ENTITY).settings
         random = settings["random"]?.toBool()?.getValue() ?: true
     }
 

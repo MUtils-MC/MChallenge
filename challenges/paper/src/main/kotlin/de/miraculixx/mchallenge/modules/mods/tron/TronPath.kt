@@ -3,10 +3,10 @@ package de.miraculixx.mchallenge.modules.mods.tron
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.modules.challenges.Challenges
 import de.miraculixx.mvanilla.messages.namespace
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -34,6 +34,7 @@ class TronPath(
 
     private val onMove = listen<PlayerMoveEvent> {
         val player = it.player
+        if (player.uniqueId != uuid) return@listen
         val to = it.to
         if (it.from.block == to.block) return@listen
         val subLoc = to.clone().subtract(.0, 1.0, .0)

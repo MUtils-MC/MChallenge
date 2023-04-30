@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.limitedSkills
 
+import de.miraculixx.challenge.api.utils.CustomHeads
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.messages.*
@@ -25,7 +25,7 @@ class LimitSkillsItems(private val challengeInstance: LimitedSkills): ItemProvid
             name = cmp(msgString("common.confirm"), cHighlight)
             customModel = 3
         }
-        itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.CHECKMARK_GREEN.value)
+        itemMeta = (itemMeta as SkullMeta).skullTexture(CustomHeads.CHECKMARK_GREEN.value)
     }
 
     override fun getItemList(from: Int, to: Int): List<ItemStack> {

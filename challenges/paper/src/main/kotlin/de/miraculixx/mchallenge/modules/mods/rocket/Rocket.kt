@@ -1,18 +1,16 @@
 package de.miraculixx.mchallenge.modules.mods.rocket
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.player.PlayerToggleSneakEvent
-import java.util.UUID
+import java.util.*
 
-class Rocket: Challenge {
-    override val challenge = Challenges.ROCKET
+class Rocket : Challenge {
     private val playerData: MutableMap<UUID, RocketPlayerData> = mutableMapOf()
 
     override fun register() {

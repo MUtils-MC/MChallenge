@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.chunkFlattener
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
@@ -15,7 +15,6 @@ import org.bukkit.block.Block
 import org.bukkit.inventory.ItemStack
 
 class ChunkFlattener: Challenge {
-    override val challenge: Challenges = Challenges.CHUNK_FLATTENER
     private val delay: Int
     private val shouldBreak: Boolean
     private var paused = true

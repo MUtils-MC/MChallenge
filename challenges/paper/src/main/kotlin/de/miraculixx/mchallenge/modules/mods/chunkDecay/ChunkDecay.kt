@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.chunkDecay
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.extensions.bukkit.allBlocks
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.sync
@@ -14,7 +14,6 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
 class ChunkDecay : Challenge {
-    override val challenge: Challenges = Challenges.CHUNK_DECAY
     private val delay: Int
     private val percentage: Int
     private val shouldBreak: Boolean

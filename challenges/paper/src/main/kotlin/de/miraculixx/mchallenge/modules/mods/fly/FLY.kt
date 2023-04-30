@@ -7,13 +7,13 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.modules.challenges.Challenges
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp
-import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import org.bukkit.Color
 import org.bukkit.GameMode
 import org.bukkit.Material
@@ -28,7 +28,6 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
 class FLY : Challenge {
-    override val challenge = Challenges.FLY
     private val data: HashMap<Player, ItemStack?> = HashMap()
     private val flyBoost: Double
     private val wings = itemStack(Material.ELYTRA) {

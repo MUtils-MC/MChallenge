@@ -28,6 +28,7 @@ include("timer:api")
 include("challenges:paper")
 include("challenges:fabric")
 include("challenges:api")
+include("challenges:addon")
 
 // World Creator
 include("world-creator:paper")

@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.blockAsync
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -29,13 +29,12 @@ import org.bukkit.persistence.PersistentDataType
 
 
 class BlockAsync : Challenge {
-    override val challenge = Challenges.BLOCK_ASYNC
     private val blockList = HashMap<Location, Player>() //Location ist der fake Block - Player der Spieler, welcher den Block abgebaut hat
     private val dataList = HashMap<Location, BlockData>() //Location ist der fake Block - Material der ursprüngliche Block Type
     private val hidePlayers: Boolean
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.BLOCK_ASYNC).settings
         hidePlayers = settings["hide"]?.toBool()?.getValue() ?: true
     }
 
@@ -43,7 +42,7 @@ class BlockAsync : Challenge {
         if (hidePlayers) {
             onlinePlayers.forEach { player ->
                 onlinePlayers.forEach { target ->
-                    if (target != player) player.hidePlayer(de.miraculixx.mchallenge.PluginManager, target)
+                    if (target != player) player.hidePlayer(PluginManager, target)
                 }
             }
         }
@@ -153,7 +152,7 @@ class BlockAsync : Challenge {
             broadcast(msg("event.hide.show"))
             onlinePlayers.forEach { first ->
                 onlinePlayers.forEach { second ->
-                    if (second != first) first.showPlayer(de.miraculixx.mchallenge.PluginManager, second)
+                    if (second != first) first.showPlayer(PluginManager, second)
                 }
             }
             blockList.clear()

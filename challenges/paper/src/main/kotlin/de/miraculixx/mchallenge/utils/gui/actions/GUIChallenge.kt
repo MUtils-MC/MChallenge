@@ -1,15 +1,15 @@
 package de.miraculixx.mchallenge.utils.gui.actions
 
+import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.mvanilla.gui.StorageFilter
+import de.miraculixx.challenge.api.modules.challenges.Challenges
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.InventoryUtils.get
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.items.ItemFilterProvider
-import de.miraculixx.api.utils.gui.GUITypes
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.mchallenge.utils.gui.GUITypes
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallengeSettings
@@ -21,14 +21,14 @@ import org.bukkit.event.inventory.InventoryClickEvent
 
 class GUIChallenge : GUIEvent {
     private val validFilters = arrayOf(
-        StorageFilter.NO_FILTER,
-        StorageFilter.FUN,
-        StorageFilter.MEDIUM,
-        StorageFilter.HARD,
-        StorageFilter.FREE,
-        StorageFilter.FORCE,
-        StorageFilter.RANDOMIZER,
-        StorageFilter.MULTIPLAYER
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.NO_FILTER,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.FUN,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.MEDIUM,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.HARD,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.FREE,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.FORCE,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.RANDOMIZER,
+        de.miraculixx.challenge.api.modules.challenges.ChallengeTags.MULTIPLAYER
     )
 
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
@@ -48,18 +48,18 @@ class GUIChallenge : GUIEvent {
 
             9005 -> {
                 val current = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.storage.filter")) ?: return@event
-                val currentFilter = enumOf<StorageFilter>(current) ?: return@event
+                val currentFilter = enumOf<de.miraculixx.challenge.api.modules.challenges.ChallengeTags>(current) ?: return@event
                 val newFilter = validFilters.enumRotate(currentFilter)
-                (inv.itemProvider as? ItemFilterProvider)?.filter = newFilter
+                (inv.itemProvider as? ItemFilterProvider)?.filter = newFilter.name
                 player.click()
                 inv.update()
             }
 
             else -> {
                 val challengeKey = meta?.persistentDataContainer.get(NamespacedKey(namespace, "gui.challenge")) ?: return@event
-                val challenge = enumOf<Challenges>(challengeKey) ?: return@event
+                val challenge = enumOf<de.miraculixx.challenge.api.modules.challenges.Challenges>(challengeKey) ?: return@event
 
-                if (!getAccountStatus() && !challenge.filter.contains(StorageFilter.FREE)) {
+                if (!getAccountStatus() && !challenge.filter.contains(de.miraculixx.challenge.api.modules.challenges.ChallengeTags.FREE)) {
                     //NO PERMS TODO
                     player.soundError()
                     player.closeInventory()

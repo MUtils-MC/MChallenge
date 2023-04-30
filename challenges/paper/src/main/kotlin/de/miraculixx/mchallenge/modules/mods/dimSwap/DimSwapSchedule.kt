@@ -7,9 +7,9 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -196,7 +196,7 @@ class DimSwapSchedule {
                     player.gameMode = GameMode.SURVIVAL
                     player.removePotionEffect(PotionEffectType.BLINDNESS)
                     player.showTitle(Title.title(emptyComponent(), emptyComponent(), Title.Times.times(Duration.ZERO, Duration.ZERO, Duration.ZERO)))
-                    if (challenges.getSetting(Challenges.DIM_SWAP).settings["starter"]?.toBool()?.getValue() == true) {
+                    if (challenges.getSetting(de.miraculixx.challenge.api.modules.challenges.Challenges.DIM_SWAP).settings["starter"]?.toBool()?.getValue() == true) {
                         val item = itemStack(Material.WOODEN_PICKAXE) {
                             meta {
                                 name = cmp("Starter Wooden Pickaxe", NamedTextColor.WHITE)

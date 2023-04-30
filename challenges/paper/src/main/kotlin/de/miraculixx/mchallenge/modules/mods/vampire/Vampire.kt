@@ -1,11 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.vampire
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import org.bukkit.event.EventPriority
 import org.bukkit.event.player.PlayerJoinEvent
@@ -13,7 +12,6 @@ import org.bukkit.event.player.PlayerQuitEvent
 import java.util.*
 
 class Vampire : Challenge {
-    override val challenge = Challenges.VAMPIRE
     private val dataMap: MutableMap<UUID, VampireData> = mutableMapOf()
 
     override fun register() {

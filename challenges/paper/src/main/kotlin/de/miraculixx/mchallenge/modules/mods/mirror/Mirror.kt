@@ -1,15 +1,15 @@
 package de.miraculixx.mchallenge.modules.mods.mirror
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -21,7 +21,6 @@ import org.bukkit.event.player.PlayerItemHeldEvent
 import org.bukkit.persistence.PersistentDataType
 
 class Mirror : Challenge {
-    override val challenge: Challenges = Challenges.MIRROR
     private val mirrorHearts: Boolean
     private val mirrorHunger: Boolean
     private val mirrorPotion: Boolean
@@ -123,6 +122,7 @@ class Mirror : Challenge {
                     p.addPotionEffect(effect)
                 }
             }
+
             EntityPotionEffectEvent.Action.CHANGED -> {
                 val newEffect = it.newEffect ?: return@listen
                 val type = it.modifiedType
@@ -132,6 +132,7 @@ class Mirror : Challenge {
                     p.addPotionEffect(newEffect)
                 }
             }
+
             EntityPotionEffectEvent.Action.CLEARED, EntityPotionEffectEvent.Action.REMOVED -> {
                 val type = it.modifiedType
                 onlinePlayers.forEach { p ->

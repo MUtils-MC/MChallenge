@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.damageDuel
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.challenge.api.settings.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -14,11 +14,10 @@ import org.bukkit.entity.Projectile
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 
 class DamageDuell : Challenge {
-    override val challenge = Challenges.DAMAGE_DUELL
     private val percentage: Int
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.DAMAGE_DUELL).settings
         percentage = settings["percent"]?.toInt()?.getValue() ?: 50
     }
 

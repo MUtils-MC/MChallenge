@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.api.data.GeneratorDefaults
+import de.miraculixx.challenge.api.data.GeneratorDefaults
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.gui.Head64

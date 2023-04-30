@@ -4,11 +4,11 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.api.data.GeneratorData
-import de.miraculixx.api.data.enums.AlgorithmSetting
-import de.miraculixx.api.data.enums.AlgorithmSettingIndex
-import de.miraculixx.api.data.enums.BiomeAlgorithm
-import de.miraculixx.api.data.enums.GeneratorAlgorithm
+import de.miraculixx.challenge.api.data.GeneratorData
+import de.miraculixx.challenge.api.data.enums.AlgorithmSetting
+import de.miraculixx.challenge.api.data.enums.AlgorithmSettingIndex
+import de.miraculixx.challenge.api.data.enums.BiomeAlgorithm
+import de.miraculixx.challenge.api.data.enums.GeneratorAlgorithm
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material

@@ -1,8 +1,8 @@
 package de.miraculixx.mutils.data
 
-import de.miraculixx.api.data.GeneratorData
-import de.miraculixx.api.data.enums.AlgorithmSetting
-import de.miraculixx.api.data.enums.BiomeAlgorithm
+import de.miraculixx.challenge.api.data.GeneratorData
+import de.miraculixx.challenge.api.data.enums.AlgorithmSetting
+import de.miraculixx.challenge.api.data.enums.BiomeAlgorithm
 import de.miraculixx.mutils.module.biomes.ChunkBiomes
 import de.miraculixx.mutils.module.biomes.RandomBiomes
 import de.miraculixx.mutils.module.biomes.SingleBiomes

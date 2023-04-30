@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.module
 
-import de.miraculixx.api.modules.challenges.ChallengeStatus
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mutils.MTimer
@@ -34,6 +34,7 @@ class Timer(
 
             if (value) {
                 listener?.activateTimer()
+                startLogics.forEach { it.invoke() }
                 if (rules.syncWithChallenge) {
                     if (api != null) {
                         when (api.status) {
@@ -45,6 +46,7 @@ class Timer(
                 }
             } else {
                 listener?.deactivateTimer()
+                stopLogics.forEach { it.invoke() }
                 if (rules.syncWithChallenge) {
                     if (api != null) {
                         api.pauseChallenges()
@@ -58,11 +60,11 @@ class Timer(
     private var remove = false
     private val listener = if (isPersonal) null else TimerListener()
 
-    private val tickLogics: MutableList<(() -> Duration)> = mutableListOf()
+    private val tickLogics: MutableList<((Duration) -> Unit)> = mutableListOf()
     private val stopLogics: MutableList<(() -> Unit)> = mutableListOf()
     private val startLogics: MutableList<(() -> Unit)> = mutableListOf()
 
-    fun addTickLogic(onTick: () -> Duration) {
+    fun addTickLogic(onTick: (Duration) -> Unit) {
         tickLogics.add(onTick)
     }
 
@@ -138,6 +140,8 @@ class Timer(
             if (remove) it.cancel()
             if (!visible) return@task
             if (player?.isOnline == false) return@task
+            tickLogics.forEach { tick -> tick.invoke(time) }
+
             val target = if (isPersonal) listOf(player?.player) else {
                 if (running) onlinePlayers else onlinePlayers.filter { player ->
                     val p = TimerManager.getPersonalTimer(player.uniqueId)
