@@ -32,7 +32,7 @@ You can share your best designs in our global designs library for everyone to us
 
 
 > ![timer1](https://cdn-raw.modrinth.com/data/kTmEpjUi/images/4811eff64f2b513797faa3e52607688b466f4b22.webp)
-> ![timer2](https://cdn-raw.modrinth.com/data/kTmEpjUi/images/a579978b2e8f191376ef6a98a51fa6eacb687b23.webp)
+> ![timer2](https://cdn-raw.modrinth.com/data/kTmEpjUi/images/a579978b2e8f191376ef6a98a51fa6eacb687b23.webp) 
 > ![timer3](https://cdn-raw.modrinth.com/data/kTmEpjUi/images/8c2b9473f8294acbb678759e3f3f76faffba1c9c.webp)
 
 
@@ -41,9 +41,33 @@ Check out our official FAQ and tutorials if you need help at [MUtils.de/timer](h
 
 If you have any problems or unanswered questions join our [Discord](https://dc.mutils.de/) to contact us and share your experience with other users!
 
+## API Usage
+MTimer implements a public API that can be used by developers to manipulate or inject into the timer. The API is written in Kotlin like MTimer. The API is located at Maven Central, so no extra repo is needed.
+
+```
+dependencies {
+    implementation("de.miraculixx:timer-api:1.1.2")
+}
+```
+You only need to access the Manager Object to interact with the API
+```
+val timerAPI = MTimerAPI.instance
+
+if (timerAPI == null) {
+    // MTimer is not loaded or not installed.
+    // Remember to add MUtils-Timer as softdepend
+    return
+}
+
+timerAPI.getTimerStatus() // Current status
+timerAPI.onStartLogic { // Add your own logic to the timer
+    print("Timer Started")
+}
+```
+
 ## Privacy
 M-Timer communicates with the [MUtils.de](https://mutils.de) servers for:
-- version checking (normaly only on startup)
-- public design library access (only on manual access)
+- version checking (normaly only on startup) (disabled in BETA)
+- public design library access (only on manual access) (disabled in BETA)
 
 While communicating the server IP is shared but not saved on our servers. Uploading/ downloading from the public design library requires account authentication
