@@ -90,7 +90,7 @@ class OneBiomeSwitcher {
         onlinePlayers.forEach {
             locations[it] = it.location
         }
-        val sBiome = "§7${newBiome.name.replace('_', ' ')}"
+        val sBiome = newBiome.name.replace('_', ' ')
         onlinePlayers.forEach { player ->
             val loc = locations[player]
             if (loc == null) {
@@ -154,6 +154,8 @@ class OneBiomeSwitcher {
     }
 
     fun stop() {
+        paused = true
+        stopped = true
         onlinePlayers.forEach { it.hideBossBar(bar) }
         deleteOld()
     }

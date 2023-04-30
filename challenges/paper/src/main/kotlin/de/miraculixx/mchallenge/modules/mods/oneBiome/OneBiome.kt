@@ -18,10 +18,12 @@ class OneBiome : Challenge {
 
     override fun register() {
         onPortal.register()
+        switcher.paused = false
     }
 
     override fun unregister() {
         onPortal.unregister()
+        switcher.paused = true
     }
 
     private val onPortal = listen<PlayerPortalEvent>(register = false) {
