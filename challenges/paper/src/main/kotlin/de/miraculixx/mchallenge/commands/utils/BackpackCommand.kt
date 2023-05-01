@@ -143,8 +143,8 @@ class BackpackCommand {
 
     @Serializable
     data class Data(
-        var global: Boolean,
-        var size: Int,
-        val backpacks: MutableMap<String, Array<@Serializable(with = ItemStackSerializer::class) ItemStack?>>
+        var global: Boolean = true,
+        var size: Int = 2,
+        val backpacks: MutableMap<String, Array<@Serializable(with = ItemStackSerializer::class) ItemStack?>> = mutableMapOf()
     )
 }

@@ -1,11 +1,8 @@
 package de.miraculixx.challenge.api
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.challenge.api.modules.challenges.CustomChallengeData
-import de.miraculixx.challenge.api.settings.ChallengeData
-import de.miraculixx.challenge.api.utils.Icon
 import java.util.*
 
 abstract class MChallengeAPI {
@@ -41,6 +38,11 @@ abstract class MChallengeAPI {
      * @return false if challenges are not paused
      */
     abstract fun resumeChallenges(): Boolean
+
+    /**
+     * @return The current challenge status. Challenges can be stopped, running and paused (not running but all data is saved to continue later)
+     */
+    abstract fun getChallengeStatus(): ChallengeStatus
 
     /**
      * Add a new Challenge handled by your addon to MUtils-Challenges. 3rd party challenges are marked as addons and must be loaded on each startup.

@@ -28,8 +28,8 @@ import java.io.File
 import java.util.*
 
 object Spectator {
-    private val specs = ArrayList<UUID>()
-    private val specSettings = HashMap<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>()
+    private val specs = ArrayList<@Serializable(UUIDSerializer::class) UUID>()
+    private val specSettings = HashMap<@Serializable(UUIDSerializer::class) UUID, SpecCollection>()
     private val file = File("${MChallenge.configFolder.path}/spectator.json")
 
     fun saveData() {
@@ -39,11 +39,11 @@ object Spectator {
 
     fun loadData() {
         try {
-            val output = json.decodeFromString<Map<@Serializable(with = UUIDSerializer::class) UUID, SpecCollection>>(file.readJsonString(true))
+            val output = json.decodeFromString<Map<@Serializable(UUIDSerializer::class) UUID, SpecCollection>>(file.readJsonString(true))
             output.forEach { (uuid, s) -> specSettings[uuid] = s }
         } catch (e: Exception) {
-            consoleAudience.sendMessage(prefix + cmp(e.message.toString(), cError))
-            consoleAudience.sendMessage(prefix + cmp("Failed to load Spectator data! ^ Reason above ^", cError))
+            if (debug) consoleAudience.sendMessage(prefix + cmp(e.message.toString(), cError))
+            if (debug) consoleAudience.sendMessage(prefix + cmp("Failed to load Spectator data! ^ Reason above ^", cError))
         }
     }
 

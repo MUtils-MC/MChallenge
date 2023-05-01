@@ -102,11 +102,15 @@ class MChallenge : KSpigot() {
 
             // Connect Bridge
             bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port)
-            bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0)
+            val version = bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0, File("plugins/update"))
+            if (!version) {
+                isAllowedToStart = false
+                return@launch
+            }
             bridgeAPI.login {
                 ChallengeManager.stopChallenges()
                 challenges.forEach { (challenge, data) ->
-                    if (challenge.filter.contains(de.miraculixx.challenge.api.modules.challenges.ChallengeTags.FREE)) return@forEach
+                    if (challenge.filter.contains(ChallengeTags.FREE)) return@forEach
                     data.active = false
                 }
                 consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
