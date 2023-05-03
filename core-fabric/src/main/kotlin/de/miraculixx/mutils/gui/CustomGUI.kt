@@ -1,6 +1,5 @@
 package de.miraculixx.mutils.gui
 
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.event.GUIClickEvent
@@ -8,7 +7,6 @@ import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.itemStack
 import de.miraculixx.mutils.gui.item.setName
 import de.miraculixx.mvanilla.messages.*
-import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack

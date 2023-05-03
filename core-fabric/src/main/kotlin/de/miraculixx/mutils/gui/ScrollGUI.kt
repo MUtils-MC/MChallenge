@@ -1,6 +1,5 @@
 package de.miraculixx.mutils.gui
 
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.GUIClick
@@ -8,6 +7,7 @@ import de.miraculixx.mutils.gui.data.InventoryManager
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.*
+import de.miraculixx.mutils.gui.utils.adv
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
@@ -50,7 +50,7 @@ class ScrollGUI(
                 it.isCancelled = true
                 page -= (if (it.click == GUIClick.SHIFT_CLICK) 5
                 else 1).coerceAtMost(content.size - 6)
-                player.click()
+                player.adv().click()
                 update()
                 val id: String? = null
             }
@@ -62,8 +62,7 @@ class ScrollGUI(
             }
             9003 -> {
                 it.isCancelled = true
-                player.identity()
-                Audience.audience()
+                player.adv().click()
                 InventoryManager.storageBuilder("$id-STORAGE") {
                     this.title = title
                     this.players = viewers.keys.toList()

@@ -3,7 +3,6 @@ package de.miraculixx.mutils.gui.data
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.event.GUIEventHandler
-import de.miraculixx.mutils.messages.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.minecraft.server.level.ServerPlayer
@@ -98,7 +97,8 @@ abstract class CustomInventory(
      * Internal function to get GUI title
      */
     override fun getDisplayName(): net.minecraft.network.chat.Component {
-        return title.toMC()
+//        return title
+        return net.minecraft.network.chat.Component.empty()
     }
 
     private fun getMenuType(height: Int): MenuType<*> {

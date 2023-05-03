@@ -1,12 +1,15 @@
 plugins {
     `kotlin-script`
-    `adventure-script`
-    `loom-script`
     `core-script`
+    `fabric-script`
+    `adventure-script`
     `shadow-script`
 }
 
+repositories {
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
+}
+
 dependencies {
-    modImplementation(include("net.kyori:adventure-platform-fabric:5.5.1")!!)
     implementation(project(":vanilla"))
 }
