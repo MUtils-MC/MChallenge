@@ -3,7 +3,6 @@ plugins {
     `core-script`
     `fabric-script`
     `adventure-script`
-//    `shadow-script`
 }
 
 dependencies {
