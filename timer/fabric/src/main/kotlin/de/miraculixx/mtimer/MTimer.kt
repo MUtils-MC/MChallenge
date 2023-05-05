@@ -16,8 +16,9 @@ class MTimer : ModInitializer {
         ServerLifecycleEvents.SERVER_STARTING.register(ServerLifecycleEvents.ServerStarting { server: MinecraftServer? ->
             val adventure = FabricServerAudiences.of(server!!)
             consoleAudience = adventure.console()
-
-
+            cmp("Test")
+            consoleAudience.sendMessage(cmp("DIES IST EIN ADVENTURE TEST"))
+            println("- PrintLN to console")
         })
 
         ServerLifecycleEvents.SERVER_STOPPED.register(ServerLifecycleEvents.ServerStopped {

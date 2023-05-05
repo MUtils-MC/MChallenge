@@ -1,7 +1,3 @@
-import BuildConstants.minecraftVersion
-import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.withType
-
 plugins {
     id("fabric-loom")
 }
@@ -16,14 +12,14 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${minecraftVersion}")
+    minecraft("com.mojang:minecraft:1.19.4")
     mappings(loom.officialMojangMappings())
 
     modImplementation("net.silkmc:silk-commands:1.9.8")
     modImplementation("net.fabricmc:fabric-loader:0.14.19")
-    modImplementation(include("net.kyori:adventure-platform-fabric:5.8.0")!!)
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.77.0+1.19.4")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.80.0+1.19.4")
     modImplementation(include("me.lucko", "fabric-permissions-api", "0.2-SNAPSHOT"))
+    modImplementation(include("net.kyori:adventure-platform-fabric:5.8.0")!!)
 }
 
 tasks {
