@@ -19,7 +19,7 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "de.miraculixx.mtimer.MTimer"
+        "value": "de.miraculixx.mtimer.MTimerKt::init"
       }
     ]
   },

@@ -9,3 +9,11 @@ dependencies {
     implementation(include(project(":vanilla"))!!)
     implementation(include(project(":core-fabric"))!!)
 }
+
+loom {
+    runs {
+        named("server") {
+            ideConfigGenerated(true)
+        }
+    }
+}
