@@ -7,5 +7,5 @@ plugins {
 
 dependencies {
     implementation(include(project(":vanilla"))!!)
-    implementation(project(":core-fabric"))
+    implementation(include(project(":core-fabric"))!!)
 }
