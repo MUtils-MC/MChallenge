@@ -24,9 +24,10 @@ include("custom-challenges:paper")
 include("custom-challenges:fabric")
 
 // Timer
+include("timer:api")
+include("timer:global")
 include("timer:paper")
 include("timer:fabric")
-include("timer:api")
 
 // Challenges
 include("challenges:paper")

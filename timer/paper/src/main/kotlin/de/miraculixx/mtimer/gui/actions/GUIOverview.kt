@@ -3,11 +3,12 @@ package de.miraculixx.mtimer.gui.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
-import de.miraculixx.mtimer.gui.TimerGUI
+import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsDesigns
 import de.miraculixx.mtimer.gui.items.ItemsGoals
 import de.miraculixx.mtimer.gui.items.ItemsRules
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
@@ -27,7 +28,7 @@ class GUIOverview(private val isPersonal: Boolean) : GUIEvent {
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
         val item = it.currentItem
-        val timer = if (isPersonal) TimerManager.getPersonalTimer(player.uniqueId) else TimerManager.getGlobalTimer()
+        val timer = if (isPersonal) TimerManager.getPersonalTimer(player.uniqueId) else TimerManager.globalTimer
         if (timer == null) {
             player.sendMessage(noPersonalTimer)
             return@event

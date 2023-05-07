@@ -97,7 +97,7 @@ class MChallenge : KSpigot() {
 
             settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
             debug = settings.debug
-            localization = Localization(File("${configFolder.path}/language"), settings.language, languages, exactPrefix)
+            localization = Localization(File("${configFolder.path}/language"), settings.language, languages, challengePrefix)
             Spectator.loadData()
 
             // Connect Bridge
@@ -113,7 +113,7 @@ class MChallenge : KSpigot() {
                     if (challenge.filter.contains(ChallengeTags.FREE)) return@forEach
                     data.active = false
                 }
-                consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
+                consoleAudience.sendMessage(challengePrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
             }
 
             // Reset World

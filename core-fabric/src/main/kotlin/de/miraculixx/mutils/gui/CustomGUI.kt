@@ -2,29 +2,29 @@ package de.miraculixx.mutils.gui
 
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.InventoryManager
+import de.miraculixx.mutils.gui.data.ItemProvider
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
-import de.miraculixx.mutils.gui.item.itemStack
-import de.miraculixx.mutils.gui.item.setName
+import de.miraculixx.mutils.gui.utils.setName
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
+import net.silkmc.silk.core.item.itemStack
 
 class CustomGUI(
-    private val content: Map<ItemStack, Int>,
+    private val itemProvider: ItemProvider?,
     title: Component,
     override val id: String,
     players: List<Player>,
     size: Int,
-    clickEvent: ((GUIClickEvent) -> Unit)?,
-    closeEvent: ((GUICloseEvent) -> Unit)?
+    clickEvent: ((GUIClickEvent, CustomInventory) -> Unit)?,
+    closeEvent: ((GUICloseEvent, CustomInventory) -> Unit)?
 ) : CustomInventory(size * 9, title, clickEvent, closeEvent) {
-    override val defaultClickAction: ((GUIClickEvent) -> Unit)? = null
+    override val defaultClickAction: ((GUIClickEvent, CustomInventory) -> Unit)? = null
 
     private constructor(builder: Builder) : this(
-        builder.content,
+        builder.itemProvider,
         builder.title,
         builder.id,
         buildList {
@@ -36,12 +36,7 @@ class CustomGUI(
         builder.closeAction
     )
 
-    class Builder(val id: String): CustomInventory.Builder() {
-        /**
-         * Import items to the custom GUI.
-         */
-        var content: Map<ItemStack, Int> = emptyMap()
-
+    class Builder(val id: String) : CustomInventory.Builder() {
         /**
          * Sets the inventory size. It defines the row count, [size] 2 will create a GUI with 18 slots (2 rows)
          */
@@ -53,8 +48,9 @@ class CustomGUI(
         fun build(): CustomGUI = CustomGUI(this)
     }
 
-    private fun build() {
-        content.forEach { (item, slot) ->
+    override fun update() {
+        val content = itemProvider?.getSlotMap() ?: emptyMap()
+        content.forEach { (slot, item) ->
             setItem(slot, item)
         }
     }
@@ -87,7 +83,7 @@ class CustomGUI(
             InventoryManager.remove(id)
         } else {
             fillPlaceholder()
-            build()
+            update()
             open(players)
         }
     }

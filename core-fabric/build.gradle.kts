@@ -1,5 +1,3 @@
-import BuildConstants.minecraftVersion
-
 plugins {
     id("fabric-loom")
     `kotlin-script`
@@ -17,13 +15,18 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${minecraftVersion}")
+    minecraft("com.mojang:minecraft:1.19.4")
     mappings(loom.officialMojangMappings())
 
-    modImplementation("net.silkmc:silk-commands:1.9.8")
-    modImplementation("net.fabricmc:fabric-loader:0.14.19")
+    val silkVersion = "1.9.8"
+    modImplementation("net.silkmc:silk-commands:$silkVersion")
+    modImplementation("net.silkmc:silk-core:$silkVersion")
+    modImplementation("net.silkmc:silk-nbt:$silkVersion")
+    modImplementation("net.silkmc:silk-persistence:$silkVersion")
     modImplementation("net.kyori:adventure-platform-fabric:5.8.0")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.77.0+1.19.4")
+    modImplementation("net.fabricmc:fabric-loader:0.14.19")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.80.0+1.19.4")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.9.4+kotlin.1.8.21")
     modImplementation("me.lucko", "fabric-permissions-api", "0.2-SNAPSHOT")
 }
 

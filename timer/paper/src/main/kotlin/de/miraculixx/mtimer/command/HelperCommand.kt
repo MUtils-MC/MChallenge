@@ -1,8 +1,8 @@
 package de.miraculixx.mtimer.command
 
-import de.miraculixx.mtimer.data.ColorBuilder
-import de.miraculixx.mtimer.data.ColorType
-import de.miraculixx.mtimer.data.GradientBuilder
+import de.miraculixx.mtimer.vanilla.data.ColorBuilder
+import de.miraculixx.mtimer.vanilla.data.ColorType
+import de.miraculixx.mtimer.vanilla.data.GradientBuilder
 import de.miraculixx.mtimer.gui.TimerGUI
 import de.miraculixx.mtimer.gui.actions.GUIColorBuilder
 import de.miraculixx.mtimer.gui.actions.GUIGradientEditor

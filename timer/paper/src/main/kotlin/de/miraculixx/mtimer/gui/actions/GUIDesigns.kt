@@ -3,13 +3,15 @@ package de.miraculixx.mtimer.gui.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
+import de.miraculixx.mtimer.MTimer
 import de.miraculixx.mtimer.data.TimerDesign
 import de.miraculixx.mtimer.data.TimerPresets
-import de.miraculixx.mtimer.gui.TimerGUI
+import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsDesignEditor
 import de.miraculixx.mtimer.gui.items.ItemsOverview
-import de.miraculixx.mtimer.module.Timer
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
+import de.miraculixx.mtimer.vanilla.module.Timer
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.namespace
 import org.bukkit.NamespacedKey
@@ -18,6 +20,7 @@ import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
+import java.io.File
 import java.util.*
 
 class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GUIEvent {
@@ -86,7 +89,7 @@ class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GU
                             return@event
                         }
                         val design = item.getDesign(player) ?: return@event
-                        TimerManager.removeDesign(design.second)
+                        TimerManager.removeDesign(design.second, File("${MTimer.configFolder}/designs"))
                         player.soundDelete()
                         inv.update()
                     }

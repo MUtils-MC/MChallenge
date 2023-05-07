@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.miraculixx.mtimer.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinLevel",
+    "MixinPlayer"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

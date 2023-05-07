@@ -1,4 +1,4 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor

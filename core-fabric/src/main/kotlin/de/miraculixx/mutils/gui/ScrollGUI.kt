@@ -8,6 +8,8 @@ import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.item.*
 import de.miraculixx.mutils.gui.utils.adv
+import de.miraculixx.mutils.gui.utils.setLore
+import de.miraculixx.mutils.gui.utils.setName
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
@@ -16,6 +18,10 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.Enchantments
+import net.minecraft.world.level.storage.loot.functions.SetLoreFunction.setLore
+import net.silkmc.silk.core.item.itemStack
+import net.silkmc.silk.core.item.setSkullTexture
+import net.silkmc.silk.nbt.dsl.nbtCompound
 
 
 class ScrollGUI(
@@ -24,8 +30,8 @@ class ScrollGUI(
     title: Component,
     players: List<Player>,
     startPage: Int,
-    clickEvent: ((GUIClickEvent) -> Unit)?,
-    closeEvent: ((GUICloseEvent) -> Unit)?
+    clickEvent: ((GUIClickEvent, CustomInventory) -> Unit)?,
+    closeEvent: ((GUICloseEvent, CustomInventory) -> Unit)?
 ) : CustomInventory(4 * 9, title, clickEvent, closeEvent) {
     private var page = startPage
     private val arrowRedL = getCustomItem("arrowLeftEnd", 9000,"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg0ZjU5NzEzMWJiZTI1ZGMwNThhZjg4OGNiMjk4MzFmNzk1OTliYzY3Yzk1YzgwMjkyNWNlNGFmYmEzMzJmYyJ9fX0=")
@@ -34,29 +40,28 @@ class ScrollGUI(
     private val arrowGreenR = getCustomItem("arrowRight", 9002, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTYzMzlmZjJlNTM0MmJhMThiZGM0OGE5OWNjYTY1ZDEyM2NlNzgxZDg3ODI3MmY5ZDk2NGVhZDNiOGFkMzcwIn19fQ==")
     private val pageIndicator = itemStack(Items.KNOWLEDGE_BOOK) {
         setLore(msgList("gui.general.pageIndicator.l"))
-        setCustomModel(9003)
+        addTagElement(namespace, nbtCompound { put("ID", 9003) })
     }
     private val activated = msg("gui.general.activated")
     private val deactivated = msg("gui.general.deactivated")
-    override val defaultClickAction: ((GUIClickEvent) -> Unit) = action@{
+    override val defaultClickAction: ((GUIClickEvent, CustomInventory) -> Unit) = action@{ it: GUIClickEvent, inv: CustomInventory ->
         val item = it.item
         val player = it.player
-        when (item.getCustomModel()) {
+        when (item.getTagElement(namespace)?.getInt("ID")) {
             9000 -> {
                 it.isCancelled = true
                 player.playSound(SoundEvents.STONE_HIT)
             }
             9001 -> {
                 it.isCancelled = true
-                page -= (if (it.click == GUIClick.SHIFT_CLICK) 5
+                page -= (if (it.click == GUIClick.SHIFT_RIGHT_CLICK || it.click == GUIClick.SHIFT_LEFT_CLICK) 5
                 else 1).coerceAtMost(content.size - 6)
                 player.adv().click()
                 update()
-                val id: String? = null
             }
             9002 -> {
                 it.isCancelled = true
-                page += (if (it.click == GUIClick.SHIFT_CLICK) 5
+                page += (if (it.click == GUIClick.SHIFT_RIGHT_CLICK || it.click == GUIClick.SHIFT_LEFT_CLICK) 5
                 else 1).coerceAtLeast(0)
                 update()
             }
@@ -108,7 +113,7 @@ class ScrollGUI(
         fun build() = ScrollGUI(this)
     }
 
-    private fun update() {
+    override fun update() {
         val firstIndex = page
         val lastIndex = page + 7
 
@@ -126,12 +131,12 @@ class ScrollGUI(
         ).forEachIndexed { index, data ->
             val item = if (data.second) {
                 data.first.enchant(Enchantments.MENDING, 1)
-                data.first.addHideFlags(HideFlag.HIDE_ENCHANTS)
+                data.first.hideTooltipPart(ItemStack.TooltipPart.ENCHANTMENTS)
                 data.first
             } else data.first
             setItem(index + 10, itemStack(if (data.second) Items.LIME_STAINED_GLASS_PANE else Items.RED_STAINED_GLASS_PANE) {
                 setName(if (data.second) activated else deactivated)
-                setCustomModel(item.getCustomModel())
+                addTagElement(namespace, nbtCompound { put("ID", item.getTagElement(namespace)?.getInt("ID") ?: 0) })
             })
             setItem(index + 1, item)
         }
@@ -154,11 +159,18 @@ class ScrollGUI(
             setSkullTexture(texture)
             setName(msg("gui.general.$key.n"))
             setLore(msgList("gui.general.$key.l"))
-            setCustomModel(id)
+            addTagElement(namespace, nbtCompound { put("ID", id) })
         }
     }
 
     init {
-
+        if (players.isEmpty()) {
+            consoleAudience.sendMessage(prefix + cmp("Creating GUI without player - Unexpected behaviour", cError))
+            InventoryManager.remove(id)
+        } else {
+            fillPlaceholder()
+            update()
+            open(players)
+        }
     }
 }

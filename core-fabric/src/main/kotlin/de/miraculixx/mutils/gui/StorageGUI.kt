@@ -3,16 +3,14 @@ package de.miraculixx.mutils.gui
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
-import de.miraculixx.mutils.gui.item.*
-import de.miraculixx.mvanilla.messages.cHighlight
-import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mutils.gui.utils.setName
 import de.miraculixx.mvanilla.messages.emptyComponent
-import de.miraculixx.mvanilla.messages.plus
 import net.kyori.adventure.text.Component
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.Enchantments
+import net.silkmc.silk.core.item.itemStack
 
 class StorageGUI(
     private val content: Map<ItemStack, Boolean>,
@@ -23,11 +21,11 @@ class StorageGUI(
     private val players: List<Player>,
     title: Component,
     override val id: String,
-    clickEvent: ((GUIClickEvent) -> Unit)?,
-    closeEvent: ((GUICloseEvent) -> Unit)?
+    clickEvent: ((GUIClickEvent, CustomInventory) -> Unit)?,
+    closeEvent: ((GUICloseEvent, CustomInventory) -> Unit)?
 ) : CustomInventory(6 * 9, title, clickEvent, closeEvent) {
     private var filter: String? = filterName
-    override val defaultClickAction: ((GUIClickEvent) -> Unit) = action@{
+    override val defaultClickAction: ((GUIClickEvent, CustomInventory) -> Unit) = action@{ it: GUIClickEvent, inv: CustomInventory ->
         val item = it.item
         val player = it.player
         // TODO Filter & co
@@ -55,7 +53,7 @@ class StorageGUI(
         builder.closeAction
     )
 
-    class Builder(val id: String): CustomInventory.Builder() {
+    class Builder(val id: String) : CustomInventory.Builder() {
         /**
          * Import items that are markable. Marked items will be displayed with either an enchanting glint or and be replaced with a shiny green glass pane, if they not support enchanting glints.
          * @see items
@@ -114,7 +112,7 @@ class StorageGUI(
         fun build() = StorageGUI(this)
     }
 
-    private fun build() {
+    override fun update() {
         //Header
         when (header.size) {
             1 -> setItem(4, header[0])
@@ -137,34 +135,19 @@ class StorageGUI(
             }
         }
 
-        //Filter Apply
-        if (filterable) {
-            setItem(49, itemStack(Items.HOPPER, 1) {
-                setCustomModel(205)
-                setName(cmp("Filters", cHighlight, bold = true))
-                setLore(listOf(
-                    emptyComponent(),
-                    cmp("Filter", cHighlight, underlined = true),
-                    cmp("∙ ${filter ?: "No Filter"}"),
-                    emptyComponent(),
-                    cmp("Click ", cHighlight) + cmp("≫ Change Filter")
-                ))
-                setPDCValue("gui.storage.filter", filter ?: "No Filter")
-            })
-        }
-
         //Content
         var counter = 0
         content.forEach { (item, activated) ->
             val finalItem = if (activated) {
-                 val i = when (item.item) {
+                val i = when (item.item) {
                     Items.PLAYER_HEAD, Items.ZOMBIE_HEAD, Items.SKELETON_SKULL, Items.CHEST,
-                    Items.ENDER_CHEST, Items.TRAPPED_CHEST -> item.copyAsMaterial(Items.LIME_STAINED_GLASS_PANE)
+                    Items.ENDER_CHEST, Items.TRAPPED_CHEST -> itemStack(Items.LIME_STAINED_GLASS_PANE) { tag = item.tag }
+
                     else -> item
                 }
 
                 i.enchant(Enchantments.MENDING, 1)
-                i.addHideFlags(HideFlag.HIDE_ENCHANTS)
+                i.hideTooltipPart(ItemStack.TooltipPart.ENCHANTMENTS)
                 i
             } else item
             if (((scrollable || filterable) && counter >= 24) || counter >= 30) return
@@ -183,7 +166,7 @@ class StorageGUI(
 
     init {
         fillPlaceholder()
-        build()
+        update()
     }
 }
 

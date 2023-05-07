@@ -2,11 +2,13 @@ package de.miraculixx.mtimer.command
 
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mtimer.MTimer
-import de.miraculixx.mtimer.gui.TimerGUI
 import de.miraculixx.mtimer.gui.actions.GUIOverview
+import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsOverview
-import de.miraculixx.mtimer.module.Timer
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.module.PaperTimer
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
+import de.miraculixx.mtimer.vanilla.module.Timer
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.messages.*
@@ -70,7 +72,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 else -> sender.sendMessage(prefix + msg("command.help"))
             }
 
-            "language" -> {
+            "data/language" -> {
                 if (!isPersonal && sender.hasPermission("mutils.command.timer-config")) {
                     sender.sendMessage(prefix + msg("command.help"))
                     return false
@@ -94,11 +96,11 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
     }
 
     private fun getTimer(sender: CommandSender): Timer {
-        val timer = if (isPersonal && sender is Player) TimerManager.getPersonalTimer(sender.uniqueId) else TimerManager.getGlobalTimer()
+        val timer = if (isPersonal && sender is Player) TimerManager.getPersonalTimer(sender.uniqueId) else TimerManager.globalTimer
         return if (timer == null) {
             if (debug) consoleAudience.sendMessage(prefix + cmp("Creating new personal timer for ${sender.name}"))
-            val newTimer = Timer(true, sender as Player, null)
-            newTimer.design = TimerManager.getGlobalTimer().design
+            val newTimer = PaperTimer(true, (sender as Player).uniqueId, null)
+            newTimer.design = TimerManager.globalTimer.design
             newTimer.visible = false
             TimerManager.addPersonalTimer(sender.uniqueId, newTimer)
             newTimer
@@ -113,13 +115,13 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                     if (!isPersonal && sender.hasPermission("mutils.command.timer-config")) {
                         val input = args?.getOrNull(0)
                         if (input?.startsWith('c') == true) add("config")
-                        else if (input?.startsWith('l') == true) add("language")
+                        else if (input?.startsWith('l') == true) add("data/language")
                     }
                 }
 
                 2 -> when (args?.getOrNull(0)) {
                     "config" -> addAll(listOf("save", "load"))
-                    "language" -> addAll(MTimer.localization.getLoadedKeys())
+                    "data/language" -> addAll(MTimer.localization.getLoadedKeys())
                 }
             }
         }.filter { it.startsWith(args?.lastOrNull() ?: "", ignoreCase = true) }.toMutableList()

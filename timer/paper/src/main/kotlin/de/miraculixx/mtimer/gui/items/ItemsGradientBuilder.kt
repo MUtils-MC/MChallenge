@@ -6,8 +6,8 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
-import de.miraculixx.mtimer.data.ColorBuilder
-import de.miraculixx.mtimer.data.GradientBuilder
+import de.miraculixx.mtimer.vanilla.data.ColorBuilder
+import de.miraculixx.mtimer.vanilla.data.GradientBuilder
 import de.miraculixx.mvanilla.extensions.msg
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*

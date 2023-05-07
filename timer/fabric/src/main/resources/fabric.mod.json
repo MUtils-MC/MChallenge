@@ -23,7 +23,9 @@
       }
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "mutils-timer.mixins.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.14.10",
