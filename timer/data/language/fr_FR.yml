@@ -21,26 +21,26 @@ common:
   click: "Cliquez"
   sneak: "Sneak"
   none: "None"
-  button: "Button"
+  button: "Bouton"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
   help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
-  resume: "<green><b>Resuming</b> the timer <grey>(<input-1>)" #v1
-  pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
-  alreadyOn: "<red>Timer is already running!"
-  alreadyOff: "<red>Timer is already paused!"
+  resume: "<green><b>Reprise du</b> timer <grey>(<input-1>)" #v1
+  pause: "<red><b>Pauser</b> du timer <grey>(<input-1>)" #v1
+  alreadyOn: "<red>Le timer est déjà en cours !"
+  alreadyOff: "<red>La Timer est déjà en pause!"
   reset: "<grey>La Timer a été réinitialisée avec succès à 0"
-  noPlayer: "<red>This command can only be used by players!"
-  noCommand: "<red>Invalid subcommand!"
+  noPlayer: "<red>Cette commande ne peut être utilisée que par les joueurs!"
+  noCommand: "<red>Sous-commande invalide !"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
-  millis: "Milliseconds"
+  millis: "Millisecondes"
   seconds: "Secondes"
   minutes: "Minutes"
   hours: "Heures"
