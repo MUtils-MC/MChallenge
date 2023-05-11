@@ -1,15 +1,27 @@
 package de.miraculixx.mtimer.module
 
+import de.miraculixx.mtimer.data.Rules
 import de.miraculixx.mtimer.data.TimerData
 import de.miraculixx.mtimer.data.TimerPresets
 import de.miraculixx.mtimer.server
 import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.rules
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.extensions.toUUID
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
 import java.io.File
 import kotlin.time.Duration
+
+var globalTimerState = false
+
+fun pauseGlobalTimer() {
+    globalTimerState = false
+}
+
+fun resumeGlobalTimer() {
+    globalTimerState = true
+}
 
 fun TimerManager.load(folder: File) {
     if (debug) consoleAudience.sendMessage(prefix + cmp("Load all data from disk..."))

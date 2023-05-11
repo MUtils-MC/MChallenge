@@ -2,6 +2,7 @@ package de.miraculixx.mtimer.gui.content
 
 import de.miraculixx.mtimer.data.TimerDesign
 import de.miraculixx.mtimer.module.FabricTimer
+import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mutils.gui.utils.setLore
 import de.miraculixx.mutils.gui.utils.setName
 import de.miraculixx.mvanilla.messages.*
@@ -12,7 +13,7 @@ import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.nbt.dsl.nbtCompound
 import java.util.*
 
-class ItemDesignConverter(private val timerReal: FabricTimer, private val timerFake: FabricTimer) {
+class ItemDesignConverter(private val timerReal: Timer, private val timerFake: FabricTimer) {
     fun getItem(design: TimerDesign, uuid: UUID): ItemStack {
         return itemStack(Items.NAME_TAG) {
             val uuidString = uuid.toString()

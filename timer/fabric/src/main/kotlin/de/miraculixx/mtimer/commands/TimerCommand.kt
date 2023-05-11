@@ -8,10 +8,16 @@ import de.miraculixx.mtimer.server
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mutils.gui.utils.native
+import de.miraculixx.mvanilla.extensions.soundDisable
+import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.messages.*
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.world.entity.player.Player
+import net.silkmc.silk.commands.LiteralCommandBuilder
 import net.silkmc.silk.commands.command
+import net.silkmc.silk.core.text.broadcastText
+import kotlin.time.Duration
 
 object TimerCommand {
     val globalTimer = command("timer") {
@@ -23,10 +29,23 @@ object TimerCommand {
             }
             openSetup(player, false, source)
         }
+        resume(false)
+        pause(false)
+        reset(false)
     }
 
     val privatTimer = command("ptimer") {
-
+        runs {
+            val player = source.player
+            if (player == null) {
+                source.sendMessage(prefix + msg("command.noPlayer"))
+                return@runs
+            }
+            openSetup(player, true, source)
+        }
+        resume(true)
+        pause(true)
+        reset(true)
     }
 
     private fun openSetup(player: Player, isPersonal: Boolean, sourceStack: CommandSourceStack) {
@@ -45,5 +64,51 @@ object TimerCommand {
             TimerManager.addPersonalTimer(player.uuid, newTimer)
             newTimer
         } else timer
+    }
+
+    private fun LiteralCommandBuilder<CommandSourceStack>.reset(isPersonal: Boolean) {
+        literal("reset") {
+            runs {
+                val timer = getTimer(source, isPersonal)
+                timer.running = false
+                timer.time = Duration.ZERO
+                source.soundDisable()
+                source.sendMessage(prefix + msg("command.reset"))
+            }
+        }
+    }
+
+    private fun LiteralCommandBuilder<CommandSourceStack>.pause(isPersonal: Boolean) {
+        literal("pause") {
+            runs {
+                val timer = getTimer(source, isPersonal)
+                if (!timer.running) {
+                    source.sendMessage(prefix + msg("command.alreadyOff"))
+                } else {
+                    timer.running = false
+                    source.soundDisable()
+                    val msg = prefix + msg("command.pause", listOf(source.textName))
+                    if (isPersonal) source.sendMessage(msg)
+                    else server.broadcastText(msg.native())
+                }
+            }
+        }
+    }
+
+    private fun LiteralCommandBuilder<CommandSourceStack>.resume(isPersonal: Boolean) {
+        literal("resume") {
+            runs {
+                val timer = getTimer(source, isPersonal)
+                if (timer.running) {
+                    source.sendMessage(prefix + msg("command.alreadyOn"))
+                } else {
+                    timer.running = true
+                    source.soundEnable()
+                    val msg = prefix + msg("command.resume", listOf(source.textName))
+                    if (isPersonal) source.sendMessage(msg)
+                    else server.broadcastText(msg.native())
+                }
+            }
+        }
     }
 }

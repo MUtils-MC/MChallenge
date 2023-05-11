@@ -21,8 +21,9 @@ public class MixinPlayer {
             cancellable = true
     )
     private void onDrop(ItemStack itemStack, boolean bl, boolean bl2, CallbackInfoReturnable<ItemEntity> cir) {
-        CustomPlayerEvents.PlayerItemEvent<Player> playerItemEvent = new CustomPlayerEvents.PlayerItemEvent<>((Player) (Object) this, itemStack);
-        if (CustomPlayerEvents.INSTANCE.getPreDrop().invoke(playerItemEvent).isCancelled().get()) {
+        CustomPlayerEvents.PlayerItemEvent<Player> playerItemEvent = new CustomPlayerEvents.PlayerItemEvent<>((Player) (Object) this, itemStack, false);
+        CustomPlayerEvents.INSTANCE.getPreDrop().invoke(playerItemEvent);
+        if (playerItemEvent.isCancelled()) {
             cir.setReturnValue(null);
         }
     }
@@ -35,8 +36,9 @@ public class MixinPlayer {
             cancellable = true
     )
     private void onHurt(DamageSource damageSource, float damage, CallbackInfoReturnable<Boolean> cir) {
-        CustomPlayerEvents.PlayerDamageEvent<Player> playerDamageEvent = new CustomPlayerEvents.PlayerDamageEvent<>((Player) (Object) this, damageSource, damage);
-        if (CustomPlayerEvents.INSTANCE.getOnFinalDamage().invoke(playerDamageEvent).isCancelled().get()) {
+        CustomPlayerEvents.PlayerDamageEvent<Player> playerDamageEvent = new CustomPlayerEvents.PlayerDamageEvent<>((Player) (Object) this, damageSource, damage, false);
+        CustomPlayerEvents.INSTANCE.getOnFinalDamage().invoke(playerDamageEvent);
+        if (playerDamageEvent.isCancelled()) {
             cir.setReturnValue(false);
         }
     }

@@ -1,8 +1,5 @@
 package de.miraculixx.mtimer.gui.actions
 
-import de.miraculixx.mtimer.gui.buildInventory
-import de.miraculixx.mtimer.server
-import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.GUIClick
@@ -11,9 +8,8 @@ import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.*
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.inventory.ClickType
 
-class ActionOverview(isPersonal: Boolean): GUIEvent {
+class ActionOverview(isPersonal: Boolean) : GUIEvent {
     private val noPersonalTimer = prefix + msg("event.noPersonalTimer")
 
     override val run: (GUIClickEvent, CustomInventory) -> Unit = event@{ it: GUIClickEvent, inv: CustomInventory ->

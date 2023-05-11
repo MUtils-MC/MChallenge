@@ -60,7 +60,7 @@ class FabricTimer(
         infiniteMcCoroutineTask(false) {
             if (remove) cancel()
             if (!visible) return@infiniteMcCoroutineTask
-            val player = playerID?.let { playerList.getPlayer(it) } ?: return@infiniteMcCoroutineTask
+            val player = playerID?.let { playerList.getPlayer(it) }
             tickLogics.forEach { tick -> tick.invoke(time) }
 
             val target = if (isPersonal) listOf(player) else {
@@ -77,7 +77,7 @@ class FabricTimer(
             val globalTimer = if (isPersonal) TimerManager.globalTimer else this@FabricTimer
             if (!isPersonal || (!globalTimer.visible || !globalTimer.running)) {
                 val component = buildFormatted(running)
-                target.forEach { t -> t.sendActionBar(component) }
+                target.forEach { t -> t?.sendActionBar(component) }
             }
 
             if (!running) return@infiniteMcCoroutineTask
@@ -88,8 +88,8 @@ class FabricTimer(
                     Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofMillis(5000), java.time.Duration.ofMillis(1000))
                 ) // 0,3s 5s 1s
                 target.forEach { p ->
-                    p.playSound(Sound.sound(Key.key("entity.ender_dragon.growl"), Sound.Source.MASTER, 1f, 1.1f))
-                    p.showTitle(title)
+                    p?.playSound(Sound.sound(Key.key("entity.ender_dragon.growl"), Sound.Source.MASTER, 1f, 1.1f))
+                    p?.showTitle(title)
                 }
                 return@infiniteMcCoroutineTask
             }
