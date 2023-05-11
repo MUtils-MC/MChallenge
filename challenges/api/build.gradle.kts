@@ -39,14 +39,14 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "de.miraculixx"
             artifactId = "challenge-api"
-            version = "1.0.0"
+            version = "1.1.0"
 
             from(components["java"])
 
             pom {
                 name.set("MUtils-Challenge-API")
                 description.set("Access MUtils-Challenge through this API")
-                url.set("https://mutils.de")
+                url.set("https://mutils.net")
 
                 developers {
                     developer {
@@ -58,8 +58,8 @@ publishing {
 
                 licenses {
                     license {
-                        name.set("GNU General Public License v3.0")
-                        url.set("https://www.gnu.org/licenses/gpl-3.0.html")
+                        name.set("GNU Affero General Public License v3.0")
+                        url.set("https://www.gnu.org/licenses/agpl-3.0.en.html")
                     }
                 }
 
