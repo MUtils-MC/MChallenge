@@ -58,7 +58,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
 
             "reset" -> {
                 timer.running = false
-                timer.setTime(Duration.ZERO)
+                timer.time = Duration.ZERO
                 sender.soundDisable()
                 sender.sendMessage(prefix + msg("command.reset"))
             }

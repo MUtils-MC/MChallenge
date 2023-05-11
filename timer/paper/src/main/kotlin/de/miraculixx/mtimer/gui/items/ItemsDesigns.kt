@@ -1,8 +1,9 @@
 package de.miraculixx.mtimer.gui.items
 
 import de.miraculixx.mcore.gui.items.ItemProvider
-import de.miraculixx.mtimer.module.Timer
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.module.PaperTimer
+import de.miraculixx.mtimer.vanilla.module.Timer
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.inventory.ItemStack
 import kotlin.time.Duration.Companion.days
@@ -12,13 +13,13 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 class ItemsDesigns(private val timer: Timer) : ItemProvider {
-    private val timerFake = Timer(true, null, null, false)
-    private val timerReal = Timer(true, null, null, false)
+    private val timerFake = PaperTimer(true, null, null, false)
+    private val timerReal = PaperTimer(true, null, null, false)
 
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
-            timerFake.setTime(1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
-            timerReal.setTime(timer.getTime())
+            timerFake.time = (1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
+            timerReal.time = (timer.time)
             val converter = ItemDesignConverter(timerReal, timerFake)
             val loreAddon = listOf(
                 msgClickLeft + cmp("Switch"),

@@ -7,8 +7,8 @@ import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.module.Timer
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.module.PaperTimer
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
@@ -26,9 +26,9 @@ class ItemsDesignEditor(
     private val uuid: UUID
 ) : ItemProvider {
     override fun getSlotMap(): Map<Int, ItemStack> {
-        val dummyTimer = Timer(true, null, null, false)
-        dummyTimer.setTime(1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
-        val converter = ItemDesignConverter(TimerManager.getGlobalTimer(), dummyTimer)
+        val dummyTimer = PaperTimer(true, null, null, false)
+        dummyTimer.time = (1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
+        val converter = ItemDesignConverter(TimerManager.globalTimer as PaperTimer, dummyTimer)
         return mapOf(
             11 to itemStack(Material.BOOK) {
                 meta {

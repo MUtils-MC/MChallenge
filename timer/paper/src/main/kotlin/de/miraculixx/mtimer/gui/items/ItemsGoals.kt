@@ -5,7 +5,7 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
-import de.miraculixx.mtimer.module.goals
+import de.miraculixx.mtimer.vanilla.module.goals
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack

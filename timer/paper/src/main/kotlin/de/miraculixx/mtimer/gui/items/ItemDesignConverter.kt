@@ -5,7 +5,7 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.module.Timer
+import de.miraculixx.mtimer.module.PaperTimer
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
-class ItemDesignConverter(private val timerReal: Timer, private val timerFake: Timer) {
+class ItemDesignConverter(private val timerReal: PaperTimer, private val timerFake: PaperTimer) {
     fun getItem(design: TimerDesign, uuid: UUID): ItemStack {
         return itemStack(Material.NAME_TAG) {
             meta {

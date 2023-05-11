@@ -10,8 +10,9 @@ import de.miraculixx.mcore.utils.registerCommand
 import de.miraculixx.mtimer.command.HelperCommand
 import de.miraculixx.mtimer.command.TimerCommand
 import de.miraculixx.mtimer.data.Settings
-import de.miraculixx.mtimer.module.TimerAPIImplementation
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.module.TimerAPI
+import de.miraculixx.mtimer.module.load
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.coroutines.CoroutineScope
@@ -57,7 +58,7 @@ class MTimer : KSpigot() {
             if (Bukkit.getPluginManager().isPluginEnabled("MUtils-Challenges")) chAPI = MChallengeAPI.instance
 
             TimerManager.load(configFolder)
-            TimerAPIImplementation
+            TimerAPI
         }
     }
 

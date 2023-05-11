@@ -10,6 +10,10 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mtimer.data.Punishment
+import de.miraculixx.mtimer.vanilla.module.Timer
+import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.goals
+import de.miraculixx.mtimer.vanilla.module.rules
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
@@ -83,7 +87,7 @@ class TimerListener {
     //
     private val onDie = listen<PlayerDeathEvent>(register = false) {
         val player = it.entity
-        val timer = TimerManager.getGlobalTimer()
+        val timer = TimerManager.globalTimer
         if (goals.playerDeath) {
             val loc = it.entity.location
             timer.running = false
@@ -143,10 +147,10 @@ class TimerListener {
         val entity = it.entity
         val type = entity.type
         when {
-            type == EntityType.ENDER_DRAGON -> if (goals.enderDragon) finished(entity, TimerManager.getGlobalTimer())
-            type == EntityType.WITHER -> if (goals.wither) finished(entity, TimerManager.getGlobalTimer())
-            type == EntityType.ELDER_GUARDIAN -> if (goals.elderGuardian) finished(entity, TimerManager.getGlobalTimer())
-            majorVersion >= 19 && type == EntityType.WARDEN -> if (goals.warden) finished(entity, TimerManager.getGlobalTimer())
+            type == EntityType.ENDER_DRAGON -> if (goals.enderDragon) finished(entity, TimerManager.globalTimer)
+            type == EntityType.WITHER -> if (goals.wither) finished(entity, TimerManager.globalTimer)
+            type == EntityType.ELDER_GUARDIAN -> if (goals.elderGuardian) finished(entity, TimerManager.globalTimer)
+            majorVersion >= 19 && type == EntityType.WARDEN -> if (goals.warden) finished(entity, TimerManager.globalTimer)
             else -> Unit
         }
     }
@@ -156,7 +160,7 @@ class TimerListener {
         pTimer?.running = false
 
         if (onlinePlayers.size <= 1 && goals.emptyServer) {
-            TimerManager.getGlobalTimer().running = false
+            TimerManager.globalTimer.running = false
             console.sendMessage(msg("command.stop", listOf("Console")))
         }
     }

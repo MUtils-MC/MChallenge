@@ -8,7 +8,7 @@ import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mtimer.data.TimerDesign
 import de.miraculixx.mtimer.data.TimerDesignValue
-import de.miraculixx.mtimer.module.Timer
+import de.miraculixx.mtimer.module.PaperTimer
 import de.miraculixx.mvanilla.extensions.round
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
@@ -33,10 +33,10 @@ class ItemsDesignPartEditor(
     private val msg2 = msgString("event.visibleOnNull")
     private val msg3 = msgString("event.prefix")
     private val msg4 = msgString("event.suffix")
-    private val dummyTimer = Timer(true, null, uuid, isRunning)
+    private val dummyTimer = PaperTimer(true, null, uuid, isRunning)
 
     override fun getSlotMap(): Map<Int, ItemStack> {
-        dummyTimer.setTime(1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds)
+        dummyTimer.time = (1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds)
         val part = if (isRunning) design.running else design.idle
         return mapOf(
             10 to itemStack(Material.MAP) {

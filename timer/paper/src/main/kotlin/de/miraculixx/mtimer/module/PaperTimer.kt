@@ -72,7 +72,7 @@ class PaperTimer(
             if (animator > 1.0f) animator -= 2.0f
             else if (animator < -1.0f) animator += 2.0f
 
-            val globalTimer = if (isPersonal) TimerManager.getGlobalTimer() else this
+            val globalTimer = if (isPersonal) TimerManager.globalTimer else this
             if (!isPersonal || (!globalTimer.visible || !globalTimer.running)) {
                 val component = buildFormatted(running)
                 target.forEach { t -> t?.sendActionBar(component) }
