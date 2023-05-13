@@ -1,0 +1,3 @@
+[submodule "challenges/api"]
+	path = challenges/api
+	url = https://github.com/MUtils-MC/MChallenge-API.git
