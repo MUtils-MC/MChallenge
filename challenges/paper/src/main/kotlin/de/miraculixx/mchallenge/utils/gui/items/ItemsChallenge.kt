@@ -28,16 +28,16 @@ import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
-class ItemsChallenge : ItemFilterProvider {
-    override var filter = ChallengeTags.NO_FILTER.name
+class ItemsChallenge(startFilter: ChallengeTags = ChallengeTags.NO_FILTER) : ItemFilterProvider {
+    override var filter = startFilter.name
     private val challengeKey = NamespacedKey(namespace, "gui.challenge")
     private val customChallengeKey = NamespacedKey(namespace, "gui.customchallenge")
 
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
             val finalFilter = enumOf<ChallengeTags>(filter)
-            val officialChallenges = Challenges.values().filter { isMatchingFilter(it, finalFilter) }.map { ChallengeItemData(it.icon, challenges.getSetting(it), it, tags = it.filter) }
-            val addonChallenges = ChallengeManager.getCustomChallenges().filter { isMatchingFilter(it.value.tags, finalFilter) }.map { ChallengeItemData(it.value.icon, it.value.data, customUUID = it.key, tags = it.value.tags) }
+            val officialChallenges = Challenges.values().filter { isMatchingFilter(it, finalFilter) }.map { ChallengeItemData(it.icon, challenges.getSetting(it), it, tags = it.filter, owner = "MUtils") }
+            val addonChallenges = ChallengeManager.getCustomChallenges().filter { isMatchingFilter(it.value.tags, finalFilter) }.map { ChallengeItemData(it.value.icon, it.value.data, customUUID = it.key, tags = it.value.tags, owner = it.value.owner) }
             val allChallenges = buildList {
                 addAll(officialChallenges)
                 addAll(addonChallenges)
@@ -51,18 +51,28 @@ class ItemsChallenge : ItemFilterProvider {
             // Adding all other Challenges - globals first
             range.forEach { challenge ->
                 val data = getChallengeItem(challenge)
+                val isAddon = challenge.customUUID != null
                 when {
                     challenge.key == cotm -> data.first.editMeta {
                         it.name = it.name?.color(cSuccess)
                         it.lore(it.lore()?.apply { add(0, cmp("Challenge of the Month", cSuccess)) })
                     }
-                    !status && challenge.key?.status == false -> {
+
+                    !status && (challenge.key?.status == false || (isAddon && !challenge.tags.contains(ChallengeTags.FREE))) -> {
                         data.first.editMeta {
                             it.name = it.name?.color(cError)
                             it.lore(it.lore()?.apply { add(0, cmp("Premium only", cError)) })
                         }
                         if (hideAllPremiumStuff) return@forEach
                     }
+
+                    isAddon -> {
+                        data.first.editMeta {
+                            it.name = it.name?.color(NamedTextColor.GOLD)
+                            it.lore(it.lore()?.apply { add(0, cmp("Addon Challenge - ${challenge.owner}", NamedTextColor.GOLD)) })
+                        }
+                    }
+
                     else -> data.first.editMeta { it.name = it.name?.color(cHighlight) }
                 }
                 put(data.first, data.second)
@@ -158,6 +168,7 @@ class ItemsChallenge : ItemFilterProvider {
         val settings: ChallengeData,
         val key: Challenges? = null,
         val customUUID: UUID? = null,
-        val tags: Set<ChallengeTags>
+        val tags: Set<ChallengeTags>,
+        val owner: String
     )
 }

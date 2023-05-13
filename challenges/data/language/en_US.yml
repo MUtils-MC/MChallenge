@@ -63,6 +63,7 @@ command:
   lang:
     success: "<grey>Successfully switched language to <green><input-1>"
     fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
+  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
 
 
 #-----------------------------------------#

@@ -3,8 +3,10 @@ package de.miraculixx.mchallenge.modules.challenges
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.challenge.api.settings.ChallengeData
 import de.miraculixx.challenge.api.settings.challenges
 import de.miraculixx.challenge.api.settings.getSetting
+import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.anvilCrusher.AnvilCrusher
 import de.miraculixx.mchallenge.modules.mods.areaTimer.AreaTimer
 import de.miraculixx.mchallenge.modules.mods.blockAsync.BlockAsync
@@ -48,6 +50,7 @@ import de.miraculixx.mchallenge.modules.mods.worldPeace.WorldPeace
 import de.miraculixx.mchallenge.utils.cotm
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mvanilla.messages.*
+import java.util.UUID
 
 class StatusChanger {
     private fun getClass(module: Challenges): Challenge {
@@ -110,23 +113,23 @@ class StatusChanger {
         val activated = ArrayList<Challenge>()
         var success = false
         val status = getStatus()
-        val available = Challenges.values()
+        val actives = Challenges.values().filter { challenges.getSetting(it).active }
+        val addons = ChallengeManager.getCustomChallenges().filter { it.value.data.active }.map { ChallengeAddon(it.value.tags, it.key, it.value.challenge) }
 
-        available.forEach {
-            val settings = challenges.getSetting(it)
-            if (!settings.active) return@forEach
-
-            if (!status) {
-                if (it != cotm && !it.matchingFilter(ChallengeTags.FREE)) {
-                    consoleAudience.sendMessage(prefix + cmp("Challenge ${it.name} requires a connected account to play!", cError))
-                    return@forEach
-                }
-            }
-
-            val challenge = getClass(it)
-            if (challenge.start()) {
+        // Internal Challenges
+        actives.forEach {
+            val instance = getClass(it)
+            if (startChallenge(it.filter, status, instance, it, null)) {
                 success = true
-                activated.add(challenge)
+                activated.add(instance)
+            }
+        }
+
+        // Addon Challenges
+        addons.forEach {
+            if (startChallenge(it.tags, status, it.instance, null, it.uuid)) {
+                success = true
+                activated.add(it.instance)
             }
         }
 
@@ -136,6 +139,17 @@ class StatusChanger {
         }
         registerChallenges(activated)
         return activated
+    }
+
+    private fun startChallenge(tags: Set<ChallengeTags>, status: Boolean, instance: Challenge, internalChallenge: Challenges?, customUUID: UUID?): Boolean {
+        if (!status) {
+            if (internalChallenge != cotm && !tags.contains(ChallengeTags.FREE)) {
+                consoleAudience.sendMessage(prefix + cmp("Challenge ${internalChallenge?.name ?: customUUID} requires a connected account to play!", cError))
+                return false
+            }
+        }
+
+        return instance.start()
     }
 
     /**
@@ -165,4 +179,6 @@ class StatusChanger {
             it.unregister()
         }
     }
+
+    private data class ChallengeAddon(val tags: Set<ChallengeTags>, val uuid: UUID, val instance: Challenge)
 }

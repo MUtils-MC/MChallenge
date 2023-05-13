@@ -4,7 +4,6 @@ import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.challenge.api.modules.challenges.*
 import de.miraculixx.challenge.api.settings.ChallengeData
 import de.miraculixx.challenge.api.settings.challenges
-import de.miraculixx.challenge.api.utils.Icon
 import de.miraculixx.mchallenge.modules.challenges.StatusChanger
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.json
@@ -55,6 +54,10 @@ object ChallengeManager : MChallengeAPI() {
         statusChanger.registerChallenges(activatedChallenges)
         status = ChallengeStatus.RUNNING
         return true
+    }
+
+    override fun getChallengeStatus(): ChallengeStatus {
+        return status
     }
 
     override fun addChallenge(key: UUID, data: CustomChallengeData): CustomChallengeData? {

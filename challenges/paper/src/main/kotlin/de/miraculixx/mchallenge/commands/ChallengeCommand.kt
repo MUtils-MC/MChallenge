@@ -1,6 +1,7 @@
 package de.miraculixx.mchallenge.commands
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
+import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
@@ -16,6 +17,7 @@ import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.kotlindsl.*
+import org.bukkit.Sound
 import org.bukkit.command.CommandSender
 
 class ChallengeCommand {
@@ -25,12 +27,25 @@ class ChallengeCommand {
         withAliases("ch")
         playerExecutor { player, _ ->
             GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
+            player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN, 0.5f, 1f)
+        }
+
+        literalArgument("addons") {
+            playerExecutor { player, _ ->
+                if (ChallengeManager.getCustomChallenges().isEmpty()) {
+                    player.sendMessage(prefix + msg("command.noAddons"))
+                    player.soundError()
+                    return@playerExecutor
+                }
+                GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(ChallengeTags.ADDON), GUIChallenge())
+                player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN, 0.5f, 1f)
+            }
         }
 
         literalArgument("stop") {
             anyExecutor { sender, _ ->
                 if (ChallengeManager.stopChallenges()) {
-                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.STOPPED
+                    ChallengeManager.status = ChallengeStatus.STOPPED
                     broadcast(prefix + msg("command.challenge.stop", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
             }
@@ -38,10 +53,10 @@ class ChallengeCommand {
 
         literalArgument("start") {
             anyExecutor { sender, _ ->
-                if (ChallengeManager.status == de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.RUNNING) {
+                if (ChallengeManager.status == ChallengeStatus.RUNNING) {
                     sender.sendMessage(prefix + msg("command.challenge.alreadyOn"))
                 } else if (ChallengeManager.startChallenges()) {
-                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.RUNNING
+                    ChallengeManager.status = ChallengeStatus.RUNNING
                     broadcast(prefix + msg("command.challenge.start", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.failed"))
             }
@@ -50,7 +65,7 @@ class ChallengeCommand {
         literalArgument("pause") {
             anyExecutor { sender, _ ->
                 if (ChallengeManager.pauseChallenges()) {
-                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.PAUSED
+                    ChallengeManager.status = ChallengeStatus.PAUSED
                     broadcast(prefix + msg("command.challenge.pause", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
             }
@@ -59,7 +74,7 @@ class ChallengeCommand {
         literalArgument("resume") {
             anyExecutor { sender, _ ->
                 if (ChallengeManager.resumeChallenges()) {
-                    ChallengeManager.status = de.miraculixx.challenge.api.modules.challenges.ChallengeStatus.RUNNING
+                    ChallengeManager.status = ChallengeStatus.RUNNING
                     broadcast(prefix + msg("command.challenge.continue", listOf(sender.name)))
                 } else sender.sendMessage(prefix + msg("command.challenge.alreadyOff"))
             }
@@ -126,14 +141,6 @@ class ChallengeCommand {
                         } else sender.sendMessage(prefix + msg("command.lang.fail", listOf(key)))
                     }
                 }
-            }
-        }
-
-
-
-        literalArgument("test") {
-            playerExecutor { player, _ ->
-                player.teleport(MineFieldWorld().createWorld()!!.spawnLocation)
             }
         }
     }

@@ -7,7 +7,7 @@ import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.plus
 import net.kyori.adventure.text.Component
 
-var cotm: de.miraculixx.challenge.api.modules.challenges.Challenges = de.miraculixx.challenge.api.modules.challenges.Challenges.FLY
+var cotm: Challenges = Challenges.FLY
 
 fun getRPPrompt(action: String, input: String): Component {
     return cmp("MUtils Challenges", cHighlight, bold = true) +
