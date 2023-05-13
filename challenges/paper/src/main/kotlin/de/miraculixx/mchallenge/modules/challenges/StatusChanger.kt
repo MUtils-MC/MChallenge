@@ -10,6 +10,7 @@ import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.anvilCrusher.AnvilCrusher
 import de.miraculixx.mchallenge.modules.mods.areaTimer.AreaTimer
 import de.miraculixx.mchallenge.modules.mods.blockAsync.BlockAsync
+import de.miraculixx.mchallenge.modules.mods.blockWorld.BlockWorld
 import de.miraculixx.mchallenge.modules.mods.boostUp.BoostUp
 import de.miraculixx.mchallenge.modules.mods.checkpoints.Checkpoints
 import de.miraculixx.mchallenge.modules.mods.chunkBreaker.ChunkBlockBreaker
@@ -100,6 +101,7 @@ class StatusChanger {
             Challenges.ITEM_DECAY -> ItemDecay()
             Challenges.AREA_TIMER -> AreaTimer()
             Challenges.COLLECT_BATTLE -> CollectBattle()
+            Challenges.BLOCK_WORLD -> BlockWorld()
         }
     }
 
