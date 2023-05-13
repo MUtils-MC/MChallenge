@@ -9,7 +9,7 @@ More information - [MUtils Website](https://mutils.net)
 
 ---
 ## Implement API
-To use the MChallenge API simply add the following to your Gradle script:
+To use the MChallenge API simply add the following to your Gradle script. Do not shade the API into your jar!
 ````kotlin
 dependencies {
     // The MChallenge API
