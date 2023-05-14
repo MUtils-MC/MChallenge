@@ -6,10 +6,11 @@ import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mtimer.MTimer
 import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.gui.TimerGUI
+import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsDesignPartEditor
 import de.miraculixx.mtimer.gui.items.ItemsDesigns
-import de.miraculixx.mtimer.module.TimerManager
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
+import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.messages.cmp
@@ -49,7 +50,7 @@ class GUIDesignEditor(
             4 -> {
                 player.closeInventory()
                 player.soundEnable()
-                val timer = if (isPersonal) TimerManager.getPersonalTimer(player.uniqueId) ?: return@event else TimerManager.getGlobalTimer()
+                val timer = if (isPersonal) TimerManager.getPersonalTimer(player.uniqueId) ?: return@event else TimerManager.globalTimer
                 async { TimerManager.save(MTimer.configFolder) }
                 TimerGUI.DESIGN.buildInventory(player, player.uniqueId.toString(), ItemsDesigns(timer), GUIDesigns(isPersonal, timer))
             }

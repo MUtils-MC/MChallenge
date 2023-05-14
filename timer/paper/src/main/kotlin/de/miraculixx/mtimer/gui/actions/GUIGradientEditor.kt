@@ -3,11 +3,12 @@ package de.miraculixx.mtimer.gui.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
+import de.miraculixx.mtimer.gui.buildInventory
+import de.miraculixx.mtimer.gui.items.ItemsColorBuilder
 import de.miraculixx.mtimer.vanilla.data.ColorBuilder
 import de.miraculixx.mtimer.vanilla.data.ColorType
 import de.miraculixx.mtimer.vanilla.data.GradientBuilder
-import de.miraculixx.mtimer.gui.TimerGUI
-import de.miraculixx.mtimer.gui.items.ItemsColorBuilder
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent

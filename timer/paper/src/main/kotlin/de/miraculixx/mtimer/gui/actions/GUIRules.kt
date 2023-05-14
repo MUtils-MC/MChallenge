@@ -4,10 +4,11 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mtimer.data.Punishment
-import de.miraculixx.mtimer.gui.TimerGUI
+import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsOverview
-import de.miraculixx.mtimer.module.TimerManager
-import de.miraculixx.mtimer.module.rules
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
+import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.rules
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.enumRotate
 import de.miraculixx.mvanilla.extensions.soundUp
@@ -41,7 +42,7 @@ class GUIRules : GUIEvent {
 
             0 -> {
                 player.click()
-                TimerGUI.OVERVIEW.buildInventory(player, "TIMER_GLOBAL", ItemsOverview(TimerManager.getGlobalTimer(), false), GUIOverview(false))
+                TimerGUI.OVERVIEW.buildInventory(player, "TIMER_GLOBAL", ItemsOverview(TimerManager.globalTimer, false), GUIOverview(false))
                 return@event
             }
         }

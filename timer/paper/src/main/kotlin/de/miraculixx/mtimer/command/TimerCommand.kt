@@ -6,6 +6,7 @@ import de.miraculixx.mtimer.gui.actions.GUIOverview
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsOverview
 import de.miraculixx.mtimer.module.PaperTimer
+import de.miraculixx.mtimer.module.load
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager

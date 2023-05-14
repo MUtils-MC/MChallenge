@@ -1,13 +1,14 @@
 package de.miraculixx.mtimer.command
 
+import de.miraculixx.mtimer.gui.actions.GUIColorBuilder
+import de.miraculixx.mtimer.gui.actions.GUIGradientEditor
+import de.miraculixx.mtimer.gui.buildInventory
+import de.miraculixx.mtimer.gui.items.ItemsColorBuilder
+import de.miraculixx.mtimer.gui.items.ItemsGradientBuilder
 import de.miraculixx.mtimer.vanilla.data.ColorBuilder
 import de.miraculixx.mtimer.vanilla.data.ColorType
 import de.miraculixx.mtimer.vanilla.data.GradientBuilder
-import de.miraculixx.mtimer.gui.TimerGUI
-import de.miraculixx.mtimer.gui.actions.GUIColorBuilder
-import de.miraculixx.mtimer.gui.actions.GUIGradientEditor
-import de.miraculixx.mtimer.gui.items.ItemsColorBuilder
-import de.miraculixx.mtimer.gui.items.ItemsGradientBuilder
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender

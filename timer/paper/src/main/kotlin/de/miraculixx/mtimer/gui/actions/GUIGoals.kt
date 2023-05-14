@@ -3,10 +3,11 @@ package de.miraculixx.mtimer.gui.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
-import de.miraculixx.mtimer.gui.TimerGUI
+import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsOverview
-import de.miraculixx.mtimer.module.TimerManager
-import de.miraculixx.mtimer.module.goals
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
+import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.goals
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.toggle
 import org.bukkit.entity.Player
@@ -28,7 +29,7 @@ class GUIGoals : GUIEvent {
 
             0 -> {
                 player.click()
-                TimerGUI.OVERVIEW.buildInventory(player, "TIMER_GLOBAL", ItemsOverview(TimerManager.getGlobalTimer(), false), GUIOverview(false))
+                TimerGUI.OVERVIEW.buildInventory(player, "TIMER_GLOBAL", ItemsOverview(TimerManager.globalTimer, false), GUIOverview(false))
                 return@event
             }
         }
