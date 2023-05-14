@@ -15,4 +15,4 @@ You can find more detailed infos on the official [MUtils Website](https://mutils
 
 ## Support
 
-You can get Support on the [MUtils Discord Server](https://mutils.de/dc).
+You can get Support on the [MUtils Discord Server](https://discord.gg/VEcR8RbnSH).
