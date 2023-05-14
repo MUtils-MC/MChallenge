@@ -60,7 +60,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     RIVALS_COLLECT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE, ChallengeTags.MULTIPLAYER), Icon("CHEST_MINECART")),
     ROCKET(setOf(ChallengeTags.MEDIUM), Icon("FIREWORK_ROCKET")),
     BLOCK_WORLD(setOf(ChallengeTags.FUN), Icon("DIAMOND_BLOCK")),
-    MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHT_PRESSURE_PLATE"))
+    MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHTED_PRESSURE_PLATE"))
     ;
 
 
