@@ -59,7 +59,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     DAMAGER(setOf(ChallengeTags.HARD), Icon("DIAMOND_SWORD")),
     RIVALS_COLLECT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE, ChallengeTags.MULTIPLAYER), Icon("CHEST_MINECART")),
     ROCKET(setOf(ChallengeTags.MEDIUM), Icon("FIREWORK_ROCKET")),
-    BLOCK_WORLD(setOf(ChallengeTags.FUN), Icon("DIAMOND_BLOCK"))
+    BLOCK_WORLD(setOf(ChallengeTags.FUN), Icon("DIAMOND_BLOCK")),
+    MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHT_PRESSURE_PLATE"))
     ;
 
 
@@ -256,6 +257,10 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             )
 
             BLOCK_WORLD -> mapOf()
+
+            MINEFIELD_WORLD -> mapOf(
+                "density" to ChallengeIntSetting("REPEATER", 50, "%", max = 100, min = 1, step = 5)
+            )
         }
     }
 }

@@ -30,6 +30,7 @@ import de.miraculixx.mchallenge.modules.mods.huntMob.MobHunt
 import de.miraculixx.mchallenge.modules.mods.inTime.InTime
 import de.miraculixx.mchallenge.modules.mods.itemDecay.ItemDecay
 import de.miraculixx.mchallenge.modules.mods.limitedSkills.LimitedSkills
+import de.miraculixx.mchallenge.modules.mods.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.modules.mods.mirror.Mirror
 import de.miraculixx.mchallenge.modules.mods.mobBlocks.MobBlocks
 import de.miraculixx.mchallenge.modules.mods.noDoubleKill.NoDoubleKills
@@ -101,6 +102,7 @@ class StatusChanger {
             Challenges.AREA_TIMER -> AreaTimer()
             Challenges.COLLECT_BATTLE -> CollectBattle()
             Challenges.BLOCK_WORLD -> BlockWorld()
+            Challenges.MINEFIELD_WORLD -> MineFieldWorld()
         }
     }
 
