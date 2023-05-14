@@ -1,19 +1,21 @@
 package de.miraculixx.mchallenge.utils.gui.actions
 
-import de.miraculixx.challenge.api.modules.challenges.Challenges
 import de.miraculixx.challenge.api.settings.*
-import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallengeSettings
 import de.miraculixx.mcore.await.AwaitConfirm
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.InventoryUtils.get
 import de.miraculixx.mcore.gui.data.CustomInventory
+import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.debug
 import de.miraculixx.mvanilla.messages.namespace
-import de.miraculixx.mvanilla.extensions.*
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -42,7 +44,7 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
         val customChallengeID = dataContainer.get(customChallengeNamespace)?.toUUID()
         val settingKey = dataContainer.get(NamespacedKey(namespace, "gui.challenge.setting"), PersistentDataType.STRING)
         val settingsData = section?.getValue()
-                ?: (challengeID?.let { key -> enumOf<Challenges>(key)?.let { ch -> challenges.getSetting(ch).settings } }
+            ?: (challengeID?.let { key -> enumOf<Challenges>(key)?.let { ch -> challenges.getSetting(ch).settings } }
                 ?: customChallengeID?.let { key -> ChallengeManager.getChallenge(key)?.data?.settings } ?: return@event)
 
         if (id == 3001) {

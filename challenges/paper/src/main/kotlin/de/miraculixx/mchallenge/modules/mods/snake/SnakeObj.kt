@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.snake
 
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.challenge.api.modules.challenges.Challenges
-import de.miraculixx.challenge.api.settings.challenges
-import de.miraculixx.challenge.api.settings.getSetting
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.Block

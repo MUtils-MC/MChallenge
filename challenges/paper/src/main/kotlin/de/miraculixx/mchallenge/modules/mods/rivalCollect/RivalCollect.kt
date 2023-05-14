@@ -3,10 +3,10 @@
 package de.miraculixx.mchallenge.modules.mods.rivalCollect
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.challenge.api.modules.mods.rivalsCollect.RivalCollectMode
-import de.miraculixx.challenge.api.settings.challenges
-import de.miraculixx.challenge.api.settings.getSetting
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister

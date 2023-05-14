@@ -7,13 +7,13 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.challenge.api.settings.challenges
-import de.miraculixx.challenge.api.settings.getSetting
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import org.bukkit.Color
 import org.bukkit.GameMode
 import org.bukkit.Material

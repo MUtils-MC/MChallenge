@@ -3,7 +3,8 @@ package de.miraculixx.mchallenge.modules
 import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.challenge.api.modules.challenges.*
 import de.miraculixx.challenge.api.settings.ChallengeData
-import de.miraculixx.challenge.api.settings.challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.modules.challenges.StatusChanger
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.json

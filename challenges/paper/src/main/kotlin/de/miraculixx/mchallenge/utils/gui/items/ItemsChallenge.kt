@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge.utils.gui.items
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.challenge.api.settings.*
 import de.miraculixx.challenge.api.utils.Icon
 import de.miraculixx.challenge.api.utils.IconNaming
@@ -10,6 +10,8 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mchallenge.MChallenge
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mvanilla.extensions.msg
 import de.miraculixx.mcore.gui.items.ItemFilterProvider

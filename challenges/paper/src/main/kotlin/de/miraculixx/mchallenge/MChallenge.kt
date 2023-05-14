@@ -2,7 +2,6 @@ package de.miraculixx.mchallenge
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.challenge.api.settings.SettingsData
-import de.miraculixx.challenge.api.settings.challenges
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mbridge.MUtilsBridge
@@ -11,6 +10,7 @@ import de.miraculixx.mbridge.MUtilsPlatform
 import de.miraculixx.mchallenge.commands.ChallengeCommand
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.commands.utils.*
+import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.spectator.Spectator

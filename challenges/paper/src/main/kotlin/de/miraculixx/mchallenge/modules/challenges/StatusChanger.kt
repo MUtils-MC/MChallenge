@@ -2,10 +2,9 @@ package de.miraculixx.mchallenge.modules.challenges
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.challenge.api.modules.challenges.Challenges
-import de.miraculixx.challenge.api.settings.ChallengeData
-import de.miraculixx.challenge.api.settings.challenges
-import de.miraculixx.challenge.api.settings.getSetting
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.anvilCrusher.AnvilCrusher
 import de.miraculixx.mchallenge.modules.mods.areaTimer.AreaTimer

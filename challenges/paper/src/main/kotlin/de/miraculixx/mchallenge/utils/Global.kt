@@ -1,6 +1,6 @@
 package de.miraculixx.mchallenge.utils
 
-import de.miraculixx.challenge.api.modules.challenges.Challenges
+import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cMark
 import de.miraculixx.mvanilla.messages.cmp
