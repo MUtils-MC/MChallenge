@@ -11,7 +11,7 @@ You can find more detailed infos on the official [MUtils Website](https://mutils
 
 ### Available Challenges
 
-[Here](https://mutils.de/m/challenges/) you can find List of all available Challenges . 
+[Here](https://mutils.de/challenges) you can find List of all available Challenges . 
 
 ## Support
 
