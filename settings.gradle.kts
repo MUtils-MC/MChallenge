@@ -33,6 +33,7 @@ include("timer:fabric")
 include("challenges:paper")
 include("challenges:fabric")
 include("challenges:api")
+include("challenges:global")
 
 // World Creator
 include("world-creator:paper")
