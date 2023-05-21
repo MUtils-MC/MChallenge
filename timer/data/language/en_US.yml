@@ -88,10 +88,10 @@ items:
       n: "<red>Scroll Left"
       l: "You can not scroll any<br>further to the left"
     arrowRight:
-      n: "<lime>Scroll Right"
+      n: "<green>Scroll Right"
       l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
-      n: "<lime>Scroll Left"
+      n: "<green>Scroll Left"
       l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"

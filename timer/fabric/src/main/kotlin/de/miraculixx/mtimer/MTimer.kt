@@ -16,9 +16,9 @@ import java.io.File
 
 lateinit var server: MinecraftServer
 lateinit var challengeAPI: MChallengeAPI
+lateinit var configFolder: String
 
 fun init() {
-    var configFolder: String
     TimerCommand
 
     Events.Server.postStart.listen { event ->
@@ -26,7 +26,10 @@ fun init() {
         server = event.server
         adventure = FabricServerAudiences.of(server)
         consoleAudience = adventure.console()
-        consoleAudience.sendMessage(cmp("DIES IST EIN ADVENTURE TEST"))
+
+        val version = server.serverVersion.split('.')
+        majorVersion = version.getOrNull(1)?.toIntOrNull() ?: 0
+        minorVersion = version.getOrNull(2)?.toIntOrNull() ?: 0
 
         configFolder = "${server.serverDirectory.path}/config/MUtils/Timer"
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to Unit::class.java.getResourceAsStream("/language/$it.yml") }

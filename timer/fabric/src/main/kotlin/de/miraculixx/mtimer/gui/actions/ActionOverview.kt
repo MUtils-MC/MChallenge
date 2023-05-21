@@ -1,5 +1,10 @@
 package de.miraculixx.mtimer.gui.actions
 
+import de.miraculixx.mtimer.gui.buildInventory
+import de.miraculixx.mtimer.gui.content.ItemsDesigns
+import de.miraculixx.mtimer.gui.content.ItemsGoals
+import de.miraculixx.mtimer.gui.content.ItemsRules
+import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mutils.gui.data.CustomInventory
 import de.miraculixx.mutils.gui.data.GUIClick
@@ -20,7 +25,6 @@ class ActionOverview(isPersonal: Boolean) : GUIEvent {
         val item = it.item
         val timer = if (isPersonal) TimerManager.getPersonalTimer(player.uuid) else TimerManager.globalTimer
         if (timer == null) {
-//            server.playerList.getPlayer(player.uuid)
             player.sendMessage(noPersonalTimer)
             return@event
         }
@@ -29,7 +33,7 @@ class ActionOverview(isPersonal: Boolean) : GUIEvent {
                 player.closeContainer()
                 val guiID = if (isPersonal) player.uuid.toString() else "TIMER_GLOBAL_DESIGNS"
                 player.click()
-//                TimerGUI.DESIGN.buildInventory(player, guiID, ItemsDesigns(timer), GUIDesigns(isPersonal, timer))
+                TimerGUI.DESIGN.buildInventory(player, guiID, ItemsDesigns(timer), ActionD(isPersonal, timer))
             }
 
             6 -> if (timer.countUp) {
@@ -52,14 +56,14 @@ class ActionOverview(isPersonal: Boolean) : GUIEvent {
             8 -> {
                 player.closeContainer()
                 player.click()
-//                TimerGUI.RULES.buildInventory(player, player.uuid.toString(), ItemsRules(), GUIRules())
+                TimerGUI.RULES.buildInventory(player, "${player.uuid}_RULES", ItemsRules(), ActionRules())
                 return@event
             }
 
             9 -> {
                 player.closeContainer()
                 player.click()
-//                TimerGUI.GOALS.buildInventory(player, player.uuid.toString(), ItemsGoals(), GUIGoals())
+                TimerGUI.GOALS.buildInventory(player, "${player.uuid}_GOALS", ItemsGoals(), ActionGoals())
                 return@event
             }
 

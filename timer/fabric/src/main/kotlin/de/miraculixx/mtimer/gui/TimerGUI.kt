@@ -16,6 +16,13 @@ fun TimerGUI.buildInventory(player: Player, id: String, itemProvider: ItemProvid
             this.itemProvider = itemProvider
         }
 
+        TimerGUI.RULES, TimerGUI.GOALS -> InventoryManager.scrollBuilder(id) {
+            this.player = player
+            this.title = this@buildInventory.title
+            this.clickAction = clickAction.run
+            this.itemProvider = itemProvider
+        }
+
         else -> Unit
     }
 }

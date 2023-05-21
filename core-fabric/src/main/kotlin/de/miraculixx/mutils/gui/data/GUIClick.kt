@@ -79,4 +79,16 @@ enum class GUIClick {
             }
         }
     }
+
+    fun isLeftClick(): Boolean {
+        return this == LEFT_CLICK || this == SHIFT_LEFT_CLICK
+    }
+
+    fun isRightClick(): Boolean {
+        return this == RIGHT_CLICK || this == SHIFT_RIGHT_CLICK
+    }
+
+    fun isShiftClick(): Boolean {
+        return this == SHIFT_RIGHT_CLICK || this == SHIFT_LEFT_CLICK
+    }
 }
