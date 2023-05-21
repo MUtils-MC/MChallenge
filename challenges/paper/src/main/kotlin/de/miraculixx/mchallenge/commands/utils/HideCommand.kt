@@ -17,12 +17,12 @@ import org.bukkit.entity.Player
 
 class HideCommand {
     @Suppress("unused")
-    val hide = commandTree("hide", { sender: CommandSender -> sender.hasPermission("mutils.command.hide") }) {
+    val hide = commandTree("hide", { sender: CommandSender -> sender.hasPermission("mutils.hide") }) {
         handleVisibility(true)
     }
 
     @Suppress("unused")
-    val show = commandTree("show", { sender: CommandSender -> sender.hasPermission("mutils.command.hide") }) {
+    val show = commandTree("show", { sender: CommandSender -> sender.hasPermission("mutils.hide") }) {
         handleVisibility(false)
     }
 

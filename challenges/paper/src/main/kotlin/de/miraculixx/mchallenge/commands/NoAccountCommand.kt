@@ -14,7 +14,7 @@ class NoAccountCommand: TabExecutor {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
-        if (de.miraculixx.mchallenge.MChallenge.bridgeAPI != null) sender.sendMessage(prefix + cmp("This command is only available with an connected MUtils account! Use /login to connect"))
+        if (MChallenge.bridgeAPI != null) sender.sendMessage(prefix + cmp("This command is only available with an connected MUtils account! Use /login to connect"))
         else sender.sendMessage(prefix + cmp("This command is only available with an connected MUtils account! Install MBridge to connect one (/ch bridge-install)"))
         return true
     }

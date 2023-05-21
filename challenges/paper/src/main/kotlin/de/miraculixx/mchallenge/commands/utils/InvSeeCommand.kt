@@ -9,7 +9,7 @@ import org.bukkit.entity.Player
 
 class InvSeeCommand {
     @Suppress("unused")
-    val reset = commandTree("invsee", { sender: CommandSender -> sender.hasPermission("mutils.command.invsee") }) {
+    val reset = commandTree("invsee", { sender: CommandSender -> sender.hasPermission("mutils.invsee") }) {
         playerArgument("player") {
             playerExecutor { player, args ->
                 val target = args[0] as? Player ?: return@playerExecutor
