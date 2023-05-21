@@ -28,6 +28,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     ANVIL_CRUSHER(setOf(ChallengeTags.HARD, ChallengeTags.FREE), Icon("ANVIL"), true),
     ITEM_DECAY(setOf(ChallengeTags.HARD, ChallengeTags.FREE), Icon("COMPARATOR"), true),
     AREA_TIMER(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("GRASS_BLOCK"), true),
+    DAMAGE_MULTIPLIER(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("BEETROOT"), true),
+
     COLLECT_BATTLE(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("HEART_OF_THE_SEA")),
     FLY(setOf(ChallengeTags.FUN), Icon("ELYTRA")),
     IN_TIME(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
@@ -53,14 +55,16 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     RANDOMIZER_ENTITY(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_ORANGE)),
     RANDOMIZER_BIOMES(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_PURPLE)),
     RANDOMIZER_MOBS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_BLACK)),
-    FORCE_COLLECT(setOf(ChallengeTags.MEDIUM, ChallengeTags.FORCE), Icon("CHEST")),
     RANDOMIZER_DAMAGE(setOf(ChallengeTags.MEDIUM, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_RED)),
+    RANDOMIZER_CHESTS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_BLUE)),
+    FORCE_COLLECT(setOf(ChallengeTags.MEDIUM, ChallengeTags.FORCE), Icon("CHEST")),
     NO_DOUBLE_KILL(setOf(ChallengeTags.MEDIUM), Icon("REPEATER")),
     DAMAGER(setOf(ChallengeTags.HARD), Icon("DIAMOND_SWORD")),
     RIVALS_COLLECT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE, ChallengeTags.MULTIPLAYER), Icon("CHEST_MINECART")),
     ROCKET(setOf(ChallengeTags.MEDIUM), Icon("FIREWORK_ROCKET")),
     BLOCK_WORLD(setOf(ChallengeTags.FUN), Icon("DIAMOND_BLOCK")),
-    MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHTED_PRESSURE_PLATE"))
+    MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHTED_PRESSURE_PLATE")),
+    BLOCK_WALL(setOf(ChallengeTags.MEDIUM), Icon("BEDROCK")),
     ;
 
 
@@ -260,6 +264,19 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
 
             MINEFIELD_WORLD -> mapOf(
                 "density" to ChallengeIntSetting("REPEATER", 50, "%", max = 100, min = 1, step = 5)
+            )
+
+            BLOCK_WALL -> mapOf(
+                "material" to ChallengeEnumSetting("CRAFTING_TABLE", "BEDROCK", options = listOf("BEDROCK", "BARRIER", "LAVA", "COBWEB", "RED_CONCRETE_POWDER")),
+                "delay" to ChallengeDoubleSetting("CLOCK", 3.0, "s", max = 30.0, min = 0.5, step = 0.5)
+            )
+
+            DAMAGE_MULTIPLIER -> mapOf(
+                "multiplier" to ChallengeDoubleSetting("BEETROOT", 2.0, "x", max = 10.0, min = 0.5, step = 0.5)
+            )
+
+            RANDOMIZER_CHESTS -> mapOf(
+                "enchanting" to ChallengeBoolSetting("ENCHANTED_BOOK", false)
             )
         }
     }

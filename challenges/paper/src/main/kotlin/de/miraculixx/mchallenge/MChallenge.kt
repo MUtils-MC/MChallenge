@@ -87,16 +87,33 @@ class MChallenge : KSpigot() {
         positionCommand = PositionCommand()
         backpackCommand = BackpackCommand()
 
+        // Load configuration
+        if (!configFolder.exists()) configFolder.mkdirs()
+        configFile = File("${configFolder.path}/settings.json")
+        settingsFile = File("${configFolder.path}/config.json")
+        ChallengeManager.load(configFile)
+
+        settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
+        debug = settings.debug
+
+        // Reset World
+        if (settings.reset) {
+            console.sendMessage(prefix + cmp("Delete loaded worlds..."))
+            settings.worlds.forEach {
+                val currentRelativePath = Paths.get(it)
+                val path = currentRelativePath.toAbsolutePath().toString()
+                console.sendMessage(prefix + cmp("World Path: $path"))
+                File(path).listFiles()?.forEach { file ->
+                    file.deleteRecursively()
+                    File("$path/playerdata").mkdirs()
+                }
+            }
+            settings.reset = false
+            settings.worlds.clear()
+        }
+
         // Login with MUtils account
         CoroutineScope(Dispatchers.Default).launch {
-            // Load configuration
-            if (!configFolder.exists()) configFolder.mkdirs()
-            configFile = File("${configFolder.path}/settings.json")
-            settingsFile = File("${configFolder.path}/config.json")
-            ChallengeManager.load(configFile)
-
-            settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
-            debug = settings.debug
             localization = Localization(File("${configFolder.path}/language"), settings.language, languages, challengePrefix)
             Spectator.loadData()
 
@@ -114,22 +131,6 @@ class MChallenge : KSpigot() {
                     data.active = false
                 }
                 consoleAudience.sendMessage(challengePrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
-            }
-
-            // Reset World
-            if (settings.reset) {
-                console.sendMessage(prefix + cmp("Delete loaded worlds..."))
-                settings.worlds.forEach {
-                    val currentRelativePath = Paths.get(it)
-                    val path = currentRelativePath.toAbsolutePath().toString()
-                    console.sendMessage(prefix + cmp("World Path: $path"))
-                    File(path).listFiles()?.forEach { file ->
-                        file.deleteRecursively()
-                        File("$path/playerdata").mkdirs()
-                    }
-                }
-                settings.reset = false
-                settings.worlds.clear()
             }
 
             // Finish loading - starting setup

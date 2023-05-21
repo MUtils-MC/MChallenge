@@ -9,6 +9,7 @@ import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.anvilCrusher.AnvilCrusher
 import de.miraculixx.mchallenge.modules.mods.areaTimer.AreaTimer
 import de.miraculixx.mchallenge.modules.mods.blockAsync.BlockAsync
+import de.miraculixx.mchallenge.modules.mods.blockWall.BlockWall
 import de.miraculixx.mchallenge.modules.mods.blockWorld.BlockWorld
 import de.miraculixx.mchallenge.modules.mods.boostUp.BoostUp
 import de.miraculixx.mchallenge.modules.mods.checkpoints.Checkpoints
@@ -18,6 +19,7 @@ import de.miraculixx.mchallenge.modules.mods.chunkDecay.ChunkDecay
 import de.miraculixx.mchallenge.modules.mods.chunkFlattener.ChunkFlattener
 import de.miraculixx.mchallenge.modules.mods.collectBattle.CollectBattle
 import de.miraculixx.mchallenge.modules.mods.damageDuel.DamageDuell
+import de.miraculixx.mchallenge.modules.mods.damageMultiplier.DamageMultiplier
 import de.miraculixx.mchallenge.modules.mods.damager.Damager
 import de.miraculixx.mchallenge.modules.mods.dimSwap.DimSwap
 import de.miraculixx.mchallenge.modules.mods.disabled.Disabled
@@ -82,6 +84,7 @@ class StatusChanger {
             Challenges.RANDOMIZER_BIOMES -> BiomeRandomizer()
             Challenges.RANDOMIZER_MOBS -> MobSwitchRandomizer()
             Challenges.RANDOMIZER_DAMAGE -> EntityDamageRandomizer()
+            Challenges.RANDOMIZER_CHESTS -> LootTableRandomizer()
             Challenges.FORCE_COLLECT -> ForceHunt()
             Challenges.NO_DOUBLE_KILL -> NoDoubleKills()
             Challenges.DAMAGER -> Damager()
@@ -103,6 +106,8 @@ class StatusChanger {
             Challenges.COLLECT_BATTLE -> CollectBattle()
             Challenges.BLOCK_WORLD -> BlockWorld()
             Challenges.MINEFIELD_WORLD -> MineFieldWorld()
+            Challenges.BLOCK_WALL -> BlockWall()
+            Challenges.DAMAGE_MULTIPLIER -> DamageMultiplier()
         }
     }
 

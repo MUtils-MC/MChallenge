@@ -314,6 +314,18 @@ items:
     COLLECT_BATTLE:
       n: "Collect Battle"
       l: "Compete against all other players<br>in this round based game!<br>First, you gather an item as fast as possible.<br>In the second phase, a random other<br>player needs to gather the same item faster!<br>You can still beat the game?"
+    RANDOMIZER_CHESTS:
+      n: "Loot Randomizer"
+      l: "Randomize all items in chest containers!"
+    BLOCK_WORLD:
+      n: "Block World"
+      l: "All chunks are built from one<br>block type! Step through a new<br>cursed world"
+    MINEFIELD_WORLD:
+      n: "Minefield World"
+      l: "The whole world is covered with<br>dangerous mines. Don't step on them!"
+    BLOCK_WALL:
+      n: "Block Wall"
+      l: "You are hunted by a wall!<br>Watch out your steps, breaking the<br>wall is impossible"
   chS:
     FLY:
       power:
@@ -435,6 +447,12 @@ items:
     RIVALS_COLLECT:
       mode:
         n: "Search Type"
+      items:
+        n: "Items"
+      biomes:
+        n: "Biomes"
+      mobs:
+        n: "Mobs"
       joker:
         n: "Joker"
     ROCKET:
@@ -558,3 +576,15 @@ items:
         n: "Time Between Rounds"
       bufferTime:
         n: "Extra Time"
+    RANDOMIZER_CHESTS:
+      enchanting:
+        n: "Random Enchants"
+    MINEFIELD_WORLD:
+      density:
+        n: "Density"
+    BLOCK_WALL:
+      material:
+        n: "Wall Material"
+      delay:
+        n: "Spawn Delay"
+
