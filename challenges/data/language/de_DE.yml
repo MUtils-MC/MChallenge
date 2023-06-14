@@ -110,15 +110,15 @@ event:
     itemFound: "<input-1> hat gerade <blue><input-2></blue> gefunden!"
     newItem: "Deine nächste Aufgabe ist <input-1> zu finden/töten"
   worldPeace:
-    death: "The mob <blue><input-1></blue> died :("
-    alreadyTraded: "You already traded with me. Thank you for the item :)"
-    noTrade: "I have nothing to trade with you, but nice to see you!"
-    msg1: "Lets trade instead of fighting today!"
-    msg2: "Please don't hurt me :( I can trade with you!"
-    msg3: "Do we want to trade instead of fight?"
-    trade: "Thank you for the items! Here, you can have <blue><input-1></blue> of my <blue><input-2></blue>!"
-    tradeOffer: "Could your bring <blue><input-1> <input-2></blue>?"
-    tradeOffer2: "In return i would give some of my <blue><input-1></blue>! "
+    death: "Das Mob <blue><input-1></blue> ist gestorben :("
+    alreadyTraded: "Du hast bereits mit mir gehandelt. Danke für das Item :)"
+    noTrade: "Ich kann nichts mit dir handeln, aber schön dich zu sehen!"
+    msg1: "Lass uns heute handeln anstatt zu kämpfen!"
+    msg2: "Bitte tu mir nicht weh :( Ich kann mit dir handeln!"
+    msg3: "Wollen wir handeln anstatt zu kämpfen?"
+    trade: "Danke für die Items! Hier, du kannst <blue><input-1></blue> von meinem <blue><input-2></blue> haben!"
+    tradeOffer: "Kannst du mir <blue><input-1> <input-2></blue> bringen?"
+    tradeOffer2: "Im Gegenzug würde ich dir mein <blue><input-1></blue> geben!"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -422,7 +422,7 @@ items:
       damage:
         n: "Schaden"
       interval:
-        n: "Interval"
+        n: "Intervall"
     RIVALS_COLLECT:
       mode:
         n: "Suchtyp"
@@ -541,11 +541,11 @@ items:
         n: "Spieler Ausblenden"
     RIGHT_TOOL:
       starter:
-        n: "Starter Axe"
+        n: "Starter-Axt"
     COLLECT_BATTLE:
       maxSetTime:
         n: "Max. Set-Zeit"
       cooldown:
         n: "Zeit zwischen Runden"
       bufferTime:
-        n: "Extra Time"
+        n: "Zusätzliche Zeit"
