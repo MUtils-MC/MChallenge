@@ -59,6 +59,7 @@ command:
   lang:
     success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
     fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
+  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -109,6 +110,16 @@ event:
   rivalCollect:
     itemFound: "<input-1> hat gerade <blue><input-2></blue> gefunden!"
     newItem: "Deine nächste Aufgabe ist <input-1> zu finden/töten"
+  worldPeace:
+    death: "Das Mob <blue><input-1></blue> ist gestorben :("
+    alreadyTraded: "Du hast bereits mit mir gehandelt. Danke für das Item :)"
+    noTrade: "Ich kann nichts mit dir handeln, aber schön dich zu sehen!"
+    msg1: "Lass uns heute handeln anstatt zu kämpfen!"
+    msg2: "Bitte tu mir nicht weh :( Ich kann mit dir handeln!"
+    msg3: "Wollen wir handeln anstatt zu kämpfen?"
+    trade: "Danke für die Items! Hier, du kannst <blue><input-1></blue> von meinem <blue><input-2></blue> haben!"
+    tradeOffer: "Kannst du mir <blue><input-1> <input-2></blue> bringen?"
+    tradeOffer2: "Im Gegenzug würde ich dir mein <blue><input-1></blue> geben!"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -295,6 +306,21 @@ items:
     COLLECT_BATTLE:
       n: "Collect Battle"
       l: "Spiele gegen alle anderen Spieler<br>in diesem Runden basierten Modus!<br>Zuerst sammelst du ein Item so schnell wie möglich.<br>In der zweiten Phase muss ein anderer<br>zufälliger Spieler dieses Item schneller sammeln!<br>Kannst du trotzdem MC durchspielen?"
+    RANDOMIZER_CHESTS:
+      n: "Loot Randomizer"
+      l: "Randomize all items in chest containers!"
+    BLOCK_WORLD:
+      n: "Block World"
+      l: "All chunks are built from one<br>block type! Step through a new<br>cursed world"
+    MINEFIELD_WORLD:
+      n: "Minefield World"
+      l: "The whole world is covered with<br>dangerous mines. Don't step on them!"
+    BLOCK_WALL:
+      n: "Block Wall"
+      l: "You are hunted by a wall!<br>Watch out your steps, breaking the<br>wall is impossible"
+    WORLD_DECAY:
+      n: "World Decay"
+      l: "The world around you disappear<br>step by step! Remember your surrounding to<br>keep alive (only visual - needs MWeb)"
   chS:
     FLY:
       power:
@@ -411,9 +437,17 @@ items:
         n: "Schadensereignis"
       damage:
         n: "Schaden"
+      interval:
+        n: "Intervall"
     RIVALS_COLLECT:
       mode:
         n: "Suchtyp"
+      items:
+        n: "Items"
+      biomes:
+        n: "Biomes"
+      mobs:
+        n: "Mobs"
       joker:
         n: "Joker"
     ROCKET:
@@ -527,7 +561,7 @@ items:
     BLOCK_ASYNC:
       hide:
         n: "Spieler Ausblenden"
-    RIGHT_TOOLS:
+    RIGHT_TOOL:
       starter:
         n: "Starter-Axt"
     COLLECT_BATTLE:
@@ -535,3 +569,22 @@ items:
         n: "Max. Set-Zeit"
       cooldown:
         n: "Zeit zwischen Runden"
+      bufferTime:
+        n: "Zusätzliche Zeit"
+    RANDOMIZER_CHESTS:
+      enchanting:
+        n: "Random Enchants"
+    MINEFIELD_WORLD:
+      density:
+        n: "Density"
+    BLOCK_WALL:
+      material:
+        n: "Wall Material"
+      delay:
+        n: "Spawn Delay"
+    WORLD_DECAY:
+      delay:
+        n: "Step Delay"
+      steps:
+        n: "Steps To 100%"
+

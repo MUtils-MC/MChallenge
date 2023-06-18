@@ -21,20 +21,20 @@ common:
   click: "Cliquez"
   sneak: "Sneak"
   none: "None"
-  button: "Button"
+  button: "Bouton"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
 #-----------------------------------------#
 command:
   help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
-  resume: "<green><b>Resuming</b> the timer <grey>(<input-1>)" #v1
-  pause: "<red><b>Pausing</b> the timer <grey>(<input-1>)" #v1
-  alreadyOn: "<red>Timer is already running!"
-  alreadyOff: "<red>Timer is already paused!"
+  resume: "<green><b>Reprise du</b> timer <grey>(<input-1>)" #v1
+  pause: "<red><b>Pauser</b> du timer <grey>(<input-1>)" #v1
+  alreadyOn: "<red>Le timer est déjà en cours !"
+  alreadyOff: "<red>La Timer est déjà en pause!"
   reset: "<grey>La Timer a été réinitialisée avec succès à 0"
-  noPlayer: "<red>This command can only be used by players!"
-  noCommand: "<red>Invalid subcommand!"
+  noPlayer: "<red>Cette commande ne peut être utilisée que par les joueurs!"
+  noCommand: "<red>Sous-commande invalide !"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -45,17 +45,17 @@ event:
   minutes: "Minutes"
   hours: "Heures"
   days: "Jours"
-  active: "Active"
+  active: "Activé"
   disabled: "Désactivé"
-  prefix: "Prefix"
-  suffix: "Suffix"
-  animation: "Animation Speed"
+  prefix: "Préfixe"
+  suffix: "Suffixe"
+  animation: "Vitesse des animations"
   syntax: "Syntaxe"
-  forcedTwoDigits: "Forced 2 Digits"
-  visibleOnNull: "Visible on Null"
-  spaceInfo: "Use _ to add spaces before and after your message"
-  clickToCopy: "Click to copy: <blue><input-1>"
-  finish: "Finish"
+  forcedTwoDigits: "Forcé de 2 chiffres"
+  visibleOnNull: "Visible sur Null"
+  spaceInfo: "Utilisez _ pour ajouter des espaces avant et après votre message"
+  clickToCopy: "Cliquer pour copier : <blue><input-1>"
+  finish: "Finir"
   playtime: "Spielzeit:"
   endSuccess: "Challenge succeed!\n<input-1> killed" #v1
   kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
