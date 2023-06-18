@@ -1,23 +1,30 @@
 package de.miraculixx.mchallenge.utils.gui.actions
 
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.*
-import de.miraculixx.api.utils.gui.GUITypes
+import de.miraculixx.challenge.api.settings.*
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallengeSettings
 import de.miraculixx.mcore.await.AwaitConfirm
 import de.miraculixx.mcore.gui.GUIEvent
+import de.miraculixx.mcore.gui.InventoryUtils.get
 import de.miraculixx.mcore.gui.data.CustomInventory
+import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.debug
 import de.miraculixx.mvanilla.messages.namespace
-import de.miraculixx.mvanilla.extensions.*
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.persistence.PersistentDataType
 
 class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSectionSetting<*>?) : GUIEvent {
+    private val challengeNamespace = NamespacedKey(namespace, "gui.challenge")
+    private val customChallengeNamespace = NamespacedKey(namespace, "gui.customchallenge")
+
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true
         val player = it.whoClicked as? Player ?: return@event
@@ -32,13 +39,13 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
             return@event
         }
 
-        val challengeKey = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.challenge.ch"), PersistentDataType.STRING)
-        val settingKey = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.challenge.setting"), PersistentDataType.STRING)
-        val settingsData = if (section != null) section.getValue()
-        else {
-            val challenge = enumOf<Challenges>(challengeKey) ?: return@event
-            challenges.getSetting(challenge).settings
-        }
+        val dataContainer = meta.persistentDataContainer
+        val challengeID = dataContainer.get(challengeNamespace)
+        val customChallengeID = dataContainer.get(customChallengeNamespace)?.toUUID()
+        val settingKey = dataContainer.get(NamespacedKey(namespace, "gui.challenge.setting"), PersistentDataType.STRING)
+        val settingsData = section?.getValue()
+            ?: (challengeID?.let { key -> enumOf<Challenges>(key)?.let { ch -> challenges.getSetting(ch).settings } }
+                ?: customChallengeID?.let { key -> ChallengeManager.getChallenge(key)?.data?.settings } ?: return@event)
 
         if (id == 3001) {
             //Reset
@@ -130,11 +137,10 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
             }
 
             is ChallengeSectionSetting<*> -> {
-                val challenge = enumOf<Challenges>(challengeKey) ?: return@event
                 GUITypes.CHALLENGE_SETTINGS.buildInventory(
                     player,
-                    "CH-$challengeKey-$settingKey",
-                    ItemsChallengeSettings(clickedData.getValue(), challenge),
+                    "CH-${challengeID ?: customChallengeID}-$settingKey",
+                    ItemsChallengeSettings(clickedData.getValue(), challengeID, customChallengeID),
                     GUIChallengeSettings(inv, clickedData)
                 )
                 player.click()

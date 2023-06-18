@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.noSameItems
 
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.noSameItem.NoSameItemEnum
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.mods.noSameItem.NoSameItemEnum
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mchallenge.modules.spectator.Spectator
@@ -21,6 +21,7 @@ import org.bukkit.persistence.PersistentDataType
 import java.time.Duration
 import java.util.*
 
+@Deprecated("Outdated item calculation", ReplaceWith("Moved to NoSameItem root class"))
 class NoSameItemManager {
     private val materialRanking = HashMap<Material, MutableList<Player>>()
     private val playerList = HashMap<Player, MutableList<Material>>()
@@ -136,7 +137,7 @@ class NoSameItemManager {
         }
     }
 
-    fun createBossBar(player: Player): BossBar {
+    private fun createBossBar(player: Player): BossBar {
         val current = barList[player.uniqueId]
         if (current != null) return current
         val bossBar = BossBar.bossBar(cmp("Waiting for server...", cError), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS)

@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    kotlin("plugin.serialization") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 repositories {
@@ -24,7 +24,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
     // Fabric implementation
-    implementation("net.fabricmc:fabric-loom:1.1-SNAPSHOT")
+    implementation("net.fabricmc:fabric-loom:1.2-SNAPSHOT")
+    implementation(pluginDep("io.github.juuxel.loom-quiltflower", "1.9.0"))
 
     // Paper implementation
     implementation("io.papermc.paperweight.userdev:io.papermc.paperweight.userdev.gradle.plugin:1.5.0")

@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.damager
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.damager.ChDamager
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.mods.damager.ChDamager
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -21,7 +21,6 @@ import org.bukkit.event.player.PlayerItemHeldEvent
 import org.bukkit.event.player.PlayerMoveEvent
 
 class Damager : Challenge {
-    override val challenge = Challenges.DAMAGER
     private val listener = ArrayList<Listener>()
     private val damage: Double
     private val mode: ChDamager
@@ -31,7 +30,7 @@ class Damager : Challenge {
     private var stopped = false
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.DAMAGER).settings
         damage = settings["damage"]?.toInt()?.getValue()?.toDouble() ?: 1.0
         mode = enumOf<ChDamager>(settings["mode"]?.toEnum()?.getValue()) ?: ChDamager.SLOT_CHANGE
         interval = settings["interval"]?.toInt()?.getValue() ?: 1

@@ -1,17 +1,16 @@
 package de.miraculixx.mchallenge.modules.mods.trafficlight
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.mods.trafficlight.TrafficLightState
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.trafficlight.TrafficLightState
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.plus
-import de.miraculixx.api.modules.challenges.Challenge
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -25,8 +24,7 @@ import kotlin.math.abs
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-class TrafficLight: Challenge {
-    override val challenge = Challenges.TRAFFIC_LIGHT
+class TrafficLight : Challenge {
     private val bar = BossBar.bossBar(cmp("Waiting for server...", cHighlight), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS)
     private val damageCooldown: MutableList<Player> = mutableListOf()
     private var running = true
@@ -82,6 +80,7 @@ class TrafficLight: Challenge {
                     timeToNext = Random.nextInt(minGreen..maxGreen)
                     TrafficLightState.GREEN
                 }
+
                 TrafficLightState.YELLOW -> {
                     bar.name(msgHangRight + msgContainerOff + msgConnector + msgContainerOff + msgConnector + getContainerOn(NamedTextColor.RED) + msgHangLeft)
                     bar.color(BossBar.Color.RED)
@@ -90,6 +89,7 @@ class TrafficLight: Challenge {
                     timeToNext = Random.nextInt(minRed..maxRed)
                     TrafficLightState.RED
                 }
+
                 TrafficLightState.GREEN -> {
                     bar.name(msgHangRight + msgContainerOff + msgConnector + getContainerOn(NamedTextColor.YELLOW) + msgConnector + msgContainerOff + msgHangLeft)
                     bar.color(BossBar.Color.YELLOW)

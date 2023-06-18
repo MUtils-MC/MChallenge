@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge.modules.challenges
 
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.ChallengeSetting
+import de.miraculixx.challenge.api.settings.ChallengeSetting
+import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mcore.gui.items.skullTexture

@@ -9,6 +9,7 @@ dependencies {
     implementation(project(":core-paper")) // Paper specified Utils
     implementation(project(":kpaper-light"))
     implementation(project(":timer:api"))
+    implementation(project(":timer:global"))
 
     implementation(project(":challenges:api")) // Internal API
     implementation(project(":bridge")) // Internal API

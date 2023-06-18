@@ -2,10 +2,10 @@ package de.miraculixx.mutils.utils.actions
 
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.api.data.GeneratorData
-import de.miraculixx.api.data.GeneratorProviderData
-import de.miraculixx.api.data.WorldData
-import de.miraculixx.api.data.enums.GeneratorAlgorithm
+import de.miraculixx.challenge.api.data.GeneratorData
+import de.miraculixx.challenge.api.data.GeneratorProviderData
+import de.miraculixx.challenge.api.data.WorldData
+import de.miraculixx.challenge.api.data.enums.GeneratorAlgorithm
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mvanilla.extensions.click

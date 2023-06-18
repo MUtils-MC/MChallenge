@@ -8,7 +8,7 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.mutils.data.ChunkCalcData
-import de.miraculixx.api.data.GeneratorProviderData
+import de.miraculixx.challenge.api.data.GeneratorProviderData
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.data.getGenerator
 import de.miraculixx.mvanilla.messages.*

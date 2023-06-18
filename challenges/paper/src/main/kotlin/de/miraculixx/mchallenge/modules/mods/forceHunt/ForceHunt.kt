@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.forceHunt
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.forceHunt.HuntType
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.mods.forceHunt.HuntType
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -30,7 +30,6 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.persistence.PersistentDataType
 
 class ForceHunt : Challenge {
-    override val challenge = Challenges.FORCE_COLLECT
     private val bar = BossBar.bossBar(cmp("Waiting for server..."), 1f, BossBar.Color.WHITE, BossBar.Overlay.PROGRESS)
     private val msgHeight = msgString("event.forceHunt.height")
     private val msgItems = msgString("event.forceHunt.item")
@@ -54,7 +53,7 @@ class ForceHunt : Challenge {
     private val huntRange: IntRange
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.FORCE_COLLECT).settings
         val timing = settings["times"]?.toSection()?.getValue()
         cooldownRange = (timing?.get("minCooldown")?.toInt()?.getValue() ?: 250)..(timing?.get("maxCooldown")?.toInt()?.getValue() ?: 350)
         huntRange = (timing?.get("minTime")?.toInt()?.getValue() ?: 180)..(timing?.get("maxTime")?.toInt()?.getValue() ?: 360)

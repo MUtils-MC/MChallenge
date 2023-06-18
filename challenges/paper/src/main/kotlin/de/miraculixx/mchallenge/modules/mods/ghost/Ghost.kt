@@ -4,12 +4,12 @@ import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.api.utils.getRPPrompt
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.mchallenge.utils.getRPPrompt
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.Particle
@@ -28,7 +28,6 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent
 
 
 class Ghost : Challenge {
-    override val challenge = Challenges.GHOST
     private var currentBlock = HashMap<Player, Material>()
     private var ghostObj: GhostData? = null
     private var adventure: Boolean = false

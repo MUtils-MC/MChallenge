@@ -1,17 +1,16 @@
 package de.miraculixx.mchallenge.modules.mods.collectBattle
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.collectBattle.CollectBattleState
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.mods.collectBattle.CollectBattleState
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.bukkit.kill
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.kpaper.items.itemMeta
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
@@ -43,7 +42,6 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 class CollectBattle : Challenge {
-    override val challenge = Challenges.COLLECT_BATTLE
     private val itemGoals: MutableMap<UUID, TargetData> = mutableMapOf()
     private val itemPresets: MutableMap<UUID, TargetData> = mutableMapOf()
     private val activePlayer: MutableSet<UUID> = mutableSetOf()
@@ -65,7 +63,7 @@ class CollectBattle : Challenge {
     private var running = false
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.COLLECT_BATTLE).settings
         maxSetItemTime = settings["maxSetTime"]?.toInt()?.getValue()?.seconds ?: 10.minutes
         cooldownTime = settings["cooldown"]?.toInt()?.getValue() ?: 180
         bufferTime = settings["bufferTime"]?.toInt()?.getValue() ?: 10
@@ -175,7 +173,7 @@ class CollectBattle : Challenge {
         val result = it.currentItem ?: return@listen
         it.inventory.matrix.forEach { item ->
             val tag = item?.itemMeta?.persistentDataContainer?.get(itemKey, PersistentDataType.INTEGER)
-            if (tag != null && tag != roundCounter) result.editMeta { it.persistentDataContainer.set(itemKey, PersistentDataType.INTEGER, -1) }
+            if (tag != null && tag != roundCounter) result.editMeta { m -> m.persistentDataContainer.set(itemKey, PersistentDataType.INTEGER, -1) }
         }
     }
 
@@ -199,7 +197,7 @@ class CollectBattle : Challenge {
      */
     private fun ItemStack.handleTag(): Boolean {
         val meta = if (hasItemMeta()) itemMeta else {
-            meta {  }
+            meta { }
             itemMeta
         }
 
@@ -253,8 +251,8 @@ class CollectBattle : Challenge {
                     if (activePlayer.isEmpty() || timer.time == ZERO) {
                         println("Start next phase")
                         //Start next phase
-                        val players = itemPresets.map { it.key }
-                        val objects = itemPresets.map { it.value }
+                        val players = itemPresets.map { pre -> pre.key }
+                        val objects = itemPresets.map { pre -> pre.value }
                         players.forEachIndexed { index, uuid ->
                             val data = objects.getOrNull(index + 1) ?: objects[0]
                             val previousPlayer = Bukkit.getOfflinePlayer(players.getOrNull(index + 1) ?: players[0])

@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.anvilCrusher
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -19,7 +19,6 @@ import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageEvent
 
 class AnvilCrusher : Challenge {
-    override val challenge: Challenges = Challenges.ANVIL_CRUSHER
     private val startDelay: Int
     private val amplifierDelay: Int
     private val startDens: Int

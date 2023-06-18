@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.noDoubleKill
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -18,13 +18,12 @@ import org.bukkit.potion.PotionEffectType
 import java.util.*
 
 class NoDoubleKills : Challenge {
-    override val challenge = Challenges.NO_DOUBLE_KILL
     private var lastEntity = EntityType.PLAYER
     private val lastEntities = HashMap<UUID, EntityType>()
     private var global: Boolean
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.NO_DOUBLE_KILL).settings
         global = settings["global"]?.toBool()?.getValue() ?: true
     }
 

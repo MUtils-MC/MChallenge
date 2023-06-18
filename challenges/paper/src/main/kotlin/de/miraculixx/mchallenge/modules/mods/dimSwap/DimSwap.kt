@@ -1,5 +1,6 @@
 package de.miraculixx.mchallenge.modules.mods.dimSwap
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -7,8 +8,6 @@ import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.utils.MobBossBar
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.title.Title
@@ -26,7 +25,6 @@ import org.bukkit.potion.PotionEffectType
 import java.time.Duration
 
 class DimSwap : Challenge {
-    override val challenge = Challenges.DIM_SWAP
 
     override fun start(): Boolean {
         onlinePlayers.forEach { player ->

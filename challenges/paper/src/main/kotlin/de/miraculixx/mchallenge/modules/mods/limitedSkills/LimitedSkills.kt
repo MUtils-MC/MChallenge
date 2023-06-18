@@ -1,16 +1,17 @@
 package de.miraculixx.mchallenge.modules.mods.limitedSkills
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
-import de.miraculixx.api.utils.gui.GUITypes
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp
@@ -31,12 +32,11 @@ import java.time.Duration
 import java.util.*
 
 class LimitedSkills : Challenge {
-    override val challenge = Challenges.LIMITED_SKILLS
     val selection: MutableMap<UUID, Boolean> = mutableMapOf() //True -> See
     private val randomRoles: Boolean
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.LIMITED_SKILLS).settings
         randomRoles = settings["random"]?.toBool()?.getValue() ?: true
     }
 
@@ -57,7 +57,7 @@ class LimitedSkills : Challenge {
     override fun stop() {
         val playerNoSee = selection.filter { !it.value }.mapNotNull { Bukkit.getPlayer(it.key) }
         playerNoSee.forEach { player ->
-            player.world.entities.forEach { e -> if (e != player) player.showEntity(de.miraculixx.mchallenge.PluginManager, e) }
+            player.world.entities.forEach { e -> if (e != player) player.showEntity(PluginManager, e) }
         }
     }
 
@@ -88,7 +88,7 @@ class LimitedSkills : Challenge {
             player.closeInventory()
             val times = Duration.ofSeconds(3)
             player.showTitle(Title.title(cmp(msgString("items.event.LIMITED_DAMAGE.n"), cHighlight), emptyComponent(), Title.Times.times(Duration.ofMillis(500), times, times)))
-            player.world.entities.forEach { e -> player.hideEntity(de.miraculixx.mchallenge.PluginManager, e) }
+            player.world.entities.forEach { e -> player.hideEntity(PluginManager, e) }
         }
         playerSee.forEach { player ->
             player.closeInventory()
@@ -150,7 +150,7 @@ class LimitedSkills : Challenge {
 
     private val onSpawn = listen<EntitySpawnEvent>(register = false) {
         selection.forEach { (uuid, state) ->
-            if (!state) Bukkit.getPlayer(uuid)?.hideEntity(de.miraculixx.mchallenge.PluginManager, it.entity)
+            if (!state) Bukkit.getPlayer(uuid)?.hideEntity(PluginManager, it.entity)
         }
     }
 

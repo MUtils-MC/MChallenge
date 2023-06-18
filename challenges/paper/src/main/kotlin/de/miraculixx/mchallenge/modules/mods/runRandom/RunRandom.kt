@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.runRandom
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.runRandom.RunRandomData
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.mods.runRandom.RunRandomData
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -31,7 +31,6 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 class RunRandomizer : Challenge {
-    override val challenge = Challenges.RUN_RANDOMIZER
     private val goal: Double
     private val global: Boolean
     private val items = getMaterials(false)
@@ -40,7 +39,7 @@ class RunRandomizer : Challenge {
     private val msgGoal = msgString("event.randomizer.goal")
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.RUN_RANDOMIZER).settings
         goal = settings["goal"]?.toInt()?.getValue()?.toDouble() ?: 250.0
         global = settings["global"]?.toBool()?.getValue() ?: false
     }

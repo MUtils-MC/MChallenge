@@ -2,9 +2,9 @@ package de.miraculixx.mchallenge.modules.mods.ghost
 
 import de.miraculixx.kpaper.extensions.geometry.add
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player

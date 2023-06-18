@@ -280,5 +280,17 @@
     "version": 100,
     "icon": "firework_rocket",
     "tags": ["MEDIUM"]
+  },
+  {
+    "key": "BLOCK_WORLD",
+    "version": 107,
+    "icon": "diamond_block",
+    "tags": ["FUN"]
+  },
+  {
+    "key": "MINEFIELD_WORLD",
+    "version": 107,
+    "icon": "light_weighted_pressure_plate",
+    "tags": ["HARD"]
   }
 ]

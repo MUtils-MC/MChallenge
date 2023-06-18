@@ -13,8 +13,8 @@ repositories {
 
 dependencies {
     paperweight.paperDevBundle("${minecraftVersion}-R0.1-SNAPSHOT")
-    implementation("dev.jorel:commandapi-shade:8.8.0")
-    implementation("dev.jorel:commandapi-kotlin:8.8.0")
+    implementation("dev.jorel:commandapi-bukkit-shade:9.0.3")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:9.0.3")
 }
 
 tasks {

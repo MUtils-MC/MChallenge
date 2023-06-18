@@ -1,11 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.checkpoints
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import org.bukkit.GameMode
 import org.bukkit.Material
@@ -23,7 +22,6 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import java.util.*
 
 class Checkpoints : Challenge {
-    override val challenge = Challenges.CHECKPOINTS
     private val actionList = HashMap<UUID, CheckpointsData?>()
 
     override fun start(): Boolean {

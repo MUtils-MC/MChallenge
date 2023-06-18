@@ -40,7 +40,7 @@ command:
 #Messages that occur on multiple places  #
 #-----------------------------------------#
 event:
-  millis: "Millisecondes"
+  millis: "Milliseconds"
   seconds: "Secondes"
   minutes: "Minutes"
   hours: "Heures"

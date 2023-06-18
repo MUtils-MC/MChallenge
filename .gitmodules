@@ -1,0 +1,6 @@
+[submodule "challenges/api"]
+	path = challenges/api
+	url = https://github.com/MUtils-MC/MChallenge-API.git
+[submodule "timer/api"]
+	path = timer/api
+	url = https://github.com/MUtils-MC/MTimer-API.git

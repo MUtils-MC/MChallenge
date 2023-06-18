@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerKickEvent
 
 class ResetCommand {
     @Suppress("unused")
-    val reset = commandTree("reset", { sender: CommandSender -> sender.hasPermission("mutils.command.reset") }) {
+    val reset = commandTree("reset", { sender: CommandSender -> sender.hasPermission("mutils.reset") }) {
         anyExecutor { commandSender, _ ->
             MChallenge.settings.reset = true
             MChallenge.settings.worlds.addAll(worlds.map { it.name })

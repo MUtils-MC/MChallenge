@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge.utils.gui.items
 
-import de.miraculixx.api.modules.spectator.Activation
-import de.miraculixx.api.modules.spectator.Visibility
+import de.miraculixx.challenge.api.modules.spectator.Activation
+import de.miraculixx.challenge.api.modules.spectator.Visibility
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta

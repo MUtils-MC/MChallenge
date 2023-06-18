@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.noSameItems
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.mods.noSameItem.NoSameItemEnum
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.challenge.api.modules.mods.noSameItem.NoSameItemEnum
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -31,7 +31,6 @@ import java.time.Duration
 import java.util.UUID
 
 class NoSameItem : Challenge {
-    override val challenge = Challenges.NO_SAME_ITEM
     private val infoMode: NoSameItemEnum
     private val lives: Int
     private val sync: Boolean

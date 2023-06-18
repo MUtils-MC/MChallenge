@@ -1,6 +1,6 @@
 package de.miraculixx.mutils.module.biomes
 
-import de.miraculixx.api.data.GeneratorData
+import de.miraculixx.challenge.api.data.GeneratorData
 import org.bukkit.block.Biome
 import org.bukkit.generator.BiomeProvider
 import org.bukkit.generator.WorldInfo

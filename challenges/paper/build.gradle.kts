@@ -11,8 +11,11 @@ dependencies {
     implementation(project(":kpaper-light"))
 
     implementation(project(":challenges:api")) // Internal API
+    implementation(project(":challenges:global"))
     implementation(project(":world-creator:api")) // External API
     implementation(project(":bridge")) // External API
+
+    compileOnly("de.miraculixx:mweb:1.1.0")
 }
 
 sourceSets {

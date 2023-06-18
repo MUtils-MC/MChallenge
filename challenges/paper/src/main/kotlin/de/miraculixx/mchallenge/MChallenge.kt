@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge
 
-import de.miraculixx.api.settings.SettingsData
-import de.miraculixx.api.settings.challenges
+import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
+import de.miraculixx.challenge.api.settings.SettingsData
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mbridge.MUtilsBridge
@@ -10,13 +10,14 @@ import de.miraculixx.mbridge.MUtilsPlatform
 import de.miraculixx.mchallenge.commands.ChallengeCommand
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.commands.utils.*
+import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mvanilla.extensions.readJsonString
-import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIBukkitConfig
 import dev.jorel.commandapi.CommandAPIConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +48,7 @@ class MChallenge : KSpigot() {
     private var isAllowedToStart = true
 
     override fun startup() {
-        CommandAPI.onEnable(this)
+        CommandAPI.onEnable()
 
         CoroutineScope(Dispatchers.Default).launch {
             while (!isLoaded) {
@@ -70,7 +71,7 @@ class MChallenge : KSpigot() {
         consoleAudience = console
         debug = true
 
-        CommandAPI.onLoad(CommandAPIConfig().verboseOutput(false).silentLogs(true))
+        CommandAPI.onLoad(CommandAPIBukkitConfig(this).verboseOutput(false).silentLogs(true))
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
 
         // Define version
@@ -87,45 +88,50 @@ class MChallenge : KSpigot() {
         positionCommand = PositionCommand()
         backpackCommand = BackpackCommand()
 
+        // Load configuration
+        if (!configFolder.exists()) configFolder.mkdirs()
+        configFile = File("${configFolder.path}/settings.json")
+        settingsFile = File("${configFolder.path}/config.json")
+        ChallengeManager.load(configFile)
+
+        settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
+        debug = settings.debug
+
+        // Reset World
+        if (settings.reset) {
+            console.sendMessage(prefix + cmp("Delete loaded worlds..."))
+            settings.worlds.forEach {
+                val currentRelativePath = Paths.get(it)
+                val path = currentRelativePath.toAbsolutePath().toString()
+                console.sendMessage(prefix + cmp("World Path: $path"))
+                File(path).listFiles()?.forEach { file ->
+                    file.deleteRecursively()
+                    File("$path/playerdata").mkdirs()
+                }
+            }
+            settings.reset = false
+            settings.worlds.clear()
+        }
+
         // Login with MUtils account
         CoroutineScope(Dispatchers.Default).launch {
-            // Load configuration
-            if (!configFolder.exists()) configFolder.mkdirs()
-            configFile = File("${configFolder.path}/settings.json")
-            settingsFile = File("${configFolder.path}/config.json")
-            ChallengeManager.load(configFile)
-
-            settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
-            debug = settings.debug
-            localization = Localization(File("${configFolder.path}/language"), settings.language, languages)
+            localization = Localization(File("${configFolder.path}/language"), settings.language, languages, challengePrefix)
             Spectator.loadData()
 
             // Connect Bridge
             bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port)
-            bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0)
+            val version = bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0, File("plugins/update"))
+            if (!version) {
+                isAllowedToStart = false
+                return@launch
+            }
             bridgeAPI.login {
                 ChallengeManager.stopChallenges()
                 challenges.forEach { (challenge, data) ->
-                    if (challenge.filter.contains(StorageFilter.FREE)) return@forEach
+                    if (challenge.filter.contains(ChallengeTags.FREE)) return@forEach
                     data.active = false
                 }
-                consoleAudience.sendMessage(exactPrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
-            }
-
-            // Reset World
-            if (settings.reset) {
-                console.sendMessage(prefix + cmp("Delete loaded worlds..."))
-                settings.worlds.forEach {
-                    val currentRelativePath = Paths.get(it)
-                    val path = currentRelativePath.toAbsolutePath().toString()
-                    console.sendMessage(prefix + cmp("World Path: $path"))
-                    File(path).listFiles()?.forEach { file ->
-                        file.deleteRecursively()
-                        File("$path/playerdata").mkdirs()
-                    }
-                }
-                settings.reset = false
-                settings.worlds.clear()
+                consoleAudience.sendMessage(challengePrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
             }
 
             // Finish loading - starting setup

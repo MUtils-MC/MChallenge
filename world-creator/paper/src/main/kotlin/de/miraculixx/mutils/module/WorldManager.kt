@@ -4,10 +4,10 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.api.MWorldAPI
-import de.miraculixx.api.data.GeneratorDefaults
-import de.miraculixx.api.data.GeneratorProviderData
-import de.miraculixx.api.data.WorldData
+import de.miraculixx.challenge.api.MWorldAPI
+import de.miraculixx.challenge.api.data.GeneratorDefaults
+import de.miraculixx.challenge.api.data.GeneratorProviderData
+import de.miraculixx.challenge.api.data.WorldData
 import de.miraculixx.mutils.MWorlds
 import de.miraculixx.mutils.data.*
 import de.miraculixx.mvanilla.extensions.readJsonString

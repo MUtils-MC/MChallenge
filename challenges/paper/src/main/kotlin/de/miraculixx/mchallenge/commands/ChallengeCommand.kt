@@ -1,12 +1,13 @@
 package de.miraculixx.mchallenge.commands
 
-import de.miraculixx.api.modules.challenges.ChallengeStatus
-import de.miraculixx.api.utils.gui.GUITypes
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
+import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.modules.mods.mineField.MineFieldWorld
+import de.miraculixx.mchallenge.modules.mods.worldChanging.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
 import de.miraculixx.mchallenge.utils.gui.buildInventory
@@ -16,15 +17,29 @@ import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.kotlindsl.*
+import org.bukkit.Sound
 import org.bukkit.command.CommandSender
 
 class ChallengeCommand {
     private var apiCooldown = false
 
-    private val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("mutils.command.challenge") }) {
+    private val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("mutils.challenge") }) {
         withAliases("ch")
         playerExecutor { player, _ ->
             GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
+            player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN, 0.5f, 1f)
+        }
+
+        literalArgument("addons") {
+            playerExecutor { player, _ ->
+                if (ChallengeManager.getCustomChallenges().isEmpty()) {
+                    player.sendMessage(prefix + msg("command.noAddons"))
+                    player.soundError()
+                    return@playerExecutor
+                }
+                GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(ChallengeTags.ADDON), GUIChallenge())
+                player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN, 0.5f, 1f)
+            }
         }
 
         literalArgument("stop") {
@@ -126,14 +141,6 @@ class ChallengeCommand {
                         } else sender.sendMessage(prefix + msg("command.lang.fail", listOf(key)))
                     }
                 }
-            }
-        }
-
-
-
-        literalArgument("test") {
-            playerExecutor { player, _ ->
-                player.teleport(MineFieldWorld().createWorld()!!.spawnLocation)
             }
         }
     }

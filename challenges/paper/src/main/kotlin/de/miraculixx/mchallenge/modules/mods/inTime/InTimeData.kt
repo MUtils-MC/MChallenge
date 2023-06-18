@@ -2,7 +2,7 @@ package de.miraculixx.mchallenge.modules.mods.inTime
 
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.api.modules.challenges.ChallengeStatus
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.*

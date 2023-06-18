@@ -3,10 +3,9 @@ package de.miraculixx.mutils.gui.data
 import de.miraculixx.mutils.gui.event.GUIClickEvent
 import de.miraculixx.mutils.gui.event.GUICloseEvent
 import de.miraculixx.mutils.gui.event.GUIEventHandler
-import de.miraculixx.mutils.messages.*
+import de.miraculixx.mutils.gui.utils.adventure
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
-import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.Container
 import net.minecraft.world.MenuProvider
 import net.minecraft.world.SimpleContainer
@@ -19,12 +18,13 @@ import net.minecraft.world.inventory.MenuType
 abstract class CustomInventory(
     size: Int,
     private val title: Component,
-    private val clickEvent: ((GUIClickEvent) -> Unit)?,
-    private val closeEvent: ((GUICloseEvent) -> Unit)?
-    ) : SimpleContainer(size), MenuProvider {
+    private val clickEvent: ((GUIClickEvent, CustomInventory) -> Unit)?,
+    private val closeEvent: ((GUICloseEvent, CustomInventory) -> Unit)?,
+) : SimpleContainer(size), MenuProvider {
     val viewers: MutableMap<Player, ChestMenu> = mutableMapOf()
     abstract val id: String
-    abstract val defaultClickAction: ((GUIClickEvent) -> Unit)?
+    abstract val defaultClickAction: ((GUIClickEvent, CustomInventory) -> Unit)?
+    abstract val itemProvider: ItemProvider?
 
     /**
      * Get the final inventory object for further operations.
@@ -62,7 +62,7 @@ abstract class CustomInventory(
      */
     fun open(player: Player) {
         if (debug) consoleAudience.sendMessage(prefix + cmp("Open GUI '$id' to ${player.scoreboardName}"))
-        (player as ServerPlayer).openMenu(this)
+        player.openMenu(this)
     }
 
     /**
@@ -97,9 +97,9 @@ abstract class CustomInventory(
     /**
      * Internal function to get GUI title
      */
-    override fun getDisplayName(): net.minecraft.network.chat.Component {
-        return title.toMC()
-    }
+    override fun getDisplayName() = adventure.toNative(title)
+
+    abstract fun update()
 
     private fun getMenuType(height: Int): MenuType<*> {
         return when (height) {
@@ -137,13 +137,18 @@ abstract class CustomInventory(
          *
          * [GUIClickEvent] for more information
          */
-        var clickAction: ((GUIClickEvent) -> Unit)? = null
+        var clickAction: ((GUIClickEvent, CustomInventory) -> Unit)? = null
 
         /**
          * Inject a GUI close logic directly into this GUI. This will automatically be removed with the inventory after all player close it (but still be called for the last player).
          *
          * [GUICloseEvent] for more information
          */
-        var closeAction: ((GUICloseEvent) -> Unit)? = null
+        var closeAction: ((GUICloseEvent, CustomInventory) -> Unit)? = null
+
+        /**
+         * Import an item provider that handles all content inside this GUI. Depending on the GUI type, different functions will be called to update the content
+         */
+        var itemProvider: ItemProvider? = null
     }
 }

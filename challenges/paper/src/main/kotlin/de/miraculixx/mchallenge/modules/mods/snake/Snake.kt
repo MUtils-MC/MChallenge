@@ -1,13 +1,12 @@
 package de.miraculixx.mchallenge.modules.mods.snake
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.mvanilla.messages.msg
-import de.miraculixx.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.spectator.Spectator
+import de.miraculixx.mvanilla.messages.msg
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.event.block.BlockBreakEvent
@@ -16,7 +15,6 @@ import org.bukkit.event.entity.PlayerDeathEvent
 import java.util.*
 
 class Snake : Challenge {
-    override val challenge = Challenges.SNAKE
     private val map = HashMap<UUID, SnakeObj?>()
 
     override fun start(): Boolean {

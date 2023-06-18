@@ -1,6 +1,7 @@
 plugins {
     `kotlin-script`
-    `loom-script`
+    `core-script`
+    `fabric-script`
     `adventure-script`
     `shadow-script`
 }

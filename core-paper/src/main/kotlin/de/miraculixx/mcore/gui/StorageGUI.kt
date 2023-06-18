@@ -9,7 +9,6 @@ import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.toMap
 import de.miraculixx.mvanilla.gui.Head64
-import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
@@ -171,7 +170,7 @@ class StorageGUI(
                     emptyComponent(),
                     cmp("Click ", cHighlight) + cmp("≫ Change Filter")
                 ))
-                persistentDataContainer.set(NamespacedKey(namespace, "gui.storage.filter"), PersistentDataType.STRING, (filter ?: StorageFilter.NO_FILTER).name)
+                persistentDataContainer.set(NamespacedKey(namespace, "gui.storage.filter"), PersistentDataType.STRING, (filter ?: "NO_FILTER"))
             }})
         }
 

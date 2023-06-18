@@ -1,17 +1,15 @@
 package de.miraculixx.mchallenge.modules.mods.tron
 
+import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.modules.challenges.Challenge
 import org.bukkit.Material
 import org.bukkit.event.player.PlayerJoinEvent
 import java.util.*
 
 class Tron : Challenge {
-    override val challenge = Challenges.TRON
     private val playerData: MutableMap<UUID, TronPath> = mutableMapOf()
     private val validColors = getColors()
     private var isInitial = true

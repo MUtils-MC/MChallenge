@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.itemDecay
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -33,7 +33,6 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class ItemDecay : Challenge {
-    override val challenge: Challenges = Challenges.ITEM_DECAY
     private val startTime: Int
     private val itemTimers: MutableMap<UUID, InternalTimer> = mutableMapOf()
     private val timerNamespace = NamespacedKey(namespace, "challenge.item_decay.timer")

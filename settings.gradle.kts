@@ -5,6 +5,10 @@ pluginManagement {
         gradlePluginPortal()
         maven("https://papermc.io/repo/repository/maven-public/")
     }
+    repositories {
+        gradlePluginPortal()
+        maven("https://maven.fabricmc.net/")
+    }
 }
 
 // Cores
@@ -20,14 +24,16 @@ include("custom-challenges:paper")
 include("custom-challenges:fabric")
 
 // Timer
+include("timer:api")
+include("timer:global")
 include("timer:paper")
 include("timer:fabric")
-include("timer:api")
 
 // Challenges
 include("challenges:paper")
 include("challenges:fabric")
 include("challenges:api")
+include("challenges:global")
 
 // World Creator
 include("world-creator:paper")

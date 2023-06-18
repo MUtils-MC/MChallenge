@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.rightTools
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -17,11 +17,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.inventory.meta.Damageable
 
 class RightTools : Challenge {
-    override val challenge = Challenges.RIGHT_TOOL
     private val starterAxe: Boolean
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.RIGHT_TOOL).settings
         starterAxe = settings["starter"]?.toBool()?.getValue() ?: true
     }
 
@@ -77,7 +76,7 @@ class RightTools : Challenge {
             Tag.MINEABLE_PICKAXE.isTagged(blockType) && itemType.endsWith("_PICKAXE") -> true
             Tag.MINEABLE_SHOVEL.isTagged(blockType) && itemType.endsWith("_SHOVEL") -> true
             Tag.MINEABLE_HOE.isTagged(blockType) && itemType.endsWith("_HOE") -> true
-            itemType == "SHEARS" -> Tag.WOOL.isTagged(blockType) || Tag.REPLACEABLE_PLANTS.isTagged(blockType) || Tag.FLOWERS.isTagged(blockType)
+            itemType == "SHEARS" -> Tag.WOOL.isTagged(blockType) || Tag.REPLACEABLE.isTagged(blockType) || Tag.FLOWERS.isTagged(blockType)
                     || Tag.LEAVES.isTagged(blockType)
 
             blockType.name.endsWith("TORCH") || blockType == Material.SEA_PICKLE -> true

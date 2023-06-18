@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.randomizer
 
-import de.miraculixx.api.modules.challenges.Challenge
-import de.miraculixx.api.modules.challenges.Challenges
-import de.miraculixx.api.settings.challenges
-import de.miraculixx.api.settings.getSetting
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -18,12 +18,11 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 class EntityDamageRandomizer : Challenge {
-    override val challenge = Challenges.RANDOMIZER_DAMAGE
     private var random = true
     private val map: MutableMap<EntityType, Int> = mutableMapOf()
 
     init {
-        val settings = challenges.getSetting(challenge).settings
+        val settings = challenges.getSetting(Challenges.RANDOMIZER_DAMAGE).settings
         random = settings["random"]?.toBool()?.getValue() ?: true
     }
 
