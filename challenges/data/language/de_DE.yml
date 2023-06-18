@@ -59,7 +59,7 @@ command:
   lang:
     success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
     fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
-  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+  noAddons: "<red>Keine MChallenge-Addons installiert! Du findest Addons unter <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -308,19 +308,19 @@ items:
       l: "Spiele gegen alle anderen Spieler<br>in diesem Runden basierten Modus!<br>Zuerst sammelst du ein Item so schnell wie möglich.<br>In der zweiten Phase muss ein anderer<br>zufälliger Spieler dieses Item schneller sammeln!<br>Kannst du trotzdem MC durchspielen?"
     RANDOMIZER_CHESTS:
       n: "Loot Randomizer"
-      l: "Randomize all items in chest containers!"
+      l: "Alle Items in Inventarblöcken sind zufällig!"
     BLOCK_WORLD:
-      n: "Block World"
-      l: "All chunks are built from one<br>block type! Step through a new<br>cursed world"
+      n: "Blockwelt"
+      l: "Alle Chunks sind aus einem<br>Blocktyp! Trete durch eine neue<br>verwirrte Welt"
     MINEFIELD_WORLD:
-      n: "Minefield World"
-      l: "The whole world is covered with<br>dangerous mines. Don't step on them!"
+      n: "Minenfeld Welt"
+      l: "Die ganze Welt ist mit<br>gefährlichen Minen bedeckt. Trete nicht drauf!"
     BLOCK_WALL:
-      n: "Block Wall"
-      l: "You are hunted by a wall!<br>Watch out your steps, breaking the<br>wall is impossible"
+      n: "Blockwand"
+      l: "Du wirst von einer Mauer gejagt!<br>Pass auf deine Schritte auf, die<br>Wand zu brechen ist unmöglich"
     WORLD_DECAY:
-      n: "World Decay"
-      l: "The world around you disappear<br>step by step! Remember your surrounding to<br>keep alive (only visual - needs MWeb)"
+      n: "Weltzerfall"
+      l: "Die Welt um dich herum verschwindet<br>Schritt für Schritt! Denke an deine Umgebung<br>um lebendig zu bleiben (nur visuell - benötigt MWeb)"
   chS:
     FLY:
       power:
@@ -445,7 +445,7 @@ items:
       items:
         n: "Items"
       biomes:
-        n: "Biomes"
+        n: "Biome"
       mobs:
         n: "Mobs"
       joker:
@@ -573,18 +573,17 @@ items:
         n: "Zusätzliche Zeit"
     RANDOMIZER_CHESTS:
       enchanting:
-        n: "Random Enchants"
+        n: "Zufällige Verzauberungen"
     MINEFIELD_WORLD:
       density:
-        n: "Density"
+        n: "Dichte"
     BLOCK_WALL:
       material:
-        n: "Wall Material"
+        n: "Wandmaterial"
       delay:
-        n: "Spawn Delay"
+        n: "Spawn Verzögerung"
     WORLD_DECAY:
       delay:
-        n: "Step Delay"
+        n: "Schrittverzögerung"
       steps:
-        n: "Steps To 100%"
-
+        n: "Schritte Zu 100%"
