@@ -80,10 +80,10 @@ items:
       n: "<red>Desplazar a la izquierda"
       l: "No puedes desplazar<br>más a la izquierda"
     arrowRight:
-      n: "<lime>Desplazar a la derecha"
+      n: "<green>Scroll Right"
       l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
     arrowLeft:
-      n: "<lime>Desplazar a la izquierda"
+      n: "<green>Scroll Left"
       l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
     pageIndicator:
       l: "Click to open a compact<br>GUI with quick access"
