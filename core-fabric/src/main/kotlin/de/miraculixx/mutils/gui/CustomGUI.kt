@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items
 import net.silkmc.silk.core.item.itemStack
 
 class CustomGUI(
-    private val itemProvider: ItemProvider?,
+    override val itemProvider: ItemProvider?,
     title: Component,
     override val id: String,
     players: List<Player>,

@@ -31,5 +31,6 @@ class GUIEventHandler(
     override fun removed(player: Player) {
         val event = GUICloseEvent(customInv, player)
         closeEvent?.invoke(event, customInv)
+        customInv.stopOpen(player)
     }
 }

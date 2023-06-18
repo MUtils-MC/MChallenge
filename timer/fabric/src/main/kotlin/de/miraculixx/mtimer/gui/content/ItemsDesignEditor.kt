@@ -28,7 +28,7 @@ class ItemsDesignEditor(
     override fun getSlotMap(): Map<Int, ItemStack> {
         val dummyTimer = FabricTimer(true, null, null, false, server.playerList)
         dummyTimer.time = (1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
-        val converter = ItemDesignConverter(TimerManager.globalTimer, dummyTimer)
+        val converter = ItemDesignConverter(TimerManager.globalTimer, dummyTimer, emptyList())
         return mapOf(
             11 to itemStack(Items.BOOK) {
                 setName(cmp(msgString("items.designName.n"), cHighlight))

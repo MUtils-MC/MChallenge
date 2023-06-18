@@ -48,7 +48,6 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     BOOST_UP(setOf(ChallengeTags.MEDIUM), Icon("SHULKER_SHELL")),
     RIGHT_TOOL(setOf(ChallengeTags.MEDIUM), Icon("WOODEN_AXE")),
     SNEAK_SPAWN(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("HOPPER")),
-    WORLD_PEACE(setOf(ChallengeTags.MEDIUM), Icon("CORNFLOWER")),
     GRAVITY(setOf(ChallengeTags.MEDIUM), Icon("SAND")),
     STAY_AWAY(setOf(ChallengeTags.HARD), Icon("TNT")),
     RANDOMIZER_BLOCK(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_GREEN)),
@@ -65,6 +64,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     BLOCK_WORLD(setOf(ChallengeTags.FUN), Icon("DIAMOND_BLOCK")),
     MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHTED_PRESSURE_PLATE")),
     BLOCK_WALL(setOf(ChallengeTags.MEDIUM), Icon("BEDROCK")),
+    WORLD_DECAY(setOf(ChallengeTags.HARD), Icon("WHITE_STAINED_GLASS_PANE"))
     ;
 
 
@@ -115,7 +115,6 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             RIGHT_TOOL -> mapOf("starter" to ChallengeBoolSetting("WOODEN_PICKAXE", true))
             CHUNK_BLOCK_BREAK -> mapOf("bundle" to ChallengeBoolSetting("HOPPER", true))
             SNEAK_SPAWN -> mapOf("onlyMob" to ChallengeBoolSetting("POLAR_BEAR_SPAWN_EGG", true))
-            WORLD_PEACE -> emptyMap()
             GRAVITY -> mapOf(
                 "delay" to ChallengeIntSetting("CLOCK", 180, "s", max = 600, min = 20, step = 10), "duration" to ChallengeIntSetting("REPEATER", 120, "s", max = 600, min = 20, step = 10)
             )
@@ -277,6 +276,11 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
 
             RANDOMIZER_CHESTS -> mapOf(
                 "enchanting" to ChallengeBoolSetting("ENCHANTED_BOOK", false)
+            )
+
+            WORLD_DECAY -> mapOf(
+                "delay" to ChallengeIntSetting("CLOCK", 6 * 60, "s", max = 30 * 60, min = 30, step = 15),
+                "steps" to ChallengeIntSetting("BOOKSHELF", 10, max = 20, min = 3)
             )
         }
     }

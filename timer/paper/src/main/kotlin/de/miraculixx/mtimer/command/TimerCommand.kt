@@ -73,7 +73,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 else -> sender.sendMessage(prefix + msg("command.help"))
             }
 
-            "data/language" -> {
+            "language" -> {
                 if (!isPersonal && sender.hasPermission("mutils.command.timer-config")) {
                     sender.sendMessage(prefix + msg("command.help"))
                     return false
@@ -116,13 +116,13 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                     if (!isPersonal && sender.hasPermission("mutils.command.timer-config")) {
                         val input = args?.getOrNull(0)
                         if (input?.startsWith('c') == true) add("config")
-                        else if (input?.startsWith('l') == true) add("data/language")
+                        else if (input?.startsWith('l') == true) add("language")
                     }
                 }
 
                 2 -> when (args?.getOrNull(0)) {
                     "config" -> addAll(listOf("save", "load"))
-                    "data/language" -> addAll(MTimer.localization.getLoadedKeys())
+                    "language" -> addAll(MTimer.localization.getLoadedKeys())
                 }
             }
         }.filter { it.startsWith(args?.lastOrNull() ?: "", ignoreCase = true) }.toMutableList()

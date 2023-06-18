@@ -2,8 +2,6 @@ package de.miraculixx.mutils.gui.utils
 
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
-import net.minecraft.nbt.ListTag
-import net.minecraft.nbt.StringTag
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.silkmc.silk.core.item.setLore

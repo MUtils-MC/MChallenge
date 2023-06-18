@@ -3,11 +3,12 @@ package de.miraculixx.mchallenge.modules
 import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.challenge.api.modules.challenges.*
 import de.miraculixx.challenge.api.settings.ChallengeData
+import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.modules.challenges.StatusChanger
 import de.miraculixx.mvanilla.extensions.readJsonString
-import de.miraculixx.mvanilla.messages.json
+import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
@@ -95,9 +96,13 @@ object ChallengeManager : MChallengeAPI() {
      * @param file The save file
      */
     fun load(file: File) {
-        val data = json.decodeFromString<Map<Challenges, ChallengeData>>(file.readJsonString(true))
-        data.forEach { (ch, data) ->
-            challenges[ch] = data
+        try {
+            val data = json.decodeFromString<Map<Challenges, ChallengeData>>(file.readJsonString(true))
+            data.forEach { (ch, data) ->
+                challenges[ch] = data
+            }
+        } catch (_: Exception) {
+            console.sendMessage(challengePrefix + cmp("Failed to load configuration! This could be due to skipping some updates or manual editing.", cError))
         }
     }
 

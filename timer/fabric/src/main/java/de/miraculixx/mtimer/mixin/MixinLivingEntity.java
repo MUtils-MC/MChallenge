@@ -1,8 +1,11 @@
 package de.miraculixx.mtimer.mixin;
 
 import de.miraculixx.mtimer.events.CustomPlayerEvents;
+import de.miraculixx.mtimer.events.CustomWorldEvents;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinLivingEntity {
 
     @Shadow public abstract ItemStack getItemInHand(InteractionHand interactionHand);
+
+    @Shadow public abstract MobType getMobType();
+
+    @Shadow protected boolean dead;
 
     @Inject(
         method = "startUsingItem",
@@ -32,5 +39,16 @@ public abstract class MixinLivingEntity {
             ci.cancel();
             player.containerMenu.sendAllDataToRemote();
         }
+    }
+
+    @Inject(
+        method = "die",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/world/level/Level;broadcastEntityEvent(Lnet/minecraft/world/entity/Entity;B)V"
+        )
+    )
+    private void afterDeath(DamageSource damageSource, CallbackInfo ci) {
+        CustomWorldEvents.INSTANCE.getAfterMobDeath().invoke(new CustomWorldEvents.MobEvent((LivingEntity) (Object) this));
     }
 }

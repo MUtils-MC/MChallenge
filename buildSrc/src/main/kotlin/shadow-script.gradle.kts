@@ -8,8 +8,7 @@ tasks {
     shadowJar {
         dependencies {
             val moduleName = properties["module_name"]
-            include(dependency("dev.jorel:commandapi-shade"))
-            include(dependency("dev.jorel:commandapi-kotlin"))
+            include(dependency("dev.jorel::"))
             include(dependency("io.ktor::"))
             include {
                 val split = it.moduleGroup.split('.')

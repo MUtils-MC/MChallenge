@@ -1,6 +1,5 @@
 package de.miraculixx.mtimer
 
-import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.mtimer.commands.TimerCommand
 import de.miraculixx.mtimer.module.TimerListener
 import de.miraculixx.mtimer.module.load
@@ -15,14 +14,13 @@ import net.silkmc.silk.core.event.Server
 import java.io.File
 
 lateinit var server: MinecraftServer
-lateinit var challengeAPI: MChallengeAPI
 lateinit var configFolder: String
 
 fun init() {
     TimerCommand
 
     Events.Server.postStart.listen { event ->
-        debug = true
+        debug = false
         server = event.server
         adventure = FabricServerAudiences.of(server)
         consoleAudience = adventure.console()

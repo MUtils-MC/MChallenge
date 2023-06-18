@@ -8,9 +8,17 @@ import net.minecraft.world.entity.player.Player
 
 fun TimerGUI.buildInventory(player: Player, id: String, itemProvider: ItemProvider?, clickAction: GUIEvent) {
     InventoryManager.get(id)?.open(player) ?: when (this) {
-        TimerGUI.OVERVIEW -> InventoryManager.inventoryBuilder(id) {
+        TimerGUI.OVERVIEW, TimerGUI.DESIGN_PART_EDITOR -> InventoryManager.inventoryBuilder(id) {
             this.player = player
             this.size = 4
+            this.title = this@buildInventory.title
+            this.clickAction = clickAction.run
+            this.itemProvider = itemProvider
+        }
+
+        TimerGUI.DESIGN_EDITOR -> InventoryManager.inventoryBuilder(id) {
+            this.player = player
+            this.size = 3
             this.title = this@buildInventory.title
             this.clickAction = clickAction.run
             this.itemProvider = itemProvider
@@ -21,6 +29,14 @@ fun TimerGUI.buildInventory(player: Player, id: String, itemProvider: ItemProvid
             this.title = this@buildInventory.title
             this.clickAction = clickAction.run
             this.itemProvider = itemProvider
+        }
+
+        TimerGUI.DESIGN -> InventoryManager.storageBuilder(id) {
+            this.player = player
+            this.title = this@buildInventory.title
+            this.clickAction = clickAction.run
+            this.itemProvider = itemProvider
+            this.headers = itemProvider?.getExtra() ?: emptyList()
         }
 
         else -> Unit

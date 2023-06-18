@@ -1,17 +1,11 @@
 package de.miraculixx.mtimer.gui.actions
 
-import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mcore.gui.GUIEvent
-import de.miraculixx.mcore.gui.data.CustomInventory
-import de.miraculixx.mtimer.MTimer
 import de.miraculixx.mtimer.configFolder
 import de.miraculixx.mtimer.data.TimerDesign
 import de.miraculixx.mtimer.data.TimerPresets
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.content.ItemsDesignEditor
 import de.miraculixx.mtimer.gui.content.ItemsOverview
-import de.miraculixx.mtimer.gui.items.ItemsDesignEditor
-import de.miraculixx.mtimer.gui.items.ItemsOverview
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
@@ -24,14 +18,7 @@ import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.namespace
 import net.kyori.adventure.audience.Audience
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
-import org.bukkit.NamespacedKey
-import org.bukkit.entity.Player
-import org.bukkit.event.inventory.ClickType
-import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.inventory.ItemStack
-import org.bukkit.persistence.PersistentDataType
 import java.io.File
 import java.util.*
 
@@ -53,11 +40,11 @@ class ActionDesigns(private val isPersonal: Boolean, private val timer: Timer) :
                 player.closeContainer()
                 player.click()
                 val preset = TimerPresets.PRESET
-                val design = preset.design
                 val uuid = UUID.randomUUID()
+                val design = preset.design.copy(name = uuid.toString())
                 design.owner = player.scoreboardName
                 TimerManager.addDesign(design, uuid)
-                TimerGUI.DESIGN_EDITOR.buildInventory(player, player.uuid.toString(), ItemsDesignEditor(design, uuid), GUIDesignEditor(design, uuid, isPersonal))
+                TimerGUI.DESIGN_EDITOR.buildInventory(player, "${player.uuid}-EDITOR", ItemsDesignEditor(design, uuid), ActionDesignEditor(design, uuid, isPersonal))
             }
 
             2 -> { // TODO
@@ -91,7 +78,7 @@ class ActionDesigns(private val isPersonal: Boolean, private val timer: Timer) :
                         player.closeContainer()
                         TimerGUI.DESIGN_EDITOR.buildInventory(
                             player, player.uuid.toString(),
-                            ItemsDesignEditor(design.first, design.second), GUIDesignEditor(design.first, design.second, isPersonal)
+                            ItemsDesignEditor(design.first, design.second), ActionDesignEditor(design.first, design.second, isPersonal)
                         )
                     }
 
@@ -113,7 +100,7 @@ class ActionDesigns(private val isPersonal: Boolean, private val timer: Timer) :
     }
 
     private fun ItemStack.getDesign(player: Audience): Pair<TimerDesign, UUID>? {
-        val uuidString = getTagElement(namespace)?.getString("gui.timer.design")
+        val uuidString = getTagElement(namespace)?.getString("timer-design")
         val uuid = try {
             UUID.fromString(uuidString)
         } catch (_: IllegalArgumentException) {

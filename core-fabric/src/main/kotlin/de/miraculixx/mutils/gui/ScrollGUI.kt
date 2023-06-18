@@ -26,7 +26,7 @@ import net.silkmc.silk.nbt.dsl.nbtCompound
 import net.silkmc.silk.nbt.set
 
 class ScrollGUI(
-    private val itemProvider: ItemProvider?,
+    override val itemProvider: ItemProvider?,
     override val id: String,
     title: Component,
     players: List<Player>,

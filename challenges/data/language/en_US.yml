@@ -326,6 +326,9 @@ items:
     BLOCK_WALL:
       n: "Block Wall"
       l: "You are hunted by a wall!<br>Watch out your steps, breaking the<br>wall is impossible"
+    WORLD_DECAY:
+      n: "World Decay"
+      l: "The world around you disappear<br>step by step! Remember your surrounding to<br>keep alive (only visual - needs MWeb)"
   chS:
     FLY:
       power:
@@ -587,4 +590,9 @@ items:
         n: "Wall Material"
       delay:
         n: "Spawn Delay"
+    WORLD_DECAY:
+      delay:
+        n: "Step Delay"
+      steps:
+        n: "Steps To 100%"
 

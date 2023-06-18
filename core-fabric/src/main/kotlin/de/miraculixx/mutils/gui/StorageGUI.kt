@@ -26,7 +26,7 @@ import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.nbt.set
 
 class StorageGUI(
-    private val itemProvider: ItemProvider?,
+    override val itemProvider: ItemProvider?,
     private val header: List<ItemStack>,
     private val filterable: Boolean,
     filterName: String?,

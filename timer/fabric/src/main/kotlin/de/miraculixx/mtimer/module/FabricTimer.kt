@@ -1,11 +1,8 @@
 package de.miraculixx.mtimer.module
 
-import de.miraculixx.challenge.api.MChallengeAPI
-import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
-import de.miraculixx.mtimer.vanilla.module.rules
-import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.messages.msg
 import kotlinx.coroutines.cancel
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
@@ -22,33 +19,30 @@ class FabricTimer(
     designID: UUID? = null,
     activate: Boolean = true,
     private val playerList: PlayerList
-): Timer(designID, playerID) {
-//    private val listener
+) : Timer(designID, playerID) {
     override var running = false
         set(value) {
             field = value
-            val api: MChallengeAPI? = null
 
             if (value) {
-//                listener?.activateTimer()
                 startLogics.forEach { it.invoke() }
-                if (rules.syncWithChallenge) {
-                    if (api != null) {
-                        when (api.getChallengeStatus()) {
-                            ChallengeStatus.STOPPED -> api.startChallenges()
-                            ChallengeStatus.PAUSED -> api.resumeChallenges()
-                            ChallengeStatus.RUNNING -> if (debug) consoleAudience.sendMessage(prefix + cmp("Challenges already running!", cError))
-                        }
-                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
-                }
+//                if (rules.syncWithChallenge) {
+//                    if (api != null) {
+//                        when (api.getChallengeStatus()) {
+//                            ChallengeStatus.STOPPED -> api.startChallenges()
+//                            ChallengeStatus.PAUSED -> api.resumeChallenges()
+//                            ChallengeStatus.RUNNING -> if (debug) consoleAudience.sendMessage(prefix + cmp("Challenges already running!", cError))
+//                        }
+//                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
+//                }
             } else {
 //                listener?.deactivateTimer()
                 stopLogics.forEach { it.invoke() }
-                if (rules.syncWithChallenge) {
-                    if (api != null) {
-                        api.pauseChallenges()
-                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
-                }
+//                if (rules.syncWithChallenge) {
+//                    if (api != null) {
+//                        api.pauseChallenges()
+//                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
+//                }
             }
         }
 

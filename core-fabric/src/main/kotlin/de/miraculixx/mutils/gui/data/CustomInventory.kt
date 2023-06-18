@@ -19,11 +19,12 @@ abstract class CustomInventory(
     size: Int,
     private val title: Component,
     private val clickEvent: ((GUIClickEvent, CustomInventory) -> Unit)?,
-    private val closeEvent: ((GUICloseEvent, CustomInventory) -> Unit)?
+    private val closeEvent: ((GUICloseEvent, CustomInventory) -> Unit)?,
 ) : SimpleContainer(size), MenuProvider {
     val viewers: MutableMap<Player, ChestMenu> = mutableMapOf()
     abstract val id: String
     abstract val defaultClickAction: ((GUIClickEvent, CustomInventory) -> Unit)?
+    abstract val itemProvider: ItemProvider?
 
     /**
      * Get the final inventory object for further operations.

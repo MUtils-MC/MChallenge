@@ -1,5 +1,6 @@
 plugins {
     id("fabric-loom")
+    id("io.github.juuxel.loom-quiltflower")
 }
 
 repositories {
@@ -9,6 +10,12 @@ repositories {
         setUrl("https://jitpack.io")
     }
     maven("https://oss.sonatype.org/content/repositories/snapshots")
+}
+
+val transitiveInclude: Configuration by configurations.creating {
+    exclude(group = "com.mojang")
+    exclude(group = "org.jetbrains.kotlin")
+    exclude(group = "org.jetbrains.kotlinx")
 }
 
 dependencies {
@@ -26,6 +33,11 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:1.9.4+kotlin.1.8.21")
     modImplementation(include("me.lucko", "fabric-permissions-api", "0.2-SNAPSHOT"))
     modImplementation(include("net.kyori:adventure-platform-fabric:5.8.0")!!)
+    transitiveInclude(implementation("org.yaml:snakeyaml:1.33")!!)
+
+    transitiveInclude.resolvedConfiguration.resolvedArtifacts.forEach {
+        include(it.moduleVersion.id.toString())
+    }
 }
 
 tasks {

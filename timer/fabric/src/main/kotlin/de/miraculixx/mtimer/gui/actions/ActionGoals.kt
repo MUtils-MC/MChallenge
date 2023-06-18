@@ -2,7 +2,6 @@ package de.miraculixx.mtimer.gui.actions
 
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.content.ItemsOverview
-import de.miraculixx.mtimer.server
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mtimer.vanilla.module.goals

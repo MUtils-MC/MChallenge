@@ -284,13 +284,13 @@
   {
     "key": "BLOCK_WORLD",
     "version": 107,
-    "icon": "DIAMOND_BLOCK",
+    "icon": "diamond_block",
     "tags": ["FUN"]
   },
   {
     "key": "MINEFIELD_WORLD",
     "version": 107,
-    "icon": "LIGHT_WEIGHTED_PRESSURE_PLATE",
+    "icon": "light_weighted_pressure_plate",
     "tags": ["HARD"]
   }
 ]

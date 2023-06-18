@@ -17,6 +17,7 @@ import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIBukkitConfig
 import dev.jorel.commandapi.CommandAPIConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +48,7 @@ class MChallenge : KSpigot() {
     private var isAllowedToStart = true
 
     override fun startup() {
-        CommandAPI.onEnable(this)
+        CommandAPI.onEnable()
 
         CoroutineScope(Dispatchers.Default).launch {
             while (!isLoaded) {
@@ -70,7 +71,7 @@ class MChallenge : KSpigot() {
         consoleAudience = console
         debug = true
 
-        CommandAPI.onLoad(CommandAPIConfig().verboseOutput(false).silentLogs(true))
+        CommandAPI.onLoad(CommandAPIBukkitConfig(this).verboseOutput(false).silentLogs(true))
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
 
         // Define version

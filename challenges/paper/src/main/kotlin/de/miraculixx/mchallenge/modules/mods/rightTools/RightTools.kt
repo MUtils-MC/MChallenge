@@ -76,7 +76,7 @@ class RightTools : Challenge {
             Tag.MINEABLE_PICKAXE.isTagged(blockType) && itemType.endsWith("_PICKAXE") -> true
             Tag.MINEABLE_SHOVEL.isTagged(blockType) && itemType.endsWith("_SHOVEL") -> true
             Tag.MINEABLE_HOE.isTagged(blockType) && itemType.endsWith("_HOE") -> true
-            itemType == "SHEARS" -> Tag.WOOL.isTagged(blockType) || Tag.REPLACEABLE_PLANTS.isTagged(blockType) || Tag.FLOWERS.isTagged(blockType)
+            itemType == "SHEARS" -> Tag.WOOL.isTagged(blockType) || Tag.REPLACEABLE.isTagged(blockType) || Tag.FLOWERS.isTagged(blockType)
                     || Tag.LEAVES.isTagged(blockType)
 
             blockType.name.endsWith("TORCH") || blockType == Material.SEA_PICKLE -> true

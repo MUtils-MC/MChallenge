@@ -31,9 +31,9 @@ class ActionOverview(isPersonal: Boolean) : GUIEvent {
         when (val id = item.getTagElement(namespace)?.getInt("ID")) {
             5 -> {
                 player.closeContainer()
-                val guiID = if (isPersonal) player.uuid.toString() else "TIMER_GLOBAL_DESIGNS"
+                val guiID = if (isPersonal) "${player.uuid}-DESIGNS" else "TIMER_GLOBAL_DESIGNS"
                 player.click()
-                TimerGUI.DESIGN.buildInventory(player, guiID, ItemsDesigns(timer), ActionD(isPersonal, timer))
+                TimerGUI.DESIGN.buildInventory(player, guiID, ItemsDesigns(timer), ActionDesigns(isPersonal, timer))
             }
 
             6 -> if (timer.countUp) {

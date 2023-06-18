@@ -1,6 +1,7 @@
 package de.miraculixx.mtimer.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
+import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mtimer.vanilla.data.ColorBuilder
@@ -37,7 +38,7 @@ class GUIColorBuilder(data: ColorBuilder, prevInv: CustomInventory? = null) : GU
             4 -> data.g = player.calcNumber(data.g, it.click)
             5 -> data.b = player.calcNumber(data.b, it.click)
 
-            6 -> de.miraculixx.mcore.await.AwaitChatMessage(false, player, "Hexcode (#000000)", 60, data.input, false, emptyComponent(), { input ->
+            6 -> AwaitChatMessage(false, player, "Hexcode (#000000)", 60, data.input, false, emptyComponent(), { input ->
                 val newColor = TextColor.fromHexString(input)
                 if (newColor == null) player.soundError()
                 else data.input = input

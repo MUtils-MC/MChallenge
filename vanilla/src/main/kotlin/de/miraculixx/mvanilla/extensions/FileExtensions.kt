@@ -4,9 +4,6 @@ import net.kyori.adventure.audience.Audience
 import java.io.File
 import java.util.*
 
-//private val jsonValidationObj = Regex("\\{.*.}")
-//private val jsonValidationList = Regex("\\[.*.]")
-
 fun File.readJsonString(isObject: Boolean): String {
     if (!exists()) {
         parentFile.mkdirs()

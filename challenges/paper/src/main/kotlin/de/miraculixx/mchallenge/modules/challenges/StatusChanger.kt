@@ -10,13 +10,8 @@ import de.miraculixx.mchallenge.modules.mods.anvilCrusher.AnvilCrusher
 import de.miraculixx.mchallenge.modules.mods.areaTimer.AreaTimer
 import de.miraculixx.mchallenge.modules.mods.blockAsync.BlockAsync
 import de.miraculixx.mchallenge.modules.mods.blockWall.BlockWall
-import de.miraculixx.mchallenge.modules.mods.blockWorld.BlockWorld
 import de.miraculixx.mchallenge.modules.mods.boostUp.BoostUp
 import de.miraculixx.mchallenge.modules.mods.checkpoints.Checkpoints
-import de.miraculixx.mchallenge.modules.mods.chunkBreaker.ChunkBlockBreaker
-import de.miraculixx.mchallenge.modules.mods.chunkClearer.ChunkClearer
-import de.miraculixx.mchallenge.modules.mods.chunkDecay.ChunkDecay
-import de.miraculixx.mchallenge.modules.mods.chunkFlattener.ChunkFlattener
 import de.miraculixx.mchallenge.modules.mods.collectBattle.CollectBattle
 import de.miraculixx.mchallenge.modules.mods.damageDuel.DamageDuell
 import de.miraculixx.mchallenge.modules.mods.damageMultiplier.DamageMultiplier
@@ -32,13 +27,12 @@ import de.miraculixx.mchallenge.modules.mods.huntMob.MobHunt
 import de.miraculixx.mchallenge.modules.mods.inTime.InTime
 import de.miraculixx.mchallenge.modules.mods.itemDecay.ItemDecay
 import de.miraculixx.mchallenge.modules.mods.limitedSkills.LimitedSkills
-import de.miraculixx.mchallenge.modules.mods.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.modules.mods.mirror.Mirror
 import de.miraculixx.mchallenge.modules.mods.mobBlocks.MobBlocks
 import de.miraculixx.mchallenge.modules.mods.noDoubleKill.NoDoubleKills
 import de.miraculixx.mchallenge.modules.mods.noSameItems.NoSameItem
-import de.miraculixx.mchallenge.modules.mods.oneBiome.OneBiome
 import de.miraculixx.mchallenge.modules.mods.randomizer.*
+import de.miraculixx.mchallenge.modules.mods.realistic.Realistic
 import de.miraculixx.mchallenge.modules.mods.rightTools.RightTools
 import de.miraculixx.mchallenge.modules.mods.rivalCollect.RivalCollect
 import de.miraculixx.mchallenge.modules.mods.rocket.Rocket
@@ -49,11 +43,18 @@ import de.miraculixx.mchallenge.modules.mods.stayAway.StayAway
 import de.miraculixx.mchallenge.modules.mods.trafficlight.TrafficLight
 import de.miraculixx.mchallenge.modules.mods.tron.Tron
 import de.miraculixx.mchallenge.modules.mods.vampire.Vampire
-import de.miraculixx.mchallenge.modules.mods.worldPeace.WorldPeace
+import de.miraculixx.mchallenge.modules.mods.worldChanging.blockWorld.BlockWorld
+import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkBreaker.ChunkBlockBreaker
+import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkClearer.ChunkClearer
+import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkDecay.ChunkDecay
+import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkFlattener.ChunkFlattener
+import de.miraculixx.mchallenge.modules.mods.worldChanging.mineField.MineFieldWorld
+import de.miraculixx.mchallenge.modules.mods.worldChanging.oneBiome.OneBiome
+import de.miraculixx.mchallenge.modules.mods.worldDecay.WorldDecay
 import de.miraculixx.mchallenge.utils.cotm
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mvanilla.messages.*
-import java.util.UUID
+import java.util.*
 
 class StatusChanger {
     private fun getClass(module: Challenges): Challenge {
@@ -64,7 +65,7 @@ class StatusChanger {
             Challenges.CHECKPOINTS -> Checkpoints()
             Challenges.DIM_SWAP -> DimSwap()
             Challenges.SNAKE -> Snake()
-            Challenges.REALISTIC -> TODO()
+            Challenges.REALISTIC -> Realistic()
             Challenges.GHOST -> Ghost()
             Challenges.BLOCK_ASYNC -> BlockAsync()
             Challenges.NO_SAME_ITEM -> NoSameItem()
@@ -76,7 +77,6 @@ class StatusChanger {
             Challenges.RIGHT_TOOL -> RightTools()
             Challenges.CHUNK_BLOCK_BREAK -> ChunkBlockBreaker()
             Challenges.SNEAK_SPAWN -> SneakSpawn()
-            Challenges.WORLD_PEACE -> WorldPeace()
             Challenges.GRAVITY -> GravityManager()
             Challenges.STAY_AWAY -> StayAway()
             Challenges.RANDOMIZER_BLOCK -> BlockRandomizer()
@@ -108,6 +108,7 @@ class StatusChanger {
             Challenges.MINEFIELD_WORLD -> MineFieldWorld()
             Challenges.BLOCK_WALL -> BlockWall()
             Challenges.DAMAGE_MULTIPLIER -> DamageMultiplier()
+            Challenges.WORLD_DECAY -> WorldDecay()
         }
     }
 

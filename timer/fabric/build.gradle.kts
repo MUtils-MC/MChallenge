@@ -10,7 +10,6 @@ dependencies {
     implementation(include(project(":core-fabric", "namedElements"))!!)
     implementation(include(project(":timer:global"))!!)
     implementation(include(project(":timer:api"))!!)
-    implementation(project(":challenges:api")) // Internal API
 }
 
 loom {
