@@ -21,7 +21,7 @@ common:
   click: "Klick"
   sneak: "Sneak"
   none: "Leer"
-  button: "Taste"
+  button: "Knopf"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
