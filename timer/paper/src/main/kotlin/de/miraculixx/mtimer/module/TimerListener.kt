@@ -8,6 +8,7 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.geometry.toSimpleString
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
+import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mtimer.data.Punishment
 import de.miraculixx.mtimer.vanilla.module.Timer
@@ -74,10 +75,12 @@ class TimerListener {
     }
 
     private fun toggleFreeze(active: Boolean) {
-        worlds.forEach { world ->
-            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, active)
-            world.livingEntities.forEach { entity ->
-                if (entity !is Player) entity.setAI(active)
+        sync {
+            worlds.forEach { world ->
+                world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, active)
+                world.livingEntities.forEach { entity ->
+                    if (entity !is Player) entity.setAI(active)
+                }
             }
         }
     }

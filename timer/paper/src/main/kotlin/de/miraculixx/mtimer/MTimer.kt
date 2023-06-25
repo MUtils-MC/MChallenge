@@ -1,6 +1,5 @@
 package de.miraculixx.mtimer
 
-import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mbridge.MUtilsBridge
@@ -19,7 +18,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
-import org.bukkit.Bukkit
 import java.io.File
 
 class MTimer : KSpigot() {
@@ -27,7 +25,6 @@ class MTimer : KSpigot() {
         lateinit var INSTANCE: KSpigot
         val configFolder = File("plugins/MUtils/Timer")
         lateinit var localization: Localization
-        var chAPI: MChallengeAPI? = null
         lateinit var bridgeAPI: MUtilsBridge
     }
 
@@ -54,8 +51,6 @@ class MTimer : KSpigot() {
             registerCommand("timer", TimerCommand(false))
             registerCommand("ptimer", TimerCommand(true))
             registerCommand("colorful", HelperCommand())
-
-            if (Bukkit.getPluginManager().isPluginEnabled("MUtils-Challenges")) chAPI = MChallengeAPI.instance
 
             TimerManager.load(configFolder)
             TimerAPI

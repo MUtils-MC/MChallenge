@@ -1,13 +1,10 @@
 package de.miraculixx.mtimer.module
 
-import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mtimer.MTimer
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
-import de.miraculixx.mtimer.vanilla.module.rules
-import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.messages.msg
 import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
 import java.util.*
@@ -19,34 +16,19 @@ class PaperTimer(
     playerID: UUID? = null,
     designID: UUID? = null,
     activate: Boolean = true,
-): Timer(designID) {
+) : Timer(designID) {
     private val player = playerID?.let { Bukkit.getOfflinePlayer(it) }
     private val listener = if (isPersonal) null else TimerListener()
     override var running = false
         set(value) {
             field = value
-            val api = MTimer.chAPI
 
             if (value) {
                 listener?.activateTimer()
                 startLogics.forEach { it.invoke() }
-                if (rules.syncWithChallenge) {
-                    if (api != null) {
-                        when (api.getChallengeStatus()) {
-                            ChallengeStatus.STOPPED -> api.startChallenges()
-                            ChallengeStatus.PAUSED -> api.resumeChallenges()
-                            ChallengeStatus.RUNNING -> if (debug) consoleAudience.sendMessage(prefix + cmp("Challenges already running!", cError))
-                        }
-                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
-                }
             } else {
                 listener?.deactivateTimer()
                 stopLogics.forEach { it.invoke() }
-                if (rules.syncWithChallenge) {
-                    if (api != null) {
-                        api.pauseChallenges()
-                    } else consoleAudience.sendMessage(prefix + cmp("Failed to sync with MChallenge!", cError))
-                }
             }
         }
 

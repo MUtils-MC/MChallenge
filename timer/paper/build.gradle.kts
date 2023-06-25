@@ -17,3 +17,9 @@ dependencies {
 
 group = "de.miraculixx.timer"
 setProperty("module_name", "timer")
+
+sourceSets {
+    main {
+        resources.srcDirs("$rootDir/timer/data/")
+    }
+}
