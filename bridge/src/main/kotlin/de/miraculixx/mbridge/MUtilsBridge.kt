@@ -5,6 +5,7 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
+import net.kyori.adventure.text.format.NamedTextColor
 import java.io.File
 import java.net.InetAddress
 import java.util.*
@@ -205,18 +206,30 @@ class MUtilsBridge(
 
     fun receiveData(t: String, onResponse: (String) -> Unit) {
         CoroutineScope(Dispatchers.Default).launch {
-            val response = WebClient.get("https://api.mutils.de/public/lib", mapOf("MType" to t, "Key" to accountData.key, "UUID" to accountData.uuid.toString()))
+            val response = WebClient.get("https://api.mutils.net/public/lib", mapOf("MType" to t, "Key" to accountData.key, "UUID" to accountData.uuid.toString()))
             onResponse.invoke(response)
         }
     }
 
     fun likeData(t: String, id: String) {
         CoroutineScope(Dispatchers.Default).launch {
-            when (WebClient.get("https://api.mutils.de/public/lib", mapOf("MType" to t, "Key" to accountData.key, "UUID" to accountData.uuid.toString(), "Entry_ID" to id))) {
+            when (WebClient.get("https://api.mutils.net/public/lib", mapOf("MType" to t, "Key" to accountData.key, "UUID" to accountData.uuid.toString(), "Entry_ID" to id))) {
                 "0" -> consoleAudience.sendMessage(prefix + cmp("Unexpected server response - Do you use an updated version?"))
                 "1" -> true
                 "2" -> if (debug) consoleAudience.sendMessage(prefix + cmp("Already liked that Entry"))
             }
+        }
+    }
+
+    private fun loadStyle() {
+        CoroutineScope(Dispatchers.Default).launch {
+            val response = WebClient.get("https://api.mutils.net/public/style", mapOf("Key" to accountData.key, "UUID" to accountData.uuid.toString()))
+            val style = try {
+                json.decodeFromString<Styles>(response)
+            } catch (_: Exception) { return@launch }
+            cHighlight = style.color
+            cMark = style.colorSec
+            _reloadPrefix()
         }
     }
 
@@ -242,6 +255,8 @@ class MUtilsBridge(
             val loginData = serialize<LoginResponse>(WebClient.get("https://api.mutils.de/public/login", mapOf("key" to accountData.key, "ip" to serverIP, "uuid" to "${accountData.uuid}", "sversion" to serverVersion, "mversion" to "$serviceVersion")))
             accountConnected = !(loginData == null || !loginData.success)
             if (accountConnected) {
+                loadStyle()
+                getCOTM()
                 if (debug) consoleAudience.sendMessage(prefix + cmp("API - Heartbeat success", cSuccess))
                 if (!activeLoginJob) {
                     if (debug) consoleAudience.sendMessage(prefix + cmp("API - Launch heartbeat scheduler", cSuccess))

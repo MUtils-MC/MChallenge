@@ -25,3 +25,6 @@ data class ModrinthVersion(val name: String, val changelog: String, val files: L
  */
 @Serializable
 data class ModrinthFile(val url: String, val filename: String, val size: Long)
+
+@Serializable
+data class Styles(val color: String, val colorSec: String, val name: String)
