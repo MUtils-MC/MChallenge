@@ -2,8 +2,14 @@ package de.miraculixx.mchallenge.modules.global
 
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.*
+import io.netty.buffer.Unpooled
+import io.papermc.paper.event.player.AsyncChatEvent
+import net.minecraft.network.FriendlyByteBuf
+import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket
+import net.minecraft.resources.ResourceLocation
 import org.bukkit.Bukkit
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.scoreboard.Criteria
@@ -29,16 +35,14 @@ object RuleListener {
             it.isCancelled = true
     }
 
-//    val onChat = listen<AsyncChatEvent> {
-//        val message = plainSerializer.serialize(it.message())
-//        val tps = message.toFloat()
-//
-//        val buf = FriendlyByteBuf(Unpooled.buffer()).writeUtf(Payload().writeJson(tps).finishWrite())
-//        (it.player as CraftPlayer).handle.connection.send(ClientboundCustomPayloadPacket(ResourceLocation("noriskclient:tps"), buf))
-//        it.player.sendMessage(prefix + cmp("Changed to $tps"))
-//    }
+    val onChat = listen<AsyncChatEvent> {
+        val message = plainSerializer.serialize(it.message())
+        val tps = message.toFloat()
 
-//    Bukkit.getMessenger().registerOutgoingPluginChannel(INSTANCE, "noriskclient:tps")
+        val buf = FriendlyByteBuf(Unpooled.buffer()).writeUtf(Payload().writeJson(tps).finishWrite())
+        (it.player as CraftPlayer).handle.connection.send(ClientboundCustomPayloadPacket(ResourceLocation("noriskclient:tps"), buf))
+        it.player.sendMessage(prefix + cmp("Changed to $tps", cSuccess))
+    }
 }
 
 enum class CustomRules {

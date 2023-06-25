@@ -28,6 +28,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
+import org.bukkit.Bukkit
 import java.io.File
 import java.nio.file.Paths
 import kotlin.time.Duration.Companion.milliseconds
@@ -66,6 +67,7 @@ class MChallenge : KSpigot() {
             // Global Listener Registration
             DeathListener
             //Spectator.register() TODO
+            Bukkit.getMessenger().registerOutgoingPluginChannel(INSTANCE, "noriskclient:tps")
 
             // Run after init & sync
             taskRunLater(1) {
