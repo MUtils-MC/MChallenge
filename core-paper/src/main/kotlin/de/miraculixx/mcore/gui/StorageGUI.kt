@@ -132,7 +132,9 @@ class StorageGUI(
     }
 
     override fun update() {
-        val content = itemProvider?.getItemList()?.toMap(false)?.plus(itemProvider.getBooleanMap(0,99)) ?: emptyMap()
+        val from = page * 9
+        val to = (from + (9 * 5)) - (if (filterable) 9 else 0)
+        val content = itemProvider?.getItemList(from, to)?.toMap(false)?.plus(itemProvider.getBooleanMap(from, to)) ?: emptyMap()
         val filter = (itemProvider as? ItemFilterProvider)?.filter
         fillPlaceholder(false)
 
@@ -177,13 +179,7 @@ class StorageGUI(
 
 
         //Visible Content
-        val visible = if (scrollable) {
-//            println("Content - ${page * 9} -> ${page * 9 + (if (filterable) 9*4 else 9*5)}")
-            content.toList().subList(
-                (page * 9).coerceIn(0 until content.size),
-                (page * 9 + (if (filterable) 9*4 else 9*5)).coerceIn(0 until content.size + 1)
-            )
-        } else content.toList()
+        val visible = content.toList()
 
         //Scroll Apply
         if (scrollable) {
