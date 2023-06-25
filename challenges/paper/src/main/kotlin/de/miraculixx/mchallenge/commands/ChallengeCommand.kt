@@ -23,7 +23,7 @@ import org.bukkit.command.CommandSender
 class ChallengeCommand {
     private var apiCooldown = false
 
-    private val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("mutils.challenge") }) {
+    private val command = commandTree("challenge", { sender: CommandSender -> sender.hasPermission("command.challenge") }) {
         withAliases("ch")
         playerExecutor { player, _ ->
             GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
