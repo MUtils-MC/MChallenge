@@ -18,11 +18,14 @@ fun GUITypes.buildInventory(player: Player, id: String, itemProvider: ItemProvid
             this.clickAction = clickAction.run
         }
 
-        GUITypes.SPEC_PLAYER_OVERVIEW -> InventoryManager.storageBuilder(id) {
+        GUITypes.SPEC_PLAYER_OVERVIEW, GUITypes.CH_LOW_VISION -> InventoryManager.storageBuilder(id) {
             this.title = this@buildInventory.title
             this.player = player
             this.itemProvider = itemProvider
             this.clickAction = clickAction.run
+            clickAction.close?.let { this.closeAction = it }
+            this.scrollable = true
+            itemProvider?.getExtra()?.let { this.headers = it }
         }
 
         GUITypes.SPEC_SETTINGS -> InventoryManager.inventoryBuilder(id) {

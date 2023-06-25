@@ -8,6 +8,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 
 enum class GUITypes(val title: Component) {
     CH_LIMITED_SKILLS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Limited Skills", cHighlight)),
+    CH_LOW_VISION(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Select Blocks", cHighlight)),
 
     CHALLENGE_SETTINGS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenge Settings", cHighlight)),
     SPEC_SETTINGS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Settings", cHighlight)),

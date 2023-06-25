@@ -64,7 +64,9 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     BLOCK_WORLD(setOf(ChallengeTags.FUN), Icon("DIAMOND_BLOCK")),
     MINEFIELD_WORLD(setOf(ChallengeTags.HARD), Icon("LIGHT_WEIGHTED_PRESSURE_PLATE")),
     BLOCK_WALL(setOf(ChallengeTags.MEDIUM), Icon("BEDROCK")),
-    WORLD_DECAY(setOf(ChallengeTags.HARD), Icon("WHITE_STAINED_GLASS_PANE"))
+    WORLD_DECAY(setOf(ChallengeTags.HARD), Icon("WHITE_STAINED_GLASS")),
+    LOW_VISION(setOf(ChallengeTags.HARD), Icon("TINTED_GLASS")),
+    CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX"))
     ;
 
 
@@ -281,6 +283,14 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             WORLD_DECAY -> mapOf(
                 "delay" to ChallengeIntSetting("CLOCK", 6 * 60, "s", max = 30 * 60, min = 30, step = 15),
                 "steps" to ChallengeIntSetting("BOOKSHELF", 10, max = 20, min = 3)
+            )
+
+            LOW_VISION -> mapOf(
+                "amount" to ChallengeIntSetting("CHEST", 5, "b", min = 1)
+            )
+
+            CHUNK_SYNC -> mapOf(
+                "env" to ChallengeBoolSetting("TNT", false)
             )
         }
     }

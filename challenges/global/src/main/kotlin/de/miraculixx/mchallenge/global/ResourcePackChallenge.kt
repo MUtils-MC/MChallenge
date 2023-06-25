@@ -1,5 +1,8 @@
 package de.miraculixx.mchallenge.global
 
+import de.miraculixx.mvanilla.messages.*
+import net.kyori.adventure.audience.Audience
+import net.kyori.adventure.text.event.ClickEvent
 import java.io.File
 import java.io.InputStream
 
@@ -22,5 +25,12 @@ interface ResourcePackChallenge {
         File(ressourceFolder, "textures").mkdir()
         File(ressourceFolder, "models").mkdir()
         return ressourceFolder
+    }
+
+    fun error(audience: Audience): Boolean {
+        audience.sendMessage(prefix + cmp("MWeb is needed to play this Challenge! Please install it ", cError) + cmp("here", cError, underlined = true)
+            .clickEvent(ClickEvent.openUrl("https://modrinth.com/mod/mweb"))
+            .addHover(cmp("Click to open")))
+        return false
     }
 }
