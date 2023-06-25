@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName", "ObjectPropertyName")
+
 package de.miraculixx.mvanilla.messages
 
 import net.kyori.adventure.audience.Audience
@@ -18,20 +20,22 @@ lateinit var consoleAudience: Audience
  */
 var debug = false
 
+val _prefixSeparator = cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
+
 /**
  * Message prefix
  */
-val prefix = cmp("MUtils", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
+var prefix = cmp("MUtils", cHighlight) + _prefixSeparator
 
 /**
  * Exact prefix
  */
-val challengePrefix = cmp("MChallenge", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
+var challengePrefix = cmp("MChallenge", cHighlight) + _prefixSeparator
 
 /**
  * Timer Prefix
  */
-val timerPrefix = cmp("MTimer", cHighlight) + cmp(" >>", NamedTextColor.DARK_GRAY) + cmp(" ")
+var timerPrefix = cmp("MTimer", cHighlight) + _prefixSeparator
 
 /**
  * 1.**19**.1
@@ -42,3 +46,9 @@ var majorVersion: Int = 0
  * 1.19.**1**
  */
 var minorVersion: Int = 0
+
+fun _reloadPrefix() {
+    prefix = cmp("MUtils", cHighlight) + _prefixSeparator
+    challengePrefix =  cmp("MChallenge", cHighlight) + _prefixSeparator
+    timerPrefix = cmp("MTimer", cHighlight) + _prefixSeparator
+}

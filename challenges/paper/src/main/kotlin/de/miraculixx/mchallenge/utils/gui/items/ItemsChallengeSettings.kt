@@ -71,7 +71,7 @@ class ItemsChallengeSettings(private val challengeSettings: Map<String, Challeng
     }
 
     private fun getSettingName(icon: Icon, challengeKey: String?, key: String): Component {
-        return if (icon.naming != null) (icon.naming?.name?.decorate(bold = true, italic = false)?.color(cHighlight) ?: cmp("Unknown", cError, bold = true))
+        return if (icon.naming != null) (icon.naming?.name?.let { cmp(plainSerializer.serialize(it), cHighlight, true) } ?: cmp("Unknown", cError, bold = true))
         else cmp(msgString("items.chS.${challengeKey}.$key.n"), cHighlight, bold = true)
     }
 

@@ -128,3 +128,4 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
         }.filter { it.startsWith(args?.lastOrNull() ?: "", ignoreCase = true) }.toMutableList()
     }
 }
+

@@ -28,17 +28,23 @@ fun emptyComponent(): Component {
     return Component.text(" ")
 }
 
-fun cmp(text: String, color: TextColor = cBase, bold: Boolean = false, italic: Boolean = false, strikethrough: Boolean = false, underlined: Boolean = false): Component {
-    return Component.text(text).color(color)
-        .decorations(
-            mapOf(
-                TextDecoration.BOLD to TextDecoration.State.byBoolean(bold),
-                TextDecoration.ITALIC to TextDecoration.State.byBoolean(italic),
-                TextDecoration.STRIKETHROUGH to TextDecoration.State.byBoolean(strikethrough),
-                TextDecoration.UNDERLINED to TextDecoration.State.byBoolean(underlined)
-            )
-        )
-}
+fun cmp(text: String, color: TextColor = cBase, bold: Boolean = false, italic: Boolean = false, strikethrough: Boolean = false, underlined: Boolean = false): Component =
+    Component.text(text).color(color).decorations(getDecorationMap(bold, italic, strikethrough, underlined))
+
+
+fun cmp(text: String, colorTag: String, bold: Boolean = false, italic: Boolean = false, strikethrough: Boolean = false, underlined: Boolean = false): Component =
+    miniMessages.deserialize(colorTag + text).decorations(getDecorationMap(bold, italic, strikethrough, underlined))
+
+
+fun cmpTranslatableVanilla(key: String, colorTag: String, bold: Boolean = false, italic: Boolean = false, strikethrough: Boolean = false, underlined: Boolean = false): Component =
+    cmp("<lang:$key>", colorTag, bold, italic, strikethrough, underlined)
+
+private fun getDecorationMap(bold: Boolean, italic: Boolean, strikethrough: Boolean, underlined: Boolean): Map<TextDecoration, TextDecoration.State> = mapOf(
+    TextDecoration.BOLD to TextDecoration.State.byBoolean(bold),
+    TextDecoration.ITALIC to TextDecoration.State.byBoolean(italic),
+    TextDecoration.STRIKETHROUGH to TextDecoration.State.byBoolean(strikethrough),
+    TextDecoration.UNDERLINED to TextDecoration.State.byBoolean(underlined)
+)
 
 fun Component.addHover(display: Component): Component {
     return hoverEvent(asHoverEvent().value(display))

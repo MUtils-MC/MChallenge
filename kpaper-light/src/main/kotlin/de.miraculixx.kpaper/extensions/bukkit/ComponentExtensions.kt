@@ -28,7 +28,7 @@ fun String.legacyToComponent(): Component = LegacyComponentSerializer.legacyAmpe
  *
  * Note: Render [TranslatableComponent]s before using this
  */
-fun Component.toLegacyString(): String = LegacyComponentSerializer.legacyAmpersand().serialize(this)
+fun Component.toLegacyString(): String = LegacyComponentSerializer.legacySection().serialize(this)
 
 /**
  * Returns a [String] from a [Component]

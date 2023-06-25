@@ -70,12 +70,11 @@ class ItemsChallenge(startFilter: ChallengeTags = ChallengeTags.NO_FILTER) : Ite
 
                     isAddon -> {
                         data.first.editMeta {
-                            it.name = it.name?.color(NamedTextColor.GOLD)
                             it.lore(it.lore()?.apply { add(0, cmp("Addon Challenge - ${challenge.owner}", NamedTextColor.GOLD)) })
                         }
                     }
 
-                    else -> data.first.editMeta { it.name = it.name?.color(cHighlight) }
+                    else -> data.first.editMeta { it.name = cmp(it.name?.let { n -> plainSerializer.serialize(n) } ?: "Unknown", cHighlight) }
                 }
                 put(data.first, data.second)
             }
