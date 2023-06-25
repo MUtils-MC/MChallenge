@@ -1,7 +1,6 @@
 package de.miraculixx.mchallenge.modules.global
 
 import de.miraculixx.kpaper.event.listen
-import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mvanilla.messages.cmp
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
@@ -28,17 +27,6 @@ object RuleListener {
         if (it.entity is Player && it.damager is Player && rules[CustomRules.PVP] == false)
             it.isCancelled = true
     }
-
-//    val onChat = listen<AsyncChatEvent> {
-//        val message = plainSerializer.serialize(it.message())
-//        val tps = message.toFloat()
-//
-//        val buf = FriendlyByteBuf(Unpooled.buffer()).writeUtf(Payload().writeJson(tps).finishWrite())
-//        (it.player as CraftPlayer).handle.connection.send(ClientboundCustomPayloadPacket(ResourceLocation("noriskclient:tps"), buf))
-//        it.player.sendMessage(prefix + cmp("Changed to $tps"))
-//    }
-
-//    Bukkit.getMessenger().registerOutgoingPluginChannel(INSTANCE, "noriskclient:tps")
 }
 
 enum class CustomRules {
