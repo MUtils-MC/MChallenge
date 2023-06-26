@@ -1,12 +1,12 @@
 name: MUtils-Challenge
 load: STARTUP
-version: 110
+version: 111
 main: de.miraculixx.mchallenge.MChallenge
 api-version: 1.16
 authors: [ Miraculixx, "NoRisk" ]
 description: MUtils Challenges - Play various Challenges that can modify the game slightly to completely against or in coop with your friends!
 website: https://mutils.net/
-softdepend: [ MUtils-Bridge, MUtils-Timer ]
+softdepend: [ MUtils-Timer, MUtils-Web ]
 libraries:
   - "org.jetbrains.kotlin:kotlin-stdlib:1.8.20"
   - "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-Beta"

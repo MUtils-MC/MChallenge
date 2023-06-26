@@ -3,294 +3,453 @@
     "key": "VAMPIRE",
     "icon": "ghast_tear",
     "version": 100,
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "TRAFFIC_LIGHT",
     "icon": "redstone_lamp",
     "version": 100,
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "TRON",
     "version": 100,
     "icon": "light_blue_concrete",
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "DISABLED",
     "version": 100,
     "icon": "iron_bars",
-    "tags": ["FUN", "FREE"]
+    "tags": [
+      "FUN",
+      "FREE"
+    ]
   },
   {
     "key": "MOB_HUNT",
     "version": 100,
     "icon": "phantom_spawn_egg",
-    "tags": ["FUN", "FREE", "FORCE"]
+    "tags": [
+      "FUN",
+      "FREE",
+      "FORCE"
+    ]
   },
   {
     "key": "ITEM_HUNT",
     "version": 100,
     "icon": "player_head",
     "texture": "a6cc486c2be1cb9dfcb2e53dd9a3e9a883bfadb27cb956f1896d602b4067",
-    "tags": ["FUN", "FREE", "FORCE"]
+    "tags": [
+      "FUN",
+      "FREE",
+      "FORCE"
+    ]
   },
   {
     "key": "MIRROR",
     "version": 100,
     "icon": "glass",
-    "tags": ["FUN", "FREE", "MULTIPLAYER"]
+    "tags": [
+      "FUN",
+      "FREE",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "CHUNK_FLATTENER",
     "version": 100,
     "icon": "iron_trapdoor",
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "CHUNK_BLOCK_BREAK",
     "version": 100,
     "icon": "tnt",
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "CHUNK_DECAY",
     "version": 100,
     "icon": "oak_leaves",
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "CHUNK_CLEARER",
     "version": 100,
     "icon": "dragon_breath",
-    "tags": ["HARD", "FREE"]
+    "tags": [
+      "HARD",
+      "FREE"
+    ]
   },
   {
     "key": "ANVIL_CRUSHER",
     "version": 100,
     "icon": "anvil",
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "ITEM_DECAY",
     "version": 100,
     "icon": "comparator",
-    "tags": ["HARD", "FREE"]
+    "tags": [
+      "HARD",
+      "FREE"
+    ]
   },
   {
     "key": "AREA_TIMER",
     "version": 100,
     "icon": "grass_block",
-    "tags": ["MEDIUM", "FREE"]
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
   },
   {
     "key": "COLLECT_BATTLE",
     "version": 105,
     "icon": "heart_of_the_sea",
-    "tags": ["FUN", "FORCE"]
+    "tags": [
+      "FUN",
+      "FORCE"
+    ]
   },
-
-
-
   {
     "key": "FLY",
     "version": 100,
     "icon": "elytra",
-    "tags": ["FUN"]
+    "tags": [
+      "FUN"
+    ]
   },
   {
     "key": "IN_TIME",
     "version": 100,
     "icon": "clock",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "MOB_BLOCKS",
     "version": 100,
     "icon": "player_head",
     "texture": "64528b3229660f3dfab42414f59ee8fd01e80081dd3df30869536ba9b414e089",
-    "tags": ["FUN", "RANDOMIZER"]
+    "tags": [
+      "FUN",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "CHECKPOINTS",
     "version": 100,
     "icon": "player_head",
     "texture": "4c301a17c955807d89f9c72a19207d1393b8c58c4e6e420f714f696a87fdd",
-    "tags": ["FUN"]
+    "tags": [
+      "FUN"
+    ]
   },
   {
     "key": "DIM_SWAP",
     "version": 100,
     "icon": "end_portal_frame",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "SNAKE",
     "version": 100,
     "icon": "red_concrete_powder",
-    "tags": ["HARD"]
+    "tags": [
+      "HARD"
+    ]
   },
   {
     "key": "REALISTIC",
     "version": 100,
     "icon": "oak_sapling",
-    "tags": ["HARD"]
+    "tags": [
+      "HARD"
+    ]
   },
   {
     "key": "GHOST",
     "version": 100,
     "icon": "player_head",
     "texture": "de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02",
-    "tags": ["FUN"]
+    "tags": [
+      "FUN"
+    ]
   },
   {
     "key": "BLOCK_ASYNC",
     "version": 100,
     "icon": "red_stained_glass",
-    "tags": ["FUN", "MULTIPLAYER"]
+    "tags": [
+      "FUN",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "NO_SAME_ITEM",
     "version": 100,
     "icon": "wither_rose",
-    "tags": ["MEDIUM", "MULTIPLAYER"]
+    "tags": [
+      "MEDIUM",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "LIMITED_SKILLS",
     "version": 100,
     "icon": "turtle_helmet",
-    "tags": ["HARD", "MULTIPLAYER"]
+    "tags": [
+      "HARD",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "SPLIT_HP",
     "version": 100,
     "icon": "beetroot",
-    "tags": ["MEDIUM", "MULTIPLAYER"]
+    "tags": [
+      "MEDIUM",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "DAMAGE_DUELL",
     "version": 100,
     "icon": "iron_sword",
-    "tags": ["FUN", "MULTIPLAYER"]
+    "tags": [
+      "FUN",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "ONE_BIOME",
     "version": 100,
     "icon": "filled_map",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "BOOST_UP",
     "version": 100,
     "icon": "shulker_shell",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "RIGHT_TOOL",
     "version": 100,
     "icon": "wooden_axe",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "SNEAK_SPAWN",
     "version": 100,
     "icon": "hopper",
-    "tags": ["FUN", "RANDOMIZER"]
+    "tags": [
+      "FUN",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "WORLD_PEACE",
     "version": 100,
     "icon": "cornflower",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "GRAVITY",
     "version": 100,
     "icon": "sand",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "STAY_AWAY",
     "version": 100,
     "icon": "tnt",
-    "tags": ["HARD"]
+    "tags": [
+      "HARD"
+    ]
   },
   {
     "key": "RANDOMIZER_BLOCK",
     "version": 100,
     "icon": "player_head",
     "texture": "1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b",
-    "tags": ["FUN", "RANDOMIZER"]
+    "tags": [
+      "FUN",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "RANDOMIZER_ENTITY",
     "version": 100,
     "icon": "player_head",
     "texture": "6b40e5db21cedac4c972b7b22ebb64cf4add61b3b54b131435eedd307598b7",
-    "tags": ["FUN", "RANDOMIZER"]
+    "tags": [
+      "FUN",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "RANDOMIZER_BIOMES",
     "version": 100,
     "icon": "player_head",
     "texture": "76bdf52222b4f092e1122831b388164c462fa41df1d49428d448a8794339b34b",
-    "tags": ["FUN", "RANDOMIZER"]
+    "tags": [
+      "FUN",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "RANDOMIZER_MOBS",
     "version": 100,
     "icon": "player_head",
     "texture": "915f7c313bca9c2f958e68ab14ab393867d67503affff8f20cb13fbe917fd31",
-    "tags": ["FUN", "RANDOMIZER"]
+    "tags": [
+      "FUN",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "RANDOMIZER_DAMAGE",
     "version": 100,
     "icon": "player_head",
     "texture": "5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87",
-    "tags": ["MEDIUM", "RANDOMIZER"]
+    "tags": [
+      "MEDIUM",
+      "RANDOMIZER"
+    ]
   },
   {
     "key": "FORCE_COLLECT",
     "version": 100,
     "icon": "chest",
-    "tags": ["MEDIUM", "FORCE"]
+    "tags": [
+      "MEDIUM",
+      "FORCE"
+    ]
   },
   {
     "key": "NO_DOUBLE_KILL",
     "version": 100,
     "icon": "repeater",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "DAMAGER",
     "version": 100,
     "icon": "diamond_sword",
-    "tags": ["HARD"]
+    "tags": [
+      "HARD"
+    ]
   },
   {
     "key": "RIVALS_COLLECT",
     "version": 100,
     "icon": "chest_minecart",
-    "tags": ["FUN", "FORCE", "MULTIPLAYER"]
+    "tags": [
+      "FUN",
+      "FORCE",
+      "MULTIPLAYER"
+    ]
   },
   {
     "key": "ROCKET",
     "version": 100,
     "icon": "firework_rocket",
-    "tags": ["MEDIUM"]
+    "tags": [
+      "MEDIUM"
+    ]
   },
   {
     "key": "BLOCK_WORLD",
     "version": 107,
     "icon": "diamond_block",
-    "tags": ["FUN"]
+    "tags": [
+      "FUN"
+    ]
   },
   {
     "key": "MINEFIELD_WORLD",
     "version": 107,
     "icon": "light_weighted_pressure_plate",
-    "tags": ["HARD"]
+    "tags": [
+      "HARD"
+    ]
+  },
+  {
+    "key": "BLOCK_WALL",
+    "version": "110",
+    "icon": "bedrock",
+    "tags": [
+      "MEDIUM"
+    ]
+  },
+  {
+    "key": "WORLD_DECAY",
+    "version": "111",
+    "icon": "white_stained_glass",
+    "tags": [
+      "HARD"
+    ],
+    "new": true
+  },
+  {
+    "key": "LOW_VISION",
+    "version": "111",
+    "icon": "tinted_glass",
+    "tags": [
+      "HARD"
+    ],
+    "new": true
+  },
+  {
+    "key": "CHUNK_SYNC",
+    "version": "111",
+    "icon": "megenta_shulker_box",
+    "tags": [
+      "FUN"
+    ],
+    "new": true
   }
 ]
