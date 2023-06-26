@@ -1,5 +1,35 @@
 [
   {
+    "key": "WORLD_DECAY",
+    "version": "111",
+    "icon": "white_stained_glass",
+    "tags": [
+      "HARD"
+    ],
+    "new": true
+  },
+  {
+    "key": "LOW_VISION",
+    "version": "111",
+    "icon": "tinted_glass",
+    "tags": [
+      "HARD"
+    ],
+    "new": true
+  },
+  {
+    "key": "CHUNK_SYNC",
+    "version": "111",
+    "icon": "magenta_shulker_box",
+    "tags": [
+      "FUN"
+    ],
+    "new": true
+  },
+
+
+
+  {
     "key": "VAMPIRE",
     "icon": "ghast_tear",
     "version": 100,
@@ -138,8 +168,6 @@
       "FREE"
     ]
   },
-
-
   {
     "key": "COLLECT_BATTLE",
     "version": 105,
@@ -435,32 +463,5 @@
     "tags": [
       "MEDIUM"
     ]
-  },
-  {
-    "key": "WORLD_DECAY",
-    "version": "111",
-    "icon": "white_stained_glass",
-    "tags": [
-      "HARD"
-    ],
-    "new": true
-  },
-  {
-    "key": "LOW_VISION",
-    "version": "111",
-    "icon": "tinted_glass",
-    "tags": [
-      "HARD"
-    ],
-    "new": true
-  },
-  {
-    "key": "CHUNK_SYNC",
-    "version": "111",
-    "icon": "magenta_shulker_box",
-    "tags": [
-      "FUN"
-    ],
-    "new": true
   }
 ]
