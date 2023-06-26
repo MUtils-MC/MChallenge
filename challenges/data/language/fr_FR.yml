@@ -322,6 +322,15 @@ items:
     WORLD_DECAY:
       n: "World Decay"
       l: "The world around you disappear<br>step by step! Remember your surrounding to<br>keep alive (only visual - needs MWeb)"
+    LOW_VISION:
+      n: "Low Vision"
+      l: "The whole world is invisible<br>except the blocks you choose! Every player<br>can choose their own blocks"
+    CHUNK_SYNC:
+      n: "Chunk Mirror"
+      l: "Every interaction like building<br>is mirrored in all other chunks!<br>What can you create?"
+    DAMAGE_MULTIPLIER:
+      n: "Damage Multiplier"
+      l: "Higher or lower all damage against<br>players. Includes potion debuffs and fire"
   chS:
     FLY:
       power:
@@ -588,3 +597,12 @@ items:
         n: "Step Delay"
       steps:
         n: "Steps To 100%"
+    LOW_VISION:
+      amount:
+        n: "Block Amount"
+    CHUNK_SYNC:
+      env:
+        n: "Environment Mirror"
+    DAMAGE_MULTIPLIER:
+      multiplier:
+        n: "Multiplier"
