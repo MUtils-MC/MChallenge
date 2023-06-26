@@ -130,6 +130,17 @@
     ]
   },
   {
+    "key": "DAMAGE_MULTIPLIER",
+    "version": 110,
+    "icon": "beetroot",
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ]
+  },
+
+
+  {
     "key": "COLLECT_BATTLE",
     "version": 105,
     "icon": "heart_of_the_sea",
