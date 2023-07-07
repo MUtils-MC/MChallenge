@@ -53,7 +53,7 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
                 getCustomMeta("biomeAlgo", 6, getCategory2())
             })
             put(40, itemStack(Material.PLAYER_HEAD) {
-                meta<Any> {
+                meta {
                     customModel = 8
                     name = cmp("Create World", cSuccess)
                     lore(listOf(emptyComponent(), msgClickLeft + cmp("Create World"), msgClickRight + cmp("Preview")))
@@ -62,7 +62,7 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
             })
 
             put(28, itemStack(Material.PLAYER_HEAD) {
-                meta<Any> {
+                meta {
                     customModel = 9
                     name = cmp(msgString("items.creator.noiseAlgo.n"), cHighlight)
                     val worldDefaults = worldData.chunkDefaults
@@ -82,7 +82,7 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
             })
             put(29, itemStack(Material.PLAYER_HEAD) {
-                meta<Any> {
+                meta {
                     customModel = 0
                     name = emptyComponent()
                 }
@@ -94,7 +94,7 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
                 val data = chunkProviders.getOrNull(index)
                 if (data == null) {
                     put(index + 30, itemStack(Material.BARRIER) {
-                        meta<Any> {
+                        meta {
                             name = cmp("✖", cError)
                             customModel = 7
                             persistentDataContainer.set(NamespacedKey(namespace, "wc.id"), PersistentDataType.STRING, UUID.randomUUID().toString())
@@ -106,7 +106,7 @@ class ItemsBuilder(private val worldData: WorldData, private val isSet: Boolean)
     }
 
     private fun ItemStack.getCustomMeta(key: String, id: Int, infoLore: List<Component>) {
-        meta<Any> {
+        meta {
             customModel = id
             name = cmp(msgString("items.creator.$key.n"), cHighlight)
             lore(

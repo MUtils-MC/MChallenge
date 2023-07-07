@@ -32,7 +32,7 @@ class MWorlds : KSpigot() {
         config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings")
         settings = config.getConfig()
         val languages = listOf("en_US").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
-        localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages)
+        localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages, prefix)
 
         WorldCommand()
         WorldsCommand()

@@ -6,8 +6,9 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemFilterProvider
-import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mutils.module.WorldManager
+import de.miraculixx.mutils.utils.WorldFilter
+import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -17,7 +18,7 @@ import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
 class ItemsWorlds(private val currentWorld: UUID) : ItemFilterProvider {
-    override var filter = StorageFilter.NO_FILTER
+    override var filter = WorldFilter.NO_FILTER.name
     private val clickLore = listOf(emptyComponent(), msgClickLeft + cmp("Teleport"), msgClickRight + cmp("Copy"), msgShiftClickRight + cmp("Delete"))
     private val msgSeed = msgString("event.seed")
     private val msgDimension = msgString("event.dimension")
@@ -31,10 +32,11 @@ class ItemsWorlds(private val currentWorld: UUID) : ItemFilterProvider {
         return buildMap {
             worlds.filter {
                 val env = it.environment
-                filter == StorageFilter.NO_FILTER ||
-                        (filter == StorageFilter.OVERWORLD && env == World.Environment.NORMAL) ||
-                        (filter == StorageFilter.NETHER && env == World.Environment.NETHER) ||
-                        (filter == StorageFilter.END && env == World.Environment.THE_END)
+                val filterObj = enumOf<WorldFilter>(filter) ?: WorldFilter.NO_FILTER
+                filterObj == WorldFilter.NO_FILTER ||
+                        (filterObj == WorldFilter.OVERWORLD && env == World.Environment.NORMAL) ||
+                        (filterObj == WorldFilter.NETHER && env == World.Environment.NETHER) ||
+                        (filterObj == WorldFilter.END && env == World.Environment.THE_END)
 
             }.map { world ->
                 val material = when (world.environment) {
@@ -45,7 +47,7 @@ class ItemsWorlds(private val currentWorld: UUID) : ItemFilterProvider {
                 }
                 val uuid = world.uid
                 put(itemStack(material) {
-                    meta<Any> {
+                    meta {
                         val worldData = WorldManager.getWorldData(uuid)
                         name = cmp(world.name, cHighlight)
                         lore(listOf(

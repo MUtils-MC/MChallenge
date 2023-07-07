@@ -7,9 +7,9 @@ import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.items.ItemFilterProvider
 import de.miraculixx.mcore.utils.checkPermission
-import de.miraculixx.mvanilla.gui.StorageFilter
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mutils.utils.GUITypes
+import de.miraculixx.mutils.utils.WorldFilter
 import de.miraculixx.mutils.utils.items.ItemsCopy
 import de.miraculixx.mvanilla.extensions.*
 import de.miraculixx.mvanilla.messages.*
@@ -75,7 +75,8 @@ class GUIWorlds(private val preInv: CustomInventory?) : GUIEvent {
             }
         } else if (meta.customModel == 9005) {
             val provider = inv.itemProvider as ItemFilterProvider
-            provider.filter = arrayOf(StorageFilter.NO_FILTER, StorageFilter.OVERWORLD, StorageFilter.NETHER, StorageFilter.END).enumRotate(provider.filter)
+
+            provider.filter = arrayOf(WorldFilter.NO_FILTER, WorldFilter.OVERWORLD, WorldFilter.NETHER, WorldFilter.END).enumRotate(enumOf<WorldFilter>(provider.filter) ?: WorldFilter.NO_FILTER).name
             player.soundUp()
             inv.update()
         } else if (preInv != null) {

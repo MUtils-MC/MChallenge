@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "mutils-challenge",
+  "version": "105",
+
+  "name": "MUtils-Challenge",
+  "description": "MUtils Challenges - Play various Challenges that can modify the game slightly to completely against or in coop with your friends!",
+  "authors": ["Miraculixx"],
+  "contact": {
+    "homepage": "https://mutils.net/",
+    "sources": "https://github.com/MUtils-MC/MUtils"
+  },
+
+  "license": "AGPLv3",
+  "icon": "assets/mutils-challenge/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "de.miraculixx.mchallenge.MChallengeKt::init"
+      }
+    ]
+  },
+  "mixins": [
+    "mutils-challenge.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric-api": "*",
+    "minecraft": "~1.20",
+    "java": ">=17"
+  },
+  "suggests": {}
+}

@@ -114,10 +114,10 @@ class ItemsDesignPartEditor(
             add(emptyComponent())
             if (timerValue != null) {
                 val msgButton = cmp(msgString("common.button") + " ", cHighlight)
-                add(msgButton + Component.keybind("key.hotbar.1", cHighlight) + cmp(" ≫ ") + cmp("Switch $msg1"))
-                add(msgButton + Component.keybind("key.hotbar.2", cHighlight) + cmp(" ≫ ") + cmp("Switch $msg2"))
-                add(msgButton + Component.keybind("key.hotbar.3", cHighlight) + cmp(" ≫ ") + cmp("Change $msg3"))
-                add(msgButton + Component.keybind("key.hotbar.4", cHighlight) + cmp(" ≫ ") + cmp("Change $msg4"))
+                add(msgButton + cmpTranslatableVanilla("key.hotbar.1", cHighlight) + cmp(" ≫ ") + cmp("Switch $msg1"))
+                add(msgButton + cmpTranslatableVanilla("key.hotbar.2", cHighlight) + cmp(" ≫ ") + cmp("Switch $msg2"))
+                add(msgButton + cmpTranslatableVanilla("key.hotbar.3", cHighlight) + cmp(" ≫ ") + cmp("Change $msg3"))
+                add(msgButton + cmpTranslatableVanilla("key.hotbar.4", cHighlight) + cmp(" ≫ ") + cmp("Change $msg4"))
             } else if (!blanc) add(msgClick + cmp("Change $name"))
         }
     }

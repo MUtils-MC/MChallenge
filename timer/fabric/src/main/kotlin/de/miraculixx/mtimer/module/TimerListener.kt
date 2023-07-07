@@ -16,13 +16,17 @@ import de.miraculixx.mutils.gui.utils.native
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
+import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
+import net.minecraft.server.players.UserBanListEntry
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.level.GameRules
+import net.minecraft.world.level.GameType
 import net.silkmc.silk.core.event.Events
 import net.silkmc.silk.core.event.Player
-import net.silkmc.silk.core.event.Server
+import net.silkmc.silk.core.kotlin.ticks
 import net.silkmc.silk.core.task.mcCoroutineTask
 import net.silkmc.silk.core.text.broadcastText
 import kotlin.time.Duration.Companion.seconds
@@ -110,25 +114,27 @@ object TimerListener {
                     server.broadcastText((cmp + dash).native())
                 } else {
                     if (rules.specOnDeath) {
-                        val loc = it.entity.location
-                        val immediateRespawn = loc.world?.getGameRuleValue(GameRule.DO_IMMEDIATE_RESPAWN)
-                        loc.world?.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true)
-                        task(true, 2, 2, 2, endCallback = {
-                            loc.world?.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, immediateRespawn ?: false)
-                        }) { _ ->
-                            it.entity.gameMode = GameMode.SPECTATOR
-                            it.entity.teleport(loc)
+                        val loc = event.entity.position()
+                        val level = event.entity.level
+                        val immediateRespawn = level.gameRules.getRule(GameRules.RULE_DO_IMMEDIATE_RESPAWN)
+                        val prev = immediateRespawn.get()
+                        immediateRespawn.set(true, server)
+                        mcCoroutineTask(true, howOften = 2, period = 2.ticks, delay = 2.ticks) {
+                            immediateRespawn.set(prev, server)
+                            (event.entity as? ServerPlayer)?.setGameMode(GameType.SPECTATOR)
+                            event.entity.teleportTo(level as ServerLevel, loc.x, loc.y, loc.z, emptySet(), 0f, 0f)
                         }
                     }
                 }
 
                 val punish = rules.punishmentSetting
                 if (punish.active) {
-                    val kickMsg = msg("event.kick", listOf(player.name))
+                    val playerName = plainSerializer.serialize(player.name.asComponent())
+                    val kickMsg = msg("event.kick", listOf(playerName))
                     if (punish.type == Punishment.BAN) {
-                        player.banPlayer(msgString("event.ban", listOf(player.name)))
-                        player.kick(kickMsg)
-                    } else player.kick(kickMsg)
+                        server.playerList.bans.add(UserBanListEntry(player.gameProfile, null, "MUtils", null, msgString("event.ban", listOf(playerName))))
+                        player.connection.disconnect(kickMsg.native())
+                    } else player.connection.disconnect(kickMsg.native())
                 }
             }
         }

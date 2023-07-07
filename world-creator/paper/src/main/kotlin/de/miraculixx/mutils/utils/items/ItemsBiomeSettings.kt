@@ -24,7 +24,7 @@ class ItemsBiomeSettings(private val biomeProviderData: BiomeProviderData): Item
             val gen = biomeProviderData.algorithm
             put(20, gen.getIcon(biomeProviderData.settings, 0))
             put(22, itemStack(Material.PLAYER_HEAD) {
-                meta<Any> {
+                meta {
                     name = emptyComponent()
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RIGHT_WHITE.value)
@@ -33,7 +33,7 @@ class ItemsBiomeSettings(private val biomeProviderData: BiomeProviderData): Item
             var index = 1
             gen.settings.forEach { (settingIndex, setting) ->
                 put(getSlot(index), itemStack(setting.getIcon()) {
-                    meta<Any> {
+                    meta {
                         customModel = 1
                         persistentDataContainer.set(NamespacedKey(namespace, "gui.biome.setting"), PersistentDataType.STRING, settingIndex.name)
                         name = cmp(msgString("items.algo.${setting.name}.n"), cHighlight)
@@ -49,7 +49,7 @@ class ItemsBiomeSettings(private val biomeProviderData: BiomeProviderData): Item
             }
             while (index < 7) {
                 put(getSlot(index), itemStack(Material.BARRIER) {
-                    meta<Any> {
+                    meta {
                         customModel = index + 10
                         name = emptyComponent()
                     }

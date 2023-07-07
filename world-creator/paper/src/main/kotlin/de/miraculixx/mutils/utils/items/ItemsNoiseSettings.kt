@@ -25,13 +25,13 @@ class ItemsNoiseSettings(private val generatorData: GeneratorProviderData) : Ite
             var index = 1
             put(20, gen.getIcon(generatorData.settings, 0))
             put(22, itemStack(Material.PLAYER_HEAD) {
-                meta<Any> {
+                meta {
                     name = emptyComponent()
                 }
                 itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RIGHT_WHITE.value)
             })
             put(40, itemStack(Material.FILLED_MAP) {
-                meta<Any> {
+                meta {
                     customModel = 2
                     name = cmp(msgString("items.creator.preview.n"))
                     lore(msgList("items.creator.preview.l", inline = "<grey>") + listOf(emptyComponent(), msgClick + cmp("Preview")))
@@ -40,7 +40,7 @@ class ItemsNoiseSettings(private val generatorData: GeneratorProviderData) : Ite
 
             gen.settings.forEach { (settingIndex, setting) ->
                 put(getSlot(index), itemStack(setting.getIcon()) {
-                    meta<Any> {
+                    meta {
                         customModel = 1
                         persistentDataContainer.set(NamespacedKey(namespace, "gui.noise.setting"), PersistentDataType.STRING, settingIndex.name)
                         name = cmp(msgString("items.algo.${setting.name}.n"), cHighlight)
@@ -56,7 +56,7 @@ class ItemsNoiseSettings(private val generatorData: GeneratorProviderData) : Ite
             }
             while (index < 7) {
                 put(getSlot(index), itemStack(Material.BARRIER) {
-                    meta<Any> {
+                    meta {
                         customModel = index + 10
                         name = emptyComponent()
                     }

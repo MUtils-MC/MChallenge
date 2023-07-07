@@ -1,10 +1,7 @@
 package de.miraculixx.mchallenge.modules.mods.multiplayer.collectBattle
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.challenge.api.modules.mods.collectBattle.CollectBattleState
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -14,6 +11,9 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.challenges.InternalTimer
 import de.miraculixx.mchallenge.modules.challenges.getFormatted
 import de.miraculixx.mchallenge.modules.spectator.Spectator
@@ -21,7 +21,6 @@ import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.bossbar.BossBar
-import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
