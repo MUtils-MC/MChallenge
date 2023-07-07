@@ -43,5 +43,13 @@ fun GUITypes.buildInventory(player: Player, id: String, itemProvider: ItemProvid
             this.clickAction = clickAction.run
             this.closeAction = clickAction.close
         }
+
+        GUITypes.COMPETITION -> InventoryManager.inventoryBuilder(id) {
+            this.title = this@buildInventory.title
+            this.player = player
+            this.size = 4 * 9
+            this.itemProvider = itemProvider
+            this.clickAction = clickAction.run
+        }
     }
 }

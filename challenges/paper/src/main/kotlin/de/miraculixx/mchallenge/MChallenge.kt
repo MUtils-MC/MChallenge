@@ -10,6 +10,7 @@ import de.miraculixx.mbridge.MUtilsBridge
 import de.miraculixx.mbridge.MUtilsModule
 import de.miraculixx.mbridge.MUtilsPlatform
 import de.miraculixx.mchallenge.commands.ChallengeCommand
+import de.miraculixx.mchallenge.commands.CompetitionCommand
 import de.miraculixx.mchallenge.commands.CustomRulesCommand
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.commands.utils.*
@@ -94,6 +95,7 @@ class MChallenge : KSpigot() {
         ResetCommand()
         HideCommand()
         CustomRulesCommand()
+        CompetitionCommand()
         positionCommand = PositionCommand()
         backpackCommand = BackpackCommand()
 
