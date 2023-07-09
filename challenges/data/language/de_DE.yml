@@ -326,11 +326,11 @@ items:
       n: "Niedrige Sichtweite"
       l: "Die gesamte Welt ist unsichtbar,<br>außer die Blöcke, die du ausgewählst! Jeder Spieler<br>kann seine eigenen Blöcke auswählen. "
     CHUNK_SYNC:
-      n: "Synchronisierte Chunks"
+      n: "gespiegelte Chunks"
       l: "Jede Interaktion in einem Chunk z.B. das Setzen von Blöcken<br>wird in allen anderen Chunks gespiegelt!<br>Was kannst du erschaffen?"
     DAMAGE_MULTIPLIER:
-      n: "Damage Multiplier"
-      l: "Higher or lower all damage against<br>players. Includes potion debuffs and fire"
+      n: "Schaden-Multiplikator"
+      l: "Erhöhe oder verringere jeden Schaden gegenüber<br>Spielern. Dies enthält auch Schaden von Tränken und Feuer. "
   chS:
     FLY:
       power:
@@ -599,10 +599,10 @@ items:
         n: "Schritte Zu 100%"
     LOW_VISION:
       amount:
-        n: "Block Amount"
+        n: "Blockanzahl"
     CHUNK_SYNC:
       env:
-        n: "Environment Mirror"
+        n: "gespiegelte Umgebung"
     DAMAGE_MULTIPLIER:
       multiplier:
         n: "Multiplikator"
