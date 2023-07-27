@@ -75,7 +75,7 @@ class BackpackCommand {
             }
             literalArgument("reset") {
                 anyExecutor { commandSender, _ ->
-                    data.backpacks.clear()
+                    reset()
                     commandSender.sendMessage(prefix + msg("command.backpack.reset"))
                 }
             }
@@ -99,6 +99,10 @@ class BackpackCommand {
 
     fun saveFile() {
         file.writeText(jsonCompact.encodeToString(data))
+    }
+
+    fun reset() {
+        data.backpacks.clear()
     }
 
     private class Items(private val items: Array<ItemStack?>, private val global: Boolean, private val owner: String): ItemProvider {

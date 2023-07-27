@@ -4,7 +4,6 @@ import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.challenge.api.settings.SettingsData
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
-import de.miraculixx.kpaper.runnables.taskRun
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mbridge.MUtilsBridge
 import de.miraculixx.mbridge.MUtilsModule
@@ -41,12 +40,12 @@ class MChallenge : KSpigot() {
         lateinit var localization: Localization
         lateinit var settings: SettingsData
         lateinit var bridgeAPI: MUtilsBridge
+        lateinit var positionCommand: PositionCommand
+        lateinit var backpackCommand: BackpackCommand
     }
 
     private lateinit var configFile: File
     private lateinit var settingsFile: File
-    private lateinit var positionCommand: PositionCommand
-    private lateinit var backpackCommand: BackpackCommand
 
     private var isLoaded = false
     private var isAllowedToStart = true

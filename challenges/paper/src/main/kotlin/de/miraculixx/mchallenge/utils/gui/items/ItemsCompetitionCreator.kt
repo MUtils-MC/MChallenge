@@ -63,19 +63,6 @@ class ItemsCompetitionCreator : ItemProvider {
                     customModel = 4
                 }
             })
-            put(16, itemStack(Material.WRITABLE_BOOK) {
-                meta {
-                    name = cmp(msgString("items.competition.scoreboard"))
-                    lore(msgList("items.competition.scoreboard.l"))
-                    customModel = 5
-                }
-            })
-            put(25, itemStack(if (scoreboard) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
-                meta {
-                    name = cmp(scoreboard.msg(), if (scoreboard) NamedTextColor.GREEN else cError)
-                    customModel = 5
-                }
-            })
         }
     }
 }

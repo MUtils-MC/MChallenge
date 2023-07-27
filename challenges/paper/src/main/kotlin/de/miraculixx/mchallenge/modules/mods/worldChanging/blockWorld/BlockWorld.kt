@@ -38,7 +38,7 @@ class BlockWorld : Challenge {
         overworld?.setGameRule(GameRule.DO_FIRE_TICK, false)
         nether?.setGameRule(GameRule.DO_FIRE_TICK, false)
         end?.setGameRule(GameRule.DO_FIRE_TICK, false)
-        val loc = overworld?.spawnLocation ?: return false
+        val loc = overworld?.spawnLocation ?: throw IllegalArgumentException("World could not be loaded! Do you use an unsupported version?")
         onlinePlayers.forEach { p -> p.teleportAsync(loc) }
         return true
     }

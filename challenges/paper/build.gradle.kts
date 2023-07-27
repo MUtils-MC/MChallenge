@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":challenges:global"))
     implementation(project(":world-creator:api")) // External API
     implementation(project(":bridge")) // External API
+    implementation(project(":timer:api")) // External API
 
     compileOnly("de.miraculixx:mweb:1.1.0")
 }

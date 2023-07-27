@@ -1,12 +1,7 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package de.miraculixx.mchallenge.modules.mods.multiplayer.rivalCollect
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.challenge.api.modules.mods.rivalsCollect.RivalCollectMode
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -16,6 +11,9 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
+import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mchallenge.utils.getItems
 import de.miraculixx.mcore.gui.items.skullTexture
@@ -71,7 +69,7 @@ class RivalCollect : Challenge {
             } ?: emptyList()
 
             mobs = modeSection?.get("mobs")?.toBool()?.getValue()?.let {
-                 if (it) {
+                if (it) {
                     add(RivalCollectMode.MOBS)
                     getLivingMobs(true)
                 } else emptyList()
@@ -143,7 +141,7 @@ class RivalCollect : Challenge {
                 3 -> cmp("③", NamedTextColor.YELLOW, bold = true)
                 else -> cmp("$counter", NamedTextColor.GRAY)
             }
-            broadcast(rank + cmp(" - ") + cmp("$name (${progress[it]?.size?.minus(1)?:0})", NamedTextColor.WHITE))
+            broadcast(rank + cmp(" - ") + cmp("$name (${progress[it]?.size?.minus(1) ?: 0})", NamedTextColor.WHITE))
             counter++
         }
     }
@@ -177,34 +175,35 @@ class RivalCollect : Challenge {
         val player = it.player
         val item = player.inventory.itemInMainHand
         if (item.type != Material.PLAYER_HEAD) return@listen
-        if (item.hasItemMeta() && item.itemMeta.hasCustomModelData()) {
-            if (item.itemMeta.customModel == 501) {
-                //Joker has been activated
-                val uuid = player.uniqueId
-                val key = progress[uuid]?.lastOrNull()?.key ?: return@listen
-                when (playerData[uuid]?.currentType) {
-                    RivalCollectMode.ITEMS -> {
-                        val newItem = enumOf<Material>(key) ?: Material.STONE
-                        player.inventory.addItem(ItemStack(newItem))
-                        checkItem(player, newItem)
-                    }
-                    RivalCollectMode.BIOMES -> {
-                        val biome = enumOf<Biome>(key) ?: Biome.PLAINS
-                        checkBiome(player, biome)
-                    }
-                    RivalCollectMode.MOBS -> {
-                        val newMob = enumOf<EntityType>(key) ?: EntityType.ZOMBIE
-                        checkMob(player, newMob)
-                    }
-                    else -> Unit
+        if (item.itemMeta?.customModel == 501) {
+            //A Joker has been activated
+            val uuid = player.uniqueId
+            val key = progress[uuid]?.lastOrNull()?.key ?: return@listen
+            when (playerData[uuid]?.currentType) {
+                RivalCollectMode.ITEMS -> {
+                    val newItem = enumOf<Material>(key) ?: Material.STONE
+                    player.inventory.addItem(ItemStack(newItem))
+                    checkItem(player, newItem)
                 }
 
-                if (item.amount > 1)
-                    item.amount = item.amount - 1
-                else item.type = Material.AIR
-                player.inventory.setItemInMainHand(item)
-                it.isCancelled = true
+                RivalCollectMode.BIOMES -> {
+                    val biome = enumOf<Biome>(key) ?: Biome.PLAINS
+                    checkBiome(player, biome)
+                }
+
+                RivalCollectMode.MOBS -> {
+                    val newMob = enumOf<EntityType>(key) ?: EntityType.ZOMBIE
+                    checkMob(player, newMob)
+                }
+
+                else -> Unit
             }
+
+            if (item.amount > 1)
+                item.amount = item.amount - 1
+            else item.type = Material.AIR
+            player.inventory.setItemInMainHand(item)
+            it.isCancelled = true
         }
     }
 
@@ -227,27 +226,27 @@ class RivalCollect : Challenge {
 
     private fun checkItem(player: Player, material: Material) {
         val uuid = player.uniqueId
-        val list = (progress[uuid] ?: return) as MutableList<Material>
+        val list = progress[uuid] ?: return
         val current = list.last()
-        if (current == material) {
+        if (current.key == material.name) {
             player.announceNext(material.translationKey())
         }
     }
 
     private fun checkBiome(player: Player, biome: Biome) {
         val uuid = player.uniqueId
-        val list = (progress[uuid] ?: return) as MutableList<Biome>
+        val list = progress[uuid] ?: return
         val current = list.last()
-        if (current == biome) {
+        if (current.key == biome.name) {
             player.announceNext(biome.translationKey())
         }
     }
 
     private fun checkMob(player: Player, mob: EntityType) {
         val uuid = player.uniqueId
-        val list = (progress[uuid] ?: return) as MutableList<EntityType>
+        val list = progress[uuid] ?: return
         val current = list.last()
-        if (current == mob) {
+        if (current.key == mob.name) {
             player.announceNext(mob.translationKey())
         }
     }
@@ -255,7 +254,7 @@ class RivalCollect : Challenge {
     private fun Player.announceNext(oldKey: String?) {
         // Calculate Next Task
         val newMode = modes.random()
-        val progress = progress[uniqueId] ?: mutableListOf()
+        val progress = this@RivalCollect.progress.getOrPut(uniqueId) { mutableListOf() }
         val data = when (newMode) {
             RivalCollectMode.ITEMS -> {
                 val copy = items.toMutableList()
@@ -263,12 +262,14 @@ class RivalCollect : Challenge {
                 val newEntry = copy.random()
                 RivalObject(newEntry.translationKey(), newEntry, newEntry.name)
             }
+
             RivalCollectMode.BIOMES -> {
                 val copy = biomes.toMutableList()
                 copy.removeAll(progress.filter { it.type == RivalCollectMode.BIOMES }.map { enumOf<Biome>(it.key) }.toSet())
                 val newEntry = copy.random()
                 RivalObject(newEntry.translationKey(), biomeToItem(newEntry), newEntry.name)
             }
+
             RivalCollectMode.MOBS -> {
                 val copy = mobs.toMutableList()
                 copy.removeAll(progress.filter { it.type == RivalCollectMode.MOBS }.map { enumOf<EntityType>(it.key) }.toSet())
@@ -281,10 +282,10 @@ class RivalCollect : Challenge {
         playSound(this, Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1.5f)
         if (oldKey != null) {
             onlinePlayers.forEach {
-                if (it != player) it.sendMessage(msg("event.rivalCollect.itemFound", listOf(name, "<lang:$oldKey>")))
+                if (it != player) it.sendMessage(prefix + msg("event.rivalCollect.itemFound", listOf(name, "<lang:$oldKey>")))
             }
         }
-        sendMessage(msg("modules.rivalCollect.newItem", listOf("<lang:${data.translationKey}>")))
+        sendMessage(prefix + msg("event.rivalCollect.newItem", listOf("<lang:${data.translationKey}>")))
 
         // Apply new data
         val playerData = playerData.getOrPut(uniqueId) { RivalPlayerData(createArmorStand(this), newMode) }

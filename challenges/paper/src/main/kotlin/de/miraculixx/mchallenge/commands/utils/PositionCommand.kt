@@ -70,6 +70,10 @@ class PositionCommand {
     fun saveFile() {
         file.writeText(json.encodeToString(positions))
     }
+
+    fun reset() {
+        positions.clear()
+    }
 }
 
 @Serializable

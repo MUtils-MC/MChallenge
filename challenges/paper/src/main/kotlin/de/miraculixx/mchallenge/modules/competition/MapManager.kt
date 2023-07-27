@@ -29,6 +29,7 @@ class MapManager(configFolder: File) {
     private val staticBackgroundTasks = loadImage(javaClass.getResourceAsStream("/assets/competition-bg-tasks.jpg"))
     private val staticBackgroundLeader = loadImage(javaClass.getResourceAsStream("/assets/competition-bg-leader.jpg"))
     private val mcFont = Font.createFont(Font.TRUETYPE_FONT, javaClass.getResourceAsStream("/assets/minecraft-font-regular.otf"))
+//    private val mcFont = Font.createFont(Font.TRUETYPE_FONT, File("plugins/MUtils/Challenges/data/minecraft-font-regular.ttf"))
     private val skinCacheFolder = File(configFolder, "/data/skins")
 
     private val playerMaps: MutableMap<UUID, CompetitionMapOverlay> = mutableMapOf()
@@ -45,8 +46,8 @@ class MapManager(configFolder: File) {
         graphic.drawImage(staticBackground, 0,0, null)
         graphic.font = fontBig
         graphic.color = Color.WHITE
-        graphic.drawString("Punkte: ${data?.points ?: 0}", 22, 14)
-        graphic.drawString("Rank: $rank", 22, 26)
+        graphic.drawString("Punkte: ${data?.points ?: 0}", 30, 19)
+        graphic.drawString("Rank: ${rank.plus(1)}", 30, 31)
 
         when (data?.mapView) {
             CompetitionMapView.LEADERBOARD -> renderLeaderBoard(graphic, top3)
@@ -57,21 +58,20 @@ class MapManager(configFolder: File) {
     }
 
     private fun renderTasks(graphic: Graphics2D, data: CompetitionPlayerData?) {
-        val fontSmall = mcFont.deriveFont(Font.PLAIN, 8f)
+        val fontSmall = mcFont.deriveFont(Font.PLAIN, 10f)
         graphic.font = fontSmall
-        graphic.drawString("Tasks", 22, 60)
+        graphic.drawString("Tasks", 10, 70)
 
-        println("Tasks: ${data?.remainingTasks?.toString()}")
         var counter = 0
         data?.remainingTasks?.forEach { (task, points) ->
             if (counter > 2) return@forEach
-            graphic.drawString("- $task ($points)", 22, 72 + (10 * counter))
+            graphic.drawString("- ${task.display} ($points)", 12, 82 + (10 * counter))
             counter++
         }
     }
 
     private fun renderLeaderBoard(graphic: Graphics2D, top3: Map<UUID, CompetitionPlayerData?>) {
-        val fontSmall = mcFont.deriveFont(Font.PLAIN, 8f)
+        val fontSmall = mcFont.deriveFont(Font.PLAIN, 10f)
         graphic.font = fontSmall
 
         var rank = 1
@@ -85,11 +85,29 @@ class MapManager(configFolder: File) {
             }
             val skinFile = loadImage(skin)
             when (rank) {
-                1 -> graphic.drawImage(skinFile, 52, 65, null)
-                2 -> graphic.drawImage(skinFile, 23, 77, null)
-                3 -> graphic.drawImage(skinFile, 81, 90, null)
+                1 -> {
+                    graphic.drawImage(skinFile, 52, 65, null)
+                    graphic.drawString(buildScore(data?.points), 52 + 4, 65 + 24 + 10)
+                }
+                2 -> {
+                    graphic.drawImage(skinFile, 23, 77, null)
+                    graphic.drawString(buildScore(data?.points), 23 + 4, 77 + 24 + 10)
+                }
+                3 -> {
+                    graphic.drawImage(skinFile, 81, 83, null)
+                    graphic.drawString(buildScore(data?.points), 81 + 4, 83 + 24 + 10)
+                }
             }
             rank++
+        }
+    }
+
+    private fun buildScore(int: Int?): String {
+        return when (int) {
+            null -> "000"
+            in -1..9 -> "00$int"
+            in 10..99 -> "0$int"
+            else -> "$int"
         }
     }
 
