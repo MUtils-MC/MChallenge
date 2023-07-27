@@ -71,6 +71,9 @@ event:
   world: "World"
   backPrompt: "<gold>Teleport Back <gray>(click)"
   gameOver: "Game Over"
+  timeout:
+    1: "Time Over"
+    2: "The time is up"
 
 
 #-----------------------------------------#
