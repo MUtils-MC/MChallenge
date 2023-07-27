@@ -108,8 +108,8 @@ event:
     startHunt: "<grey>Alle Spieler haben ihre Gegenstände gesammelt! Jetzt musst du <blue><input-1></blue> schneller finden als <blue><input-2></blue> (<input-3>)</grey>"
     startCooldown: "<green>Runde <input-1> beendet!</green>"
   rivalCollect:
-    itemFound: "<input-1> hat gerade <blue><input-2></blue> gefunden!"
-    newItem: "Deine nächste Aufgabe ist <input-1> zu finden/töten"
+    itemFound: "<grey><input-1> just found <blue><input-2></blue>!"
+    newItem: "<grey>Your next task is to find/kill <blue><input-1>"
   worldPeace:
     death: "Das Mob <blue><input-1></blue> ist gestorben :("
     alreadyTraded: "Du hast bereits mit mir gehandelt. Danke für das Item :)"
