@@ -27,6 +27,17 @@ abstract class TimerAPIImplementation : MTimerAPI() {
         return true
     }
 
+    override fun setTime(duration: Duration) {
+        val timer = TimerManager.globalTimer
+        timer.time = duration
+    }
+
+    override fun setTime(uuid: UUID, duration: Duration): Boolean {
+        val timer = TimerManager.getPersonalTimer(uuid) ?: return false
+        timer.time = duration
+        return true
+    }
+
     override fun addTickLogic(onTick: (Duration) -> Unit) {
         TimerManager.globalTimer.addTickLogic(onTick)
     }

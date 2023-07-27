@@ -27,6 +27,7 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.*
 import org.bukkit.event.player.PlayerInteractEvent
+import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
 
 class TimerListener {
@@ -41,6 +42,7 @@ class TimerListener {
         onEntityDeath.unregister()
         onInteract.unregister()
         onSpawn.unregister()
+        onMove.unregister()
     }
 
     fun activateTimer() {
@@ -55,6 +57,7 @@ class TimerListener {
         onPlace.unregister()
         onSpawn.unregister()
         onHunger.unregister()
+        onMove.unregister()
         toggleFreeze(true)
     }
 
@@ -70,6 +73,7 @@ class TimerListener {
             onPlace.register()
             onSpawn.register()
             onHunger.register()
+            onMove.register()
             toggleFreeze(false)
         }
     }
@@ -83,6 +87,12 @@ class TimerListener {
                 }
             }
         }
+    }
+
+    private val onMove = listen<PlayerMoveEvent>(register = false) {
+        val player = it.player
+        if (player.isOp) return@listen
+        it.isCancelled = true
     }
 
     //
