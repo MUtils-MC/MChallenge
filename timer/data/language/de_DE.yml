@@ -65,6 +65,9 @@ event:
   world: "Welt"
   backPrompt: "<gold>Teleportiere Zurück <gray>(klick)"
   gameOver: "Spielende"
+  timeout:
+    1: "Time Over"
+    2: "The time is up"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
