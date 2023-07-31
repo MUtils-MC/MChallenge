@@ -108,8 +108,8 @@ event:
     startHunt: "<grey>Alle Spieler haben ihre Gegenstände gesammelt! Jetzt musst du <blue><input-1></blue> schneller finden als <blue><input-2></blue> (<input-3>)</grey>"
     startCooldown: "<green>Runde <input-1> beendet!</green>"
   rivalCollect:
-    itemFound: "<grey><input-1> just found <blue><input-2></blue>!"
-    newItem: "<grey>Your next task is to find/kill <blue><input-1>"
+    itemFound: "<grey><input-1> hat gerade <blue><input-2></blue> gefunden!"
+    newItem: "<grey>Deine nächste Aufgabe ist <blue><input-1> zu finden/töten"
   worldPeace:
     death: "Das Mob <blue><input-1></blue> ist gestorben :("
     alreadyTraded: "Du hast bereits mit mir gehandelt. Danke für das Item :)"
@@ -323,10 +323,10 @@ items:
       n: "Weltzerfall"
       l: "Die Welt um dich herum verschwindet<br>Schritt für Schritt! Denke an deine Umgebung<br>um lebendig zu bleiben (nur visuell - benötigt MWeb)"
     LOW_VISION:
-      n: "Niedrige Sichtweite"
-      l: "Die gesamte Welt ist unsichtbar,<br>außer die Blöcke, die du ausgewählst! Jeder Spieler<br>kann seine eigenen Blöcke auswählen. "
+      n: "Eingeschränkte Sicht"
+      l: "Die gesamte Welt ist unsichtbar,<br>außer die Blöcke, die du auswählst! Jeder Spieler<br>kann seine eigenen Blöcke auswählen. "
     CHUNK_SYNC:
-      n: "gespiegelte Chunks"
+      n: "Gespiegelte Chunks"
       l: "Jede Interaktion in einem Chunk z.B. das Setzen von Blöcken<br>wird in allen anderen Chunks gespiegelt!<br>Was kannst du erschaffen?"
     DAMAGE_MULTIPLIER:
       n: "Schaden-Multiplikator"
@@ -602,7 +602,7 @@ items:
         n: "Blockanzahl"
     CHUNK_SYNC:
       env:
-        n: "gespiegelte Umgebung"
+        n: "Gespiegelte Umgebung"
     DAMAGE_MULTIPLIER:
       multiplier:
         n: "Multiplikator"
