@@ -35,6 +35,7 @@ command:
   reset: "<grey>La Timer a été réinitialisée avec succès à 0"
   noPlayer: "<red>Cette commande ne peut être utilisée que par les joueurs!"
   noCommand: "<red>Sous-commande invalide !"
+  language: "Successfully switched to english (en_US)!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -66,8 +67,8 @@ event:
   backPrompt: "<gold>Teleport Back <gray>(click)"
   gameOver: "Game Over"
   timeout:
-    1: "Time Over"
-    2: "The time is up"
+    head: "Time Over"
+    sub: "The time is up"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
