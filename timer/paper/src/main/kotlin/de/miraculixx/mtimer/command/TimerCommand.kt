@@ -26,9 +26,6 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
             if (sender is Player) openSetup(sender)
             else sender.sendMessage(prefix + msg("command.help"))
             return true
-        } else if (args.size > 1) {
-            sender.sendMessage(prefix + msg("command.help"))
-            return false
         }
 
         val timer = getTimer(sender)
@@ -74,7 +71,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
             }
 
             "language" -> {
-                if (!isPersonal && sender.hasPermission("mutils.command.timer-config")) {
+                if (isPersonal || !sender.hasPermission("mutils.command.timer-config")) {
                     sender.sendMessage(prefix + msg("command.help"))
                     return false
                 }
@@ -83,6 +80,8 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                     sender.sendMessage(prefix + cmp("Please provide a valid language key!", cError))
                 } else if (MTimer.localization.setLanguage(key)) {
                     sender.sendMessage(prefix + msg("command.language"))
+                } else {
+                    sender.sendMessage(prefix + cmp("Invalid language file! Copy an existing file to start editing"))
                 }
             }
 

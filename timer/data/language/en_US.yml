@@ -39,6 +39,7 @@ command:
   reset: "<grey>Timer successfully reset to time 0"
   noPlayer: "<red>This command can only be used by players!"
   noCommand: "<red>Invalid subcommand!"
+  language: "Successfully switched to english (en_US)!"
 
 
 #-----------------------------------------#
@@ -72,8 +73,8 @@ event:
   backPrompt: "<gold>Teleport Back <gray>(click)"
   gameOver: "Game Over"
   timeout:
-    1: "Time Over"
-    2: "The time is up"
+    head: "Time Over"
+    sub: "The time is up"
 
 
 #-----------------------------------------#

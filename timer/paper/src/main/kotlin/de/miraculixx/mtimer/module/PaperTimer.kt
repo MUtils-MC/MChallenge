@@ -64,7 +64,7 @@ class PaperTimer(
             if (time < 0.seconds) {
                 running = false
                 val title = Title.title(
-                    msg("event.timeout.1"), msg("event.timeout.2"),
+                    msg("event.timeout.head"), msg("event.timeout.sub"),
                     Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofMillis(5000), java.time.Duration.ofMillis(1000))
                 ) // 0,3s 5s 1s
                 target.forEach { p ->
