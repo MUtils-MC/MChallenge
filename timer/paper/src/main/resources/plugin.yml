@@ -1,6 +1,6 @@
 name: MUtils-Timer
 load: STARTUP
-version: 108
+version: 109
 main: de.miraculixx.mtimer.MTimer
 api-version: 1.16
 authors: [ Miraculixx ]
