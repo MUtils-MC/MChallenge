@@ -3,13 +3,14 @@ package de.miraculixx.mcore.gui
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
-import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.data.SortType
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
-import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.extensions.lore
+import de.miraculixx.mvanilla.extensions.name
 import de.miraculixx.mvanilla.gui.Head64
+import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -91,8 +92,8 @@ class LibraryGUI(
 
         // Calculate left menu
         i.setItem(9, itemGlobal)
-        itemSort.editMeta {
-            it.lore(buildList {
+        itemSort.itemMeta = itemSort.itemMeta?.apply {
+            lore(buildList {
                 add(emptyComponent())
                 SortType.values().forEach { type ->
                     val bullet = if (type == sort) "■" else "□"
@@ -108,22 +109,22 @@ class LibraryGUI(
         items?.forEachIndexed { index, itemStack ->
             val row = index / 6
             val column = (index - (row * 6))
-            val slot = 11 + column + (9*row)
-            itemStack.editMeta { it.name = cmp("Index: $index $row-$column") }
+            val slot = 11 + column + (9 * row)
+            itemStack.itemMeta = itemStack.itemMeta?.apply { name = cmp("Index: $index $row-$column") }
             i.setItem(slot, itemStack)
         }
     }
 
     private fun fillPlaceholder(full: Boolean) {
         if (full) {
-            val phBlack = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
+            val phBlack = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { name = (cmp(" ")) } }
             (0 until 9 * 6).forEach { slot -> i.setItem(slot, phBlack) }
-            val phGrey = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
+            val phGrey = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { name = (cmp(" ")) } }
             setOf(10, 19, 28, 37).forEach { slot -> i.setItem(slot, phGrey) }
-            i.setItem(36, itemStack(Material.WHITE_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } })
+            i.setItem(36, itemStack(Material.WHITE_STAINED_GLASS_PANE) { meta { name = (cmp(" ")) } })
         }
         // 2-7
-        val phInvis = itemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
+        val phInvis = itemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE) { meta { name = (cmp(" ")) } }
         (1..4).forEach { row ->
             (2..7).forEach { column ->
                 val slot = column + (9 * row)

@@ -8,8 +8,6 @@ tasks {
     shadowJar {
         dependencies {
             val moduleName = properties["module_name"]
-            include(dependency("dev.jorel::"))
-            include(dependency("io.ktor::"))
             include {
                 val split = it.moduleGroup.split('.')
                 val prefix = "${split.getOrNull(0)}.${split.getOrNull(1)}"
@@ -23,8 +21,5 @@ tasks {
         relocate("de.miraculixx.mcore", "de.miraculixx.$moduleName.core")
         relocate("de.miraculixx.mvanilla", "de.miraculixx.$moduleName.vanilla")
         relocate("de.miraculixx.kpaper", "de.miraculixx.$moduleName.kpaper")
-        relocate("de.miraculixx.mbridge", "de.miraculixx.$moduleName.bridge")
-        relocate("io.ktor", "de.miraculixx.$moduleName.ktor")
-        relocate("dev.jorel.commandapi", "de.miraculixx.$moduleName.command")
     }
 }

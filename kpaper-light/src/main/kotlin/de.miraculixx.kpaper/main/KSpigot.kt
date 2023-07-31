@@ -1,6 +1,5 @@
 package de.miraculixx.kpaper.main
 
-import de.miraculixx.kpaper.commands.internal.BrigardierSupport
 import de.miraculixx.kpaper.extensions.bukkit.warn
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.kotlinextensions.closeIfInitialized
@@ -62,11 +61,6 @@ abstract class KSpigot : JavaPlugin() {
 
     final override fun onEnable() {
         startup()
-
-        // only register the commands if the plugin has not disabled itself
-        if (this.isEnabled) {
-            BrigardierSupport.registerAll()
-        }
     }
 
     final override fun onDisable() {

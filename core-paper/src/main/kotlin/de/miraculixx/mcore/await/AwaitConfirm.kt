@@ -5,19 +5,20 @@ import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
-import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.data.InventoryManager
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
+import de.miraculixx.mvanilla.extensions.name
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.event.HandlerList
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.ItemStack
@@ -33,13 +34,6 @@ class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) 
     }
 
     private val onClose = listen<InventoryCloseEvent> {
-        if (it.inventory != gui.get()) return@listen
-        if (it.reason != InventoryCloseEvent.Reason.PLAYER) return@listen
-        disable()
-        taskRunLater(1) {
-            onCancel.invoke()
-            it.player.soundError()
-        }
     }
 
     private fun disable() {

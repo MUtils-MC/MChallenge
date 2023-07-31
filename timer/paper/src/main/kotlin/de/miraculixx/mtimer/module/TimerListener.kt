@@ -16,6 +16,8 @@ import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mtimer.vanilla.module.goals
 import de.miraculixx.mtimer.vanilla.module.rules
 import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.extensions.native
+import de.miraculixx.mvanilla.extensions.sendMessage
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameMode
@@ -29,6 +31,7 @@ import org.bukkit.event.entity.*
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
+import java.time.Duration
 
 class TimerListener {
 
@@ -114,11 +117,11 @@ class TimerListener {
                 ))
                     .addHover(
                         cmp(msgString("event.exactLocation"), cHighlight) + cmp(" ${loc.toSimpleString()}\n") +
-                                cmp(msgString("event.world"), cHighlight) + cmp(" ${loc.world.name}")
+                                cmp(msgString("event.world"), cHighlight) + cmp(" ${loc.world?.name}")
                     )
 
             if (rules.announceSeed) {
-                val seed = loc.world.seed.toString()
+                val seed = loc.world?.seed.toString()
                 cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("Seed: ", NamedTextColor.GOLD, true) + cmp(seed, NamedTextColor.YELLOW))
                     .addHover(cmp(msgString("event.clickToCopy", listOf(seed)), cHighlight))
                     .clickEvent(ClickEvent.copyToClipboard(seed))
@@ -127,7 +130,7 @@ class TimerListener {
             cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + cmp(msgString("event.playtime"), NamedTextColor.GOLD, true) + cmp(timer.buildSimple(), NamedTextColor.YELLOW)
 
             if (rules.announceBack) {
-                val cmd = "/execute in ${loc.world.key().asString()} run teleport @s ${loc.blockX} ${loc.blockY} ${loc.blockZ}"
+                val cmd = "/execute in ${loc.world?.key?.key} run teleport @s ${loc.blockX} ${loc.blockY} ${loc.blockZ}"
                 cmp = cmp + cmp("\n>> ", NamedTextColor.DARK_GRAY) + (cmp("") + msg("event.backPrompt").addHover(cmp(cmd)).clickEvent(ClickEvent.runCommand(cmd)).color(NamedTextColor.GOLD))
             }
 
@@ -148,11 +151,11 @@ class TimerListener {
 
         val punish = rules.punishmentSetting
         if (punish.active) {
-            val kickMsg = msg("event.kick", listOf(player.name))
+            val kickMsg = msg("event.kick", listOf(player.name)).native()
             if (punish.type == Punishment.BAN) {
-                player.banPlayer(msgString("event.ban", listOf(player.name)))
-                player.kick(kickMsg)
-            } else player.kick(kickMsg)
+                player.ban(msgString("event.ban", listOf(player.name)), Duration.ofDays(999), null)
+                player.kickPlayer(kickMsg)
+            } else player.kickPlayer(kickMsg)
         }
     }
 

@@ -8,7 +8,7 @@ class TestProvider: ItemProvider {
 
     override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return buildList {
-            Material.values().copyOfRange(from, to).forEach {
+            Material.entries.toTypedArray().copyOfRange(from, to).forEach {
                 add(ItemStack(it))
             }
         }

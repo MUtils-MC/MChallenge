@@ -2,10 +2,14 @@ package de.miraculixx.mtimer.module
 
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mvanilla.extensions.native
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.messages.msg
 import net.kyori.adventure.title.Title
+import net.md_5.bungee.api.ChatMessageType
+import net.md_5.bungee.api.chat.TextComponent
+import net.md_5.bungee.chat.ComponentSerializer
 import org.bukkit.Bukkit
 import java.util.*
 import kotlin.time.Duration.Companion.milliseconds
@@ -57,7 +61,7 @@ class PaperTimer(
             val globalTimer = if (isPersonal) TimerManager.globalTimer else this
             if (!isPersonal || (!globalTimer.visible || !globalTimer.running)) {
                 val component = buildFormatted(running)
-                target.forEach { t -> t?.sendActionBar(component) }
+                target.forEach { t -> t?.spigot()?.sendMessage(ChatMessageType.ACTION_BAR, *TextComponent.fromLegacyText(component.native())) }
             }
 
             if (!running) return@task
@@ -69,7 +73,7 @@ class PaperTimer(
                 ) // 0,3s 5s 1s
                 target.forEach { p ->
                     p?.playSound(p, org.bukkit.Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1.1f)
-                    p?.showTitle(title)
+                    p?.sendTitle(title.title().native(), title.subtitle().native(), 6, 20 * 5, 20)
                 }
                 return@task
             }

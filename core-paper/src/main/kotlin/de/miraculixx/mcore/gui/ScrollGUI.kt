@@ -7,6 +7,8 @@ import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.data.InventoryManager
 import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mvanilla.extensions.lore
+import de.miraculixx.mvanilla.extensions.name
 import de.miraculixx.mvanilla.messages.*
 import de.miraculixx.mvanilla.gui.Head64
 import net.kyori.adventure.key.Key
@@ -48,7 +50,7 @@ class ScrollGUI(
     private val deactivated = cmp(msgString("common.boolFalse"), cError)
     override val defaultClickAction: ((InventoryClickEvent) -> Unit) = action@{
         val item = it.currentItem
-        val player = it.whoClicked
+        val player = it.whoClicked as Player
         val click = it.click
         if (it.slot == -999) {
             if (click.isLeftClick) {
@@ -66,7 +68,7 @@ class ScrollGUI(
         when (item?.itemMeta?.customModel) {
             9000 -> {
                 it.isCancelled = true
-                player.playSound(Sound.sound(Key.key("block.stone.hit"), Sound.Source.BLOCK, 1f, 1f))
+                player.playSound(player, org.bukkit.Sound.BLOCK_STONE_HIT, 1f, 1f)
             }
 
             9001 -> {
@@ -150,23 +152,23 @@ class ScrollGUI(
         i.setItem(27, if (page == 0) arrowRedL else arrowGreenL)
         i.setItem(35, if (content.size < 7) arrowRedR else arrowGreenR)
         pageIndicator.amount = (page + 1).coerceIn(1..64)
-        pageIndicator.editMeta { it.displayName((cmp("Page ${page + 1}", cHighlight))) }
+        pageIndicator.itemMeta = pageIndicator.itemMeta?.apply { name = ((cmp("Page ${page + 1}", cHighlight))) }
         i.setItem(31, pageIndicator)
 
         // Adding Content
         content.toList().forEachIndexed { index, data ->
             if (data.second) {
                 data.first.addUnsafeEnchantment(Enchantment.MENDING, 1)
-                data.first.addItemFlags(ItemFlag.HIDE_ENCHANTS)
+                data.first.itemMeta = data.first.itemMeta?.apply { addItemFlags(ItemFlag.HIDE_ENCHANTS) }
             }
             i.setItem(index + 19, itemStack(if (data.second) Material.LIME_STAINED_GLASS_PANE else Material.RED_STAINED_GLASS_PANE) {
                 meta {
-                    displayName(if (data.second) activated else deactivated)
+                    name = (if (data.second) activated else deactivated)
                     val sourceMeta = data.first.itemMeta
-                    customModel = sourceMeta.customModel
-                    val dataContainer = sourceMeta.persistentDataContainer
+                    customModel = sourceMeta?.customModel
+                    val dataContainer = sourceMeta?.persistentDataContainer
                     dataKeys.forEach { key ->
-                        persistentDataContainer.set(key, PersistentDataType.STRING, dataContainer.get(key, PersistentDataType.STRING) ?: "")
+                        persistentDataContainer.set(key, PersistentDataType.STRING, dataContainer?.get(key, PersistentDataType.STRING) ?: "")
                     }
                 }
             })
@@ -175,9 +177,9 @@ class ScrollGUI(
     }
 
     private fun fillPlaceholder(full: Boolean) {
-        val primaryPlaceholder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
-        val secondaryPlaceholder = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
-        val missingSetting = itemStack(Material.BARRIER) { meta { displayName(cmp("✖", cError)) } }
+        val primaryPlaceholder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { name = (cmp(" ")) } }
+        val secondaryPlaceholder = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { name = (cmp(" ")) } }
+        val missingSetting = itemStack(Material.BARRIER) { meta { name = (cmp("✖", cError)) } }
 
         if (full) {
             repeat(i.size) { i.setItem(it, primaryPlaceholder) }

@@ -4,6 +4,7 @@ import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mtimer.module.PaperTimer
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mvanilla.extensions.native
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.inventory.ItemStack
 import kotlin.time.Duration.Companion.days
@@ -28,7 +29,9 @@ class ItemsDesigns(private val timer: Timer) : ItemProvider {
             )
             TimerManager.getDesigns().forEach { (uuid, design) ->
                 put(
-                    converter.getItem(design, uuid).apply { lore(lore()?.plus(loreAddon)) },
+                    converter.getItem(design, uuid).apply {
+                        itemMeta = itemMeta?.apply { lore = (lore?.plus(loreAddon.native())) }
+                    },
                     timer.design == design
                 )
             }

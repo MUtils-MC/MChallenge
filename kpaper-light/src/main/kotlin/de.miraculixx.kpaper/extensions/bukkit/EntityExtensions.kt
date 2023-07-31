@@ -138,15 +138,15 @@ fun Player.showOnlinePlayers() {
  * @param stay time in ticks for titles to stay
  * @param fadeOut time in ticks for titles to fade out
  */
-fun Player.title(
-    mainText: Component = Component.empty(),
-    subText: Component = Component.empty(),
-    fadeIn: Duration = Duration.ofMillis(500),
-    stay: Duration = Duration.ofMillis(3500),
-    fadeOut: Duration = Duration.ofMillis(1000),
-) {
-    showTitle(Title.title(mainText, subText, Title.Times.times(fadeIn, stay, fadeOut)))
-}
+//fun Player.title(
+//    mainText: Component = Component.empty(),
+//    subText: Component = Component.empty(),
+//    fadeIn: Duration = Duration.ofMillis(500),
+//    stay: Duration = Duration.ofMillis(3500),
+//    fadeOut: Duration = Duration.ofMillis(1000),
+//) {
+//    showTitle(Title.title(mainText, subText, Title.Times.times(fadeIn, stay, fadeOut)))
+//}
 
 /**
  * Returns the itemInHand of the given [EquipmentSlot]
@@ -161,9 +161,9 @@ fun Player.getHandItem(hand: EquipmentSlot?) = when (hand) {
 /**
  * Sends the given [text] as an action bar message.
  */
-fun Player.actionBar(text: String) {
-    sendActionBar(literalText { legacyText(text) })
-}
+//fun Player.actionBar(text: String) {
+//    sendActionBar(literalText { legacyText(text) })
+//}
 
 /**
  * Adds the given ItemStacks to the player's inventory.

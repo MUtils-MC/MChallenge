@@ -3,15 +3,13 @@ package de.miraculixx.mcore.gui
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
-import de.miraculixx.kpaper.items.name
-import de.miraculixx.mvanilla.extensions.soundDisable
-import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.items.skullTexture
+import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.emptyComponent
 import de.miraculixx.mvanilla.messages.msg
 import de.miraculixx.mvanilla.messages.msgList
-import de.miraculixx.mvanilla.gui.Head64
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.Sound
@@ -31,7 +29,7 @@ object InventoryUtils {
         return itemStack(Material.PLAYER_HEAD) {
             meta<SkullMeta> {
                 skullTexture(texture.value)
-                displayName(msg("items.general.$key.n"))
+                setDisplayName(msg("items.general.$key.n").native())
                 lore(msgList("items.general.$key.l", inline = "<grey>"))
                 customModel = id
             }

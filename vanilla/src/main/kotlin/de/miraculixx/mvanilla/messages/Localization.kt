@@ -1,6 +1,7 @@
 package de.miraculixx.mvanilla.messages
 
 import de.miraculixx.mvanilla.config.Config
+import de.miraculixx.mvanilla.extensions.sendMessage
 import net.kyori.adventure.text.Component
 import java.io.File
 import java.io.InputStream

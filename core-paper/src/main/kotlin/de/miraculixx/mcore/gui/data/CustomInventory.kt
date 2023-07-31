@@ -3,6 +3,8 @@ package de.miraculixx.mcore.gui.data
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mvanilla.extensions.native
+import de.miraculixx.mvanilla.extensions.sendMessage
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
@@ -18,7 +20,7 @@ abstract class CustomInventory(
     private val closeEvent: ((InventoryCloseEvent, CustomInventory) -> Unit)?
     ) {
     val viewers: MutableList<Player> = mutableListOf()
-    private val inventory = Bukkit.createInventory(null, size, title)
+    private val inventory = Bukkit.createInventory(null, size, title.native())
     abstract val id: String
     abstract val itemProvider: ItemProvider?
     abstract val defaultClickAction: ((InventoryClickEvent) -> Unit)?

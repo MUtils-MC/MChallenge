@@ -1,6 +1,5 @@
 package de.miraculixx.kpaper.localization
 
-import org.apache.commons.lang.text.StrSubstitutor
 import org.bukkit.entity.Player
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
@@ -39,12 +38,7 @@ object Localization {
      * Additionally formats the localized string with the named [args], which
      * are represented as `{argumentName}` in the translations
      */
-    fun get(locale: Locale, key: String, vararg args: Pair<String, Any?>): String =
-        StrSubstitutor.replace(
-            get(locale, key),
-            mapOf(*args),
-            "{", "}"
-        )
+    fun get(locale: Locale, key: String, vararg args: Pair<String, Any?>): String = "unavailable"
 
     private fun getOrLoadBundle(locale: Locale): ResourceBundle? {
         return bundles[locale] ?: InputStreamReader(

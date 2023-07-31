@@ -1,5 +1,6 @@
 package de.miraculixx.mtimer.command
 
+import de.miraculixx.kpaper.chat.sendMessage
 import de.miraculixx.mtimer.gui.actions.GUIColorBuilder
 import de.miraculixx.mtimer.gui.actions.GUIGradientEditor
 import de.miraculixx.mtimer.gui.buildInventory

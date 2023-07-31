@@ -3,6 +3,7 @@ package de.miraculixx.mcore.gui.items
 
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
+import de.miraculixx.mvanilla.extensions.sendMessage
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.inventory.meta.SkullMeta
 import java.lang.reflect.Field

@@ -106,17 +106,17 @@ class LiteralTextBuilder(val internalText: Component) {
         )
     }
 
-    /**
-     * Sets the item which should be displayed when hovering
-     * over the text in the chat.
-     *
-     * @param itemStack the ItemStack
-     */
-    fun hoverItem(
-        itemStack: ItemStack
-    ) {
-        hoverEvent = itemStack.asHoverEvent()
-    }
+//    /**
+//     * Sets the item which should be displayed when hovering
+//     * over the text in the chat.
+//     *
+//     * @param itemStack the ItemStack
+//     */
+//    fun hoverItem(
+//        itemStack: ItemStack
+//    ) {
+//        hoverEvent = itemStack.asHoverEvent()
+//    }
 
     /**
      * Sets the entity which should be displayed when hovering
@@ -124,11 +124,11 @@ class LiteralTextBuilder(val internalText: Component) {
      *
      * @param entity the Entity
      */
-    fun hoverEntity(
-        entity: Entity
-    ) {
-        hoverEvent = entity.asHoverEvent()
-    }
+//    fun hoverEntity(
+//        entity: Entity
+//    ) {
+//        hoverEvent = entity.asHoverEvent()
+//    }
 
     /**
      * Sets the command which should be executed by the Player if he clicks

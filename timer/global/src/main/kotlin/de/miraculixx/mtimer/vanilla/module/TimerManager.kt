@@ -1,7 +1,7 @@
 package de.miraculixx.mtimer.vanilla.module
 
 import de.miraculixx.mtimer.data.*
-import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.messages.json
 import kotlinx.serialization.encodeToString
 import java.io.File
 import java.util.*
@@ -51,7 +51,6 @@ object TimerManager {
     }
 
     fun save(folder: File) {
-        if (debug) consoleAudience.sendMessage(prefix + cmp("Save all data to disk..."))
         val designFolder = File("${folder.path}/designs")
         if (!designFolder.exists()) designFolder.mkdirs()
         val skipIDs = TimerPresets.values().map { it.uuid }

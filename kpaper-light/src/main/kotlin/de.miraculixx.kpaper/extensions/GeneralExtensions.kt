@@ -3,6 +3,7 @@
 package de.miraculixx.kpaper.extensions
 
 import de.miraculixx.kpaper.main.PluginInstance
+import de.miraculixx.mvanilla.extensions.native
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.Component.text
 import org.bukkit.Bukkit
@@ -40,14 +41,14 @@ val pluginManager get() = Bukkit.getPluginManager()
  * @return the number of recipients
  * @see Bukkit.broadcastMessage
  */
-fun broadcast(msg: String) = Bukkit.getServer().broadcast(text(msg))
+fun broadcast(msg: String) = Bukkit.getServer().broadcast(text(msg).native(), "")
 
 /**
  * Broadcasts a message ([msg]) on the server.
  * @return the number of recipients
  * @see Bukkit.broadcastMessage
  */
-fun broadcast(msg: Component) = Bukkit.getServer().broadcast(msg)
+fun broadcast(msg: Component) = Bukkit.getServer().broadcast(msg.native(), "")
 
 /**
  * Shortcut to get the ConsoleSender.

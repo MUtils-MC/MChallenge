@@ -3,6 +3,7 @@
 package de.miraculixx.kpaper.extensions.bukkit
 
 import de.miraculixx.kpaper.main.PluginInstance
+import de.miraculixx.mvanilla.extensions.native
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
@@ -34,7 +35,7 @@ fun CommandSender.error(text: String, plugin: Plugin? = PluginInstance) =
  * Sends the given message and adds the given prefix with the given color to it.
  */
 fun CommandSender.printColoredPrefix(text: String, textColor: TextColor, prefix: String, prefixColor: TextColor) =
-    sendMessage(Component.text(prefix).color(prefixColor).append(Component.text(text).color(textColor)))
+    sendMessage(Component.text(prefix).color(prefixColor).append(Component.text(text).color(textColor)).native())
 
 /**
  * Dispatches the command given by [commandLine].

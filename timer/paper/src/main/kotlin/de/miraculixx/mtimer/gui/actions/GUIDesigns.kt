@@ -13,7 +13,7 @@ import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.*
-import de.miraculixx.mvanilla.messages.namespace
+import de.miraculixx.mvanilla.messages.*
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType

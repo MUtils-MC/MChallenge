@@ -1,5 +1,6 @@
 package de.miraculixx.mcore.utils
 
+import de.miraculixx.kpaper.chat.sendMessage
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.msg
 import de.miraculixx.mvanilla.messages.plus

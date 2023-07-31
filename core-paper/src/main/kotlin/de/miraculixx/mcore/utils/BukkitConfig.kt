@@ -1,5 +1,6 @@
 package de.miraculixx.mcore.utils
 
+import de.miraculixx.mvanilla.extensions.sendMessage
 import de.miraculixx.mvanilla.messages.*
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration

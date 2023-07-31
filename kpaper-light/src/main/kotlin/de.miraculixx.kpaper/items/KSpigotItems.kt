@@ -2,6 +2,8 @@
 
 package de.miraculixx.kpaper.items
 
+import de.miraculixx.mvanilla.extensions.lore
+import de.miraculixx.mvanilla.extensions.native
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.Component.text
 import net.kyori.adventure.text.Component.translatable
@@ -63,18 +65,18 @@ inline fun itemMeta(material: Material, builder: ItemMeta.() -> Unit) = itemMeta
 /**
  * Sets the lore (description) of the item.
  */
-inline fun ItemMeta.setLore(builder: ItemMetaLoreBuilder.() -> Unit) {
-    lore(ItemMetaLoreBuilder().apply(builder).lorelist)
-}
-
-/**
- * Adds new lines to the lore (description) of the item.
- */
-inline fun ItemMeta.addLore(builder: ItemMetaLoreBuilder.() -> Unit) {
-    val newLore = lore() ?: mutableListOf<Component>()
-    newLore.addAll(ItemMetaLoreBuilder().apply(builder).lorelist)
-    lore(newLore)
-}
+//inline fun ItemMeta.setLore(builder: ItemMetaLoreBuilder.() -> Unit) {
+//    lore(ItemMetaLoreBuilder().apply(builder).lorelist)
+//}
+//
+///**
+// * Adds new lines to the lore (description) of the item.
+// */
+//inline fun ItemMeta.addLore(builder: ItemMetaLoreBuilder.() -> Unit) {
+//    val newLore = lore() ?: mutableListOf<Component>()
+//    newLore.addAll(ItemMetaLoreBuilder().apply(builder).lorelist)
+//    lore(newLore)
+//}
 
 /**
  * Lore builder which uses an [ArrayList] under the hood.
@@ -122,15 +124,6 @@ fun ItemMeta.removeFlags(vararg itemFlag: ItemFlag) = removeItemFlags(*itemFlag)
 
 /**
  * Provides safe access to the items' displayName.
- *
- * Note: Render [TranslatableComponent]s before setting them as the displayName.
- */
-var ItemMeta.name: Component?
-    get() = if (hasDisplayName()) displayName() else null
-    set(value) = displayName(value ?: Component.space())
-
-/**
- * Provides safe access to the items' displayName.
  */
 @Suppress("DEPRECATION")
 @Deprecated("displaynames are saved as Components in Paper", ReplaceWith("name", "net.axay.kspigot.Items.name"))
@@ -149,5 +142,5 @@ var ItemMeta.customModel: Int?
  * Provides more consistent access to the items' localizedName.
  */
 var ItemMeta.localName: TranslatableComponent
-    get() = if (hasDisplayName()) displayName() as TranslatableComponent else translatable("")
-    set(value) = displayName(value)
+    get() = if (hasDisplayName()) displayName as TranslatableComponent else translatable("")
+    set(value) = setDisplayName(value.native())

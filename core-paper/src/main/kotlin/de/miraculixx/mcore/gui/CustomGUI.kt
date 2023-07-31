@@ -6,6 +6,7 @@ import de.miraculixx.mvanilla.messages.*
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.data.InventoryManager
 import de.miraculixx.mcore.gui.items.ItemProvider
+import de.miraculixx.mvanilla.extensions.sendMessage
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -59,8 +60,8 @@ class CustomGUI(
     }
 
     private fun fillPlaceholder() {
-        val primaryPlaceholder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
-        val secondaryPlaceholder = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { displayName(cmp(" ")) } }
+        val primaryPlaceholder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { setDisplayName("") } }
+        val secondaryPlaceholder = itemStack(Material.BLACK_STAINED_GLASS_PANE) { meta { setDisplayName(" ") } }
 
         val size = i.size
         repeat(size) {

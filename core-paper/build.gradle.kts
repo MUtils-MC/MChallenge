@@ -3,6 +3,7 @@ plugins {
     `paper-script`
     `core-script`
     `shadow-script`
+    `adventure-script`
 }
 
 dependencies {

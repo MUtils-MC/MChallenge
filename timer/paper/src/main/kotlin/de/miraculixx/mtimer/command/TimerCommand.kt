@@ -1,5 +1,6 @@
 package de.miraculixx.mtimer.command
 
+import de.miraculixx.kpaper.chat.sendMessage
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mtimer.MTimer
 import de.miraculixx.mtimer.gui.actions.GUIOverview
@@ -27,6 +28,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
             else sender.sendMessage(prefix + msg("command.help"))
             return true
         }
+        val player = sender as? Player
 
         val timer = getTimer(sender)
         val running = timer.running
@@ -36,7 +38,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 return false
             } else {
                 timer.running = true
-                sender.soundEnable()
+                player?.soundEnable()
                 val msg = prefix + msg("command.resume", listOf(sender.name))
                 if (isPersonal) sender.sendMessage(msg) else broadcast(msg)
             }
@@ -46,7 +48,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
                 return false
             } else {
                 timer.running = false
-                sender.soundDisable()
+                player?.soundDisable()
                 val msg = prefix + msg("command.pause", listOf(sender.name))
                 if (isPersonal) sender.sendMessage(msg) else broadcast(msg)
             }
@@ -57,7 +59,7 @@ class TimerCommand(private val isPersonal: Boolean) : CommandExecutor, TabComple
             "reset" -> {
                 timer.running = false
                 timer.time = Duration.ZERO
-                sender.soundDisable()
+                player?.soundDisable()
                 sender.sendMessage(prefix + msg("command.reset"))
             }
 

@@ -1,6 +1,7 @@
 package de.miraculixx.mvanilla.extensions
 
 import net.kyori.adventure.audience.Audience
+import org.bukkit.entity.Player
 import java.io.File
 import java.util.*
 
@@ -31,7 +32,7 @@ fun String.toUUID(): UUID? {
     }
 }
 
-fun Boolean.toggle(player: Audience): Boolean {
+fun Boolean.toggle(player: Player): Boolean {
     return if (this) {
         player.soundDisable()
         false

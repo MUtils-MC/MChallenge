@@ -7,11 +7,11 @@ import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mcore.gui.items.ItemFilterProvider
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.lore
+import de.miraculixx.mvanilla.extensions.name
 import de.miraculixx.mvanilla.extensions.toMap
 import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
-import net.kyori.adventure.key.Key
-import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -42,18 +42,20 @@ class StorageGUI(
     private val arrowDownGreen = if (scrollable) InventoryUtils.getCustomItem("arrowDownGreen", 9002, Head64.ARROW_DOWN_GREEN) else null
     override val defaultClickAction: ((InventoryClickEvent) -> Unit) = action@{
         val item = it.currentItem
-        val player = it.whoClicked
+        val player = it.whoClicked as Player
         when (item?.itemMeta?.customModel) {
             9000 -> {
                 it.isCancelled = true
-                player.playSound(Sound.sound(Key.key("block.stone.hit"), Sound.Source.BLOCK, 1f, 1f))
+                player.playSound(player, org.bukkit.Sound.BLOCK_STONE_HIT, 1f, 1f)
             }
+
             9001 -> {
                 it.isCancelled = true
                 page = (page - if (it.click.isShiftClick) 3 else 1).coerceAtLeast(0)
                 player.click()
                 update()
             }
+
             9002 -> {
                 it.isCancelled = true
                 page += if (it.click.isShiftClick) 3 else 1
@@ -63,7 +65,7 @@ class StorageGUI(
         }
     }
     private val i = get()
-    private val lightHolder = itemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE) { meta { displayName(emptyComponent()) } }
+    private val lightHolder = itemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE) { meta { name = (emptyComponent()) } }
 
     private constructor(builder: Builder) : this(
         builder.itemProvider,
@@ -84,7 +86,7 @@ class StorageGUI(
         builder.closeAction
     )
 
-    class Builder(val id: String): CustomInventory.Builder() {
+    class Builder(val id: String) : CustomInventory.Builder() {
         /**
          * Decorate the storage header (first row) with custom items. You can set
          * - 0 Items for no header
@@ -162,20 +164,23 @@ class StorageGUI(
 
         //Filter Apply
         if (filterable) {
-            i.setItem(49, itemStack(Material.HOPPER) { meta {
-                customModel = 9005
-                displayName(cmp("Filters", cHighlight, bold = true))
-                lore(listOf(
-                    emptyComponent(),
-                    cmp("Filter", cHighlight, underlined = true),
-                    cmp("∙ ${filter ?: msgString("common.none")}"),
-                    emptyComponent(),
-                    cmp("Click ", cHighlight) + cmp("≫ Change Filter")
-                ))
-                persistentDataContainer.set(NamespacedKey(namespace, "gui.storage.filter"), PersistentDataType.STRING, (filter ?: "NO_FILTER"))
-            }})
+            i.setItem(49, itemStack(Material.HOPPER) {
+                meta {
+                    customModel = 9005
+                    name = (cmp("Filters", cHighlight, bold = true))
+                    lore(
+                        listOf(
+                            emptyComponent(),
+                            cmp("Filter", cHighlight, underlined = true),
+                            cmp("∙ ${filter ?: msgString("common.none")}"),
+                            emptyComponent(),
+                            cmp("Click ", cHighlight) + cmp("≫ Change Filter")
+                        )
+                    )
+                    persistentDataContainer.set(NamespacedKey(namespace, "gui.storage.filter"), PersistentDataType.STRING, (filter ?: "NO_FILTER"))
+                }
+            })
         }
-
 
 
         //Visible Content
@@ -184,28 +189,29 @@ class StorageGUI(
         //Scroll Apply
         if (scrollable) {
             i.setItem(0, if (page <= 0) arrowUpRed else arrowUpGreen)
-            i.setItem(8, if (visible.size < 9*3) arrowDownRed else arrowDownGreen)
+            i.setItem(8, if (visible.size < 9 * 3) arrowDownRed else arrowDownGreen)
         }
 
         //Place Content
         visible.forEachIndexed { index, pair ->
             if (pair.second) {
-                 when (pair.first.type) {
+                when (pair.first.type) {
                     Material.PLAYER_HEAD, Material.ZOMBIE_HEAD, Material.SKELETON_SKULL, Material.CHEST,
                     Material.ENDER_CHEST, Material.TRAPPED_CHEST -> pair.first.type = Material.GREEN_STAINED_GLASS_PANE
-                     else -> Unit
+
+                    else -> Unit
                 }
 
                 pair.first.addUnsafeEnchantment(Enchantment.MENDING, 1)
-                pair.first.addItemFlags(ItemFlag.HIDE_ENCHANTS)
+                pair.first.itemMeta = pair.first.itemMeta?.apply() { addItemFlags(ItemFlag.HIDE_ENCHANTS) }
             }
-            if (filterable && index >= 9*4) return
+            if (filterable && index >= 9 * 4) return
             i.setItem(9 + index, pair.first)
         }
     }
 
     private fun fillPlaceholder(full: Boolean) {
-        val darkHolder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { displayName(emptyComponent()) } }
+        val darkHolder = itemStack(Material.GRAY_STAINED_GLASS_PANE) { meta { name = (emptyComponent()) } }
         if (full) (0..8).forEach { i.setItem(it, darkHolder) }
 
         (9..53 - (if (filterable) 9 else 0)).forEach { i.setItem(it, lightHolder) }

@@ -10,6 +10,7 @@ import de.miraculixx.mtimer.gui.items.ItemsRules
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mvanilla.extensions.click
+import de.miraculixx.mvanilla.extensions.sendMessage
 import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.messages.emptyComponent
@@ -52,7 +53,6 @@ class GUIOverview(private val isPersonal: Boolean) : GUIEvent {
             7 -> if (timer.visible) {
                 timer.visible = false
                 player.soundDisable()
-                player.sendActionBar(emptyComponent())
             } else {
                 timer.visible = true
                 player.soundEnable()

@@ -2,9 +2,6 @@ package de.miraculixx.mtimer
 
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
-import de.miraculixx.mbridge.MUtilsBridge
-import de.miraculixx.mbridge.MUtilsModule
-import de.miraculixx.mbridge.MUtilsPlatform
 import de.miraculixx.mcore.utils.registerCommand
 import de.miraculixx.mtimer.command.HelperCommand
 import de.miraculixx.mtimer.command.TimerCommand
@@ -25,7 +22,6 @@ class MTimer : KSpigot() {
         lateinit var INSTANCE: KSpigot
         val configFolder = File("plugins/MUtils/Timer")
         lateinit var localization: Localization
-        lateinit var bridgeAPI: MUtilsBridge
     }
 
     override fun startup() {
@@ -33,7 +29,7 @@ class MTimer : KSpigot() {
         consoleAudience = console
         debug = false
 
-        val versionSplit = server.minecraftVersion.split('.')
+        val versionSplit = server.version.split('.')
         majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
@@ -43,11 +39,7 @@ class MTimer : KSpigot() {
         localization = Localization(File("${configFolder.path}/language"), settings.language, languages, timerPrefix)
 
         // Connect Bridge
-        bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.TIMER, server.version, server.port)
         CoroutineScope(Dispatchers.Default).launch {
-            val version = bridgeAPI.versionCheck(description.version.toInt(), File("plugins/update"))
-            if (!version) return@launch
-
             registerCommand("timer", TimerCommand(false))
             registerCommand("ptimer", TimerCommand(true))
             registerCommand("colorful", HelperCommand())

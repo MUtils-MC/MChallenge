@@ -7,7 +7,6 @@ import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.modules.mods.worldChanging.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
 import de.miraculixx.mchallenge.utils.gui.buildInventory

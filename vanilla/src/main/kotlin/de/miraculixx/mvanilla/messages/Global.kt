@@ -2,8 +2,8 @@
 
 package de.miraculixx.mvanilla.messages
 
-import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.format.NamedTextColor
+import org.bukkit.command.ConsoleCommandSender
 
 /**
  * Namespace for api related savings
@@ -13,7 +13,7 @@ const val namespace = "de.miraculixx.api"
 /**
  * Public console audience to use everywhere
  */
-lateinit var consoleAudience: Audience
+lateinit var consoleAudience: ConsoleCommandSender
 
 /**
  * Debug mode prints some nice crap into the console for debugging
@@ -49,6 +49,6 @@ var minorVersion: Int = 0
 
 fun _reloadPrefix() {
     prefix = cmp("MUtils", cHighlight) + _prefixSeparator
-    challengePrefix =  cmp("MChallenge", cHighlight) + _prefixSeparator
+    challengePrefix = cmp("MChallenge", cHighlight) + _prefixSeparator
     timerPrefix = cmp("MTimer", cHighlight) + _prefixSeparator
 }
