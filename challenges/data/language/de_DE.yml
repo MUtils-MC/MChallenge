@@ -59,7 +59,7 @@ command:
   lang:
     success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
     fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
-  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+  noAddons: "<red>Keine MChallenge-Addons installiert! Du findest Addons unter <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -108,8 +108,8 @@ event:
     startHunt: "<grey>Alle Spieler haben ihre Gegenstände gesammelt! Jetzt musst du <blue><input-1></blue> schneller finden als <blue><input-2></blue> (<input-3>)</grey>"
     startCooldown: "<green>Runde <input-1> beendet!</green>"
   rivalCollect:
-    itemFound: "<input-1> hat gerade <blue><input-2></blue> gefunden!"
-    newItem: "Deine nächste Aufgabe ist <input-1> zu finden/töten"
+    itemFound: "<grey><input-1> hat gerade <blue><input-2></blue> gefunden!"
+    newItem: "<grey>Deine nächste Aufgabe ist <blue><input-1> zu finden/töten"
   worldPeace:
     death: "Das Mob <blue><input-1></blue> ist gestorben :("
     alreadyTraded: "Du hast bereits mit mir gehandelt. Danke für das Item :)"
@@ -120,6 +120,7 @@ event:
     trade: "Danke für die Items! Hier, du kannst <blue><input-1></blue> von meinem <blue><input-2></blue> haben!"
     tradeOffer: "Kannst du mir <blue><input-1> <input-2></blue> bringen?"
     tradeOffer2: "Im Gegenzug würde ich dir mein <blue><input-1></blue> geben!"
+  enterFilter: "Gib einen Filter ein für <color:#6e94ff><input-1></color>" #m v1
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -308,19 +309,28 @@ items:
       l: "Spiele gegen alle anderen Spieler<br>in diesem Runden basierten Modus!<br>Zuerst sammelst du ein Item so schnell wie möglich.<br>In der zweiten Phase muss ein anderer<br>zufälliger Spieler dieses Item schneller sammeln!<br>Kannst du trotzdem MC durchspielen?"
     RANDOMIZER_CHESTS:
       n: "Loot Randomizer"
-      l: "Randomize all items in chest containers!"
+      l: "Alle Items in Inventarblöcken sind zufällig!"
     BLOCK_WORLD:
-      n: "Block World"
-      l: "All chunks are built from one<br>block type! Step through a new<br>cursed world"
+      n: "Blockwelt"
+      l: "Alle Chunks sind aus einem<br>Blocktyp! Trete durch eine neue<br>verwirrte Welt"
     MINEFIELD_WORLD:
-      n: "Minefield World"
-      l: "The whole world is covered with<br>dangerous mines. Don't step on them!"
+      n: "Minenfeld Welt"
+      l: "Die ganze Welt ist mit<br>gefährlichen Minen bedeckt. Trete nicht drauf!"
     BLOCK_WALL:
-      n: "Block Wall"
-      l: "You are hunted by a wall!<br>Watch out your steps, breaking the<br>wall is impossible"
+      n: "Blockwand"
+      l: "Du wirst von einer Mauer gejagt!<br>Pass auf deine Schritte auf, die<br>Wand zu brechen ist unmöglich"
     WORLD_DECAY:
-      n: "World Decay"
-      l: "The world around you disappear<br>step by step! Remember your surrounding to<br>keep alive (only visual - needs MWeb)"
+      n: "Weltzerfall"
+      l: "Die Welt um dich herum verschwindet<br>Schritt für Schritt! Denke an deine Umgebung<br>um lebendig zu bleiben (nur visuell - benötigt MWeb)"
+    LOW_VISION:
+      n: "Eingeschränkte Sicht"
+      l: "Die gesamte Welt ist unsichtbar,<br>außer die Blöcke, die du auswählst! Jeder Spieler<br>kann seine eigenen Blöcke auswählen. "
+    CHUNK_SYNC:
+      n: "Gespiegelte Chunks"
+      l: "Jede Interaktion in einem Chunk z.B. das Setzen von Blöcken<br>wird in allen anderen Chunks gespiegelt!<br>Was kannst du erschaffen?"
+    DAMAGE_MULTIPLIER:
+      n: "Schaden-Multiplikator"
+      l: "Erhöhe oder verringere jeden Schaden gegenüber<br>Spielern. Dies enthält auch Schaden von Tränken und Feuer. "
   chS:
     FLY:
       power:
@@ -445,7 +455,7 @@ items:
       items:
         n: "Items"
       biomes:
-        n: "Biomes"
+        n: "Biome"
       mobs:
         n: "Mobs"
       joker:
@@ -573,18 +583,26 @@ items:
         n: "Zusätzliche Zeit"
     RANDOMIZER_CHESTS:
       enchanting:
-        n: "Random Enchants"
+        n: "Zufällige Verzauberungen"
     MINEFIELD_WORLD:
       density:
-        n: "Density"
+        n: "Dichte"
     BLOCK_WALL:
       material:
-        n: "Wall Material"
+        n: "Wandmaterial"
       delay:
-        n: "Spawn Delay"
+        n: "Spawn Verzögerung"
     WORLD_DECAY:
       delay:
-        n: "Step Delay"
+        n: "Schrittverzögerung"
       steps:
-        n: "Steps To 100%"
-
+        n: "Schritte Zu 100%"
+    LOW_VISION:
+      amount:
+        n: "Blockanzahl"
+    CHUNK_SYNC:
+      env:
+        n: "Gespiegelte Umgebung"
+    DAMAGE_MULTIPLIER:
+      multiplier:
+        n: "Multiplikator"
