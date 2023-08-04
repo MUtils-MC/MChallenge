@@ -33,8 +33,8 @@ command:
     start: "Challenges <green><b>started</b></green>! (<input-1>)"
     pause: "Challenges temporary <red>paused</red>! (<input-1>)"
     continue: "Challenges <green>resumed</green>! (<input-1>)"
-    failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
-    alreadyOn: "<red>Challenges are already started!"
+    failed: "<red>Échec du lancement des défis ! Vérifier si au moins un défi est activé et si suffisamment de joueurs sont en ligne (défis multijoueurs)"
+    alreadyOn: "<red>Les défis sont déjà lancés !"
     alreadyOff: "<red>Challenges are already stopped!"
   notRegistered: "<red>Activer le module pour utiliser cette commande !"
   heal:
