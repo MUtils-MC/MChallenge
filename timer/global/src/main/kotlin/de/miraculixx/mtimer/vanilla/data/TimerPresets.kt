@@ -71,6 +71,29 @@ enum class TimerPresets(val uuid: UUID, val design: TimerDesign) {
                 "<b><gradient:#707CF7:#F658CF:<x>>Paused (", ")", 0.03f
             ), "Galaxy (Animated)", "MUtils"
         )
+    ),
+
+    BLACK_WHITE(
+        UUID.fromString("24576cac-451d-11ee-be56-0242ac120002"), TimerDesign(
+            TimerDesignPart(
+                "<prefix><d><h><m><s><suffix>",
+                TimerDesignValue(false, false, "", "d "),
+                TimerDesignValue(false, false, "", "h "),
+                TimerDesignValue(false, false, "", "m "),
+                TimerDesignValue(false, true, "", "s"),
+                TimerDesignValue(false, true, "", ""),
+                "<gradient:#E4E3E7:#585655:<x>><b>", "", 0.03f
+            ),
+            TimerDesignPart(
+                "<prefix><d><h><m><s><suffix>",
+                TimerDesignValue(false, false, "", "d "),
+                TimerDesignValue(false, false, "", "h "),
+                TimerDesignValue(false, false, "", "m "),
+                TimerDesignValue(false, true, "", "s"),
+                TimerDesignValue(false, true, "", ""),
+                "<gradient:#E4E3E7:#585655:<x>><b>Paused (", ")", 0.03f
+            ), "Black 'n White (Animated)", "MUtils"
+        )
     )
     ;
 
