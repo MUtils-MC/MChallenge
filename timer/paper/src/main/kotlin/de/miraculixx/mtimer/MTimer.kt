@@ -8,7 +8,7 @@ import de.miraculixx.mbridge.MUtilsPlatform
 import de.miraculixx.mcore.utils.registerCommand
 import de.miraculixx.mtimer.command.HelperCommand
 import de.miraculixx.mtimer.command.TimerCommand
-import de.miraculixx.mtimer.data.Settings
+import de.miraculixx.mtimer.vanilla.data.Settings
 import de.miraculixx.mtimer.module.TimerAPI
 import de.miraculixx.mtimer.module.load
 import de.miraculixx.mtimer.vanilla.module.TimerManager

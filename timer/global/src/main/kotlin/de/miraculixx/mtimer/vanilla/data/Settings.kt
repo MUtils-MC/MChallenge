@@ -1,6 +1,5 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
-import de.miraculixx.mtimer.vanilla.data.Punishment
 import kotlinx.serialization.Serializable
 
 @Serializable
