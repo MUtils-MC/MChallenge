@@ -1,4 +1,4 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
 enum class Punishment {
     KICK,

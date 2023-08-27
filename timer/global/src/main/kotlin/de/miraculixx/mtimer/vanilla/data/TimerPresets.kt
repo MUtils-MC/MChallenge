@@ -1,4 +1,4 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
 import java.util.*
 
@@ -6,15 +6,15 @@ import java.util.*
 enum class TimerPresets(val uuid: UUID, val design: TimerDesign) {
     PRESET(
         UUID.fromString("41fb61c2-7c9c-11ed-a1eb-0242ac120002"), TimerDesign(
-          TimerDesignPart(
-              "<prefix><d><h><m><s><suffix>",
-              TimerDesignValue(false, false, "", " "),
-              TimerDesignValue(true, true, "", " "),
-              TimerDesignValue(true, true, "", " "),
-              TimerDesignValue(true, true, "", " "),
-              TimerDesignValue(false, true, "", ""),
-              "", "", 0.05f
-          ),
+            TimerDesignPart(
+                "<prefix><d><h><m><s><suffix>",
+                TimerDesignValue(false, false, "", " "),
+                TimerDesignValue(true, true, "", " "),
+                TimerDesignValue(true, true, "", " "),
+                TimerDesignValue(true, true, "", " "),
+                TimerDesignValue(false, true, "", ""),
+                "", "", 0.05f
+            ),
             TimerDesignPart(
                 "<prefix><d><h><m><s><suffix>",
                 TimerDesignValue(false, false, "", " "),

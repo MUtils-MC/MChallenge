@@ -5,7 +5,7 @@ import de.miraculixx.kpaper.runnables.async
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mtimer.MTimer
-import de.miraculixx.mtimer.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsDesignPartEditor
 import de.miraculixx.mtimer.gui.items.ItemsDesigns

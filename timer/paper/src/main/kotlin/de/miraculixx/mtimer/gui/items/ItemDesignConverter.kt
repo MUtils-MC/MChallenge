@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mtimer.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
 import de.miraculixx.mtimer.module.PaperTimer
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.format.NamedTextColor

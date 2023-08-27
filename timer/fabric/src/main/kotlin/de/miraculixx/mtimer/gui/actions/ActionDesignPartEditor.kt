@@ -1,7 +1,7 @@
 package de.miraculixx.mtimer.gui.actions
 
-import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.data.TimerDesignValue
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerDesignValue
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.content.ItemsDesignEditor
 import de.miraculixx.mtimer.vanilla.data.TimerGUI

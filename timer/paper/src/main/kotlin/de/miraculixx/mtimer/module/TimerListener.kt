@@ -10,7 +10,7 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mtimer.data.Punishment
+import de.miraculixx.mtimer.vanilla.data.Punishment
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mtimer.vanilla.module.goals

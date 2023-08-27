@@ -1,6 +1,6 @@
 package de.miraculixx.mtimer.gui.content
 
-import de.miraculixx.mtimer.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
 import de.miraculixx.mtimer.module.FabricTimer
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mutils.gui.utils.setLore

@@ -1,6 +1,9 @@
 package de.miraculixx.mtimer.vanilla.module
 
 import de.miraculixx.mtimer.data.*
+import de.miraculixx.mtimer.vanilla.data.TimerData
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerPresets
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.encodeToString
 import java.io.File

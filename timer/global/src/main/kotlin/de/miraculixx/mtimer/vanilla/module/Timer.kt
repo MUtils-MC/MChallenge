@@ -1,7 +1,7 @@
 package de.miraculixx.mtimer.vanilla.module
 
-import de.miraculixx.mtimer.data.TimerDesignValue
-import de.miraculixx.mtimer.data.TimerPresets
+import de.miraculixx.mtimer.vanilla.data.TimerDesignValue
+import de.miraculixx.mtimer.vanilla.data.TimerPresets
 import de.miraculixx.mvanilla.messages.miniMessages
 import net.kyori.adventure.text.Component
 import java.util.*

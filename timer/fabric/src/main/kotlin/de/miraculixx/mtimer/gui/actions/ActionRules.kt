@@ -1,6 +1,6 @@
 package de.miraculixx.mtimer.gui.actions
 
-import de.miraculixx.mtimer.data.Punishment
+import de.miraculixx.mtimer.vanilla.data.Punishment
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.content.ItemsOverview
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
@@ -15,7 +15,6 @@ import de.miraculixx.mvanilla.extensions.click
 import de.miraculixx.mvanilla.extensions.enumRotate
 import de.miraculixx.mvanilla.extensions.soundUp
 import de.miraculixx.mvanilla.extensions.toggle
-import de.miraculixx.mvanilla.messages.namespace
 
 class ActionRules : GUIEvent {
     override val run: (GUIClickEvent, CustomInventory) -> Unit = event@{ it: GUIClickEvent, inv: CustomInventory ->
