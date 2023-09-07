@@ -7,6 +7,10 @@ import de.miraculixx.mtimer.vanilla.module.TimerManager
 import java.util.*
 
 object TimerAPI : TimerAPIImplementation() {
+    init {
+        INSTANCE = this
+    }
+
     override fun startTimer(uuid: UUID): Boolean {
         val timer = getPersonalTimer(uuid)
         if (timer.running) return false
