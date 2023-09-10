@@ -8,6 +8,7 @@ import java.util.*
 
 lateinit var rules: Rules
 lateinit var goals: Goals
+lateinit var settings: Settings
 
 object TimerManager {
     lateinit var globalTimer: Timer

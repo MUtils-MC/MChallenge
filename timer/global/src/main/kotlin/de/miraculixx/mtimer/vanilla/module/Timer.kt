@@ -2,7 +2,10 @@ package de.miraculixx.mtimer.vanilla.module
 
 import de.miraculixx.mtimer.vanilla.data.TimerDesignValue
 import de.miraculixx.mtimer.vanilla.data.TimerPresets
+import de.miraculixx.mvanilla.messages.cError
+import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.miniMessages
+import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.Component
 import java.util.*
 import kotlin.time.Duration
@@ -21,7 +24,12 @@ abstract class Timer(
     var countUp = true
     var visible = true
     var design = designID?.let { TimerManager.getDesign(it) } ?: TimerManager.getDesign(TimerPresets.CLASSIC.uuid) ?: TimerPresets.error
+        set(value) {
+            bossBar.color(value.barColor)
+            field = value
+        }
     var remove = false
+    val bossBar = BossBar.bossBar(cmp("Loading...", cError), 1f, BossBar.Color.WHITE, BossBar.Overlay.PROGRESS)
 
     val tickLogics: MutableList<((Duration) -> Unit)> = mutableListOf()
     val stopLogics: MutableList<(() -> Unit)> = mutableListOf()

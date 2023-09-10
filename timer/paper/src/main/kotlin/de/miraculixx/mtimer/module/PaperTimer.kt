@@ -2,12 +2,16 @@ package de.miraculixx.mtimer.module
 
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
+import de.miraculixx.mtimer.vanilla.data.TimerDisplaySlot.BOSSBAR
+import de.miraculixx.mtimer.vanilla.data.TimerDisplaySlot.HOTBAR
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.settings
 import de.miraculixx.mvanilla.messages.msg
 import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
 import java.util.*
+import kotlin.time.Duration.Companion.ZERO
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -25,6 +29,7 @@ class PaperTimer(
 
             if (value) {
                 listener?.activateTimer()
+                player?.player?.showBossBar(bossBar)
                 startLogics.forEach { it.invoke() }
             } else {
                 listener?.deactivateTimer()
@@ -34,6 +39,7 @@ class PaperTimer(
 
     override fun disableListener() {
         listener?.disableAll()
+        player?.player?.hideBossBar(bossBar)
     }
 
     private fun run() {
@@ -57,7 +63,10 @@ class PaperTimer(
             val globalTimer = if (isPersonal) TimerManager.globalTimer else this
             if (!isPersonal || (!globalTimer.visible || !globalTimer.running)) {
                 val component = buildFormatted(running)
-                target.forEach { t -> t?.sendActionBar(component) }
+                when (settings.displaySlot) {
+                    HOTBAR -> target.forEach { t -> t?.sendActionBar(component) }
+                    BOSSBAR -> bossBar.name(component)
+                }
             }
 
             if (!running) return@task
@@ -71,6 +80,7 @@ class PaperTimer(
                     p?.playSound(p, org.bukkit.Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1.1f)
                     p?.showTitle(title)
                 }
+                time = ZERO
                 return@task
             }
 

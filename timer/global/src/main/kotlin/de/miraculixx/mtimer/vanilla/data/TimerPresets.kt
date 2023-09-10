@@ -1,5 +1,6 @@
 package de.miraculixx.mtimer.vanilla.data
 
+import net.kyori.adventure.bossbar.BossBar
 import java.util.*
 
 @Suppress("BooleanLiteralArgument")
@@ -92,7 +93,7 @@ enum class TimerPresets(val uuid: UUID, val design: TimerDesign) {
                 TimerDesignValue(false, true, "", "s"),
                 TimerDesignValue(false, true, "", ""),
                 "<gradient:#E4E3E7:#585655:<x>><b>Paused (", ")", 0.03f
-            ), "Black 'n White (Animated)", "MUtils"
+            ), "Black 'n White (Animated)", "MUtils", BossBar.Color.WHITE
         )
     )
     ;
