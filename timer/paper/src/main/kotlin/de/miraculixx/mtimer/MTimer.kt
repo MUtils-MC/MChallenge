@@ -1,6 +1,8 @@
 package de.miraculixx.mtimer
 
+import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.kpaper.extensions.console
+import de.miraculixx.kpaper.extensions.pluginManager
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mbridge.MUtilsBridge
 import de.miraculixx.mbridge.MUtilsModule
@@ -12,6 +14,8 @@ import de.miraculixx.mtimer.vanilla.data.Settings
 import de.miraculixx.mtimer.module.TimerAPI
 import de.miraculixx.mtimer.module.load
 import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.rules
+import de.miraculixx.mtimer.vanilla.module.settings
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.coroutines.CoroutineScope
@@ -26,6 +30,7 @@ class MTimer : KSpigot() {
         val configFolder = File("plugins/MUtils/Timer")
         lateinit var localization: Localization
         lateinit var bridgeAPI: MUtilsBridge
+        var challengeAPI: MChallengeAPI? = null
     }
 
     override fun startup() {
@@ -38,7 +43,7 @@ class MTimer : KSpigot() {
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
         if (!configFolder.exists()) configFolder.mkdirs()
-        val settings = json.decodeFromString<Settings>(File("${configFolder.path}/settings.json").readJsonString(true))
+        settings = json.decodeFromString<Settings>(File("${configFolder.path}/settings.json").readJsonString(true))
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
         localization = Localization(File("${configFolder.path}/language"), settings.language, languages, timerPrefix)
 
@@ -54,6 +59,14 @@ class MTimer : KSpigot() {
 
             TimerManager.load(configFolder)
             TimerAPI
+            if (pluginManager.isPluginEnabled("MUtils-Challenge")) {
+                challengeAPI = MChallengeAPI.instance
+                if (challengeAPI == null) console.sendMessage(prefix + cmp("Failed to load MChallenge API while it's loaded!", cError))
+                else {
+                    TimerAPI.onStartLogic { if (rules.syncWithChallenge) challengeAPI?.startChallenges() }
+                    TimerAPI.onStopLogic { if (rules.syncWithChallenge) challengeAPI?.stopChallenges() }
+                }
+            }
         }
     }
 

@@ -14,7 +14,7 @@ fun TimerManager.load(folder: File) {
     if (debug) consoleAudience.sendMessage(prefix + cmp("Load all data from disk..."))
     val designsFolder = File("${folder.path}/designs")
     if (!designsFolder.exists()) designsFolder.mkdirs()
-    TimerPresets.values().forEach {
+    TimerPresets.entries.forEach {
         if (it == TimerPresets.PRESET) return@forEach
         addDesign(it.design, it.uuid)
     }
