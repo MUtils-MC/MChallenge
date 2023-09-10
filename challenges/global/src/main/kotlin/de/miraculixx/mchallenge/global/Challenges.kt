@@ -66,7 +66,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     BLOCK_WALL(setOf(ChallengeTags.MEDIUM), Icon("BEDROCK")),
     WORLD_DECAY(setOf(ChallengeTags.HARD), Icon("WHITE_STAINED_GLASS")),
     LOW_VISION(setOf(ChallengeTags.HARD), Icon("TINTED_GLASS")),
-    CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX"))
+    CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX")),
+    HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE"))
     ;
 
 
@@ -291,6 +292,12 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
 
             CHUNK_SYNC -> mapOf(
                 "env" to ChallengeBoolSetting("TNT", false)
+            )
+
+            HIT_ORDER -> mapOf(
+                "wrongDamage" to ChallengeDoubleSetting("BEETROOT", 10.0, "hp", max = 50.0, min = 1.0, step = 1.0),
+                "randomOrder" to ChallengeBoolSetting("DROPPER", false),
+                "visual" to ChallengeBoolSetting("WRITABLE_BOOK", true)
             )
         }
     }
