@@ -10,12 +10,15 @@ import de.miraculixx.mtimer.vanilla.data.ColorType
 import de.miraculixx.mtimer.vanilla.data.GradientBuilder
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mvanilla.messages.*
+import dev.jorel.commandapi.kotlindsl.commandTree
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import org.bukkit.entity.Player
 
 class HelperCommand : TabExecutor {
+    private val onCommand = commandTree("")
+
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>?): MutableList<String> {
         return buildList {
             when (args?.size) {
