@@ -1,6 +1,6 @@
 name: MUtils-Timer
 load: STARTUP
-version: 109
+version: 110
 main: de.miraculixx.mtimer.MTimer
 api-version: 1.16
 authors: [ Miraculixx ]
@@ -17,12 +17,3 @@ libraries:
   - "io.ktor:ktor-client-core-jvm:2.3.2"
   - "org.yaml:snakeyaml:1.33"
 
-commands:
-  timer:
-    permission: "mutils.command.timer"
-    description: "Setup the global MUtils-Timer"
-  ptimer:
-    permission: "mutils.command.ptimer"
-    description: "Setup your own global MUtils-Timer"
-  colorful:
-    description: "Build a color"

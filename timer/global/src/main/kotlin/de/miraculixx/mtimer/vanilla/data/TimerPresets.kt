@@ -70,7 +70,7 @@ enum class TimerPresets(val uuid: UUID, val design: TimerDesign) {
                 TimerDesignValue(false, true, "", "s"),
                 TimerDesignValue(false, true, "", ""),
                 "<b><gradient:#707CF7:#F658CF:<x>>Paused (", ")", 0.03f
-            ), "Galaxy (Animated)", "MUtils"
+            ), "Galaxy (Animated)", "MUtils", BossBar.Color.PINK
         )
     ),
 

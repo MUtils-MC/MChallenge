@@ -75,6 +75,7 @@ event:
   timeout:
     head: "Time Over"
     sub: "The time is up"
+  soundEnd: "<grey>Enter a sound key like <blue>minecraft:block.stone.hit</blue>. Use <blue>/playsound</blue> for listing all sounds."
 
 
 #-----------------------------------------#
@@ -192,3 +193,9 @@ items:
       n: "Gradient Animation"
       s: "Animation"
       l: "Add animation to your<br>final gradient. This animation<br>will loop"
+  designSetting:
+    n: "Design Settings"
+    l: "General changes about the timer<br>appearance. Leaving them on default<br>works fine"
+  changeDisplay:
+    n: "Timer Display"
+    l: "Switch the display position between<br>top (bossbar) and bottom (actionbar)"

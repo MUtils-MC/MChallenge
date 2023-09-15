@@ -8,6 +8,8 @@ import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mtimer.vanilla.module.settings
 import de.miraculixx.mvanilla.messages.msg
+import net.kyori.adventure.key.Key
+import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
 import java.util.*
@@ -77,7 +79,7 @@ class PaperTimer(
                     Title.Times.times(java.time.Duration.ofMillis(300), java.time.Duration.ofMillis(5000), java.time.Duration.ofMillis(1000))
                 ) // 0,3s 5s 1s
                 target.forEach { p ->
-                    p?.playSound(p, org.bukkit.Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1.1f)
+                    p?.playSound(Sound.sound(Key.key(design.stopSound.key), Sound.Source.MASTER, 1f, design.stopSound.pitch))
                     p?.showTitle(title)
                 }
                 time = ZERO

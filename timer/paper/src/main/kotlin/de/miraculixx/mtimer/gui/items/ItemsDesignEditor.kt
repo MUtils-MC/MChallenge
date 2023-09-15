@@ -30,6 +30,25 @@ class ItemsDesignEditor(
         dummyTimer.time = (1.days + 10.hours + 5.minutes + 20.seconds + 500.milliseconds) // (1d 10h 5m 20s)
         val converter = ItemDesignConverter(TimerManager.globalTimer as PaperTimer, dummyTimer)
         return mapOf(
+            10 to itemStack(Material.KNOWLEDGE_BOOK) {
+                meta {
+                    name = cmp(msgString("items.designSetting.n"), cHighlight)
+                    customModel = 5
+                    lore(buildList {
+                        val msgButton = cmp(msgString("common.button") + " ", cHighlight)
+                        addAll(msgList("items.designSetting.l", inline = "<grey>"))
+                        add(emptyComponent())
+                        add(cmp("∙ ") + cmp("Settings", cHighlight, underlined = true))
+                        add(cmp("   Bar Color: ") + cmp(design.barColor.name, cMark))
+                        add(cmp("   End Sound: ") + cmp(design.stopSound.key, cMark))
+                        add(cmp("   End Sound Pitch: ") + cmp(design.stopSound.pitch.toString(), cMark))
+                        add(emptyComponent())
+                        add(msgButton + cmpTranslatableVanilla("key.hotbar.1", cHighlight) + cmp(" ≫ ") + cmp("Change Bar Color"))
+                        add(msgButton + cmpTranslatableVanilla("key.hotbar.2", cHighlight) + cmp(" ≫ ") + cmp("Change End Sound"))
+                        add(msgButton + cmpTranslatableVanilla("key.hotbar.3", cHighlight) + cmp(" ≫ ") + cmp("Change End Sound Pitch"))
+                    })
+                }
+            },
             11 to itemStack(Material.BOOK) {
                 meta {
                     name = cmp(msgString("items.designName.n"), cHighlight)
