@@ -4,6 +4,7 @@ import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.pluginManager
 import de.miraculixx.kpaper.main.KSpigot
+import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.mbridge.MUtilsBridge
 import de.miraculixx.mbridge.MUtilsModule
 import de.miraculixx.mbridge.MUtilsPlatform
@@ -17,6 +18,8 @@ import de.miraculixx.mtimer.vanilla.module.rules
 import de.miraculixx.mtimer.vanilla.module.settings
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
+import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIBukkitConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,19 +35,23 @@ class MTimer : KSpigot() {
         var challengeAPI: MChallengeAPI? = null
     }
 
+    override fun load() {
+        CommandAPI.onLoad(CommandAPIBukkitConfig(this).silentLogs(true))
+    }
+
     override fun startup() {
         INSTANCE = this
         consoleAudience = console
         debug = false
 
+        CommandAPI.onEnable()
         val versionSplit = server.minecraftVersion.split('.')
         majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
         if (!configFolder.exists()) configFolder.mkdirs()
         settings = json.decodeFromString<Settings>(File("${configFolder.path}/settings.json").readJsonString(true))
-        val languages =
-            listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
+        val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
         localization = Localization(File("${configFolder.path}/language"), settings.language, languages, timerPrefix)
 
         // Connect Bridge
@@ -53,16 +60,16 @@ class MTimer : KSpigot() {
             val version = bridgeAPI.versionCheck(description.version.toInt(), File("plugins/update"))
             if (!version) return@launch
 
-            TimerCommand()
-            HelperCommand()
+            sync {
+                TimerCommand()
+                HelperCommand()
+            }
 
             TimerManager.load(configFolder)
             TimerAPI
             if (pluginManager.isPluginEnabled("MUtils-Challenge")) {
                 challengeAPI = MChallengeAPI.instance
-                if (challengeAPI == null) console.sendMessage(
-                    prefix + cmp("Failed to load MChallenge API while it's loaded!", cError)
-                )
+                if (challengeAPI == null) console.sendMessage(prefix + cmp("Failed to load MChallenge API while it's loaded!", cError))
                 else {
                     TimerAPI.onStartLogic { if (rules.syncWithChallenge) challengeAPI?.startChallenges() }
                     TimerAPI.onStopLogic { if (rules.syncWithChallenge) challengeAPI?.stopChallenges() }
@@ -72,6 +79,7 @@ class MTimer : KSpigot() {
     }
 
     override fun shutdown() {
+        CommandAPI.onDisable()
         TimerManager.save(configFolder)
     }
 }

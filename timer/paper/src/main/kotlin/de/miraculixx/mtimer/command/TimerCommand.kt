@@ -24,7 +24,7 @@ import java.io.File
 import kotlin.time.Duration
 
 class TimerCommand {
-    private val langFolder = File(PluginManager.dataFolder, "language")
+    private val langFolder = File(MTimer.configFolder, "language")
     private val global = commandTree("timer") {
         withPermission("mutils.command.timer")
         playerExecutor { player, _ -> openSetup(player, false) }
@@ -61,13 +61,26 @@ class TimerCommand {
             literalArgument("language") {
                 stringArgument("name") {
                     replaceSuggestions(ArgumentSuggestions.stringCollection {
-                        langFolder.listFiles()?.map { it.nameWithoutExtension }
+                        langFolder.listFiles()?.map { it.nameWithoutExtension } ?: emptyList()
                     })
                     anyExecutor { sender, args ->
                         val key = args[0] as String
                         if (MTimer.localization.setLanguage(key)) sender.sendMessage(prefix + msg("command.language"))
                         else sender.sendMessage(prefix + cmp("Invalid language file! Copy an existing file to start editing"))
                     }
+                }
+            }
+        }
+
+        literalArgument("time") {
+            literalArgument("set") {
+                greedyStringArgument("time") {
+                    anyExecutor { sender, args -> sender.setTime(false, args[0] as String, false) }
+                }
+            }
+            literalArgument("add") {
+                greedyStringArgument("time") {
+                    anyExecutor { sender, args -> sender.setTime(false, args[0] as String, true) }
                 }
             }
         }
@@ -100,6 +113,32 @@ class TimerCommand {
         literalArgument("reset") {
             playerExecutor { sender, _ -> sender.reset(true) }
         }
+
+        literalArgument("time") {
+            literalArgument("set") {
+                greedyStringArgument("time") {
+                    anyExecutor { sender, args -> sender.setTime(true, args[0] as String, false) }
+                }
+            }
+            literalArgument("add") {
+                greedyStringArgument("time") {
+                    anyExecutor { sender, args -> sender.setTime(true, args[0] as String, true) }
+                }
+            }
+        }
+    }
+
+    private fun CommandSender.setTime(isPersonal: Boolean, string: String, relative: Boolean) {
+        val timer = getTimer(this, isPersonal)
+        val time = try {
+            Duration.parse(string)
+        } catch (_: IllegalArgumentException) {
+            sendMessage(prefix + cmp("Please enter a value like '5m 3s' (valid times: s,m,h,d). Negative and floating numbers are allowed", cError))
+            return
+        }
+        if (relative) timer.time += time else timer.time = time
+        soundEnable()
+        sendMessage(prefix + cmp("Changed time to ${timer.time}", cSuccess))
     }
 
     private fun CommandSender.reset(isPersonal: Boolean) {
@@ -159,4 +198,3 @@ class TimerCommand {
         } else timer
     }
 }
-
