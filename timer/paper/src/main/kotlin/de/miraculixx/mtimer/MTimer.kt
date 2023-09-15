@@ -7,12 +7,11 @@ import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mbridge.MUtilsBridge
 import de.miraculixx.mbridge.MUtilsModule
 import de.miraculixx.mbridge.MUtilsPlatform
-import de.miraculixx.mcore.utils.registerCommand
 import de.miraculixx.mtimer.command.HelperCommand
 import de.miraculixx.mtimer.command.TimerCommand
-import de.miraculixx.mtimer.vanilla.data.Settings
 import de.miraculixx.mtimer.module.TimerAPI
 import de.miraculixx.mtimer.module.load
+import de.miraculixx.mtimer.vanilla.data.Settings
 import de.miraculixx.mtimer.vanilla.module.TimerManager
 import de.miraculixx.mtimer.vanilla.module.rules
 import de.miraculixx.mtimer.vanilla.module.settings
@@ -44,7 +43,8 @@ class MTimer : KSpigot() {
 
         if (!configFolder.exists()) configFolder.mkdirs()
         settings = json.decodeFromString<Settings>(File("${configFolder.path}/settings.json").readJsonString(true))
-        val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
+        val languages =
+            listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
         localization = Localization(File("${configFolder.path}/language"), settings.language, languages, timerPrefix)
 
         // Connect Bridge
@@ -53,15 +53,16 @@ class MTimer : KSpigot() {
             val version = bridgeAPI.versionCheck(description.version.toInt(), File("plugins/update"))
             if (!version) return@launch
 
-            registerCommand("timer", TimerCommand(false))
-            registerCommand("ptimer", TimerCommand(true))
-            registerCommand("colorful", HelperCommand())
+            TimerCommand()
+            HelperCommand()
 
             TimerManager.load(configFolder)
             TimerAPI
             if (pluginManager.isPluginEnabled("MUtils-Challenge")) {
                 challengeAPI = MChallengeAPI.instance
-                if (challengeAPI == null) console.sendMessage(prefix + cmp("Failed to load MChallenge API while it's loaded!", cError))
+                if (challengeAPI == null) console.sendMessage(
+                    prefix + cmp("Failed to load MChallenge API while it's loaded!", cError)
+                )
                 else {
                     TimerAPI.onStartLogic { if (rules.syncWithChallenge) challengeAPI?.startChallenges() }
                     TimerAPI.onStopLogic { if (rules.syncWithChallenge) challengeAPI?.stopChallenges() }
