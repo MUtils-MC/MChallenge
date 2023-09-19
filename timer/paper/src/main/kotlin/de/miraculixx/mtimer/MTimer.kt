@@ -1,6 +1,7 @@
 package de.miraculixx.mtimer
 
 import de.miraculixx.challenge.api.MChallengeAPI
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.pluginManager
 import de.miraculixx.kpaper.main.KSpigot
@@ -71,8 +72,23 @@ class MTimer : KSpigot() {
                 challengeAPI = MChallengeAPI.instance
                 if (challengeAPI == null) console.sendMessage(prefix + cmp("Failed to load MChallenge API while it's loaded!", cError))
                 else {
-                    TimerAPI.onStartLogic { if (rules.syncWithChallenge) challengeAPI?.startChallenges() }
-                    TimerAPI.onStopLogic { if (rules.syncWithChallenge) challengeAPI?.stopChallenges() }
+                    TimerAPI.onStartLogic {
+                        if (rules.syncWithChallenge) {
+                            when (challengeAPI?.getChallengeStatus()) {
+                                ChallengeStatus.PAUSED -> challengeAPI?.resumeChallenges()
+                                ChallengeStatus.STOPPED -> challengeAPI?.startChallenges()
+                                else -> Unit
+                            }
+                        }
+                    }
+                    TimerAPI.onStopLogic {
+                        if (rules.syncWithChallenge) {
+                            when (challengeAPI?.getChallengeStatus()) {
+                                ChallengeStatus.RUNNING -> challengeAPI?.pauseChallenges()
+                                else -> Unit
+                            }
+                        }
+                    }
                 }
             }
         }

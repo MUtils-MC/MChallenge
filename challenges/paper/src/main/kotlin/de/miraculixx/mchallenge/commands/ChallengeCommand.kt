@@ -2,13 +2,12 @@ package de.miraculixx.mchallenge.commands
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.modules.mods.worldChanging.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.utils.getAccountStatus
+import de.miraculixx.mchallenge.utils.gui.GUITypes
 import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
 import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mchallenge.utils.gui.items.ItemsChallenge
@@ -18,7 +17,6 @@ import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.Sound
-import org.bukkit.command.CommandSender
 
 class ChallengeCommand {
     private var apiCooldown = false
