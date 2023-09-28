@@ -80,7 +80,7 @@ event:
     stayAway: "<red><input-1> ist zu nah gekommen!"
     forceHunt: "<red><input-1> hat das Ziel nicht erfüllt!"
     noDoubleKill: "<red><input-1> hat den gleichen Mob zweimal hintereinander getötet!"
-    hitOrder: "<red><input-1> was not allowed do damage a mob"
+    hitOrder: "<red><input-1> wurde nicht erlaubt einen Mob zu schlagen"
   mobHunt:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
@@ -123,7 +123,7 @@ event:
     tradeOffer2: "Im Gegenzug würde ich dir mein <blue><input-1></blue> geben!"
   enterFilter: "Gib einen Filter ein für <color:#6e94ff><input-1></color>" #m v1
   hitOrder:
-    nextPlayer: "Current Damager: "
+    nextPlayer: "Aktueller Spieler: "
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -335,8 +335,8 @@ items:
       n: "Schaden-Multiplikator"
       l: "Erhöhe oder verringere jeden Schaden gegenüber<br>Spielern. Dies enthält auch Schaden von Tränken und Feuer. "
     HIT_ORDER:
-      n: "Damage Order"
-      l: "Only one player at a time is allowed<br>to damage mobs. But this player<br>changes on every hit!"
+      n: "Schlag-Reihenfolge"
+      l: "Nur ein Spieler gleichzeitig darf<br>Monster schlagen. Aber dieser Spieler<br>ändert sich bei jedem Treffer!"
   chS:
     FLY:
       power:
@@ -614,8 +614,8 @@ items:
         n: "Multiplikator"
     HIT_ORDER:
       wrongDamage:
-        n: "Damage On Wrong"
+        n: "Falscher Schaden"
       randomOrder:
-        n: "Random Order"
+        n: "Zufällige Reihenfolge"
       visual:
-        n: "Info Bar"
+        n: "Infoleiste"
