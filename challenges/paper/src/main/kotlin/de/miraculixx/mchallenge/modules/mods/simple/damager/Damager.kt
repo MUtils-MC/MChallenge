@@ -66,7 +66,7 @@ class Damager : Challenge {
         when (mode) {
             ChDamager.SLOT_CHANGE -> {
                 onSlotSwitch.register()
-                onItemClick.register()
+//                onItemClick.register()
             }
 
             ChDamager.BLOCK_MOVE -> {

@@ -4,7 +4,6 @@ package de.miraculixx.mtimer.command
 
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.mtimer.MTimer
-import de.miraculixx.mtimer.PluginManager
 import de.miraculixx.mtimer.gui.actions.GUIOverview
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsOverview
