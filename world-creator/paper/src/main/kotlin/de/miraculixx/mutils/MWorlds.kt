@@ -1,5 +1,6 @@
 package de.miraculixx.mutils
 
+import de.miraculixx.kpaper.extensions.bukkit.dispatchCommand
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.mcore.utils.BukkitConfig
@@ -8,6 +9,8 @@ import de.miraculixx.mutils.commands.WorldsCommand
 import de.miraculixx.mutils.module.WorldDataHandling
 import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mvanilla.messages.*
+import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIBukkitConfig
 import java.io.File
 
 class MWorlds : KSpigot() {
@@ -19,6 +22,10 @@ class MWorlds : KSpigot() {
 
     private lateinit var config: BukkitConfig
 
+    override fun load() {
+        CommandAPI.onLoad(CommandAPIBukkitConfig(this).silentLogs(true))
+    }
+
     override fun startup() {
         INSTANCE = this
         consoleAudience = console
@@ -29,11 +36,13 @@ class MWorlds : KSpigot() {
         minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
         if (!configFolder.exists()) configFolder.mkdirs()
-        config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings")
+        config = BukkitConfig(File("${configFolder.path}/settings.yml"), "settings.yml")
         settings = config.getConfig()
         val languages = listOf("en_US").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
         localization = Localization(File("${configFolder.path}/language"), settings.getString("language") ?: "en_US", languages, prefix)
 
+        //Commands
+        CommandAPI.onEnable()
         WorldCommand()
         WorldsCommand()
 
@@ -44,6 +53,7 @@ class MWorlds : KSpigot() {
     override fun shutdown() {
         WorldManager.save()
         WorldDataHandling.saveAll()
+        CommandAPI.onDisable()
         config.save()
     }
 }

@@ -3,11 +3,13 @@ package de.miraculixx.mutils.data
 import de.miraculixx.challenge.api.data.GeneratorData
 import de.miraculixx.challenge.api.data.enums.AlgorithmSetting
 import de.miraculixx.challenge.api.data.enums.BiomeAlgorithm
+import de.miraculixx.challenge.api.data.enums.Dimension
 import de.miraculixx.mutils.module.biomes.ChunkBiomes
 import de.miraculixx.mutils.module.biomes.RandomBiomes
 import de.miraculixx.mutils.module.biomes.SingleBiomes
 import de.miraculixx.mutils.module.biomes.SwitchBiomes
 import org.bukkit.Material
+import org.bukkit.World.Environment
 import org.bukkit.generator.BiomeProvider
 import org.bukkit.generator.ChunkGenerator
 
@@ -19,7 +21,7 @@ fun BiomeAlgorithm.getProvider(biomeData: GeneratorData): BiomeProvider? {
         BiomeAlgorithm.CHUNKED_BIOMES -> ChunkBiomes(biomeData)
         BiomeAlgorithm.RANDOM_BIOMES -> RandomBiomes(biomeData)
         BiomeAlgorithm.SINGLE_BIOME -> SingleBiomes(biomeData)
-        BiomeAlgorithm.SWITCHED_BIOMES -> SwitchBiomes(biomeData)
+//        BiomeAlgorithm.SWITCHED_BIOMES -> SwitchBiomes(biomeData)
     }
 }
 
@@ -34,5 +36,13 @@ fun AlgorithmSetting.getIcon(): Material {
         AlgorithmSetting.SCALE_Z -> Material.GOLD_INGOT
         AlgorithmSetting.BIOME -> Material.ACACIA_SAPLING
         AlgorithmSetting.HEIGHT -> Material.HOPPER
+    }
+}
+
+fun Environment.toDimension(): Dimension {
+    return when (this) {
+        Environment.NORMAL, Environment.CUSTOM -> Dimension.NORMAL
+        Environment.NETHER -> Dimension.NETHER
+        Environment.THE_END -> Dimension.THE_END
     }
 }

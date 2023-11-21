@@ -1,15 +1,19 @@
 package de.miraculixx.mutils.module
 
+import de.miraculixx.challenge.api.MWorldAPI
+import de.miraculixx.challenge.api.data.CustomGameRule
+import de.miraculixx.challenge.api.data.GeneratorDefaults
+import de.miraculixx.challenge.api.data.GeneratorProviderData
+import de.miraculixx.challenge.api.data.WorldData
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.challenge.api.MWorldAPI
-import de.miraculixx.challenge.api.data.GeneratorDefaults
-import de.miraculixx.challenge.api.data.GeneratorProviderData
-import de.miraculixx.challenge.api.data.WorldData
 import de.miraculixx.mutils.MWorlds
-import de.miraculixx.mutils.data.*
+import de.miraculixx.mutils.data.ChunkCalcData
+import de.miraculixx.mutils.data.getGenerator
+import de.miraculixx.mutils.data.getProvider
+import de.miraculixx.mutils.settings
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
@@ -22,10 +26,11 @@ import org.bukkit.generator.WorldInfo
 import java.io.File
 import java.util.*
 
-object WorldManager: MWorldAPI() {
+object WorldManager : MWorldAPI() {
     init {
         instance = this
     }
+
     private val customWorlds: MutableMap<UUID, WorldData> = mutableMapOf()
     private val saveFile = File("${MWorlds.configFolder.path}/worlds.json")
 
@@ -38,7 +43,9 @@ object WorldManager: MWorldAPI() {
             try {
                 environment(World.Environment.valueOf(worldData.environment.name))
                 type(WorldType.valueOf(worldData.worldType.name))
-            } catch (_: IllegalArgumentException) { return null }
+            } catch (_: IllegalArgumentException) {
+                return null
+            }
             worldData.seed?.let { seed(it) }
             val biomeInfo = worldData.biomeProvider
             biomeInfo.algorithm.getProvider(biomeInfo.settings)?.let { biomeProvider(it) }
@@ -54,6 +61,9 @@ object WorldManager: MWorldAPI() {
             worldData.seed = world.seed
             customWorlds[world.uid] = worldData
         }
+
+        // Apply special game rules
+        if (worldData.customGameRules[CustomGameRule.BLOCK_UPDATES] == false) world?.uid?.let { CustomGameRuleListener.blockedPhysics.add(it) }
         return world?.uid
     }
 
@@ -89,7 +99,7 @@ object WorldManager: MWorldAPI() {
                 console.sendMessage(prefix + cmp("Failed to copy folder ${source.path} to ${target.path}!", cError))
         }
 
-       return copyWorld(sourceWorld.uid, name)
+        return copyWorld(sourceWorld.uid, name)
     }
 
     override fun deleteWorld(worldID: UUID) {
@@ -108,8 +118,7 @@ object WorldManager: MWorldAPI() {
             if (sourceWorld.worldFolder.deleteRecursively()) {
                 customWorlds.remove(sourceWorld.uid)
                 it.cancel()
-            }
-            else console.sendMessage(prefix + cmp("Failed to delete world ${sourceWorld.name}. ${it.counterDownToOne} trys left..."))
+            } else console.sendMessage(prefix + cmp("Failed to delete world ${sourceWorld.name}. ${it.counterDownToOne} trys left..."))
         }
     }
 
@@ -129,6 +138,22 @@ object WorldManager: MWorldAPI() {
                 else customWorlds[world] = worldData
             }
         }
+    }
+
+    private fun schedule() {
+        val intervall = settings.getInt("save-intervall").coerceAtLeast(1)
+        val time = 20L * 60 * intervall
+        task(false, time, time) {
+            console.sendMessage(prefix + cmp("Saving all temporary data..."))
+            save()
+            WorldDataHandling.saveAllPlayer()
+            WorldDataHandling.saveAll()
+            console.sendMessage(prefix + cmp("Successfully saved all data!"))
+        }
+    }
+
+    init {
+        schedule()
     }
 
     private class InternalChunkGenerator(
