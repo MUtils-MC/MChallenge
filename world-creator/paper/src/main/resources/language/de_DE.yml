@@ -48,6 +48,8 @@ event:
   category: "Kategorie"
   worldCreated: "Eine neue Welt wurde erfolgreich erstellt"
   worldInfo: "Informationen zur aktuellen Welt"
+  name: "Name"
+  abortBuilder: "Abort world creation..."
   env:
     NORMAL: "Hauptwelt"
     THE_END: "Ende"
@@ -119,6 +121,7 @@ items:
     biomeAlgo:
       n: "Biome Algorithmus"
       l: "Ändere die Biomgeneration zu<br>einer neuen benutzerdefinierten Variante. Jeder<br>Algorithmus kann modifiziert werden"
+      s: "Biomes"
     noiseAlgo:
       n: "Vanilla Generierung"
       l: "Erweiterte Einstellungen zum Ändern von<br>der Vanille-Welt-Generation.<br><#CF6679>Nur ändern, wenn du weißt, was du<br><#CF6679>tust!"
@@ -199,3 +202,6 @@ items:
     SWITCHED_BIOMES:
       n: "Gewechselte Biome"
       l: "Alle Biome werden mit anderen<br>zufälligen Biomen ausgetauscht. Die Vanilla-Biome<br>Struktur bleibt unverändert"
+  gameRules:
+    pvpDamage: "Players can hurt other players"
+    doBlockUpdates: "Blocks tick normally and have physics"
