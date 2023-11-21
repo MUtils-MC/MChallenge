@@ -48,6 +48,8 @@ event:
   category: "Categoría"
   worldCreated: "Nuevo mundo creado correctamente"
   worldInfo: "Current world information"
+  name: "Name"
+  abortBuilder: "Abort world creation..."
   env:
     NORMAL: "Overworld"
     THE_END: "End"
@@ -119,6 +121,7 @@ items:
     biomeAlgo:
       n: "Biome Algorithm"
       l: "Change the biome generation<br>to new custom one. Every algorithm<br>can be modified"
+      s: "Biomes"
     noiseAlgo:
       n: "Vanilla Noise Algorithms"
       l: "Advanced settings to modify<br>the vanilla world generation.<br><#CF6679>Only edit if you know what you are<br><#CF6679>doing!"
@@ -199,3 +202,6 @@ items:
     SWITCHED_BIOMES:
       n: "Switched Biomes"
       l: "All biomes are swapped with other<br>random biomes. The vanilla biome<br>structure stays the same"
+  gameRules:
+    pvpDamage: "Players can hurt other players"
+    doBlockUpdates: "Blocks tick normally and have physics"
