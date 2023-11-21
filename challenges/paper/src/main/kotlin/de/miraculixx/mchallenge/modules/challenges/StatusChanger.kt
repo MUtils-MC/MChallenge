@@ -45,6 +45,7 @@ import de.miraculixx.mchallenge.modules.mods.misc.trafficlight.TrafficLight
 import de.miraculixx.mchallenge.modules.mods.multiplayer.tron.Tron
 import de.miraculixx.mchallenge.modules.mods.misc.vampire.Vampire
 import de.miraculixx.mchallenge.modules.mods.multiplayer.hitOrder.HitOrder
+import de.miraculixx.mchallenge.modules.mods.seasonal.halloween.HalloweenChallenge
 import de.miraculixx.mchallenge.modules.mods.worldChanging.blockWorld.BlockWorld
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkBreaker.ChunkBlockBreaker
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkClearer.ChunkClearer
@@ -115,6 +116,7 @@ class StatusChanger {
             Challenges.LOW_VISION -> LowVision()
             Challenges.CHUNK_SYNC -> ChunkSync()
             Challenges.HIT_ORDER -> HitOrder()
+            Challenges.HALLOWEEN -> HalloweenChallenge()
         }
     }
 
