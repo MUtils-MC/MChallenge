@@ -1,6 +1,6 @@
 name: MUtils-Timer
 load: STARTUP
-version: 109
+version: 110
 main: de.miraculixx.mtimer.MTimer
 api-version: 1.16
 authors: [ Miraculixx ]
@@ -9,20 +9,16 @@ website: https://mutils.net/
 softdepend:
   - "MUtils-Challenges"
 libraries:
-  - "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
+  - "org.jetbrains.kotlin:kotlin-stdlib:1.9.20"
   - "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2"
   - "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.2"
   - "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
-  - "io.ktor:ktor-client-cio-jvm:2.3.2"
-  - "io.ktor:ktor-client-core-jvm:2.3.2"
   - "org.yaml:snakeyaml:1.33"
   - "net.kyori:adventure-api:4.13.1"
   - "net.kyori:adventure-text-minimessage:4.13.1"
   - "net.kyori:adventure-text-serializer-plain:4.13.1"
   - "net.kyori:adventure-text-serializer-gson:4.13.1"
   - "net.kyori:adventure-text-serializer-legacy:4.13.1"
-  - "dev.jorel:commandapi-bukkit-shade:9.0.3"
-  - "dev.jorel:commandapi-bukkit-kotlin:9.0.3"
 
 commands:
   timer:

@@ -18,7 +18,7 @@ dependencies {
 //    paperweight.paperDevBundle("${minecraftVersion}-R0.1-SNAPSHOT")
     compileOnly("dev.jorel:commandapi-bukkit-shade:9.0.3")
     compileOnly("dev.jorel:commandapi-bukkit-kotlin:9.0.3")
-    compileOnly("org.spigotmc:spigot:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot:1.20.2-R0.1-SNAPSHOT")
 }
 
 //tasks {
