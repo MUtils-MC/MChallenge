@@ -121,7 +121,7 @@ items:
     biomeAlgo:
       n: "Biome Algorithmus"
       l: "Ändere die Biomgeneration zu<br>einer neuen benutzerdefinierten Variante. Jeder<br>Algorithmus kann modifiziert werden"
-      s: "Biomes"
+      s: "Biome"
     noiseAlgo:
       n: "Vanilla Generierung"
       l: "Erweiterte Einstellungen zum Ändern von<br>der Vanille-Welt-Generation.<br><#CF6679>Nur ändern, wenn du weißt, was du<br><#CF6679>tust!"
@@ -203,5 +203,5 @@ items:
       n: "Gewechselte Biome"
       l: "Alle Biome werden mit anderen<br>zufälligen Biomen ausgetauscht. Die Vanilla-Biome<br>Struktur bleibt unverändert"
   gameRules:
-    pvpDamage: "Players can hurt other players"
-    doBlockUpdates: "Blocks tick normally and have physics"
+    pvpDamage: "Spieler können andere Spieler verletzen"
+    doBlockUpdates: "Block Ticks normal und haben Physik"
