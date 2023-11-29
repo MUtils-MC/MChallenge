@@ -35,31 +35,31 @@ command:
     continue: "Challenges <green>resumed</green>! (<input-1>)"
     failed: "<red>Échec du lancement des défis ! Vérifier si au moins un défi est activé et si suffisamment de joueurs sont en ligne (défis multijoueurs)"
     alreadyOn: "<red>Les défis sont déjà lancés !"
-    alreadyOff: "<red>Challenges are already stopped!"
+    alreadyOff: "<red>Les défis sont déjà arrêtés !"
   notRegistered: "<red>Activer le module pour utiliser cette commande !"
   heal:
-    single: "<green>You healed yourself"
+    single: "<green>Tu t'es soigné toi-même"
     multiple: "<green>You healed <input-1> players"
-  reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
+  reset: "<red><b>Réinitialisation des mondes de serveurs\n<white>(initié par <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
-    new: "<grey>Created new position <blue><input-1> <grey>(<input-2>)"
-    remove: "<grey>Removed position <blue><input-1>"
-    reset: "<red>Resetted all saved positions!"
+    new: "<grey>Création d'un nouveau poste <blue><input-1> <grey>(<input-2>)"
+    remove: "<grey>Poste supprimé <blue><input-1>"
+    reset: "<red>Réinitialisation de toutes les positions sauvegardées !"
   backpack:
-    setGlobal: "<grey>Switched backpack type to <blue><input-1>"
-    setSize: "<grey>Changed backpack size to <blue><input-1></blue> rows"
-    reset: "<red>Cleared all backpacks including the global!"
+    setGlobal: "<grey>Type de sac à dos commuté sur <blue><input-1>"
+    setSize: "<grey>Modification de la taille du sac à dos en <blue><input-1></blue> rangs"
+    reset: "<red>Tous les sacs à dos ont été nettoyés, y compris le global !"
   hide:
-    hide: "<grey>You are now <red>hidden"
-    show: "<grey>You are now <green>visible"
-    hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
-    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
-  debug: "<grey>Switched debug mode to <blue><input-1>"
+    hide: "<grey>Vous êtes maintenant <red>caché"
+    show: "<grey>Vous êtes maintenant <green>visible"
+    hideMultiple: "<grey>Vous avez <red>caché</red> <input-1> joueur/s"
+    showMultiple: "<grey>Vous avez <green>montré</green> <input-2> joueur/s"
+  debug: "<grey>Le mode de débogage est passé à <blue><input-1>"
   lang:
-    success: "<grey>Successfully switched language to <green><input-1>"
-    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
-  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+    success: "<grey>Le changement de langue a été effectué avec succès <green><input-1>"
+    fail: "<grey>Échec du changement de langue <red><input-1></red>! Regardez dans la console pour obtenir plus d'informations"
+  noAddons: "<red>Aucun addon MChallenge n'est installé ! Vous pouvez trouver des addons sur\n<click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -68,10 +68,10 @@ event:
   death:
     tron: "est allé sûr une ligne et est mort !"
     disable:
-      break: "<red><input-1> tried to break a block!"
-      place: "<red><input-1> tried to place a block!"
-      craft: "<red><input-1> tried to use the crafting table!"
-      xp: "<red><input-1> tried to pickup XP!"
+      break: "<red><input-1> a essayé de briser un bloc !"
+      place: "<red><input-1> a essayé de placer un bloc !"
+      craft: "<red><input-1> a essayé d'utiliser la table de bricolage !"
+      xp: "<red><input-1> a essayé de récupérer XP !"
       item: "<red><input-1> tried to pickup an item!"
       trade: "<red><input-1> tried to trade!"
     blockAsync: "<red><input-1> clicked on a fake block!"
