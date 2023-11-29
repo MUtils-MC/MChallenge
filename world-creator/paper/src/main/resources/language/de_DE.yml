@@ -49,7 +49,7 @@ event:
   worldCreated: "Eine neue Welt wurde erfolgreich erstellt"
   worldInfo: "Informationen zur aktuellen Welt"
   name: "Name"
-  abortBuilder: "Abort world creation..."
+  abortBuilder: "Welterstellung abbrechen..."
   env:
     NORMAL: "Hauptwelt"
     THE_END: "Ende"
