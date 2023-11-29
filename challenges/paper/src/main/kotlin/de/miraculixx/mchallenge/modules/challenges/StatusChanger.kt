@@ -116,7 +116,7 @@ class StatusChanger {
             Challenges.LOW_VISION -> LowVision()
             Challenges.CHUNK_SYNC -> ChunkSync()
             Challenges.HIT_ORDER -> HitOrder()
-            Challenges.HALLOWEEN -> HalloweenChallenge()
+//            Challenges.HALLOWEEN -> HalloweenChallenge()
         }
     }
 
@@ -130,7 +130,7 @@ class StatusChanger {
         val activated = ArrayList<Challenge>()
         var success = false
         val status = getStatus()
-        val actives = Challenges.values().filter { challenges.getSetting(it).active }
+        val actives = Challenges.entries.filter { challenges.getSetting(it).active }
         val addons = ChallengeManager.getCustomChallenges().filter { it.value.data.active }.map { ChallengeAddon(it.value.tags, it.key, it.value.challenge) }
 
         // Internal Challenges

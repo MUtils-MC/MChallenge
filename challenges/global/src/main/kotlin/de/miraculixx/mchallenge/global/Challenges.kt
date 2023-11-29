@@ -14,7 +14,7 @@ import de.miraculixx.challenge.api.utils.Icon
  */
 enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status: Boolean = false) {
     // Global Challenges
-    HALLOWEEN(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("JACK_O_LANTERN"), true),
+//    HALLOWEEN(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("JACK_O_LANTERN"), true),
     VAMPIRE(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("GHAST_TEAR"), true),
     TRAFFIC_LIGHT(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("REDSTONE_LAMP"), true),
     TRON(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("LIGHT_BLUE_CONCRETE"), true),
@@ -299,10 +299,6 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                 "wrongDamage" to ChallengeDoubleSetting("BEETROOT", 10.0, "hp", max = 50.0, min = 1.0, step = 1.0),
                 "randomOrder" to ChallengeBoolSetting("DROPPER", false),
                 "visual" to ChallengeBoolSetting("WRITABLE_BOOK", true)
-            )
-
-            HALLOWEEN -> mapOf(
-
             )
         }
     }
