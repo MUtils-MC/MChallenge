@@ -14,6 +14,7 @@ import de.miraculixx.mchallenge.modules.mods.misc.anvilCrusher.AnvilCrusher
 import de.miraculixx.mchallenge.modules.mods.misc.areaTimer.AreaTimer
 import de.miraculixx.mchallenge.modules.mods.misc.blockWall.BlockWall
 import de.miraculixx.mchallenge.modules.mods.misc.checkpoints.Checkpoints
+import de.miraculixx.mchallenge.modules.mods.misc.chunkEffects.ChunkEffects
 import de.miraculixx.mchallenge.modules.mods.misc.ghost.Ghost
 import de.miraculixx.mchallenge.modules.mods.misc.gravity.GravityManager
 import de.miraculixx.mchallenge.modules.mods.misc.inTime.InTime
@@ -115,6 +116,7 @@ class StatusChanger {
             Challenges.LOW_VISION -> LowVision()
             Challenges.CHUNK_SYNC -> ChunkSync()
             Challenges.HIT_ORDER -> HitOrder()
+            Challenges.CHUNK_EFFECTS -> ChunkEffects()
 //            Challenges.HALLOWEEN -> HalloweenChallenge()
         }
     }
