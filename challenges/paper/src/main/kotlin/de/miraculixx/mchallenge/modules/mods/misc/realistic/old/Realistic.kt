@@ -28,6 +28,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
+@Suppress("unused")
 class Realistic : Challenge {
     private var weight: InventoryWeight? = null
     private var pathLogic: PathLogic? = null
@@ -53,6 +54,7 @@ class Realistic : Challenge {
     }
 
     override fun register() {
+        @Suppress("DuplicatedCode")
         onMove.register()
         onQuit.register()
         onBlockBreak.register()
@@ -95,7 +97,7 @@ class Realistic : Challenge {
         if (it.player.inventory.getItem(36) != null) {
             if ((1..50).random() == 10) {
                 val meta = it.player.inventory.getItem(36)!!.itemMeta as org.bukkit.inventory.meta.Damageable
-                meta.damage = meta.damage + 1
+                meta.damage += 1
                 it.player.inventory.getItem(36)!!.itemMeta = meta
             }
         }
@@ -148,22 +150,22 @@ class Realistic : Challenge {
 
     private val onInvClick = listen<InventoryClickEvent>(register = false) {
         //Stackable Pots
-        if (it.currentItem?.type == Material.POTION && it.cursor?.type == Material.POTION && it.click == ClickType.LEFT) {
-            if ((it.currentItem!!.amount + it.cursor!!.amount) <= 6) {
+        if (it.currentItem?.type == Material.POTION && it.cursor.type == Material.POTION && it.click == ClickType.LEFT) {
+            if ((it.currentItem!!.amount + it.cursor.amount) <= 6) {
                 it.isCancelled = true
-                it.currentItem!!.amount += it.cursor!!.amount
+                it.currentItem!!.amount += it.cursor.amount
                 (it.whoClicked as Player).updateInventory()
             }
         } else
-            if (it.currentItem == null && it.cursor?.type == Material.POTION && it.click == ClickType.LEFT) {
+            if (it.currentItem == null && it.cursor.type == Material.POTION && it.click == ClickType.LEFT) {
                 it.isCancelled = true
                 it.inventory.setItem(it.slot, it.cursor)
                 (it.whoClicked as Player).updateInventory()
             }
 
         //Inventory logic
-        if (it.cursor != null && it.click == ClickType.LEFT) {
-            when (it.cursor!!.type) {
+        if (it.click == ClickType.LEFT) {
+            when (it.cursor.type) {
                 Material.TNT -> broadcast("TODO")//Redstone check
                 Material.SAND, Material.RED_SAND, Material.GRAVEL -> broadcast("TODO")//fall down
                 else -> {}

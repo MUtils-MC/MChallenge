@@ -12,9 +12,7 @@ import de.miraculixx.mchallenge.utils.gui.buildInventory
 import de.miraculixx.mvanilla.messages.consoleAudience
 import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience
-import org.bukkit.Material
 import org.bukkit.Sound
-import java.util.UUID
 
 class LowVision: Challenge, ResourcePackChallenge {
     private lateinit var mWebAPI: MWebAPI

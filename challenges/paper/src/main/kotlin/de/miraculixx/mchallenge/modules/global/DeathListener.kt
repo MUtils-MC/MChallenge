@@ -10,6 +10,7 @@ import org.bukkit.persistence.PersistentDataType
 object DeathListener {
     val key = NamespacedKey(namespace, "death.custom")
 
+    @Suppress("unused")
     private val onDeath = listen<PlayerDeathEvent> {
         val player = it.player
         val deathKey = player.persistentDataContainer.get(key, PersistentDataType.STRING) ?: return@listen

@@ -44,7 +44,7 @@ class NoGravity : Gravity {
             player.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, 5, 0, false, false, false))
             player.removePotionEffect(PotionEffectType.LEVITATION)
             if (player.velocity.y > -0.1) {
-                player.velocity.y = player.velocity.y - 0.01
+                player.velocity.y -= 0.01
             }
         } else {
             player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, Int.MAX_VALUE, 0, false, false, false))

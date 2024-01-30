@@ -12,7 +12,6 @@ import dev.jorel.commandapi.arguments.ArgumentSuggestions
 import dev.jorel.commandapi.arguments.StringArgument
 import dev.jorel.commandapi.kotlindsl.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
 
@@ -24,7 +23,6 @@ class PositionCommand {
         positions = json.decodeFromString(file.readJsonString(true))
     }
 
-    @Suppress("unused")
     val command = commandTree("position") {
         withAliases("pos", "location", "loc")
         literalArgument("get") {

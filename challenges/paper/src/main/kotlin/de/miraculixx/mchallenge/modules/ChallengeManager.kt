@@ -1,15 +1,17 @@
 package de.miraculixx.mchallenge.modules
 
 import de.miraculixx.challenge.api.MChallengeAPI
-import de.miraculixx.challenge.api.modules.challenges.*
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
+import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
+import de.miraculixx.challenge.api.modules.challenges.CustomChallengeData
 import de.miraculixx.challenge.api.settings.ChallengeData
 import de.miraculixx.kpaper.extensions.console
-import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.modules.challenges.StatusChanger
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
 import java.util.*

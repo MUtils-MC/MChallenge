@@ -15,11 +15,11 @@ class MobRandomizerData(private val random: Boolean) {
         val random = Random(world.seed)
         blockList.clear()
         val list: List<EntityType> = fillList()
-        Material.values().forEach { material -> blockList[material] = list[random.nextInt(list.size)] }
+        Material.entries.forEach { material -> blockList[material] = list[random.nextInt(list.size)] }
     }
 
     private fun fillList(): ArrayList<EntityType> {
-        val listDummy = listOf(*EntityType.values())
+        val listDummy = EntityType.entries
         val list = ArrayList(listDummy)
         list.remove(EntityType.TRIDENT)
         list.remove(EntityType.ARROW)

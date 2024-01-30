@@ -18,7 +18,7 @@ import java.util.*
 
 class BlockWorld : Challenge {
     private val worldName = UUID.randomUUID().toString()
-    private val materials = Material.values().filter {
+    private val materials = Material.entries.filter {
         it.isBlock && !isInvalidItem(it)
     }
 
@@ -124,6 +124,7 @@ class BlockWorld : Challenge {
         }
     }
 
+    @Suppress("DuplicatedCode")
     private val onPortal = listen<PlayerTeleportEvent>(register = false) {
         val fromWorld = it.from.world
         val toWorld = it.to.world
@@ -150,14 +151,6 @@ class BlockWorld : Challenge {
                     }
                 }
             }
-        }
-
-        override fun generateBedrock(worldInfo: WorldInfo, random: Random, chunkX: Int, chunkZ: Int, chunkData: ChunkData) {
-            super.generateBedrock(worldInfo, random, chunkX, chunkZ, chunkData)
-        }
-
-        override fun createVanillaChunkData(world: World, x: Int, z: Int): ChunkData {
-            return super.createVanillaChunkData(world, x, z)
         }
 
         override fun shouldGenerateNoise(): Boolean {

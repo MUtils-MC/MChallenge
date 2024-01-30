@@ -26,6 +26,7 @@ class GhostData {
     /**
      * Update surrounding blocks - Cube format
      */
+    @Suppress("DuplicatedCode", "unused")
     fun updateCUBE(player: Player, current: Material) {
         val loc = player.location
         val oldBlocks = ArrayList<Block>(currentBlocks.getOrDefault(player, ArrayList()))
@@ -56,6 +57,7 @@ class GhostData {
     /**
      * Update surrounding blocks - Sphere format
      */
+    @Suppress("DuplicatedCode")
     fun update(player: Player, current: Material) {
         val loc = player.location
         val oldBlocks = ArrayList<Block>(currentBlocks.getOrDefault(player, ArrayList()))
@@ -78,7 +80,6 @@ class GhostData {
                 }
             }
         }
-
 
         oldBlocks.forEach { block ->
             block.type = current

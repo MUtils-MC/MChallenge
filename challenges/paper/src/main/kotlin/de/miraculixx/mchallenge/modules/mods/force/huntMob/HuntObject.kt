@@ -25,7 +25,7 @@ interface HuntObject<T> {
     fun reset(allEntries: List<T>) {
         remainingEntries.clear()
         remainingEntries.addAll(allEntries)
-        remainingEntries.removeAll(blacklist)
+        remainingEntries.removeAll(blacklist.toSet())
         calcBar(getCurrentEntryName())
     }
 

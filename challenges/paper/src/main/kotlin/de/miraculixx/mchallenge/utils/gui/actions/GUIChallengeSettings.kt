@@ -63,6 +63,7 @@ class GUIChallengeSettings(previousInv: CustomInventory, section: ChallengeSecti
         }
 
         val click = it.click
+        @Suppress("DuplicatedCode")
         when (val clickedData = settingsData[settingKey]) {
             is ChallengeIntSetting -> {
                 val step = clickedData.step

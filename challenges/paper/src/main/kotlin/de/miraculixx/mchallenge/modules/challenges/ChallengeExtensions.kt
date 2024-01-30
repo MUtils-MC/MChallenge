@@ -9,6 +9,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 
+@Suppress("unused")
 fun Challenges.getIcon(): ItemStack {
     return itemStack(enumOf<Material>(icon.material) ?: Material.BARRIER) {
         icon.texture?.let { itemMeta = (itemMeta as? SkullMeta)?.skullTexture(it.value) }

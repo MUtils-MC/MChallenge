@@ -15,7 +15,6 @@ import de.miraculixx.mcore.utils.getMaterials
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.bossbar.BossBar
@@ -50,7 +49,7 @@ class ItemHunt : Challenge, HuntObject<Material> {
         blacklist.addAll(content.blacklist)
         if (content.remaining.isEmpty()) remainingEntries.addAll(getMaterials(true))
         else remainingEntries.addAll(content.remaining)
-        remainingEntries.removeAll(blacklist)
+        remainingEntries.removeAll(blacklist.toSet())
         if (content.target != null) currentItem = content.target
         else {
             currentItem = remainingEntries.random()

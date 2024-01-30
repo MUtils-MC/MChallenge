@@ -18,7 +18,6 @@ import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.arguments.PlayerArgument
 import dev.jorel.commandapi.kotlindsl.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -42,7 +41,6 @@ class BackpackCommand {
         Data(true, 3, mutableMapOf())
     }
 
-    @Suppress("unused")
     val command = commandTree("backpack") {
         withAliases("bp")
         playerExecutor { player, _ ->

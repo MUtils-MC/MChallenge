@@ -3,6 +3,7 @@ package de.miraculixx.mchallenge.utils
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 
+@Suppress("unused")
 class BasicItem(private val material: Material, private val amount: Int) {
 
     fun getAmount(): Int {
@@ -27,7 +28,7 @@ class BasicItem(private val material: Material, private val amount: Int) {
             if (item == null) continue
             if (item.type == material) {
                 if (item.amount > remain) {
-                    item.amount = item.amount - remain
+                    item.amount -= remain
                     inventory.setItem(slot, item)
                     return
                 }

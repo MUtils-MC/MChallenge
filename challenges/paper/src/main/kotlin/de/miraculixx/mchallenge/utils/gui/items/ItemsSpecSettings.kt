@@ -14,6 +14,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
+@Suppress("unused")
 class ItemsSpecSettings(private val settings: SpecCollection) : ItemProvider {
     private val hidden = msgString("event.hidden")
     private val shown = msgString("event.shown")

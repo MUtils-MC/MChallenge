@@ -7,6 +7,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 
+@Suppress("unused")
 class NoAccountCommand : TabExecutor {
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>?): MutableList<String> {
         return mutableListOf()

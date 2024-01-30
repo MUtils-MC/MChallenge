@@ -14,6 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 
+@Suppress("unused")
 class GUISpecSettings(settings: SpecCollection) : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         val player = it.whoClicked as? Player ?: return@event

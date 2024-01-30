@@ -14,6 +14,7 @@ class RocketPlayerData(private val player: Player) {
     private var breaker = false
     private var boosting = false
 
+    @Suppress("unused")
     fun startBoost() {
         boosting = true
     }

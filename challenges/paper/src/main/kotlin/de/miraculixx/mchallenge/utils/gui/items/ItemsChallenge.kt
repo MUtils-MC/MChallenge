@@ -38,7 +38,7 @@ class ItemsChallenge(startFilter: ChallengeTags = ChallengeTags.NO_FILTER) : Ite
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
             val finalFilter = enumOf<ChallengeTags>(filter)
-            val officialChallenges = Challenges.values().filter { isMatchingFilter(it, finalFilter) }.map { ChallengeItemData(it.icon, challenges.getSetting(it), it, tags = it.filter, owner = "MUtils") }
+            val officialChallenges = Challenges.entries.filter { isMatchingFilter(it, finalFilter) }.map { ChallengeItemData(it.icon, challenges.getSetting(it), it, tags = it.filter, owner = "MUtils") }
             val addonChallenges = ChallengeManager.getCustomChallenges().filter { isMatchingFilter(it.value.tags, finalFilter) }.map { ChallengeItemData(it.value.icon, it.value.data, customUUID = it.key, tags = it.value.tags, owner = it.value.owner) }
             val allChallenges = buildList {
                 addAll(officialChallenges)

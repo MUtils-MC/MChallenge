@@ -13,7 +13,6 @@ import org.bukkit.event.player.PlayerKickEvent
 import kotlin.time.Duration
 
 class ResetCommand {
-    @Suppress("unused")
     val reset = commandTree("reset", { sender: CommandSender -> sender.hasPermission("mutils.reset") }) {
         anyExecutor { commandSender, _ ->
             MChallenge.settings.reset = true

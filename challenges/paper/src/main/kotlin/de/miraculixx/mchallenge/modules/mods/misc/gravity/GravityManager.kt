@@ -114,7 +114,7 @@ class GravityManager : Challenge {
     }
 
     private fun newGravity(last: GravityState): Pair<GravityState, Gravity?> {
-        val newGravity = GravityState.values().filter { it != last && it != GravityState.DEFAULT }.random()
+        val newGravity = GravityState.entries.filter { it != last && it != GravityState.DEFAULT }.random()
         val gravityClass = when (newGravity) {
             GravityState.NO -> {
                 bar.name(cmp("〰 No Gravity 〰", NamedTextColor.YELLOW))

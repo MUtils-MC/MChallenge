@@ -15,7 +15,7 @@ import dev.jorel.commandapi.kotlindsl.commandTree
 
 class CustomRulesCommand {
     val command = commandTree("rule", { it.hasPermission("command.rule") }) {
-        argument(StringArgument("rule").replaceSuggestions(ArgumentSuggestions.strings(CustomRules.values().map { it.name.lowercase() }))) {
+        argument(StringArgument("rule").replaceSuggestions(ArgumentSuggestions.strings(CustomRules.entries.map { it.name.lowercase() }))) {
             booleanArgument("active") {
                 anyExecutor { sender, args ->
                     val stringRule = args[0] as String
