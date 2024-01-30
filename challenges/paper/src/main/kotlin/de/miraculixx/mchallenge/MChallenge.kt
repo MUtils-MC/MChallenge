@@ -17,6 +17,7 @@ import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.global.RuleListener
+import de.miraculixx.mchallenge.modules.packs.ResourcePacks
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
@@ -70,6 +71,9 @@ class MChallenge : KSpigot() {
             // Run after init & sync
             taskRunLater(1) {
                 RuleListener
+                CoroutineScope(Dispatchers.Default).launch {
+                    ResourcePacks.entries // pre load all resource pack data
+                }
             }
         }
     }
