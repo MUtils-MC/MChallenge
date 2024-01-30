@@ -68,7 +68,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     WORLD_DECAY(setOf(ChallengeTags.HARD), Icon("WHITE_STAINED_GLASS")),
     LOW_VISION(setOf(ChallengeTags.HARD), Icon("TINTED_GLASS")),
     CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX")),
-    HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE"))
+    HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
+    TICK_RATE(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
     ;
 
 
@@ -299,6 +300,21 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                 "wrongDamage" to ChallengeDoubleSetting("BEETROOT", 10.0, "hp", max = 50.0, min = 1.0, step = 1.0),
                 "randomOrder" to ChallengeBoolSetting("DROPPER", false),
                 "visual" to ChallengeBoolSetting("WRITABLE_BOOK", true)
+            )
+
+            TICK_RATE -> mapOf(
+                "ticks" to ChallengeSectionSetting(
+                    "RECOVERY_COMPASS", mapOf(
+                        "min" to ChallengeIntSetting("GOLD_NUGGET", 3, "t", max = 100, min = 1, step = 1),
+                        "max" to ChallengeIntSetting("GOLD_INGOT", 80, "t", max = 500, min = 10, step = 1)
+                    )
+                ),
+                "timings" to ChallengeSectionSetting(
+                    "CLOCK", mapOf(
+                        "min" to ChallengeIntSetting("GOLD_NUGGET", 20*8, "t", max = 20*120, min = 30, step = 10),
+                        "max" to ChallengeIntSetting("GOLD_INGOT", 820*30, "t", max = 20*120, min = 30, step = 10)
+                    )
+                )
             )
         }
     }
