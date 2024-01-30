@@ -75,18 +75,24 @@ class BlockWorld : Challenge {
 
         if (
             name.endsWith("GLASS") || name.endsWith("GLASS_PANE") || name.endsWith("HANGING_SIGN") ||
-            name.endsWith("HEAD") || name.contains("CORAL")
+            name.endsWith("HEAD") || name.contains("CORAL") || name.startsWith("SUSPICIOUS")
         ) return true
+
+        // Experimental 1.21
+        if (name.contains("COPPER") && (name.contains("DOOR") || name.contains("GRATE"))) return true
 
         if (majorVersion < 20) {
             if (
-                name.contains("CHERRY") || name.contains("BAMBOO") || name.startsWith("SUSPICIOUS") ||
+                name.contains("CHERRY") || name.contains("BAMBOO") ||
                 name.endsWith("_HANGING_SIGN")
             ) return true
             when (name) {
                 "TORCHFLOWER", "PINK_PETALS", "CHISELED_BOOKSHELF",
-                "DECORATED_POT", "TORCHFLOWER_SEEDS" -> return true
+                "DECORATED_POT", "TORCHFLOWER_SEEDS", "GRASS" -> return true
             }
+        } else {
+            // rename GRASS -> SHORT_GRASS
+            if (name == "SHORT_GRASS")return true
         }
 
         return when (material) {
@@ -95,7 +101,7 @@ class BlockWorld : Challenge {
             Material.TURTLE_EGG, Material.AMETHYST_CLUSTER, Material.SMALL_AMETHYST_BUD,
             Material.MEDIUM_AMETHYST_BUD, Material.LARGE_AMETHYST_BUD, Material.CHAIN,
             Material.BAMBOO, Material.END_ROD, Material.SEAGRASS,
-            Material.TALL_SEAGRASS, Material.GRASS, Material.TALL_GRASS,
+            Material.TALL_SEAGRASS,  Material.TALL_GRASS,
             Material.BEEHIVE, Material.LAVA, Material.WATER,
             Material.SNOW, Material.GRINDSTONE, Material.POINTED_DRIPSTONE,
             Material.BEE_NEST, Material.CHEST, Material.TRAPPED_CHEST,
@@ -111,8 +117,8 @@ class BlockWorld : Challenge {
             Material.CHAIN_COMMAND_BLOCK, Material.REPEATING_COMMAND_BLOCK, Material.STRUCTURE_BLOCK,
             Material.JIGSAW, Material.DAYLIGHT_DETECTOR, Material.COMPARATOR,
             Material.CONDUIT, Material.BELL, Material.END_GATEWAY,
-            Material.SCULK_CATALYST, Material.SCULK_SENSOR, Material.SCULK_SHRIEKER,
-            Material.LIGHTNING_ROD, Material.IRON_BARS, Material.DIRT_PATH -> true
+            Material.SCULK_CATALYST, Material.CALIBRATED_SCULK_SENSOR, Material.SCULK_SENSOR, Material.SCULK_SHRIEKER,
+            Material.LIGHTNING_ROD, Material.IRON_BARS, Material.DIRT_PATH, -> true
 
             else -> false
         }
