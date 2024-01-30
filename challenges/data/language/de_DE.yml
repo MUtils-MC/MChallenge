@@ -333,7 +333,7 @@ items:
       l: "Erhöhe oder verringere jeden Schaden gegenüber<br>Spielern. Dies enthält auch Schaden von Tränken und Feuer. "
     CHUNK_EFFECTS:
       n: "Chunk-Effekte"
-      l: "Jeder Chunk gibt dir einen anderen Effekt"
+      l: "Jeder Chunk gibt dir einen anderen Effekt. "
   chS:
     FLY:
       power:
