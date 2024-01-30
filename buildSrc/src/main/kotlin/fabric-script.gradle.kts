@@ -33,7 +33,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:1.9.4+kotlin.1.8.21")
     modImplementation(include("me.lucko", "fabric-permissions-api", "0.2-SNAPSHOT"))
     modImplementation(include("net.kyori:adventure-platform-fabric:5.8.0")!!)
-    transitiveInclude(implementation("org.yaml:snakeyaml:1.33")!!)
+    transitiveInclude(implementation("org.yaml:snakeyaml:2.2")!!)
 
     transitiveInclude.resolvedConfiguration.resolvedArtifacts.forEach {
         include(it.moduleVersion.id.toString())
