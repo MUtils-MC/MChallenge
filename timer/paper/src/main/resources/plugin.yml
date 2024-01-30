@@ -16,6 +16,6 @@ libraries:
   - "io.ktor:ktor-client-cio-jvm:2.3.2"
   - "io.ktor:ktor-client-core-jvm:2.3.2"
   - "org.yaml:snakeyaml:1.33"
-  - "dev.jorel:commandapi-bukkit-shade:9.2.0"
-  - "dev.jorel:commandapi-bukkit-kotlin:9.2.0"
+  - "dev.jorel:commandapi-bukkit-shade:9.3.0"
+  - "dev.jorel:commandapi-bukkit-kotlin:9.3.0"
 
