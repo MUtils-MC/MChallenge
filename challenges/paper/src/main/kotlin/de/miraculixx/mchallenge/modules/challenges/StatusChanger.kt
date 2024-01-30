@@ -44,6 +44,12 @@ import de.miraculixx.mchallenge.modules.mods.simple.fly.FLY
 import de.miraculixx.mchallenge.modules.mods.simple.noDoubleKill.NoDoubleKills
 import de.miraculixx.mchallenge.modules.mods.simple.rightTools.RightTools
 import de.miraculixx.mchallenge.modules.mods.simple.stayAway.StayAway
+import de.miraculixx.mchallenge.modules.mods.misc.trafficlight.TrafficLight
+import de.miraculixx.mchallenge.modules.mods.multiplayer.tron.Tron
+import de.miraculixx.mchallenge.modules.mods.misc.vampire.Vampire
+import de.miraculixx.mchallenge.modules.mods.multiplayer.hitOrder.HitOrder
+import de.miraculixx.mchallenge.modules.mods.seasonal.halloween.HalloweenChallenge
+import de.miraculixx.mchallenge.modules.mods.simple.tickRate.TickRateChanger
 import de.miraculixx.mchallenge.modules.mods.worldChanging.blockWorld.BlockWorld
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkBreaker.ChunkBlockBreaker
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkClearer.ChunkClearer
@@ -117,6 +123,7 @@ class StatusChanger {
             Challenges.CHUNK_SYNC -> ChunkSync()
             Challenges.HIT_ORDER -> HitOrder()
             Challenges.CHUNK_EFFECTS -> ChunkEffects()
+            Challenges.TICK_RATE -> TickRateChanger()
 //            Challenges.HALLOWEEN -> HalloweenChallenge()
         }
     }

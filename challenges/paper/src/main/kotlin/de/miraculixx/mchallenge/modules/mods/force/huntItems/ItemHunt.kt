@@ -24,6 +24,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.player.PlayerJoinEvent
 import java.io.File
 
 class ItemHunt : Challenge, HuntObject<Material> {
@@ -61,6 +62,7 @@ class ItemHunt : Challenge, HuntObject<Material> {
         val cmdInstance = PluginManager.getCommand("itemhunt") ?: return false
         cmdInstance.setExecutor(cmdClass)
         cmdInstance.tabCompleter = cmdClass
+        onJoin.register()
         return true
     }
 
@@ -69,6 +71,7 @@ class ItemHunt : Challenge, HuntObject<Material> {
         dataFile.writeText(json.encodeToString(ItemHuntData(currentItem, remainingEntries)))
         onlinePlayers.forEach { it.hideBossBar(bar) }
         ModuleCommand("itemhunt")
+        onJoin.unregister()
     }
 
     private val onCollect = listen<EntityPickupItemEvent>(register = false) {
@@ -83,6 +86,10 @@ class ItemHunt : Challenge, HuntObject<Material> {
         it.inventory.forEach { item -> if (item?.type == currentItem) collectItem(player) }
     }
 
+    private val onJoin = listen<PlayerJoinEvent>(register = false) {
+        bar.addViewer(it.player)
+    }
+
     private fun collectItem(player: Player) {
         nextEntry(player.name, player)
     }
@@ -92,7 +99,7 @@ class ItemHunt : Challenge, HuntObject<Material> {
         audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
         val size = remainingEntries.size
         currentItem = if (size == 0) {
-            broadcast(prefix + msg("event.itemHunt.success"))
+            broadcast(prefix + msg("event.itemHunt.success", listOf(maxEntries.toString())))
             ChallengeManager.stopChallenges()
             null
         } else remainingEntries.random()

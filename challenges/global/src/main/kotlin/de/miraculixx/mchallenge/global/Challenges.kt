@@ -70,6 +70,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX")),
     HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
     CHUNK_EFFECTS(setOf(ChallengeTags.FUN), Icon("LINGERING_POTION"))
+    TICK_RATE(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
     ;
 
 
@@ -304,6 +305,21 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
 
             CHUNK_EFFECTS -> mapOf(
                 "random" to ChallengeBoolSetting("DROPPER", false)
+            )
+                
+            TICK_RATE -> mapOf(
+                "ticks" to ChallengeSectionSetting(
+                    "RECOVERY_COMPASS", mapOf(
+                        "min" to ChallengeIntSetting("GOLD_NUGGET", 3, "t", max = 100, min = 1, step = 1),
+                        "max" to ChallengeIntSetting("GOLD_INGOT", 80, "t", max = 500, min = 10, step = 1)
+                    )
+                ),
+                "timings" to ChallengeSectionSetting(
+                    "CLOCK", mapOf(
+                        "min" to ChallengeIntSetting("GOLD_NUGGET", 20*8, "t", max = 20*120, min = 30, step = 10),
+                        "max" to ChallengeIntSetting("GOLD_INGOT", 820*30, "t", max = 20*120, min = 30, step = 10)
+                    )
+                )
             )
         }
     }

@@ -6,8 +6,9 @@ import net.kyori.adventure.sound.Sound
 
 
 fun Audience.click() {
-    playSound(Sound.sound(Key.key("ui.button.click"), Sound.Source.MASTER, 0.7f, 1f))
+    playSound(soundClick)
 }
+val soundClick = Sound.sound(Key.key("ui.button.click"), Sound.Source.MASTER, 0.7f, 1f)
 
 fun Audience.soundError() {
     playSound(Sound.sound(Key.key("entity.enderman.teleport"), Sound.Source.MASTER, 1f, 1.1f))
