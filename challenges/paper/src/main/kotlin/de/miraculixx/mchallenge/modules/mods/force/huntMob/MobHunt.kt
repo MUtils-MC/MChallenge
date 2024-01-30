@@ -25,6 +25,7 @@ import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.entity.Projectile
 import org.bukkit.event.entity.EntityDamageByEntityEvent
+import org.bukkit.event.player.PlayerJoinEvent
 import java.io.File
 
 class MobHunt : Challenge, HuntObject<EntityType> {
@@ -60,6 +61,7 @@ class MobHunt : Challenge, HuntObject<EntityType> {
         val cmdInstance = de.miraculixx.mchallenge.PluginManager.getCommand("mobhunt") ?: return false
         cmdInstance.setExecutor(cmdClass)
         cmdInstance.tabCompleter = cmdClass
+        onJoin.register()
         return true
     }
 
@@ -68,6 +70,11 @@ class MobHunt : Challenge, HuntObject<EntityType> {
         dataFile.writeText(json.encodeToString(MobHuntData(currentTarget, remainingEntries)))
         onlinePlayers.forEach { it.hideBossBar(bar) }
         ModuleCommand("mobhunt")
+        onJoin.unregister()
+    }
+
+    private val onJoin = listen<PlayerJoinEvent>(register = false) {
+        bar.addViewer(it.player)
     }
 
     private val onKill = listen<EntityDamageByEntityEvent>(register = false) {

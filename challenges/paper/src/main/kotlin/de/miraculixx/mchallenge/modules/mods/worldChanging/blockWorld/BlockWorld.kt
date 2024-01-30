@@ -18,7 +18,7 @@ import java.util.*
 
 class BlockWorld : Challenge {
     private val worldName = UUID.randomUUID().toString()
-    private val materials = Material.values().filter {
+    private val materials = Material.entries.filter {
         it.isBlock && !isInvalidItem(it)
     }
 
@@ -95,7 +95,7 @@ class BlockWorld : Challenge {
             Material.TURTLE_EGG, Material.AMETHYST_CLUSTER, Material.SMALL_AMETHYST_BUD,
             Material.MEDIUM_AMETHYST_BUD, Material.LARGE_AMETHYST_BUD, Material.CHAIN,
             Material.BAMBOO, Material.END_ROD, Material.SEAGRASS,
-            Material.TALL_SEAGRASS, Material.GRASS, Material.TALL_GRASS,
+            Material.TALL_SEAGRASS, Material.SHORT_GRASS, Material.TALL_GRASS,
             Material.BEEHIVE, Material.LAVA, Material.WATER,
             Material.SNOW, Material.GRINDSTONE, Material.POINTED_DRIPSTONE,
             Material.BEE_NEST, Material.CHEST, Material.TRAPPED_CHEST,
