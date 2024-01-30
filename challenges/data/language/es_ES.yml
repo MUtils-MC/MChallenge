@@ -84,6 +84,9 @@ event:
   mobHunt:
     collect: "<green><input-1> encontrado <input-2>!"
     success: "<green> ¡Felicidades! Has encontrado todos los mobs"
+  itemHunt:
+    collect: "<green><input-1> collected <input-2>!"
+    success: "<green>Congratulations! You found all <input-1> items"
   itemDecay:
     time: "Decaimiento en"
     paused: "Pantalla en pausa (seleccionada)"
@@ -124,6 +127,8 @@ event:
   enterFilter: "Enter a filter for <color:#6e94ff><input-1></color>" #m v1
   hitOrder:
     nextPlayer: "Current Damager: "
+  tickRate:
+    gameSpeed: "Game Speed"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
