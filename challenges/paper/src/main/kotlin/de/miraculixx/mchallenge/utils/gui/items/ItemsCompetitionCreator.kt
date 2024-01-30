@@ -13,6 +13,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
+@Suppress("unused")
 class ItemsCompetitionCreator : ItemProvider {
     private val msgSetting = listOf(emptyComponent(), cmp("∙ ") + cmp("Settings", cHighlight, underlined = true))
 
@@ -20,10 +21,10 @@ class ItemsCompetitionCreator : ItemProvider {
     private val msgPoints = msgString("items.competition.points.n")
     private val msgChallenges = msgString("items.competition.challenges.n")
 
-    val rounds = 3
-    val pointRules: MutableSet<CompetitionPointRule> = mutableSetOf()
+    private val rounds = 3
+    private val pointRules: MutableSet<CompetitionPointRule> = mutableSetOf()
     val challenges: MutableList<Challenges> = mutableListOf()
-    var kickOnDeath = false
+    private var kickOnDeath = false
     var scoreboard = true
 
     override fun getSlotMap(): Map<Int, ItemStack> {

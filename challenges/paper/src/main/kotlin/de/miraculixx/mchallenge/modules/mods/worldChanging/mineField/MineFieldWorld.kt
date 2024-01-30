@@ -4,7 +4,6 @@ import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.mchallenge.global.Challenges
@@ -15,7 +14,6 @@ import org.bukkit.*
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.TNTPrimed
 import org.bukkit.event.block.Action
-import org.bukkit.event.block.BlockPhysicsEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.event.world.WorldInitEvent
@@ -74,6 +72,7 @@ class MineFieldWorld : Challenge {
         File(worldName).deleteRecursively()
     }
 
+    @Suppress("DuplicatedCode")
     private val onPortal = listen<PlayerTeleportEvent>(register = false) {
         val fromWorld = it.from.world
         val toWorld = it.to.world
@@ -104,7 +103,6 @@ class MineFieldWorld : Challenge {
 
     private class CustomBlockPopulator(private val density: Int) : BlockPopulator() {
         private val pressurePlate = Bukkit.createBlockData(Material.LIGHT_WEIGHTED_PRESSURE_PLATE)
-        private val a = Bukkit.createBlockData(Material.HEAVY_WEIGHTED_PRESSURE_PLATE)
         private val progressedBlocks: MutableSet<Position> = mutableSetOf()
 
         override fun populate(worldInfo: WorldInfo, random: Random, chunkX: Int, chunkZ: Int, limitedRegion: LimitedRegion) {

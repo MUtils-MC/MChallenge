@@ -13,15 +13,11 @@ import org.bukkit.entity.LivingEntity
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.EntityRegainHealthEvent
 
-class MobBossBar(entity: LivingEntity, color: BarColor, name: String) {
-    private var entity: LivingEntity
-    private var key: NamespacedKey
-    private var bossBar: BossBar
+class MobBossBar(private var entity: LivingEntity, color: BarColor, name: String) {
+    private var key: NamespacedKey = NamespacedKey(namespace, entity.uniqueId.toString() + "-health")
+    private var bossBar: BossBar = Bukkit.createBossBar(key, name, color, BarStyle.SOLID)
 
     init {
-        this.entity = entity
-        key = NamespacedKey(namespace, entity.uniqueId.toString() + "-health")
-        bossBar = Bukkit.createBossBar(key, name, color, BarStyle.SOLID)
         for (onlinePlayer in Bukkit.getOnlinePlayers()) {
             bossBar.addPlayer(onlinePlayer)
         }

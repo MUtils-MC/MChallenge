@@ -29,19 +29,19 @@ class BlockRandomizer : Challenge {
     override fun start(): Boolean {
         val rnd = Random(worlds.first().seed)
         if (!random) {
-            val drops = Material.values().filter { it.isItem }.shuffled(rnd)
+            val drops = Material.entries.filter { it.isItem }.shuffled(rnd)
             var block = mutableListOf<Material>()
             block.shuffle(rnd)
             drops.forEach { dropMaterial ->
                 if (block.isEmpty()) {
-                    block = Material.values().filter { it.isBlock }.toMutableList()
+                    block = Material.entries.filter { it.isBlock }.toMutableList()
                     block.shuffle(rnd)
                 }
                 map[block[0]] = dropMaterial
                 block.removeAt(0)
             }
         } else {
-            list.addAll(Material.values())
+            list.addAll(Material.entries.toTypedArray())
             list.shuffle(rnd)
         }
         return true

@@ -44,7 +44,7 @@ class OneBiomeSwitcher {
         run()
     }
 
-    fun addPlayer(player: Player) {
+    private fun addPlayer(player: Player) {
         player.showBossBar(bar)
     }
 
@@ -143,7 +143,7 @@ class OneBiomeSwitcher {
 
     private fun random(): Biome {
         if (biomeList.isEmpty()) {
-            Biome.values().forEach {
+            Biome.entries.forEach {
                 biomeList.add(it)
             }
             biomeList.remove(Biome.CUSTOM)

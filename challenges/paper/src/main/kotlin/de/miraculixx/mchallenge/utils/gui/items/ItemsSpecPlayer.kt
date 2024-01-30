@@ -12,6 +12,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 
+@Suppress("unused")
 class ItemsSpecPlayer(private val owner: Player) : ItemProvider {
     override fun getItemList(from: Int, to: Int): List<ItemStack> {
         return buildList {

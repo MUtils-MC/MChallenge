@@ -5,6 +5,7 @@ import de.miraculixx.mcore.gui.data.CustomInventory
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 
+@Suppress("unused")
 class GUICompetitionCreator: GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         it.isCancelled = true

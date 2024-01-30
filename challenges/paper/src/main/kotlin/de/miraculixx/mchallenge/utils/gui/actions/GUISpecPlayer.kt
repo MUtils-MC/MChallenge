@@ -9,6 +9,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.meta.SkullMeta
 
+@Suppress("unused")
 class GUISpecPlayer : GUIEvent {
     override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
         val player = it.whoClicked as? Player ?: return@event

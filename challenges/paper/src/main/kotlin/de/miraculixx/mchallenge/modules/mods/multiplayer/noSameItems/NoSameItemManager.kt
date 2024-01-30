@@ -45,7 +45,7 @@ class NoSameItemManager {
             if (player.gameMode == GameMode.SURVIVAL) createBossBar(player)
         }
 
-        Material.values().forEach { item ->
+        Material.entries.forEach { item ->
             materialRanking[item] = mutableListOf()
         }
         onlinePlayers.forEach { player ->
@@ -60,6 +60,7 @@ class NoSameItemManager {
         }
     }
 
+    @Suppress("unused")
     fun removePlayer(player: Player) {
         materialRanking.forEach { (_, aList) ->
             if (aList.contains(player)) aList.remove(player)
@@ -79,6 +80,7 @@ class NoSameItemManager {
         heartCalculation() //Update
     }
 
+    @Suppress("unused")
     fun getItems(player: Player) = playerList[player] ?: emptyList()
 
     private fun heartCalculation() {

@@ -1,7 +1,6 @@
 package de.miraculixx.mchallenge.modules.mods.worldChanging.worldDecay
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.MChallenge
@@ -10,15 +9,14 @@ import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.global.ResourcePackChallenge
 import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.getSetting
-import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.messages.consoleAudience
 import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience
-import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.Material
 import java.io.File
 
 class WorldDecay: Challenge, ResourcePackChallenge {
-    private val visibleBlocks: MutableSet<Material> = Material.values().filter { it.isBlock }.toMutableSet()
+    private val visibleBlocks: MutableSet<Material> = Material.entries.filter { it.isBlock }.toMutableSet()
     private val repeats: Int
     private val blocksPerInterval: Int
     private val delay: Int
@@ -103,7 +101,7 @@ class WorldDecay: Challenge, ResourcePackChallenge {
                 } else File(blockstateFolder, "${name}.json").writeText(blockstateScript)
                 visibleBlocks.remove(block)
             }
-            mWebAPI.sendFileAsResourcePack(texturepackFolder.path, onlinePlayers.map { it.uniqueId }.toSet(), true)
+            mWebAPI.sendFileAsResourcePack(texturepackFolder.path, onlinePlayers.map { p -> p.uniqueId }.toSet(), true)
             finishedRepeats++
             percentTillFinish = finishedRepeats.toDouble() / repeats
         }
