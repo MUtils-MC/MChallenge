@@ -1,6 +1,6 @@
 name: 'MUtils-Challenge'
 load: STARTUP
-version: 112
+version: 113
 main: 'de.miraculixx.mchallenge.MChallenge'
 api-version: '1.20'
 authors:
