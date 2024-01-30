@@ -11,9 +11,7 @@ import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.extensions.soundUp
-import de.miraculixx.mvanilla.messages.consoleAudience
 import de.miraculixx.mvanilla.messages.msg
-import de.miraculixx.mvanilla.messages.prefix
 import de.miraculixx.mweb.api.MWebAPI
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -78,7 +76,7 @@ class LowVisionAction(private val maxSelects: Int, private val player: Player, p
         File(resourceFolder, "textures/block").mkdir()
         transparency?.readBytes()?.let { File(resourceFolder, "textures/block/transparent.png").writeBytes(it) }
 
-        val blocks = Material.values().filter { it.isBlock }.toMutableSet()
+        val blocks = Material.entries.filter { it.isBlock }.toMutableSet()
         blocks.removeAll(selected)
         blocks.forEach {
             val name = it.name.lowercase()

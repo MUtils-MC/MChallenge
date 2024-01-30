@@ -61,6 +61,6 @@ class Tron : Challenge {
 
 
     private fun getColors(): MutableList<Material> {
-        return Material.values().filter { it.name.endsWith("_CONCRETE") }.toMutableList()
+        return Material.entries.filter { it.name.endsWith("_CONCRETE") }.toMutableList()
     }
 }

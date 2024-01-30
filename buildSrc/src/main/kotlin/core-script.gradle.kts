@@ -8,8 +8,8 @@ repositories {
 }
 
 dependencies {
-    val ktorVersion = "2.1.3"
+    val ktorVersion = "2.3.7"
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
-    implementation("org.yaml:snakeyaml:1.33")
+    implementation("org.yaml:snakeyaml:2.2")
 }

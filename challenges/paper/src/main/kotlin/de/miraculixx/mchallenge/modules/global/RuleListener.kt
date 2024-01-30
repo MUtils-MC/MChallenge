@@ -23,6 +23,7 @@ object RuleListener {
     }
 
 
+    @Suppress("unused")
     private val onPvP = listen<EntityDamageByEntityEvent> {
         if (it.entity is Player && it.damager is Player && rules[CustomRules.PVP] == false)
             it.isCancelled = true

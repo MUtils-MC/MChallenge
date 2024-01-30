@@ -67,6 +67,7 @@ class InTime : Challenge {
     }
 
     override fun register() {
+        @Suppress("DuplicatedCode")
         onLeave.register()
         onJoin.register()
         onDamage.register()
@@ -78,6 +79,7 @@ class InTime : Challenge {
         onMove.register()
     }
     override fun unregister() {
+        @Suppress("DuplicatedCode")
         onLeave.unregister()
         onJoin.unregister()
         onDamage.unregister()

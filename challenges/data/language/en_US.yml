@@ -350,6 +350,9 @@ items:
     HIT_ORDER:
       n: "Damage Order"
       l: "Only one player at a time is allowed<br>to damage mobs. But this player<br>changes on every hit!"
+    CHUNK_EFFECTS:
+      n: "Chunk Effects"
+      l: "Every Chunk gives you a different Effect."
   chS:
     FLY:
       power:
@@ -632,3 +635,6 @@ items:
         n: "Random Order"
       visual:
         n: "Info Bar"
+    CHUNK_EFFECTS:
+      random:
+        n: "Full Random"

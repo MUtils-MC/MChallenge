@@ -39,7 +39,7 @@ class ForceHunt : Challenge {
     private var stopped = false
 
     private val activeObjects: Set<HuntType>
-    private val biomes = Biome.values().filter {
+    private val biomes = Biome.entries.filter {
         it != Biome.CUSTOM &&
                 it != Biome.END_BARRENS &&
                 it != Biome.END_HIGHLANDS &&
@@ -47,7 +47,7 @@ class ForceHunt : Challenge {
                 it != Biome.THE_END &&
                 it != Biome.SMALL_END_ISLANDS
     }
-    private val items = getMaterials(true, false)
+    private val items = getMaterials(survival = true, hard = false)
 
     private val cooldownRange: IntRange
     private val huntRange: IntRange

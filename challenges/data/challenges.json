@@ -1,12 +1,21 @@
 [
   {
+    "key": "CHUNK_EFFECTS",
+    "version": "113",
+    "icon": "LINGERING_POTION",
+    "tags": [
+      "FUN"
+    ],
+    "new": true
+  },
+
+  {
     "key": "WORLD_DECAY",
     "version": "111",
     "icon": "white_stained_glass",
     "tags": [
       "HARD"
-    ],
-    "new": true
+    ]
   },
   {
     "key": "LOW_VISION",
@@ -14,8 +23,7 @@
     "icon": "tinted_glass",
     "tags": [
       "HARD"
-    ],
-    "new": true
+    ]
   },
   {
     "key": "CHUNK_SYNC",
@@ -23,12 +31,8 @@
     "icon": "magenta_shulker_box",
     "tags": [
       "FUN"
-    ],
-    "new": true
+    ]
   },
-
-
-
   {
     "key": "VAMPIRE",
     "icon": "ghast_tear",

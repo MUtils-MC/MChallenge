@@ -14,10 +14,9 @@ class InfoBar(private val inventoryGewicht: InventoryWeight, private val drinkLo
 
     private val barList: HashMap<UUID, BossBar> = HashMap()
     private val keyList: HashMap<UUID, NamespacedKey> = HashMap()
-    private val display: String
+    private val display: String = "111"
 
     init {
-        display = "111"
         scheduler()
     }
 

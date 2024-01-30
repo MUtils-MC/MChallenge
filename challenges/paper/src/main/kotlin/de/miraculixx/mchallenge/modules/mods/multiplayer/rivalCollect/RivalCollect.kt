@@ -57,14 +57,14 @@ class RivalCollect : Challenge {
             items = modeSection?.get("items")?.toBool()?.getValue()?.let {
                 if (it) {
                     add(RivalCollectMode.ITEMS)
-                    getItems(false, false)
+                    getItems(silkTouch = false, removeHardToObtain = false)
                 } else emptyList()
             } ?: emptyList()
 
             biomes = modeSection?.get("biomes")?.toBool()?.getValue()?.let {
                 if (it) {
                     add(RivalCollectMode.BIOMES)
-                    Biome.values().filter { biome -> biome != Biome.CUSTOM }
+                    Biome.entries.filter { biome -> biome != Biome.CUSTOM }
                 } else emptyList()
             } ?: emptyList()
 
@@ -200,7 +200,7 @@ class RivalCollect : Challenge {
             }
 
             if (item.amount > 1)
-                item.amount = item.amount - 1
+                item.amount -= 1
             else item.type = Material.AIR
             player.inventory.setItemInMainHand(item)
             it.isCancelled = true
@@ -340,7 +340,7 @@ class RivalCollect : Challenge {
         armorStand.isMarker = true
         armorStand.isSmall = true
         armorStand.setBasePlate(false)
-        EquipmentSlot.values().forEach { armorStand.addDisabledSlots(it) }
+        EquipmentSlot.entries.forEach { armorStand.addDisabledSlots(it) }
         player.addPassenger(armorStand)
         val data = playerData.getOrPut(player.uniqueId) { RivalPlayerData(armorStand, RivalCollectMode.ITEMS) }
         data.armorStand = armorStand

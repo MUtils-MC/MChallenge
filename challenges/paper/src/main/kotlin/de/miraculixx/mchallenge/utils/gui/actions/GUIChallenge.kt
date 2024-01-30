@@ -22,7 +22,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.persistence.PersistentDataType
 
 class GUIChallenge : GUIEvent {
-    private val validFilters = ChallengeTags.values()
+    private val validFilters = ChallengeTags.entries.toTypedArray()
     private val challengeKey = NamespacedKey(namespace, "gui.challenge")
     private val customChallengeKey = NamespacedKey(namespace, "gui.customchallenge")
 

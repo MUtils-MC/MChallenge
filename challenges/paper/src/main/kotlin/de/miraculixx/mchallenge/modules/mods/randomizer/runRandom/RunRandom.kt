@@ -66,6 +66,7 @@ class RunRandomizer : Challenge {
     }
 
     override fun register() {
+        @Suppress("DuplicatedCode")
         onBreak.register()
         onInteract.register()
         onInventory.register()
@@ -78,6 +79,7 @@ class RunRandomizer : Challenge {
     }
 
     override fun unregister() {
+        @Suppress("DuplicatedCode")
         onBreak.unregister()
         onInteract.unregister()
         onInventory.unregister()

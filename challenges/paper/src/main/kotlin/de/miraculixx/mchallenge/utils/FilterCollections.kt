@@ -5,7 +5,7 @@ import org.bukkit.Material
 
 
 fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
-    val list = Material.values().filter {
+    val list = Material.entries.filter {
         it.isItem
                 && !it.isLegacy
                 && it.creativeCategory != null
@@ -27,12 +27,12 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
             Material.PACKED_ICE,
             Material.MYCELIUM,
 
-            )
+            ).toSet()
     )
     if (removeHardToObtain) list.removeAll(
         listOf(
             Material.TURTLE_EGG,
-        )
+        ).toSet()
     )
     list.removeAll(
         listOf(
@@ -45,7 +45,7 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
             Material.LINGERING_POTION,
             Material.TIPPED_ARROW,
             Material.ENCHANTED_BOOK
-        )
+        ).toSet()
     )
     if (majorVersion >= 17) list.remove(Material.BUDDING_AMETHYST)
     return list

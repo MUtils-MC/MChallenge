@@ -4,8 +4,6 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.kpaper.utils.FireworkEffectBuilder
-import de.miraculixx.kpaper.utils.KSpigotFirework.build
 import de.miraculixx.kpaper.utils.fireworkItemStack
 import de.miraculixx.mvanilla.messages.cmp
 import dev.jorel.commandapi.arguments.Argument
@@ -28,31 +26,31 @@ class HalloweenItems {
         addItemFlags(ItemFlag.HIDE_ENCHANTS)
     }}
 
-    val silverArrowID = 10_002
+    private val silverArrowID = 10_002
     fun silverArrow() = itemStack(Material.SPECTRAL_ARROW) { meta {
         customModel = silverArrowID
         name = cmp("Silver Tip Arrow")
     }}
 
-    val silverSwordID = 10_003
+    private val silverSwordID = 10_003
     fun silverSword() = itemStack(Material.IRON_SWORD) { meta {
         customModel = silverSwordID
         name = cmp("Silver Sword")
     }}
 
-    val pflockID = 10_004
+    private val pflockID = 10_004
     fun pflock() = itemStack(Material.STICK) { meta {
         customModel = pflockID
         name = cmp("Wooden Peg")
     }}
 
-    val candyID = 10_005
+    private val candyID = 10_005
     fun candy() = itemStack(Material.COOKIE) { meta {
         customModel = candyID
         name = cmp("Candy")
     }}
 
-    val rocketID = 10_006
+    private val rocketID = 10_006
     fun rocket() = fireworkItemStack {
         customModel = rocketID
         power = 1

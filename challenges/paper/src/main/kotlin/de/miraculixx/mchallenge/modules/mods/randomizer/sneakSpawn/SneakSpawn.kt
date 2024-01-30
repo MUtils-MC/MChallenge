@@ -31,7 +31,7 @@ class SneakSpawn : Challenge {
             livings = list
         } else {
             val list = ArrayList<Material>()
-            Material.values().forEach { material ->
+            Material.entries.forEach { material ->
                 if (material.isItem) {
                     list.add(material)
                 }

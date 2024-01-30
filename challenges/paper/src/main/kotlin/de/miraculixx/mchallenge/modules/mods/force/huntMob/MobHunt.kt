@@ -13,7 +13,6 @@ import de.miraculixx.mcore.utils.getLivingMobs
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.bossbar.BossBar

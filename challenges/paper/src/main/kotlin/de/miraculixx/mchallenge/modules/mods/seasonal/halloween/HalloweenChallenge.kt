@@ -68,6 +68,7 @@ class HalloweenChallenge : Challenge {
     private val armorCache: MutableMap<Player, Equip> = mutableMapOf()
 
     override fun register() {
+        @Suppress("DuplicatedCode")
         onMove.register()
         onEquip.register()
         onInteract.register()
@@ -80,6 +81,7 @@ class HalloweenChallenge : Challenge {
     }
 
     override fun unregister() {
+        @Suppress("DuplicatedCode")
         onMove.unregister()
         onEquip.unregister()
         onInteract.unregister()
@@ -299,12 +301,14 @@ class HalloweenChallenge : Challenge {
         }
     }
 
+    @Suppress("unused")
     private val onDamage = listen<EntityDamageEvent>(register = false) {
         val player = it.entity as? Player ?: return@listen
         val finalDamage = it.finalDamage
         
     }
 
+    @Suppress("unused")
     private val command = commandTree("halloween") {
         literalArgument("items") {
             specialItems.addItemsToCommand(this)

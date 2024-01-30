@@ -3,14 +3,10 @@ package de.miraculixx.mchallenge.modules.mods.seasonal.halloween
 import org.bukkit.World.Environment
 import org.bukkit.block.Biome
 import org.bukkit.generator.BiomeProvider
-import org.bukkit.generator.ChunkGenerator
 import org.bukkit.generator.WorldInfo
 import java.util.*
 
-class TestChunkGenerator: ChunkGenerator() {
-
-}
-
+@Suppress("unused")
 class HalloweenBiomeProvider : BiomeProvider() {
     private lateinit var internalWorldInfo: InternalWorldInfo
 

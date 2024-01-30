@@ -20,7 +20,7 @@ import org.bukkit.Sound
 
 class ChallengeCommand {
     private var apiCooldown = false
-
+    @Suppress("unused")
     private val command = commandTree("challenge") {
         withPermission("command.challenge")
         withAliases("ch")

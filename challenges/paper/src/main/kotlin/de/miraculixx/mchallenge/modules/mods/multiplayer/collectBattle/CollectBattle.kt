@@ -130,7 +130,7 @@ class CollectBattle : Challenge {
 
     private val onF = listen<PlayerSwapHandItemsEvent>(register = false) {
         if (state != CollectBattleState.SETTING) return@listen
-        val item = it.offHandItem ?: return@listen
+        val item = it.offHandItem
         val type = item.type
         if (type.isAir) return@listen
         val player = it.player

@@ -331,6 +331,9 @@ items:
     DAMAGE_MULTIPLIER:
       n: "Schaden-Multiplikator"
       l: "Erhöhe oder verringere jeden Schaden gegenüber<br>Spielern. Dies enthält auch Schaden von Tränken und Feuer. "
+    CHUNK_EFFECTS:
+      n: "Chunk-Effekte"
+      l: "Jeder Chunk gibt dir einen anderen Effekt. "
   chS:
     FLY:
       power:
@@ -606,3 +609,6 @@ items:
     DAMAGE_MULTIPLIER:
       multiplier:
         n: "Multiplikator"
+    CHUNK_EFFECTS:
+      random:
+        n: "Zufällig"

@@ -1,5 +1,7 @@
 package de.miraculixx.mchallenge.modules.spectator
 
+import de.miraculixx.challenge.api.modules.spectator.Activation
+import de.miraculixx.challenge.api.modules.spectator.Visibility
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.extensions.onlinePlayers
@@ -7,12 +9,9 @@ import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mvanilla.data.UUIDSerializer
-import de.miraculixx.challenge.api.modules.spectator.Activation
-import de.miraculixx.challenge.api.modules.spectator.Visibility
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.bukkit.GameMode
 import org.bukkit.entity.EntityType
@@ -32,6 +31,7 @@ object Spectator {
     private val specSettings = HashMap<@Serializable(UUIDSerializer::class) UUID, SpecCollection>()
     private val file = File("${MChallenge.configFolder.path}/spectator.json")
 
+    @Suppress("unused")
     fun saveData() {
         if (!file.exists()) file.parentFile.mkdirs()
         file.writeText(json.encodeToString(specSettings))
@@ -48,6 +48,7 @@ object Spectator {
     }
 
     fun register() {
+        @Suppress("DuplicatedCode")
         onDamage.register()
         onInteract.register()
         onDrop.register()
@@ -60,10 +61,12 @@ object Spectator {
         onAdvancement.register()
     }
 
+    @Suppress("unused")
     private fun getSettings(uuid: UUID): SpecCollection {
         return specSettings.getOrPut(uuid) { SpecCollection() }
     }
 
+    @Suppress("unused")
     fun setSpectator(player: Player) {
         if (isSpectator(player.uniqueId)) return
         addSpectator(player.uniqueId)
@@ -73,6 +76,7 @@ object Spectator {
         //GUIBuilder(player, GUI.SPEC_HOTBAR).player() TODO
     }
 
+    @Suppress("unused")
     fun unsetSpectator(player: Player) {
         if (!isSpectator(player.uniqueId)) return
         removeSpectator(player.uniqueId)
@@ -205,6 +209,7 @@ object Spectator {
         return specs.contains(uuid)
     }
 
+    @Suppress("unused")
     private fun isHidden(uuid: UUID): Boolean {
         return specSettings[uuid]?.hide == Visibility.HIDDEN
     }
@@ -225,7 +230,7 @@ object Spectator {
     /*
     Hide System
      */
-    fun addSpectator(uuid: UUID) {
+    private fun addSpectator(uuid: UUID) {
         if (!specs.contains(uuid))
             specs.add(uuid)
     }
@@ -234,7 +239,7 @@ object Spectator {
         specSettings[uuid]?.hide = Visibility.HIDDEN
     }
 
-    fun removeSpectator(uuid: UUID) {
+    private fun removeSpectator(uuid: UUID) {
         specs.remove(uuid)
     }
 
@@ -482,6 +487,7 @@ object Spectator {
 //        }
 //    }
 
+    @Suppress("unused")
     private fun teleportRandom(player: Player) {
         val list = ArrayList<Player>()
         for (onlinePlayer in onlinePlayers) {

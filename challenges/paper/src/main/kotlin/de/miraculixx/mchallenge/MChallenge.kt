@@ -27,7 +27,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
 import java.nio.file.Paths
@@ -87,9 +86,11 @@ class MChallenge : KSpigot() {
         val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
 
         // Define version
-        val versionSplit = server.minecraftVersion.split('.')
-        majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
-        minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
+        // Too much work to remove version compatibility
+        // But we don't care for the old versions
+        // So this will be one of those classic legacy things everyone hates in applications
+        majorVersion = 20
+        minorVersion = 4
 
         // Configure Brigadier commands
         ChallengeCommand()

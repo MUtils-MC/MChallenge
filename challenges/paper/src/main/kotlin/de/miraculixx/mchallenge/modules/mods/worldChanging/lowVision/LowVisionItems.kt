@@ -6,7 +6,6 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mvanilla.messages.*
-import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
@@ -14,7 +13,7 @@ class LowVisionItems : ItemProvider {
     val selected: MutableSet<Material> = mutableSetOf()
     var filter: String? = null
 
-    private val allMaterials = Material.values().filter { it.isBlock && !it.isAir }.toMutableSet()
+    private val allMaterials = Material.entries.filter { it.isBlock && !it.isAir }.toMutableSet()
 
     init {
         allMaterials.removeAll(setOf(Material.LAVA, Material.END_PORTAL, Material.NETHER_PORTAL, Material.END_GATEWAY))

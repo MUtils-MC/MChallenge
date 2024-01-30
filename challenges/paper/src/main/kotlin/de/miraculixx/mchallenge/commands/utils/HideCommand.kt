@@ -16,7 +16,6 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 class HideCommand {
-    @Suppress("unused")
     val hide = commandTree("hide", { sender: CommandSender -> sender.hasPermission("mutils.hide") }) {
         handleVisibility(true)
     }
@@ -30,8 +29,8 @@ class HideCommand {
         playerExecutor { player, _ ->
             onlinePlayers.forEach { target ->
                 if (target == player) return@forEach
-                if (hide) target.hidePlayer(de.miraculixx.mchallenge.PluginManager, player)
-                else target.showPlayer(de.miraculixx.mchallenge.PluginManager, player)
+                if (hide) target.hidePlayer(PluginManager, player)
+                else target.showPlayer(PluginManager, player)
             }
             player.sendMessage(prefix + msg("command.hide.${if (hide) "hide" else "show"}"))
         }
@@ -41,8 +40,8 @@ class HideCommand {
                 onlinePlayers.forEach { target ->
                     sources.forEach { source ->
                         if (source != target) {
-                            if (hide) target.hidePlayer(de.miraculixx.mchallenge.PluginManager, source)
-                            else target.showPlayer(de.miraculixx.mchallenge.PluginManager, source)
+                            if (hide) target.hidePlayer(PluginManager, source)
+                            else target.showPlayer(PluginManager, source)
                         }
                     }
                 }

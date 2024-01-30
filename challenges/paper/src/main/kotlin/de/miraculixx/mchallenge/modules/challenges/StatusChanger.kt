@@ -6,40 +6,43 @@ import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.modules.mods.misc.anvilCrusher.AnvilCrusher
-import de.miraculixx.mchallenge.modules.mods.misc.areaTimer.AreaTimer
-import de.miraculixx.mchallenge.modules.mods.multiplayer.blockAsync.BlockAsync
-import de.miraculixx.mchallenge.modules.mods.misc.blockWall.BlockWall
-import de.miraculixx.mchallenge.modules.mods.simple.boostUp.BoostUp
-import de.miraculixx.mchallenge.modules.mods.misc.checkpoints.Checkpoints
-import de.miraculixx.mchallenge.modules.mods.multiplayer.collectBattle.CollectBattle
-import de.miraculixx.mchallenge.modules.mods.multiplayer.damageDuel.DamageDuell
-import de.miraculixx.mchallenge.modules.mods.simple.damageMultiplier.DamageMultiplier
-import de.miraculixx.mchallenge.modules.mods.simple.damager.Damager
-import de.miraculixx.mchallenge.modules.mods.worldChanging.dimSwap.DimSwap
-import de.miraculixx.mchallenge.modules.mods.simple.disabled.Disabled
-import de.miraculixx.mchallenge.modules.mods.simple.fly.FLY
 import de.miraculixx.mchallenge.modules.mods.force.forceHunt.ForceHunt
-import de.miraculixx.mchallenge.modules.mods.misc.ghost.Ghost
-import de.miraculixx.mchallenge.modules.mods.misc.gravity.GravityManager
 import de.miraculixx.mchallenge.modules.mods.force.huntItems.ItemHunt
 import de.miraculixx.mchallenge.modules.mods.force.huntMob.MobHunt
-import de.miraculixx.mchallenge.modules.mods.misc.inTime.InTime
 import de.miraculixx.mchallenge.modules.mods.force.itemDecay.ItemDecay
-import de.miraculixx.mchallenge.modules.mods.multiplayer.limitedSkills.LimitedSkills
-import de.miraculixx.mchallenge.modules.mods.worldChanging.lowVision.LowVision
-import de.miraculixx.mchallenge.modules.mods.multiplayer.mirror.Mirror
-import de.miraculixx.mchallenge.modules.mods.randomizer.mobBlocks.MobBlocks
-import de.miraculixx.mchallenge.modules.mods.simple.noDoubleKill.NoDoubleKills
-import de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems.NoSameItem
-import de.miraculixx.mchallenge.modules.mods.randomizer.*
+import de.miraculixx.mchallenge.modules.mods.misc.anvilCrusher.AnvilCrusher
+import de.miraculixx.mchallenge.modules.mods.misc.areaTimer.AreaTimer
+import de.miraculixx.mchallenge.modules.mods.misc.blockWall.BlockWall
+import de.miraculixx.mchallenge.modules.mods.misc.checkpoints.Checkpoints
+import de.miraculixx.mchallenge.modules.mods.misc.chunkEffects.ChunkEffects
+import de.miraculixx.mchallenge.modules.mods.misc.ghost.Ghost
+import de.miraculixx.mchallenge.modules.mods.misc.gravity.GravityManager
+import de.miraculixx.mchallenge.modules.mods.misc.inTime.InTime
 import de.miraculixx.mchallenge.modules.mods.misc.realistic.Realistic
-import de.miraculixx.mchallenge.modules.mods.simple.rightTools.RightTools
-import de.miraculixx.mchallenge.modules.mods.multiplayer.rivalCollect.RivalCollect
 import de.miraculixx.mchallenge.modules.mods.misc.rocket.Rocket
-import de.miraculixx.mchallenge.modules.mods.randomizer.runRandom.RunRandomizer
 import de.miraculixx.mchallenge.modules.mods.misc.snake.Snake
+import de.miraculixx.mchallenge.modules.mods.misc.trafficlight.TrafficLight
+import de.miraculixx.mchallenge.modules.mods.misc.vampire.Vampire
+import de.miraculixx.mchallenge.modules.mods.multiplayer.blockAsync.BlockAsync
+import de.miraculixx.mchallenge.modules.mods.multiplayer.collectBattle.CollectBattle
+import de.miraculixx.mchallenge.modules.mods.multiplayer.damageDuel.DamageDuell
+import de.miraculixx.mchallenge.modules.mods.multiplayer.hitOrder.HitOrder
+import de.miraculixx.mchallenge.modules.mods.multiplayer.limitedSkills.LimitedSkills
+import de.miraculixx.mchallenge.modules.mods.multiplayer.mirror.Mirror
+import de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems.NoSameItem
+import de.miraculixx.mchallenge.modules.mods.multiplayer.rivalCollect.RivalCollect
+import de.miraculixx.mchallenge.modules.mods.multiplayer.tron.Tron
+import de.miraculixx.mchallenge.modules.mods.randomizer.*
+import de.miraculixx.mchallenge.modules.mods.randomizer.mobBlocks.MobBlocks
+import de.miraculixx.mchallenge.modules.mods.randomizer.runRandom.RunRandomizer
 import de.miraculixx.mchallenge.modules.mods.randomizer.sneakSpawn.SneakSpawn
+import de.miraculixx.mchallenge.modules.mods.simple.boostUp.BoostUp
+import de.miraculixx.mchallenge.modules.mods.simple.damageMultiplier.DamageMultiplier
+import de.miraculixx.mchallenge.modules.mods.simple.damager.Damager
+import de.miraculixx.mchallenge.modules.mods.simple.disabled.Disabled
+import de.miraculixx.mchallenge.modules.mods.simple.fly.FLY
+import de.miraculixx.mchallenge.modules.mods.simple.noDoubleKill.NoDoubleKills
+import de.miraculixx.mchallenge.modules.mods.simple.rightTools.RightTools
 import de.miraculixx.mchallenge.modules.mods.simple.stayAway.StayAway
 import de.miraculixx.mchallenge.modules.mods.misc.trafficlight.TrafficLight
 import de.miraculixx.mchallenge.modules.mods.multiplayer.tron.Tron
@@ -53,6 +56,8 @@ import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkClearer.ChunkCle
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkDecay.ChunkDecay
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkFlattener.ChunkFlattener
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkSync.ChunkSync
+import de.miraculixx.mchallenge.modules.mods.worldChanging.dimSwap.DimSwap
+import de.miraculixx.mchallenge.modules.mods.worldChanging.lowVision.LowVision
 import de.miraculixx.mchallenge.modules.mods.worldChanging.mineField.MineFieldWorld
 import de.miraculixx.mchallenge.modules.mods.worldChanging.oneBiome.OneBiome
 import de.miraculixx.mchallenge.modules.mods.worldChanging.worldDecay.WorldDecay
@@ -117,6 +122,7 @@ class StatusChanger {
             Challenges.LOW_VISION -> LowVision()
             Challenges.CHUNK_SYNC -> ChunkSync()
             Challenges.HIT_ORDER -> HitOrder()
+            Challenges.CHUNK_EFFECTS -> ChunkEffects()
             Challenges.TICK_RATE -> TickRateChanger()
 //            Challenges.HALLOWEEN -> HalloweenChallenge()
         }

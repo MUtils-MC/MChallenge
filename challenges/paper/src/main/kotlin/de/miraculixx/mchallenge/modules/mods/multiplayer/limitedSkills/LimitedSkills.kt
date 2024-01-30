@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 package de.miraculixx.mchallenge.modules.mods.multiplayer.limitedSkills
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge

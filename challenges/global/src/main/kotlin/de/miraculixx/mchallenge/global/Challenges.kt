@@ -69,6 +69,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     LOW_VISION(setOf(ChallengeTags.HARD), Icon("TINTED_GLASS")),
     CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX")),
     HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
+    CHUNK_EFFECTS(setOf(ChallengeTags.FUN), Icon("LINGERING_POTION"))
     TICK_RATE(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
     ;
 
@@ -302,6 +303,10 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                 "visual" to ChallengeBoolSetting("WRITABLE_BOOK", true)
             )
 
+            CHUNK_EFFECTS -> mapOf(
+                "random" to ChallengeBoolSetting("DROPPER", false)
+            )
+                
             TICK_RATE -> mapOf(
                 "ticks" to ChallengeSectionSetting(
                     "RECOVERY_COMPASS", mapOf(
