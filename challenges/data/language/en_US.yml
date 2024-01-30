@@ -347,7 +347,7 @@ items:
       l: "Only one player at a time is allowed<br>to damage mobs. But this player<br>changes on every hit!"
     CHUNK_EFFECTS:
       n: "Chunk Effects"
-      l: "Every Chunk gives you a different Effect"
+      l: "Every Chunk gives you a different Effect."
   chS:
     FLY:
       power:
