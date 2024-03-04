@@ -85,8 +85,8 @@ event:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
   itemHunt:
-    collect: "<green><input-1> collected <input-2>!"
-    success: "<green>Congratulations! You found all <input-1> items"
+    collect: "<green><input-1> gesammelt <input-2>!"
+    success: "<green>Glückwunsch! Du hast alle <input-1> items gefunden"
   itemDecay:
     time: "Verschwindet in"
     paused: "Anzeige pausiert (ausgewählt)"
@@ -128,7 +128,7 @@ event:
   hitOrder:
     nextPlayer: "Aktueller Spieler: "
   tickRate:
-    gameSpeed: "Game Speed"
+    gameSpeed: "Spielgeschwindigkeit"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
