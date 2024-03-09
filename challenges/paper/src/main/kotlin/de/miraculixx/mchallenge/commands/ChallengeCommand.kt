@@ -7,10 +7,10 @@ import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.utils.getAccountStatus
-import de.miraculixx.mchallenge.utils.gui.GUITypes
-import de.miraculixx.mchallenge.utils.gui.actions.GUIChallenge
-import de.miraculixx.mchallenge.utils.gui.buildInventory
-import de.miraculixx.mchallenge.utils.gui.items.ItemsChallenge
+import de.miraculixx.mchallenge.gui.GUITypes
+import de.miraculixx.mchallenge.gui.actions.GUIChallenge
+import de.miraculixx.mchallenge.gui.buildInventory
+import de.miraculixx.mchallenge.gui.items.ItemsChallenge
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.*

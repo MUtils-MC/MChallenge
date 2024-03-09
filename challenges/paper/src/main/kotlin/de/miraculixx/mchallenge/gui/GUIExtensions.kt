@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.utils.gui
+package de.miraculixx.mchallenge.gui
 
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.InventoryManager

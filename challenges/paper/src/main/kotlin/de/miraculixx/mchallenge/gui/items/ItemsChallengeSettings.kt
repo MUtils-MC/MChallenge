@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.utils.gui.items
+package de.miraculixx.mchallenge.gui.items
 
 import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.challenge.api.settings.*

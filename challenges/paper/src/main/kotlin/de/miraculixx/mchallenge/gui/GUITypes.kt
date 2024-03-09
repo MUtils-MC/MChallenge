@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.utils.gui
+package de.miraculixx.mchallenge.gui
 
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp

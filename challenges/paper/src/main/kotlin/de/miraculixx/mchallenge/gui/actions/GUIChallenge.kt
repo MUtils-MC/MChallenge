@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.utils.gui.actions
+package de.miraculixx.mchallenge.gui.actions
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.mchallenge.global.Challenges
@@ -7,9 +7,9 @@ import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.utils.getAccountStatus
-import de.miraculixx.mchallenge.utils.gui.GUITypes
-import de.miraculixx.mchallenge.utils.gui.buildInventory
-import de.miraculixx.mchallenge.utils.gui.items.ItemsChallengeSettings
+import de.miraculixx.mchallenge.gui.GUITypes
+import de.miraculixx.mchallenge.gui.buildInventory
+import de.miraculixx.mchallenge.gui.items.ItemsChallengeSettings
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.InventoryUtils.get
 import de.miraculixx.mcore.gui.data.CustomInventory
