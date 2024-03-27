@@ -1,10 +1,14 @@
 package de.miraculixx.mutils.utils.actions
 
+import de.miraculixx.challenge.api.data.CustomGameRule
+import de.miraculixx.challenge.api.data.MergedGameRule
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mutils.globalRules
+import de.miraculixx.mutils.module.CustomGameRuleListener
+import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mvanilla.messages.msg
 import de.miraculixx.mvanilla.messages.namespace
 import de.miraculixx.mvanilla.messages.plus
@@ -33,28 +37,40 @@ class GUIGameRules(world: World?) : GUIEvent {
             return@event
         } else if (meta.customModel != 1) return@event
         val ruleKey = meta.persistentDataContainer.get(NamespacedKey(namespace, "gui.gamerules.key"), PersistentDataType.STRING) ?: return@event
-        val gameRule = GameRule.getByName(ruleKey) ?: return@event
+        val gameRule = GameRule.getByName(ruleKey)
+        val customGameRule = enumOf<CustomGameRule>(ruleKey)
+        val mergedGameRule = MergedGameRule(
+            gameRule?.name ?: customGameRule?.name ?: return@event,
+            gameRule ?: customGameRule ?: return@event,
+            gameRule?.translationKey() ?: customGameRule?.key ?: return@event
+        )
+
         val isGlobal = world == null
         val click = it.click
-        val rule = if (isGlobal) globalRules[gameRule.name] else world?.getGameRuleValue(gameRule)
+        val rule = if (world == null) {
+            globalRules[mergedGameRule.name]
+        } else {
+            if (gameRule != null) world.getGameRuleValue(gameRule)
+            else WorldManager.getWorldData(world.uid)?.customGameRules?.get(customGameRule)
+        }
 
         if (click == ClickType.SWAP_OFFHAND) {
-            if (rule == null) {
-                player.soundEnable()
-                globalRules[gameRule.name] = worlds[0].getGameRuleDefault(gameRule) ?: 0
-            } else {
-                player.soundDisable()
-                globalRules.remove(gameRule.name)
-            }
+//            if (rule == null) {
+//                player.soundEnable()
+//                globalRules[gameRule.name] = worlds[0].getGameRuleDefault(gameRule) ?: 0
+//            } else {
+//                player.soundDisable()
+//                globalRules.remove(gameRule.name)
+//            }
         } else {
             when (rule) {
                 is Boolean -> {
                     if (rule) {
                         player.soundDisable()
-                        gameRule.changeValue(false, isGlobal, player, world)
+                        mergedGameRule.changeValue(false, player, world)
                     } else {
                         player.soundEnable()
-                        gameRule.changeValue(true, isGlobal, player, world)
+                        mergedGameRule.changeValue(true, player, world)
                     }
                 }
 
@@ -67,13 +83,13 @@ class GUIGameRules(world: World?) : GUIEvent {
                                 return@event
                             }
                             val newValue = (rule - if (isShift) 50 else 1).coerceAtLeast(0)
-                            gameRule.changeValue(newValue, isGlobal, player, world)
+                            mergedGameRule.changeValue(newValue, player, world)
                             player.soundDown()
                         }
 
                         ClickType.LEFT, ClickType.SHIFT_LEFT -> {
                             val newValue = rule + if (isShift) 50 else 1
-                            gameRule.changeValue(newValue, isGlobal, player, world)
+                            mergedGameRule.changeValue(newValue, player, world)
                             player.soundUp()
                         }
 
@@ -92,15 +108,27 @@ class GUIGameRules(world: World?) : GUIEvent {
         inv.update()
     }
 
-    private fun <T : Any> GameRule<*>.changeValue(value: T, isGlobal: Boolean, player: Player, world: World?): Boolean {
-        return if (isGlobal) {
+    private fun <T : Any> MergedGameRule.changeValue(value: T, player: Player, world: World?): Boolean {
+        return if (world == null) {
             globalRules[name] = value
             true
         } else {
             /**
              * Must be cast to [Boolean] or [Int] for valid gamerules
              */
-            val success = (this as? GameRule<T>)?.let { v -> world?.setGameRule(v, value) } != null
+            val success = if (sourceEnum is CustomGameRule) {
+                when (sourceEnum) {
+                    CustomGameRule.BLOCK_UPDATES -> {
+                        val bool = value as? Boolean ?: false
+                        if (bool) CustomGameRuleListener.blockedPhysics.remove(world.uid)
+                        else CustomGameRuleListener.blockedPhysics.add(world.uid)
+                    }
+                }
+                true
+            } else {
+                val rule = GameRule.getByName(name)
+                (rule as? GameRule<T>)?.let { world.setGameRule(it, value) } != null
+            }
             if (!success) player.soundError()
             success
         }

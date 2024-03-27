@@ -1,25 +1,32 @@
 package de.miraculixx.mtimer.gui.actions
 
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
 import de.miraculixx.mtimer.MTimer
-import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.data.TimerPresets
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerPresets
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsDesignEditor
 import de.miraculixx.mtimer.gui.items.ItemsOverview
+import de.miraculixx.mtimer.vanilla.data.TimerDisplaySlot
 import de.miraculixx.mtimer.vanilla.data.TimerGUI
 import de.miraculixx.mtimer.vanilla.module.Timer
 import de.miraculixx.mtimer.vanilla.module.TimerManager
+import de.miraculixx.mtimer.vanilla.module.settings
 import de.miraculixx.mvanilla.extensions.*
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.emptyComponent
 import de.miraculixx.mvanilla.messages.namespace
+import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
+import org.bukkit.scoreboard.DisplaySlot
 import java.io.File
 import java.util.*
 
@@ -48,21 +55,23 @@ class GUIDesigns(private val isPersonal: Boolean, private val timer: Timer) : GU
                 TimerGUI.DESIGN_EDITOR.buildInventory(player, player.uniqueId.toString(), ItemsDesignEditor(design, uuid), GUIDesignEditor(design, uuid, isPersonal))
             }
 
-            2 -> { // TODO
-//                player.closeInventory()
-//                val bridge = MTimer.bridgeAPI
-//                if (bridge == null) {
-//                    player.soundError()
-//                    player.sendMessage(
-//                        prefix + cmp("The public library is not implemented yet!\nCheckout ", cError) +
-//                                cmp("MUtils.de", cError, underlined = true).clickEvent(ClickEvent.openUrl("https://mutils.de")) +
-//                                cmp(" for more information", cError)
-//                    )
-////                    player.sendMessage(msgNoBridge)
-//                } else {
-//                    TODO()
-//                    //Open GUI
-//                }
+            2 -> {
+                player.click()
+                val targets = timer.playerID?.let { id -> Bukkit.getPlayer(id)?.let { listOf(it) } ?: emptyList() } ?: onlinePlayers.toList()
+                settings.displaySlot = when (settings.displaySlot) {
+                    TimerDisplaySlot.HOTBAR -> {
+                        targets.forEach { p ->
+                            p.showBossBar(timer.bossBar)
+                            p.sendActionBar(emptyComponent())
+                        }
+                        TimerDisplaySlot.BOSSBAR
+                    }
+                    TimerDisplaySlot.BOSSBAR -> {
+                        targets.forEach { p -> p.hideBossBar(timer.bossBar) }
+                        TimerDisplaySlot.HOTBAR
+                    }
+                }
+                inv.update()
             }
 
             10 -> {

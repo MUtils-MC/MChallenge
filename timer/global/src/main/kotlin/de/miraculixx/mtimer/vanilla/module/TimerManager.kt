@@ -1,6 +1,6 @@
 package de.miraculixx.mtimer.vanilla.module
 
-import de.miraculixx.mtimer.data.*
+import de.miraculixx.mtimer.vanilla.data.*
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.encodeToString
 import java.io.File
@@ -8,6 +8,7 @@ import java.util.*
 
 lateinit var rules: Rules
 lateinit var goals: Goals
+lateinit var settings: Settings
 
 object TimerManager {
     lateinit var globalTimer: Timer

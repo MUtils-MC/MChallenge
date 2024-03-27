@@ -1,5 +1,7 @@
 package de.miraculixx.mutils.utils.items
 
+import de.miraculixx.challenge.api.data.CustomGameRule
+import de.miraculixx.challenge.api.data.MergedGameRule
 import de.miraculixx.kpaper.extensions.bukkit.render
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
@@ -7,6 +9,7 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mutils.globalRules
+import de.miraculixx.mutils.module.WorldManager
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -28,24 +31,32 @@ class ItemsGameRules(private val world: World?) : ItemProvider {
     override fun getBooleanMap(from: Int, to: Int): Map<ItemStack, Boolean> {
         return buildMap {
             val isGlobal = world == null
-            val gameRules = GameRule.values().toList()
-            gameRules.subList(from, to.coerceAtMost(gameRules.size - 1)).forEach {
-                val value = if (isGlobal) globalRules[it.name] else world?.getGameRuleValue(it)
+            val customRules = CustomGameRule.entries.map { MergedGameRule(it.name, it, it.key) }
+            val gameRules = GameRule.values().map { MergedGameRule(it.name, it, it.translationKey()) }
+            val allRules = customRules + gameRules
+            allRules.subList(from, to.coerceAtMost(gameRules.size - 1)).forEach {
+
+                val value = if (world == null) globalRules[it.name] else {
+                    if (it.sourceEnum is CustomGameRule) {
+                        WorldManager.getWorldData(world.uid)?.customGameRules?.get(it.sourceEnum)
+                    } else world.getGameRuleValue(it.sourceEnum as GameRule<*>)
+                }
                 val isSet = value != null
 
-                put(itemStack(getIcon(it)) {
+                put(itemStack(getIcon(it.name)) {
                     meta {
-                        name = cmp(fancyName(it.name), cHighlight)
+                        val rawKey = it.key.removePrefix("gamerule.")
+                        name = cmp(fancyName(rawKey), cHighlight)
                         customModel = 1
                         persistentDataContainer.set(NamespacedKey(namespace, "gui.gamerules.key"), PersistentDataType.STRING, it.name)
-                        lore(listOf(cmp("Key: ${it.name}", NamedTextColor.DARK_GRAY))
+                        lore(listOf(cmp("Key: $rawKey", NamedTextColor.DARK_GRAY))
                                 + infoLore
-                                + getTranslated(it.translationKey())
+                                + getTranslated(it.key)
                                 + settingLore
                                 + buildList {
-                                    if (isGlobal) add(cmp("   Override: ") + cmp(if (isSet) msgTrue else msgFalse, cHighlight))
-                                    add(cmp("   Value: ") + cmp(value.stringify(), cHighlight))
-                                }
+                            if (isGlobal) add(cmp("   Override: ") + cmp(if (isSet) msgTrue else msgFalse, cHighlight))
+                            add(cmp("   Value: ") + cmp(value.stringify(), cHighlight))
+                        }
                                 + getClickLore(isGlobal, value)
                         )
                     }
@@ -92,43 +103,57 @@ class ItemsGameRules(private val world: World?) : ItemProvider {
         }
     }
 
-    private fun getIcon(gameRule: GameRule<*>): Material {
+    private fun getIcon(gameRule: String): Material {
         return when (gameRule) {
-            GameRule.ANNOUNCE_ADVANCEMENTS -> Material.KNOWLEDGE_BOOK
-            GameRule.COMMAND_BLOCK_OUTPUT -> Material.COMMAND_BLOCK
-            GameRule.DISABLE_ELYTRA_MOVEMENT_CHECK -> Material.ELYTRA
-            GameRule.DO_DAYLIGHT_CYCLE -> Material.CLOCK
-            GameRule.DO_ENTITY_DROPS -> Material.MUTTON
-            GameRule.DO_FIRE_TICK -> Material.FLINT_AND_STEEL
-            GameRule.DO_LIMITED_CRAFTING -> Material.CRAFTING_TABLE
-            GameRule.DO_MOB_LOOT -> Material.ROTTEN_FLESH
-            GameRule.DO_MOB_SPAWNING -> Material.ZOMBIE_HEAD
-            GameRule.DO_TILE_DROPS -> Material.DIRT
-            GameRule.DO_WEATHER_CYCLE -> Material.DAYLIGHT_DETECTOR
-            GameRule.KEEP_INVENTORY -> Material.ENDER_CHEST
-            GameRule.LOG_ADMIN_COMMANDS -> Material.WRITABLE_BOOK
-            GameRule.MOB_GRIEFING -> Material.CREEPER_HEAD
-            GameRule.NATURAL_REGENERATION -> Material.BEETROOT
-            GameRule.REDUCED_DEBUG_INFO -> Material.STRUCTURE_BLOCK
-            GameRule.SEND_COMMAND_FEEDBACK -> Material.REPEATING_COMMAND_BLOCK
-            GameRule.SHOW_DEATH_MESSAGES -> Material.PLAYER_HEAD
-            GameRule.SPECTATORS_GENERATE_CHUNKS -> Material.WHITE_STAINED_GLASS
-            GameRule.DISABLE_RAIDS -> Material.BELL
-            GameRule.DO_INSOMNIA -> Material.PHANTOM_MEMBRANE
-            GameRule.DO_IMMEDIATE_RESPAWN -> Material.RESPAWN_ANCHOR
-            GameRule.DROWNING_DAMAGE -> Material.POTION
-            GameRule.FALL_DAMAGE -> Material.FEATHER
-            GameRule.FIRE_DAMAGE -> Material.CAMPFIRE
-            GameRule.FREEZE_DAMAGE -> Material.SNOW
-            GameRule.DO_PATROL_SPAWNING -> Material.CROSSBOW
-            GameRule.DO_TRADER_SPAWNING -> Material.WANDERING_TRADER_SPAWN_EGG
-            GameRule.DO_WARDEN_SPAWNING -> Material.SCULK_SHRIEKER
-            GameRule.FORGIVE_DEAD_PLAYERS -> Material.GUNPOWDER
-            GameRule.UNIVERSAL_ANGER -> Material.GOLDEN_SWORD
-            GameRule.SPAWN_RADIUS -> Material.ARROW
-            GameRule.MAX_ENTITY_CRAMMING -> Material.SKELETON_SKULL
-            GameRule.MAX_COMMAND_CHAIN_LENGTH -> Material.CHAIN_COMMAND_BLOCK
-            GameRule.PLAYERS_SLEEPING_PERCENTAGE -> Material.LIGHT_BLUE_BED
+            "announceAdvancements" -> Material.KNOWLEDGE_BOOK
+            "commandBlockOutput" -> Material.COMMAND_BLOCK
+            "disableElytraMovementCheck" -> Material.ELYTRA
+            "doDaylightCycle" -> Material.CLOCK
+            "doEntityDrops" -> Material.MUTTON
+            "doFireTick" -> Material.FLINT_AND_STEEL
+            "doLimitedCrafting" -> Material.CRAFTING_TABLE
+            "doMobLoot" -> Material.ROTTEN_FLESH
+            "doMobSpawning" -> Material.ZOMBIE_HEAD
+            "doTileDrops" -> Material.DIRT
+            "doWeatherCycle" -> Material.DAYLIGHT_DETECTOR
+            "keepInventory" -> Material.ENDER_CHEST
+            "logAdminCommands" -> Material.WRITABLE_BOOK
+            "mobGriefing" -> Material.CREEPER_HEAD
+            "naturalRegeneration" -> Material.BEETROOT
+            "reducedDebugInfo" -> Material.STRUCTURE_BLOCK
+            "sendCommandFeedback" -> Material.REPEATING_COMMAND_BLOCK
+            "showDeathMessages" -> Material.PLAYER_HEAD
+            "spectatorsGenerateChunks" -> Material.WHITE_STAINED_GLASS
+            "disableRaids" -> Material.BELL
+            "doInsomnia" -> Material.PHANTOM_MEMBRANE
+            "doImmediateRespawn" -> Material.RESPAWN_ANCHOR
+            "drowningDamage" -> Material.POTION
+            "fallDamage" -> Material.FEATHER
+            "fireDamage" -> Material.CAMPFIRE
+            "freezeDamage" -> Material.SNOW_BLOCK
+            "doPatrolSpawning" -> Material.CROSSBOW
+            "doTraderSpawning" -> Material.WANDERING_TRADER_SPAWN_EGG
+            "doWardenSpawning" -> Material.SCULK_SHRIEKER
+            "forgiveDeadPlayers" -> Material.GUNPOWDER
+            "universalAnger" -> Material.GOLDEN_SWORD
+            "spawnRadius" -> Material.ARROW
+            "maxEntityCramming" -> Material.SKELETON_SKULL
+            "maxCommandChainLength" -> Material.CHAIN_COMMAND_BLOCK
+            "playersSleepingPercentage" -> Material.LIGHT_BLUE_BED
+            "tntExplosionDropDecay" -> Material.TNT
+            "globalSoundEvents" -> Material.JUKEBOX
+            "doVinesSpread" -> Material.VINE
+            "waterSourceConversion" -> Material.WATER_BUCKET
+            "lavaSourceConversion" -> Material.LAVA_BUCKET
+            "mobExplosionDropDecay" -> Material.CREEPER_HEAD
+            "blockExplosionDropDecay" -> Material.TNT
+            "randomTickSpeed" -> Material.OBSERVER
+            "commandModificationBlockLimit" -> Material.WOODEN_AXE
+            "snowAccumulationHeight" -> Material.SNOW
+
+            //Custom Game Rules
+            "PVP" -> Material.DIAMOND_SWORD
+            "BLOCK_UPDATES" -> Material.SAND
             else -> Material.PAPER
         }
     }

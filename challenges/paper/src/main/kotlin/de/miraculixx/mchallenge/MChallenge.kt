@@ -1,7 +1,6 @@
 package de.miraculixx.mchallenge
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.challenge.api.settings.SettingsData
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.kpaper.runnables.taskRunLater
@@ -17,8 +16,9 @@ import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.global.RuleListener
+import de.miraculixx.mchallenge.modules.packs.ResourcePacks
 import de.miraculixx.mchallenge.modules.spectator.Spectator
-import de.miraculixx.mvanilla.extensions.readJsonString
+import de.miraculixx.mchallenge.utils.config.ConfigManager
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
@@ -26,8 +26,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import java.io.File
 import java.nio.file.Paths
 import kotlin.time.Duration.Companion.milliseconds
@@ -37,15 +35,8 @@ class MChallenge : KSpigot() {
     companion object {
         lateinit var INSTANCE: KSpigot
         val configFolder = File("plugins/MUtils/Challenges")
-        lateinit var localization: Localization
-        lateinit var settings: SettingsData
         lateinit var bridgeAPI: MUtilsBridge
-        lateinit var positionCommand: PositionCommand
-        lateinit var backpackCommand: BackpackCommand
     }
-
-    private lateinit var configFile: File
-    private lateinit var settingsFile: File
 
     private var isLoaded = false
     private var isAllowedToStart = true
@@ -65,11 +56,13 @@ class MChallenge : KSpigot() {
 
             // Global Listener Registration
             DeathListener
-            //Spectator.register() TODO
 
             // Run after init & sync
             taskRunLater(1) {
                 RuleListener
+                CoroutineScope(Dispatchers.Default).launch {
+                    ResourcePacks.entries // pre load all resource pack data
+                }
             }
         }
     }
@@ -80,7 +73,6 @@ class MChallenge : KSpigot() {
         debug = true
 
         CommandAPI.onLoad(CommandAPIBukkitConfig(this).verboseOutput(false).silentLogs(true))
-        val languages = listOf("en_US", "de_DE", "es_ES").map { it to javaClass.getResourceAsStream("/language/$it.yml") }
 
         // Define version
         val versionSplit = server.minecraftVersion.split('.')
@@ -95,16 +87,12 @@ class MChallenge : KSpigot() {
         HideCommand()
         CustomRulesCommand()
         CompetitionCommand()
-        positionCommand = PositionCommand()
-        backpackCommand = BackpackCommand()
+        ConfigManager.addConfigurable(PositionCommand())
+        ConfigManager.addConfigurable(BackpackCommand())
 
         // Load configuration
-        if (!configFolder.exists()) configFolder.mkdirs()
-        configFile = File("${configFolder.path}/settings.json")
-        settingsFile = File("${configFolder.path}/config.json")
-        ChallengeManager.load(configFile)
-
-        settings = json.decodeFromString<SettingsData>(settingsFile.readJsonString(true))
+        ConfigManager.addConfigurable(ChallengeManager)
+        val settings = ConfigManager.settings
         debug = settings.debug
 
         // Reset World
@@ -126,7 +114,6 @@ class MChallenge : KSpigot() {
 
         // Login with MUtils account
         CoroutineScope(Dispatchers.Default).launch {
-            localization = Localization(File("${configFolder.path}/language"), settings.language, languages, challengePrefix)
             Spectator.loadData()
 
             // Connect Bridge
@@ -154,12 +141,7 @@ class MChallenge : KSpigot() {
     override fun shutdown() {
         CommandAPI.onDisable()
         ChallengeManager.shutDown()
-        ChallengeManager.save(configFile)
-//        Spectator.saveData()
-
-        settingsFile.writeText(json.encodeToString(settings))
-        positionCommand.saveFile()
-        backpackCommand.saveFile()
+        ConfigManager.save()
     }
 }
 

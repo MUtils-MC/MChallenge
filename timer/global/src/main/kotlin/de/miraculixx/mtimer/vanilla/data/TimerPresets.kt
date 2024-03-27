@@ -1,20 +1,21 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
+import net.kyori.adventure.bossbar.BossBar
 import java.util.*
 
 @Suppress("BooleanLiteralArgument")
 enum class TimerPresets(val uuid: UUID, val design: TimerDesign) {
     PRESET(
         UUID.fromString("41fb61c2-7c9c-11ed-a1eb-0242ac120002"), TimerDesign(
-          TimerDesignPart(
-              "<prefix><d><h><m><s><suffix>",
-              TimerDesignValue(false, false, "", " "),
-              TimerDesignValue(true, true, "", " "),
-              TimerDesignValue(true, true, "", " "),
-              TimerDesignValue(true, true, "", " "),
-              TimerDesignValue(false, true, "", ""),
-              "", "", 0.05f
-          ),
+            TimerDesignPart(
+                "<prefix><d><h><m><s><suffix>",
+                TimerDesignValue(false, false, "", " "),
+                TimerDesignValue(true, true, "", " "),
+                TimerDesignValue(true, true, "", " "),
+                TimerDesignValue(true, true, "", " "),
+                TimerDesignValue(false, true, "", ""),
+                "", "", 0.05f
+            ),
             TimerDesignPart(
                 "<prefix><d><h><m><s><suffix>",
                 TimerDesignValue(false, false, "", " "),
@@ -69,7 +70,30 @@ enum class TimerPresets(val uuid: UUID, val design: TimerDesign) {
                 TimerDesignValue(false, true, "", "s"),
                 TimerDesignValue(false, true, "", ""),
                 "<b><gradient:#707CF7:#F658CF:<x>>Paused (", ")", 0.03f
-            ), "Galaxy (Animated)", "MUtils"
+            ), "Galaxy (Animated)", "MUtils", BossBar.Color.PINK
+        )
+    ),
+
+    BLACK_WHITE(
+        UUID.fromString("24576cac-451d-11ee-be56-0242ac120002"), TimerDesign(
+            TimerDesignPart(
+                "<prefix><d><h><m><s><suffix>",
+                TimerDesignValue(false, false, "", "d "),
+                TimerDesignValue(false, false, "", "h "),
+                TimerDesignValue(false, false, "", "m "),
+                TimerDesignValue(false, true, "", "s"),
+                TimerDesignValue(false, true, "", ""),
+                "<gradient:#E4E3E7:#585655:<x>><b>", "", 0.03f
+            ),
+            TimerDesignPart(
+                "<prefix><d><h><m><s><suffix>",
+                TimerDesignValue(false, false, "", "d "),
+                TimerDesignValue(false, false, "", "h "),
+                TimerDesignValue(false, false, "", "m "),
+                TimerDesignValue(false, true, "", "s"),
+                TimerDesignValue(false, true, "", ""),
+                "<gradient:#E4E3E7:#585655:<x>><b>Paused (", ")", 0.03f
+            ), "Black 'n White (Animated)", "MUtils", BossBar.Color.WHITE
         )
     )
     ;

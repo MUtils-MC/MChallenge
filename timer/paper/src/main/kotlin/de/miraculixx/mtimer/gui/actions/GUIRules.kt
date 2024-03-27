@@ -3,7 +3,7 @@ package de.miraculixx.mtimer.gui.actions
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
-import de.miraculixx.mtimer.data.Punishment
+import de.miraculixx.mtimer.vanilla.data.Punishment
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsOverview
 import de.miraculixx.mtimer.vanilla.data.TimerGUI

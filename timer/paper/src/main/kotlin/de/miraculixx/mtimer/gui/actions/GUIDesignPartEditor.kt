@@ -4,8 +4,8 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
-import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.data.TimerDesignValue
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerDesignValue
 import de.miraculixx.mtimer.gui.buildInventory
 import de.miraculixx.mtimer.gui.items.ItemsDesignEditor
 import de.miraculixx.mtimer.vanilla.data.TimerGUI

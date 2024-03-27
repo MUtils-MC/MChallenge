@@ -1,7 +1,10 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
 import de.miraculixx.mvanilla.data.UUIDSerializer
 import kotlinx.serialization.Serializable
+import net.kyori.adventure.bossbar.BossBar
+import net.kyori.adventure.key.Key
+import net.kyori.adventure.sound.Sound
 import java.util.*
 import kotlin.time.Duration
 
@@ -18,8 +21,10 @@ data class TimerData(
 data class TimerDesign(
     val running: TimerDesignPart,
     val idle: TimerDesignPart,
-    var name: String,
-    var owner: String
+    var name: String = "New Design",
+    var owner: String = "MUtils",
+    var barColor: BossBar.Color = BossBar.Color.BLUE,
+    var stopSound: TimerSound = TimerSound("minecraft:entity.ender_dragon.growl")
 )
 
 @Serializable
@@ -41,4 +46,10 @@ data class TimerDesignValue(
     var visibleOnNull: Boolean,
     var prefix: String,
     var suffix: String
+)
+
+@Serializable
+data class TimerSound(
+    var key: String,
+    var pitch: Float = 1f
 )

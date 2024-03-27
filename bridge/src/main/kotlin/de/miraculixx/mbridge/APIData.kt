@@ -27,4 +27,11 @@ data class ModrinthVersion(val name: String, val changelog: String, val files: L
 data class ModrinthFile(val url: String, val filename: String, val size: Long)
 
 @Serializable
-data class Styles(val color: String, val colorSec: String, val name: String)
+data class Styles(
+    val type: String = "Unknown",
+    val color: String = "",
+    val colorSec: String = "",
+    val name: String = "Unknown",
+    val desc: String = "Unknown",
+    val owned: Boolean = false,
+)

@@ -38,6 +38,13 @@ fun TimerGUI.buildInventory(player: Player, id: String, itemProvider: ItemProvid
                         customModel = 1
                     }
                     itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.PLUS_GREEN.value)
+                },
+                itemStack(Material.PAINTING) {
+                    meta {
+                        name = cmp(msgString("items.changeDisplay.n"), cHighlight)
+                        lore(msgList("items.changeDisplay.l", inline = "<grey>"))
+                        customModel = 2
+                    }
                 }
             )
         }

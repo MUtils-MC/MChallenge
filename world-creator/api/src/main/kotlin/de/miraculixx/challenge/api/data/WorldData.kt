@@ -3,6 +3,7 @@ package de.miraculixx.challenge.api.data
 import de.miraculixx.challenge.api.data.enums.BiomeAlgorithm
 import de.miraculixx.challenge.api.data.enums.Dimension
 import de.miraculixx.challenge.api.data.enums.VanillaGenerator
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 /**
@@ -18,6 +19,7 @@ import kotlinx.serialization.Serializable
  * @param biomeProvider Custom biome provider
  * @param chunkProviders Custom noise providers. Render order is -> Vanilla - Entry 1 - Entry 2 - ...
  * @param chunkDefaults Vanilla noise modifications
+ * @param customGameRules Custom game rule map - Defaults to default values
  */
 @Serializable
 data class WorldData(
@@ -29,5 +31,6 @@ data class WorldData(
     var worldType: VanillaGenerator = VanillaGenerator.NORMAL,
     val biomeProvider: BiomeProviderData = BiomeProviderData(BiomeAlgorithm.VANILLA, GeneratorData()),
     val chunkProviders: MutableList<GeneratorProviderData> = mutableListOf(),
-    val chunkDefaults: GeneratorDefaults = GeneratorDefaults()
+    val chunkDefaults: GeneratorDefaults = GeneratorDefaults(),
+    val customGameRules: MutableMap<CustomGameRule, @Contextual Any> = buildMap { CustomGameRule.entries.forEach { put(it, it.default) } }.toMutableMap()
 )

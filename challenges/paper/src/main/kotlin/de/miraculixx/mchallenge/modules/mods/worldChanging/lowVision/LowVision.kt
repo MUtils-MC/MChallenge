@@ -7,8 +7,8 @@ import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.global.ResourcePackChallenge
 import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.getSetting
-import de.miraculixx.mchallenge.utils.gui.GUITypes
-import de.miraculixx.mchallenge.utils.gui.buildInventory
+import de.miraculixx.mchallenge.gui.GUITypes
+import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mvanilla.messages.consoleAudience
 import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience

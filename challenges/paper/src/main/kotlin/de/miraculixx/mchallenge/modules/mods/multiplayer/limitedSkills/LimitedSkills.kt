@@ -4,7 +4,7 @@ import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.getSetting
-import de.miraculixx.mchallenge.utils.gui.GUITypes
+import de.miraculixx.mchallenge.gui.GUITypes
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -12,7 +12,7 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.PluginManager
-import de.miraculixx.mchallenge.utils.gui.buildInventory
+import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mvanilla.messages.cHighlight
 import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.emptyComponent

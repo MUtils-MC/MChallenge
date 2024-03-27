@@ -41,7 +41,6 @@ object InventoryManager {
     }
 
     fun remove(id: String): Boolean {
-        views[id]?.close() ?: return false
         return views.remove(id) != null
     }
 

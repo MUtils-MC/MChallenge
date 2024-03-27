@@ -14,6 +14,7 @@ import de.miraculixx.challenge.api.utils.Icon
  */
 enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status: Boolean = false) {
     // Global Challenges
+//    HALLOWEEN(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("JACK_O_LANTERN"), true),
     VAMPIRE(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("GHAST_TEAR"), true),
     TRAFFIC_LIGHT(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("REDSTONE_LAMP"), true),
     TRON(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("LIGHT_BLUE_CONCRETE"), true),
@@ -66,7 +67,10 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     BLOCK_WALL(setOf(ChallengeTags.MEDIUM), Icon("BEDROCK")),
     WORLD_DECAY(setOf(ChallengeTags.HARD), Icon("WHITE_STAINED_GLASS")),
     LOW_VISION(setOf(ChallengeTags.HARD), Icon("TINTED_GLASS")),
-    CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX"))
+    CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX")),
+    HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
+    TICK_RATE(setOf(ChallengeTags.MEDIUM, ChallengeTags.BETA), Icon("CLOCK")),
+    RHYTHM_CRAFT(setOf(ChallengeTags.HARD, ChallengeTags.BETA), Icon("NOTE_BLOCK")),
     ;
 
 
@@ -292,6 +296,29 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             CHUNK_SYNC -> mapOf(
                 "env" to ChallengeBoolSetting("TNT", false)
             )
+
+            HIT_ORDER -> mapOf(
+                "wrongDamage" to ChallengeDoubleSetting("BEETROOT", 10.0, "hp", max = 50.0, min = 1.0, step = 1.0),
+                "randomOrder" to ChallengeBoolSetting("DROPPER", false),
+                "visual" to ChallengeBoolSetting("WRITABLE_BOOK", true)
+            )
+
+            TICK_RATE -> mapOf(
+                "ticks" to ChallengeSectionSetting(
+                    "RECOVERY_COMPASS", mapOf(
+                        "min" to ChallengeIntSetting("GOLD_NUGGET", 3, "t", max = 100, min = 1, step = 1),
+                        "max" to ChallengeIntSetting("GOLD_INGOT", 80, "t", max = 500, min = 10, step = 1)
+                    )
+                ),
+                "timings" to ChallengeSectionSetting(
+                    "CLOCK", mapOf(
+                        "min" to ChallengeIntSetting("GOLD_NUGGET", 20*8, "t", max = 20*120, min = 30, step = 10),
+                        "max" to ChallengeIntSetting("GOLD_INGOT", 820*30, "t", max = 20*120, min = 30, step = 10)
+                    )
+                )
+            )
+
+            RHYTHM_CRAFT -> mapOf()
         }
     }
 }

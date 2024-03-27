@@ -6,8 +6,8 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
-import de.miraculixx.mtimer.data.TimerDesign
-import de.miraculixx.mtimer.data.TimerDesignValue
+import de.miraculixx.mtimer.vanilla.data.TimerDesign
+import de.miraculixx.mtimer.vanilla.data.TimerDesignValue
 import de.miraculixx.mtimer.module.PaperTimer
 import de.miraculixx.mvanilla.extensions.round
 import de.miraculixx.mvanilla.gui.Head64

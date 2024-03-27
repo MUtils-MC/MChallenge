@@ -17,17 +17,17 @@ class SwitchBiomes(biomeData: GeneratorData) : BiomeProvider() {
     override fun getBiome(worldInfo: WorldInfo, x: Int, y: Int, z: Int): Biome {
         return if (random) biomeList?.random() ?: Biome.PLAINS
         else {
-            if (vanillaProvider == null) vanillaProvider = worldInfo.vanillaBiomeProvider()
             biomeMap[vanillaProvider?.getBiome(worldInfo, x, y, z)] ?: Biome.PLAINS
         }
     }
 
     override fun getBiomes(worldInfo: WorldInfo): MutableList<Biome> {
-        return Biome.values().filter { it != Biome.CUSTOM }.toMutableList()
+        vanillaProvider = worldInfo.vanillaBiomeProvider()
+        return Biome.entries.filter { it != Biome.CUSTOM }.toMutableList()
     }
 
     init {
-        val key = Biome.values().filter { it != Biome.CUSTOM }.shuffled()
+        val key = Biome.entries.filter { it != Biome.CUSTOM }.shuffled()
 
         if (random) biomeList = key.toList()
         else {

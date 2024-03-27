@@ -38,7 +38,7 @@ class MUtilsBridge(
      */
     suspend fun versionCheck(moduleVersion: Int, destination: File): Boolean {
         serviceVersion = moduleVersion
-        val versions = serialize<ModuleVersion>(WebClient.get("https://api.mutils.de/public/version", headers = mapOf("Service" to module.module)))
+        val versions = serialize<ModuleVersion>(WebClient.get("https://api.mutils.net/public/version", headers = mapOf("Service" to module.module)))
         if (versions == null) {
             consoleAudience.sendMessage(prefix + cmp("Could not check current version! Proceed at your own risk", cError))
             consoleAudience.sendMessage(noConnection)
@@ -128,7 +128,7 @@ class MUtilsBridge(
      */
     fun activate(uuid: UUID, key: String, onResponse: (Boolean, String) -> Unit) {
         CoroutineScope(Dispatchers.Default).launch {
-            val response = WebClient.get("https://api.mutils.de/public/activate", mapOf("key" to key, "ip" to serverIP, "uuid" to uuid.toString()))
+            val response = WebClient.get("https://api.mutils.net/public/activate", mapOf("key" to key, "ip" to serverIP, "uuid" to uuid.toString()))
             val loginResponse = serialize<LoginResponse>(response)
             if (loginResponse == null) {
                 consoleAudience.sendMessage(noConnection)
@@ -176,7 +176,7 @@ class MUtilsBridge(
      * Receive the challenge of the month
      */
     fun getCOTM(): String {
-        return "" //serialize<String>(WebClient.get("https://api.mutils.de/public/monthlychallenge")) ?: "" TODO
+        return "" //serialize<String>(WebClient.get("https://api.mutils.net/public/monthlychallenge")) ?: "" TODO
     }
 
     /**
@@ -184,7 +184,7 @@ class MUtilsBridge(
      */
     fun sendData(t: String, s: String, onResponse: (Boolean) -> Unit) {
         CoroutineScope(Dispatchers.Default).launch {
-            when (val code = WebClient.get("https://api.mutils.de/public/lib", mapOf("MType" to t, "Key" to accountData.key, "UUID" to accountData.uuid.toString()), s)) {
+            when (val code = WebClient.get("https://api.mutils.net/public/lib", mapOf("MType" to t, "Key" to accountData.key, "UUID" to accountData.uuid.toString()), s)) {
                 "0" -> {
                     consoleAudience.sendMessage(prefix + cmp("Unexpected server response - Please report to the MUtils Support", cError))
                     consoleAudience.sendMessage(prefix + cmp("Error Code: ${Base64.getUrlEncoder().encodeToString(t.toByteArray()).replace("=", "")}"))
@@ -233,6 +233,11 @@ class MUtilsBridge(
         }
     }
 
+    suspend fun loadAllStyles(): List<Styles> {
+        val response = WebClient.get("https://api.mutils.net/public/style/all", mapOf("Key" to accountData.key, "UUID" to accountData.uuid.toString()))
+        return serialize<List<Styles>>(response) ?: emptyList()
+    }
+
     /*
      * Utilities
      */
@@ -252,7 +257,7 @@ class MUtilsBridge(
 
     private fun proceedLogin() {
         CoroutineScope(Dispatchers.Default).launch {
-            val loginData = serialize<LoginResponse>(WebClient.get("https://api.mutils.de/public/login", mapOf("key" to accountData.key, "ip" to serverIP, "uuid" to "${accountData.uuid}", "sversion" to serverVersion, "mversion" to "$serviceVersion")))
+            val loginData = serialize<LoginResponse>(WebClient.get("https://api.mutils.net/public/login", mapOf("key" to accountData.key, "ip" to serverIP, "uuid" to "${accountData.uuid}", "sversion" to serverVersion, "mversion" to "$serviceVersion")))
             accountConnected = !(loginData == null || !loginData.success)
             if (accountConnected) {
                 loadStyle()

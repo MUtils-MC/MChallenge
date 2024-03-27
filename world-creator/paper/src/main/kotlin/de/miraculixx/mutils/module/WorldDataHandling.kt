@@ -1,9 +1,9 @@
 package de.miraculixx.mutils.module
 
 import de.miraculixx.kpaper.event.listen
-import de.miraculixx.kpaper.extensions.worlds
-import de.miraculixx.kpaper.runnables.taskRunLater
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mutils.MWorlds
+import de.miraculixx.mutils.settings
 import de.miraculixx.mvanilla.messages.cError
 import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.debug
@@ -14,16 +14,12 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventPriority
 import org.bukkit.event.block.BlockFromToEvent
 import org.bukkit.event.block.BlockGrowEvent
-import org.bukkit.event.player.PlayerChangedWorldEvent
-import org.bukkit.event.player.PlayerJoinEvent
-import org.bukkit.event.player.PlayerPortalEvent
-import org.bukkit.event.player.PlayerQuitEvent
-import org.bukkit.event.player.PlayerRespawnEvent
-import org.bukkit.event.player.PlayerTeleportEvent
+import org.bukkit.event.player.*
 import java.io.File
 import java.util.*
 
 object WorldDataHandling {
+    private val customSaves = !settings.getBoolean("use-vanilla-saving")
     private val saveFolder = File("${MWorlds.configFolder.path}/playerdata")
 
     /**
@@ -43,7 +39,7 @@ object WorldDataHandling {
     /**
      * Prevent water/lava from flowing around on chunk generation. This will increase performance server and client side!
      */
-    private val onWaterFlow = listen<BlockFromToEvent> {
+    private val onWaterFlow = listen<BlockFromToEvent>(register = customSaves) {
         val block = it.toBlock
         if (!WorldManager.getLoadedWorlds().containsKey(block.world.uid)) return@listen
         if (block.chunk.inhabitedTime < 20) it.isCancelled = true
@@ -52,7 +48,7 @@ object WorldDataHandling {
     /**
      * Prevent sea-grass growing on near air positions to prevent block update mania (lag)
      */
-    private val onGrow = listen<BlockGrowEvent> {
+    private val onGrow = listen<BlockGrowEvent>(register = customSaves) {
         val block = it.newState
         val world = block.world
         if (!WorldManager.getLoadedWorlds().containsKey(world.uid)) return@listen
@@ -75,7 +71,7 @@ object WorldDataHandling {
      * 2. Choose fist world (any env)
      * 3. Vanilla
      */
-    private val onRespawn = listen<PlayerRespawnEvent> {
+    private val onRespawn = listen<PlayerRespawnEvent>(register = customSaves) {
         if (it.isAnchorSpawn || it.isBedSpawn) return@listen
         val deathWorld = it.player.world
         val category = WorldManager.getWorldData(deathWorld.uid)?.category ?: "Vanilla"
@@ -92,7 +88,7 @@ object WorldDataHandling {
     /**
      * Load category player data on joining
      */
-    private val onJoin = listen<PlayerJoinEvent> {
+    private val onJoin = listen<PlayerJoinEvent>(register = customSaves) {
         val player = it.player
         val newLoc = loadPlayerData(player, WorldManager.getWorldData(player.world.uid)?.category ?: "Vanilla") ?: return@listen
         player.teleport(newLoc)
@@ -101,7 +97,7 @@ object WorldDataHandling {
     /**
      * Save category player data on leaving
      */
-    private val onLeave = listen<PlayerQuitEvent> {
+    private val onLeave = listen<PlayerQuitEvent>(register = customSaves) {
         val player = it.player
         savePlayerData(player, WorldManager.getWorldData(player.world.uid)?.category ?: "Vanilla")
     }
@@ -111,7 +107,7 @@ object WorldDataHandling {
      *
      * Always the first world with matching category and dimension is used as destination. If no world was found, the portal act like disabled
      */
-    private val onDimensionSwitch = listen<PlayerPortalEvent>(priority = EventPriority.HIGHEST) {
+    private val onDimensionSwitch = listen<PlayerPortalEvent>(priority = EventPriority.HIGHEST, register = customSaves) {
         val player = it.player
         val worldFrom = it.from.world
         val worldTo = it.to.world
@@ -131,7 +127,7 @@ object WorldDataHandling {
     /**
      * Load player data on world switch. If no data is found, the player is handled like on first join
      */
-    private val onWorldSwitch = listen<PlayerTeleportEvent>(priority = EventPriority.HIGHEST) {
+    private val onWorldSwitch = listen<PlayerTeleportEvent>(priority = EventPriority.HIGHEST, register = customSaves) {
         if (it.isCancelled) return@listen
         val fromWorld = it.from.world
         val toWorld = it.to.world
@@ -150,6 +146,7 @@ object WorldDataHandling {
      * @param newCategory the new category name
      */
     fun setCategory(world: World, newCategory: String) {
+        if (!customSaves) return
         categories.forEach { (_, worlds) -> worlds.remove(world) } //Remove old category if present
         categories.getOrPut(newCategory) { mutableListOf() }.add(world)
     }
@@ -172,20 +169,24 @@ object WorldDataHandling {
     }
 
     /**
+     * Save all player data of currently online players
+     */
+    fun saveAllPlayer() {
+        if (!customSaves) return
+        onlinePlayers.forEach { savePlayerData(it, WorldManager.getWorldData(it.world.uid)?.category ?: "Vanilla") }
+    }
+
+    /**
      * Save all current loaded data to disk and flush RAM.
      *
      * This could be a heavy call on big servers!
      */
     fun saveAll() {
+        if (!customSaves) return
         playerData.forEach { (_, data) -> data.saveToDisk() }
     }
 
     init {
         if (!saveFolder.exists()) saveFolder.mkdirs()
-        taskRunLater(1) {
-            worlds.forEach { setCategory(it, "Vanilla") }
-            println(worlds.map { it.name })
-            println(categories)
-        }
     }
 }

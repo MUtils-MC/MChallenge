@@ -14,30 +14,30 @@ pluginManagement {
 // Cores
 include("vanilla")
 include("core-paper")
-include("core-fabric")
+//include("core-fabric")
 
 // API Bridge
 include("bridge")
 
 // Custom Challenges
 include("custom-challenges:paper")
-include("custom-challenges:fabric")
+//include("custom-challenges:fabric")
 
 // Timer
 include("timer:api")
 include("timer:global")
 include("timer:paper")
-include("timer:fabric")
+// include("timer:fabric")
 
 // Challenges
 include("challenges:paper")
-include("challenges:fabric")
+// include("challenges:fabric")
 include("challenges:api")
 include("challenges:global")
 
 // World Creator
 include("world-creator:paper")
-include("world-creator:fabric")
+// include("world-creator:fabric")
 include("world-creator:api")
 
 // 3rd party

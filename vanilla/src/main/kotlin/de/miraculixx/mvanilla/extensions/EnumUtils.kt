@@ -15,4 +15,3 @@ fun <T> Array<T>.enumRotate(current: T): T {
     return if (currentValue < lastValue) this[currentValue + 1]
     else this[0]
 }
-

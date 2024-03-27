@@ -2,7 +2,7 @@
 
 package de.miraculixx.mtimer.module
 
-import de.miraculixx.mtimer.data.Punishment
+import de.miraculixx.mtimer.vanilla.data.Punishment
 import de.miraculixx.mtimer.events.CustomPlayer
 import de.miraculixx.mtimer.events.CustomServer
 import de.miraculixx.mtimer.events.CustomWorld
@@ -16,7 +16,6 @@ import de.miraculixx.mutils.gui.utils.native
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor
-import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.players.UserBanListEntry

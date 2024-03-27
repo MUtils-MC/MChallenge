@@ -1,10 +1,11 @@
-package de.miraculixx.mtimer.data
+package de.miraculixx.mtimer.vanilla.data
 
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Settings(
-    var language: String = "en_US"
+    var language: String = "en_US",
+    var displaySlot: TimerDisplaySlot = TimerDisplaySlot.HOTBAR
 )
 
 @Serializable

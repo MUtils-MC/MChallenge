@@ -5,6 +5,9 @@ import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.utils.ItemStackSerializer
+import de.miraculixx.mchallenge.utils.config.Configurable
+import de.miraculixx.mchallenge.utils.config.loadConfig
+import de.miraculixx.mchallenge.utils.config.saveConfig
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.InventoryUtils
 import de.miraculixx.mcore.gui.data.CustomInventory
@@ -30,17 +33,9 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import java.io.File
 
-class BackpackCommand {
+class BackpackCommand: Configurable {
     private val file = File("${de.miraculixx.mchallenge.MChallenge.configFolder.path}/data/backpack.json")
-    private val data: Data = try {
-        json.decodeFromString(file.readJsonString(true))
-    } catch (e: Exception) {
-        if (debug) {
-            consoleAudience.sendMessage(prefix + cmp(e.message ?: "Unknown"))
-            consoleAudience.sendMessage(prefix + cmp("Failed to load backpack data! ^ Reason above ^", cError))
-        }
-        Data(true, 3, mutableMapOf())
-    }
+    private val data = file.loadConfig(Data())
 
     @Suppress("unused")
     val command = commandTree("backpack") {
@@ -97,12 +92,13 @@ class BackpackCommand {
         }
     }
 
-    fun saveFile() {
-        file.writeText(jsonCompact.encodeToString(data))
+    override fun save() {
+        file.saveConfig(data)
     }
 
-    fun reset() {
+    override fun reset() {
         data.backpacks.clear()
+        save()
     }
 
     private class Items(private val items: Array<ItemStack?>, private val global: Boolean, private val owner: String): ItemProvider {

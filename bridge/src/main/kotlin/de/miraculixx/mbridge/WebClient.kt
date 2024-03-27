@@ -1,6 +1,8 @@
 package de.miraculixx.mbridge
 
-import de.miraculixx.mvanilla.messages.*
+import de.miraculixx.mvanilla.messages.cmp
+import de.miraculixx.mvanilla.messages.consoleAudience
+import de.miraculixx.mvanilla.messages.debug
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*

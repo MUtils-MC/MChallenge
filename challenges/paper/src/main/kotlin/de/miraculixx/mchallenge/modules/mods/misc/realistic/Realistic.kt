@@ -94,10 +94,10 @@ class Realistic : Challenge {
     }
 
     private fun checkPhysics(sourceBlock: Block) {
+        if (sourceBlock.type.isAir) return
         val sourceLoc = sourceBlock.location
 
-        if (
-            sourceLoc.clone().add(1.0, 0.0, 0.0).block.type.isAir &&
+        if (sourceLoc.clone().add(1.0, 0.0, 0.0).block.type.isAir &&
             sourceLoc.clone().add(-1.0, 0.0, 0.0).block.type.isAir &&
             sourceLoc.clone().add(0.0, 0.0, 1.0).block.type.isAir &&
             sourceLoc.clone().add(0.0, 0.0, -1.0).block.type.isAir

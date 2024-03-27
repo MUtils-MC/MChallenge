@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.utils.gui.items
+package de.miraculixx.mchallenge.gui.items
 
 import de.miraculixx.challenge.api.modules.spectator.Activation
 import de.miraculixx.challenge.api.modules.spectator.Visibility

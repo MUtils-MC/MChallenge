@@ -35,10 +35,8 @@ abstract class CustomInventory(
      * Close the GUI for all viewers
      */
     fun close(): Int {
-        viewers.forEach { player ->
-            close(player)
-        }
-        viewers.clear()
+        viewers.toSet().forEach { player -> player.closeInventory() }
+        removeGUI()
         return 0
     }
 
@@ -50,14 +48,16 @@ abstract class CustomInventory(
     fun close(player: Player): Boolean {
         return if (viewers.contains(player)) {
             viewers -= player
-            if (viewers.isEmpty()) {
-                onClick.unregister()
-                onClose.unregister()
-                InventoryManager.remove(id)
-                if (debug) consoleAudience.sendMessage(prefix + cmp("Removing GUI '$id' from cache"))
-            }
+            if (viewers.isEmpty()) removeGUI()
             true
         } else false
+    }
+
+    private fun removeGUI() {
+        onClick.unregister()
+        onClose.unregister()
+        InventoryManager.remove(id)
+        if (debug) consoleAudience.sendMessage(prefix + cmp("Removing GUI '$id' from cache"))
     }
 
     /**

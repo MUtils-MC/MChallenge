@@ -24,8 +24,8 @@ enum class BiomeAlgorithm(val settings: Map<AlgorithmSettingIndex, AlgorithmSett
      */
     SINGLE_BIOME(mapOf(AlgorithmSettingIndex.KEY to AlgorithmSetting.BIOME)),
 
-    /**
-     * All biomes are switched with a random one
-     */
-    SWITCHED_BIOMES(mapOf(AlgorithmSettingIndex.RND to AlgorithmSetting.RANDOM));
+//    /**
+//     * All biomes are switched with a random one
+//     */
+//    SWITCHED_BIOMES(mapOf(AlgorithmSettingIndex.RND to AlgorithmSetting.RANDOM));
 }
