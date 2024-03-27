@@ -23,9 +23,9 @@ common:
   none: "Nichts"
   confirm: "Bestätigen"
   cancel: "Abbrechen"
-  openMenu: "Open Menu"
-  settings: "Settings"
-  switch: "Switch"
+  openMenu: "Menü Öffnen"
+  settings: "Einstellungen"
+  switch: "Wechsel"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -63,7 +63,7 @@ command:
     success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
     fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
   noAddons: "<red>Keine MChallenge-Addons installiert! Du findest Addons unter <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
-  notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
+  notLoggedIn: "Verbinde deinen MUtils Account um alle Premium Funktionen freizuschalten"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -89,7 +89,7 @@ event:
     collect: "<green><input-1> hat <input-2> gefunden!"
     success: "<green>Glückwunsch! Alle Mobs wurden erfolgreich gefunden"
   itemHunt:
-    collect: "<green><input-1> gesammelt <input-2>!"
+    collect: "<green><input-1> sammelte <input-2>!"
     success: "<green>Glückwunsch! Du hast alle <input-1> items gefunden"
   itemDecay:
     time: "Verschwindet in"
@@ -143,33 +143,33 @@ items:
   menu:
     premium:
       n: "Premium Challenges"
-      l: "Exclusive challenges for Premium users.<br>Unique and complex modifications<br>for yourself or with friends!"
+      l: "Exklusive Challenges für Premium-Nutzer.<br>Einzigartige und komplexe Modifikationen<br>für dich oder mit Freunden!"
     normal:
       n: "Challenges"
-      l: "Global challenges for everyone.<br>Select one or multiple and begin<br>your adventure!"
+      l: "Globale Challenges für alle.<br>Wähle eine oder mehrere aus und beginne<br>dein Abenteuer!"
     addons:
       n: "Addon Challenges"
-      l: "All challenges added by installed<br>addons. Discover new challenges<br>or create and play your own!"
-      b: "Open Addon Browser"
+      l: "Alle Challenges durch die installierten<br>-Addons. Entdecke neue Herausforderungen<br>oder erstelle und spiele deine eigenen!"
+      b: "Addon Browser Öffnen"
     favorite:
-      n: "Favorites"
-      l: "Favorite challenges for quick access.<br>No need to search them!"
+      n: "Favoriten"
+      l: "Lieblings Challenges für schnellen Zugriff.<br>Kein Grund sie immer zu suchen!"
     last:
-      n: "History"
-      l: "Quick access your last played<br>challenges. History is saved from<br>new to old."
+      n: "Verlauf"
+      l: "Schnellzugriff zu den zuletzt gespielten<br>Challenges. Der Verlauf ist gespeichert<br>von neu zu alt."
     settings:
-      n: "Settings"
+      n: "Einstellungen"
   settings:
     language:
-      n: "Language"
-      l: "Changing the language will affect all<br>messages and texts in MChallenge.<br>Help us to improve the translations!"
-      s: "Current: "
+      n: "Sprache"
+      l: "Das Ändern der Sprache wirkt sich auf alle<br>Nachrichten und Texte in MChallenge aus.<br>Helfe uns, die Übersetzungen zu verbessern!"
+      s: "Aktuell: "
     compact:
-      n: "Challenge Display"
-      l: "Switch between compact and detailed<br>display of challenges. Compact is<br>faster to access but can be clutter"
+      n: "Challenge-Anzeige"
+      l: "Wechsel zwischen kompakter und dataillierter<br>Ansicht von Challenges. Kompakt ist<br>schneller zu nutzen, kann aber<br>überfordernt wirken"
     theme:
-      n: "Color Theme"
-      l: "Change the color theme of the GUI<br>and messages. Themes can be acquired<br>by various events"
+      n: "Farbdesign"
+      l: "Ändere das Farbschema der GUIs<br>und Nachrichten. Farbschemen können<br>über verschiedene Events erhalten werden"
   general:
     arrowRightEnd:
       n: "<red>Scrolle nach rechts"
@@ -377,11 +377,11 @@ items:
       n: "Schlag-Reihenfolge"
       l: "Nur ein Spieler gleichzeitig darf<br>Monster schlagen. Aber dieser Spieler<br>ändert sich bei jedem Treffer!"
     TICK_RATE:
-      n: "Game Speed Shuffler"
-      l: "The game will constantly change<br>the speed which effects every action.<br>Can you keep up?"
+      n: "Spielgeschwindigkeit Shuffler"
+      l: "Das Spiel wird ständig<br>die Geschwindigkeit ändern, die jede Aktion beeinflusst.<br>Kannst du mithalten?"
     RHYTHM_CRAFT:
       n: "Rhythm Craft"
-      l: "Turn Minecraft into a full Rhythmgame!<br>Every action needs to be done on the beat<br>to follow the world rhythm."
+      l: "Verwandel Minecraft in ein Rhythmspiel!<br>Jede Aktion muss auf den Beat geschehen<br>um dem Weltrhythmus zu folgen"
   chS:
     FLY:
       power:
@@ -659,17 +659,17 @@ items:
         n: "Multiplikator"
     HIT_ORDER:
       wrongDamage:
-        n: "Falscher Schaden"
+        n: "Fehler Schaden"
       randomOrder:
         n: "Zufällige Reihenfolge"
       visual:
         n: "Infoleiste"
     TICK_RATE:
       ticks:
-        n: "Tick Speed"
+        n: "Tick Geschwindigkeit"
       timings:
-        n: "Shuffel Rate"
+        n: "Shuffelrate"
       min:
-        n: "Min Speed"
+        n: "Minimalgeschwindigkeit"
       max:
-        n: "Max Speed"
+        n: "Höchstgeschwindigkeit"

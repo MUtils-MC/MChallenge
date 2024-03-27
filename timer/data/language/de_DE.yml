@@ -69,7 +69,7 @@ event:
   timeout:
     head: "Zeit Vorbei"
     sub: "Die Zeit ist abgelaufen"
-  soundEnd: "<grey>Gebe einen Klang-Schlüssel, wie <blue>minecraft:block.stone.hi</blue> ein. Benutze <blue>/playsound</blue> um eine Liste an Klängen zu finden."
+  soundEnd: "<grey>Gebe eine Ton-ID, wie <blue>minecraft:block.stone.hit</blue> ein. Benutze <blue>/playsound</blue> um eine Liste an Tönen zu finden."
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -187,7 +187,7 @@ items:
       l: "Füge eine Animation zu dem<br>Farbverlauf hinzu. Diese Animation<br>wiederholt sich unendlich"
   designSetting:
     n: "Design Einstellungen"
-    l: "Änderungen des Timer Aussehens.<br> Die Standardeinstellungen<br>funktionieren gut"
+    l: "Änderungen des Timer Aussehens.<br> Die Standardeinstellungen<br>können beibehalten werden"
   changeDisplay:
     n: "Timer Anzeige"
     l: "Wechsle zwischen den Anzeigepositionen:<br>Oben (Bossbar) und Unten (Actionbar)"
