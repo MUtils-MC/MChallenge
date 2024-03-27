@@ -45,7 +45,7 @@ class MobHunt : Challenge, HuntObject<EntityType> {
     }
 
     override fun start(): Boolean {
-        val content = if (!dataFile.exists()) "" else dataFile.readJsonString(false)
+        val content = if (!dataFile.exists()) "" else dataFile.readText()
         currentTarget = if (content.length > 5) {
             val input = json.decodeFromString<MobHuntData>(content)
             remainingEntries.addAll(input.remainingMobs)

@@ -12,7 +12,8 @@ enum class GUITypes(val title: Component) {
 
     COMPETITION(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Create Competition", cHighlight)),
     CHALLENGE_SETTINGS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenge Settings", cHighlight)),
-    SPEC_SETTINGS(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Settings", cHighlight)),
+    SETTINGS_CUSTOM_3(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Settings", cHighlight)),
     SPEC_PLAYER_OVERVIEW(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Online Player", cHighlight)),
-    CHALLENGE_MENU(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenges", cHighlight));
+    CHALLENGE_MENU(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenges", cHighlight)),
+    MAIN_MENU(cmp("• ", NamedTextColor.DARK_GRAY) + cmp("Challenge Menu", cHighlight));
 }

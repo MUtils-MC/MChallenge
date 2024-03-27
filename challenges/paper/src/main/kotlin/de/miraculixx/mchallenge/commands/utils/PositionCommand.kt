@@ -1,6 +1,9 @@
 package de.miraculixx.mchallenge.commands.utils
 
 import de.miraculixx.mchallenge.MChallenge
+import de.miraculixx.mchallenge.utils.config.Configurable
+import de.miraculixx.mchallenge.utils.config.loadConfig
+import de.miraculixx.mchallenge.utils.config.saveConfig
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.json
 import de.miraculixx.mvanilla.messages.msg
@@ -16,13 +19,9 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
 
-class PositionCommand {
-    private val positions: MutableMap<String, LiteLocation>
+class PositionCommand: Configurable {
     private val file = File("${MChallenge.configFolder.path}/data/positions.json")
-
-    init {
-        positions = json.decodeFromString(file.readJsonString(true))
-    }
+    private val positions: MutableMap<String, LiteLocation> = file.loadConfig(mutableMapOf())
 
     @Suppress("unused")
     val command = commandTree("position") {
@@ -67,12 +66,13 @@ class PositionCommand {
         return positions.map { StringTooltip.ofString(it.key, it.value.toString()) }.toTypedArray()
     }
 
-    fun saveFile() {
-        file.writeText(json.encodeToString(positions))
+    override fun save() {
+        file.saveConfig(positions)
     }
 
-    fun reset() {
+    override fun reset() {
         positions.clear()
+        save()
     }
 }
 

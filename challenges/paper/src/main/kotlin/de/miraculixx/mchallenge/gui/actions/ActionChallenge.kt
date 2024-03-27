@@ -10,6 +10,7 @@ import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mchallenge.gui.GUITypes
 import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mchallenge.gui.items.ItemsChallengeSettings
+import de.miraculixx.mchallenge.utils.UniversalChallenge
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.InventoryUtils.get
 import de.miraculixx.mcore.gui.data.CustomInventory
@@ -21,8 +22,8 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.persistence.PersistentDataType
 
-class GUIChallenge : GUIEvent {
-    private val validFilters = ChallengeTags.values()
+class ActionChallenge(private val preInv: CustomInventory?) : GUIEvent {
+    private val validFilters = ChallengeTags.getRotationFilter()
     private val challengeKey = NamespacedKey(namespace, "gui.challenge")
     private val customChallengeKey = NamespacedKey(namespace, "gui.customchallenge")
 
@@ -37,6 +38,9 @@ class GUIChallenge : GUIEvent {
             0 -> {
                 if (it.inventory.size == 9 * 6) {
                     GUITypes.CHALLENGE_MENU.buildInventory(player, "${player.uniqueId}-CHALLENGES", inv.itemProvider, this)
+                    player.click()
+                } else if (preInv != null) {
+                    preInv.open(player)
                     player.click()
                 }
             }
@@ -68,10 +72,31 @@ class GUIChallenge : GUIEvent {
                 }
 
                 val data = challenge?.let { ch -> challenges.getSetting(ch) } ?: customChallenge?.data ?: return@event
+
+                // Toggle favorite
+                if (click.isShiftClick) {
+                    val universal = UniversalChallenge(challenge, customUUID)
+                    val isFavorite = ChallengeManager.favoriteChallenges.contains(universal)
+                    if (isFavorite) {
+                        ChallengeManager.favoriteChallenges.remove(universal)
+                        player.soundDown()
+                    } else {
+                        ChallengeManager.favoriteChallenges.add(universal)
+                        player.soundUp()
+                    }
+                    inv.update()
+                    return@event
+                }
+
+                // Toggle status
                 if (click.isLeftClick) {
                     data.active = data.active.toggle(player)
                     inv.update()
-                } else if (click.isRightClick) {
+                    return@event
+                }
+
+                // Open settings
+                if (click.isRightClick) {
                     val settings = data.settings
                     if (settings.isEmpty()) {
                         player.soundStone()

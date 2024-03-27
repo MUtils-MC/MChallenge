@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.TextColor
 
 var cHighlight: String = "<blue>"
 val cBase: TextColor = NamedTextColor.GRAY
+val cBaseTag = "<gray>"
 val cError: TextColor = NamedTextColor.RED
 val cSuccess: TextColor = NamedTextColor.GREEN
 var cMark = "<#6e94ff>"

@@ -9,6 +9,7 @@ val msgClickRight = cmp(msgString("common.right"), cHighlight).append(separator)
 val msgShiftClickRight = cmp(msgString("common.sneak"), cHighlight).append(separator) + msgClickRight
 val msgClickLeft = cmp(msgString("common.left"), cHighlight).append(separator) + msgClick
 val msgShiftClickLeft = cmp(msgString("common.sneak"), cHighlight).append(separator) + msgClickLeft
+val msgShiftClick = cmp(msgString("common.sneak"), cHighlight).append(separator) + msgClick
 val msgTrue = msgString("common.boolTrue")
 val msgFalse = msgString("common.boolFalse")
 val msgNone = msgString("common.none")

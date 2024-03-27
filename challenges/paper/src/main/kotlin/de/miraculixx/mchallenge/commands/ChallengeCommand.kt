@@ -5,12 +5,16 @@ import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
-import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mchallenge.gui.GUITypes
-import de.miraculixx.mchallenge.gui.actions.GUIChallenge
+import de.miraculixx.mchallenge.gui.actions.ActionChallenge
+import de.miraculixx.mchallenge.gui.actions.ActionMenu
 import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mchallenge.gui.items.ItemsChallenge
+import de.miraculixx.mchallenge.gui.items.ItemsMenu
+import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.utils.UniversalChallenge
+import de.miraculixx.mchallenge.utils.config.ConfigManager
+import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.messages.*
@@ -25,7 +29,7 @@ class ChallengeCommand {
         withPermission("command.challenge")
         withAliases("ch")
         playerExecutor { player, _ ->
-            GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(), GUIChallenge())
+            GUITypes.MAIN_MENU.buildInventory(player, "GLOBAL_MENU", ItemsMenu(), ActionMenu())
             player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN, 0.5f, 1f)
         }
 
@@ -36,7 +40,12 @@ class ChallengeCommand {
                     player.soundError()
                     return@playerExecutor
                 }
-                GUITypes.CHALLENGE_MENU.buildInventory(player, player.uniqueId.toString(), ItemsChallenge(ChallengeTags.ADDON), GUIChallenge())
+                GUITypes.CHALLENGE_MENU.buildInventory(
+                    player,
+                    player.uniqueId.toString(),
+                    ItemsChallenge(ChallengeManager.getCustomChallenges().map { ch -> UniversalChallenge(addon = ch.key) }.toSet()),
+                    ActionChallenge(null)
+                )
                 player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN, 0.5f, 1f)
             }
         }
@@ -86,7 +95,12 @@ class ChallengeCommand {
                     val key = args[0] as String
 
                     if (getAccountStatus()) {
-                        player.sendMessage(prefix + cmp("You are already logged in. To disconnect this server, remove it from your account dashboard", cError))
+                        player.sendMessage(
+                            prefix + cmp(
+                                "You are already logged in. To disconnect this server, remove it from your account dashboard",
+                                cError
+                            )
+                        )
                         player.soundError()
                         return@playerExecutor
                     }
@@ -125,7 +139,7 @@ class ChallengeCommand {
                     anyExecutor { sender, args ->
                         val active = args[0] as Boolean
                         debug = active
-                        MChallenge.settings.debug = active
+                        ConfigManager.settings.debug = active
                         sender.sendMessage(prefix + msg("command.debug", listOf(active.toString())))
                     }
                 }
@@ -134,8 +148,8 @@ class ChallengeCommand {
                 stringArgument("lang") {
                     anyExecutor { sender, args ->
                         val key = args[0] as String
-                        if (MChallenge.localization.setLanguage(key)) {
-                            MChallenge.settings.language = key
+                        if (ConfigManager.localization.setLanguage(key)) {
+                            ConfigManager.settings.language = key
                             sender.sendMessage(prefix + msg("command.lang.success", listOf(key)))
                         } else sender.sendMessage(prefix + msg("command.lang.fail", listOf(key)))
                     }

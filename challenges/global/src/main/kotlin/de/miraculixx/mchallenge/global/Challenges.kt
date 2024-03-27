@@ -69,7 +69,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     LOW_VISION(setOf(ChallengeTags.HARD), Icon("TINTED_GLASS")),
     CHUNK_SYNC(setOf(ChallengeTags.MEDIUM), Icon("MAGENTA_SHULKER_BOX")),
     HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
-    TICK_RATE(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
+    TICK_RATE(setOf(ChallengeTags.MEDIUM, ChallengeTags.BETA), Icon("CLOCK")),
+    RHYTHM_CRAFT(setOf(ChallengeTags.HARD, ChallengeTags.BETA), Icon("NOTE_BLOCK")),
     ;
 
 
@@ -316,6 +317,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                     )
                 )
             )
+
+            RHYTHM_CRAFT -> mapOf()
         }
     }
 }

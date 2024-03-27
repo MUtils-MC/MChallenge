@@ -4,9 +4,12 @@ import de.miraculixx.challenge.api.MChallengeAPI
 import de.miraculixx.challenge.api.modules.challenges.*
 import de.miraculixx.challenge.api.settings.ChallengeData
 import de.miraculixx.kpaper.extensions.console
+import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.global.challenges
 import de.miraculixx.mchallenge.global.Challenges
 import de.miraculixx.mchallenge.modules.challenges.StatusChanger
+import de.miraculixx.mchallenge.utils.UniversalChallenge
+import de.miraculixx.mchallenge.utils.config.Configurable
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.decodeFromString
@@ -14,14 +17,20 @@ import kotlinx.serialization.encodeToString
 import java.io.File
 import java.util.*
 
-object ChallengeManager : MChallengeAPI() {
+object ChallengeManager : MChallengeAPI(), Configurable {
     init {
         instance = this
     }
 
+    private val fileFavorites = File(MChallenge.configFolder, "favorites.json")
+    private val fileHistory = File(MChallenge.configFolder, "history.json")
+    private val fileSettings = File("${MChallenge.configFolder.path}/settings.json")
+
     private val statusChanger = StatusChanger()
     var status = ChallengeStatus.STOPPED
     private val activatedChallenges: MutableList<Challenge> = mutableListOf()
+    val favoriteChallenges: MutableSet<UniversalChallenge> = mutableSetOf()
+    val historyChallenges: MutableList<UniversalChallenge> = mutableListOf()
 
     private val customChallengeMap: MutableMap<UUID, CustomChallengeData> = mutableMapOf()
 
@@ -79,6 +88,8 @@ object ChallengeManager : MChallengeAPI() {
 
     fun getCustomChallenges() = customChallengeMap
 
+    fun getCustomChallenge(uuid: UUID) = customChallengeMap[uuid]
+
     /**
      * Unregister and stop all activated challenges. Mostly used on reloads or server shutdowns.
      *
@@ -95,12 +106,14 @@ object ChallengeManager : MChallengeAPI() {
      * Load in all saved data like challenge status and settings
      * @param file The save file
      */
-    fun load(file: File) {
+    override fun load() {
         try {
-            val data = json.decodeFromString<Map<Challenges, ChallengeData>>(file.readJsonString(true))
+            val data = json.decodeFromString<Map<Challenges, ChallengeData>>(fileSettings.readJsonString(true))
             data.forEach { (ch, data) ->
                 challenges[ch] = data
             }
+            favoriteChallenges.addAll(json.decodeFromString(fileFavorites.readJsonString(false)))
+            historyChallenges.addAll(json.decodeFromString(fileHistory.readJsonString(false)))
         } catch (_: Exception) {
             console.sendMessage(challengePrefix + cmp("Failed to load configuration! This could be due to skipping some updates or manual editing.", cError))
         }
@@ -108,10 +121,12 @@ object ChallengeManager : MChallengeAPI() {
 
     /**
      * Saves all data like challenge status and settings. Note: Only **changes** are saved! Default values will be not present in the file.
-     * @param file The save file
+     * @param configFile The save file
      */
-    fun save(file: File) {
-        if (!file.exists()) file.parentFile.mkdirs()
-        file.writeText(json.encodeToString(challenges))
+    override fun save() {
+        if (!fileSettings.exists()) fileSettings.parentFile.mkdirs()
+        fileSettings.writeText(json.encodeToString(challenges))
+        fileFavorites.writeText(json.encodeToString(favoriteChallenges))
+        fileHistory.writeText(json.encodeToString(historyChallenges))
     }
 }

@@ -68,3 +68,15 @@ operator fun Component.plus(other: Component): Component {
 fun Audience.title(main: Component, sub: Component, fadeIn: Duration = Duration.ZERO, stay: Duration = 5.seconds, fadeOut: Duration = Duration.ZERO) {
     showTitle(Title.title(main, sub, Title.Times.times(fadeIn.toJavaDuration(), stay.toJavaDuration(), fadeOut.toJavaDuration())))
 }
+
+fun Component.url(url: String): Component {
+    return clickEvent(ClickEvent.openUrl(url))
+}
+
+fun Component.runCommand(command: String): Component {
+    return clickEvent(ClickEvent.runCommand(command))
+}
+
+fun Component.suggestCommand(command: String): Component {
+    return clickEvent(ClickEvent.suggestCommand(command))
+}

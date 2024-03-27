@@ -1,16 +1,20 @@
-package de.miraculixx.mchallenge.modules.mods.misc.inTime
+package de.miraculixx.mchallenge.modules.mods.misc.inTime.old
 
+import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.challenge.api.modules.challenges.ChallengeStatus
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mvanilla.messages.*
-import org.bukkit.*
-import org.bukkit.boss.BarColor
-import org.bukkit.boss.BarStyle
-import org.bukkit.boss.BossBar
-import org.bukkit.boss.KeyedBossBar
-import org.bukkit.entity.*
+import net.kyori.adventure.bossbar.BossBar
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
+import org.bukkit.GameMode
+import org.bukkit.Particle
+import org.bukkit.Sound
+import org.bukkit.entity.EnderDragon
+import org.bukkit.entity.Entity
+import org.bukkit.entity.LivingEntity
+import org.bukkit.entity.Player
 
 class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
     private var isRunning: Boolean
@@ -19,18 +23,17 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
     private var minString: String? = null
     private var entity: Entity? = entity
     private var bossBar: BossBar? = null
-    private var key: NamespacedKey? = null
 
-    private var time: String? = null
-
-    fun getTime(): String {
+    fun getTime(): Component {
         secString = if (sec <= 9) "0$sec"
         else sec.toString()
 
         minString = if (min <= 9) "0$min"
         else min.toString()
 
-        return "$minString:$secString"
+        val time = "$minString:$secString"
+        return if (!isRunning) cmp("$time paused", cHighlight, italic = true)
+        else cmp(time, if (isRed()) cError else NamedTextColor.BLUE)
     }
 
     fun isRed(): Boolean {
@@ -44,9 +47,7 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
 
     fun remove() {
         if (bossBar != null) {
-            bossBar?.isVisible = false
-            bossBar?.removeAll()
-            key?.let { Bukkit.removeBossBar(it) }
+            bossBar?.removeViewer(entity as Player)
         }
         if (!isPlayer) {
             entity?.remove()
@@ -64,9 +65,9 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
     private fun inTime() {
         task(true, 20, 20) {
             // Timer Paused
-            if (!isRunning || ChallengeManager.status == ChallengeStatus.RUNNING) {
-                if (!isPlayer) entity?.customName(cmp("$time paused", cHighlight, italic = true))
-                else bossBar?.setTitle("§9§o$time paused")
+            if (!isRunning || ChallengeManager.status != ChallengeStatus.RUNNING) {
+                if (!isPlayer) entity?.customName(getTime())
+                else bossBar?.name(getTime())
                 return@task
             }
 
@@ -122,12 +123,11 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
 
 
             if (isPlayer) {
-                //Spieler
                 if (min == 0 && sec <= 30) {
                     // Manipulate the dragon to purge if timer is about to end (feels like insane clutch omg omg omg)
-                    bossBar?.setTitle("§c$time")
+                    bossBar?.name(getTime())
                     if (entity is EnderDragon) (entity as EnderDragon).world.enderDragonBattle?.enderDragon?.phase = EnderDragon.Phase.LAND_ON_PORTAL
-                } else bossBar?.setTitle("§6$time")
+                } else bossBar?.name(getTime())
             }
         }
     }
@@ -139,10 +139,8 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
         }
         isRunning = true
         if (isPlayer) {
-            key = NamespacedKey(namespace, entity.name)
-            bossBar = Bukkit.createBossBar(key!!, "§c...", BarColor.WHITE, BarStyle.SOLID)
-            (bossBar as KeyedBossBar).isVisible = true
-            (bossBar as KeyedBossBar).addPlayer(entity as Player)
+            bossBar = BossBar.bossBar(getTime(), 1f, net.kyori.adventure.bossbar.BossBar.Color.RED, BossBar.Overlay.PROGRESS)
+            (entity as Player).showBossBar(bossBar!!)
         }
         inTime()
     }
