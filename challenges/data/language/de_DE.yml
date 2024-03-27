@@ -23,6 +23,9 @@ common:
   none: "Nichts"
   confirm: "Bestätigen"
   cancel: "Abbrechen"
+  openMenu: "Open Menu"
+  settings: "Settings"
+  switch: "Switch"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -60,6 +63,7 @@ command:
     success: "<grey>Erfolgreich die Sprache auf <green><input-1></green> gewechselt"
     fail: "<grey>Sprachwechsel auf <red><input-1></red> ist fehlgeschlagen! Schaue in die Konsole für mehr Informationen"
   noAddons: "<red>Keine MChallenge-Addons installiert! Du findest Addons unter <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+  notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -136,6 +140,36 @@ event:
 #l -> Item Lore                  #
 #-----------------------------------------#
 items:
+  menu:
+    premium:
+      n: "Premium Challenges"
+      l: "Exclusive challenges for Premium users.<br>Unique and complex modifications<br>for yourself or with friends!"
+    normal:
+      n: "Challenges"
+      l: "Global challenges for everyone.<br>Select one or multiple and begin<br>your adventure!"
+    addons:
+      n: "Addon Challenges"
+      l: "All challenges added by installed<br>addons. Discover new challenges<br>or create and play your own!"
+      b: "Open Addon Browser"
+    favorite:
+      n: "Favorites"
+      l: "Favorite challenges for quick access.<br>No need to search them!"
+    last:
+      n: "History"
+      l: "Quick access your last played<br>challenges. History is saved from<br>new to old."
+    settings:
+      n: "Settings"
+  settings:
+    language:
+      n: "Language"
+      l: "Changing the language will affect all<br>messages and texts in MChallenge.<br>Help us to improve the translations!"
+      s: "Current: "
+    compact:
+      n: "Challenge Display"
+      l: "Switch between compact and detailed<br>display of challenges. Compact is<br>faster to access but can be clutter"
+    theme:
+      n: "Color Theme"
+      l: "Change the color theme of the GUI<br>and messages. Themes can be acquired<br>by various events"
   general:
     arrowRightEnd:
       n: "<red>Scrolle nach rechts"
@@ -342,6 +376,12 @@ items:
     HIT_ORDER:
       n: "Schlag-Reihenfolge"
       l: "Nur ein Spieler gleichzeitig darf<br>Monster schlagen. Aber dieser Spieler<br>ändert sich bei jedem Treffer!"
+    TICK_RATE:
+      n: "Game Speed Shuffler"
+      l: "The game will constantly change<br>the speed which effects every action.<br>Can you keep up?"
+    RHYTHM_CRAFT:
+      n: "Rhythm Craft"
+      l: "Turn Minecraft into a full Rhythmgame!<br>Every action needs to be done on the beat<br>to follow the world rhythm."
   chS:
     FLY:
       power:
@@ -624,3 +664,12 @@ items:
         n: "Zufällige Reihenfolge"
       visual:
         n: "Infoleiste"
+    TICK_RATE:
+      ticks:
+        n: "Tick Speed"
+      timings:
+        n: "Shuffel Rate"
+      min:
+        n: "Min Speed"
+      max:
+        n: "Max Speed"
