@@ -204,4 +204,4 @@ items:
       l: "Alle Biome werden mit anderen<br>zufälligen Biomen ausgetauscht. Die Vanilla-Biome<br>Struktur bleibt unverändert"
   gameRules:
     pvpDamage: "Spieler können andere Spieler verletzen"
-    doBlockUpdates: "Block Ticks normal und haben Physik"
+    doBlockUpdates: "Blöcke ticken normal und haben Physik"
