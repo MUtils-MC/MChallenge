@@ -23,6 +23,9 @@ common:
   none: "None"
   confirm: "Confirmer"
   cancel: "Annuler"
+  openMenu: "Open Menu"
+  settings: "Settings"
+  switch: "Switch"
 #-----------------------------------------#
 #Command Responses            #
 #Every command supports MiniMessages   #
@@ -33,33 +36,34 @@ command:
     start: "Challenges <green><b>started</b></green>! (<input-1>)"
     pause: "Challenges temporary <red>paused</red>! (<input-1>)"
     continue: "Challenges <green>resumed</green>! (<input-1>)"
-    failed: "<red>Failed to start Challenges! Check if at least one Challenge is enabled and enough players are online (multiplayer challenges)"
-    alreadyOn: "<red>Challenges are already started!"
-    alreadyOff: "<red>Challenges are already stopped!"
+    failed: "<red>Échec du lancement des défis ! Vérifier si au moins un défi est activé et si suffisamment de joueurs sont en ligne (défis multijoueurs)"
+    alreadyOn: "<red>Les défis sont déjà lancés !"
+    alreadyOff: "<red>Les défis sont déjà arrêtés !"
   notRegistered: "<red>Activer le module pour utiliser cette commande !"
   heal:
-    single: "<green>You healed yourself"
+    single: "<green>Tu t'es soigné toi-même"
     multiple: "<green>You healed <input-1> players"
-  reset: "<red><b>Server Worlds Reset\n<white>(Initiated by <input-1>)"
+  reset: "<red><b>Réinitialisation des mondes de serveurs\n<white>(initié par <input-1>)"
   position:
     get: "<grey>Position <input-1> >> <blue><input-2>"
-    new: "<grey>Created new position <blue><input-1> <grey>(<input-2>)"
-    remove: "<grey>Removed position <blue><input-1>"
-    reset: "<red>Resetted all saved positions!"
+    new: "<grey>Création d'un nouveau poste <blue><input-1> <grey>(<input-2>)"
+    remove: "<grey>Poste supprimé <blue><input-1>"
+    reset: "<red>Réinitialisation de toutes les positions sauvegardées !"
   backpack:
-    setGlobal: "<grey>Switched backpack type to <blue><input-1>"
-    setSize: "<grey>Changed backpack size to <blue><input-1></blue> rows"
-    reset: "<red>Cleared all backpacks including the global!"
+    setGlobal: "<grey>Type de sac à dos commuté sur <blue><input-1>"
+    setSize: "<grey>Modification de la taille du sac à dos en <blue><input-1></blue> rangs"
+    reset: "<red>Tous les sacs à dos ont été nettoyés, y compris le global !"
   hide:
-    hide: "<grey>You are now <red>hidden"
-    show: "<grey>You are now <green>visible"
-    hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
-    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
-  debug: "<grey>Switched debug mode to <blue><input-1>"
+    hide: "<grey>Vous êtes maintenant <red>caché"
+    show: "<grey>Vous êtes maintenant <green>visible"
+    hideMultiple: "<grey>Vous avez <red>caché</red> <input-1> joueur/s"
+    showMultiple: "<grey>Vous avez <green>montré</green> <input-2> joueur/s"
+  debug: "<grey>Le mode de débogage est passé à <blue><input-1>"
   lang:
-    success: "<grey>Successfully switched language to <green><input-1>"
-    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
-  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+    success: "<grey>Le changement de langue a été effectué avec succès <green><input-1>"
+    fail: "<grey>Échec du changement de langue <red><input-1></red>! Regardez dans la console pour obtenir plus d'informations"
+  noAddons: "<red>Aucun addon MChallenge n'est installé ! Vous pouvez trouver des addons sur\n<click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+  notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -68,48 +72,52 @@ event:
   death:
     tron: "est allé sûr une ligne et est mort !"
     disable:
-      break: "<red><input-1> tried to break a block!"
-      place: "<red><input-1> tried to place a block!"
-      craft: "<red><input-1> tried to use the crafting table!"
-      xp: "<red><input-1> tried to pickup XP!"
-      item: "<red><input-1> tried to pickup an item!"
-      trade: "<red><input-1> tried to trade!"
-    blockAsync: "<red><input-1> clicked on a fake block!"
-    gravity: "<red><input-1> froze to death in space!"
-    noSameItem: "<red><input-1> collected too many duplicates!"
+      break: "<red><input-1> a essayé de briser un bloc !"
+      place: "<red><input-1> a essayé de placer un bloc !"
+      craft: "<red><input-1> a essayé d'utiliser la table de bricolage !"
+      xp: "<red><input-1> a essayé de récupérer XP !"
+      item: "<red><input-1> a essayé de récupérer un article !"
+      trade: "<red><input-1> a essayé d'échanger !"
+    blockAsync: "<red><input-1> a cliqué sur un faux bloc !"
+    gravity: "<red><input-1> clicked on a fake block!"
+    noSameItem: "<red><input-1> a collecté trop de doublons !"
     stayAway: "<red><input-1> got to close!"
-    forceHunt: "<red><input-1> failed to complete the goal!"
-    noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
+    forceHunt: "<red><input-1> n'a pas réussi à atteindre le but !"
+    noDoubleKill: "<red><input-1> tué la même foule deux fois de suite !"
+    hitOrder: "<red><input-1> n'avait pas le droit d'endommager une foule"
   mobHunt:
-    collect: "<green><input-1> found <input-2>!"
-    success: "<green>Congratulations! You found all mobs"
+    collect: "<green><input-1> trouvé <input-2>!"
+    success: "<green>Félicitations ! Vous avez trouvé tous les mobs"
+  itemHunt:
+    collect: "<green><input-1> a collecté <input-2>!"
+    success: "<green>Congratulations! You found all <input-1> items"
   itemDecay:
-    time: "Decay in"
-    paused: "Paused display (selected)"
+    time: "Décroissance en"
+    paused: "Affichage en pause (sélectionné)"
   hide:
-    hide: "All players are now <red>hidden"
-    show: "All players are now <green>visible"
+    hide: "Tous les joueurs sont maintenant <red>cachés"
+    show: "Tous les joueurs sont maintenant <green>visibles"
   gravity:
-    switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
+    switch: "<red>⚠ Interrupteur à gravité en <b><input-1></b>secondes ⚠</red>"
   noSameItem:
-    duplicate: "<red><input-2></red> was already collected by <red><input-1></red>!"
-    deathTitle: "<red>You are dead"
+    duplicate: "<red><input-2></red> a déjà été collectée par <red><input-1></red>!"
+    deathTitle: "<red>Tu es mort"
   forceHunt:
-    height: "On Height"
-    item: "Collect Item"
-    biome: "Visit Biome"
-    waiting: "Waiting for new goal..."
+    height: "Sur la hauteur"
+    item: "Collecter l'objet"
+    biome: "Visiter le biome"
+    waiting: "En attendant le nouvel objectif..."
   collectBattle:
-    finished: "Finished current task"
-    notAllowed: "Only new gathered items are allowed!"
-    timeLeft: "Time left:"
-    cooldown: "No current task"
-    register: "You registered <green><input-1></green> as your item! Now you have to wait for all other players to register their items"
-    startHunt: "<grey>All players gathered their items! Now you have to find <blue><input-1></blue> faster then <blue><input-2></blue> (<input-3>)</grey>"
-    startCooldown: "<green>Round <input-1> finished!</green>"
+    finished: "Fin de la tâche en cours"
+    notAllowed: "Seuls les nouveaux objets collectés sont autorisés !"
+    timeLeft: "Temps restant:"
+    cooldown: "Pas de tâche en cours"
+    register: "Vous vous êtes inscrit <green><input-1></green> comme objet ! Vous devez maintenant attendre que tous les autres joueurs enregistrent leurs objets"
+    startHunt: "<grey>Tous les joueurs ont rassemblé leurs objets ! Vous devez maintenant trouver <blue><input-1></blue> plus vite que <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Rond <input-1> terminé!</green>"
   rivalCollect:
-    itemFound: "<grey><input-1> just found <blue><input-2></blue>!"
-    newItem: "<grey>Your next task is to find/kill <blue><input-1>"
+    itemFound: "<input-1> just found <blue><input-2></blue>!"
+    newItem: "Your next task is to find/kill <input-1>"
   worldPeace:
     death: "The mob <blue><input-1></blue> died :("
     alreadyTraded: "You already traded with me. Thank you for the item :)"
@@ -121,6 +129,10 @@ event:
     tradeOffer: "Could your bring <blue><input-1> <input-2></blue>?"
     tradeOffer2: "In return i would give some of my <blue><input-1></blue>! "
   enterFilter: "Enter a filter for <color:#6e94ff><input-1></color>" #m v1
+  hitOrder:
+    nextPlayer: "Current Damager: "
+  tickRate:
+    gameSpeed: "Game Speed"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -128,6 +140,36 @@ event:
 #l -> Item Lore                  #
 #-----------------------------------------#
 items:
+  menu:
+    premium:
+      n: "Premium Challenges"
+      l: "Exclusive challenges for Premium users.<br>Unique and complex modifications<br>for yourself or with friends!"
+    normal:
+      n: "Challenges"
+      l: "Global challenges for everyone.<br>Select one or multiple and begin<br>your adventure!"
+    addons:
+      n: "Addon Challenges"
+      l: "All challenges added by installed<br>addons. Discover new challenges<br>or create and play your own!"
+      b: "Open Addon Browser"
+    favorite:
+      n: "Favorites"
+      l: "Favorite challenges for quick access.<br>No need to search them!"
+    last:
+      n: "History"
+      l: "Quick access your last played<br>challenges. History is saved from<br>new to old."
+    settings:
+      n: "Settings"
+  settings:
+    language:
+      n: "Language"
+      l: "Changing the language will affect all<br>messages and texts in MChallenge.<br>Help us to improve the translations!"
+      s: "Current: "
+    compact:
+      n: "Challenge Display"
+      l: "Switch between compact and detailed<br>display of challenges. Compact is<br>faster to access but can be clutter"
+    theme:
+      n: "Color Theme"
+      l: "Change the color theme of the GUI<br>and messages. Themes can be acquired<br>by various events"
   general:
     arrowRightEnd:
       n: "<red>Scroll Right"
@@ -331,6 +373,15 @@ items:
     DAMAGE_MULTIPLIER:
       n: "Damage Multiplier"
       l: "Higher or lower all damage against<br>players. Includes potion debuffs and fire"
+    HIT_ORDER:
+      n: "Damage Order"
+      l: "Only one player at a time is allowed<br>to damage mobs. But this player<br>changes on every hit!"
+    TICK_RATE:
+      n: "Game Speed Shuffler"
+      l: "The game will constantly change<br>the speed which effects every action.<br>Can you keep up?"
+    RHYTHM_CRAFT:
+      n: "Rhythm Craft"
+      l: "Turn Minecraft into a full Rhythmgame!<br>Every action needs to be done on the beat<br>to follow the world rhythm."
   chS:
     FLY:
       power:
@@ -606,3 +657,19 @@ items:
     DAMAGE_MULTIPLIER:
       multiplier:
         n: "Multiplier"
+    HIT_ORDER:
+      wrongDamage:
+        n: "Damage On Wrong"
+      randomOrder:
+        n: "Random Order"
+      visual:
+        n: "Info Bar"
+    TICK_RATE:
+      ticks:
+        n: "Tick Speed"
+      timings:
+        n: "Shuffel Rate"
+      min:
+        n: "Min Speed"
+      max:
+        n: "Max Speed"
