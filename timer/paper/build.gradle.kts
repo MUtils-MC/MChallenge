@@ -4,6 +4,10 @@ plugins {
     `shadow-script`
 }
 
+repositories {
+    mavenLocal()
+}
+
 dependencies {
     implementation(project(":vanilla")) // Main Utils
     implementation(project(":core-paper")) // Paper specified Utils
@@ -12,7 +16,7 @@ dependencies {
     implementation(project(":timer:global"))
 
     implementation(project(":challenges:api")) // Internal API
-    implementation(project(":bridge")) // Internal API
+    implementation("de.miraculixx:mbridge:1.0.0")
 }
 
 group = "de.miraculixx.timer"

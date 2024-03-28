@@ -16,13 +16,6 @@ include("vanilla")
 include("core-paper")
 //include("core-fabric")
 
-// API Bridge
-include("bridge")
-
-// Custom Challenges
-include("custom-challenges:paper")
-//include("custom-challenges:fabric")
-
 // Timer
 include("timer:api")
 include("timer:global")
@@ -31,9 +24,7 @@ include("timer:paper")
 
 // Challenges
 include("challenges:paper")
-// include("challenges:fabric")
 include("challenges:api")
-include("challenges:global")
 
 // World Creator
 include("world-creator:paper")
