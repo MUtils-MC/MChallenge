@@ -7,10 +7,9 @@ import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
-import de.miraculixx.mchallenge.modules.mods.misc.inTime.old.InTimeData
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import org.bukkit.World
 import org.bukkit.entity.AreaEffectCloud
 import org.bukkit.entity.EnderDragon

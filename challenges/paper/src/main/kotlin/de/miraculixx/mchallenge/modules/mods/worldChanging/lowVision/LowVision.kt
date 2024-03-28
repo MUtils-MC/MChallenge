@@ -3,18 +3,16 @@ package de.miraculixx.mchallenge.modules.mods.worldChanging.lowVision
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mchallenge.PluginManager
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.ResourcePackChallenge
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.ResourcePackChallenge
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mchallenge.gui.GUITypes
 import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mvanilla.messages.consoleAudience
 import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience
-import org.bukkit.Material
 import org.bukkit.Sound
-import java.util.UUID
 
 class LowVision: Challenge, ResourcePackChallenge {
     private lateinit var mWebAPI: MWebAPI

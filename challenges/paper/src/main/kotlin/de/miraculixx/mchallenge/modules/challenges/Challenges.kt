@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.global
+package de.miraculixx.mchallenge.modules.challenges
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.challenge.api.modules.mods.areaTimer.AreaTimerMode
@@ -102,7 +102,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             NO_SAME_ITEM -> mapOf(
                 "lives" to ChallengeIntSetting("BEETROOT", 5, max = 10, min = 1),
                 "sync" to ChallengeBoolSetting("REDSTONE", false),
-                "info" to ChallengeEnumSetting("WRITABLE_BOOK", NoSameItemEnum.EVERYTHING.name, options = NoSameItemEnum.values().map { it.name })
+                "info" to ChallengeEnumSetting("WRITABLE_BOOK", NoSameItemEnum.EVERYTHING.name, options = NoSameItemEnum.entries.map { it.name })
             )
 
             LIMITED_SKILLS -> mapOf("random" to ChallengeBoolSetting("DROPPER", true))
@@ -151,7 +151,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             RANDOMIZER_DAMAGE -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             NO_DOUBLE_KILL -> mapOf("global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true))
             DAMAGER -> mapOf(
-                "mode" to ChallengeEnumSetting("KNOWLEDGE_BOOK", ChDamager.SLOT_CHANGE.name, options = ChDamager.values().map { it.name }),
+                "mode" to ChallengeEnumSetting("KNOWLEDGE_BOOK", ChDamager.SLOT_CHANGE.name, options = ChDamager.entries.map { it.name }),
                 "damage" to ChallengeIntSetting("BEETROOT", 1, "hp", max = 20, min = 1),
                 "interval" to ChallengeIntSetting("CLOCK", 1, "s", max = 600, min = 1)
             )
@@ -256,7 +256,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             AREA_TIMER -> mapOf(
                 "time" to ChallengeIntSetting("CLOCK", 600, "s", max = 3600, min = 60, step = 10),
                 "global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true),
-                "mode" to ChallengeEnumSetting("CRAFTING_TABLE", "BIOMES", options = AreaTimerMode.values().map { it.name })
+                "mode" to ChallengeEnumSetting("CRAFTING_TABLE", "BIOMES", options = AreaTimerMode.entries.map { it.name })
             )
 
             COLLECT_BATTLE -> mapOf(

@@ -4,7 +4,7 @@ import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.competition.CompetitionPointRule
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mvanilla.extensions.msg

@@ -11,9 +11,9 @@ import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.format.NamedTextColor

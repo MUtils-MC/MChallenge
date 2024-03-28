@@ -5,8 +5,8 @@ import de.miraculixx.challenge.api.modules.challenges.*
 import de.miraculixx.challenge.api.settings.ChallengeData
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.mchallenge.MChallenge
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.StatusChanger
 import de.miraculixx.mchallenge.utils.UniversalChallenge
 import de.miraculixx.mchallenge.utils.config.Configurable

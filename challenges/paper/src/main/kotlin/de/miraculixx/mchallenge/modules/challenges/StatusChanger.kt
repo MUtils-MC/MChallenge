@@ -2,9 +2,6 @@ package de.miraculixx.mchallenge.modules.challenges
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.force.forceHunt.ForceHunt
 import de.miraculixx.mchallenge.modules.mods.force.huntItems.ItemHunt
@@ -57,7 +54,6 @@ import de.miraculixx.mchallenge.modules.mods.worldChanging.mineField.MineFieldWo
 import de.miraculixx.mchallenge.modules.mods.worldChanging.oneBiome.OneBiome
 import de.miraculixx.mchallenge.modules.mods.worldChanging.worldDecay.WorldDecay
 import de.miraculixx.mchallenge.utils.UniversalChallenge
-import de.miraculixx.mchallenge.utils.cotm
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mvanilla.messages.*
 import java.util.*
@@ -170,11 +166,9 @@ class StatusChanger {
     }
 
     private fun startChallenge(tags: Set<ChallengeTags>, status: Boolean, instance: Challenge, internalChallenge: Challenges?, customUUID: UUID?): Boolean {
-        if (!status) {
-            if (internalChallenge != cotm && !tags.contains(ChallengeTags.FREE)) {
-                consoleAudience.sendMessage(prefix + cmp("Challenge ${internalChallenge?.name ?: customUUID} requires a connected account to play!", cError))
-                return false
-            }
+        if (!status && !tags.contains(ChallengeTags.FREE)) {
+            consoleAudience.sendMessage(prefix + cmp("Challenge ${internalChallenge?.name ?: customUUID} requires a connected account to play!", cError))
+            return false
         }
 
         return instance.start()

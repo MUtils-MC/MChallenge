@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge.gui.actions
 
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.gui.GUITypes
 import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mchallenge.gui.items.ItemsChallenge

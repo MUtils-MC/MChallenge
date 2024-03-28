@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.gui.actions
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.utils.getAccountStatus

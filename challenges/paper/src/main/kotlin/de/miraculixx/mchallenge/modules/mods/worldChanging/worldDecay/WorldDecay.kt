@@ -1,19 +1,17 @@
 package de.miraculixx.mchallenge.modules.mods.worldChanging.worldDecay
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.PluginManager
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.ResourcePackChallenge
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.ResourcePackChallenge
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mvanilla.messages.*
 import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience
-import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.Material
 import java.io.File
 

@@ -1,6 +1,6 @@
 package de.miraculixx.mchallenge.utils
 
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mvanilla.data.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.*

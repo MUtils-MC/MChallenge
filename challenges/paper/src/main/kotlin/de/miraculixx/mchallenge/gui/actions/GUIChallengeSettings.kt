@@ -2,9 +2,9 @@ package de.miraculixx.mchallenge.gui.actions
 
 import de.miraculixx.challenge.api.settings.*
 import de.miraculixx.kpaper.items.customModel
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.gui.GUITypes
 import de.miraculixx.mchallenge.gui.buildInventory

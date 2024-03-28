@@ -140,7 +140,6 @@ class HalloweenChallenge : Challenge {
         val position = it.interactionPoint ?: return@listen
         val type = block.type
         val player = it.player
-        val item = it.item
 
         when {
             Tag.BEDS.isTagged(type) -> {

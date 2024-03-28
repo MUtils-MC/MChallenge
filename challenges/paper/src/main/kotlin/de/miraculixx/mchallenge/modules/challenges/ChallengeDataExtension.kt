@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.global
+package de.miraculixx.mchallenge.modules.challenges
 
 import de.miraculixx.challenge.api.settings.ChallengeData
 

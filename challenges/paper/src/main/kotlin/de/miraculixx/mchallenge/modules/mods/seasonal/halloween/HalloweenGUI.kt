@@ -55,7 +55,7 @@ class HalloweenGUIItem: ItemProvider {
 
 
 class HalloweenGUILogic(private val challengeClass: HalloweenChallenge): GUIEvent {
-    override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, inv: CustomInventory ->
+    override val run: (InventoryClickEvent, CustomInventory) -> Unit = event@{ it: InventoryClickEvent, _: CustomInventory ->
         val item = it.currentItem
         val meta = item?.itemMeta ?: return@event
         val player = it.whoClicked as? Player ?: return@event

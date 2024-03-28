@@ -1,6 +1,6 @@
 package de.miraculixx.mchallenge.gui.items
 
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.challenge.api.settings.*
 import de.miraculixx.challenge.api.utils.CustomHeads
 import de.miraculixx.challenge.api.utils.Icon

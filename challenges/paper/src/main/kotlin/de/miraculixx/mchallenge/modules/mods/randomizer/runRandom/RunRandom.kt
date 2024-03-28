@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.randomizer.runRandom
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.challenge.api.modules.mods.runRandom.RunRandomData
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister

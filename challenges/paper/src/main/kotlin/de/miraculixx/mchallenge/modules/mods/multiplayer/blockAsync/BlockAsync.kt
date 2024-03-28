@@ -1,9 +1,9 @@
 package de.miraculixx.mchallenge.modules.mods.multiplayer.blockAsync
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -125,7 +125,7 @@ class BlockAsync : Challenge {
             //Fake Block geschlagen
             clickedBlock.type = Material.AIR
             clickedBlock.type = Material.RED_CONCRETE
-            it.player.bedSpawnLocation = clickedBlock.location
+            it.player.respawnLocation = clickedBlock.location
             player.persistentDataContainer.set(NamespacedKey(namespace, "death.custom"), PersistentDataType.STRING, "blockAsync")
             it.player.damage(100.0)
 

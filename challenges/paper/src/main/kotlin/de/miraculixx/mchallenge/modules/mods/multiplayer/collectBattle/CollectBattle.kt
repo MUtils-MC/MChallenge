@@ -11,9 +11,9 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mchallenge.global.Challenges
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mchallenge.modules.challenges.InternalTimer
 import de.miraculixx.mchallenge.modules.challenges.getFormatted
 import de.miraculixx.mchallenge.modules.spectator.Spectator
@@ -130,7 +130,7 @@ class CollectBattle : Challenge {
 
     private val onF = listen<PlayerSwapHandItemsEvent>(register = false) {
         if (state != CollectBattleState.SETTING) return@listen
-        val item = it.offHandItem ?: return@listen
+        val item = it.offHandItem
         val type = item.type
         if (type.isAir) return@listen
         val player = it.player

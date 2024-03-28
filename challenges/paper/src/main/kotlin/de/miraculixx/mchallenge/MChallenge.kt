@@ -5,14 +5,14 @@ import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KSpigot
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mbridge.MUtilsBridge
-import de.miraculixx.mbridge.MUtilsModule
-import de.miraculixx.mbridge.MUtilsPlatform
+import de.miraculixx.mbridge.data.MUtilsModule
+import de.miraculixx.mbridge.data.MUtilsPlatform
 import de.miraculixx.mchallenge.commands.ChallengeCommand
 import de.miraculixx.mchallenge.commands.CompetitionCommand
 import de.miraculixx.mchallenge.commands.CustomRulesCommand
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.commands.utils.*
-import de.miraculixx.mchallenge.global.challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.global.RuleListener
@@ -117,19 +117,21 @@ class MChallenge : KSpigot() {
             Spectator.loadData()
 
             // Connect Bridge
-            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port)
+            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port, debug)
             val version = bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0, File("plugins/update"))
             if (!version) {
                 isAllowedToStart = false
                 return@launch
             }
-            bridgeAPI.login {
+            bridgeAPI.login({
                 ChallengeManager.stopChallenges()
                 challenges.forEach { (challenge, data) ->
                     if (challenge.filter.contains(ChallengeTags.FREE)) return@forEach
                     data.active = false
                 }
                 consoleAudience.sendMessage(challengePrefix + cmp("Disabled all premium features. Please login with a valid account to continue", cError))
+            }) {
+                it.style
             }
 
             // Finish loading - starting setup

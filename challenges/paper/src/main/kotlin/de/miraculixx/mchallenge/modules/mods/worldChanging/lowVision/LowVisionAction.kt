@@ -3,7 +3,7 @@ package de.miraculixx.mchallenge.modules.mods.worldChanging.lowVision
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
-import de.miraculixx.mchallenge.global.ResourcePackChallenge
+import de.miraculixx.mchallenge.modules.challenges.ResourcePackChallenge
 import de.miraculixx.mcore.await.AwaitChatMessage
 import de.miraculixx.mcore.gui.GUIEvent
 import de.miraculixx.mcore.gui.data.CustomInventory
@@ -11,9 +11,7 @@ import de.miraculixx.mvanilla.extensions.soundDisable
 import de.miraculixx.mvanilla.extensions.soundEnable
 import de.miraculixx.mvanilla.extensions.soundError
 import de.miraculixx.mvanilla.extensions.soundUp
-import de.miraculixx.mvanilla.messages.consoleAudience
 import de.miraculixx.mvanilla.messages.msg
-import de.miraculixx.mvanilla.messages.prefix
 import de.miraculixx.mweb.api.MWebAPI
 import org.bukkit.Material
 import org.bukkit.entity.Player

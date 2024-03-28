@@ -1,10 +1,10 @@
 package de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.mchallenge.global.Challenges
+import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.challenge.api.modules.mods.noSameItem.NoSameItemEnum
-import de.miraculixx.mchallenge.global.challenges
-import de.miraculixx.mchallenge.global.getSetting
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
@@ -120,7 +120,7 @@ class NoSameItem : Challenge {
             after.addAll(topInv.mapNotNull { item -> item?.type })
         }
         val cursor = view.cursor
-        if (cursor != null && !cursor.type.isAir) after.add(cursor.type)
+        if (!cursor.type.isAir) after.add(cursor.type)
 
         // Remove all items from before and only keep new items
         after.removeAll(before)

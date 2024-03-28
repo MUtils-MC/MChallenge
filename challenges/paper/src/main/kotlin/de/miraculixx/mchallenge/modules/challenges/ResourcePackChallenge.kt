@@ -1,4 +1,4 @@
-package de.miraculixx.mchallenge.global
+package de.miraculixx.mchallenge.modules.challenges
 
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.audience.Audience

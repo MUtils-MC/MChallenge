@@ -148,22 +148,22 @@ class Realistic : Challenge {
 
     private val onInvClick = listen<InventoryClickEvent>(register = false) {
         //Stackable Pots
-        if (it.currentItem?.type == Material.POTION && it.cursor?.type == Material.POTION && it.click == ClickType.LEFT) {
-            if ((it.currentItem!!.amount + it.cursor!!.amount) <= 6) {
+        if (it.currentItem?.type == Material.POTION && it.cursor.type == Material.POTION && it.click == ClickType.LEFT) {
+            if ((it.currentItem!!.amount + it.cursor.amount) <= 6) {
                 it.isCancelled = true
-                it.currentItem!!.amount += it.cursor!!.amount
+                it.currentItem!!.amount += it.cursor.amount
                 (it.whoClicked as Player).updateInventory()
             }
         } else
-            if (it.currentItem == null && it.cursor?.type == Material.POTION && it.click == ClickType.LEFT) {
+            if (it.currentItem == null && it.cursor.type == Material.POTION && it.click == ClickType.LEFT) {
                 it.isCancelled = true
                 it.inventory.setItem(it.slot, it.cursor)
                 (it.whoClicked as Player).updateInventory()
             }
 
         //Inventory logic
-        if (it.cursor != null && it.click == ClickType.LEFT) {
-            when (it.cursor!!.type) {
+        if (it.click == ClickType.LEFT) {
+            when (it.cursor.type) {
                 Material.TNT -> broadcast("TODO")//Redstone check
                 Material.SAND, Material.RED_SAND, Material.GRAVEL -> broadcast("TODO")//fall down
                 else -> {}
