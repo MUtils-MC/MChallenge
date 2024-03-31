@@ -2,7 +2,6 @@ package de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.challenges.Challenges
-import de.miraculixx.challenge.api.modules.mods.noSameItem.NoSameItemEnum
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.event.listen

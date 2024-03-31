@@ -9,9 +9,11 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.modules.mods.misc.rhythm.entity.*
+import de.miraculixx.mvanilla.messages.cError
 import de.miraculixx.mvanilla.messages.cmp
 import de.miraculixx.mvanilla.messages.plus
 import de.miraculixx.mvanilla.messages.prefix
+import net.kyori.adventure.bossbar.BossBar
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -44,6 +46,8 @@ class RhythmCraft : Challenge {
     private val inputCooldown = mutableSetOf<UUID>()
     private val tickingEntities = mutableMapOf<World, MutableMap<UUID, RLivingEntity>>()
     private val players = mutableMapOf<UUID, RPlayer>()
+    private val speed = 10
+    private val bar = RhythmBar(speed)
 
     // Static values
     private val alwaysEdible = setOf(Material.CHORUS_FRUIT, Material.GOLDEN_APPLE, Material.ENCHANTED_GOLDEN_APPLE, Material.HONEY_BOTTLE)
@@ -55,7 +59,10 @@ class RhythmCraft : Challenge {
             tickingEntities[world] = buildMap { world.livingEntities.forEach { e -> put(e.uniqueId, entityToRhythm(e)) } }.toMutableMap()
         }
         tickingEntities.forEach { (_, entities) -> entities.forEach { (_, e) -> e.onSpawn() } }
-        onlinePlayers.forEach { p -> players[p.uniqueId] = RPlayer(p) }
+        onlinePlayers.forEach { p ->
+            players[p.uniqueId] = RPlayer(p)
+            bar.show(p)
+        }
         return true
     }
 
@@ -65,6 +72,7 @@ class RhythmCraft : Challenge {
         }
         tickingEntities.clear()
         players.clear()
+        onlinePlayers.forEach { p -> bar.hide(p) }
     }
 
     override fun register() {
@@ -99,8 +107,8 @@ class RhythmCraft : Challenge {
         }
     }
 
-    private var ticker = 1
     private fun tick() {
+        bar.press()
         worlds.forEach { world ->
             // Don't tick empty worlds - waste
             if (world.playerCount == 0) return@forEach
@@ -111,10 +119,6 @@ class RhythmCraft : Challenge {
             map.forEach { (id, e) -> if (e.checkDead()) removal.add(id) else e.tick() }
             removal.forEach { id -> map.remove(id) }
         }
-
-        ticker++
-        if (ticker >= 5) ticker = 1
-        onlinePlayers.forEach { p -> p.playSound(p, Sound.BLOCK_NOTE_BLOCK_HAT, 0.5f, 1f - (0.2f * ticker)) }
     }
 
 

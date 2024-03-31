@@ -2,7 +2,6 @@ package de.miraculixx.mchallenge.gui.items
 
 import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.challenge.api.settings.*
-import de.miraculixx.challenge.api.utils.CustomHeads
 import de.miraculixx.challenge.api.utils.Icon
 import de.miraculixx.challenge.api.utils.IconNaming
 import de.miraculixx.kpaper.items.customModel
@@ -15,6 +14,7 @@ import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.extensions.enumOf
 import de.miraculixx.mvanilla.extensions.msg
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
@@ -65,7 +65,7 @@ class ItemsChallengeSettings(private val challengeSettings: Map<String, Challeng
                     challengeKey?.let { key -> persistentDataContainer.set(challengeNamespace, PersistentDataType.STRING, key) }
                     customUUID?.let { id -> persistentDataContainer.set(customChallengeNamespace, PersistentDataType.STRING, id.toString()) }
                 }
-                itemMeta = (itemMeta as SkullMeta).skullTexture(CustomHeads.ARROW_RESET.value)
+                itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.ARROW_RESET.value)
             }
         )
     }

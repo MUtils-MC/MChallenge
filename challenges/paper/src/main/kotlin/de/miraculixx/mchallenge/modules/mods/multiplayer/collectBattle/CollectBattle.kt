@@ -1,7 +1,6 @@
 package de.miraculixx.mchallenge.modules.mods.multiplayer.collectBattle
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
-import de.miraculixx.challenge.api.modules.mods.collectBattle.CollectBattleState
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister

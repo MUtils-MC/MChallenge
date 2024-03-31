@@ -1,7 +1,7 @@
 package de.miraculixx.mchallenge.modules.spectator
 
-import de.miraculixx.challenge.api.modules.spectator.Activation
-import de.miraculixx.challenge.api.modules.spectator.Visibility
+import de.miraculixx.mchallenge.modules.spectator.data.Activation
+import de.miraculixx.mchallenge.modules.spectator.data.Visibility
 import kotlinx.serialization.Serializable
 
 @Serializable

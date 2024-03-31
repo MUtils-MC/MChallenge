@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.SkullMeta
 
 fun Challenges.getIcon(): ItemStack {
     return itemStack(enumOf<Material>(icon.material) ?: Material.BARRIER) {
-        icon.texture?.let { itemMeta = (itemMeta as? SkullMeta)?.skullTexture(it.value) }
+        icon.texture?.let { itemMeta = (itemMeta as? SkullMeta)?.skullTexture(it) }
     }
 }
 

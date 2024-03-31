@@ -118,7 +118,7 @@ class ItemsChallenge(private val applicable: Set<UniversalChallenge>) : ItemFilt
                     )
                 }
             }
-            icon.texture?.value?.let { itemMeta = (itemMeta as SkullMeta).skullTexture(it) }
+            icon.texture?.let { itemMeta = (itemMeta as SkullMeta).skullTexture(it) }
         }
         return item to itemData.settings.active
     }

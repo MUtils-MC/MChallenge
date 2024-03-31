@@ -2,7 +2,6 @@ package de.miraculixx.mchallenge.modules.mods.simple.damager
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.mchallenge.modules.challenges.Challenges
-import de.miraculixx.challenge.api.modules.mods.damager.ChDamager
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.event.listen
@@ -23,7 +22,7 @@ import org.bukkit.event.player.PlayerMoveEvent
 class Damager : Challenge {
     private val listener = ArrayList<Listener>()
     private val damage: Double
-    private val mode: ChDamager
+    private val mode: DamagerType
     private val interval: Int
 
     private var active = false
@@ -32,24 +31,24 @@ class Damager : Challenge {
     init {
         val settings = challenges.getSetting(Challenges.DAMAGER).settings
         damage = settings["damage"]?.toInt()?.getValue()?.toDouble() ?: 1.0
-        mode = enumOf<ChDamager>(settings["mode"]?.toEnum()?.getValue()) ?: ChDamager.SLOT_CHANGE
+        mode = enumOf<DamagerType>(settings["mode"]?.toEnum()?.getValue()) ?: DamagerType.SLOT_CHANGE
         interval = settings["interval"]?.toInt()?.getValue() ?: 1
     }
 
     override fun start(): Boolean {
         when (mode) {
-            ChDamager.SLOT_CHANGE -> {
+            DamagerType.SLOT_CHANGE -> {
                 listener.add(onSlotSwitch)
                 listener.add(onItemClick)
             }
 
-            ChDamager.BLOCK_MOVE -> {
+            DamagerType.BLOCK_MOVE -> {
                 listener.add(onMove)
             }
 
-            ChDamager.INTERVAL -> {}
+            DamagerType.INTERVAL -> {}
 
-            ChDamager.VERTICAL_MOVE -> {
+            DamagerType.VERTICAL_MOVE -> {
                 listener.add(onMove2)
             }
         }
@@ -64,21 +63,21 @@ class Damager : Challenge {
     override fun register() {
         active = true
         when (mode) {
-            ChDamager.SLOT_CHANGE -> {
+            DamagerType.SLOT_CHANGE -> {
                 onSlotSwitch.register()
 //                onItemClick.register()
             }
 
-            ChDamager.BLOCK_MOVE -> {
+            DamagerType.BLOCK_MOVE -> {
                 onMove.register()
             }
 
-            ChDamager.INTERVAL -> {
+            DamagerType.INTERVAL -> {
                 active = true
                 repeat()
             }
 
-            ChDamager.VERTICAL_MOVE -> {
+            DamagerType.VERTICAL_MOVE -> {
                 onMove2.register()
             }
         }

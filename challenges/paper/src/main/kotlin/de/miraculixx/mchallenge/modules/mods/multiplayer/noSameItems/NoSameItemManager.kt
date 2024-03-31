@@ -1,7 +1,6 @@
 package de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems
 
 import de.miraculixx.mchallenge.modules.challenges.Challenges
-import de.miraculixx.challenge.api.modules.mods.noSameItem.NoSameItemEnum
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.kpaper.extensions.onlinePlayers
@@ -45,7 +44,7 @@ class NoSameItemManager {
             if (player.gameMode == GameMode.SURVIVAL) createBossBar(player)
         }
 
-        Material.values().forEach { item ->
+        Material.entries.forEach { item ->
             materialRanking[item] = mutableListOf()
         }
         onlinePlayers.forEach { player ->

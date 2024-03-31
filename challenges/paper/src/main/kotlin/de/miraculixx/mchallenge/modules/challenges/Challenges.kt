@@ -1,12 +1,12 @@
 package de.miraculixx.mchallenge.modules.challenges
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.challenge.api.modules.mods.areaTimer.AreaTimerMode
-import de.miraculixx.challenge.api.modules.mods.damager.ChDamager
-import de.miraculixx.challenge.api.modules.mods.noSameItem.NoSameItemEnum
 import de.miraculixx.challenge.api.settings.*
-import de.miraculixx.challenge.api.utils.CustomHeads
 import de.miraculixx.challenge.api.utils.Icon
+import de.miraculixx.mchallenge.modules.mods.misc.areaTimer.AreaTimerMode
+import de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems.NoSameItemEnum
+import de.miraculixx.mchallenge.modules.mods.simple.damager.DamagerType
+import de.miraculixx.mvanilla.gui.Head64
 
 /**
  * @param filter List of filter categories the challenges owns
@@ -35,11 +35,11 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     FLY(setOf(ChallengeTags.FUN), Icon("ELYTRA")),
     IN_TIME(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
     MOB_BLOCKS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("ZOMBIE_HEAD")),
-    CHECKPOINTS(setOf(ChallengeTags.FUN), Icon("PLAYER_HEAD", CustomHeads.BACKWARD_QUARTZ)),
+    CHECKPOINTS(setOf(ChallengeTags.FUN), Icon("PLAYER_HEAD", Head64.BACKWARD_QUARTZ.value)),
     DIM_SWAP(setOf(ChallengeTags.MEDIUM), Icon("END_PORTAL_FRAME")),
     SNAKE(setOf(ChallengeTags.HARD), Icon("RED_CONCRETE_POWDER")),
     REALISTIC(setOf(ChallengeTags.HARD), Icon("OAK_SAPLING")),
-    GHOST(setOf(ChallengeTags.FUN), Icon("PLAYER_HEAD", CustomHeads.GHAST)),
+    GHOST(setOf(ChallengeTags.FUN), Icon("PLAYER_HEAD", Head64.GHAST.value)),
     BLOCK_ASYNC(setOf(ChallengeTags.FUN, ChallengeTags.MULTIPLAYER), Icon("RED_STAINED_GLASS")),
     NO_SAME_ITEM(setOf(ChallengeTags.MEDIUM, ChallengeTags.MULTIPLAYER), Icon("WITHER_ROSE")),
     LIMITED_SKILLS(setOf(ChallengeTags.HARD, ChallengeTags.MULTIPLAYER), Icon("TURTLE_HELMET")),
@@ -51,12 +51,12 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     SNEAK_SPAWN(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("HOPPER")),
     GRAVITY(setOf(ChallengeTags.MEDIUM), Icon("SAND")),
     STAY_AWAY(setOf(ChallengeTags.HARD), Icon("TNT")),
-    RANDOMIZER_BLOCK(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_GREEN)),
-    RANDOMIZER_ENTITY(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_ORANGE)),
-    RANDOMIZER_BIOMES(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_PURPLE)),
-    RANDOMIZER_MOBS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_BLACK)),
-    RANDOMIZER_DAMAGE(setOf(ChallengeTags.MEDIUM, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_RED)),
-    RANDOMIZER_CHESTS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", CustomHeads.DICE_BLUE)),
+    RANDOMIZER_BLOCK(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_GREEN.value)),
+    RANDOMIZER_ENTITY(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_ORANGE.value)),
+    RANDOMIZER_BIOMES(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_PURPLE.value)),
+    RANDOMIZER_MOBS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_BLACK.value)),
+    RANDOMIZER_DAMAGE(setOf(ChallengeTags.MEDIUM, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_RED.value)),
+    RANDOMIZER_CHESTS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", Head64.DICE_BLUE.value)),
     FORCE_COLLECT(setOf(ChallengeTags.MEDIUM, ChallengeTags.FORCE), Icon("CHEST")),
     NO_DOUBLE_KILL(setOf(ChallengeTags.MEDIUM), Icon("REPEATER")),
     DAMAGER(setOf(ChallengeTags.HARD), Icon("DIAMOND_SWORD")),
@@ -151,7 +151,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             RANDOMIZER_DAMAGE -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             NO_DOUBLE_KILL -> mapOf("global" to ChallengeBoolSetting("POPPED_CHORUS_FRUIT", true))
             DAMAGER -> mapOf(
-                "mode" to ChallengeEnumSetting("KNOWLEDGE_BOOK", ChDamager.SLOT_CHANGE.name, options = ChDamager.entries.map { it.name }),
+                "mode" to ChallengeEnumSetting("KNOWLEDGE_BOOK", DamagerType.SLOT_CHANGE.name, options = DamagerType.entries.map { it.name }),
                 "damage" to ChallengeIntSetting("BEETROOT", 1, "hp", max = 20, min = 1),
                 "interval" to ChallengeIntSetting("CLOCK", 1, "s", max = 600, min = 1)
             )

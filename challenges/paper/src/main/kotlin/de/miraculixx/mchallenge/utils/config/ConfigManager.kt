@@ -1,6 +1,5 @@
 package de.miraculixx.mchallenge.utils.config
 
-import de.miraculixx.challenge.api.settings.SettingsData
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.Localization

@@ -7,8 +7,8 @@ import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mvanilla.data.UUIDSerializer
-import de.miraculixx.challenge.api.modules.spectator.Activation
-import de.miraculixx.challenge.api.modules.spectator.Visibility
+import de.miraculixx.mchallenge.modules.spectator.data.Activation
+import de.miraculixx.mchallenge.modules.spectator.data.Visibility
 import de.miraculixx.mvanilla.extensions.readJsonString
 import de.miraculixx.mvanilla.messages.*
 import kotlinx.serialization.Serializable

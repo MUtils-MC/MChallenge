@@ -1,6 +1,5 @@
 package de.miraculixx.mchallenge.commands.utils
 
-import de.miraculixx.challenge.api.utils.CustomHeads
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.items.name
@@ -15,14 +14,12 @@ import de.miraculixx.mcore.gui.data.InventoryManager
 import de.miraculixx.mcore.gui.items.ItemProvider
 import de.miraculixx.mcore.gui.items.skullTexture
 import de.miraculixx.mvanilla.extensions.msg
-import de.miraculixx.mvanilla.extensions.readJsonString
+import de.miraculixx.mvanilla.gui.Head64
 import de.miraculixx.mvanilla.messages.*
 import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.arguments.PlayerArgument
 import dev.jorel.commandapi.kotlindsl.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -111,7 +108,7 @@ class BackpackCommand: Configurable {
                         meta {
                             name = cmp("Global Backpack", cHighlight, true)
                         }
-                        itemMeta = (itemMeta as SkullMeta).skullTexture(CustomHeads.GLOBE.value)
+                        itemMeta = (itemMeta as SkullMeta).skullTexture(Head64.GLOBE.value)
                     } else {
                         meta<SkullMeta> {
                             name = cmp("${this@Items.owner}'s Backpack", cHighlight, true)

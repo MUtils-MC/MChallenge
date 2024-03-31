@@ -15,7 +15,7 @@ dependencies {
     implementation(project(":timer:api"))
     implementation(project(":timer:global"))
 
-    implementation(project(":challenges:api")) // Internal API
+    implementation("de.miraculixx:challenge-api:1.5.0")
     implementation("de.miraculixx:mbridge:1.0.0")
 }
 

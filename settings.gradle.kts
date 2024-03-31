@@ -24,7 +24,6 @@ include("timer:paper")
 
 // Challenges
 include("challenges:paper")
-include("challenges:api")
 
 // World Creator
 include("world-creator:paper")
