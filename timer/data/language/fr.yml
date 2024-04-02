@@ -1,0 +1,193 @@
+#----------------------- Translation ------------------------#
+#Content of all messages in MUtils-Timer.            #
+#------------------------------------------------------------#
+#Some messages support MiniMessage styling (marked with #m) #
+#and extra variables (marked with #v).             #
+#Syntax: <input-i> ->                                       #
+#i is a number from 0 to the message max            #
+#------------------------------------------------------------#
+creator: MUtils
+version: 1.0.0
+#-----------------------------------------#
+#Common Translations           #
+#Translation keys that persist in every  #
+#project for simple values        #
+#-----------------------------------------#
+common:
+  boolTrue: "Activé"
+  boolFalse: "Désactivé"
+  left: "Gauche"
+  right: "Droite"
+  click: "Cliquez"
+  sneak: "Sneak"
+  none: "None"
+  button: "Bouton"
+#-----------------------------------------#
+#Command Responses            #
+#Every command supports MiniMessages   #
+#-----------------------------------------#
+command:
+  help: "Use <blue>/timer</blue> to access the global timer and <blue>/ptimer<blue> to access your personal timer. Only the global timer can use rules and world settings. Use <blue>/timer language</blue> to modify the plugin language"
+  resume: "<green><b>Reprise du</b> timer <grey>(<input-1>)" #v1
+  pause: "<red><b>Pauser</b> du timer <grey>(<input-1>)" #v1
+  alreadyOn: "<red>Le timer est déjà en cours !"
+  alreadyOff: "<red>La Timer est déjà en pause!"
+  reset: "<grey>La Timer a été réinitialisée avec succès à 0"
+  noPlayer: "<red>Cette commande ne peut être utilisée que par les joueurs!"
+  noCommand: "<red>Sous-commande invalide !"
+  language: "Successfully switched to english (en_US)!"
+#-----------------------------------------#
+#Events                  #
+#Messages that occur on multiple places  #
+#-----------------------------------------#
+event:
+  millis: "Millisecondes"
+  seconds: "Secondes"
+  minutes: "Minutes"
+  hours: "Heures"
+  days: "Jours"
+  active: "Activé"
+  disabled: "Désactivé"
+  prefix: "Préfixe"
+  suffix: "Suffixe"
+  animation: "Vitesse des animations"
+  syntax: "Syntaxe"
+  forcedTwoDigits: "Forcé de 2 chiffres"
+  visibleOnNull: "Visible sur Null"
+  spaceInfo: "Utilisez _ pour ajouter des espaces avant et après votre message"
+  clickToCopy: "Cliquer pour copier : <blue><input-1>"
+  finish: "Finir"
+  playtime: "Spielzeit:"
+  endSuccess: "Challenge succeed!\n<input-1> killed" #v1
+  kick: "<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>\n\n<color:#b33b3b>≫<red> You died and got kicked </red>≪</color>\n<gold>Thanks for playing!</gold>\n\n<blue><st>                            </st>[ <b>Game Over</b> ]<st>                            </st></blue>"
+  ban: "§9§m                            §9[ §lGame Over§9 ]§m                            §r\n\n§c≫ You died and got kicked ≪§r\n§6Thanks for playing!§r\n\n§9§m                            §9[ §lGame Over§9 ]§m                            " #Legacy styling is needed, because minecraft's ban storing method is outdated...
+  location: "Death Point: "
+  exactLocation: "Exact Location"
+  world: "World"
+  backPrompt: "<gold>Teleport Back <gray>(click)"
+  gameOver: "Game Over"
+  timeout:
+    head: "Time Over"
+    sub: "The time is up"
+  soundEnd: "<grey>Enter a sound key like <blue>minecraft:block.stone.hit</blue>. Use <blue>/playsound</blue> for listing all sounds."
+#-----------------------------------------#
+#Items                  #
+#Messages only visible on GUI items    #
+#Syntax: n -> Item Name                  #
+#l -> Item Lore                  #
+#-----------------------------------------#
+items:
+  general:
+    arrowRightEnd:
+      n: "<red>Scroll Right"
+      l: "You can not scroll any<br>further to the right"
+    arrowLeftEnd:
+      n: "<red>Scroll Left"
+      l: "You can not scroll any<br>further to the left"
+    arrowRight:
+      n: "<lime>Scroll Right"
+      l: "<blue>Click ≫ +1 page<br><blue>Sneak-Click ≫ +5 pages"
+    arrowLeft:
+      n: "<lime>Scroll Left"
+      l: "<blue>Click ≫ -1 page<br><blue>Sneak-Click ≫ -5 pages"
+    pageIndicator:
+      l: "Click to open a compact<br>GUI with quick access"
+  design:
+    n: "Timer Design"
+    l: "Customize your timer design<br>from simple colorizing to<br>complex animations and texts"
+  rules:
+    n: "Timer Rules"
+    l: "Define what rules apply to<br>your Server while the timer<br>is active"
+  goals:
+    n: "Timer Goals"
+    l: "Automate your timer with<br>certain events to start<br>or stop it"
+  isActive:
+    n: "Visibility"
+    l: "Global timer is always rendered<br>over personal timers"
+    s: "Visible"
+  direction:
+    n: "Timer Direction"
+    l: "Define your timer direction.<br>Hitting time zero will stop it"
+    s: "Count Up"
+  createDesign:
+    n: "New Design"
+    l: "Create a new design from<br>scratch. Animations are not<br>animated in the editor"
+  designName:
+    n: "Design Name"
+    l: "Choose a fitting name, it is<br>visible in the local & public<br>timer design list"
+  designRunning:
+    n: "Running State"
+    l: "Customize the running state<br>of your timer"
+  designIdle:
+    n: "Idle State"
+    l: "Customize the idle state<br>of your timer"
+  dragonDeath:
+    n: "Ender Dragon Death"
+    l: "Kill an Ender Dragon to<br>finish the timer"
+  witherDeath:
+    n: "Wither Death"
+    l: "Kill a Wither to<br>finish the timer"
+  elderDeath:
+    n: "Elder Guardian Death"
+    l: "Kill a Elder Guardian to<br>finish the timer"
+  wardenDeath:
+    n: "Warden Death"
+    l: "Kill a Warden to<br>finish the timer (1.19+)"
+  playerDeath:
+    n: "Player Death"
+    l: "Any player death fails<br>the timer"
+  lastPlayer:
+    n: "Empty Server"
+    l: "Pause the timer when<br>the last player leaves<br>the server"
+  announceSeed:
+    n: "Announce Seed"
+    l: "Announce world seed on timer<br>fail or success in chat"
+  announceLocation:
+    n: "Announce Location"
+    l: "Announce death location on timer<br>fail in chat"
+  specOnDeath:
+    n: "Spectator on death"
+    l: "Enter spectator mode on<br>death (only on running)"
+  specOnJoin:
+    n: "Spectator on join"
+    l: "Enter spectator mode on<br>server join (only on running)"
+  punishment:
+    n: "Death Punishment"
+    l: "Punish player deaths with<br>certain actions (only on running)"
+  freezeWorld:
+    n: "Freeze World"
+    l: "Freeze the world on timer<br>pause. This will prevent any<br>player interactions and pauses<br>all AIs and game logics"
+  announceBack:
+    n: "Announce Teleport Back"
+    l: "Announce the back command<br>after death"
+  syncWithChallenges:
+    n: "Sync Challenges"
+    l: "Start/stop all challenges from<br>MUtils-Challenges with the timer.<br>This requires MChallenges to be installed!"
+  publicLibrary:
+    n: "Design Workshop"
+    l: "Access designs from users all<br>over the world! Or share<br>your owns with everyone."
+  time: "Time"
+  color:
+    type:
+      n: "Color Type"
+      l: "Choose a color type to input<br>a new color. Confirm<br>to copy it"
+    hex:
+      n: "Hexcode Input"
+    vanilla:
+      n: "Vanilla Colors"
+    red:
+      n: "Red Value"
+    green:
+      n: "Green Value"
+    blue:
+      n: "Blue Value"
+    animate:
+      n: "Gradient Animation"
+      s: "Animation"
+      l: "Add animation to your<br>final gradient. This animation<br>will loop"
+  designSetting:
+    n: "Design Settings"
+    l: "General changes about the timer<br>appearance. Leaving them on default<br>works fine"
+  changeDisplay:
+    n: "Timer Display"
+    l: "Switch the display position between<br>top (bossbar) and bottom (actionbar)"
