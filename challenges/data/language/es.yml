@@ -1,0 +1,675 @@
+#----------------------- Translation ------------------------#
+#Content of all messages in MUtils-Challenge.         #
+#------------------------------------------------------------#
+#Some messages support MiniMessage styling (marked with #m) #
+#and extra variables (marked with #v).             #
+#Syntax: <input-i> ->                                       #
+#i is a number from 0 to the message max            #
+#------------------------------------------------------------#
+creator: MUtils
+version: 1.0.0
+#-----------------------------------------#
+#Common Translations           #
+#Translation keys that persist in every  #
+#project for simple values        #
+#-----------------------------------------#
+common:
+  boolTrue: "Habilitado"
+  boolFalse: "Deshabilitado"
+  left: "Izquierda"
+  right: "Derecha"
+  click: "Clic"
+  sneak: "Visite"
+  none: "Ninguna"
+  confirm: "Confirmar"
+  cancel: "Cancelar"
+  openMenu: "Abrir menú"
+  settings: "Ajustes"
+  switch: "Interruptor"
+#-----------------------------------------#
+#Command Responses            #
+#Every command supports MiniMessages   #
+#-----------------------------------------#
+command:
+  challenge:
+    stop: "Challenges <red><b>stopped</b></red>! (<input-1>)"
+    start: "Challenges <green><b>started</b></green>! (<input-1>)"
+    pause: "Challenges temporary <red>paused</red>! (<input-1>)"
+    continue: "Challenges <green>resumed</green>! (<input-1>)"
+    failed: "<red>No se han podido iniciar los desafíos. Comprueba si hay al menos un desafío activado y suficientes jugadores conectados (desafíos multijugador)"
+    alreadyOn: "<red>¡Desafíos ya iniciados!"
+    alreadyOff: "<red>¡Los retos ya están parados!"
+  notRegistered: "<red>¡Activa el módulo para usar este comando!"
+  heal:
+    single: "<green>Te curaste a ti mismo"
+    multiple: "<green>You healed <input-1> players"
+  reset: "<red><b>Restablecimiento de los mundos del servidor <white>(Iniciado por <input-1>)"
+  position:
+    get: "<grey>Posición <input-1> >> <blue><input-2>"
+    new: "<grey>Creado nueva posición <blue><input-1> <grey>(<input-2>)"
+    remove: "<grey>Posición eliminada <blue><input-1>"
+    reset: "Restablecidas todas las posiciones guardadas!"
+  backpack:
+    setGlobal: "<grey>Cambio del tipo de mochila a <blue><input-1>"
+    setSize: "<grey>Cambiado el tamaño de la mochila a filas <blue><input-1></blue>"
+    reset: "<red>¡Despejadas todas las mochilas, incluida la global!"
+  hide:
+    hide: "<grey>You are now <red>hidden"
+    show: "<grey>You are now <green>visible"
+    hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
+    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+  debug: "<grey>Switched debug mode to <blue><input-1>"
+  lang:
+    success: "<grey>Successfully switched language to <green><input-1>"
+    fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
+  noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
+  notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
+#-----------------------------------------#
+#Events                  #
+#Messages that occur on multiple places  #
+#-----------------------------------------#
+event:
+  death:
+    tron: "<red><input-1> se metió en una fila y murió!"
+    disable:
+      break: "<red><input-1> intentó destruir un bloque!"
+      place: "<red><input-1>intentó colocar un bloque!"
+      craft: "<red><input-1>intentó usar la mesa de manualidades!"
+      xp: "<red><input-1> Intentó recoger XP!"
+      item: "<red><input-1> Intentó recoger un artículo!"
+      trade: "<red><input-1> Intentó comerciar!"
+    blockAsync: "<red><input-1> clicked on a fake block!"
+    gravity: "<red><input-1> froze to death in space!"
+    noSameItem: "<red><input-1> collected too many duplicates!"
+    stayAway: "<red><input-1> got to close!"
+    forceHunt: "<red><input-1> failed to complete the goal!"
+    noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
+    hitOrder: "<red><input-1> was not allowed do damage a mob"
+  mobHunt:
+    collect: "<green><input-1> encontrado <input-2>!"
+    success: "<green> ¡Felicidades! Has encontrado todos los mobs"
+  itemHunt:
+    collect: "<green><input-1> collected <input-2>!"
+    success: "<green>Congratulations! You found all <input-1> items"
+  itemDecay:
+    time: "Decaimiento en"
+    paused: "Pantalla en pausa (seleccionada)"
+  hide:
+    hide: "All players are now <red>hidden"
+    show: "All players are now <green>visible"
+  gravity:
+    switch: "<red>⚠ Gravity switch in <b><input-1></b> seconds ⚠</red>"
+  noSameItem:
+    duplicate: "<red><input-2></red> was already collected by <red><input-1></red>!"
+    deathTitle: "<red>You are dead"
+  forceHunt:
+    height: "On Height"
+    item: "Collect Item"
+    biome: "Visit Biome"
+    waiting: "Waiting for new goal..."
+  collectBattle:
+    finished: "Finished current task"
+    notAllowed: "Only new gathered items are allowed!"
+    timeLeft: "Time left:"
+    cooldown: "No current task"
+    register: "You registered <green><input-1></green> as your item! Now you have to wait for all other players to register their items"
+    startHunt: "<grey>All players gathered their items! Now you have to find <blue><input-1></blue> faster then <blue><input-2></blue> (<input-3>)</grey>"
+    startCooldown: "<green>Round <input-1> finished!</green>"
+  rivalCollect:
+    itemFound: "<input-1> just found <blue><input-2></blue>!"
+    newItem: "Your next task is to find/kill <input-1>"
+  worldPeace:
+    death: "The mob <blue><input-1></blue> died :("
+    alreadyTraded: "You already traded with me. Thank you for the item :)"
+    noTrade: "I have nothing to trade with you, but nice to see you!"
+    msg1: "Lets trade instead of fighting today!"
+    msg2: "Please don't hurt me :( I can trade with you!"
+    msg3: "Do we want to trade instead of fight?"
+    trade: "Thank you for the items! Here, you can have <blue><input-1></blue> of my <blue><input-2></blue>!"
+    tradeOffer: "Could your bring <blue><input-1> <input-2></blue>?"
+    tradeOffer2: "In return i would give some of my <blue><input-1></blue>! "
+  enterFilter: "Enter a filter for <color:#6e94ff><input-1></color>" #m v1
+  hitOrder:
+    nextPlayer: "Current Damager: "
+  tickRate:
+    gameSpeed: "Game Speed"
+#-----------------------------------------#
+#Items                  #
+#Messages only visible on GUI items    #
+#Syntax: n -> Item Name                  #
+#l -> Item Lore                  #
+#-----------------------------------------#
+items:
+  menu:
+    premium:
+      n: "Premium Challenges"
+      l: "Exclusive challenges for Premium users.<br>Unique and complex modifications<br>for yourself or with friends!"
+    normal:
+      n: "Challenges"
+      l: "Global challenges for everyone.<br>Select one or multiple and begin<br>your adventure!"
+    addons:
+      n: "Addon Challenges"
+      l: "All challenges added by installed<br>addons. Discover new challenges<br>or create and play your own!"
+      b: "Open Addon Browser"
+    favorite:
+      n: "Favorites"
+      l: "Favorite challenges for quick access.<br>No need to search them!"
+    last:
+      n: "History"
+      l: "Quick access your last played<br>challenges. History is saved from<br>new to old."
+    settings:
+      n: "Settings"
+  settings:
+    language:
+      n: "Language"
+      l: "Changing the language will affect all<br>messages and texts in MChallenge.<br>Help us to improve the translations!"
+      s: "Current: "
+    compact:
+      n: "Challenge Display"
+      l: "Switch between compact and detailed<br>display of challenges. Compact is<br>faster to access but can be clutter"
+    theme:
+      n: "Color Theme"
+      l: "Change the color theme of the GUI<br>and messages. Themes can be acquired<br>by various events"
+  general:
+    arrowRightEnd:
+      n: "<red>Desplazarse a la derecha"
+      l: "No puede desplazarse<br>más a la derecha"
+    arrowLeftEnd:
+      n: "<red>Desplazarse a la izquierda"
+      l: "No puede desplazarse<br>más a la izquierda"
+    arrowRight:
+      n: "<green>Desplazarse a la derecha"
+      l: "<blue>Click ≫ +1 página<br><blue>Sneak-Click ≫ +5 páginas"
+    arrowLeft:
+      n: "<green>Desplazarse a la izquierda"
+      l: "<blue>Click ≫ -1 página<br><blue>Sneak-Click ≫ -5 páginas"
+    arrowUpGreen:
+      n: "<green>Desplazarse hacia arriba"
+      l: "<blue>Click ≫ -1 página<br><blue>Sneak-Click ≫ -3 páginas"
+    arrowDownGreen:
+      n: "<green>Desplazarse hacia abajo"
+      l: "<blue>Click ≫ +1 página<br><blue>Sneak-Click ≫ +3 páginas"
+    arrowUpRed:
+      n: "<red>Desplazarse hacia arriba"
+      l: "No puede desplazarse<br>más arriba"
+    arrowDownRed:
+      n: "<red>Desplazarse hacia abajo"
+      l: "No puede desplazarse<br>más abajo"
+    pageIndicator:
+      l: "Haz clic para abrir una<br>GUI compacta de acceso rápido"
+    reset:
+      n: "Reset Settings"
+      l: "This action cannot be<br>reverted!"
+  event:
+    LIMITED_SEE:
+      n: "See - No Damage"
+      l: "Choose to see all mobs<br>but to be unable to<br>damage them"
+    LIMITED_DAMAGE:
+      n: "No See - Damage"
+      l: "Choose to damage all mobs<br>but to be unable to<br>see them"
+  ch:
+    FLY:
+      n: "F.L.Y. Desafío"
+      l: "Vuela con un nuevo poder<br>por el cielo como un héroe!<br>Colarse en el aire para activar"
+    IN_TIME:
+      n: "InTime Challenge"
+      l: "Cada Entidad tiene un tiempo<br>limitado de vida. Tú también!<br>Mata mobs para robarles su tiempo"
+    MOB_BLOCKS:
+      n: "Mob Blocks Aleatorio"
+      l: "Cada bloque contiene un mob aleatorio.<br>Rompe el bloque para liberarlo y<br>sólo después de matarlo, el item cae"
+    CHECKPOINTS:
+      n: "Rewind Desafío"
+      l: "Crea puntos de control (F)<br>para viajar al pasado. Pero atención...<br>Viajar en el tiempo es peligroso"
+    DIM_SWAP:
+      n: "Dimension Swap Challenge"
+      l: "¡Todos los portales se barajan! Ahora<br>tienes que luchar contra el Dragón Ender en...<br>¿el Overworld?<br>Nether -> End -> Overworld"
+    SNAKE:
+      n: "Desafíos de la serpiente"
+      l: "Sólo puedes moverte en tu<br>serpiente personal, que se mueve permanentemente en<br>tu dirección de visión"
+    REALISTIC:
+      n: "Minecraft realista"
+      l: "¿Es MC poco realista? Este Desafío <br>cambiará todo para descubrir <br>un Minecraft completamente nuevo"
+    CAPTIVE:
+      n: "Desafío cautivo"
+      l: "El mundo se redujo a un pequeño<br>campo y tu tarea es<br>hacerlo crecer a través del Nivel"
+    GHOST:
+      n: "Desafío fantasma"
+      l: "Descubre las profundidades con tu nueva<br>capacidad de viajar a través de los bloques<br>Pero ten cuidado... Los fantasmas son débiles"
+    BLOCK_ASYNC:
+      n: "Desafío Async en bloque"
+      l: "Cada jugador ve su propio mundo!<br>Pero si un jugador interactúa con un<br>bloque modificado por otro jugador<br>muere. La comunicación es fundamental"
+    NO_SAME_ITEM:
+      n: "No hay artículos iguales"
+      l: "Si recoges un objeto que<br>ya habías recogido, <br>pierdes un corazón"
+    LIMITED_SKILLS:
+      n: "Habilidades limitadas"
+      l: "Only one player can see mobs<br>but can't damage them. The other<br>can't see mobs but can deal damage"
+    RUN_RANDOMIZER:
+      n: "Run Randomizer"
+      l: "The only way to gather items<br>is running! Every X-Blocks you<br>get a random stack of items"
+    SPLIT_HP:
+      n: "HP dividado"
+      l: "Every player share their<br>hearts. Damage and regeneration<br>counts to everyone"
+    DAMAGE_DUELL:
+      n: "Damage Duell"
+      l: "If you deal damage, all<br>other players also get<br>damaged by a percentage"
+    ONE_BIOME:
+      n: "One Biome World"
+      l: "The whole world contains<br>only one biome. The biome<br>switches every X seconds"
+    BOOST_UP:
+      n: "Boost'em UP"
+      l: "Every entity/mob in your<br>range will be boosted in<br>the sky"
+    RIGHT_TOOL:
+      n: "Only Right Tools"
+      l: "You can only break blocks<br>with the correct tool"
+    CHUNK_BLOCK_BREAK:
+      n: "Chunk Breaker"
+      l: "Breaking a block will<br>break all blocks of the<br>same time in the chunk"
+    SNEAK_SPAWN:
+      n: "Sneak Spawner"
+      l: "Be prepared... Every sneak<br>will spawn a random mob<br>on your position"
+    WORLD_PEACE:
+      n: "Paz Mundial"
+      l: "Instead of fighting to the top<br>just communicate and trade<br>with your opponents!<br><i>Symbol against the Ukraine-Russian war"
+    GRAVITY:
+      n: "Gravity Switch"
+      l: "The world gone crazy and<br>every few seconds the gravity<br>switches between 4 new gravities"
+    STAY_AWAY:
+      n: "Mantener"
+      l: "Getting to close to other<br>mobs or players causes damage.<br>Time for some social distancing"
+    RANDOMIZER_BLOCK:
+      n: "Block Randomizer"
+      l: "Block drops are shuffled<br>(or random)"
+    RANDOMIZER_ENTITY:
+      n: "Mob Drop Randomizer"
+      l: "Mob drops are shuffled<br>(or random)"
+    RANDOMIZER_BIOMES:
+      n: "Biome Randomizer"
+      l: "World biomes are shuffled<br>(or random)"
+    RANDOMIZER_MOBS:
+      n: "Mob Randomizer"
+      l: "Mob spawning is shuffled<br>(or random)"
+    FORCE_COLLECT:
+      n: "Force Collect"
+      l: "You are forced to collect<br>the prompted item to survive"
+    RANDOMIZER_DAMAGE:
+      n: "Damage Randomizer"
+      l: "Damage is shuffled like<br>2hp will be always 5hp<br>(or random)"
+    NO_DOUBLE_KILL:
+      n: "No Eliminaciones Dobles"
+      l: "You are not allowed to kill<br>the same mob twice in a row"
+    DAMAGER:
+      n: "Damager Challenge"
+      l: "You will be confronted with<br>constantly damage from the<br>chosen event. Can you survive?"
+    RIVALS_COLLECT:
+      n: "Collection Rivals"
+      l: "Collect/find/kill the prompted<br>goal to get the next. Player<br>with the most points win"
+    ROCKET:
+      n: "Rocket Mode"
+      l: "Sneak to fly up. But be aware!<br>Flying with a rocket is hard...<br>And hold an eye on your heat"
+    VAMPIRE:
+      n: "Vampire Challenge"
+      l: "Welcome to the world of darkness!<br>Light will drain your blood. Kill<br>mobs to gain their blood and sneak on<br>killing to gather a blood pack (heal)"
+    TRAFFIC_LIGHT:
+      n: "Traffic Lights"
+      l: "You are trapped on the road.<br>You are only allowed to move<br>on green lights. If you move<br>on red, you get punished"
+    TRON:
+      n: "Snake Path"
+      l: "Every player creates a path<br>on walking. But be carefully!<br>You are not allowed to touch it<br>ever again..."
+    DISABLED:
+      n: "Disable Features"
+      l: "Disable certain key features<br>to challenge your self.<br>Additionally a damage punishment<br>can be added"
+    MOB_HUNT:
+      n: "Cacería de Mobs"
+      l: "Kill all Mobs in a given<br>order to finish!<br>Use /mobhunt to modify"
+    ITEM_HUNT:
+      n: "Item Hunt"
+      l: "Collect all Items in a given<br>order to finish!<br>Use /itemhunt to modify"
+    MIRROR:
+      n: "Mirror Challenge"
+      l: "Mirror certain things from<br>you to all other players (sync)"
+    CHUNK_FLATTENER:
+      n: "Chunk Flattener"
+      l: "Watch out your steps!<br>Your current chunk slowly<br>shrinks down"
+    CHUNK_DECAY:
+      n: "Chunk Decay"
+      l: "Your current chunk randomly<br>decays till it's gone"
+    CHUNK_CLEARER:
+      n: "Chunk Clearer"
+      l: "If you enter a chunk or<br>touch a new block the whole<br>chunk will be cleared"
+    ANVIL_CRUSHER:
+      n: "Anvil Crusher"
+      l: "It's raining... Anvils?<br>Watch out your steps, the<br>sky tries to kill you"
+    ITEM_DECAY:
+      n: "Item Decay"
+      l: "Act fast! All your<br>items have a limited lifespan<br>till they disappear"
+    AREA_TIMER:
+      n: "Area Timer"
+      l: "Chosen areas like biomes,<br>chunks, worlds or even heights<br>can only be visited a limited<br>time. Play fast!"
+    COLLECT_BATTLE:
+      n: "Collect Battle"
+      l: "Compete against all other players<br>in this round based game!<br>First, you gather an item as fast as possible.<br>In the second phase, a random other<br>player needs to gather the same item faster!<br>You can still beat the game?"
+    RANDOMIZER_CHESTS:
+      n: "Loot Randomizer"
+      l: "Randomize all items in chest containers!"
+    BLOCK_WORLD:
+      n: "Block World"
+      l: "All chunks are built from one<br>block type! Step through a new<br>cursed world"
+    MINEFIELD_WORLD:
+      n: "Minefield World"
+      l: "The whole world is covered with<br>dangerous mines. Don't step on them!"
+    BLOCK_WALL:
+      n: "Block Wall"
+      l: "You are hunted by a wall!<br>Watch out your steps, breaking the<br>wall is impossible"
+    WORLD_DECAY:
+      n: "World Decay"
+      l: "The world around you disappear<br>step by step! Remember your surrounding to<br>keep alive (only visual - needs MWeb)"
+    LOW_VISION:
+      n: "Low Vision"
+      l: "The whole world is invisible<br>except the blocks you choose! Every player<br>can choose their own blocks"
+    CHUNK_SYNC:
+      n: "Chunk Mirror"
+      l: "Every interaction like building<br>is mirrored in all other chunks!<br>What can you create?"
+    DAMAGE_MULTIPLIER:
+      n: "Damage Multiplier"
+      l: "Higher or lower all damage against<br>players. Includes potion debuffs and fire"
+    HIT_ORDER:
+      n: "Damage Order"
+      l: "Only one player at a time is allowed<br>to damage mobs. But this player<br>changes on every hit!"
+    TICK_RATE:
+      n: "Game Speed Shuffler"
+      l: "The game will constantly change<br>the speed which effects every action.<br>Can you keep up?"
+    RHYTHM_CRAFT:
+      n: "Rhythm Craft"
+      l: "Turn Minecraft into a full Rhythmgame!<br>Every action needs to be done on the beat<br>to follow the world rhythm."
+  chS:
+    FLY:
+      power:
+        n: "Power"
+    IN_TIME:
+      pTime:
+        n: "Player Time"
+      eTime:
+        n: "Entity Time"
+      hpTime:
+        n: "Time per HP"
+    MOB_BLOCKS:
+      rnd:
+        n: "Al azar"
+    CHECKPOINTS:
+      onlyTP:
+        n: "Only Position"
+    DIM_SWAP:
+      starter:
+        n: "Starter Pickaxe"
+    SNAKE:
+      speed:
+        n: "Velocidad"
+    GHOST:
+      radius:
+        n: "Radio"
+      adventure:
+        n: "Adventure Ghost"
+      glide:
+        n: "Ghost Glide"
+    NO_SAME_ITEM:
+      lives:
+        n: "Vidas"
+      sync:
+        n: "Vidas = HP"
+      info:
+        n: "Announce Mode"
+    LIMITED_SKILLS:
+      random:
+        n: "Random Roles"
+    RUN_RANDOMIZER:
+      goal:
+        n: "Block Goal"
+      global:
+        n: "Count Global"
+    DAMAGE_DUELL:
+      percent:
+        n: "Porcentaje"
+    ONE_BIOME:
+      delay:
+        n: "Delay"
+    BOOST_UP:
+      radius:
+        n: "Effect Radius"
+      boost:
+        n: "Boost Power"
+      mode:
+        n: "Only Mobs"
+    CHUNK_BLOCK_BREAK:
+      bundle:
+        n: "Bundle Drops"
+    SNEAK_SPAWN:
+      onlyMob:
+        n: "Only Mobs"
+    GRAVITY:
+      delay:
+        n: "Delay"
+      duration:
+        n: "Duration"
+    STAY_AWAY:
+      distance:
+        n: "Damage Distance"
+      warning:
+        n: "Warning Damage"
+    RANDOMIZER_BLOCK:
+      random:
+        n: "Aleatorio total"
+    RANDOMIZER_ENTITY:
+      random:
+        n: "Aleatorio total"
+    RANDOMIZER_BIOMES:
+      random:
+        n: "Aleatorio total"
+    RANDOMIZER_MOBS:
+      random:
+        n: "Aleatorio total"
+    FORCE_COLLECT:
+      times:
+        n: "Timings"
+      minCooldown:
+        n: "Enfriamiento mínimo"
+      maxCooldown:
+        n: "Enfriamiento máximo"
+      minTime:
+        n: "Min Collect Time"
+      maxTime:
+        n: "Max Collect Time"
+      objects:
+        n: "Goals"
+      items:
+        n: "Force Item"
+      biomes:
+        n: "Force Biome"
+      height:
+        n: "Force Height"
+    RANDOMIZER_DAMAGE:
+      random:
+        n: "Aleatorio total"
+    NO_DOUBLE_KILL:
+      global:
+        n: "Count Global"
+    DAMAGER:
+      mode:
+        n: "Evento de daño"
+      damage:
+        n: "Daño"
+      interval:
+        n: "Interval"
+    RIVALS_COLLECT:
+      mode:
+        n: "Tipo de búsqueda"
+      items:
+        n: "Items"
+      biomes:
+        n: "Biomes"
+      mobs:
+        n: "Mobs"
+      joker:
+        n: "Joker"
+    ROCKET:
+      capacity:
+        n: "Fuel Capacity"
+    VAMPIRE:
+      startBlood:
+        n: "Iniciar sangre"
+      maxBlood:
+        n: "Blood Capacity"
+      healthToBlood:
+        n: "HP - Sangre"
+      bloodLoose:
+        n: "Blood Drain"
+    TRAFFIC_LIGHT:
+      min:
+        n: "Min Duration"
+      max:
+        n: "Max Duration"
+      damage:
+        n: "Damage on red"
+      green:
+        n: "Fase verde"
+      yellow:
+        n: "Fase amarilla"
+      red:
+        n: "Fase Roja"
+    TRON:
+      visible:
+        n: "Visible Path"
+    DISABLED:
+      block:
+        n: "Block Category"
+      break:
+        n: "Disable Breaking"
+      place:
+        n: "Disable Placing"
+      interact:
+        n: "Interact Category"
+      craft:
+        n: "Disable Crafting Table"
+      trade:
+        n: "Disable Trading"
+      misc:
+        n: "Misc Category"
+      xp:
+        n: "Disable XP Pickup"
+      items:
+        n: "Disable Item Pickup"
+      damage:
+        n: "Daño"
+    MIRROR:
+      hearts:
+        n: "Sync Health"
+      food:
+        n: "Sincronizar comida"
+      potions:
+        n: "Sync Potions"
+      hotbar:
+        n: "Sync Hotbar"
+    CHUNK_FLATTENER:
+      delay:
+        n: "Delay"
+      shouldBreak:
+        n: "Soltar Bloques"
+    CHUNK_DECAY:
+      delay:
+        n: "Delay"
+      percentage:
+        n: "Decay Percentage"
+      shouldBreak:
+        n: "Soltar Bloques"
+    CHUNK_CLEARER:
+      breakAll:
+        n: "Break All"
+      shouldBreak:
+        n: "Drop Items"
+      bundle:
+        n: "Bundle Items"
+    ANVIL_CRUSHER:
+      delay:
+        n: "Anvil Delay"
+      startDelay:
+        n: "Base"
+      amplifierDelay:
+        n: "Faster per DMG"
+      density:
+        n: "Anvil Density"
+      startDensity:
+        n: "Base"
+      amplifierDensity:
+        n: "Higher per DMG"
+      radius:
+        n: "Anvil Radius"
+      startRadius:
+        n: "Base"
+      amplifierRadius:
+        n: "Bigger per DMG"
+      height:
+        n: "Anvil Height"
+    ITEM_DECAY:
+      time:
+        n: "Decay Time"
+    AREA_TIMER:
+      time:
+        n: "Max Time"
+      global:
+        n: "Count Global"
+      mode:
+        n: "Area Mode"
+    BLOCK_ASYNC:
+      hide:
+        n: "Hide Players"
+    RIGHT_TOOL:
+      starter:
+        n: "Starter Axe"
+    COLLECT_BATTLE:
+      maxSetTime:
+        n: "Max Set-Time"
+      cooldown:
+        n: "Time Between Rounds"
+      bufferTime:
+        n: "Extra Time"
+    RANDOMIZER_CHESTS:
+      enchanting:
+        n: "Random Enchants"
+    MINEFIELD_WORLD:
+      density:
+        n: "Density"
+    BLOCK_WALL:
+      material:
+        n: "Wall Material"
+      delay:
+        n: "Spawn Delay"
+    WORLD_DECAY:
+      delay:
+        n: "Step Delay"
+      steps:
+        n: "Steps To 100%"
+    LOW_VISION:
+      amount:
+        n: "Block Amount"
+    CHUNK_SYNC:
+      env:
+        n: "Environment Mirror"
+    DAMAGE_MULTIPLIER:
+      multiplier:
+        n: "Multiplier"
+    HIT_ORDER:
+      wrongDamage:
+        n: "Damage On Wrong"
+      randomOrder:
+        n: "Random Order"
+      visual:
+        n: "Info Bar"
+    TICK_RATE:
+      ticks:
+        n: "Tick Speed"
+      timings:
+        n: "Shuffel Rate"
+      min:
+        n: "Min Speed"
+      max:
+        n: "Max Speed"
