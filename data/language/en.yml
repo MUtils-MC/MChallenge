@@ -9,7 +9,7 @@
 
 creator: MUtils
 version: 1.0.0
-test: true
+test: false
 
 #-----------------------------------------#
 #           Common Translations           #
