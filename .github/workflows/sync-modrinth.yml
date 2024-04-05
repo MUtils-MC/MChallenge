@@ -1,4 +1,4 @@
-name: Sync Translations
+name: Sync Modrinth
 
 on:
   push:
@@ -10,12 +10,11 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
       - name: Sync README
-        run: ./gradlew modrinthSyncBody -modrinthToken=${{ secrets.MODRINTH_TOKEN }}
+        run: ./gradlew modrinthSyncBody -modrinthToken=${{ env.MODRINTH_TOKEN }}
