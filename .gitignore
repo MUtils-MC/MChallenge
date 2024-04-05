@@ -1,10 +1,5 @@
-**/.gradle/
-/.idea/
-**/build/
-**/run/
-/.gitignore
-/MUtils.iml
-#/gradle/wrapper/
-#/kpaper-light/
-buildSrc/.gradle
+.gradle/
+.idea/
+build/
+run/
 zBackup/

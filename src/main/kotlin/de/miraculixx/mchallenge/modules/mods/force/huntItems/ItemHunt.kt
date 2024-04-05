@@ -1,0 +1,119 @@
+package de.miraculixx.mchallenge.modules.mods.force.huntItems
+
+import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.kpaper.event.listen
+import de.miraculixx.kpaper.event.register
+import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.broadcast
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.items.getMaterials
+import de.miraculixx.mchallenge.MChallenge
+import de.miraculixx.mchallenge.PluginManager
+import de.miraculixx.mchallenge.commands.ModuleCommand
+import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.modules.mods.force.huntMob.HuntObject
+import de.miraculixx.mchallenge.utils.config.loadConfig
+import de.miraculixx.mchallenge.utils.config.saveConfig
+import de.miraculixx.mcommons.text.cmp
+import de.miraculixx.mcommons.text.prefix
+import kotlinx.serialization.Serializable
+import net.kyori.adventure.audience.Audience
+import net.kyori.adventure.bossbar.BossBar
+import net.kyori.adventure.key.Key
+import net.kyori.adventure.sound.Sound
+import org.bukkit.Material
+import org.bukkit.entity.Player
+import org.bukkit.event.entity.EntityPickupItemEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.player.PlayerJoinEvent
+import java.io.File
+
+class ItemHunt : Challenge, HuntObject<Material> {
+    private val dataFile = File("${MChallenge.configFolder.path}/data/item_hunt.json")
+    private var currentItem: Material? = null
+    override val maxEntries = getMaterials(true).size
+    override val remainingEntries = mutableListOf<Material>()
+    override val blacklist = mutableListOf<Material>()
+    override val bar = BossBar.bossBar(cmp("Waiting for server..."), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
+
+    override fun register() {
+        onCollect.register()
+        onInvClose.register()
+    }
+
+    override fun unregister() {
+        onCollect.unregister()
+        onInvClose.unregister()
+    }
+
+    override fun start(): Boolean {
+        val content = dataFile.loadConfig(ItemHuntData())
+        blacklist.addAll(content.blacklist)
+        if (content.remaining.isEmpty()) remainingEntries.addAll(getMaterials(true))
+        else remainingEntries.addAll(content.remaining)
+        remainingEntries.removeAll(blacklist)
+        if (content.target != null) currentItem = content.target
+        else {
+            currentItem = remainingEntries.random()
+            remainingEntries.remove(currentItem)
+        }
+        onlinePlayers.forEach { it.showBossBar(bar) }
+        calcBar(getCurrentEntryName())
+        val cmdClass = ItemHuntCommand(this)
+        val cmdInstance = PluginManager.getCommand("itemhunt") ?: return false
+        cmdInstance.setExecutor(cmdClass)
+        cmdInstance.tabCompleter = cmdClass
+        onJoin.register()
+        return true
+    }
+
+    override fun stop() {
+        if (!dataFile.exists()) dataFile.parentFile.mkdirs()
+        dataFile.saveConfig(ItemHuntData(currentItem, remainingEntries))
+        onlinePlayers.forEach { it.hideBossBar(bar) }
+        ModuleCommand("itemhunt")
+        onJoin.unregister()
+    }
+
+    private val onCollect = listen<EntityPickupItemEvent>(register = false) {
+        val entity = it.entity
+        if (entity !is Player) return@listen
+        if (currentItem == it.item.itemStack.type) collectItem(entity)
+    }
+
+    private val onInvClose = listen<InventoryCloseEvent>(register = false) {
+        val player = it.player
+        if (player !is Player) return@listen
+        it.inventory.forEach { item -> if (item?.type == currentItem) collectItem(player) }
+    }
+
+    private val onJoin = listen<PlayerJoinEvent>(register = false) {
+        bar.addViewer(it.player)
+    }
+
+    private fun collectItem(player: Player) {
+        nextEntry(player.name, player)
+    }
+
+    override fun nextEntry(playerName: String, audience: Audience) {
+        broadcast(prefix, "event.itemHunt.collect", listOf(playerName, "<lang:${currentItem?.key}>"))
+        audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
+        val size = remainingEntries.size
+        currentItem = if (size == 0) {
+            broadcast(prefix, "event.itemHunt.success", listOf(maxEntries.toString()))
+            ChallengeManager.stopChallenges()
+            null
+        } else remainingEntries.random()
+        remainingEntries.remove(currentItem)
+        calcBar(getCurrentEntryName())
+    }
+
+    override fun getCurrentEntryName() = currentItem?.key.toString()
+
+    @Serializable
+    private data class ItemHuntData(
+        val target: Material? = null,
+        val remaining: List<Material> = emptyList(),
+        val blacklist: List<Material> = emptyList()
+    )
+}

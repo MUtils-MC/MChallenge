@@ -1,0 +1,28 @@
+name: Sync Translations
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/language/**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Sync translations
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          source_file: '${{ github.workspace }}/data/language/mchallenge/en.yml'
+          destination_repo: 'MUtils-MC/Translations'
+          destination_folder: 'mchallenge'
+          user_email: 'miraculixxyt@gmail.com'
+          user_name: 'MiraculixxT'
+          commit_message: 'Sync new translation keys from MChallenge'
