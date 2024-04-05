@@ -3,7 +3,7 @@ name: Sync Translations
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'data/language/**'
 
