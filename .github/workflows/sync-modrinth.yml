@@ -17,4 +17,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Sync README
-        run: ./gradlew modrinthSyncBody -modrinthToken=${{ env.MODRINTH_TOKEN }}
+        run: ./gradlew modrinthSyncBody -PmodrinthToken=${{ env.MODRINTH_TOKEN }}
