@@ -1,0 +1,18 @@
+#---------------------- World Settings ----------------------#
+#         Settings for your MUtils-WorldManager              #
+#------------------------------------------------------------#
+#   Most of these settings are safely customizable ingame!   #
+#      Only edit them if you know what you are doing         #
+#------------------------------------------------------------#
+
+language: "en_US"
+
+# Automatic player data save intervall.
+# Saving can be heavy on big servers but flushes
+# all current data to disk to avoid overhead
+save-intervall: 30
+
+# Disable plugin intern player saving.
+# This may increase performance on bigger servers but disable
+# all category inventory syncs
+use-vanilla-saving: false
