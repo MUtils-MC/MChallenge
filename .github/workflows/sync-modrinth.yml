@@ -1,0 +1,21 @@
+name: Sync Translations
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'README.md'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Sync README
+        run: ./gradlew modrinthSyncBody -modrinthToken=${{ secrets.MODRINTH_TOKEN }}
