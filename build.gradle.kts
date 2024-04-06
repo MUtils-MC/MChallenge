@@ -1,5 +1,10 @@
 import dex.plugins.outlet.v2.util.ReleaseType
+import groovy.json.JsonSlurper
+import kotlinx.coroutines.delay
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+import org.yaml.snakeyaml.DumperOptions
+import org.yaml.snakeyaml.Yaml
+import kotlin.time.Duration.Companion.seconds
 
 plugins {
     kotlin("jvm") version "1.9.23"
@@ -9,6 +14,8 @@ plugins {
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
     id("io.github.dexman545.outlet") version "1.6.1"
+
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = properties["group"] as String
@@ -33,14 +40,14 @@ dependencies {
     library("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.+")
 
     // MC Libraries
-    library("de.miraculixx:mc-commons:1.0.1")
-    library("de.miraculixx:kpaper-light:1.2.1")
+    implementation("de.miraculixx:mc-commons:1.0.1")
+    implementation("de.miraculixx:kpaper-light:1.2.1")
     library("dev.jorel:commandapi-bukkit-shade:9.3.+")
     library("dev.jorel:commandapi-bukkit-kotlin:9.3.+")
 
     // Internal APIs
-    library("de.miraculixx:mbridge:1.0.0")
-    library("de.miraculixx:challenge-api:1.5.0")
+    implementation("de.miraculixx:mbridge:1.0.0")
+    implementation("de.miraculixx:challenge-api:1.5.0")
 
     // External APIs
     compileOnly("de.miraculixx:mweb:1.1.0")
@@ -49,6 +56,7 @@ dependencies {
 
 tasks {
     assemble {
+        dependsOn(shadowJar)
         dependsOn(reobfJar)
     }
     compileJava {
@@ -57,6 +65,19 @@ tasks {
     }
     compileKotlin {
         kotlinOptions.jvmTarget = "17"
+    }
+    shadowJar {
+        dependencies {
+            include {
+                it.moduleGroup == "de.miraculixx" || it.moduleGroup == "io.ktor"
+            }
+        }
+    }
+}
+
+buildscript {
+    dependencies {
+//        classpath("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     }
 }
 
@@ -101,5 +122,101 @@ modrinth {
     }
 
     // Project sync
-    syncBodyFrom = rootProject.file("README.md").readText()
+    syncBodyFrom = rootProject.file(".github/assets/README-Modrinth.md").readText()
 }
+
+
+//
+// Custom Tasks
+//
+
+fun get(key: String, map: Map<String, Any>): String? {
+    var route: Any? = map
+    key.split('.').forEach {
+        if (route is Map<*, *>) {
+            route = (route as Map<*, *>)[it]
+        } else {
+            return null
+        }
+    }
+    return route.toString()
+}
+
+data class Challenge(
+    val key: String,
+    val version: String,
+    val item: String?,
+    val block: String?,
+    val head: String?,
+    val tags: List<String>,
+    val settings: List<String> = emptyList(),
+    val new: Boolean = false,
+    val preview: String? = null
+)
+
+@Suppress("UNCHECKED_CAST")
+val craftReadme = task("craftReadme") {
+    group = "publishing"
+    doLast {
+        val challengeFile = File("data/challenges.json")
+        val challengeSlurper = JsonSlurper().parse(challengeFile) as List<Map<String, Any>>
+        val challengeList = challengeSlurper.map {
+            Challenge(
+                it["key"].toString(),
+                it["version"].toString(),
+                it["item"] as? String,
+                it["block"] as? String,
+                it["head"] as? String,
+                it["tags"] as List<String>,
+                (it["settings"] as? List<String>) ?: emptyList(),
+                it["new"] == true,
+                it["preview"] as? String
+            )
+        }
+
+        val languageFile = File("data/language/mchallenge/en.yml")
+        val yaml = Yaml(DumperOptions().apply { defaultFlowStyle = DumperOptions.FlowStyle.BLOCK })
+        val languageMap = yaml.load<Map<String, Any>>(languageFile.inputStream())
+
+        val challengeString = buildString {
+            challengeList.forEach { challenge ->
+                val name = get("items.ch.${challenge.key}.n", languageMap)
+                val iconUrl = when {
+                    challenge.item != null -> "https://mutils.net/images/mc/grab/items/${challenge.item}.png"
+                    challenge.block != null -> "https://mutils.net/images/mc/grab/rendered/${challenge.block}.png"
+                    challenge.head != null -> "https://mc-heads.net/head/${challenge.head}"
+                    else -> "https://mutils.net/images/mc/grab/items/barrier.png"
+                }
+                append("<details><summary><b>$name</b>  <img src='$iconUrl' width='18'></summary>\n")
+                append(get("items.ch.${challenge.key}.l", languageMap)?.replace("<br>", " "))
+                append("\n\n---\n\n⚙\uFE0F **Settings**")
+                if (challenge.settings.isEmpty()) append("\n- `No settings`")
+                else {
+                    challenge.settings.forEach { setting ->
+                        val settingName = get("items.chS.${challenge.key}.$setting.n", languageMap)
+                        val description = get("items.chS.${challenge.key}.$setting.l", languageMap)
+                        append("\n- `$settingName` - $description")
+                    }
+                }
+                append("\n\n\uD83C\uDFF7\uFE0F **Tags**")
+                challenge.tags.forEach { tag ->
+                    val tagName = tag[0] + tag.substring(1).lowercase()
+                    val description = get("tags.$tag.l", languageMap)
+                    append("\n- `$tagName` - $description")
+                }
+                challenge.preview?.let { append("\n\n![Challenge Preview]($it)") }
+                append("\n</details>")
+            }
+        }
+
+        val githubRemover = Regex("<!-- github_exclude\\.start -->(.*?)<!-- github_exclude\\.end -->", RegexOption.DOT_MATCHES_ALL)
+        val sourceFile = File(".github/assets/README.md")
+        val readmeModrinth = File(".github/assets/README-Modrinth.md")
+        val readmeFile = File("README.md")
+        var readmeContent = sourceFile.readText()
+        readmeContent = readmeContent.replace("<!-- challenges -->", challengeString)
+        readmeModrinth.writeText(readmeContent)
+        readmeFile.writeText(githubRemover.replace(readmeContent, ""))
+    }
+}
+

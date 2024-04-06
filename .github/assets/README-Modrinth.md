@@ -16,7 +16,10 @@ a
 [![Latest Update Trailer](.github/assets/thumbnail.png)](https://www.youtube.com/video/dQpM0Lkeh5c)
 <!-- modrinth_exclude.end -->
 
-
+<!-- github_exclude.start -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQpM0Lkeh5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><br>
+(Can contain features not available for everyone*)
+<!-- github_exclude.end -->
 
 ## 🎯 Challenges
 Each challenge can be toggled and configured individually inside the Challenge menu (``/challenge``).<br>
