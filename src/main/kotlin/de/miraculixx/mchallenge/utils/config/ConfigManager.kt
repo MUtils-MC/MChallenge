@@ -28,7 +28,7 @@ object ConfigManager {
     }
 
     init {
-        val langs = listOf(Locale.ENGLISH, Locale.GERMAN, Locale.forLanguageTag("es")).map { it to javaClass.getResourceAsStream("/language/$it.yml") }
+        val langs = listOf(Locale.ENGLISH, Locale.GERMAN, Locale.forLanguageTag("es")).map { it to javaClass.getResourceAsStream("/language/mchallenge/$it.yml") }
         localization = Localization(File("${MChallenge.configFolder.path}/language"), settings.language, langs)
     }
 }

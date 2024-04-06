@@ -10,6 +10,7 @@ import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mchallenge.modules.spectator.Spectator
+import de.miraculixx.mcommons.extensions.round
 import de.miraculixx.mcommons.namespace
 import de.miraculixx.mcommons.text.*
 import org.bukkit.NamespacedKey
@@ -56,7 +57,7 @@ class Mirror : Challenge {
         val entity = it.entity
         if (entity !is Player) return@listen
         if (it.cause == EntityDamageEvent.DamageCause.CUSTOM) return@listen
-        broadcast(prefix + cmp("${entity.name} got ") + cmp("${it.finalDamage}hp ", cHighlight) + cmp("damage from ") + cmp(it.cause.name, cHighlight))
+        broadcast(prefix, "event.mirror.damage", listOf(entity.name, (it.finalDamage / 2).round(2).toString(), it.cause.name))
         onlinePlayers.forEach { p ->
             if (p == entity) return@forEach
             if (Spectator.isSpectator(p.uniqueId)) return@forEach

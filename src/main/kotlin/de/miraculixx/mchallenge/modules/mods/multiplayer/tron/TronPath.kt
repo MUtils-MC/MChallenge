@@ -7,6 +7,7 @@ import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mcommons.namespace
+import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -26,20 +27,22 @@ class TronPath(
     private val pathVisible: Boolean
     private val blockedLocs: MutableList<Location> = mutableListOf()
     private var transitionBlock: Block? = null
+    private var isRegistered = false
 
     init {
         val settings = challenges.getSetting(Challenges.TRON)
         pathVisible = settings.settings["visible"]?.toBool()?.getValue() ?: true
     }
 
-    private val onMove = listen<PlayerMoveEvent> {
+    private val onMove = listen<PlayerMoveEvent>(register = false) {
         val player = it.player
         if (player.uniqueId != uuid) return@listen
+        if (player.gameMode == GameMode.SPECTATOR) return@listen
         val to = it.to
         if (it.from.block == to.block) return@listen
         val subLoc = to.clone().subtract(.0, 1.0, .0)
         val subBlock = subLoc.block
-        if (subBlock.type.isAir) return@listen
+        if (!subBlock.type.isSolid) return@listen
 
         // Walking on path
         if (blockedLocs.contains(subBlock.location)) {
@@ -63,25 +66,29 @@ class TronPath(
         transitionBlock = subBlock
     }
 
-    private val onBreak = listen<BlockBreakEvent> {
+    private val onBreak = listen<BlockBreakEvent>(register = false) {
         val block = it.block
         if (block == transitionBlock || blockedLocs.contains(block.location)) it.isCancelled = true
     }
 
-    private val onExplosion = listen<BlockExplodeEvent> {
+    private val onExplosion = listen<BlockExplodeEvent>(register = false) {
         val block = it.block
         if (block == transitionBlock || blockedLocs.contains(block.location)) it.isCancelled = true
     }
 
     fun unregister() {
+        if (!isRegistered) return
         onMove.unregister()
         onBreak.unregister()
         onExplosion.unregister()
+        isRegistered = false
     }
 
     fun register() {
+        if (isRegistered) return
         onMove.register()
         onBreak.register()
         onExplosion.register()
+        isRegistered = true
     }
 }

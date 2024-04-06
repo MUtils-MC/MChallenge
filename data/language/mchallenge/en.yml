@@ -61,13 +61,15 @@ command:
     hide: "<grey>You are now <red>hidden"
     show: "<grey>You are now <green>visible"
     hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
-    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+    showMultiple: "<grey>You have <green>shown</green> <input-1> player/s"
   debug: "<grey>Switched debug mode to <blue><input-1>"
   lang:
     success: "<grey>Successfully switched language to <green><input-1>"
     fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
   noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
   notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
+  updateRule: "The rule <input-1> was updated to <input-2>"
+  noRule: "<red>Please select a valid rule to change!"
 
 
 #-----------------------------------------#
@@ -139,6 +141,10 @@ event:
     nextPlayer: "Current Damager: "
   tickRate:
     gameSpeed: "Game Speed"
+  vampire:
+    bloodPack: "Blood Pack"
+  mirror:
+    damage: "<blue><input-1></blue> received <blue><input-2> ♥</blue> damage <dark_gray>(<input-3>)"
 
 
 #-----------------------------------------#

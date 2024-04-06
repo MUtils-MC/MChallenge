@@ -65,7 +65,7 @@ class VampireData(private val uuid: UUID) {
     private val bar = BossBar.bossBar(cmp("Wait for server...", cError), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS)
     private var cachedPlayer: Player?
 
-    private val killEntity = listen<EntityDamageByEntityEvent> {
+    private val killEntity = listen<EntityDamageByEntityEvent>(register = false) {
         val target = it.entity as? LivingEntity ?: return@listen
         if (target.health - it.finalDamage > 0) return@listen
 
@@ -91,7 +91,7 @@ class VampireData(private val uuid: UUID) {
         } else blood = (blood + rewardedBlood).coerceAtMost(maxBlood.toDouble())
     }
 
-    private val consumePacks = listen<PlayerItemConsumeEvent> {
+    private val consumePacks = listen<PlayerItemConsumeEvent>(register = false) {
         val player = it.player
         if (player.uniqueId != uuid) return@listen
         val item = it.item
@@ -108,7 +108,7 @@ class VampireData(private val uuid: UUID) {
         player.playSound(player, Sound.ENTITY_SHEEP_SHEAR, 1f, 0.8f)
     }
 
-    private val onRegen = listen<EntityRegainHealthEvent> {
+    private val onRegen = listen<EntityRegainHealthEvent>(register = false) {
         if (it.entity.uniqueId != uuid) return@listen
         it.isCancelled = true
     }

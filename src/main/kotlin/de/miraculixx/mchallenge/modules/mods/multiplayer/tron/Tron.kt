@@ -40,7 +40,7 @@ class Tron : Challenge {
             validColors.remove(color)
 
             val uuid = player.uniqueId
-            playerData[uuid] = TronPath(uuid, color)
+            playerData[uuid] = TronPath(uuid, color).apply { register() }
         }
         return true
     }
@@ -50,7 +50,7 @@ class Tron : Challenge {
         playerData.clear()
     }
 
-    private val onJoin = listen<PlayerJoinEvent> {
+    private val onJoin = listen<PlayerJoinEvent>(register = false) {
         val uuid = it.player.uniqueId
 //        if (Spectator.isSpectator(uuid)) return@listen
         if (validColors.isEmpty()) validColors.addAll(getColors())
@@ -61,6 +61,6 @@ class Tron : Challenge {
 
 
     private fun getColors(): MutableList<Material> {
-        return Material.values().filter { it.name.endsWith("_CONCRETE") }.toMutableList()
+        return Material.entries.filter { it.name.endsWith("_CONCRETE") }.toMutableList()
     }
 }
