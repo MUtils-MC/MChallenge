@@ -1,10 +1,8 @@
 import dex.plugins.outlet.v2.util.ReleaseType
 import groovy.json.JsonSlurper
-import kotlinx.coroutines.delay
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import org.yaml.snakeyaml.DumperOptions
 import org.yaml.snakeyaml.Yaml
-import kotlin.time.Duration.Companion.seconds
 
 plugins {
     kotlin("jvm") version "1.9.23"
@@ -139,7 +137,7 @@ fun get(key: String, map: Map<String, Any>): String? {
             return null
         }
     }
-    return route.toString()
+    return route?.toString()
 }
 
 data class Challenge(
@@ -187,21 +185,22 @@ val craftReadme = task("craftReadme") {
                     challenge.head != null -> "https://mc-heads.net/head/${challenge.head}"
                     else -> "https://mutils.net/images/mc/grab/items/barrier.png"
                 }
-                append("<details><summary><b>$name</b>  <img src='$iconUrl' width='18'></summary>\n")
+                append("<details><summary><b>$name</b> ▪ <img src='$iconUrl' width='18'></summary>\n")
                 append(get("items.ch.${challenge.key}.l", languageMap)?.replace("<br>", " "))
                 append("\n\n---\n\n⚙\uFE0F **Settings**")
                 if (challenge.settings.isEmpty()) append("\n- `No settings`")
                 else {
                     challenge.settings.forEach { setting ->
                         val settingName = get("items.chS.${challenge.key}.$setting.n", languageMap)
-                        val description = get("items.chS.${challenge.key}.$setting.l", languageMap)
-                        append("\n- `$settingName` - $description")
+                        val description = get("items.chS.${challenge.key}.$setting.l", languageMap)?.replace("<br>", " ")
+                        append("\n- `$settingName`")
+                        if (description != null) append(" - $description")
                     }
                 }
                 append("\n\n\uD83C\uDFF7\uFE0F **Tags**")
                 challenge.tags.forEach { tag ->
                     val tagName = tag[0] + tag.substring(1).lowercase()
-                    val description = get("tags.$tag.l", languageMap)
+                    val description = get("tags.$tag.l", languageMap)?.replace("<br>", " ")
                     append("\n- `$tagName` - $description")
                 }
                 challenge.preview?.let { append("\n\n![Challenge Preview]($it)") }
@@ -215,6 +214,7 @@ val craftReadme = task("craftReadme") {
         val readmeFile = File("README.md")
         var readmeContent = sourceFile.readText()
         readmeContent = readmeContent.replace("<!-- challenges -->", challengeString)
+        readmeContent = readmeContent.replace("<!-- challenge-count -->", (challengeList.size + 10).toString()) // Multi Challenges: Disabler 6, Mirror 4, Force Collect 3
         readmeModrinth.writeText(readmeContent)
         readmeFile.writeText(githubRemover.replace(readmeContent, ""))
     }

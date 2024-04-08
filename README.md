@@ -8,8 +8,10 @@ MChallenges provides a variety of modifications (``challenges``) to change up yo
 Challenges can make the game **harder**, more **interesting**, or just plain **silly**. 
 Or everything at once!
 
-Part from [MUtils](https://mutils.net)<br>
-a
+
+
+Part from [**MUtils**](https://mutils.net)<br>
+Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count your time & death punishments!
 
 ### ⇒ **Latest Update Trailer**
 <!-- modrinth_exclude.start -->
@@ -18,18 +20,28 @@ a
 
 
 
-## 🎯 Challenges
+<br>
+<br>
+<br>
+
+# 🎯 Challenges
 Each challenge can be toggled and configured individually inside the Challenge menu (``/challenge``).<br>
 All challenges can be combined and played in multiplayer or singleplayer (some require at least two players).
 
+**▪ Current Challenge count** ⇒ ``65``
+
+<!-- modrinth_exclude.start -->
 > **Important**<br>
 > *Some Challenges require MUtils Premium to keep all projects and needed servers alive :)<br>
 > Read more about it [here](https://mutils.net/premium).
+<!-- modrinth_exclude.end -->
 
-To filter and search for Challenges, visit our own [Challenge List](https://mutils.net/ch/list)
-<details><summary><b>Challenge List</b> - New to Old</summary>
 
-<details><summary><b>Rhythm Craft</b>  <img src='https://mutils.net/images/mc/grab/rendered/note_block.png' width='18'></summary>
+
+To filter and search for Challenges, visit our own [Challenge List](https://mutils.net/ch/list) or use `ctrl` + `f`
+<details><summary><img src="https://i.imgur.com/HOuMmwT.png" width="40%"></summary>
+
+<details><summary><b>Rhythm Craft</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/note_block.png' width='18'></summary>
 Turn Minecraft into a full Rhythmgame! Every action needs to be done on the beat to follow the world rhythm.
 
 ---
@@ -38,117 +50,117 @@ Turn Minecraft into a full Rhythmgame! Every action needs to be done on the beat
 - `No settings`
 
 🏷️ **Tags**
-- `Hard` - null
-- `Beta` - null
-</details><details><summary><b>Game Speed Shuffler</b>  <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+- `Beta` - Not finished yet. Lacks content and/or contains bugs
+</details><details><summary><b>Game Speed Shuffler</b> ▪ <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
 The game will constantly change the speed which effects every action. Can you keep up?
 
 ---
 
 ⚙️ **Settings**
-- `Tick Speed` - null
-- `Shuffel Rate` - null
+- `Tick Speed` - The range in with the tick speed can change
+- `Shuffel Rate` - Timings between each tick shuffling
 
 🏷️ **Tags**
-- `Medium` - null
-- `Beta` - null
-</details><details><summary><b>Damage Order</b>  <img src='https://mutils.net/images/mc/grab/items/diamond_axe.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Beta` - Not finished yet. Lacks content and/or contains bugs
+</details><details><summary><b>Damage Order</b> ▪ <img src='https://mutils.net/images/mc/grab/items/diamond_axe.png' width='18'></summary>
 Only one player at a time is allowed to damage mobs. But this player changes on every hit!
 
 ---
 
 ⚙️ **Settings**
-- `Damage On Wrong` - null
-- `Random Order` - null
-- `Info Bar` - null
+- `Damage On Wrong` - Amount of damage a player receives when ignoring the order
+- `Random Order` - No set order. Each time a random player is chosen
+- `Info Bar` - Display the player in current order
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>World Decay</b>  <img src='https://mutils.net/images/mc/grab/rendered/white_stained_glass.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>World Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/white_stained_glass.png' width='18'></summary>
 The world around you disappear step by step! Remember your surrounding to keep alive (only visual - needs MWeb)
 
 ---
 
 ⚙️ **Settings**
-- `Step Delay` - null
-- `Steps To 100%` - null
+- `Step Delay` - Time between each reduction from visible blocks
+- `Steps To 100%` - Amount of reductions until the full world is invisible
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Chunk Mirror</b>  <img src='https://mutils.net/images/mc/grab/rendered/magenta_shulker_box.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Chunk Mirror</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/magenta_shulker_box.png' width='18'></summary>
 Every interaction like building is mirrored in all other chunks! What can you create?
 
 ---
 
 ⚙️ **Settings**
-- `Environment Mirror` - null
+- `Environment Mirror` - Also mirror block updates not triggered by players
 
 🏷️ **Tags**
-- `Fun` - null
-</details><details><summary><b>Low Vision</b>  <img src='https://mutils.net/images/mc/grab/rendered/tinted_glass.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+</details><details><summary><b>Low Vision</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tinted_glass.png' width='18'></summary>
 The whole world is invisible except the blocks you choose! Every player can choose their own blocks
 
 ---
 
 ⚙️ **Settings**
-- `Block Amount` - null
+- `Block Amount` - Amount of visible blocks players can choose on start
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Vampire Challenge</b>  <img src='https://mutils.net/images/mc/grab/items/ghast_tear.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Vampire Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/ghast_tear.png' width='18'></summary>
 Welcome to the world of darkness! Light will drain your blood. Kill mobs to gain their blood and sneak on killing to gather a blood pack (heal)
 
 ---
 
 ⚙️ **Settings**
-- `Start Blood` - null
-- `Blood Capacity` - null
-- `HP - Blood` - null
-- `Blood Drain` - null
+- `Start Blood` - Keep it high when starting in day time
+- `Blood Capacity` - Maximal amount of blood that can be held
+- `HP - Blood` - Amount of blood that is drained from a mob per HP after death
+- `Blood Drain` - Blood drain amplifier that is multiplied with sun level
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Traffic Lights</b>  <img src='https://mutils.net/images/mc/grab/rendered/redstone_lamp.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Traffic Lights</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/redstone_lamp.png' width='18'></summary>
 You are trapped on the road. You are only allowed to move on green lights. If you move on red, you get punished
 
 ---
 
 ⚙️ **Settings**
-- `Green Phase` - null
-- `Yellow Phase` - null
-- `Red Phase` - null
-- `Damage on red` - null
+- `Green Phase` - Green light timings
+- `Yellow Phase` - Yellow light timings
+- `Red Phase` - Red light timings
+- `Damage on red` - Punishment when moving over red!
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Snake Path</b>  <img src='https://mutils.net/images/mc/grab/rendered/light_blue_concrete.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Snake Path</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/light_blue_concrete.png' width='18'></summary>
 Every player creates a path on walking. But be carefully! You are not allowed to touch it ever again...
 
 ---
 
 ⚙️ **Settings**
-- `Visible Path` - null
+- `Visible Path` - You trail is visible for every player. Easier to avoid
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Disable Features</b>  <img src='https://mutils.net/images/mc/grab/rendered/iron_bars.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Disable Features</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/iron_bars.png' width='18'></summary>
 Disable certain key features to challenge your self. Additionally a damage punishment can be added
 
 ---
 
 ⚙️ **Settings**
-- `Block Category` - null
-- `Interact Category` - null
-- `Misc Category` - null
-- `Damage` - null
+- `Block Category` - Disable specific block actions
+- `Interact Category` - Disable specific interaction actions
+- `Misc Category` - Disable actions that didn't fit into other categories
+- `Damage` - 0 = disable actions, 20 = instant kill
 
 🏷️ **Tags**
-- `Fun` - null
-- `Free` - null
-</details><details><summary><b>Mob Hunt</b>  <img src='https://mutils.net/images/mc/grab/items/phantom_spawn_egg.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Mob Hunt</b> ▪ <img src='https://mutils.net/images/mc/grab/items/phantom_spawn_egg.png' width='18'></summary>
 Kill all Mobs in a given order to finish! Use /mobhunt to modify
 
 ---
@@ -157,10 +169,10 @@ Kill all Mobs in a given order to finish! Use /mobhunt to modify
 - `No settings`
 
 🏷️ **Tags**
-- `Fun` - null
-- `Free` - null
-- `Force` - null
-</details><details><summary><b>Item Hunt</b>  <img src='https://mc-heads.net/head/a6cc486c2be1cb9dfcb2e53dd9a3e9a883bfadb27cb956f1896d602b4067' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Free` - You can play this Challenge without premium!
+- `Force` - You receive a task and are forced to finish it to proceed
+</details><details><summary><b>Item Hunt</b> ▪ <img src='https://mc-heads.net/head/a6cc486c2be1cb9dfcb2e53dd9a3e9a883bfadb27cb956f1896d602b4067' width='18'></summary>
 Collect all Items in a given order to finish! Use /itemhunt to modify
 
 ---
@@ -169,196 +181,196 @@ Collect all Items in a given order to finish! Use /itemhunt to modify
 - `No settings`
 
 🏷️ **Tags**
-- `Fun` - null
-- `Free` - null
-- `Force` - null
-</details><details><summary><b>Mirror Challenge</b>  <img src='https://mutils.net/images/mc/grab/rendered/glass.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Free` - You can play this Challenge without premium!
+- `Force` - You receive a task and are forced to finish it to proceed
+</details><details><summary><b>Mirror Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/glass.png' width='18'></summary>
 Mirror certain things from you to all other players (sync)
 
 ---
 
 ⚙️ **Settings**
-- `Sync Health` - null
-- `Sync Food` - null
-- `Sync Potions` - null
-- `Sync Hotbar` - null
+- `Sync Health`
+- `Sync Food`
+- `Sync Potions`
+- `Sync Hotbar` - This will not sync items, only the selected slot
 
 🏷️ **Tags**
-- `Fun` - null
-- `Free` - null
-- `Multiplayer` - null
-</details><details><summary><b>Chunk Flattener</b>  <img src='https://mutils.net/images/mc/grab/rendered/iron_trapdoor.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Free` - You can play this Challenge without premium!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+</details><details><summary><b>Chunk Flattener</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/iron_trapdoor.png' width='18'></summary>
 Watch out your steps! Your current chunk slowly shrinks down
 
 ---
 
 ⚙️ **Settings**
-- `Delay` - null
+- `Delay` - Time between each flattening
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Chunk Breaker</b>  <img src='https://mutils.net/images/mc/grab/rendered/tnt.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Chunk Breaker</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tnt.png' width='18'></summary>
 Breaking a block will break all blocks of the same time in the chunk
 
 ---
 
 ⚙️ **Settings**
-- `Bundle Drops` - null
+- `Bundle Drops` - All dropped item will be merged on the broken block to reduce lag
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Chunk Decay</b>  <img src='https://mutils.net/images/mc/grab/rendered/oak_leaves.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Chunk Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/oak_leaves.png' width='18'></summary>
 Your current chunk randomly decays till it's gone
 
 ---
 
 ⚙️ **Settings**
-- `Delay` - null
-- `Decay Percentage` - null
-- `Drop Blocks` - null
+- `Delay` - Time between each decay
+- `Decay Percentage` - Amount of blocks that will randomly be removed from the chunk
+- `Drop Blocks` - All broken blocks will drop themself
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Chunk Clearer</b>  <img src='https://mutils.net/images/mc/grab/items/dragon_breath.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Chunk Clearer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/dragon_breath.png' width='18'></summary>
 If you enter a chunk or touch a new block the whole chunk will be cleared
 
 ---
 
 ⚙️ **Settings**
-- `Break All` - null
+- `Break All` - Completely clear the chunk instead only touched block type
 
 🏷️ **Tags**
-- `Hard` - null
-- `Free` - null
-</details><details><summary><b>Anvil Crusher</b>  <img src='https://mutils.net/images/mc/grab/rendered/anvil.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Anvil Crusher</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/anvil.png' width='18'></summary>
 It's raining... Anvils? Watch out your steps, the sky tries to kill you
 
 ---
 
 ⚙️ **Settings**
-- `Anvil Delay` - null
-- `Anvil Density` - null
-- `Anvil Radius` - null
-- `Anvil Height` - null
+- `Anvil Delay` - Base and modifier spawn timings
+- `Anvil Density` - Base and modifier spawn density
+- `Anvil Radius` - Anvil spawn radius
+- `Anvil Height` - Anvil spawn height
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Item Decay</b>  <img src='https://mutils.net/images/mc/grab/rendered/comparator.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Item Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/comparator.png' width='18'></summary>
 Act fast! All your items have a limited lifespan till they disappear
 
 ---
 
 ⚙️ **Settings**
-- `Decay Time` - null
+- `Decay Time` - Time till item will disappear
 
 🏷️ **Tags**
-- `Hard` - null
-- `Free` - null
-</details><details><summary><b>Area Timer</b>  <img src='https://mutils.net/images/mc/grab/rendered/grass_block.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Area Timer</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/grass_block.png' width='18'></summary>
 Chosen areas like biomes, chunks, worlds or even heights can only be visited a limited time. Play fast!
 
 ---
 
 ⚙️ **Settings**
-- `Max Time` - null
-- `Count Global` - null
-- `Area Mode` - null
+- `Max Time` - Maximal allowed time in each area
+- `Count Global` - Maximal time will count for all players
+- `Area Mode` - Define the area, which will be limited
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Damage Multiplier</b>  <img src='https://mutils.net/images/mc/grab/items/beetroot.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Damage Multiplier</b> ▪ <img src='https://mutils.net/images/mc/grab/items/beetroot.png' width='18'></summary>
 Higher or lower all damage against players. Includes potion debuffs and fire
 
 ---
 
 ⚙️ **Settings**
-- `Multiplier` - null
+- `Multiplier` - Damage = original damage * multiplier
 
 🏷️ **Tags**
-- `Medium` - null
-- `Free` - null
-</details><details><summary><b>Collect Battle</b>  <img src='https://mutils.net/images/mc/grab/items/heart_of_the_sea.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>Collect Battle</b> ▪ <img src='https://mutils.net/images/mc/grab/items/heart_of_the_sea.png' width='18'></summary>
 Compete against all other players in this round based game! First, you gather an item as fast as possible. In the second phase, a random other player needs to gather the same item faster! You can still beat the game?
 
 ---
 
 ⚙️ **Settings**
-- `Max Set-Time` - null
-- `Time Between Rounds` - null
-- `Extra Time` - null
+- `Max Set-Time` - Maximal time players can register a new item
+- `Time Between Rounds` - Items acquired in this state can not be registered
+- `Extra Time` - Time that will be added to each registration time to prevent instant locking
 
 🏷️ **Tags**
-- `Fun` - null
-- `Force` - null
-</details><details><summary><b>F.L.Y. Challenge</b>  <img src='https://mutils.net/images/mc/grab/items/elytra.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Force` - You receive a task and are forced to finish it to proceed
+</details><details><summary><b>F.L.Y. Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/elytra.png' width='18'></summary>
 Fly with a new power through the sky like a hero! Sneak in midair to activate
 
 ---
 
 ⚙️ **Settings**
-- `Power` - null
+- `Power` - Flying boost and speed. More speed results in more damage on impact
 
 🏷️ **Tags**
-- `Fun` - null
-</details><details><summary><b>InTime Challenge</b>  <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+</details><details><summary><b>InTime Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
 Every Entity has a limited time to live. You too! Kill mobs to steal their time
 
 ---
 
 ⚙️ **Settings**
-- `Player Time` - null
-- `Entity Time` - null
-- `Time per HP` - null
+- `Player Time` - Player starting time
+- `Entity Time` - Entity starting time
+- `Time per HP` - Reduced time by each hp damage a player receives from a mob
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Mob Blocks Randomizer</b>  <img src='https://mc-heads.net/head/64528b3229660f3dfab42414f59ee8fd01e80081dd3df30869536ba9b414e089' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Mob Blocks Randomizer</b> ▪ <img src='https://mc-heads.net/head/64528b3229660f3dfab42414f59ee8fd01e80081dd3df30869536ba9b414e089' width='18'></summary>
 Every block contains a random mob. Break the block to release it and only after killing it, the item drops
 
 ---
 
 ⚙️ **Settings**
-- `Random` - null
+- `Random` - Enabled: Each action is random, Disabled: Same block = same mob
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Rewind Challenge</b>  <img src='https://mc-heads.net/head/4c301a17c955807d89f9c72a19207d1393b8c58c4e6e420f714f696a87fdd' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Rewind Challenge</b> ▪ <img src='https://mc-heads.net/head/4c301a17c955807d89f9c72a19207d1393b8c58c4e6e420f714f696a87fdd' width='18'></summary>
 Create Checkpoints (F) to travel back in time! But be warned... Time traveling is dangerous
 
 ---
 
 ⚙️ **Settings**
-- `Only Position` - null
+- `Only Position` - Will not affect the world
 
 🏷️ **Tags**
-- `Fun` - null
-</details><details><summary><b>Dimension Swap Challenge</b>  <img src='https://mutils.net/images/mc/grab/rendered/end_portal_frame.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+</details><details><summary><b>Dimension Swap Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/end_portal_frame.png' width='18'></summary>
 All portals are shuffled! Now you have to fight the Ender Dragon in... the Overworld? Nether -> End -> Overworld
 
 ---
 
 ⚙️ **Settings**
-- `Starter Pickaxe` - null
+- `Starter Pickaxe` - Each player starts with an unbreakable wooden pickaxe
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Snake Challenges</b>  <img src='https://mutils.net/images/mc/grab/rendered/red_concrete_powder.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Snake Challenges</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/red_concrete_powder.png' width='18'></summary>
 You can only move on your personal snake, which permanently move in your viewing direction
 
 ---
 
 ⚙️ **Settings**
-- `Speed` - null
+- `Speed` - Snake movement speed
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Realistic Minecraft</b>  <img src='https://mutils.net/images/mc/grab/items/oak_sapling.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Realistic Minecraft</b> ▪ <img src='https://mutils.net/images/mc/grab/items/oak_sapling.png' width='18'></summary>
 Is MC to unrealistic? This Challenge will change everything to discover a full new Minecraft
 
 ---
@@ -367,263 +379,263 @@ Is MC to unrealistic? This Challenge will change everything to discover a full n
 - `No settings`
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Ghost Challenge</b>  <img src='https://mc-heads.net/head/de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Ghost Challenge</b> ▪ <img src='https://mc-heads.net/head/de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02' width='18'></summary>
 Discover the depths with your new ability to travel through blocks! But be aware... Ghosts are weak
 
 ---
 
 ⚙️ **Settings**
-- `Radius` - null
-- `Adventure Ghost` - null
-- `Ghost Glide` - null
+- `Radius` - Ghost vision radius
+- `Adventure Ghost` - Can't break blocks in ghost mode
+- `Ghost Glide` - Glide through ghost blocks instead of only falling
 
 🏷️ **Tags**
-- `Fun` - null
-</details><details><summary><b>Block Async Challenge</b>  <img src='https://mutils.net/images/mc/grab/rendered/red_stained_glass.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+</details><details><summary><b>Block Async Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/red_stained_glass.png' width='18'></summary>
 Every player sees his own world! But should a player interact with a block modified by a different player he dies. Communication is key
 
 ---
 
 ⚙️ **Settings**
-- `Hide Players` - null
+- `Hide Players` - Add more difficulty by completely hiding other players
 
 🏷️ **Tags**
-- `Fun` - null
-- `Multiplayer` - null
-</details><details><summary><b>No Same Items</b>  <img src='https://mutils.net/images/mc/grab/items/wither_rose.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+</details><details><summary><b>No Same Items</b> ▪ <img src='https://mutils.net/images/mc/grab/items/wither_rose.png' width='18'></summary>
 If you collect a item, wich was already collected, you loose one heart
 
 ---
 
 ⚙️ **Settings**
-- `Lives` - null
-- `Lives = HP` - null
-- `Announce Mode` - null
+- `Lives` - Total lives. You loose one for each same item
+- `Lives = HP` - Sync the challenge lives to your health lives
+- `Announce Mode` - Receive notifications about all new items, only live updates or nothing at all
 
 🏷️ **Tags**
-- `Medium` - null
-- `Multiplayer` - null
-</details><details><summary><b>Limited Skills</b>  <img src='https://mutils.net/images/mc/grab/items/turtle_helmet.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+</details><details><summary><b>Limited Skills</b> ▪ <img src='https://mutils.net/images/mc/grab/items/turtle_helmet.png' width='18'></summary>
 Only one player can see mobs but can't damage them. The other can't see mobs but can deal damage
 
 ---
 
 ⚙️ **Settings**
-- `Random Roles` - null
+- `Random Roles`
 
 🏷️ **Tags**
-- `Hard` - null
-- `Multiplayer` - null
-</details><details><summary><b>Run Randomizer</b>  <img src='https://mutils.net/images/mc/grab/items/golden_boots.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+</details><details><summary><b>Run Randomizer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/golden_boots.png' width='18'></summary>
 The only way to gather items is running! Every X-Blocks you get a random stack of items
 
 ---
 
 ⚙️ **Settings**
-- `Block Goal` - null
+- `Block Goal` - The amount of blocks needed for a new item
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Damage Duell</b>  <img src='https://mutils.net/images/mc/grab/items/iron_sword.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Damage Duell</b> ▪ <img src='https://mutils.net/images/mc/grab/items/iron_sword.png' width='18'></summary>
 If you deal damage, all other players also get damaged by a percentage
 
 ---
 
 ⚙️ **Settings**
-- `Percentage` - null
+- `Percentage` - The percentage of damage that will be reflected
 
 🏷️ **Tags**
-- `Fun` - null
-- `Multiplayer` - null
-</details><details><summary><b>One Biome World</b>  <img src='https://mutils.net/images/mc/grab/items/filled_map.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+</details><details><summary><b>One Biome World</b> ▪ <img src='https://mutils.net/images/mc/grab/items/filled_map.png' width='18'></summary>
 The whole world contains only one biome. The biome switches every X seconds
 
 ---
 
 ⚙️ **Settings**
-- `Delay` - null
+- `Delay` - The time between each world swap
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Boost'em UP</b>  <img src='https://mutils.net/images/mc/grab/items/shulker_shell.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Boost'em UP</b> ▪ <img src='https://mutils.net/images/mc/grab/items/shulker_shell.png' width='18'></summary>
 Every entity/mob in your range will be boosted in the sky
 
 ---
 
 ⚙️ **Settings**
-- `Effect Radius` - null
-- `Boost Power` - null
-- `Only Mobs` - null
+- `Effect Radius`
+- `Boost Power` - Mobs will fly higher on higher power
+- `Only Mobs` - Does not affect entities like items, boats, ...
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Only Right Tools</b>  <img src='https://mutils.net/images/mc/grab/items/wooden_axe.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Only Right Tools</b> ▪ <img src='https://mutils.net/images/mc/grab/items/wooden_axe.png' width='18'></summary>
 You can only break blocks with the correct tool
 
 ---
 
 ⚙️ **Settings**
-- `Starter Axe` - null
+- `Starter Axe` - Start with a wooden axe to skip traveling for structures
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Sneak Spawner</b>  <img src='https://mutils.net/images/mc/grab/rendered/hopper.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Sneak Spawner</b> ▪ <img src='https://mutils.net/images/mc/grab/items/hopper.png' width='18'></summary>
 Be prepared... Every sneak will spawn a random mob on your position
 
 ---
 
 ⚙️ **Settings**
-- `Only Mobs` - null
+- `Only Mobs` - Does not spawn non living entities like boats
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Gravity Switch</b>  <img src='https://mutils.net/images/mc/grab/rendered/sand.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Gravity Switch</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/sand.png' width='18'></summary>
 The world gone crazy and every few seconds the gravity switches between 4 new gravities
 
 ---
 
 ⚙️ **Settings**
-- `Delay` - null
+- `Delay` - Time of no custom gravity between swaps
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Stay Awaay</b>  <img src='https://mutils.net/images/mc/grab/rendered/tnt.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Stay Awaay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tnt.png' width='18'></summary>
 Getting to close to other mobs or players causes damage. Time for some social distancing
 
 ---
 
 ⚙️ **Settings**
-- `Damage Distance` - null
+- `Damage Distance` - Radius of blocks that you need to stay away
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Block Randomizer</b>  <img src='https://mc-heads.net/head/1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Block Randomizer</b> ▪ <img src='https://mc-heads.net/head/1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b' width='18'></summary>
 Block drops are shuffled (or random)
 
 ---
 
 ⚙️ **Settings**
-- `Full Random` - null
+- `Full Random` - Enabled: Each action is random, Disabled: Same block = same item
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Mob Drop Randomizer</b>  <img src='https://mc-heads.net/head/6b40e5db21cedac4c972b7b22ebb64cf4add61b3b54b131435eedd307598b7' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Mob Drop Randomizer</b> ▪ <img src='https://mc-heads.net/head/6b40e5db21cedac4c972b7b22ebb64cf4add61b3b54b131435eedd307598b7' width='18'></summary>
 Mob drops are shuffled (or random)
 
 ---
 
 ⚙️ **Settings**
-- `Full Random` - null
+- `Full Random` - Enabled: Each action is random, Disabled: Same mob = same drop
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Biome Randomizer</b>  <img src='https://mc-heads.net/head/76bdf52222b4f092e1122831b388164c462fa41df1d49428d448a8794339b34b' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Biome Randomizer</b> ▪ <img src='https://mc-heads.net/head/76bdf52222b4f092e1122831b388164c462fa41df1d49428d448a8794339b34b' width='18'></summary>
 World biomes are shuffled (or random)
 
 ---
 
 ⚙️ **Settings**
-- `Full Random` - null
+- `Full Random` - Enabled: Each action is random, Disabled: Same biome = same shuffled biome
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Mob Randomizer</b>  <img src='https://mc-heads.net/head/915f7c313bca9c2f958e68ab14ab393867d67503affff8f20cb13fbe917fd31' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Mob Randomizer</b> ▪ <img src='https://mc-heads.net/head/915f7c313bca9c2f958e68ab14ab393867d67503affff8f20cb13fbe917fd31' width='18'></summary>
 Mob spawning is shuffled (or random)
 
 ---
 
 ⚙️ **Settings**
-- `Full Random` - null
+- `Full Random` - Enabled: Each action is random, Disabled: Same mob = same shuffled mob
 
 🏷️ **Tags**
-- `Fun` - null
-- `Randomizer` - null
-</details><details><summary><b>Damage Randomizer</b>  <img src='https://mc-heads.net/head/5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Damage Randomizer</b> ▪ <img src='https://mc-heads.net/head/5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87' width='18'></summary>
 Damage is shuffled like 2hp will be always 5hp (or random)
 
 ---
 
 ⚙️ **Settings**
-- `Full Random` - null
+- `Full Random` - Enabled: Each action is random, Disabled: Same damage = same shuffled damage
 
 🏷️ **Tags**
-- `Medium` - null
-- `Randomizer` - null
-</details><details><summary><b>Loot Randomizer</b>  <img src='https://mc-heads.net/head/5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Loot Randomizer</b> ▪ <img src='https://mc-heads.net/head/5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87' width='18'></summary>
 Randomize all items in chest containers!
 
 ---
 
 ⚙️ **Settings**
-- `Random Enchants` - null
+- `Random Enchants` - Items can be randomly enchanted
 
 🏷️ **Tags**
-- `Medium` - null
-- `Randomizer` - null
-</details><details><summary><b>Force Collect</b>  <img src='https://mutils.net/images/mc/grab/rendered/chest.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Randomizer` - Parts of Minecraft are randomized and change each play through
+</details><details><summary><b>Force Collect</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/chest.png' width='18'></summary>
 You are forced to collect the prompted item to survive
 
 ---
 
 ⚙️ **Settings**
-- `Timings` - null
-- `Goals` - null
+- `Timings` - Time that will be randomly chosen for collecting time and grace time
+- `Goals` - All goals that will randomly be prompted to find/collect
 
 🏷️ **Tags**
-- `Medium` - null
-- `Force` - null
-</details><details><summary><b>No Double Kills</b>  <img src='https://mutils.net/images/mc/grab/rendered/repeater.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Force` - You receive a task and are forced to finish it to proceed
+</details><details><summary><b>No Double Kills</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/repeater.png' width='18'></summary>
 You are not allowed to kill the same mob twice in a row
 
 ---
 
 ⚙️ **Settings**
-- `Count Global` - null
+- `Count Global` - Last killed mob will be synced for each player
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Damager Challenge</b>  <img src='https://mutils.net/images/mc/grab/items/diamond_sword.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Damager Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/diamond_sword.png' width='18'></summary>
 You will be confronted with constantly damage from the chosen event. Can you survive?
 
 ---
 
 ⚙️ **Settings**
-- `Damage Event` - null
-- `Damage` - null
-- `Interval` - null
+- `Damage Event` - The event for receiving damage
+- `Damage` - Amount of damage
+- `Interval` - Time between each damage tick (Only affecting type INTERVAL)
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Collection Rivals</b>  <img src='https://mutils.net/images/mc/grab/items/chest_minecart.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Collection Rivals</b> ▪ <img src='https://mutils.net/images/mc/grab/items/chest_minecart.png' width='18'></summary>
 Collect/find/kill the prompted goal to get the next. Player with the most points win
 
 ---
 
 ⚙️ **Settings**
-- `Search Type` - null
-- `Joker` - null
+- `Search Type` - All tasks that will randomly be prompted to find/collect
+- `Joker` - Amount of joker to skip a task
 
 🏷️ **Tags**
-- `Fun` - null
-- `Force` - null
-- `Multiplayer` - null
-</details><details><summary><b>Rocket Mode</b>  <img src='https://mutils.net/images/mc/grab/items/firework_rocket.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+- `Force` - You receive a task and are forced to finish it to proceed
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+</details><details><summary><b>Rocket Mode</b> ▪ <img src='https://mutils.net/images/mc/grab/items/firework_rocket.png' width='18'></summary>
 Sneak to fly up. But be aware! Flying with a rocket is hard... And hold an eye on your heat
 
 ---
 
 ⚙️ **Settings**
-- `Fuel Capacity` - null
+- `Fuel Capacity` - Amount of fuel before exploding
 
 🏷️ **Tags**
-- `Medium` - null
-</details><details><summary><b>Block World</b>  <img src='https://mutils.net/images/mc/grab/rendered/diamond_block.png' width='18'></summary>
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Block World</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/diamond_block.png' width='18'></summary>
 All chunks are built from one block type! Step through a new cursed world
 
 ---
@@ -632,34 +644,67 @@ All chunks are built from one block type! Step through a new cursed world
 - `No settings`
 
 🏷️ **Tags**
-- `Fun` - null
-</details><details><summary><b>Minefield World</b>  <img src='https://mutils.net/images/mc/grab/rendered/light_weighted_pressure_plate.png' width='18'></summary>
+- `Fun` - Easy Challenge with fun in focus
+</details><details><summary><b>Minefield World</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/light_weighted_pressure_plate.png' width='18'></summary>
 The whole world is covered with dangerous mines. Don't step on them!
 
 ---
 
 ⚙️ **Settings**
-- `Density` - null
+- `Density` - Amount of generated mines
 
 🏷️ **Tags**
-- `Hard` - null
-</details><details><summary><b>Block Wall</b>  <img src='https://mutils.net/images/mc/grab/rendered/bedrock.png' width='18'></summary>
+- `Hard` - Good for everyone searching a Challenge!
+</details><details><summary><b>Block Wall</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/bedrock.png' width='18'></summary>
 You are hunted by a wall! Watch out your steps, breaking the wall is impossible
 
 ---
 
 ⚙️ **Settings**
-- `Wall Material` - null
-- `Spawn Delay` - null
+- `Wall Material` - This block will become unbreakable. Do not use tile blocks
+- `Spawn Delay` - Time until the wall catch up
 
 🏷️ **Tags**
-- `Medium` - null
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
 </details>
 
 </details>
 
+<br>
+<br>
+<br>
 
+## 💎 Utilities & Commands
+To fully enjoy all new content, we also added some neat extras that can be disabled if unwanted.
 
+▪ First column indicates if the command is usable without OP.<br>
+▪ To see more about permissions look inside our [documentation](https://mutils.net/ch/info)!
 
+|    | **▾Command▾**                  |                       **▾Description▾**                       |
+|:--:|:-------------------------------|:-------------------------------------------------------------:|
+| ❌  | `/challenge [<...>]`           |         Main Command to access Challenges & settings          |
+| ❌  | `/rule <rule> <new-value>`     |         Activate / change custom game rules like pvp          |
+| ✔  | `/backpack [<player>, setup]`  |         Access or setup a personal or global backpack         |
+| ❌  | `/heal [<players>]`            |      Restore health & saturation for yourself or targets      |
+| ❌  | `/hide [<players>]` `/show`    |     Fully hide yourself or targets from all other players     |
+| ❌  | `/invsee <player>`             |         See & modify the inventory from other players         |
+| ✔  | `/position <new, get, remove>` |       Save your current position to find it later again       |
+| ❌  | `/reset [<seed>]`              | Delete current world and generate a new one (restarts server) |
 
-d
+<br>
+<br>
+<br>
+
+## 🔌 API & Challenge Addons
+MChallenge provides a feature rich environment for Challenges with GUI's, settings menus and saving and more.
+You can add your own Challenges to the Addon Category in a few seconds!
+
+▪ [Challenge addon template](https://github.com/MUtils-MC/MChallenge-Addon)<br>
+▪ If you want to publish your addon, please notify me on Discord, so I can add it to our [list](https://mutils.net/ch/addons) :)
+
+If you want to inject into the Challenge lifecycle or even manipulate it with your own plugin, you can access the [**API**](https://github.com/MUtils-MC/MChallenge-API):
+```kts
+dependencies {
+    compileOnly("de.miraculixx:challenge-api:1.5.0")
+}
+```
