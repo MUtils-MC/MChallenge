@@ -22,7 +22,7 @@ class ChunkClearer : Challenge {
 
     init {
         val settings = challenges.getSetting(Challenges.CHUNK_CLEARER).settings
-        breakAll = settings["breakAll"]?.toBool()?.getValue() ?: true
+        breakAll = settings["breakAll"]?.toBool()?.getValue() ?: false
         shouldBreak = settings["shouldBreak"]?.toBool()?.getValue() ?: true
         bundle = settings["bundle"]?.toBool()?.getValue() ?: true
     }
@@ -73,6 +73,7 @@ class ChunkClearer : Challenge {
 
         } else {
             val type = lower.block.type
+            val drops = lower.block.getDrops(ItemStack(Material.DIAMOND_PICKAXE))
             if (type == Material.GLASS || type.isAir) return@listen
             var counter = 0
             chunk.allBlocks.forEach { b ->
@@ -85,7 +86,7 @@ class ChunkClearer : Challenge {
                 } else b.type = Material.AIR
             }
             if (bundle) {
-                to.world.dropItem(it.to, ItemStack(type, counter))
+                drops.forEach { drop -> to.world.dropItem(it.to, drop.apply { amount = counter }) }
             }
             lower.block.type = Material.GLASS // Save from falling
         }

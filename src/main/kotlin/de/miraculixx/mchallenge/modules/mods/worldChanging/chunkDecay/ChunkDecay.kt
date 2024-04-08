@@ -1,16 +1,17 @@
 package de.miraculixx.mchallenge.modules.mods.worldChanging.chunkDecay
 
 import de.miraculixx.challenge.api.modules.challenges.Challenge
+import de.miraculixx.kpaper.extensions.bukkit.allBlocks
+import de.miraculixx.kpaper.extensions.onlinePlayers
+import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
-import de.miraculixx.kpaper.extensions.bukkit.allBlocks
-import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.kpaper.runnables.sync
-import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.World
+import org.bukkit.block.data.Levelled
 import org.bukkit.inventory.ItemStack
 
 class ChunkDecay : Challenge {
@@ -47,7 +48,7 @@ class ChunkDecay : Challenge {
 
     private fun scheduler() {
         var countdown = delay
-        task(false, 0, 20) {
+        task(true, 0, 20) {
             if (stop) it.cancel()
             if (paused) return@task
             if (countdown <= 0) {
@@ -56,21 +57,17 @@ class ChunkDecay : Challenge {
                     val chunk = p.chunk
                     val blocks = chunk.allBlocks.filter { b ->
                         val isFlowing = if (b.type == Material.WATER || b.type == Material.LAVA) {
-                            //There should be a way to get the nbt value directly?
-                            !b.blockData.asString.contains("[level=0]")
+                            (b.blockData as? Levelled)?.level == 0
                         } else false
                         !b.type.isAir && !isFlowing
                     }
-                    val tool = ItemStack(Material.DIAMOND_PICKAXE)
-                    println((blocks.size * (percentage / 100.0)).toInt())
+
+                    val physics = chunk.world.environment == World.Environment.NORMAL
                     blocks.shuffled()
-                        .chunked((blocks.size * (percentage / 100.0)).toInt().coerceAtLeast(1))
-                        .firstOrNull()
-                        ?.forEach { b ->
-                            sync {
-                                if (shouldBreak) b.breakNaturally(tool)
-                                else b.type = Material.AIR
-                            }
+                        .subList(0, (blocks.size * (percentage / 100.0)).toInt().coerceAtLeast(1))
+                        .forEach { b ->
+                            if (shouldBreak) b.breakNaturally(ItemStack(Material.DIAMOND_PICKAXE))
+                            else b.setType(Material.AIR, physics)
                         }
                 }
                 countdown = delay

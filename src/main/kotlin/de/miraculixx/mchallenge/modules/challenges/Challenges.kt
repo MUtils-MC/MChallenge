@@ -228,7 +228,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             )
 
             CHUNK_CLEARER -> mapOf(
-                "breakAll" to ChallengeBoolSetting("GRASS_BLOCK", true), "shouldBreak" to ChallengeBoolSetting("IRON_PICKAXE", true), "bundle" to ChallengeBoolSetting("HOPPER", true)
+                "breakAll" to ChallengeBoolSetting("GRASS_BLOCK", false), "shouldBreak" to ChallengeBoolSetting("IRON_PICKAXE", true), "bundle" to ChallengeBoolSetting("HOPPER", true)
             )
 
             ANVIL_CRUSHER -> mapOf(
@@ -241,12 +241,9 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                     "ANVIL", mapOf(
                         "startDensity" to ChallengeIntSetting("REDSTONE", 5, "%", max = 100, min = 1), "amplifierDensity" to ChallengeIntSetting("COMPARATOR", 1, "%", max = 10, min = 0)
                     )
-                ), "radius" to ChallengeSectionSetting(
-                    "ARROW", mapOf(
-                        "startRadius" to ChallengeIntSetting("REDSTONE", 5, "b", max = 15, min = 1),
-                        "amplifierRadius" to ChallengeIntSetting("COMPARATOR", 5, "b", max = 5, min = 0),
-                    )
-                ), "height" to ChallengeIntSetting("RABBIT_FOOT", 5, "b", max = 15, min = 2)
+                ),
+                "radius" to ChallengeIntSetting("ARROW", 5, "b", max = 15, min = 2),
+                "height" to ChallengeIntSetting("RABBIT_FOOT", 10, "b", max = 15, min = 2)
             )
 
             ITEM_DECAY -> mapOf(
