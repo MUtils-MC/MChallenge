@@ -22,5 +22,5 @@ jobs:
 
       - name: Sync README
         run: |
-          ./gradlew craftReadme
+          ./gradlew craftReadme -PmodrinthToken=${{ env.MODRINTH_TOKEN }}
           ./gradlew modrinthSyncBody -PmodrinthToken=${{ env.MODRINTH_TOKEN }}
