@@ -61,6 +61,7 @@ class ItemDecay : Challenge {
     }
 
     override fun stop() {
+        scheduler?.cancel()
         running = false
         stopped = true
         itemTimers.forEach { (_, timer) ->
@@ -102,6 +103,10 @@ class ItemDecay : Challenge {
     }
 
     val scheduler = task(false, 0, 20) {
+        if (stopped) {
+            it.cancel()
+            return@task
+        }
         val loadedWorlds = hashSetOf<World>()
         onlinePlayers.forEach { player ->
             loadedWorlds.add(player.world)

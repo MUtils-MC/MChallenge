@@ -21,4 +21,6 @@ jobs:
           java-version: '21'
 
       - name: Sync README
-        run: ./gradlew modrinthSyncBody -PmodrinthToken=${{ env.MODRINTH_TOKEN }}
+        run: |
+          ./gradlew craftReadme
+          ./gradlew modrinthSyncBody -PmodrinthToken=${{ env.MODRINTH_TOKEN }}

@@ -42,6 +42,7 @@ class HealCommand {
                         p.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
                         p.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.1
                         p.clearActivePotionEffects()
+                        p.isGlowing = false
                     }
                 }
             }

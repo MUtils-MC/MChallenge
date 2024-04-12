@@ -30,15 +30,17 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     ITEM_DECAY(setOf(ChallengeTags.HARD, ChallengeTags.FREE), Icon("COMPARATOR"), true),
     AREA_TIMER(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("GRASS_BLOCK"), true),
     DAMAGE_MULTIPLIER(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("BEETROOT"), true),
+    FLY(setOf(ChallengeTags.FUN, ChallengeTags.FREE), Icon("ELYTRA"), true),
+    GRAVITY(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("SAND"), true),
+    HP_DRAIN(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("SWEET_BERRIES"), true),
 
     COLLECT_BATTLE(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("HEART_OF_THE_SEA")),
-    FLY(setOf(ChallengeTags.FUN), Icon("ELYTRA")),
     IN_TIME(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
     MOB_BLOCKS(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("ZOMBIE_HEAD")),
     CHECKPOINTS(setOf(ChallengeTags.FUN), Icon("PLAYER_HEAD", KHeads.BACKWARDS_WHITE)),
     DIM_SWAP(setOf(ChallengeTags.MEDIUM), Icon("END_PORTAL_FRAME")),
     SNAKE(setOf(ChallengeTags.HARD), Icon("RED_CONCRETE_POWDER")),
-    REALISTIC(setOf(ChallengeTags.HARD), Icon("OAK_SAPLING")),
+    REALISTIC(setOf(ChallengeTags.HARD, ChallengeTags.BETA), Icon("OAK_SAPLING")),
     GHOST(setOf(ChallengeTags.FUN), Icon("PLAYER_HEAD", KHeads.GHAST)),
     BLOCK_ASYNC(setOf(ChallengeTags.FUN, ChallengeTags.MULTIPLAYER), Icon("RED_STAINED_GLASS")),
     NO_SAME_ITEM(setOf(ChallengeTags.MEDIUM, ChallengeTags.MULTIPLAYER), Icon("WITHER_ROSE")),
@@ -49,7 +51,6 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     BOOST_UP(setOf(ChallengeTags.MEDIUM), Icon("SHULKER_SHELL")),
     RIGHT_TOOL(setOf(ChallengeTags.MEDIUM), Icon("WOODEN_AXE")),
     SNEAK_SPAWN(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("HOPPER")),
-    GRAVITY(setOf(ChallengeTags.MEDIUM), Icon("SAND")),
     STAY_AWAY(setOf(ChallengeTags.HARD), Icon("TNT")),
     RANDOMIZER_BLOCK(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", KHeads.DICE_GREEN)),
     RANDOMIZER_ENTITY(setOf(ChallengeTags.FUN, ChallengeTags.RANDOMIZER), Icon("PLAYER_HEAD", KHeads.DICE_ORANGE)),
@@ -123,6 +124,11 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             SNEAK_SPAWN -> mapOf("onlyMob" to ChallengeBoolSetting("POLAR_BEAR_SPAWN_EGG", true))
             GRAVITY -> mapOf(
                 "delay" to ChallengeIntSetting("CLOCK", 180, "s", max = 600, min = 20, step = 10), "duration" to ChallengeIntSetting("REPEATER", 120, "s", max = 600, min = 20, step = 10)
+            )
+
+            HP_DRAIN -> mapOf(
+                "percentage" to ChallengeIntSetting("BEETROOT", 50, "%", max = 90, min = 5, step = 5),
+                "interval" to ChallengeIntSetting("CLOCK", 60 * 10, "s", max = 60 * 60, min = 15, step = 15)
             )
 
             STAY_AWAY -> mapOf(
@@ -205,7 +211,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                     "WHEAT_SEEDS", mapOf(
                         "xp" to ChallengeBoolSetting("EXPERIENCE_BOTTLE", false), "items" to ChallengeBoolSetting("HOPPER", false)
                     )
-                ), "damage" to ChallengeIntSetting("BEETROOT", 1)
+                ), "damage" to ChallengeIntSetting("BEETROOT", 1, "hp")
             )
 
             MOB_HUNT -> emptyMap()
