@@ -146,6 +146,9 @@ event:
     bloodPack: "Blood Pack"
   mirror:
     damage: "<blue><input-1></blue> received <blue><input-2> ♥</blue> damage <dark_gray>(<input-3>)"
+  hpDrain:
+    current: "Current Health ⇒ <blue><input-1></blue>"
+    next: "Next health draining in <blue><input-1></blue> <dark_gray>(<input-2>%)"
 
 
 #-----------------------------------------#
@@ -397,6 +400,9 @@ items:
     RHYTHM_CRAFT:
       n: "Rhythm Craft"
       l: "Turn Minecraft into a full Rhythmgame!<br>Every action needs to be done on the beat<br>to follow the world rhythm."
+    HP_DRAIN:
+      n: "Health Drainer"
+      l: "Every few minutes your max health will be<br>reduced by a given percentage.<br>Better be quick!"
   chS:
     FLY:
       power:
@@ -773,6 +779,13 @@ items:
         n: "Min Speed"
       max:
         n: "Max Speed"
+    HP_DRAIN:
+      percentage:
+        n: "Percentage"
+        l: "How much health is drained<br>on each interval"
+      interval:
+        n: "Interval"
+        l: "Timing for each health draining"
 
 tags:
   FUN:

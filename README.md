@@ -10,8 +10,11 @@ Or everything at once!
 
 
 
-Part from [**MUtils**](https://mutils.net)<br>
-Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count your time & death punishments!
+▪ Part from [**MUtils**](https://mutils.net)<br>
+▪ Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count your time & death punishments!
+
+This project started in 2021 and quickly evolved into us finding the limits of plugins with the curiosity how you can modify Minecraft to don't lose fun beating it. 
+We hope you will have the same fun while playing like us!
 
 ### ⇒ **Latest Update Trailer**
 <!-- modrinth_exclude.start -->
@@ -26,9 +29,11 @@ Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count y
 
 # 🎯 Challenges
 Each challenge can be toggled and configured individually inside the Challenge menu (``/challenge``).<br>
-All challenges can be combined and played in multiplayer or singleplayer (some require at least two players).
+All challenges can be combined and played in multiplayer or singleplayer (some require at least two players).<br>
+You have an idea for a new Challenge?
+We would be happy to hear it in our [discord](https://dc.mutils.net)!
 
-**▪ Current Challenge count** ⇒ ``65``
+**▪ Current Challenge count** ⇒ ``66``
 
 <!-- modrinth_exclude.start -->
 > **Important**<br>
@@ -41,72 +46,17 @@ All challenges can be combined and played in multiplayer or singleplayer (some r
 To filter and search for Challenges, visit our own [Challenge List](https://mutils.net/ch/list) or use `ctrl` + `f`
 <details><summary><img src="https://i.imgur.com/HOuMmwT.png" width="40%"></summary>
 
-<details><summary><b>Rhythm Craft</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/note_block.png' width='18'></summary>
-Turn Minecraft into a full Rhythmgame! Every action needs to be done on the beat to follow the world rhythm.
+<details><summary><b>Health Drainer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/sweet_berries.png' width='18'></summary>
+Every few minutes your max health will be reduced by a given percentage. Better be quick!
 
 ---
 
 ⚙️ **Settings**
-- `No settings`
-
-🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
-- `Beta` - Not finished yet. Lacks content and/or contains bugs
-</details><details><summary><b>Game Speed Shuffler</b> ▪ <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
-The game will constantly change the speed which effects every action. Can you keep up?
-
----
-
-⚙️ **Settings**
-- `Tick Speed` - The range in with the tick speed can change
-- `Shuffel Rate` - Timings between each tick shuffling
+- `Percentage` - How much health is drained on each interval
+- `Interval` - Timing for each health draining
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Beta` - Not finished yet. Lacks content and/or contains bugs
-</details><details><summary><b>Damage Order</b> ▪ <img src='https://mutils.net/images/mc/grab/items/diamond_axe.png' width='18'></summary>
-Only one player at a time is allowed to damage mobs. But this player changes on every hit!
-
----
-
-⚙️ **Settings**
-- `Damage On Wrong` - Amount of damage a player receives when ignoring the order
-- `Random Order` - No set order. Each time a random player is chosen
-- `Info Bar` - Display the player in current order
-
-🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
-</details><details><summary><b>World Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/white_stained_glass.png' width='18'></summary>
-The world around you disappear step by step! Remember your surrounding to keep alive (only visual - needs MWeb)
-
----
-
-⚙️ **Settings**
-- `Step Delay` - Time between each reduction from visible blocks
-- `Steps To 100%` - Amount of reductions until the full world is invisible
-
-🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
-</details><details><summary><b>Chunk Mirror</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/magenta_shulker_box.png' width='18'></summary>
-Every interaction like building is mirrored in all other chunks! What can you create?
-
----
-
-⚙️ **Settings**
-- `Environment Mirror` - Also mirror block updates not triggered by players
-
-🏷️ **Tags**
-- `Fun` - Easy Challenge with fun in focus
-</details><details><summary><b>Low Vision</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tinted_glass.png' width='18'></summary>
-The whole world is invisible except the blocks you choose! Every player can choose their own blocks
-
----
-
-⚙️ **Settings**
-- `Block Amount` - Amount of visible blocks players can choose on start
-
-🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
 </details><details><summary><b>Vampire Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/ghast_tear.png' width='18'></summary>
 Welcome to the world of darkness! Light will drain your blood. Kill mobs to gain their blood and sneak on killing to gather a blood pack (heal)
 
@@ -120,7 +70,8 @@ Welcome to the world of darkness! Light will drain your blood. Kill mobs to gain
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/0121ca13ee7dd2c7e01dd094993dfb40076f1445.png)
 </details><details><summary><b>Traffic Lights</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/redstone_lamp.png' width='18'></summary>
 You are trapped on the road. You are only allowed to move on green lights. If you move on red, you get punished
 
@@ -134,7 +85,8 @@ You are trapped on the road. You are only allowed to move on green lights. If yo
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/a66a37db5e36f6c404276270036ab64b04ef9581.png)
 </details><details><summary><b>Snake Path</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/light_blue_concrete.png' width='18'></summary>
 Every player creates a path on walking. But be carefully! You are not allowed to touch it ever again...
 
@@ -145,7 +97,8 @@ Every player creates a path on walking. But be carefully! You are not allowed to
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/465968950e3d7423ec4acaaf6b7ee636a8c6c768.gif)
 </details><details><summary><b>Disable Features</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/iron_bars.png' width='18'></summary>
 Disable certain key features to challenge your self. Additionally a damage punishment can be added
 
@@ -159,7 +112,6 @@ Disable certain key features to challenge your self. Additionally a damage punis
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Free` - You can play this Challenge without premium!
 </details><details><summary><b>Mob Hunt</b> ▪ <img src='https://mutils.net/images/mc/grab/items/phantom_spawn_egg.png' width='18'></summary>
 Kill all Mobs in a given order to finish! Use /mobhunt to modify
 
@@ -170,7 +122,6 @@ Kill all Mobs in a given order to finish! Use /mobhunt to modify
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Free` - You can play this Challenge without premium!
 - `Force` - You receive a task and are forced to finish it to proceed
 </details><details><summary><b>Item Hunt</b> ▪ <img src='https://mc-heads.net/head/a6cc486c2be1cb9dfcb2e53dd9a3e9a883bfadb27cb956f1896d602b4067' width='18'></summary>
 Collect all Items in a given order to finish! Use /itemhunt to modify
@@ -182,7 +133,6 @@ Collect all Items in a given order to finish! Use /itemhunt to modify
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Free` - You can play this Challenge without premium!
 - `Force` - You receive a task and are forced to finish it to proceed
 </details><details><summary><b>Mirror Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/glass.png' width='18'></summary>
 Mirror certain things from you to all other players (sync)
@@ -197,8 +147,9 @@ Mirror certain things from you to all other players (sync)
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Free` - You can play this Challenge without premium!
 - `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/79cc241fa07aace921f14a8e05ea7ba89a1d1cb6.gif)
 </details><details><summary><b>Chunk Flattener</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/iron_trapdoor.png' width='18'></summary>
 Watch out your steps! Your current chunk slowly shrinks down
 
@@ -209,7 +160,8 @@ Watch out your steps! Your current chunk slowly shrinks down
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/e8560bdfc91e807ba01c0faaa71d0bef90ca6e51.gif)
 </details><details><summary><b>Chunk Breaker</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tnt.png' width='18'></summary>
 Breaking a block will break all blocks of the same time in the chunk
 
@@ -220,7 +172,8 @@ Breaking a block will break all blocks of the same time in the chunk
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/706b00587071c1a0ecbe604bfad46da63afa43f5.gif)
 </details><details><summary><b>Chunk Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/oak_leaves.png' width='18'></summary>
 Your current chunk randomly decays till it's gone
 
@@ -233,7 +186,8 @@ Your current chunk randomly decays till it's gone
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/7ebece5c72f6bc47b7b8e155976d0689c18d445e.gif)
 </details><details><summary><b>Chunk Clearer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/dragon_breath.png' width='18'></summary>
 If you enter a chunk or touch a new block the whole chunk will be cleared
 
@@ -244,7 +198,6 @@ If you enter a chunk or touch a new block the whole chunk will be cleared
 
 🏷️ **Tags**
 - `Hard` - Good for everyone searching a Challenge!
-- `Free` - You can play this Challenge without premium!
 </details><details><summary><b>Anvil Crusher</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/anvil.png' width='18'></summary>
 It's raining... Anvils? Watch out your steps, the sky tries to kill you
 
@@ -258,7 +211,8 @@ It's raining... Anvils? Watch out your steps, the sky tries to kill you
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/b5cffbdd45163c00ccd9c6285838441b85c4aa11.gif)
 </details><details><summary><b>Item Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/comparator.png' width='18'></summary>
 Act fast! All your items have a limited lifespan till they disappear
 
@@ -269,7 +223,8 @@ Act fast! All your items have a limited lifespan till they disappear
 
 🏷️ **Tags**
 - `Hard` - Good for everyone searching a Challenge!
-- `Free` - You can play this Challenge without premium!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/302724789135d5374cb8eff5ecd5281a5e6a2376.gif)
 </details><details><summary><b>Area Timer</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/grass_block.png' width='18'></summary>
 Chosen areas like biomes, chunks, worlds or even heights can only be visited a limited time. Play fast!
 
@@ -282,7 +237,6 @@ Chosen areas like biomes, chunks, worlds or even heights can only be visited a l
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
 </details><details><summary><b>Damage Multiplier</b> ▪ <img src='https://mutils.net/images/mc/grab/items/beetroot.png' width='18'></summary>
 Higher or lower all damage against players. Includes potion debuffs and fire
 
@@ -293,7 +247,94 @@ Higher or lower all damage against players. Includes potion debuffs and fire
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Free` - You can play this Challenge without premium!
+</details><details><summary><b>F.L.Y. Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/elytra.png' width='18'></summary>
+Fly with a new power through the sky like a hero! Sneak in midair to activate
+
+---
+
+⚙️ **Settings**
+- `Power` - Flying boost and speed. More speed results in more damage on impact
+
+🏷️ **Tags**
+- `Fun` - Easy Challenge with fun in focus
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/3eba96c2fe88c72c7f3e5b95016e1ce9b30846d2.gif)
+</details><details><summary><b>Gravity Switch</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/sand.png' width='18'></summary>
+The world gone crazy and every few seconds the gravity switches between 4 new gravities
+
+---
+
+⚙️ **Settings**
+- `Delay` - Time of no custom gravity between swaps
+
+🏷️ **Tags**
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Rhythm Craft</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/note_block.png' width='18'></summary>
+Turn Minecraft into a full Rhythmgame! Every action needs to be done on the beat to follow the world rhythm.
+
+---
+
+⚙️ **Settings**
+- `No settings`
+
+🏷️ **Tags**
+- `Hard` - Good for everyone searching a Challenge!
+- `Beta` - Not finished yet. Lacks content and/or contains bugs<br>*Currently requires full access*
+</details><details><summary><b>Game Speed Shuffler</b> ▪ <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
+The game will constantly change the speed which effects every action. Can you keep up?
+
+---
+
+⚙️ **Settings**
+- `Tick Speed` - The range in with the tick speed can change
+- `Shuffel Rate` - Timings between each tick shuffling
+
+🏷️ **Tags**
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Beta` - Not finished yet. Lacks content and/or contains bugs<br>*Currently requires full access*
+</details><details><summary><b>Damage Order</b> ▪ <img src='https://mutils.net/images/mc/grab/items/diamond_axe.png' width='18'></summary>
+Only one player at a time is allowed to damage mobs. But this player changes on every hit!
+
+---
+
+⚙️ **Settings**
+- `Damage On Wrong` - Amount of damage a player receives when ignoring the order
+- `Random Order` - No set order. Each time a random player is chosen
+- `Info Bar` - Display the player in current order
+
+🏷️ **Tags**
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
+</details><details><summary><b>World Decay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/white_stained_glass.png' width='18'></summary>
+The world around you disappear step by step! Remember your surrounding to keep alive (only visual - needs MWeb)
+
+---
+
+⚙️ **Settings**
+- `Step Delay` - Time between each reduction from visible blocks
+- `Steps To 100%` - Amount of reductions until the full world is invisible
+
+🏷️ **Tags**
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
+</details><details><summary><b>Chunk Mirror</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/magenta_shulker_box.png' width='18'></summary>
+Every interaction like building is mirrored in all other chunks! What can you create?
+
+---
+
+⚙️ **Settings**
+- `Environment Mirror` - Also mirror block updates not triggered by players
+
+🏷️ **Tags**
+- `Fun` - Easy Challenge with fun in focus<br>*Currently requires full access*
+</details><details><summary><b>Low Vision</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tinted_glass.png' width='18'></summary>
+The whole world is invisible except the blocks you choose! Every player can choose their own blocks
+
+---
+
+⚙️ **Settings**
+- `Block Amount` - Amount of visible blocks players can choose on start
+
+🏷️ **Tags**
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
 </details><details><summary><b>Collect Battle</b> ▪ <img src='https://mutils.net/images/mc/grab/items/heart_of_the_sea.png' width='18'></summary>
 Compete against all other players in this round based game! First, you gather an item as fast as possible. In the second phase, a random other player needs to gather the same item faster! You can still beat the game?
 
@@ -307,16 +348,8 @@ Compete against all other players in this round based game! First, you gather an
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
 - `Force` - You receive a task and are forced to finish it to proceed
-</details><details><summary><b>F.L.Y. Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/elytra.png' width='18'></summary>
-Fly with a new power through the sky like a hero! Sneak in midair to activate
 
----
-
-⚙️ **Settings**
-- `Power` - Flying boost and speed. More speed results in more damage on impact
-
-🏷️ **Tags**
-- `Fun` - Easy Challenge with fun in focus
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/30ae375024f29f65e1279534d4c7c93f4ef83257.png)<br>*Currently requires full access*
 </details><details><summary><b>InTime Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/clock.png' width='18'></summary>
 Every Entity has a limited time to live. You too! Kill mobs to steal their time
 
@@ -329,6 +362,8 @@ Every Entity has a limited time to live. You too! Kill mobs to steal their time
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/5f51770bd5fb89c82c625db82f4633007f402f59.gif)<br>*Currently requires full access*
 </details><details><summary><b>Mob Blocks Randomizer</b> ▪ <img src='https://mc-heads.net/head/64528b3229660f3dfab42414f59ee8fd01e80081dd3df30869536ba9b414e089' width='18'></summary>
 Every block contains a random mob. Break the block to release it and only after killing it, the item drops
 
@@ -340,6 +375,8 @@ Every block contains a random mob. Break the block to release it and only after 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
 - `Randomizer` - Parts of Minecraft are randomized and change each play through
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/3f5ac2ec05e59352119149ebbd9d9cf0b8b6a666.gif)<br>*Currently requires full access*
 </details><details><summary><b>Rewind Challenge</b> ▪ <img src='https://mc-heads.net/head/4c301a17c955807d89f9c72a19207d1393b8c58c4e6e420f714f696a87fdd' width='18'></summary>
 Create Checkpoints (F) to travel back in time! But be warned... Time traveling is dangerous
 
@@ -349,7 +386,7 @@ Create Checkpoints (F) to travel back in time! But be warned... Time traveling i
 - `Only Position` - Will not affect the world
 
 🏷️ **Tags**
-- `Fun` - Easy Challenge with fun in focus
+- `Fun` - Easy Challenge with fun in focus<br>*Currently requires full access*
 </details><details><summary><b>Dimension Swap Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/end_portal_frame.png' width='18'></summary>
 All portals are shuffled! Now you have to fight the Ender Dragon in... the Overworld? Nether -> End -> Overworld
 
@@ -359,7 +396,7 @@ All portals are shuffled! Now you have to fight the Ender Dragon in... the Overw
 - `Starter Pickaxe` - Each player starts with an unbreakable wooden pickaxe
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details><details><summary><b>Snake Challenges</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/red_concrete_powder.png' width='18'></summary>
 You can only move on your personal snake, which permanently move in your viewing direction
 
@@ -369,7 +406,7 @@ You can only move on your personal snake, which permanently move in your viewing
 - `Speed` - Snake movement speed
 
 🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
 </details><details><summary><b>Realistic Minecraft</b> ▪ <img src='https://mutils.net/images/mc/grab/items/oak_sapling.png' width='18'></summary>
 Is MC to unrealistic? This Challenge will change everything to discover a full new Minecraft
 
@@ -379,7 +416,7 @@ Is MC to unrealistic? This Challenge will change everything to discover a full n
 - `No settings`
 
 🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
 </details><details><summary><b>Ghost Challenge</b> ▪ <img src='https://mc-heads.net/head/de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02' width='18'></summary>
 Discover the depths with your new ability to travel through blocks! But be aware... Ghosts are weak
 
@@ -391,7 +428,7 @@ Discover the depths with your new ability to travel through blocks! But be aware
 - `Ghost Glide` - Glide through ghost blocks instead of only falling
 
 🏷️ **Tags**
-- `Fun` - Easy Challenge with fun in focus
+- `Fun` - Easy Challenge with fun in focus<br>*Currently requires full access*
 </details><details><summary><b>Block Async Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/red_stained_glass.png' width='18'></summary>
 Every player sees his own world! But should a player interact with a block modified by a different player he dies. Communication is key
 
@@ -402,7 +439,7 @@ Every player sees his own world! But should a player interact with a block modif
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!<br>*Currently requires full access*
 </details><details><summary><b>No Same Items</b> ▪ <img src='https://mutils.net/images/mc/grab/items/wither_rose.png' width='18'></summary>
 If you collect a item, wich was already collected, you loose one heart
 
@@ -415,7 +452,7 @@ If you collect a item, wich was already collected, you loose one heart
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!<br>*Currently requires full access*
 </details><details><summary><b>Limited Skills</b> ▪ <img src='https://mutils.net/images/mc/grab/items/turtle_helmet.png' width='18'></summary>
 Only one player can see mobs but can't damage them. The other can't see mobs but can deal damage
 
@@ -426,7 +463,7 @@ Only one player can see mobs but can't damage them. The other can't see mobs but
 
 🏷️ **Tags**
 - `Hard` - Good for everyone searching a Challenge!
-- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!<br>*Currently requires full access*
 </details><details><summary><b>Run Randomizer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/golden_boots.png' width='18'></summary>
 The only way to gather items is running! Every X-Blocks you get a random stack of items
 
@@ -437,7 +474,7 @@ The only way to gather items is running! Every X-Blocks you get a random stack o
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Damage Duell</b> ▪ <img src='https://mutils.net/images/mc/grab/items/iron_sword.png' width='18'></summary>
 If you deal damage, all other players also get damaged by a percentage
 
@@ -448,7 +485,7 @@ If you deal damage, all other players also get damaged by a percentage
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!<br>*Currently requires full access*
 </details><details><summary><b>One Biome World</b> ▪ <img src='https://mutils.net/images/mc/grab/items/filled_map.png' width='18'></summary>
 The whole world contains only one biome. The biome switches every X seconds
 
@@ -458,7 +495,7 @@ The whole world contains only one biome. The biome switches every X seconds
 - `Delay` - The time between each world swap
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details><details><summary><b>Boost'em UP</b> ▪ <img src='https://mutils.net/images/mc/grab/items/shulker_shell.png' width='18'></summary>
 Every entity/mob in your range will be boosted in the sky
 
@@ -470,7 +507,7 @@ Every entity/mob in your range will be boosted in the sky
 - `Only Mobs` - Does not affect entities like items, boats, ...
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details><details><summary><b>Only Right Tools</b> ▪ <img src='https://mutils.net/images/mc/grab/items/wooden_axe.png' width='18'></summary>
 You can only break blocks with the correct tool
 
@@ -480,7 +517,7 @@ You can only break blocks with the correct tool
 - `Starter Axe` - Start with a wooden axe to skip traveling for structures
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details><details><summary><b>Sneak Spawner</b> ▪ <img src='https://mutils.net/images/mc/grab/items/hopper.png' width='18'></summary>
 Be prepared... Every sneak will spawn a random mob on your position
 
@@ -491,17 +528,7 @@ Be prepared... Every sneak will spawn a random mob on your position
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
-</details><details><summary><b>Gravity Switch</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/sand.png' width='18'></summary>
-The world gone crazy and every few seconds the gravity switches between 4 new gravities
-
----
-
-⚙️ **Settings**
-- `Delay` - Time of no custom gravity between swaps
-
-🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Stay Awaay</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/tnt.png' width='18'></summary>
 Getting to close to other mobs or players causes damage. Time for some social distancing
 
@@ -511,7 +538,7 @@ Getting to close to other mobs or players causes damage. Time for some social di
 - `Damage Distance` - Radius of blocks that you need to stay away
 
 🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
 </details><details><summary><b>Block Randomizer</b> ▪ <img src='https://mc-heads.net/head/1c3cec68769fe9c971291edb7ef96a4e3b60462cfd5fb5baa1cbb3a71513e7b' width='18'></summary>
 Block drops are shuffled (or random)
 
@@ -522,7 +549,7 @@ Block drops are shuffled (or random)
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Mob Drop Randomizer</b> ▪ <img src='https://mc-heads.net/head/6b40e5db21cedac4c972b7b22ebb64cf4add61b3b54b131435eedd307598b7' width='18'></summary>
 Mob drops are shuffled (or random)
 
@@ -533,7 +560,7 @@ Mob drops are shuffled (or random)
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Biome Randomizer</b> ▪ <img src='https://mc-heads.net/head/76bdf52222b4f092e1122831b388164c462fa41df1d49428d448a8794339b34b' width='18'></summary>
 World biomes are shuffled (or random)
 
@@ -544,7 +571,7 @@ World biomes are shuffled (or random)
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Mob Randomizer</b> ▪ <img src='https://mc-heads.net/head/915f7c313bca9c2f958e68ab14ab393867d67503affff8f20cb13fbe917fd31' width='18'></summary>
 Mob spawning is shuffled (or random)
 
@@ -555,7 +582,7 @@ Mob spawning is shuffled (or random)
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Damage Randomizer</b> ▪ <img src='https://mc-heads.net/head/5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87' width='18'></summary>
 Damage is shuffled like 2hp will be always 5hp (or random)
 
@@ -566,7 +593,7 @@ Damage is shuffled like 2hp will be always 5hp (or random)
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Loot Randomizer</b> ▪ <img src='https://mc-heads.net/head/5131de8e951fdd7b9a3d239d7cc3aa3e8655a336b999b9edbb4fb329cbd87' width='18'></summary>
 Randomize all items in chest containers!
 
@@ -577,7 +604,7 @@ Randomize all items in chest containers!
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Randomizer` - Parts of Minecraft are randomized and change each play through
+- `Randomizer` - Parts of Minecraft are randomized and change each play through<br>*Currently requires full access*
 </details><details><summary><b>Force Collect</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/chest.png' width='18'></summary>
 You are forced to collect the prompted item to survive
 
@@ -589,7 +616,7 @@ You are forced to collect the prompted item to survive
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
-- `Force` - You receive a task and are forced to finish it to proceed
+- `Force` - You receive a task and are forced to finish it to proceed<br>*Currently requires full access*
 </details><details><summary><b>No Double Kills</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/repeater.png' width='18'></summary>
 You are not allowed to kill the same mob twice in a row
 
@@ -599,7 +626,7 @@ You are not allowed to kill the same mob twice in a row
 - `Count Global` - Last killed mob will be synced for each player
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details><details><summary><b>Damager Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/diamond_sword.png' width='18'></summary>
 You will be confronted with constantly damage from the chosen event. Can you survive?
 
@@ -611,7 +638,7 @@ You will be confronted with constantly damage from the chosen event. Can you sur
 - `Interval` - Time between each damage tick (Only affecting type INTERVAL)
 
 🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
 </details><details><summary><b>Collection Rivals</b> ▪ <img src='https://mutils.net/images/mc/grab/items/chest_minecart.png' width='18'></summary>
 Collect/find/kill the prompted goal to get the next. Player with the most points win
 
@@ -624,7 +651,7 @@ Collect/find/kill the prompted goal to get the next. Player with the most points
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus
 - `Force` - You receive a task and are forced to finish it to proceed
-- `Multiplayer` - Needs 2 or more players. Perfect for a little party!
+- `Multiplayer` - Needs 2 or more players. Perfect for a little party!<br>*Currently requires full access*
 </details><details><summary><b>Rocket Mode</b> ▪ <img src='https://mutils.net/images/mc/grab/items/firework_rocket.png' width='18'></summary>
 Sneak to fly up. But be aware! Flying with a rocket is hard... And hold an eye on your heat
 
@@ -634,7 +661,7 @@ Sneak to fly up. But be aware! Flying with a rocket is hard... And hold an eye o
 - `Fuel Capacity` - Amount of fuel before exploding
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details><details><summary><b>Block World</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/diamond_block.png' width='18'></summary>
 All chunks are built from one block type! Step through a new cursed world
 
@@ -644,7 +671,7 @@ All chunks are built from one block type! Step through a new cursed world
 - `No settings`
 
 🏷️ **Tags**
-- `Fun` - Easy Challenge with fun in focus
+- `Fun` - Easy Challenge with fun in focus<br>*Currently requires full access*
 </details><details><summary><b>Minefield World</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/light_weighted_pressure_plate.png' width='18'></summary>
 The whole world is covered with dangerous mines. Don't step on them!
 
@@ -654,7 +681,7 @@ The whole world is covered with dangerous mines. Don't step on them!
 - `Density` - Amount of generated mines
 
 🏷️ **Tags**
-- `Hard` - Good for everyone searching a Challenge!
+- `Hard` - Good for everyone searching a Challenge!<br>*Currently requires full access*
 </details><details><summary><b>Block Wall</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/bedrock.png' width='18'></summary>
 You are hunted by a wall! Watch out your steps, breaking the wall is impossible
 
@@ -665,7 +692,7 @@ You are hunted by a wall! Watch out your steps, breaking the wall is impossible
 - `Spawn Delay` - Time until the wall catch up
 
 🏷️ **Tags**
-- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable<br>*Currently requires full access*
 </details>
 
 </details>
@@ -708,3 +735,8 @@ dependencies {
     compileOnly("de.miraculixx:challenge-api:1.5.0")
 }
 ```
+NOTE: The Challenge flow and registration are very strict and carefully crafted to allow this amount of content without a performance impact.
+Challenge code and data only load when the challenge starts and is unloaded after stopping.
+
+The project is open source :)<br>
+If you want to take a look and maybe even find improvements, we would be happy to hear back!

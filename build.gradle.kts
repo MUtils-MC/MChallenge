@@ -67,7 +67,7 @@ tasks {
     shadowJar {
         dependencies {
             include {
-                it.moduleGroup == "de.miraculixx" || it.moduleGroup == "io.ktor"
+                it.moduleGroup == "de.miraculixx"
             }
         }
     }
@@ -81,7 +81,7 @@ buildscript {
 
 sourceSets {
     main {
-        resources.srcDirs("$rootDir/challenges/data/")
+        resources.srcDirs("$rootDir/data/")
     }
 }
 
@@ -89,7 +89,7 @@ bukkit {
     main = "$group.${projectName.lowercase()}.${projectName}"
     apiVersion = "1.16"
     foliaSupported = foliaSupport
-    website = "https://mutils.net/ch"
+    website = "https://mutils.net/ch/info"
     authors = listOf("Miraculixx", "NoRisk")
 
     // Optionals
@@ -98,6 +98,10 @@ bukkit {
     softDepend = listOf("MTimer", "MWeb")
     commands.create("mobhunt")
     commands.create("itemhunt")
+    libraries = listOf(
+        "io.ktor:ktor-client-core-jvm:2.3.7",
+        "io.ktor:ktor-client-cio-jvm:2.3.7"
+    )
 }
 
 modrinth {
@@ -105,6 +109,7 @@ modrinth {
     projectId.set(properties["modrinthProjectId"] as? String ?: projectName)
     versionNumber.set(version as String)
     versionType.set("release") // Can also be `beta` or `alpha`
+    versionName.set("MChallenge - $version")
     uploadFile.set(tasks.jar)
     outlet.mcVersionRange = properties["supportedVersions"] as String
     outlet.allowedReleaseTypes = setOf(ReleaseType.RELEASE)
@@ -170,7 +175,7 @@ val craftReadme = task("craftReadme") {
                 it["new"] == true,
                 it["preview"] as? String
             )
-        }
+        }.sortedByDescending { it.tags.contains("FREE") }
 
         val languageFile = File("data/language/mchallenge/en.yml")
         val yaml = Yaml(DumperOptions().apply { defaultFlowStyle = DumperOptions.FlowStyle.BLOCK })
@@ -198,12 +203,14 @@ val craftReadme = task("craftReadme") {
                     }
                 }
                 append("\n\n\uD83C\uDFF7\uFE0F **Tags**")
-                challenge.tags.forEach { tag ->
+                challenge.tags.forEach tags@{ tag ->
+                    if (tag == "FREE") return@tags
                     val tagName = tag[0] + tag.substring(1).lowercase()
                     val description = get("tags.$tag.l", languageMap)?.replace("<br>", " ")
                     append("\n- `$tagName` - $description")
                 }
                 challenge.preview?.let { append("\n\n![Challenge Preview]($it)") }
+                if (!challenge.tags.contains("FREE")) append("<br>*Currently requires full access*")
                 append("\n</details>")
             }
         }

@@ -10,8 +10,11 @@ Or everything at once!
 
 
 
-Part from [**MUtils**](https://mutils.net)<br>
-Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count your time & death punishments!
+▪ Part from [**MUtils**](https://mutils.net)<br>
+▪ Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count your time & death punishments!
+
+This project started in 2021 and quickly evolved into us finding the limits of plugins with the curiosity how you can modify Minecraft to don't lose fun beating it. 
+We hope you will have the same fun while playing like us!
 
 ### ⇒ **Latest Update Trailer**
 <!-- modrinth_exclude.start -->
@@ -29,7 +32,9 @@ Works perfectly with [**MTimer**](https://modrinth.com/project/timer) to count y
 
 # 🎯 Challenges
 Each challenge can be toggled and configured individually inside the Challenge menu (``/challenge``).<br>
-All challenges can be combined and played in multiplayer or singleplayer (some require at least two players).
+All challenges can be combined and played in multiplayer or singleplayer (some require at least two players).<br>
+You have an idea for a new Challenge?
+We would be happy to hear it in our [discord](https://dc.mutils.net)!
 
 **▪ Current Challenge count** ⇒ ``<!-- challenge-count -->``
 
@@ -40,9 +45,9 @@ All challenges can be combined and played in multiplayer or singleplayer (some r
 <!-- modrinth_exclude.end -->
 
 <!-- github_exclude.start -->
-|                                                                                                                                                                      |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Important**<br>*Some Challenges require MUtils Premium to keep all projects and needed servers alive :)<br> Read more about it [here](https://mutils.net/premium). |
+|                                                                                                                                                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Important**<br>*Some Challenges require MUtils Premium to keep all projects and needed servers alive :)<br> ▪ Read more about it [here](https://mutils.net/premium).                                     |
 <!-- github_exclude.end -->
 
 To filter and search for Challenges, visit our own [Challenge List](https://mutils.net/ch/list) or use `ctrl` + `f`
@@ -90,3 +95,8 @@ dependencies {
     compileOnly("de.miraculixx:challenge-api:1.5.0")
 }
 ```
+NOTE: The Challenge flow and registration are very strict and carefully crafted to allow this amount of content without a performance impact.
+Challenge code and data only load when the challenge starts and is unloaded after stopping.
+
+The project is open source :)<br>
+If you want to take a look and maybe even find improvements, we would be happy to hear back!
