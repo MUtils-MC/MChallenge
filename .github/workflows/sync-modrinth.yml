@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - '.github'
-      - 'data'
 
 jobs:
   sync:
