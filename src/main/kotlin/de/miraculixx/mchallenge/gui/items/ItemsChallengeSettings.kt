@@ -26,6 +26,8 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
 import java.util.*
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class ItemsChallengeSettings(
     private val challengeSettings: Map<String, ChallengeSetting<*>>,
@@ -44,13 +46,14 @@ class ItemsChallengeSettings(
             val key = it.key
             val data = it.value
             val material = data.getMaterial()
-            val infoLore = msgSetting + data.getSettingLore(key, challengeKey, customChallengeData) + emptyComponent() + data.getClickLore()
+            val icon = challengeKey?.let { id -> enumOf<Challenges>(id)?.icon }
+                ?: customChallengeData?.settingNames?.get(key)?.let { naming -> Icon("BARRIER", naming = naming) }
+                ?: Icon("BARRIER", naming = IconNaming(cmp("Unknown"), emptyList())) // Fallback
+
+            val infoLore = getHelpLore(icon, challengeKey, key) + msgSetting + data.getSettingLore(key, challengeKey, customChallengeData) + emptyComponent() + data.getClickLore()
             itemStack(material) {
                 meta {
                     customModel = 1
-                    val icon = challengeKey?.let { id -> enumOf<Challenges>(id)?.icon }
-                        ?: customChallengeData?.settingNames?.get(key)?.let { naming -> Icon("BARRIER", naming = naming) }
-                        ?: Icon("BARRIER", naming = IconNaming(cmp("Unknown"), emptyList())) // Fallback
                     name = getSettingName(icon, challengeKey, key)
                     lore(infoLore)
                     addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
@@ -89,12 +92,34 @@ class ItemsChallengeSettings(
             }
         } else {
             val settingName = challengeKey?.let { cmp(locale.msgString("items.chS.$it.$key.n")) } ?: customChallengeData?.settingNames?.get(key)?.name ?: cmp("Unknown")
-            if (this is ChallengeBoolSetting) {
-                val info = getValue() to getDefault()
-                listOf(cmp("   ") + settingName + cmp(": ") + cmp(info.first.msg(locale), if (info.first) cSuccess else cError) + if (info.first == info.second) emptyComponent() else cmp(" (Default ${info.second})", cBaseDark))
-            } else {
-                val info = getValue() to getDefault()
-                listOf(cmp("   ") + settingName + cmp(": ") + cmp("${info.first}${getUnit()}", cHighlight) + if (info.first == info.second) emptyComponent() else cmp(" (Default ${info.second}${getUnit()})", cBaseDark))
+            when (this) {
+                is ChallengeBoolSetting -> {
+                    val info = getValue() to getDefault()
+                    listOf(cmp("   ") + settingName + cmp(": ") + cmp(info.first.msg(locale), if (info.first) cSuccess else cError) + if (info.first == info.second) emptyComponent() else cmp(" (Default ${info.second})", cBaseDark))
+                }
+
+                is ChallengeIntSetting -> {
+                    val info = getValue() to getDefault()
+                    val display = when (getUnit()) {
+                        "s" -> info.first.seconds.toString() to info.second.seconds.toString()
+                        "t" -> (info.first * 50).milliseconds.toString() to (info.second * 50).milliseconds.toString()
+                        "hp" -> "${info.first / 2.0}❤" to "${info.second / 2.0}❤"
+                        else -> "${info.first}${getUnit()}" to "${info.second}${getUnit()}"
+                    }
+                    listOf(cmp("   ") + settingName + cmp(": ") + cmp(display.first, cHighlight) + if (info.first == info.second) emptyComponent() else cmp(" (Default ${display.second})", cBaseDark))
+                }
+
+                is ChallengeDoubleSetting -> {
+                    val info = getValue() to getDefault()
+                    val unit = getUnit()
+                    val display = if (unit == "hp") "${info.first / 2.0}❤" to "${info.second / 2.0}❤" else "${info.first}$unit" to "${info.second}$unit"
+                    listOf(cmp("   ") + settingName + cmp(": ") + cmp(display.first, cHighlight) + if (info.first == info.second) emptyComponent() else cmp(" (Default ${display.second})", cBaseDark))
+                }
+
+                else -> {
+                    val info = getValue() to getDefault()
+                    listOf(cmp("   ") + settingName + cmp(": ") + cmp("${info.first}${getUnit()}", cHighlight) + if (info.first == info.second) emptyComponent() else cmp(" (Default ${info.second}${getUnit()})", cBaseDark))
+                }
             }
         }
     }
@@ -103,12 +128,12 @@ class ItemsChallengeSettings(
         val unit = getUnit()
         return when (this) {
             is ChallengeIntSetting -> {
-                val info = "$step$unit"
+                val info = if (unit == "hp") "${step / 2.0}❤" else "$step$unit"
                 listOf(locale.msgClickLeft() + cmp("+$info"), locale.msgClickRight() + cmp("-$info"))
             }
 
             is ChallengeDoubleSetting -> {
-                val info = "$step$unit"
+                val info = if (unit == "hp") "${step / 2.0}❤" else "$step$unit"
                 listOf(locale.msgClickLeft() + cmp("+$info"), locale.msgClickRight() + cmp("-$info"))
             }
 
@@ -120,5 +145,10 @@ class ItemsChallengeSettings(
 
             else -> emptyList()
         }
+    }
+
+    private fun getHelpLore(icon: Icon, challengeKey: String?, key: String): List<Component> {
+        return if (icon.naming != null) icon.naming?.lore ?: emptyList()
+        else locale.msgList("items.chS.$challengeKey.$key.l", inline = "<grey>", emptyOnInvalid = true)
     }
 }

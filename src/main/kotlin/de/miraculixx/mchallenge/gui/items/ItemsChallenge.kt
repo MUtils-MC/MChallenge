@@ -1,10 +1,7 @@
 package de.miraculixx.mchallenge.gui.items
 
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
-import de.miraculixx.challenge.api.settings.ChallengeBoolSetting
-import de.miraculixx.challenge.api.settings.ChallengeData
-import de.miraculixx.challenge.api.settings.ChallengeSectionSetting
-import de.miraculixx.challenge.api.settings.ChallengeSetting
+import de.miraculixx.challenge.api.settings.*
 import de.miraculixx.challenge.api.utils.Icon
 import de.miraculixx.challenge.api.utils.IconNaming
 import de.miraculixx.kpaper.gui.items.ItemFilterProvider
@@ -31,6 +28,8 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
 import java.util.*
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class ItemsChallenge(private val applicable: Set<UniversalChallenge>, private val locale: Locale) : ItemFilterProvider {
     override var filter = ChallengeTags.NO_FILTER.name
@@ -187,10 +186,36 @@ class ItemsChallenge(private val applicable: Set<UniversalChallenge>, private va
             val prefix = if (isSection) cmp("    → ", NamedTextColor.DARK_GRAY) else cmp("   ")
             val naming = settingNaming[settingsKey]
             val settingName = naming?.name ?: cmp(locale.msgString("items.chS.$challengeKey.$settingsKey.n"))
-            if (data is ChallengeBoolSetting) {
-                val bool = data.getValue()
-                listOf(prefix + settingName + cmp(": ") + cmp(bool.msg(locale), if (bool) cSuccess else cError))
-            } else listOf(prefix + settingName + cmp(": ") + cmp("${data.getValue()}${data.getUnit()}", cHighlight))
+
+            when (data) {
+                is ChallengeBoolSetting -> {
+                    val bool = data.getValue()
+                    listOf(prefix + settingName + cmp(": ") + cmp(bool.msg(locale), if (bool) cSuccess else cError))
+                }
+
+                is ChallengeIntSetting -> {
+                    val int = data.getValue()
+                    val display = when (val unit = data.getUnit()) {
+                        "s" -> int.seconds.toString()
+                        "t" -> (int * 50).milliseconds.toString()
+                        "hp" -> "${int / 2.0}❤"
+                        else -> "$int$unit"
+                    }
+                    listOf(prefix + settingName + cmp(": ") + cmp(display, cHighlight))
+                }
+
+                is ChallengeDoubleSetting -> {
+                    val double = data.getValue()
+                    val unit = data.getUnit()
+                    val display = if (unit == "hp") "${double / 2}❤" else "$double$unit"
+                    listOf(prefix + settingName + cmp(": ") + cmp(display, cHighlight))
+                }
+
+                else -> {
+                    listOf(prefix + settingName + cmp(": ") + cmp("${data.getValue()}${data.getUnit()}", cHighlight))
+                }
+            }
+
         }
     }
 

@@ -1,7 +1,7 @@
 [
   {
     "key": "RHYTHM_CRAFT",
-    "version": "-1",
+    "version": -1,
     "block": "note_block",
     "tags": [
       "HARD",
@@ -10,7 +10,7 @@
   },
   {
     "key": "TICK_RATE",
-    "version": "-1",
+    "version": -1,
     "item": "clock",
     "tags": [
       "MEDIUM",
@@ -23,7 +23,7 @@
   },
   {
     "key": "HIT_ORDER",
-    "version": "112",
+    "version": 112,
     "item": "diamond_axe",
     "tags": [
       "MEDIUM"
@@ -37,7 +37,7 @@
   },
   {
     "key": "WORLD_DECAY",
-    "version": "111",
+    "version": 111,
     "block": "white_stained_glass",
     "tags": [
       "HARD"
@@ -50,7 +50,7 @@
   },
   {
     "key": "CHUNK_SYNC",
-    "version": "111",
+    "version": 111,
     "block": "magenta_shulker_box",
     "tags": [
       "FUN"
@@ -62,13 +62,26 @@
   },
   {
     "key": "LOW_VISION",
-    "version": "111",
+    "version": 111,
     "block": "tinted_glass",
     "tags": [
       "HARD"
     ],
     "settings": [
       "amount"
+    ]
+  },
+  {
+    "key": "HP_DRAIN",
+    "item": "sweet_berries",
+    "version": 113,
+    "tags": [
+      "MEDIUM",
+      "FREE"
+    ],
+    "settings": [
+      "percentage",
+      "interval"
     ]
   },
   {
@@ -84,7 +97,8 @@
       "maxBlood",
       "healthToBlood",
       "bloodLoose"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/0121ca13ee7dd2c7e01dd094993dfb40076f1445.png"
   },
   {
     "key": "TRAFFIC_LIGHT",
@@ -99,7 +113,8 @@
       "yellow",
       "red",
       "damage"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/a66a37db5e36f6c404276270036ab64b04ef9581.png"
   },
   {
     "key": "TRON",
@@ -111,7 +126,8 @@
     ],
     "settings": [
       "visible"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/465968950e3d7423ec4acaaf6b7ee636a8c6c768.gif"
   },
   {
     "key": "DISABLED",
@@ -162,7 +178,8 @@
       "food",
       "potions",
       "hotbar"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/79cc241fa07aace921f14a8e05ea7ba89a1d1cb6.gif"
   },
   {
     "key": "CHUNK_FLATTENER",
@@ -174,7 +191,8 @@
     ],
     "settings": [
       "delay"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/e8560bdfc91e807ba01c0faaa71d0bef90ca6e51.gif"
   },
   {
     "key": "CHUNK_BLOCK_BREAK",
@@ -186,7 +204,8 @@
     ],
     "settings": [
       "bundle"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/706b00587071c1a0ecbe604bfad46da63afa43f5.gif"
   },
   {
     "key": "CHUNK_DECAY",
@@ -200,7 +219,8 @@
       "delay",
       "percentage",
       "shouldBreak"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/7ebece5c72f6bc47b7b8e155976d0689c18d445e.gif"
   },
   {
     "key": "CHUNK_CLEARER",
@@ -227,7 +247,8 @@
       "density",
       "radius",
       "height"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/b5cffbdd45163c00ccd9c6285838441b85c4aa11.gif"
   },
   {
     "key": "ITEM_DECAY",
@@ -239,7 +260,8 @@
     ],
     "settings": [
       "time"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/302724789135d5374cb8eff5ecd5281a5e6a2376.gif"
   },
   {
     "key": "AREA_TIMER",
@@ -279,18 +301,21 @@
       "maxSetTime",
       "cooldown",
       "bufferTime"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/30ae375024f29f65e1279534d4c7c93f4ef83257.png"
   },
   {
     "key": "FLY",
     "version": 100,
     "item": "elytra",
     "tags": [
-      "FUN"
+      "FUN",
+      "FREE"
     ],
     "settings": [
       "power"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/3eba96c2fe88c72c7f3e5b95016e1ce9b30846d2.gif"
   },
   {
     "key": "IN_TIME",
@@ -303,7 +328,8 @@
       "pTime",
       "eTime",
       "hpTime"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/5f51770bd5fb89c82c625db82f4633007f402f59.gif"
   },
   {
     "key": "MOB_BLOCKS",
@@ -315,7 +341,8 @@
     ],
     "settings": [
       "rnd"
-    ]
+    ],
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/3f5ac2ec05e59352119149ebbd9d9cf0b8b6a666.gif"
   },
   {
     "key": "CHECKPOINTS",
@@ -485,7 +512,8 @@
     "version": 100,
     "block": "sand",
     "tags": [
-      "MEDIUM"
+      "MEDIUM",
+      "FREE"
     ],
     "settings": [
       "delay"
@@ -657,7 +685,7 @@
   },
   {
     "key": "BLOCK_WALL",
-    "version": "110",
+    "version": 110,
     "block": "bedrock",
     "tags": [
       "MEDIUM"
