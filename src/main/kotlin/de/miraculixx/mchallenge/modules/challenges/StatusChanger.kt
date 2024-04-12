@@ -38,6 +38,7 @@ import de.miraculixx.mchallenge.modules.mods.simple.damageMultiplier.DamageMulti
 import de.miraculixx.mchallenge.modules.mods.simple.damager.Damager
 import de.miraculixx.mchallenge.modules.mods.simple.disabled.Disabled
 import de.miraculixx.mchallenge.modules.mods.simple.fly.FLY
+import de.miraculixx.mchallenge.modules.mods.simple.hpDrain.HPDrain
 import de.miraculixx.mchallenge.modules.mods.simple.noDoubleKill.NoDoubleKills
 import de.miraculixx.mchallenge.modules.mods.simple.rightTools.RightTools
 import de.miraculixx.mchallenge.modules.mods.simple.stayAway.StayAway
@@ -117,6 +118,7 @@ class StatusChanger {
             Challenges.TICK_RATE -> TickRateChanger()
             Challenges.RHYTHM_CRAFT -> RhythmCraft()
 //            Challenges.HALLOWEEN -> HalloweenChallenge()
+            Challenges.HP_DRAIN -> HPDrain()
         }
     }
 
