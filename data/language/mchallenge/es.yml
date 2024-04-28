@@ -57,13 +57,15 @@ command:
     hide: "<grey>You are now <red>hidden"
     show: "<grey>You are now <green>visible"
     hideMultiple: "<grey>You have <red>hidden</red> <input-1> player/s"
-    showMultiple: "<grey>You have <green>shown</green> <input-2> player/s"
+    showMultiple: "<grey>You have <green>shown</green> <input-1> player/s"
   debug: "<grey>Switched debug mode to <blue><input-1>"
   lang:
     success: "<grey>Successfully switched language to <green><input-1>"
     fail: "<grey>Failed to switch language to <red><input-1></red>! Look into the console to get more information"
   noAddons: "<red>No MChallenge addons installed! You can find addons on <click:open_url:'https://mutils.de/ch/addons'><u>mutils.net/ch/addons</u></click>"
   notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
+  updateRule: "The rule <input-1> was updated to <input-2>"
+  noRule: "<red>Please select a valid rule to change!"
 #-----------------------------------------#
 #Events                  #
 #Messages that occur on multiple places  #
@@ -85,6 +87,7 @@ event:
     forceHunt: "<red><input-1> failed to complete the goal!"
     noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
     hitOrder: "<red><input-1> was not allowed do damage a mob"
+    crushedAnvils: "<red><input-1> was hit by an anvil!"
   mobHunt:
     collect: "<green><input-1> encontrado <input-2>!"
     success: "<green> ¡Felicidades! Has encontrado todos los mobs"
@@ -133,6 +136,13 @@ event:
     nextPlayer: "Current Damager: "
   tickRate:
     gameSpeed: "Game Speed"
+  vampire:
+    bloodPack: "Blood Pack"
+  mirror:
+    damage: "<blue><input-1></blue> received <blue><input-2> ♥</blue> damage <dark_gray>(<input-3>)"
+  hpDrain:
+    current: "Current Health ⇒ <blue><input-1></blue>"
+    next: "Next health draining in <blue><input-1></blue> <dark_gray>(<input-2>%)"
 #-----------------------------------------#
 #Items                  #
 #Messages only visible on GUI items    #
@@ -158,7 +168,7 @@ items:
       n: "History"
       l: "Quick access your last played<br>challenges. History is saved from<br>new to old."
     settings:
-      n: "Settings"
+      n: "Ajustes"
   settings:
     language:
       n: "Language"
@@ -382,95 +392,129 @@ items:
     RHYTHM_CRAFT:
       n: "Rhythm Craft"
       l: "Turn Minecraft into a full Rhythmgame!<br>Every action needs to be done on the beat<br>to follow the world rhythm."
+    HP_DRAIN:
+      n: "Health Drainer"
+      l: "Every few minutes your max health will be<br>reduced by a given percentage.<br>Better be quick!"
   chS:
     FLY:
       power:
         n: "Power"
+        l: "Flying boost and speed.<br>More speed results in more damage<br>on impact"
     IN_TIME:
       pTime:
         n: "Player Time"
+        l: "Player starting time"
       eTime:
         n: "Entity Time"
+        l: "Entity starting time"
       hpTime:
         n: "Time per HP"
+        l: "Reduced time by each hp damage<br>a player receives from a mob"
     MOB_BLOCKS:
       rnd:
         n: "Al azar"
+        l: "Enabled: Each action is random,<br>Disabled: Same block = same mob"
     CHECKPOINTS:
       onlyTP:
         n: "Only Position"
+        l: "Will not affect the world"
     DIM_SWAP:
       starter:
         n: "Starter Pickaxe"
+        l: "Each player starts with<br>an unbreakable wooden pickaxe"
     SNAKE:
       speed:
         n: "Velocidad"
+        l: "Snake movement speed"
     GHOST:
       radius:
         n: "Radio"
+        l: "Ghost vision radius"
       adventure:
         n: "Adventure Ghost"
+        l: "Can't break blocks in ghost mode"
       glide:
         n: "Ghost Glide"
+        l: "Glide through ghost blocks<br>instead of only falling"
     NO_SAME_ITEM:
       lives:
         n: "Vidas"
+        l: "Total lives. You loose<br>one for each same item"
       sync:
         n: "Vidas = HP"
+        l: "Sync the challenge lives to<br>your health lives"
       info:
         n: "Announce Mode"
+        l: "Receive notifications about<br>all new items, only live updates<br>or nothing at all"
     LIMITED_SKILLS:
       random:
         n: "Random Roles"
     RUN_RANDOMIZER:
       goal:
         n: "Block Goal"
+        l: "The amount of blocks needed<br>for a new item"
       global:
         n: "Count Global"
+        l: "Moved blocks will be combined<br>from each player"
     DAMAGE_DUELL:
       percent:
         n: "Porcentaje"
+        l: "The percentage of damage<br>that will be reflected"
     ONE_BIOME:
       delay:
         n: "Delay"
+        l: "The time between each<br>world swap"
     BOOST_UP:
       radius:
         n: "Effect Radius"
       boost:
         n: "Boost Power"
+        l: "Mobs will fly higher on<br>higher power"
       mode:
         n: "Only Mobs"
+        l: "Does not affect entities<br>like items, boats, ..."
     CHUNK_BLOCK_BREAK:
       bundle:
         n: "Bundle Drops"
+        l: "All dropped item will be<br>merged on the broken block<br>to reduce lag"
     SNEAK_SPAWN:
       onlyMob:
         n: "Only Mobs"
+        l: "Does not spawn non living<br>entities like boats"
     GRAVITY:
       delay:
         n: "Delay"
+        l: "Time of no custom gravity<br>between swaps"
       duration:
         n: "Duration"
+        l: "Time each custom gravity<br>stays before next swap"
     STAY_AWAY:
       distance:
         n: "Damage Distance"
+        l: "Radius of blocks that you<br>need to stay away"
       warning:
         n: "Warning Damage"
+        l: "Radius of blocks where you<br>will be warned before dying"
     RANDOMIZER_BLOCK:
       random:
         n: "Aleatorio total"
+        l: "Enabled: Each action is random,<br>Disabled: Same block = same item"
     RANDOMIZER_ENTITY:
       random:
         n: "Aleatorio total"
+        l: "Enabled: Each action is random,<br>Disabled: Same mob = same drop"
     RANDOMIZER_BIOMES:
       random:
         n: "Aleatorio total"
+        l: "Enabled: Each action is random,<br>Disabled: Same biome = same shuffled biome"
     RANDOMIZER_MOBS:
       random:
         n: "Aleatorio total"
+        l: "Enabled: Each action is random,<br>Disabled: Same mob = same shuffled mob"
     FORCE_COLLECT:
       times:
         n: "Timings"
+        l: "Time that will be randomly chosen<br>for collecting time and grace time"
       minCooldown:
         n: "Enfriamiento mínimo"
       maxCooldown:
@@ -481,6 +525,7 @@ items:
         n: "Max Collect Time"
       objects:
         n: "Goals"
+        l: "All goals that will randomly be<br>prompted to find/collect"
       items:
         n: "Force Item"
       biomes:
@@ -490,19 +535,25 @@ items:
     RANDOMIZER_DAMAGE:
       random:
         n: "Aleatorio total"
+        l: "Enabled: Each action is random,<br>Disabled: Same damage = same shuffled damage"
     NO_DOUBLE_KILL:
       global:
         n: "Count Global"
+        l: "Last killed mob will be synced<br>for each player"
     DAMAGER:
       mode:
         n: "Evento de daño"
+        l: "The event for receiving damage"
       damage:
         n: "Daño"
+        l: "Amount of damage"
       interval:
         n: "Interval"
+        l: "Time between each damage tick<br>(Only affecting type INTERVAL)"
     RIVALS_COLLECT:
       mode:
         n: "Tipo de búsqueda"
+        l: "All tasks that will randomly be<br>prompted to find/collect"
       items:
         n: "Items"
       biomes:
@@ -511,18 +562,24 @@ items:
         n: "Mobs"
       joker:
         n: "Joker"
+        l: "Amount of joker to skip a task"
     ROCKET:
       capacity:
         n: "Fuel Capacity"
+        l: "Amount of fuel before exploding"
     VAMPIRE:
       startBlood:
         n: "Iniciar sangre"
+        l: "Keep it high when starting<br>in day time"
       maxBlood:
         n: "Blood Capacity"
+        l: "Maximal amount of blood that<br>can be held"
       healthToBlood:
         n: "HP - Sangre"
+        l: "Amount of blood that is<br>drained from a mob per HP<br>after death"
       bloodLoose:
         n: "Blood Drain"
+        l: "Blood drain amplifier that<br>is multiplied with sun level"
     TRAFFIC_LIGHT:
       min:
         n: "Min Duration"
@@ -530,36 +587,45 @@ items:
         n: "Max Duration"
       damage:
         n: "Damage on red"
+        l: "Punishment when moving over red!"
       green:
         n: "Fase verde"
+        l: "Green light timings"
       yellow:
         n: "Fase amarilla"
+        l: "Yellow light timings"
       red:
         n: "Fase Roja"
+        l: "Red light timings"
     TRON:
       visible:
         n: "Visible Path"
+        l: "You trail is visible for<br>every player. Easier to avoid"
     DISABLED:
       block:
         n: "Block Category"
+        l: "Disable specific block actions"
       break:
         n: "Disable Breaking"
       place:
         n: "Disable Placing"
       interact:
         n: "Interact Category"
+        l: "Disable specific interaction actions"
       craft:
         n: "Disable Crafting Table"
       trade:
         n: "Disable Trading"
       misc:
         n: "Misc Category"
+        l: "Disable actions that didn't<br>fit into other categories"
       xp:
         n: "Disable XP Pickup"
       items:
         n: "Disable Item Pickup"
       damage:
         n: "Daño"
+        l: "0 = disable actions,<br>20 = instant kill"
     MIRROR:
       hearts:
         n: "Sync Health"
@@ -569,107 +635,163 @@ items:
         n: "Sync Potions"
       hotbar:
         n: "Sync Hotbar"
+        l: "This will not sync items,<br>only the selected slot"
     CHUNK_FLATTENER:
       delay:
         n: "Delay"
+        l: "Time between each flattening"
       shouldBreak:
         n: "Soltar Bloques"
+        l: "All broken blocks will drop<br>themself"
     CHUNK_DECAY:
       delay:
         n: "Delay"
+        l: "Time between each decay"
       percentage:
         n: "Decay Percentage"
+        l: "Amount of blocks that will<br>randomly be removed from the chunk"
       shouldBreak:
         n: "Soltar Bloques"
+        l: "All broken blocks will drop<br>themself"
     CHUNK_CLEARER:
       breakAll:
         n: "Break All"
+        l: "Completely clear the chunk<br>instead only touched block type"
       shouldBreak:
         n: "Drop Items"
+        l: "All broken blocks will drop<br>themself"
       bundle:
         n: "Bundle Items"
+        l: "All dropped item will be<br>merged on the broken block<br>to reduce lag"
     ANVIL_CRUSHER:
       delay:
         n: "Anvil Delay"
+        l: "Base and modifier spawn timings"
       startDelay:
         n: "Base"
       amplifierDelay:
         n: "Faster per DMG"
       density:
         n: "Anvil Density"
+        l: "Base and modifier spawn density"
       startDensity:
         n: "Base"
       amplifierDensity:
         n: "Higher per DMG"
       radius:
         n: "Anvil Radius"
-      startRadius:
-        n: "Base"
-      amplifierRadius:
-        n: "Bigger per DMG"
+        l: "Anvil spawn radius"
       height:
         n: "Anvil Height"
+        l: "Anvil spawn height"
     ITEM_DECAY:
       time:
         n: "Decay Time"
+        l: "Time till item will disappear"
     AREA_TIMER:
       time:
         n: "Max Time"
+        l: "Maximal allowed time in<br>each area"
       global:
         n: "Count Global"
+        l: "Maximal time will count<br>for all players"
       mode:
         n: "Area Mode"
+        l: "Define the area, which<br>will be limited"
     BLOCK_ASYNC:
       hide:
         n: "Hide Players"
+        l: "Add more difficulty by<br>completely hiding other players"
     RIGHT_TOOL:
       starter:
         n: "Starter Axe"
+        l: "Start with a wooden axe<br>to skip traveling for structures"
     COLLECT_BATTLE:
       maxSetTime:
         n: "Max Set-Time"
+        l: "Maximal time players can<br>register a new item"
       cooldown:
         n: "Time Between Rounds"
+        l: "Items acquired in this<br>state can not be registered"
       bufferTime:
         n: "Extra Time"
+        l: "Time that will be added<br>to each registration time to<br>prevent instant locking"
     RANDOMIZER_CHESTS:
       enchanting:
         n: "Random Enchants"
+        l: "Items can be randomly<br>enchanted"
     MINEFIELD_WORLD:
       density:
         n: "Density"
+        l: "Amount of generated mines"
     BLOCK_WALL:
       material:
         n: "Wall Material"
+        l: "This block will become<br>unbreakable. Do not use<br>tile blocks"
       delay:
         n: "Spawn Delay"
+        l: "Time until the wall catch up"
     WORLD_DECAY:
       delay:
         n: "Step Delay"
+        l: "Time between each reduction<br>from visible blocks"
       steps:
         n: "Steps To 100%"
+        l: "Amount of reductions until<br>the full world is invisible"
     LOW_VISION:
       amount:
         n: "Block Amount"
+        l: "Amount of visible blocks players<br>can choose on start"
     CHUNK_SYNC:
       env:
         n: "Environment Mirror"
+        l: "Also mirror block updates<br>not triggered by players"
     DAMAGE_MULTIPLIER:
       multiplier:
         n: "Multiplier"
+        l: "Damage = original damage * multiplier"
     HIT_ORDER:
       wrongDamage:
         n: "Damage On Wrong"
+        l: "Amount of damage a player<br>receives when ignoring the order"
       randomOrder:
         n: "Random Order"
+        l: "No set order. Each time<br>a random player is chosen"
       visual:
         n: "Info Bar"
+        l: "Display the player in<br>current order"
     TICK_RATE:
       ticks:
         n: "Tick Speed"
+        l: "The range in with the<br>tick speed can change"
       timings:
         n: "Shuffel Rate"
+        l: "Timings between each<br>tick shuffling"
       min:
         n: "Min Speed"
       max:
         n: "Max Speed"
+    HP_DRAIN:
+      percentage:
+        n: "Porcentaje"
+        l: "How much health is drained<br>on each interval"
+      interval:
+        n: "Interval"
+        l: "Timing for each health draining"
+tags:
+  FUN:
+    l: "Easy Challenge with fun in focus"
+  MEDIUM:
+    l: "Slightly more difficult than normal Minecraft but still very doable"
+  HARD:
+    l: "Good for everyone searching a Challenge!"
+  RANDOMIZER:
+    l: "Parts of Minecraft are randomized and change each play through"
+  FORCE:
+    l: "You receive a task and are forced to finish it to proceed"
+  MULTIPLAYER:
+    l: "Needs 2 or more players. Perfect for a little party!"
+  FREE:
+    l: "You can play this Challenge without premium!"
+  BETA:
+    l: "Not finished yet. Lacks content and/or contains bugs"
