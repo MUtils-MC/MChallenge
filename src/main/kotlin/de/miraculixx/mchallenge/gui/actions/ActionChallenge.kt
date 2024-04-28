@@ -15,6 +15,7 @@ import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mchallenge.utils.UniversalChallenge
+import de.miraculixx.mchallenge.utils.config.ConfigManager
 import de.miraculixx.mchallenge.utils.getAccountStatus
 import de.miraculixx.mcommons.extensions.*
 import de.miraculixx.mcommons.namespace
@@ -38,7 +39,7 @@ class ActionChallenge(private val preInv: CustomInventory?) : GUIEvent {
 
         when (meta?.customModel ?: 0) {
             0 -> {
-                if (it.inventory.size == 9 * 6) {
+                if (it.inventory.size == 9 * 6 && !ConfigManager.settings.gui.compact) {
                     GUITypes.CHALLENGE_MENU.buildInventory(player, "${player.uniqueId}-CHALLENGES", inv.itemProvider, this)
                     player.click()
                 } else if (preInv != null) {

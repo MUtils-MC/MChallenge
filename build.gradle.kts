@@ -7,7 +7,7 @@ import org.yaml.snakeyaml.Yaml
 plugins {
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.serialization") version "1.9.23"
-    id("io.papermc.paperweight.userdev") version "1.5.+"
+    id("io.papermc.paperweight.userdev") version "1.6.2"
     id("xyz.jpenilla.run-paper") version "2.2.2"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
@@ -28,6 +28,8 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+
+//paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 dependencies {
     paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
@@ -55,14 +57,13 @@ dependencies {
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
     }
     compileJava {
         options.encoding = "UTF-8"
-        options.release.set(17)
+        options.release.set(21)
     }
     compileKotlin {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = "21"
     }
     shadowJar {
         dependencies {
@@ -98,6 +99,7 @@ bukkit {
     softDepend = listOf("MTimer", "MWeb")
     commands.create("mobhunt")
     commands.create("itemhunt")
+    commands.create("deathhunt")
     libraries = listOf(
         "io.ktor:ktor-client-core-jvm:2.3.7",
         "io.ktor:ktor-client-cio-jvm:2.3.7"

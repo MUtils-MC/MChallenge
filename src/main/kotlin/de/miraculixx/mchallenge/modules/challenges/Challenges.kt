@@ -72,6 +72,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
     TICK_RATE(setOf(ChallengeTags.MEDIUM, ChallengeTags.BETA), Icon("CLOCK")),
     RHYTHM_CRAFT(setOf(ChallengeTags.HARD, ChallengeTags.BETA), Icon("NOTE_BLOCK")),
+    DEATH_HUNT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("TOTEM_OF_UNDYING"))
     ;
 
 
@@ -322,6 +323,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             )
 
             RHYTHM_CRAFT -> mapOf()
+
+            DEATH_HUNT -> mapOf()
         }
     }
 }

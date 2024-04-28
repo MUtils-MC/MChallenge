@@ -23,10 +23,10 @@ class ItemsSettings(private val locale: Locale) : ItemProvider {
                 meta {
                     name = cmp(locale.msgString("items.settings.theme.n"), cHighlight)
                     lore(
-                        locale.msgList("items.settings.theme.l") + listOf(
+                        locale.msgList("items.settings.theme.l", inline = "<grey>") + listOf(
                             emptyComponent(),
                             getLoreSettings(),
-                            cmp("   ") + cmp(locale.msgString("items.settings.language.s")) + cmp(settings.language.toLanguageTag(), cHighlight),
+                            cmp("   ") + cmp(locale.msgString("items.settings.language.s")) + cmp(settings.gui.textTheme, cHighlight),
                             emptyComponent(),
                             locale.msgClick() + cmp(locale.msgString("common.switch"))
                         )
@@ -39,7 +39,7 @@ class ItemsSettings(private val locale: Locale) : ItemProvider {
                 meta {
                     name = cmp(locale.msgString("items.settings.compact.n"), cHighlight)
                     lore(
-                        locale.msgList("items.settings.compact.l") + listOf(
+                        locale.msgList("items.settings.compact.l", inline = "<grey>") + listOf(
                             emptyComponent(),
                             getLoreSettings(),
                             cmp("   ") + cmp("- Compact", if (settings.gui.compact) cMark else cBaseTag),
@@ -57,7 +57,7 @@ class ItemsSettings(private val locale: Locale) : ItemProvider {
                     skullTexture(KHeads.GLOBE)
                     name = cmp(locale.msgString("items.settings.language.n"), cHighlight)
                     lore(
-                        locale.msgList("items.settings.language.l") + listOf(
+                        locale.msgList("items.settings.language.l", inline = "<grey>") + listOf(
                             emptyComponent(),
                             getLoreSettings(),
                             cmp("   ") + cmp(locale.msgString("items.settings.language.s")) + cmp(settings.language.toLanguageTag(), cHighlight),

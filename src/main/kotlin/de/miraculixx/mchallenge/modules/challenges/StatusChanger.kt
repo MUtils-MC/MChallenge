@@ -4,6 +4,7 @@ import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.challenge.api.modules.challenges.ChallengeTags
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.mods.force.forceHunt.ForceHunt
+import de.miraculixx.mchallenge.modules.mods.force.huntDeath.DeathHunt
 import de.miraculixx.mchallenge.modules.mods.force.huntItems.ItemHunt
 import de.miraculixx.mchallenge.modules.mods.force.huntMob.MobHunt
 import de.miraculixx.mchallenge.modules.mods.force.itemDecay.ItemDecay
@@ -119,6 +120,7 @@ class StatusChanger {
             Challenges.RHYTHM_CRAFT -> RhythmCraft()
 //            Challenges.HALLOWEEN -> HalloweenChallenge()
             Challenges.HP_DRAIN -> HPDrain()
+            Challenges.DEATH_HUNT -> DeathHunt()
         }
     }
 

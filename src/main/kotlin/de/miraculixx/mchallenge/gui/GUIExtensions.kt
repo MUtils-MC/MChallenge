@@ -16,6 +16,7 @@ fun GUITypes.buildInventory(player: Player, id: String, itemProvider: ItemProvid
                     this.title = this@buildInventory.title
                     this.player = player
                     this.filterable = true
+                    this.scrollable = true
                     this.itemProvider = itemProvider
                     this.clickAction = clickAction.run
                 }

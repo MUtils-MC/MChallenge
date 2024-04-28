@@ -179,8 +179,8 @@ items:
       n: "Settings"
   settings:
     language:
-      n: "Language"
-      l: "Changing the language will affect all<br>messages and texts in MChallenge.<br>Help us to improve the translations!"
+      n: "Default Language"
+      l: "Most message will automatically adapt to<br>your Minecraft language. If your language<br>is not supported or on global messages<br>this fallback language is used"
       s: "Current: "
     compact:
       n: "Challenge Display"
