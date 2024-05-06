@@ -52,7 +52,7 @@ class RightTools : Challenge {
     }
 
     private fun spawnParticle(loc: Location) {
-        loc.world.spawnParticle(Particle.SMOKE_NORMAL, loc.clone().add(0.5, 1.0, 0.5), 10, 0.1, 0.1, 0.1, 0.01, null, true)
+        loc.world.spawnParticle(Particle.SMOKE, loc.clone().add(0.5, 1.0, 0.5), 10, 0.1, 0.1, 0.1, 0.01, null, true)
     }
 
     private val onDamage = listen<EntityDamageByEntityEvent>(register = false) {

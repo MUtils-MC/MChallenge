@@ -14,7 +14,6 @@ import de.miraculixx.mchallenge.commands.CustomRulesCommand
 import de.miraculixx.mchallenge.commands.ModuleCommand
 import de.miraculixx.mchallenge.commands.utils.*
 import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.modules.Test
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.global.DeathListener
 import de.miraculixx.mchallenge.modules.global.RuleListener
@@ -47,7 +46,6 @@ class MChallenge : KPaper() {
 
     override fun startup() {
         CommandAPI.onEnable()
-        Test()
 
         CoroutineScope(Dispatchers.Default).launch {
             while (!isLoaded) {
@@ -124,7 +122,7 @@ class MChallenge : KPaper() {
             // Connect Bridge
             bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port, debug)
             val version = bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0, File("plugins/update"))
-            bridgeAPI.modrinthUpdate(File("plugins/update"))
+            //bridgeAPI.modrinthUpdate(File("plugins/update"))
             // TODO Prompt with click to update
 
             bridgeAPI.login({

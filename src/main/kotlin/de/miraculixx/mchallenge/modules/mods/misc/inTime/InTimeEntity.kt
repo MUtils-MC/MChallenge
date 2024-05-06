@@ -74,7 +74,7 @@ class InTimeEntity(
             } else {
                 val loc = entity.location
                 loc.getNearbyPlayers(50.0).forEach { p ->
-                    p.spawnParticle(Particle.SPELL_WITCH, loc.add(0.0, 0.2, 0.0), 20, 0.1, 0.1, 0.1, 0.1)
+                    p.spawnParticle(Particle.WITCH, loc.add(0.0, 0.2, 0.0), 20, 0.1, 0.1, 0.1, 0.1)
                     p.playSound(loc, Sound.ENTITY_VEX_DEATH, 0.7f, 0.1f)
                 }
                 entity.remove()

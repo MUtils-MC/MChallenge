@@ -7,7 +7,7 @@ import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mchallenge.gui.GUITypes
 import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mchallenge.modules.challenges.Challenges
-import de.miraculixx.mchallenge.modules.challenges.ResourcePackChallenge
+import de.miraculixx.mchallenge.modules.challenges.interfaces.RPCustom
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mcommons.text.consoleAudience
@@ -15,7 +15,7 @@ import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience
 import org.bukkit.Sound
 
-class LowVision : Challenge, ResourcePackChallenge {
+class LowVision : Challenge, RPCustom {
     private lateinit var mWebAPI: MWebAPI
     private val maxSelects: Int
 //    private val playerCache: MutableMap<UUID, Set<Material>>

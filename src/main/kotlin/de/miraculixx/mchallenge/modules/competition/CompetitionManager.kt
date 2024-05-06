@@ -159,7 +159,7 @@ object CompetitionManager {
         val target = it.entity
         when (target.type) {
             EntityType.ENDER_DRAGON -> player.finishTask(CompetitionPointRule.KILL_DRAGON)
-            EntityType.SNOWMAN -> player.finishTask(CompetitionPointRule.KILL_SNOWMAN)
+            EntityType.SNOW_GOLEM -> player.finishTask(CompetitionPointRule.KILL_SNOWMAN)
             else -> Unit
         }
     }

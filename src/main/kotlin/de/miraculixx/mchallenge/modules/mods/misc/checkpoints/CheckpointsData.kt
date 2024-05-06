@@ -76,7 +76,7 @@ class CheckpointsData(player: Player, private val zombie: Zombie) {
                 slot++
             }
             for (nearbyEntity in player.getNearbyEntities(100.0, 100.0, 100.0)) {
-                if (nearbyEntity.type == EntityType.DROPPED_ITEM) nearbyEntity.remove()
+                if (nearbyEntity.type == EntityType.ITEM) nearbyEntity.remove()
             }
             brokenBlocks.forEach { (location, material) -> location.world?.getBlockAt(location)?.type = material }
             placeBlocks.forEach { block ->

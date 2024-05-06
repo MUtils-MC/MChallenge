@@ -47,7 +47,7 @@ class RocketPlayerData(private val player: Player) {
                 if (soundTicks == 4) {
                     player.playSound(player, Sound.ENTITY_WOLF_SHAKE, 1f, 0.8f)
                     onlinePlayers.forEach { p ->
-                        p.spawnParticle(Particle.FIREWORKS_SPARK, location, 3, 0.2,0.2,0.2,0.01)
+                        p.spawnParticle(Particle.FIREWORK, location, 3, 0.2,0.2,0.2,0.01)
                     }
                     soundTicks = 0
                 }

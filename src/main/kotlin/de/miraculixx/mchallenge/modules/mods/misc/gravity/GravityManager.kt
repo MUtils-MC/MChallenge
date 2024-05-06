@@ -158,8 +158,8 @@ class GravityManager : Challenge {
     private fun removeEffects(entity: LivingEntity) {
         entity.removePotionEffect(PotionEffectType.LEVITATION)
         entity.removePotionEffect(PotionEffectType.SLOW_FALLING)
-        entity.removePotionEffect(PotionEffectType.JUMP)
-        entity.removePotionEffect(PotionEffectType.SLOW)
+        entity.removePotionEffect(PotionEffectType.JUMP_BOOST)
+        entity.removePotionEffect(PotionEffectType.SLOWNESS)
         entity.setGravity(true)
     }
 

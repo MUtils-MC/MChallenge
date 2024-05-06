@@ -10,6 +10,7 @@ import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mchallenge.utils.getRPPrompt
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
+import de.miraculixx.mchallenge.modules.challenges.interfaces.RPCustomLink
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.Particle
@@ -25,28 +26,28 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
+import java.util.*
+import kotlin.collections.HashMap
 
 
-class Ghost : Challenge {
+class Ghost : Challenge, RPCustomLink {
     private var currentBlock = HashMap<Player, Material>()
     private var ghostObj: GhostData? = null
     private var adventure: Boolean = false
+    override val rpLink = "https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1"
+    override val rpUUID = UUID.randomUUID()
 
     override fun start(): Boolean {
         ghostObj = GhostData()
         val settings = challenges.getSetting(Challenges.GHOST).settings
         adventure = settings["adventure"]?.toBool()?.getValue() ?: false
-        onlinePlayers.forEach {
-            it.setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1", "", true, getRPPrompt("player", "Ghost-Challenge"))
-        }
+        sendCustomLinkPack()
         return true
     }
 
     override fun stop() {
         ghostObj = null
-        onlinePlayers.forEach {
-            it.sendGhostRP()
-        }
+        removeCustomLinkPack()
     }
 
     override fun register() {
@@ -57,7 +58,6 @@ class Ghost : Challenge {
         onBlockPhysics.register()
         onSandFall.register()
         onCollect.register()
-        onJoin.register()
     }
 
     override fun unregister() {
@@ -68,7 +68,6 @@ class Ghost : Challenge {
         onBlockPhysics.unregister()
         onSandFall.unregister()
         onCollect.unregister()
-        onJoin.unregister()
     }
 
     private val onSelect = listen<PlayerInteractEvent>(register = false) {
@@ -131,13 +130,5 @@ class Ghost : Challenge {
             it.isCancelled = true
             it.item.remove()
         }
-    }
-
-    private val onJoin = listen<PlayerJoinEvent>(register = false) {
-        it.player.sendGhostRP()
-    }
-
-    private fun Player.sendGhostRP() {
-        setResourcePack("https://www.dropbox.com/s/idlvm997ybi8ms3/Ghost.zip?dl=1", "", true, getRPPrompt("player", "Ghost-Challenge"))
     }
 }

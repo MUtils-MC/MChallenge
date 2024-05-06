@@ -7,7 +7,7 @@ import de.miraculixx.kpaper.gui.data.CustomInventory
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.runnables.taskRunLater
 import de.miraculixx.mchallenge.MChallenge
-import de.miraculixx.mchallenge.modules.challenges.ResourcePackChallenge
+import de.miraculixx.mchallenge.modules.challenges.interfaces.RPCustom
 import de.miraculixx.mcommons.extensions.soundDisable
 import de.miraculixx.mcommons.extensions.soundEnable
 import de.miraculixx.mcommons.extensions.soundError
@@ -19,7 +19,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import java.io.File
 
-class LowVisionAction(private val maxSelects: Int, private val player: Player, private val mWebAPI: MWebAPI) : GUIEvent, ResourcePackChallenge {
+class LowVisionAction(private val maxSelects: Int, private val player: Player, private val mWebAPI: MWebAPI) : GUIEvent, RPCustom {
     private val texturepackFolder = File(MChallenge.configFolder, "data/resourcepacks/${player.uniqueId}-LOWVISION")
     private val resourceFolder = createRPStructure(texturepackFolder)
     private val blockstateFolder = File(resourceFolder, "blockstates")

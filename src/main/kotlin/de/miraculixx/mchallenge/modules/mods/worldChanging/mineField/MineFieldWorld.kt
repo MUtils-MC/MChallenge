@@ -92,8 +92,8 @@ class MineFieldWorld : Challenge {
         if (it.action != Action.PHYSICAL) return@listen
         val block = it.clickedBlock ?: return@listen
         if (block.type != Material.LIGHT_WEIGHTED_PRESSURE_PLATE) return@listen
-        it.player.addPotionEffect(PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 10, 2, false, false, false))
-        val tnt = block.world.spawnEntity(block.location.add(.5,.0,.5), EntityType.PRIMED_TNT) as TNTPrimed
+        it.player.addPotionEffect(PotionEffect(PotionEffectType.RESISTANCE, 10, 2, false, false, false))
+        val tnt = block.world.spawnEntity(block.location.add(.5,.0,.5), EntityType.TNT) as TNTPrimed
         tnt.fuseTicks = 1
         tnt.setIsIncendiary(false)
     }

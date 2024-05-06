@@ -10,6 +10,7 @@ import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
+import de.miraculixx.mchallenge.modules.challenges.interfaces.RPBossBarRemover
 import org.bukkit.World
 import org.bukkit.entity.AreaEffectCloud
 import org.bukkit.entity.EnderDragon
@@ -31,7 +32,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.ZERO
 import kotlin.time.Duration.Companion.seconds
 
-class InTime : Challenge {
+class InTime : Challenge, RPBossBarRemover {
     private var timers = HashMap<UUID, InTimeEntity>()
     private var mobTime: Duration
     private var playerTime: Duration
@@ -58,6 +59,7 @@ class InTime : Challenge {
             timers[p.uniqueId] = timer
         }
 
+        sendHideBossBar()
         return true
     }
 
@@ -65,6 +67,7 @@ class InTime : Challenge {
         timers.forEach { (_, timer) -> timer.remove() }
         timers.clear()
         task?.cancel()
+        sendShowBossBar()
     }
 
     override fun register() {

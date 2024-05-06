@@ -91,7 +91,7 @@ class DimSwapSchedule {
                                 for (entity in endBlock.chunk.entities) {
                                     entity.remove()
                                 }
-                                normal.spawnEntity(endBlock.location.add(0.5, (1 + high).toDouble(), 0.5), EntityType.ENDER_CRYSTAL)
+                                normal.spawnEntity(endBlock.location.add(0.5, (1 + high).toDouble(), 0.5), EntityType.END_CRYSTAL)
                             }
                             end.getBlockAt(x, y, z).type = Material.END_STONE
                         }

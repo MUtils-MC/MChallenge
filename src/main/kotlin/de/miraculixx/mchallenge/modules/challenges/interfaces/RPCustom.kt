@@ -1,18 +1,33 @@
-package de.miraculixx.mchallenge.modules.challenges
+package de.miraculixx.mchallenge.modules.challenges.interfaces
 
+import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mcommons.text.*
+import de.miraculixx.mweb.api.MWebAPI
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.event.ClickEvent
 import java.io.File
 import java.io.InputStream
 
-interface ResourcePackChallenge {
+interface RPCustom {
     val packMeta: String
         get() = "{\"pack\":{\"description\":\"MUtils-Challenge ResourcePack - AGPLv3 Licence\",\"pack_format\":13}}"
     val packIcon: InputStream?
         get() = javaClass.getResourceAsStream("/data/pack.png")
     val transparency: InputStream?
         get() = javaClass.getResourceAsStream("/data/transparent.png")
+
+
+    fun getMWebAPI(audience: Audience?): MWebAPI? {
+        MWebAPI.INSTANCE?.let { return it }
+
+        (audience ?: Audience.audience(onlinePlayers.filter { it.isOp }))
+            .sendMessage(
+                prefix + cmp("MWeb is needed to play this Challenge! Please install it ", cError) + cmp("here", cError, underlined = true)
+                    .clickEvent(ClickEvent.openUrl("https://modrinth.com/project/mweb"))
+                    .addHover(cmp("Click to open"))
+            )
+        return null
+    }
 
     fun createRPStructure(root: File): File {
         if (root.exists()) root.deleteRecursively()
@@ -25,12 +40,5 @@ interface ResourcePackChallenge {
         File(ressourceFolder, "textures").mkdir()
         File(ressourceFolder, "models").mkdir()
         return ressourceFolder
-    }
-
-    fun error(audience: Audience): Boolean {
-        audience.sendMessage(prefix + cmp("MWeb is needed to play this Challenge! Please install it ", cError) + cmp("here", cError, underlined = true)
-            .clickEvent(ClickEvent.openUrl("https://modrinth.com/mod/mweb"))
-            .addHover(cmp("Click to open")))
-        return false
     }
 }

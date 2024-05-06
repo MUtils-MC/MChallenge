@@ -6,7 +6,7 @@ import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mchallenge.MChallenge
 import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mchallenge.modules.challenges.Challenges
-import de.miraculixx.mchallenge.modules.challenges.ResourcePackChallenge
+import de.miraculixx.mchallenge.modules.challenges.interfaces.RPCustom
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mcommons.text.*
@@ -15,7 +15,7 @@ import net.kyori.adventure.audience.Audience
 import org.bukkit.Material
 import java.io.File
 
-class WorldDecay: Challenge, ResourcePackChallenge {
+class WorldDecay: Challenge, RPCustom {
     private val visibleBlocks: MutableSet<Material> = Material.values().filter { it.isBlock }.toMutableSet()
     private val repeats: Int
     private val blocksPerInterval: Int

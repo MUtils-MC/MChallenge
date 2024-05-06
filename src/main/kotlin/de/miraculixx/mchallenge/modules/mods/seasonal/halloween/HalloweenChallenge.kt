@@ -199,12 +199,12 @@ class HalloweenChallenge : Challenge {
         val nightVisionGogglesID = specialItems.nightVisionGogglesID
         when {
             old == nightVisionGogglesID && new != nightVisionGogglesID -> {
-                ParticleBuilder(Particle.SPELL_MOB).offset(0.996078431372549, 0.9921568627450981, 0.0)
+                ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
             }
 
             old != nightVisionGogglesID && new == nightVisionGogglesID -> {
-                ParticleBuilder(Particle.SPELL_MOB).offset(0.996078431372549, 0.9921568627450981, 0.03529411764705882)
+                ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.03529411764705882)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
             }
         }
@@ -318,7 +318,7 @@ class HalloweenChallenge : Challenge {
                     player.removePassenger(e)
                     e.remove()
                 }
-                ParticleBuilder(Particle.SPELL_WITCH).location(loc).extra(0.05).count(20).allPlayers().spawn()
+                ParticleBuilder(Particle.WITCH).location(loc).extra(0.05).count(20).allPlayers().spawn()
                 player.playSound(player, Sound.ENTITY_ILLUSIONER_MIRROR_MOVE, 1f, 1f)
                 player.isFlying = false
                 player.allowFlight = false
@@ -330,7 +330,7 @@ class HalloweenChallenge : Challenge {
                 currentEquip.leggings = equip?.pants
                 currentEquip.boots = equip?.feet
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
-                ParticleBuilder(Particle.SPELL_MOB).offset(0.996078431372549, 0.9921568627450981, 0.0)
+                ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
                 player.persistentDataContainer.set(keyAbilityActive, PersistentDataType.BOOLEAN, false)
 
@@ -344,7 +344,7 @@ class HalloweenChallenge : Challenge {
                 player.flySpeed = -0.05f
                 player.velocity = Vector(0.0, 1.0, 0.0)
                 player.playSound(player, Sound.ENTITY_ILLUSIONER_PREPARE_MIRROR, 1f, 1f)
-                ParticleBuilder(Particle.SPELL_WITCH).location(loc).extra(0.05).count(20).allPlayers().spawn()
+                ParticleBuilder(Particle.WITCH).location(loc).extra(0.05).count(20).allPlayers().spawn()
                 val currentEquip = player.equipment
                 val equip = Equip(currentEquip.helmet, currentEquip.chestplate, currentEquip.leggings, currentEquip.boots)
                 armorCache[player] = equip
@@ -353,7 +353,7 @@ class HalloweenChallenge : Challenge {
                 currentEquip.leggings = null
                 currentEquip.boots = null
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 1.0
-                ParticleBuilder(Particle.SPELL_MOB).offset(0.996078431372549, 0.9921568627450981, 0.0392156862745098)
+                ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0392156862745098)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
                 player.persistentDataContainer.set(keyAbilityActive, PersistentDataType.BOOLEAN, true)
             }

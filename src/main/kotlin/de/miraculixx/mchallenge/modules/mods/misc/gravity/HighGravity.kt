@@ -55,7 +55,7 @@ class HighGravity : Gravity {
             onlinePlayers.forEach { p ->
                 p.getNearbyEntities(50.0, 30.0, 50.0).forEach { entity ->
                     if (entity is LivingEntity && entity !is Player)
-                        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 99999, 0, false, false))
+                        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 99999, 0, false, false))
                 }
             }
         }
@@ -81,7 +81,7 @@ class HighGravity : Gravity {
     private val onMove = listen<PlayerMoveEvent> {
         val player = it.player
         player.getNearbyEntities(0.5, 1.0, 0.5).forEach { entity ->
-            if (entity.type == EntityType.DROPPED_ITEM) {
+            if (entity.type == EntityType.ITEM) {
                 val item = entity as Item
                 if (item.pickupDelay > 0) return@listen
                 val remaining = player.inventory.addItem(item.itemStack)

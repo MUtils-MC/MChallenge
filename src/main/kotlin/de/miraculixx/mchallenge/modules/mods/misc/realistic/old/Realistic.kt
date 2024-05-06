@@ -191,7 +191,7 @@ class Realistic : Challenge {
 
     private val onTeleport = listen<PlayerTeleportEvent>(register = false) {
         if (it.cause == PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
-            it.player.addPotionEffect(PotionEffect(PotionEffectType.CONFUSION, 10 * 20, 1))
+            it.player.addPotionEffect(PotionEffect(PotionEffectType.NAUSEA, 10 * 20, 1))
             it.to.world.spawnEntity(it.to, EntityType.ENDERMITE)
         }
     }
@@ -202,11 +202,11 @@ class Realistic : Challenge {
                 val p = (it.entity as Player).player
                 val dmg = it.damage
                 if (dmg < 3) {
-                    p!!.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 40, 4, false, false, false))
+                    p!!.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 40, 4, false, false, false))
                 } else if (dmg > 3 && dmg < 6) {
-                    p!!.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 140, 4, false, false, false))
+                    p!!.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 140, 4, false, false, false))
                 } else {
-                    p!!.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 250, 9, false, false, false))
+                    p!!.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 250, 9, false, false, false))
                 }
                 if ((0..2).random() == 1) {
                     p.dropItem(true)

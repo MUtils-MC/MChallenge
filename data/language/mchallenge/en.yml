@@ -70,6 +70,7 @@ command:
   notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
   updateRule: "The rule <input-1> was updated to <input-2>"
   noRule: "<red>Please select a valid rule to change!"
+  registered: "Added command <blue>/<input-1></blue>. Use to interact with the Challenge"
 
 
 #-----------------------------------------#
@@ -149,6 +150,8 @@ event:
   hpDrain:
     current: "Current Health ⇒ <blue><input-1></blue>"
     next: "Next health draining in <blue><input-1></blue> <dark_gray>(<input-2>%)"
+  enable-flight: "<red>This Challenge requires to allow flight in your <u>server.properties</u>! Otherwise players will be kicked spontaneously for flying."
+
 
 
 #-----------------------------------------#

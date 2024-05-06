@@ -7,13 +7,13 @@ import org.yaml.snakeyaml.Yaml
 plugins {
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.serialization") version "1.9.23"
-    id("io.papermc.paperweight.userdev") version "1.6.2"
-    id("xyz.jpenilla.run-paper") version "2.2.2"
+    id("io.papermc.paperweight.userdev") version "1.7.0"
+    id("xyz.jpenilla.run-paper") version "2.3.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
     id("io.github.dexman545.outlet") version "1.6.1"
 
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = properties["group"] as String
@@ -29,10 +29,10 @@ repositories {
     mavenCentral()
 }
 
-//paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 dependencies {
-    paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT")
 
     // Kotlin libraries
     library(kotlin("stdlib"))
@@ -42,8 +42,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    library("dev.jorel:commandapi-bukkit-shade:9.3.+")
-    library("dev.jorel:commandapi-bukkit-kotlin:9.3.+")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.0")
+    library("dev.jorel:commandapi-bukkit-kotlin:9.4.0")
 
     // Internal APIs
     implementation("de.miraculixx:mbridge:1.0.0")
@@ -68,15 +68,10 @@ tasks {
     shadowJar {
         dependencies {
             include {
-                it.moduleGroup == "de.miraculixx"
+                it.moduleGroup == "de.miraculixx" || it.moduleGroup == "dev.jorel"
             }
         }
-    }
-}
-
-buildscript {
-    dependencies {
-//        classpath("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+        relocate("dev.jorel.commandapi", "de.miraculixx.mchallenge.commandapi")
     }
 }
 

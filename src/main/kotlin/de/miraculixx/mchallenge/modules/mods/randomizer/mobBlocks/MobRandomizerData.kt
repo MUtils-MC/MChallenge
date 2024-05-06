@@ -15,11 +15,11 @@ class MobRandomizerData(private val random: Boolean) {
         val random = Random(world.seed)
         blockList.clear()
         val list: List<EntityType> = fillList()
-        Material.values().forEach { material -> blockList[material] = list[random.nextInt(list.size)] }
+        Material.entries.forEach { material -> blockList[material] = list[random.nextInt(list.size)] }
     }
 
     private fun fillList(): ArrayList<EntityType> {
-        val listDummy = listOf(*EntityType.values())
+        val listDummy = EntityType.entries
         val list = ArrayList(listDummy)
         list.remove(EntityType.TRIDENT)
         list.remove(EntityType.ARROW)
@@ -27,17 +27,17 @@ class MobRandomizerData(private val random: Boolean) {
         list.remove(EntityType.AREA_EFFECT_CLOUD)
         list.remove(EntityType.BOAT)
         list.remove(EntityType.DRAGON_FIREBALL)
-        list.remove(EntityType.DROPPED_ITEM)
+        list.remove(EntityType.ITEM)
         list.remove(EntityType.EGG)
         list.remove(EntityType.ENDER_PEARL)
-        list.remove(EntityType.ENDER_SIGNAL)
+        list.remove(EntityType.EYE_OF_ENDER)
         list.remove(EntityType.EXPERIENCE_ORB)
         list.remove(EntityType.FALLING_BLOCK)
-        list.remove(EntityType.FIREWORK)
-        list.remove(EntityType.FISHING_HOOK)
+        list.remove(EntityType.FIREWORK_ROCKET)
+        list.remove(EntityType.FISHING_BOBBER)
         list.remove(EntityType.ITEM_FRAME)
-        list.remove(EntityType.LEASH_HITCH)
-        list.remove(EntityType.LIGHTNING)
+        list.remove(EntityType.LEASH_KNOT)
+        list.remove(EntityType.LIGHTNING_BOLT)
         list.remove(EntityType.LLAMA_SPIT)
         list.remove(EntityType.PAINTING)
         list.remove(EntityType.PLAYER)
@@ -45,8 +45,8 @@ class MobRandomizerData(private val random: Boolean) {
         list.remove(EntityType.SMALL_FIREBALL)
         list.remove(EntityType.SNOWBALL)
         list.remove(EntityType.SPECTRAL_ARROW)
-        list.remove(EntityType.SPLASH_POTION)
-        list.remove(EntityType.THROWN_EXP_BOTTLE)
+        list.remove(EntityType.POTION)
+        list.remove(EntityType.EXPERIENCE_BOTTLE)
         list.remove(EntityType.UNKNOWN)
         list.remove(EntityType.WITHER_SKULL)
         list.remove(EntityType.ENDER_DRAGON)

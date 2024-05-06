@@ -91,7 +91,7 @@ class FLY : Challenge {
                 return@task
             }
             val red = Particle.DustOptions(Color.RED, 1f)
-            p.spawnParticle<Particle.DustOptions>(Particle.REDSTONE, p.location, 2, 0.05, 0.05, 0.05, 1.0, red)
+            p.spawnParticle<Particle.DustOptions>(Particle.DUST, p.location, 2, 0.05, 0.05, 0.05, 1.0, red)
             p.spawnParticle(Particle.NAUTILUS, p.location, 3, 0.1, 0.1, 0.1, 0.2)
             p.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 2, 2, true))
             p.velocity = p.eyeLocation.direction.normalize().multiply(flyBoost / 2)

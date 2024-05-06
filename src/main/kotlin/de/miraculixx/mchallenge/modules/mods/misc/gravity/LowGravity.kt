@@ -23,13 +23,13 @@ class LowGravity : Gravity {
     }
 
     override fun modifyPlayer(player: Player) {
-        player.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 999999, 0, false, false, false))
+        player.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 999999, 0, false, false, false))
         for (entity in player.getNearbyEntities(300.0, 200.0, 300.0)) {
             if (entity is Player) continue
             if (entity is LivingEntity) {
                 entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, Int.MAX_VALUE, 99, false, false, false))
-                entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP, Int.MAX_VALUE, 4, false, false, false))
-                entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, Int.MAX_VALUE, 0, false, false, false))
+                entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP_BOOST, Int.MAX_VALUE, 4, false, false, false))
+                entity.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, Int.MAX_VALUE, 0, false, false, false))
             } else {
                 entity.setGravity(false)
                 val vector = Vector(0.0, -0.1, 0.0)
@@ -68,8 +68,8 @@ class LowGravity : Gravity {
     private val onSpawn = listen<CreatureSpawnEvent> {
         val entity = it.entity
         entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, 999999, 99, false, false, false))
-        entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP, 999999, 4, false, false, false))
-        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 999999, 0, false, false, false))
+        entity.addPotionEffect(PotionEffect(PotionEffectType.JUMP_BOOST, 999999, 4, false, false, false))
+        entity.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 999999, 0, false, false, false))
     }
 
 
@@ -107,12 +107,12 @@ class LowGravity : Gravity {
         }
         if (player.getStatistic(Statistic.JUMP) > 0) {
             player.setGravity(false)
-            player.removePotionEffect(PotionEffectType.JUMP)
+            player.removePotionEffect(PotionEffectType.JUMP_BOOST)
             player.setStatistic(Statistic.JUMP, 0)
             delay(player)
         }
         if (player.velocity.y == -0.0784000015258789) {
-            player.addPotionEffect(PotionEffect(PotionEffectType.JUMP, 99999, 3, false, false, false))
+            player.addPotionEffect(PotionEffect(PotionEffectType.JUMP_BOOST, 99999, 3, false, false, false))
         }
         if (player.velocity.y < -0.08) {
             player.addPotionEffect(PotionEffect(PotionEffectType.SLOW_FALLING, 5, 0, false, false, false))
@@ -128,7 +128,7 @@ class LowGravity : Gravity {
         taskRunLater(30) {
             if (!active) return@taskRunLater
             p.setGravity(true)
-            p.addPotionEffect(PotionEffect(PotionEffectType.JUMP, 99999, 3, false, false, false))
+            p.addPotionEffect(PotionEffect(PotionEffectType.JUMP_BOOST, 99999, 3, false, false, false))
         }
     }
 

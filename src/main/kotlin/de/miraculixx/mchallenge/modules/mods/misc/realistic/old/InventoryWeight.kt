@@ -53,7 +53,7 @@ class InventoryWeight {
             onlinePlayers.forEach { player ->
                 val weight = gewichtsMap.getOrDefault(player.uniqueId, 0)
                 if (weight >= 120) {
-                    player.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 5, 0, true, true, false))
+                    player.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 5, 0, true, true, false))
                 }
                 if (weight >= 200) {
                     //Kein Schwimmen
@@ -63,7 +63,7 @@ class InventoryWeight {
                     player.addPotionEffect(PotionEffect(PotionEffectType.HUNGER, 5, 0))
                 }
                 if (weight >= 250) {
-                    player.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 5, 1, true))
+                    player.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 5, 1, true))
                     player.addPotionEffect(PotionEffect(PotionEffectType.HUNGER, 5, 2, true))
                 }
                 if (weight >= 300) {

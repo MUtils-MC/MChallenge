@@ -16,8 +16,8 @@ class DrinkLogic {
         var value = playerList[player.uniqueId]
         if (value == null) value = 20
         if (value <= 6) player.addPotionEffect(PotionEffect(PotionEffectType.HUNGER, 20 * 5, 2))
-        if (value <= 4) player.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 20 * 5, 1))
-        if (value <= 2) player.addPotionEffect(PotionEffect(PotionEffectType.CONFUSION, 20 * 5, 0))
+        if (value <= 4) player.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, 20 * 5, 1))
+        if (value <= 2) player.addPotionEffect(PotionEffect(PotionEffectType.NAUSEA, 20 * 5, 0))
         if (value <= 0) player.addPotionEffect(PotionEffect(PotionEffectType.POISON, 20 * 5, 0))
     }
 

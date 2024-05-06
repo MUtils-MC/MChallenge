@@ -73,7 +73,7 @@ class DeathHunt : Challenge, HuntObject<String> {
         broadcast(message)
         player.playEffect(EntityEffect.TOTEM_RESURRECT)
         player.addPotionEffect(PotionEffect(PotionEffectType.FIRE_RESISTANCE, 10 * 20, 1, false, false, false))
-        player.addPotionEffect(PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 10 * 20, 2, false, false, false))
+        player.addPotionEffect(PotionEffect(PotionEffectType.RESISTANCE, 10 * 20, 2, false, false, false))
         player.addPotionEffect(PotionEffect(PotionEffectType.REGENERATION, 3 * 20, 4, false, false, false))
         if (player.location.y < player.world.minHeight) {
             player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 20 * 5, 19, false, false, false))

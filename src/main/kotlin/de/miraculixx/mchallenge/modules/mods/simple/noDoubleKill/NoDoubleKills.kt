@@ -73,6 +73,6 @@ class NoDoubleKills : Challenge {
         player.persistentDataContainer.set(DeathListener.key, PersistentDataType.STRING, "noDoubleKill")
         player.damage(999.0)
         entity.isGlowing = true
-        entity.addPotionEffect(PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 200, false, false))
+        entity.addPotionEffect(PotionEffect(PotionEffectType.RESISTANCE, 20, 200, false, false))
     }
 }

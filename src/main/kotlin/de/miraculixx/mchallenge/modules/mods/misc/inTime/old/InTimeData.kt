@@ -94,7 +94,7 @@ class InTimeData(var sec: Int, entity: Entity, private var isPlayer: Boolean) {
                 if (!isPlayer) {
                     val loc = entity?.location ?: return@task
                     onlinePlayers.forEach { player ->
-                        player.spawnParticle(Particle.SPELL_WITCH, loc.add(0.0, 0.2, 0.0), 20, 0.1, 0.1, 0.1, 0.1)
+                        player.spawnParticle(Particle.WITCH, loc.add(0.0, 0.2, 0.0), 20, 0.1, 0.1, 0.1, 0.1)
                         player.playSound(loc, Sound.ENTITY_VEX_DEATH, 0.7f, 0.1f)
                     }
                     entity?.remove()

@@ -107,7 +107,7 @@ class ItemsChallenge(private val applicable: Set<UniversalChallenge>, private va
                 customModel = 1
                 displayName(getName(icon, itemData.key, isFavorite))
                 lore(getLore(itemData, isFavorite))
-                addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
+                addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ADDITIONAL_TOOLTIP)
                 itemData.key?.let { persistentDataContainer.set(challengeKey, PersistentDataType.STRING, it.name) }
                 itemData.customUUID?.let {
                     persistentDataContainer.set(
