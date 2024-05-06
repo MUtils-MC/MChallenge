@@ -13,7 +13,7 @@ plugins {
     id("com.modrinth.minotaur") version "2.+"
     id("io.github.dexman545.outlet") version "1.6.1"
 
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = properties["group"] as String
@@ -29,8 +29,6 @@ repositories {
     mavenCentral()
 }
 
-//paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
     paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
 
@@ -42,8 +40,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    library("dev.jorel:commandapi-bukkit-shade:9.3.+")
-    library("dev.jorel:commandapi-bukkit-kotlin:9.3.+")
+    implementation("dev.jorel:commandapi-bukkit-shade:9.4.+")
+    library("dev.jorel:commandapi-bukkit-kotlin:9.4.+")
 
     // Internal APIs
     implementation("de.miraculixx:mbridge:1.0.0")
@@ -57,6 +55,7 @@ dependencies {
 tasks {
     assemble {
         dependsOn(shadowJar)
+        dependsOn(reobfJar)
     }
     compileJava {
         options.encoding = "UTF-8"
@@ -68,9 +67,13 @@ tasks {
     shadowJar {
         dependencies {
             include {
-                it.moduleGroup == "de.miraculixx"
+                it.moduleGroup == "de.miraculixx" || it.moduleGroup == "dev.jorel"
             }
         }
+        relocate("dev.jorel.commandapi", "de.miraculixx.mchallenge.commandapi")
+    }
+    runServer {
+        runDirectory.set(layout.projectDirectory.dir("run-legacy"))
     }
 }
 
