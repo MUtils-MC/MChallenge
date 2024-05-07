@@ -42,7 +42,7 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.0")
+    library("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.0")
     library("dev.jorel:commandapi-bukkit-kotlin:9.4.0")
 
     // Internal APIs
@@ -68,10 +68,9 @@ tasks {
     shadowJar {
         dependencies {
             include {
-                it.moduleGroup == "de.miraculixx" || it.moduleGroup == "dev.jorel"
+                it.moduleGroup == "de.miraculixx"
             }
         }
-        relocate("dev.jorel.commandapi", "de.miraculixx.mchallenge.commandapi")
     }
 }
 
@@ -92,9 +91,6 @@ bukkit {
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
     depend = listOf()
     softDepend = listOf("MTimer", "MWeb")
-    commands.create("mobhunt")
-    commands.create("itemhunt")
-    commands.create("deathhunt")
     libraries = listOf(
         "io.ktor:ktor-client-core-jvm:2.3.7",
         "io.ktor:ktor-client-cio-jvm:2.3.7"

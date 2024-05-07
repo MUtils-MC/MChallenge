@@ -70,7 +70,7 @@ command:
   notLoggedIn: "Connect your MUtils Account to unlock Premium Features"
   updateRule: "The rule <input-1> was updated to <input-2>"
   noRule: "<red>Please select a valid rule to change!"
-  registered: "Added command <blue>/<input-1></blue>. Use to interact with the Challenge"
+  registered: "<grey>Challenge Command: <blue>/<input-1></blue>"
 
 
 #-----------------------------------------#
@@ -95,12 +95,15 @@ event:
     noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
     hitOrder: "<red><input-1> was not allowed do damage a mob"
     crushedAnvils: "<red><input-1> was hit by an anvil!"
-  mobHunt:
+  mob_hunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
-  itemHunt:
+  item_hunt:
     collect: "<green><input-1> collected <input-2>!"
     success: "<green>Congratulations! You found all <input-1> items"
+  death_hunt:
+    collect: "<green><input-1> died to <input-2>!"
+    success: "<green>Congratulations! You died to all <input-1> deaths"
   itemDecay:
     time: "Decay in"
     paused: "Paused display (selected)"
@@ -406,6 +409,9 @@ items:
     HP_DRAIN:
       n: "Health Drainer"
       l: "Every few minutes your max health will be<br>reduced by a given percentage.<br>Better be quick!"
+    DEATH_HUNT:
+      n: "Death Hunt"
+      l: "Die to all given deaths in a specific order<br>to finish!<br>Use /deathhunt to modify"
   chS:
     FLY:
       power:

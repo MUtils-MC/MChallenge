@@ -8,50 +8,29 @@ import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
-import de.miraculixx.kpaper.items.getLivingMobs
-import de.miraculixx.mchallenge.MChallenge
-import de.miraculixx.mchallenge.PluginManager
-import de.miraculixx.mchallenge.commands.ModuleCommand
-import de.miraculixx.mchallenge.modules.ChallengeManager
-import de.miraculixx.mchallenge.modules.mods.force.huntMob.HuntObject
-import de.miraculixx.mchallenge.utils.config.loadConfig
-import de.miraculixx.mchallenge.utils.config.saveConfig
-import de.miraculixx.mcommons.serializer.miniMessage
-import de.miraculixx.mcommons.text.cMark
-import de.miraculixx.mcommons.text.cmp
-import de.miraculixx.mcommons.text.prefix
+import de.miraculixx.mchallenge.modules.challenges.interfaces.HuntChallenge
+import de.miraculixx.mchallenge.utils.serializer.Serializer
+import de.miraculixx.mcommons.extensions.enumOf
+import de.miraculixx.mcommons.text.cHighlight
 import io.papermc.paper.event.entity.TameableDeathMessageEvent
-import kotlinx.serialization.Serializable
 import net.kyori.adventure.audience.Audience
-import net.kyori.adventure.bossbar.BossBar
-import net.kyori.adventure.key.Key
-import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.text.TranslatableComponent
-import net.minecraft.util.GsonHelper
 import org.bukkit.EntityEffect
-import org.bukkit.Material
-import org.bukkit.Statistic
 import org.bukkit.entity.EntityType
-import org.bukkit.entity.LivingEntity
-import org.bukkit.entity.Player
-import org.bukkit.entity.Projectile
-import org.bukkit.event.entity.EntityDamageByEntityEvent
-import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.entity.PlayerDeathEvent
-import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
-import org.json.simple.JSONObject
-import java.io.File
 
-class DeathHunt : Challenge, HuntObject<String> {
-    private val dataFile = File("${MChallenge.configFolder.path}/data/death_hunt.json")
-    val allDeathKeys: List<String> = extractValidKeys()
-    private var currentTarget: String? = null
-    override val maxEntries = allDeathKeys.size
-    override val remainingEntries = mutableListOf<String>()
-    override val blacklist = mutableListOf<String>()
-    override val bar = BossBar.bossBar(cmp("Waiting for server..."), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS)
+class DeathHunt : Challenge, HuntChallenge<String>("deathhunt", "death_hunt") {
+    override val typeName = "Death"
+    override val allEntries = extractValidKeys()
+    override val maxEntries = allEntries.size
+    override val remainingEntries: MutableList<String> = mutableListOf()
+    override var currentTarget: String? = null
+    override val serializer: Serializer<String> = object: Serializer<String> {
+        override fun toString(data: String) = data
+        override fun toObject(data: String) = data
+    }
 
     override fun register() {
         onDeath.register()
@@ -90,39 +69,16 @@ class DeathHunt : Challenge, HuntObject<String> {
         broadcast(message)
     }
 
-
     override fun start(): Boolean {
-        val preData = dataFile.loadConfig(DeathHuntData())
-        val preTarget = preData.target
-        currentTarget = if (preTarget == null) {
-            remainingEntries.addAll(allDeathKeys)
-            remainingEntries.random()
-        } else {
-            remainingEntries.addAll(preData.remainingDeaths)
-            preTarget
-        }
-        remainingEntries.remove(currentTarget)
-        calcBar(getCurrentEntryName())
-        onlinePlayers.forEach { it.showBossBar(bar) }
-        val cmdClass = DeathHuntCommand(this)
-        val cmdInstance = PluginManager.getCommand("deathhunt") ?: return false
-        cmdInstance.setExecutor(cmdClass)
-        cmdInstance.tabCompleter = cmdClass
-        onJoin.register()
+        startHunt()
         return true
     }
 
     override fun stop() {
-        dataFile.saveConfig(DeathHuntData(currentTarget, remainingEntries))
-        onlinePlayers.forEach { it.hideBossBar(bar) }
-        ModuleCommand("mobhunt")
-        onJoin.unregister()
+        stopHunt()
     }
 
-    private val onJoin = listen<PlayerJoinEvent>(register = false) {
-        bar.addViewer(it.player)
-        it.player.getStatistic(Statistic.ANIMALS_BRED)
-    }
+    override fun getTranslationKey() = currentTarget?.let { "<lang:$it:'<color:$cHighlight>Player/Pet</color>':'<color:$cHighlight>Something</color>'>" }
 
     private fun extractValidKeys(): List<String> {
         val rawJson = javaClass.getResourceAsStream("/data/deathKeys.json")?.readBytes()?.decodeToString() ?: "{}"
@@ -138,34 +94,4 @@ class DeathHunt : Challenge, HuntObject<String> {
             "death.attack.genericKill"
         )
     }
-
-
-
-    override fun nextEntry(playerName: String, audience: Audience) {
-        broadcast(prefix, "event.deathHunt.collect", listOf(playerName, currentTarget?.let { "<lang:${it}>" } ?: ""))
-        audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
-        val size = remainingEntries.size
-        currentTarget = if (size == 0) {
-            broadcast(prefix,"event.deathHunt.success")
-            ChallengeManager.stopChallenges()
-            null
-        } else remainingEntries.random()
-        remainingEntries.remove(currentTarget)
-        calcBar(getCurrentEntryName())
-    }
-
-    override fun getCurrentEntryName() = currentTarget
-
-    override fun calcBar(entryName: String?) {
-        val collectedAmount = maxEntries - remainingEntries.size
-        val target = entryName?.let { "<lang:$it:'${cMark}Target<grey>':'${cMark}Entity<grey>'>" } ?: "<green>Finished</green>"
-        bar.name(miniMessage.deserialize("<grey>$target  <dark_gray>(<gray><green>$collectedAmount</green>/<red>$maxEntries</red></gray>)</dark_gray>"))
-    }
-
-    @Serializable
-    private data class DeathHuntData(
-        val target: String? = null,
-        val remainingDeaths: List<String> = emptyList(),
-        val blacklist: List<String> = emptyList()
-    )
 }

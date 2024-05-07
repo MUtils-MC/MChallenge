@@ -94,6 +94,7 @@ class MChallenge : KPaper() {
         ConfigManager.addConfigurable(BackpackCommand())
 
         // Load configuration
+        prefix = cmp("MChallenge", cHighlight) + _prefixSeparator
         ConfigManager.addConfigurable(ChallengeManager)
         val settings = ConfigManager.settings
         debug = settings.debug
@@ -120,7 +121,7 @@ class MChallenge : KPaper() {
             Spectator.loadData()
 
             // Connect Bridge
-            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port, debug)
+            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.minecraftVersion, server.port, debug)
             val version = bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0, File("plugins/update"))
             //bridgeAPI.modrinthUpdate(File("plugins/update"))
             // TODO Prompt with click to update

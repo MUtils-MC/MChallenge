@@ -4,7 +4,7 @@ import de.miraculixx.mchallenge.utils.Command
 import de.miraculixx.mchallenge.utils.bc
 import de.miraculixx.mcommons.text.prefix
 
-interface ChallengeCommand {
+interface CommandChallenge {
     val command: Command
 
     fun registerCommand() {

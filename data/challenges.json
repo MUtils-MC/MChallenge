@@ -1,5 +1,15 @@
 [
   {
+    "key": "DEATH_HUNT",
+    "version": 105,
+    "block": "totem_of_undying",
+    "tags": [
+      "FUN",
+      "FORCE"
+    ],
+    "new": true
+  },
+  {
     "key": "RHYTHM_CRAFT",
     "version": -1,
     "block": "note_block",
@@ -32,8 +42,7 @@
       "wrongDamage",
       "randomOrder",
       "visual"
-    ],
-    "new": true
+    ]
   },
   {
     "key": "WORLD_DECAY",
@@ -45,8 +54,7 @@
     "settings": [
       "delay",
       "steps"
-    ],
-    "new": true
+    ]
   },
   {
     "key": "CHUNK_SYNC",
@@ -57,8 +65,7 @@
     ],
     "settings": [
       "env"
-    ],
-    "new": true
+    ]
   },
   {
     "key": "LOW_VISION",

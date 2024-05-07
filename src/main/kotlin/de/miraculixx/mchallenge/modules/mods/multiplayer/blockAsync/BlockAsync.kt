@@ -12,7 +12,7 @@ import de.miraculixx.mchallenge.PluginManager
 import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
-import de.miraculixx.mchallenge.modules.challenges.interfaces.ChallengeCommand
+import de.miraculixx.mchallenge.modules.challenges.interfaces.CommandChallenge
 import de.miraculixx.mchallenge.utils.bc
 import de.miraculixx.mchallenge.utils.command
 import de.miraculixx.mcommons.namespace
@@ -35,7 +35,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
 
-class BlockAsync : Challenge, ChallengeCommand {
+class BlockAsync : Challenge, CommandChallenge {
     private val blockList = HashMap<Location, Pair<Player, BlockData>>() //Location ist der fake Block - Player der Spieler, welcher den Block abgebaut hat
     private val hidePlayers: Boolean
 

@@ -3,7 +3,7 @@ package de.miraculixx.mchallenge.utils
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandTree
 
-fun command(name: String, tree: CommandTree.() -> Unit = {}) = Command(name, tree)
+fun command(name: String, tree: CommandTree.() -> Unit = {}) = Command(name, tree, false)
 
 class Command(
     val name: String,
