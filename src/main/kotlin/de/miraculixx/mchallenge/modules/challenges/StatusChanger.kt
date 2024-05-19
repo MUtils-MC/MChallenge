@@ -15,6 +15,7 @@ import de.miraculixx.mchallenge.modules.mods.misc.checkpoints.Checkpoints
 import de.miraculixx.mchallenge.modules.mods.misc.ghost.Ghost
 import de.miraculixx.mchallenge.modules.mods.misc.gravity.GravityManager
 import de.miraculixx.mchallenge.modules.mods.misc.inTime.InTime
+import de.miraculixx.mchallenge.modules.mods.misc.mlg.MLGChallenge
 import de.miraculixx.mchallenge.modules.mods.misc.realistic.Realistic
 import de.miraculixx.mchallenge.modules.mods.misc.rhythm.RhythmCraft
 import de.miraculixx.mchallenge.modules.mods.misc.rocket.Rocket
@@ -121,6 +122,7 @@ class StatusChanger {
 //            Challenges.HALLOWEEN -> HalloweenChallenge()
             Challenges.HP_DRAIN -> HPDrain()
             Challenges.DEATH_HUNT -> DeathHunt()
+            Challenges.MLG -> MLGChallenge()
         }
     }
 

@@ -8,10 +8,7 @@ import de.miraculixx.mbridge.MUtilsBridge
 import de.miraculixx.mbridge.MUtilsBridge.Companion.debug
 import de.miraculixx.mbridge.data.MUtilsModule
 import de.miraculixx.mbridge.data.MUtilsPlatform
-import de.miraculixx.mchallenge.commands.ChallengeCommand
-import de.miraculixx.mchallenge.commands.CompetitionCommand
-import de.miraculixx.mchallenge.commands.CustomRulesCommand
-import de.miraculixx.mchallenge.commands.ModuleCommand
+import de.miraculixx.mchallenge.commands.*
 import de.miraculixx.mchallenge.commands.utils.*
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.challenges.challenges
@@ -25,6 +22,7 @@ import de.miraculixx.mcommons.minorVersion
 import de.miraculixx.mcommons.text.*
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
+import io.papermc.paper.command.brigadier.PluginVanillaCommandWrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -92,6 +90,8 @@ class MChallenge : KPaper() {
         CompetitionCommand()
         ConfigManager.addConfigurable(PositionCommand())
         ConfigManager.addConfigurable(BackpackCommand())
+        TestCommand()
+        ExperimentalFeatureCommand
 
         // Load configuration
         prefix = cmp("MChallenge", cHighlight) + _prefixSeparator
@@ -144,9 +144,9 @@ class MChallenge : KPaper() {
 
 
     override fun shutdown() {
-        CommandAPI.onDisable()
         ChallengeManager.shutDown()
         ConfigManager.save()
+        CommandAPI.onDisable()
     }
 }
 

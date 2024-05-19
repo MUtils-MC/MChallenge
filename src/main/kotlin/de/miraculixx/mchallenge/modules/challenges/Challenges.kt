@@ -72,7 +72,8 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     HIT_ORDER(setOf(ChallengeTags.MEDIUM), Icon("DIAMOND_AXE")),
     TICK_RATE(setOf(ChallengeTags.MEDIUM, ChallengeTags.BETA), Icon("CLOCK")),
     RHYTHM_CRAFT(setOf(ChallengeTags.HARD, ChallengeTags.BETA), Icon("NOTE_BLOCK")),
-    DEATH_HUNT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("TOTEM_OF_UNDYING"))
+    DEATH_HUNT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("TOTEM_OF_UNDYING")),
+    MLG(setOf(ChallengeTags.HARD), Icon("WATER_BUCKET")),
     ;
 
 
@@ -325,6 +326,22 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             RHYTHM_CRAFT -> mapOf()
 
             DEATH_HUNT -> mapOf()
+
+            MLG -> mapOf(
+                "delay" to ChallengeSectionSetting(
+                    "CLOCK", mapOf(
+                        "minDelay" to ChallengeIntSetting("GOLD_NUGGET", 120, "s", max = 600, min = 30, step = 10),
+                        "maxDelay" to ChallengeIntSetting("GOLD_INGOT", 240, "s", max = 600, min = 60, step = 10)
+                    )
+                ),
+                "height" to ChallengeSectionSetting(
+                    "RABBIT_FOOT", mapOf(
+                        "minHeight" to ChallengeIntSetting("IRON_NUGGET", 50, "b", max = 200, min = 30, step = 5),
+                        "maxHeight" to ChallengeIntSetting("IRON_INGOT", 100, "b", max = 200, min = 40, step = 5)
+                    )
+                ),
+                "hardMLGs" to ChallengeBoolSetting("OAK_BOAT", true)
+            )
         }
     }
 }

@@ -1,0 +1,156 @@
+"": {
+	Data: {
+		WanderingTraderSpawnChance: 0
+		BorderCenterZ: 0.0
+		Difficulty: 1B
+		BorderSizeLerpTime: 0L
+		raining: 0B
+		Time: 0L
+		GameType: 0
+		BorderCenterX: 0.0
+		BorderWarningBlocks: 5.0
+		BorderDamagePerBlock: 0.2
+		WorldGenSettings: {
+			bonus_chest: 0B
+			seed: -8199817837703319721L
+			generate_features: 0B
+			dimensions: {
+				"minecraft:overworld": {
+					generator: {
+						settings: {
+							features: 0B
+							biome: "minecraft:the_void"
+							layers: [
+								{
+									block: "minecraft:bedrock"
+									height: 1
+								},
+								{
+									block: "minecraft:%BLOCK%"
+									height: 1
+								},
+							]
+							lakes: 0B
+						}
+						type: "minecraft:flat"
+					}
+					type: "minecraft:overworld"
+				}
+				"minecraft:the_nether": {
+					generator: {
+						settings: "minecraft:nether"
+						biome_source: {
+							preset: "minecraft:nether"
+							type: "minecraft:multi_noise"
+						}
+						type: "minecraft:noise"
+					}
+					type: "minecraft:the_nether"
+				}
+				"minecraft:the_end": {
+					generator: {
+						settings: "minecraft:end"
+						biome_source: {
+							type: "minecraft:the_end"
+						}
+						type: "minecraft:noise"
+					}
+					type: "minecraft:the_end"
+				}
+			}
+		}
+		DragonFight: {
+			NeedsStateScanning: 1B
+			DragonKilled: 0B
+			PreviouslyKilled: 0B
+		}
+		BorderSizeLerpTarget: 59999968.0
+		Version: {
+			Series: main
+			Snapshot: 0B
+			Id: 3839
+			Name: "%VERSION%"
+		}
+		DayTime: 0L
+		initialized: 1B
+		WasModded: 1B
+		allowCommands: 0B
+		WanderingTraderSpawnDelay: 0
+		CustomBossEvents: {}
+		GameRules: {
+			globalSoundEvents: "true"
+			tntExplosionDropDecay: "false"
+			enderPearlsVanishOnDeath: "true"
+			doFireTick: "false"
+			maxCommandChainLength: "65536"
+			doVinesSpread: "true"
+			lavaSourceConversion: "false"
+			disableElytraMovementCheck: "false"
+			forgiveDeadPlayers: "true"
+			commandBlockOutput: "true"
+			playersNetherPortalCreativeDelay: "1"
+			maxEntityCramming: "24"
+			doMobSpawning: "false"
+			universalAnger: "false"
+			playersSleepingPercentage: "100"
+			snowAccumulationHeight: "1"
+			doImmediateRespawn: "false"
+			blockExplosionDropDecay: "true"
+			naturalRegeneration: "true"
+			doMobLoot: "true"
+			fallDamage: "true"
+			doEntityDrops: "true"
+			randomTickSpeed: "0"
+			playersNetherPortalDefaultDelay: "80"
+			spawnRadius: "10"
+			freezeDamage: "true"
+			sendCommandFeedback: "true"
+			doWardenSpawning: "true"
+			fireDamage: "true"
+			reducedDebugInfo: "false"
+			waterSourceConversion: "true"
+			projectilesCanBreakBlocks: "true"
+			announceAdvancements: "true"
+			drowningDamage: "true"
+			spawnChunkRadius: "2"
+			disableRaids: "false"
+			doWeatherCycle: "true"
+			mobExplosionDropDecay: "true"
+			doDaylightCycle: "true"
+			showDeathMessages: "true"
+			doTileDrops: "true"
+			doInsomnia: "true"
+			keepInventory: "false"
+			doLimitedCrafting: "false"
+			mobGriefing: "true"
+			doTraderSpawning: "true"
+			commandModificationBlockLimit: "32768"
+			logAdminCommands: "true"
+			spectatorsGenerateChunks: "true"
+			doPatrolSpawning: "true"
+			maxCommandForkCount: "65536"
+		}
+		thunderTime: 17243
+		SpawnY: -62
+		rainTime: 23770
+		hardcore: 0B
+		SpawnZ: 0
+		DifficultyLocked: 0B
+		SpawnX: 0
+		clearWeatherTime: 0
+		thundering: 0B
+		SpawnAngle: 0.0F
+		version: 19133
+		BorderSafeZone: 5.0
+		LastPlayed: 1716035560012L
+		BorderWarningTime: 15.0
+		ScheduledEvents: []
+		LevelName: "%NAME%"
+		BorderSize: 59999968.0
+		DataVersion: 3839
+		DataPacks: {
+			Enabled: [ vanilla, file/bukkit, paper, update_1_21 ]
+			Disabled: [ bundle, trade_rebalance, ]
+		}
+	}
+}

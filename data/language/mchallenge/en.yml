@@ -95,6 +95,7 @@ event:
     noDoubleKill: "<red><input-1> killed the same mob twice in a row!"
     hitOrder: "<red><input-1> was not allowed do damage a mob"
     crushedAnvils: "<red><input-1> was hit by an anvil!"
+    mlg: "<red><input-1> failed the MLG!"
   mob_hunt:
     collect: "<green><input-1> found <input-2>!"
     success: "<green>Congratulations! You found all mobs"
@@ -154,6 +155,8 @@ event:
     current: "Current Health ⇒ <blue><input-1></blue>"
     next: "Next health draining in <blue><input-1></blue> <dark_gray>(<input-2>%)"
   enable-flight: "<red>This Challenge requires to allow flight in your <u>server.properties</u>! Otherwise players will be kicked spontaneously for flying."
+  experimental:
+    missing: "<red>Missing experimental features <u><input-1></u>! <click:run_command:'/experimental-features enable <input-1>'>Click here to enable it (requires rejoin)</click>"
 
 
 
@@ -412,6 +415,9 @@ items:
     DEATH_HUNT:
       n: "Death Hunt"
       l: "Die to all given deaths in a specific order<br>to finish!<br>Use /deathhunt to modify"
+    MLG:
+      n: "MLG Challenge"
+      l: "Once a while you are forced to perform<br>a random MLG! Can you survive the fall?"
   chS:
     FLY:
       power:
@@ -795,6 +801,24 @@ items:
       interval:
         n: "Interval"
         l: "Timing for each health draining"
+    MLG:
+      delay:
+        n: "Delay"
+        l: "Minimum and maximum duration<br>between MLGs"
+      minDelay:
+        n: "Min Delay"
+      maxDelay:
+        n: "Max Delay"
+      height:
+        n: "Height"
+        l: "Minimum and maximum height<br>in blocks to perform the MLG"
+      minHeight:
+        n: "Min Height"
+      maxHeight:
+        n: "Max Height"
+      hardMLGs:
+        n: "Hard MLGs"
+        l: "Activate to perform the hardest<br>MLGs. Only for skilled players!"
 
 tags:
   FUN:

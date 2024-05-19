@@ -1,8 +1,17 @@
 [
   {
+    "key": "MLG",
+    "version": 118,
+    "item": "water_bucket",
+    "tags": [
+      "HARD"
+    ],
+    "new": true
+  },
+  {
     "key": "DEATH_HUNT",
-    "version": 105,
-    "block": "totem_of_undying",
+    "version": 116,
+    "item": "totem_of_undying",
     "tags": [
       "FUN",
       "FORCE"

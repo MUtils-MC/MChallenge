@@ -23,7 +23,7 @@ import de.miraculixx.mcommons.text.*
 import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.Sound
-import java.util.Locale
+import java.util.*
 
 class ChallengeCommand {
     private var apiCooldown = false

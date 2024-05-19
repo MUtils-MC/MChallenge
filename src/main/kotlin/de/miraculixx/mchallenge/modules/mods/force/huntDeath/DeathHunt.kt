@@ -12,6 +12,7 @@ import de.miraculixx.mchallenge.modules.challenges.interfaces.HuntChallenge
 import de.miraculixx.mchallenge.utils.serializer.Serializer
 import de.miraculixx.mcommons.extensions.enumOf
 import de.miraculixx.mcommons.text.cHighlight
+import de.miraculixx.mcommons.text.cMark
 import io.papermc.paper.event.entity.TameableDeathMessageEvent
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.TranslatableComponent
@@ -78,7 +79,7 @@ class DeathHunt : Challenge, HuntChallenge<String>("deathhunt", "death_hunt") {
         stopHunt()
     }
 
-    override fun getTranslationKey() = currentTarget?.let { "<lang:$it:'<color:$cHighlight>Player/Pet</color>':'<color:$cHighlight>Something</color>'>" }
+    override fun getTranslationKey() = currentTarget?.let { "<lang:$it:'${cMark}Player/Pet$cHighlight':'${cMark}Something$cHighlight'>" }
 
     private fun extractValidKeys(): List<String> {
         val rawJson = javaClass.getResourceAsStream("/data/deathKeys.json")?.readBytes()?.decodeToString() ?: "{}"

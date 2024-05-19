@@ -54,7 +54,7 @@ abstract class HuntChallenge<T>(name: String, val key: String) : CommandChalleng
     abstract fun getTranslationKey(): String?
 
     fun nextEntry(playerName: String, audience: Audience) {
-        broadcast(prefix, "event.$key.collect", listOf(playerName, getTranslationKey()?.let { "<lang:$it>" } ?: ""))
+        broadcast(prefix, "event.$key.collect", listOf(playerName, getTranslationKey() ?: ""))
         audience.playSound(Sound.sound(Key.key("entity.chicken.egg"), Sound.Source.MASTER, 1f, 1.2f))
         currentTarget = if (remainingEntries.isEmpty()) {
             broadcast(prefix, "event.$key.success")
@@ -67,7 +67,7 @@ abstract class HuntChallenge<T>(name: String, val key: String) : CommandChalleng
 
     private fun calcBar() {
         val collectedAmount = maxEntries - remainingEntries.size
-        val target = getTranslationKey()?.let { "<blue><b><lang:$it><blue><b>" } ?: "<green><b>Finished</b></green>"
+        val target = getTranslationKey()?.let { "<blue><b>$it<blue><b>" } ?: "<green><b>Finished</b></green>"
         bar.name(miniMessage.deserialize("<gray>$typeName:</gray> $target <dark_gray>(<gray><green>$collectedAmount</green>/<red>$maxEntries</red></gray>)</dark_gray>"))
     }
 

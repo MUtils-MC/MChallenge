@@ -7,7 +7,7 @@ import org.yaml.snakeyaml.Yaml
 plugins {
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.serialization") version "1.9.23"
-    id("io.papermc.paperweight.userdev") version "1.7.0"
+    id("io.papermc.paperweight.userdev") version "1.7.1"
     id("xyz.jpenilla.run-paper") version "2.3.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
@@ -27,6 +27,8 @@ val projectName = properties["name"] as String
 repositories {
     mavenLocal()
     mavenCentral()
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://dl.cloudsmith.io/public/matyrobbrt/javanbt/maven/")
 }
 
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
@@ -36,14 +38,15 @@ dependencies {
 
     // Kotlin libraries
     library(kotlin("stdlib"))
-    library("org.jetbrains.kotlinx:kotlinx-serialization-json:1.+")
-    library("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.+")
+    library("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.+")
+    library("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.+")
 
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    library("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.0")
-    library("dev.jorel:commandapi-bukkit-kotlin:9.4.0")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.5.0-SNAPSHOT")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:9.5.0-SNAPSHOT")
+    implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs
     implementation("de.miraculixx:mbridge:1.0.0")
@@ -68,9 +71,10 @@ tasks {
     shadowJar {
         dependencies {
             include {
-                it.moduleGroup == "de.miraculixx"
+                it.moduleGroup == "de.miraculixx" || it.moduleGroup == "dev.jorel"
             }
         }
+        relocate("dev.jorel.commandapi", "de.miraculixx.mchallenge.commandapi")
     }
 }
 
@@ -99,25 +103,27 @@ bukkit {
 
 modrinth {
     token.set(properties["modrinthToken"] as String)
-    projectId.set(properties["modrinthProjectId"] as? String ?: projectName)
+    projectId.set(properties["modrinthProjectId"] as? String ?: properties["name"] as String)
     versionNumber.set(version as String)
-    versionType.set("release") // Can also be `beta` or `alpha`
-    versionName.set("MChallenge - $version")
+    versionType.set(properties["publishState"] as String)
+
     uploadFile.set(tasks.jar)
+    versionName = "MChallenge - ${properties["version"]}"
     outlet.mcVersionRange = properties["supportedVersions"] as String
     outlet.allowedReleaseTypes = setOf(ReleaseType.RELEASE)
     gameVersions.addAll(outlet.mcVersions())
     loaders.addAll(buildList {
         add("paper")
         add("purpur")
-        if (foliaSupport) add("folia")
     })
     dependencies {
-        optional.project("timer")
-        optional.project("mweb")
+        // The scope can be `required`, `optional`, `incompatible`, or `embedded`
+        // The type can either be `project` or `version`
+        required.project("mweb")
     }
 
-    // Project sync
+    changelog = "- Fix error caused by latest Paper API changes regarding brigadier commands"
+
     syncBodyFrom = rootProject.file(".github/assets/README-Modrinth.md").readText()
 }
 
