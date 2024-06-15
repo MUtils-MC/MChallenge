@@ -33,6 +33,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     FLY(setOf(ChallengeTags.FUN, ChallengeTags.FREE), Icon("ELYTRA"), true),
     GRAVITY(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("SAND"), true),
     HP_DRAIN(setOf(ChallengeTags.MEDIUM, ChallengeTags.FREE), Icon("SWEET_BERRIES"), true),
+    STACK_LIMIT(setOf(ChallengeTags.HARD, ChallengeTags.FREE), Icon("BUNDLE"), true),
 
     COLLECT_BATTLE(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("HEART_OF_THE_SEA")),
     IN_TIME(setOf(ChallengeTags.MEDIUM), Icon("CLOCK")),
@@ -138,7 +139,12 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
             )
 
             RANDOMIZER_BLOCK -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
-            RANDOMIZER_ENTITY -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
+
+            RANDOMIZER_ENTITY -> mapOf(
+                "random" to ChallengeBoolSetting("DROPPER", false),
+                "itemMode" to ChallengeBoolSetting("CHEST", false),
+            )
+
             RANDOMIZER_BIOMES -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             RANDOMIZER_MOBS -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
             FORCE_COLLECT -> mapOf(
@@ -341,6 +347,10 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                     )
                 ),
                 "hardMLGs" to ChallengeBoolSetting("OAK_BOAT", true)
+            )
+
+            STACK_LIMIT -> mapOf(
+                "limit" to ChallengeIntSetting("BUNDLE", 1, max = 99, min = 1)
             )
         }
     }

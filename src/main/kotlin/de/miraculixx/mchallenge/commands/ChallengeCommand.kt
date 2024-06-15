@@ -14,12 +14,18 @@ import de.miraculixx.mchallenge.gui.buildInventory
 import de.miraculixx.mchallenge.gui.items.ItemsChallenge
 import de.miraculixx.mchallenge.gui.items.ItemsMenu
 import de.miraculixx.mchallenge.modules.ChallengeManager
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.resetSetting
 import de.miraculixx.mchallenge.utils.UniversalChallenge
 import de.miraculixx.mchallenge.utils.config.ConfigManager
+import de.miraculixx.mchallenge.utils.config.ConfigManager.settings
 import de.miraculixx.mchallenge.utils.getAccountStatus
+import de.miraculixx.mcommons.extensions.enumOf
 import de.miraculixx.mcommons.extensions.soundEnable
 import de.miraculixx.mcommons.extensions.soundError
 import de.miraculixx.mcommons.text.*
+import dev.jorel.commandapi.arguments.ArgumentSuggestions
 import dev.jorel.commandapi.arguments.LiteralArgument
 import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.Sound
@@ -140,7 +146,8 @@ class ChallengeCommand {
             }
         }
 
-        argument(LiteralArgument("settings").withPermission("mutils.command.settings")) {
+        literalArgument("settings") {
+            withPermission("mutils.command.settings")
             literalArgument("debug") {
                 booleanArgument("active") {
                     anyExecutor { sender, args ->
@@ -151,6 +158,7 @@ class ChallengeCommand {
                     }
                 }
             }
+
             literalArgument("language") {
                 stringArgument("lang") {
                     anyExecutor { sender, args ->
@@ -160,6 +168,22 @@ class ChallengeCommand {
                             ConfigManager.settings.language = locale
                             sender.sendMessage(prefix + locale.msg("command.lang.success", listOf(key)))
                         } else sender.sendMessage(prefix + sender.language().msg("command.lang.fail", listOf(key)))
+                    }
+                }
+            }
+
+            literalArgument("resetConfig") {
+                stringArgument("module") {
+                    replaceSuggestions(ArgumentSuggestions.stringCollection { Challenges.entries.map { it.name } })
+                    anyExecutor { sender, args ->
+                        val module = args[0] as String
+                        val challenge = enumOf<Challenges>(module)
+                        if (challenge == null) {
+                            sender.sendMessage(prefix + cmp("Invalid module: $module", cError))
+                            return@anyExecutor
+                        }
+                        challenges.resetSetting(challenge)
+                        sender.sendMessage(prefix + cmp("Successfully reset settings for $module", cSuccess))
                     }
                 }
             }

@@ -1,12 +1,32 @@
 [
   {
+    "key": "STACK_LIMIT",
+    "version": 119,
+    "item": "bundle",
+    "tags": [
+      "HARD",
+      "FREE"
+    ],
+    "settings": [
+      "limit"
+    ],
+    "new": true,
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/f69cb41ee20d2e8f194676793a00d0379db5c4ff.gif"
+  },
+  {
     "key": "MLG",
     "version": 118,
     "item": "water_bucket",
     "tags": [
       "HARD"
     ],
-    "new": true
+    "settings": [
+      "delay",
+      "height",
+      "hardMLGs"
+    ],
+    "new": true,
+    "preview": "https://cdn.modrinth.com/data/5fu9B7as/images/a8459259ae87fe5386a7206fa665784030a2ec98.gif"
   },
   {
     "key": "DEATH_HUNT",
@@ -567,7 +587,8 @@
       "RANDOMIZER"
     ],
     "settings": [
-      "random"
+      "random",
+      "itemMode"
     ]
   },
   {

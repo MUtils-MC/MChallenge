@@ -36,7 +36,7 @@ All challenges can be combined and played in multiplayer or singleplayer (some r
 You have an idea for a new Challenge?
 We would be happy to hear it in our [discord](https://dc.mutils.net)!
 
-**▪ Current Challenge count** ⇒ ``67``
+**▪ Current Challenge count** ⇒ ``68``
 
 <!-- modrinth_exclude.start -->
 > **Important**<br>
@@ -276,6 +276,20 @@ The world gone crazy and every few seconds the gravity switches between 4 new gr
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>MLG Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/water_bucket.png' width='18'></summary>
+Once a while you are forced to perform a random MLG! Can you survive the fall?
+
+---
+
+⚙️ **Settings**
+- `Delay` - Minimum and maximum duration between MLGs
+- `Height` - Minimum and maximum height in blocks to perform the MLG
+- `Hard MLGs` - Activate to perform the hardest MLGs. Only for skilled players!
+
+🏷️ **Tags**
+- `Hard` - Good for everyone searching a Challenge!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/a8459259ae87fe5386a7206fa665784030a2ec98.gif)<br>*Currently requires full access*
 </details><details><summary><b>Death Hunt</b> ▪ <img src='https://mutils.net/images/mc/grab/items/totem_of_undying.png' width='18'></summary>
 Die to all given deaths in a specific order to finish! Use /deathhunt to modify
 

@@ -43,6 +43,7 @@ import de.miraculixx.mchallenge.modules.mods.simple.fly.FLY
 import de.miraculixx.mchallenge.modules.mods.simple.hpDrain.HPDrain
 import de.miraculixx.mchallenge.modules.mods.simple.noDoubleKill.NoDoubleKills
 import de.miraculixx.mchallenge.modules.mods.simple.rightTools.RightTools
+import de.miraculixx.mchallenge.modules.mods.simple.stackLimit.StackLimit
 import de.miraculixx.mchallenge.modules.mods.simple.stayAway.StayAway
 import de.miraculixx.mchallenge.modules.mods.simple.tickRate.TickRateChanger
 import de.miraculixx.mchallenge.modules.mods.worldChanging.blockWorld.BlockWorld
@@ -123,6 +124,7 @@ class StatusChanger {
             Challenges.HP_DRAIN -> HPDrain()
             Challenges.DEATH_HUNT -> DeathHunt()
             Challenges.MLG -> MLGChallenge()
+            Challenges.STACK_LIMIT -> StackLimit()
         }
     }
 

@@ -418,6 +418,9 @@ items:
     MLG:
       n: "MLG Challenge"
       l: "Once a while you are forced to perform<br>a random MLG! Can you survive the fall?"
+    STACK_LIMIT:
+      n: "Onestack (Stack limit)"
+      l: "You can only hold one item on each slot<br>in your inventory!<br>Can be modified up to 99 items"
   chS:
     FLY:
       power:
@@ -526,6 +529,9 @@ items:
       random:
         n: "Full Random"
         l: "Enabled: Each action is random,<br>Disabled: Same mob = same drop"
+      itemMode:
+        n: "Item Mode"
+        l: "Activate to randomize all items<br>except only mob drops"
     RANDOMIZER_BIOMES:
       random:
         n: "Full Random"
@@ -819,6 +825,11 @@ items:
       hardMLGs:
         n: "Hard MLGs"
         l: "Activate to perform the hardest<br>MLGs. Only for skilled players!"
+    STACK_LIMIT:
+      limit:
+        n: "Stack Limit"
+        l: "Amount of items that can be<br>hold in one slot"
+
 
 tags:
   FUN:

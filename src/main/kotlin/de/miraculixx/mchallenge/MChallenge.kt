@@ -22,7 +22,6 @@ import de.miraculixx.mcommons.minorVersion
 import de.miraculixx.mcommons.text.*
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
-import io.papermc.paper.command.brigadier.PluginVanillaCommandWrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
