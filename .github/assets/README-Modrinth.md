@@ -36,7 +36,7 @@ All challenges can be combined and played in multiplayer or singleplayer (some r
 You have an idea for a new Challenge?
 We would be happy to hear it in our [discord](https://dc.mutils.net)!
 
-**▪ Current Challenge count** ⇒ ``68``
+**▪ Current Challenge count** ⇒ ``69``
 
 <!-- modrinth_exclude.start -->
 > **Important**<br>
@@ -53,7 +53,19 @@ We would be happy to hear it in our [discord](https://dc.mutils.net)!
 To filter and search for Challenges, visit our own [Challenge List](https://mutils.net/ch/list) or use `ctrl` + `f`
 <details><summary><img src="https://i.imgur.com/HOuMmwT.png" width="40%"></summary>
 
-<details><summary><b>Health Drainer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/sweet_berries.png' width='18'></summary>
+<details><summary><b>Onestack (Stack limit)</b> ▪ <img src='https://mutils.net/images/mc/grab/items/bundle.png' width='18'></summary>
+You can only hold one item on each slot in your inventory! Can be modified up to 99 items
+
+---
+
+⚙️ **Settings**
+- `Stack Limit` - Amount of items that can be hold in one slot
+
+🏷️ **Tags**
+- `Hard` - Good for everyone searching a Challenge!
+
+![Challenge Preview](https://cdn.modrinth.com/data/5fu9B7as/images/f69cb41ee20d2e8f194676793a00d0379db5c4ff.gif)
+</details><details><summary><b>Health Drainer</b> ▪ <img src='https://mutils.net/images/mc/grab/items/sweet_berries.png' width='18'></summary>
 Every few minutes your max health will be reduced by a given percentage. Better be quick!
 
 ---
@@ -589,6 +601,7 @@ Mob drops are shuffled (or random)
 
 ⚙️ **Settings**
 - `Full Random` - Enabled: Each action is random, Disabled: Same mob = same drop
+- `Item Mode` - Activate to randomize all items except only mob drops
 
 🏷️ **Tags**
 - `Fun` - Easy Challenge with fun in focus

@@ -44,8 +44,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.2")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:9.4.2")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.5.0")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:9.5.0")
     implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs
@@ -122,7 +122,7 @@ modrinth {
         required.project("mweb")
     }
 
-    changelog = "- Fix error caused by latest Paper API changes regarding brigadier commands"
+    changelog = "- New Challenge -> Onestack (Stack limit)\n- New Challenge Setting -> Entity drop randomizer for items"
 
     syncBodyFrom = rootProject.file(".github/assets/README-Modrinth.md").readText()
 }
