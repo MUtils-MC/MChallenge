@@ -5,7 +5,7 @@ import org.yaml.snakeyaml.DumperOptions
 import org.yaml.snakeyaml.Yaml
 
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
     kotlin("plugin.serialization") version "1.9.23"
     id("io.papermc.paperweight.userdev") version "1.6.2"
     id("xyz.jpenilla.run-paper") version "2.2.2"

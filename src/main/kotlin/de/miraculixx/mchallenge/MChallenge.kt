@@ -117,10 +117,10 @@ class MChallenge : KPaper() {
 
         // Login with MUtils account
         CoroutineScope(Dispatchers.Default).launch {
-            Spectator.loadData()
+            //Spectator.loadData()
 
             // Connect Bridge
-            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.version, server.port, debug)
+            bridgeAPI = MUtilsBridge(MUtilsPlatform.PAPER, MUtilsModule.CHALLENGES, server.minecraftVersion, server.port, debug)
             val version = bridgeAPI.versionCheck(description.version.toIntOrNull() ?: 0, File("plugins/update"))
             // TODO Prompt with click to update
 

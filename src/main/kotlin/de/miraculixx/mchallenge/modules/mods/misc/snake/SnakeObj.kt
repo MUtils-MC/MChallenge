@@ -52,7 +52,7 @@ class SnakeObj(private val player: Player) {
             val list = ArrayList<Block>()
             //Up count
             val count: Int = length + player.level / 2
-            blockList.forEach { (block: Block?, counter: Int) ->
+            blockList.forEach { (block: Block, counter: Int) ->
                 if (counter >= count) {
                     list.add(block)
                 }
