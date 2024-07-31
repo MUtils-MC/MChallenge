@@ -41,15 +41,6 @@ class TestCommand {
             }
         }
 
-        literalArgument("experimental") {
-            playerExecutor { player, _ ->
-                val worldData = (server as CraftServer).handle.server.worldData
-                worldData.dataConfiguration = worldData.dataConfiguration.expandFeatures(FeatureFlagSet.of(FeatureFlags.UPDATE_1_21))
-                player.sendMessage("Experimental features enabled")
-                player.inventory.addItem(ItemStack(Material.WIND_CHARGE), ItemStack(Material.MACE))
-            }
-        }
-
         literalArgument("scoreboard") {
             fun Objective.setScore(score: Int, display: Component) {
                 val entry = getScore(score.toString()) // Get unique entry
