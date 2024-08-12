@@ -141,7 +141,7 @@ object Spectator {
             output += "\n§7Level: §9${target.level}" +
                     "\n§7Render Distance: §9${target.clientViewDistance} chunks"
         } else if (target is Villager) {
-            output += "\n§7Profession: §9${target.profession.name}" +
+            output += "\n§7Profession: §9${target.profession.key.key}" +
                     "\n§7Trade Level: §9${target.villagerLevel}"
             taskRunLater(2) {
                 val dummyVillager = player.world.spawnEntity(player.location.add(0.0, 10.0, 0.0), EntityType.VILLAGER) as Villager

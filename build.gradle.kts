@@ -34,7 +34,7 @@ repositories {
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 dependencies {
-    paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 
     // Kotlin libraries
     library(kotlin("stdlib"))
@@ -44,8 +44,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.5.1")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:9.5.1")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.5.3")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:9.5.3")
     implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs
