@@ -47,6 +47,7 @@ import de.miraculixx.mchallenge.modules.mods.simple.stackLimit.StackLimit
 import de.miraculixx.mchallenge.modules.mods.simple.stayAway.StayAway
 import de.miraculixx.mchallenge.modules.mods.simple.tickRate.TickRateChanger
 import de.miraculixx.mchallenge.modules.mods.worldChanging.blockWorld.BlockWorld
+import de.miraculixx.mchallenge.modules.mods.worldChanging.border.BorderChallenge
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkBreaker.ChunkBlockBreaker
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkClearer.ChunkClearer
 import de.miraculixx.mchallenge.modules.mods.worldChanging.chunkDecay.ChunkDecay
@@ -125,6 +126,7 @@ class StatusChanger {
             Challenges.DEATH_HUNT -> DeathHunt()
             Challenges.MLG -> MLGChallenge()
             Challenges.STACK_LIMIT -> StackLimit()
+            Challenges.BORDER -> BorderChallenge()
         }
     }
 

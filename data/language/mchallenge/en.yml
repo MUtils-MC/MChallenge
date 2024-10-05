@@ -157,6 +157,9 @@ event:
   enable-flight: "<red>This Challenge requires to allow flight in your <u>server.properties</u>! Otherwise players will be kicked spontaneously for flying."
   experimental:
     missing: "<red>Missing experimental features <u><input-1></u>! <click:run_command:'/experimental-features enable <input-1>'>Click here to enable it (requires rejoin)</click>"
+  border:
+    start: "<red>Click here to reset all your advancements (only new advancements add to border)"
+    stop: "<red>(Rejoin to remove the border)"
 
 
 
@@ -421,6 +424,9 @@ items:
     STACK_LIMIT:
       n: "Onestack (Stack limit)"
       l: "You can only hold one item on each slot<br>in your inventory!<br>Can be modified up to 99 items"
+    BORDER:
+      n: "Border"
+      l: "A border will be created around you<br>which will grow with depending on your mode.<br>Can you handle the limited space?"
   chS:
     FLY:
       power:
@@ -829,6 +835,22 @@ items:
       limit:
         n: "Stack Limit"
         l: "Amount of items that can be<br>hold in one slot"
+    BORDER:
+      radius:
+        n: "Border Radius"
+        l: "Radius settings for the border"
+      start:
+        n: "Start Radius"
+        l: "The radius the border starts with"
+      step:
+        n: "Blocks Per Step"
+        l: "Amount of blocks the border<br>will grow each step"
+      mode:
+        n: "Border Mode"
+        l: "When should the border grow"
+      extra:
+        n: "Extra Settings"
+        l: "Effect depending on the mode:<br>- TIMED: Minutes between each step<br>- ACHIEVEMENT: None"
 
 
 tags:

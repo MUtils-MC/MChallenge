@@ -6,6 +6,7 @@ import de.miraculixx.challenge.api.utils.Icon
 import de.miraculixx.mchallenge.modules.mods.misc.areaTimer.AreaTimerMode
 import de.miraculixx.mchallenge.modules.mods.multiplayer.noSameItems.NoSameItemEnum
 import de.miraculixx.mchallenge.modules.mods.simple.damager.DamagerType
+import de.miraculixx.mchallenge.modules.mods.worldChanging.border.BorderMode
 import de.miraculixx.mcommons.statics.KHeads
 
 /**
@@ -75,6 +76,7 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
     RHYTHM_CRAFT(setOf(ChallengeTags.HARD, ChallengeTags.BETA), Icon("NOTE_BLOCK")),
     DEATH_HUNT(setOf(ChallengeTags.FUN, ChallengeTags.FORCE), Icon("TOTEM_OF_UNDYING")),
     MLG(setOf(ChallengeTags.HARD), Icon("WATER_BUCKET")),
+    BORDER(setOf(ChallengeTags.MEDIUM, ChallengeTags.FORCE), Icon("IRON_BARS"))
     ;
 
 
@@ -351,6 +353,17 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
 
             STACK_LIMIT -> mapOf(
                 "limit" to ChallengeIntSetting("BUNDLE", 1, max = 99, min = 1)
+            )
+
+            BORDER -> mapOf(
+                "radius" to ChallengeSectionSetting(
+                    "SPECTRAL_ARROW", mapOf(
+                        "start" to ChallengeDoubleSetting("GOLD_BLOCK", 5.0, "b", max = 200.0, min = 0.5, step = 0.5),
+                        "step" to ChallengeDoubleSetting("GOLD_INGOT", 1.0, "b", max = 200.0, min = 0.1, step = 0.1)
+                    )
+                ),
+                "mode" to ChallengeEnumSetting("CRAFTING_TABLE", BorderMode.ACHIEVEMENT.name, options = BorderMode.entries.map { it.name }),
+                "extra" to ChallengeIntSetting("DIAMOND", 1, max = 100, min = 0, step = 1)
             )
         }
     }
