@@ -75,7 +75,7 @@ class VampireData(private val uuid: UUID) {
             if (shooter is Player && shooter.uniqueId == uuid) shooter else return@listen
         } else if (damager is Player && damager.uniqueId == uuid) damager else return@listen
 
-        val rewardedBlood = (target.getAttribute(Attribute.GENERIC_MAX_HEALTH)!!.baseValue * healthToBlood).toInt()
+        val rewardedBlood = (target.getAttribute(Attribute.MAX_HEALTH)!!.baseValue * healthToBlood).toInt()
         if (source.isSneaking) {
             val pack = itemStack(Material.POTION) {
                 meta<PotionMeta> {
@@ -99,7 +99,7 @@ class VampireData(private val uuid: UUID) {
         if (item.itemMeta?.customModel != 100) return@listen
         val content = meta.persistentDataContainer.get(keyBloodPack, PersistentDataType.INTEGER) ?: return@listen
 
-        val maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.value ?: 20.0
+        val maxHealth = player.getAttribute(Attribute.MAX_HEALTH)?.value ?: 20.0
         val missingHP = maxHealth - player.health
         player.health = (player.health + content).coerceAtMost(maxHealth)
         val remainingBlood = content - missingHP

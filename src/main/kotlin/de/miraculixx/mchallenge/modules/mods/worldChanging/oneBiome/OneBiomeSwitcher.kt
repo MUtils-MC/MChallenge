@@ -91,7 +91,7 @@ class OneBiomeSwitcher {
         onlinePlayers.forEach {
             locations[it] = it.location
         }
-        val sBiome = newBiome.name.replace('_', ' ')
+        val sBiome = newBiome.key.key.replace('_', ' ')
         onlinePlayers.forEach { player ->
             val loc = locations[player]
             if (loc == null) {
@@ -103,7 +103,7 @@ class OneBiomeSwitcher {
                 World.Environment.THE_END -> "E"
                 else -> "O"
             }
-            val world = Bukkit.getWorld("${newBiome.name}-$deS")
+            val world = Bukkit.getWorld("${newBiome.key.key}-$deS")
             if (world == null) {
                 consoleAudience.sendMessage(prefix + cmp("OneBiome - No world destination found", cError))
                 return@forEach
@@ -134,7 +134,7 @@ class OneBiomeSwitcher {
         worlds.forEach {
             val name = it.name
             if (name.endsWith("-O") || name.endsWith("-N") || name.endsWith("-E"))
-                if (!name.startsWith(newBiome.name)) {
+                if (!name.startsWith(newBiome.key.key)) {
                     it.players.forEach { p -> p.teleportAsync(worldSpawn) }
                     Bukkit.unloadWorld(it, false)
                     File(name).deleteRecursively()
@@ -144,10 +144,9 @@ class OneBiomeSwitcher {
 
     private fun random(): Biome {
         if (biomeList.isEmpty()) {
-            Biome.entries.forEach {
+            Registry.BIOME.forEach {
                 biomeList.add(it)
             }
-            biomeList.remove(Biome.CUSTOM)
         }
         val biome = biomeList.random()
         biomeList.remove(biome)

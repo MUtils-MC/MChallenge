@@ -39,8 +39,8 @@ class HealCommand {
                         p.isFlying = false
                         p.setGravity(true)
                         p.flySpeed = 0.1f
-                        p.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
-                        p.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.1
+                        p.getAttribute(Attribute.MAX_HEALTH)?.baseValue = 20.0
+                        p.getAttribute(Attribute.MOVEMENT_SPEED)?.baseValue = 0.1
                         p.clearActivePotionEffects()
                         p.isGlowing = false
                     }

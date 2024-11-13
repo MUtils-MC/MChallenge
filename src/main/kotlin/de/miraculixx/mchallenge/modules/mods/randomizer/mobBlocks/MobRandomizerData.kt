@@ -25,7 +25,6 @@ class MobRandomizerData(private val random: Boolean) {
         list.remove(EntityType.ARROW)
         list.remove(EntityType.ARMOR_STAND)
         list.remove(EntityType.AREA_EFFECT_CLOUD)
-        list.remove(EntityType.BOAT)
         list.remove(EntityType.DRAGON_FIREBALL)
         list.remove(EntityType.ITEM)
         list.remove(EntityType.EGG)
@@ -50,7 +49,10 @@ class MobRandomizerData(private val random: Boolean) {
         list.remove(EntityType.UNKNOWN)
         list.remove(EntityType.WITHER_SKULL)
         list.remove(EntityType.ENDER_DRAGON)
-        list.removeIf { entityType: EntityType -> entityType.name.contains("MINECART") }
+        list.removeIf { entityType: EntityType ->
+            entityType.name.contains("MINECART") ||
+            entityType.name.contains("BOAT", true)
+        }
         return list
     }
 

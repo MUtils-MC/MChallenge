@@ -24,6 +24,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.Registry
 import org.bukkit.Sound
 import org.bukkit.block.Biome
 import org.bukkit.entity.Player
@@ -41,8 +42,7 @@ class ForceHunt : Challenge {
     private var stopped = false
 
     private val activeObjects: Set<HuntType>
-    private val biomes = Biome.entries.filter {
-        it != Biome.CUSTOM &&
+    private val biomes = Registry.BIOME.filter {
                 it != Biome.END_BARRENS &&
                 it != Biome.END_HIGHLANDS &&
                 it != Biome.END_MIDLANDS &&
@@ -122,7 +122,7 @@ class ForceHunt : Challenge {
                             (mainWorld.minHeight..mainWorld.maxHeight).random().toString()
                         }
 
-                        HuntType.BIOME -> biomes.random().name
+                        HuntType.BIOME -> biomes.random().key.key
                         HuntType.ITEM -> items.random().name
                     }
                     onlinePlayers.forEach { player -> player.playSound(player, Sound.ENTITY_PUFFER_FISH_BLOW_OUT, 1f, 1.5f) }
@@ -154,7 +154,7 @@ class ForceHunt : Challenge {
     private fun Player.checkPlayer(type: HuntType, goal: String): Boolean {
         return when (type) {
             HuntType.HEIGHT -> location.blockY.toString() == goal
-            HuntType.BIOME -> location.block.biome.name == goal
+            HuntType.BIOME -> location.block.biome.key.key == goal
             HuntType.ITEM -> {
                 val materialGoal = enumOf<Material>(goal) ?: Material.STONE
                 inventory.forEach { item ->

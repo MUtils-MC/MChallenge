@@ -45,7 +45,8 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
             Material.SPLASH_POTION,
             Material.LINGERING_POTION,
             Material.TIPPED_ARROW,
-            Material.ENCHANTED_BOOK
+            Material.ENCHANTED_BOOK,
+            Material.LIGHT
         )
     )
     if (majorVersion >= 17) list.remove(Material.BUDDING_AMETHYST)

@@ -40,14 +40,14 @@ class HPDrain: Challenge {
     override fun stop() {
         task?.cancel()
         onlinePlayers.forEach { p ->
-            p.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
+            p.getAttribute(Attribute.MAX_HEALTH)?.baseValue = 20.0
         }
     }
 
     private fun notifyStatus() {
         onlinePlayers.forEach { p ->
             val locale = p.language()
-            p.sendMessage(prefix + locale.msg("event.hpDrain.current", listOf(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue?.toString() ?: "<i>Unknown<!i>")))
+            p.sendMessage(prefix + locale.msg("event.hpDrain.current", listOf(p.getAttribute(Attribute.MAX_HEALTH)?.baseValue?.toString() ?: "<i>Unknown<!i>")))
             p.sendMessage(prefix + locale.msg("event.hpDrain.next", listOf(delay.seconds.toString(), percentage.toString())))
         }
     }
@@ -57,7 +57,7 @@ class HPDrain: Challenge {
         if (paused) return@task
         if (counter <= 0) {
             onlinePlayers.forEach { p ->
-                val att = p.getAttribute(Attribute.GENERIC_MAX_HEALTH) ?: return@forEach
+                val att = p.getAttribute(Attribute.MAX_HEALTH) ?: return@forEach
                 att.baseValue = (att.baseValue - (att.baseValue * (percentage / 100.0))).coerceAtLeast(0.01)
             }
             notifyStatus()

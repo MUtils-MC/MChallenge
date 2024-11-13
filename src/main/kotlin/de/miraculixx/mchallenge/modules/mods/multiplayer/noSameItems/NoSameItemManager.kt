@@ -54,7 +54,7 @@ class NoSameItemManager {
             if (!Spectator.isSpectator(player.uniqueId)) {
                 player.inventory.clear()
                 if (sync) {
-                    player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = lives * 2.0
+                    player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = lives * 2.0
                 } else {
                     modifyBar(player, lives)
                 }
@@ -116,9 +116,9 @@ class NoSameItemManager {
             var differenz = 0
             if (sync) {
                 if (infoMode == NoSameItemEnum.EVERYTHING || infoMode == NoSameItemEnum.ONLY_LIVES) {
-                    differenz = hp - (player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue?.div(2)?.toInt() ?: 0)
+                    differenz = hp - (player.getAttribute(Attribute.MAX_HEALTH)?.baseValue?.div(2)?.toInt() ?: 0)
                 }
-                player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = hp * 2.0
+                player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = hp * 2.0
             } else {
                 if (infoMode == NoSameItemEnum.EVERYTHING || infoMode == NoSameItemEnum.ONLY_LIVES) {
                     differenz = hp - getAmount(player)

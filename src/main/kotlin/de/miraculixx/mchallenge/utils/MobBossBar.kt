@@ -40,7 +40,7 @@ class MobBossBar(entity: LivingEntity, color: BarColor, name: String) {
             removeMobBar()
             return
         }
-        val max = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue
+        val max = entity.getAttribute(Attribute.MAX_HEALTH)?.baseValue
         val hp = entity.health.plus(change)
         bossBar.progress = hp / max!!
         bossBar.isVisible = true

@@ -93,7 +93,7 @@ class HighGravity : Gravity {
                     newItemStack.amount = size
                     entity.itemStack = newItemStack
                 }
-            } else if (entity.type == EntityType.BOAT) {
+            } else if (entity.type.key.key.contains("boat", true)) {
                 entity.setGravity(true)
                 entity.velocity = entity.velocity.clone().setY(-0.05)
             }

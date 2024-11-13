@@ -53,7 +53,7 @@ class NoGravity : Gravity {
                 player.velocity = player.velocity.clone().add(vector)
             }
             player.getNearbyEntities(10.0, 10.0, 10.0).forEach { entity ->
-                if (entity.type == EntityType.BOAT) {
+                if (entity.type.key.key.contains("boat", true)) {
                     entity.setGravity(false)
                     entity.velocity = entity.velocity.clone().setY(0.02)
                 }

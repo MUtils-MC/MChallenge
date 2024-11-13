@@ -21,6 +21,8 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.NamespacedKey
+import org.bukkit.Registry
 import org.bukkit.Sound
 import org.bukkit.block.Biome
 import org.bukkit.entity.ArmorStand
@@ -58,10 +60,11 @@ class RivalCollect : Challenge {
                 } else emptyList()
             } ?: emptyList()
 
+            Registry.BIOME
             biomes = modeSection?.get("biomes")?.toBool()?.getValue()?.let {
                 if (it) {
                     add(RivalCollectMode.BIOMES)
-                    Biome.entries.filter { biome -> biome != Biome.CUSTOM }
+                    Registry.BIOME.toList()
                 } else emptyList()
             } ?: emptyList()
 
@@ -184,7 +187,7 @@ class RivalCollect : Challenge {
                 }
 
                 RivalCollectMode.BIOMES -> {
-                    val biome = enumOf<Biome>(key) ?: Biome.PLAINS
+                    val biome = Registry.BIOME.get(NamespacedKey("minecraft", key)) ?: Biome.PLAINS
                     checkBiome(player, biome)
                 }
 
@@ -233,7 +236,7 @@ class RivalCollect : Challenge {
         val uuid = player.uniqueId
         val list = progress[uuid] ?: return
         val current = list.last()
-        if (current.key == biome.name) {
+        if (current.key == biome.key.key) {
             player.announceNext(biome.translationKey())
         }
     }
@@ -261,9 +264,9 @@ class RivalCollect : Challenge {
 
             RivalCollectMode.BIOMES -> {
                 val copy = biomes.toMutableList()
-                copy.removeAll(progress.filter { it.type == RivalCollectMode.BIOMES }.map { enumOf<Biome>(it.key) }.toSet())
+                copy.removeAll(progress.filter { it.type == RivalCollectMode.BIOMES }.mapNotNull { Registry.BIOME.get(NamespacedKey("minecraft", it.key)) }.toSet())
                 val newEntry = copy.random()
-                RivalObject(newEntry.translationKey(), biomeToItem(newEntry), newEntry.name)
+                RivalObject(newEntry.translationKey(), biomeToItem(newEntry), newEntry.key.key)
             }
 
             RivalCollectMode.MOBS -> {
@@ -296,7 +299,7 @@ class RivalCollect : Challenge {
     }
 
     private fun biomeToItem(biome: Biome): Material {
-        val name = biome.name
+        val name = biome.key.key.uppercase()
         return when {
             name.contains("FROZEN") -> Material.ICE
             name.contains("SAVANNA") -> Material.ACACIA_WOOD
@@ -326,7 +329,7 @@ class RivalCollect : Challenge {
     private fun mobToItem(mob: EntityType): Material {
         return try {
             Material.valueOf("${mob}_SPAWN_EGG")
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             Material.POLAR_BEAR_SPAWN_EGG
         }
     }

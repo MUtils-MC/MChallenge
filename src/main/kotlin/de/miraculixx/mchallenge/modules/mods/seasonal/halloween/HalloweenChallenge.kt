@@ -217,8 +217,8 @@ class HalloweenChallenge : Challenge {
         val toBiome = to.block.biome
         val player = it.player
 
-        val fromForest = fromBiome.name.endsWith("forest", true)
-        val toForest = toBiome.name.endsWith("forest", true)
+        val fromForest = fromBiome.key.key.endsWith("forest", true)
+        val toForest = toBiome.key.key.endsWith("forest", true)
         when {
             fromForest && !toForest -> {
                 player.removePotionEffect(PotionEffectType.DARKNESS)
@@ -329,7 +329,7 @@ class HalloweenChallenge : Challenge {
                 currentEquip.chestplate = equip?.body
                 currentEquip.leggings = equip?.pants
                 currentEquip.boots = equip?.feet
-                player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 20.0
+                player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = 20.0
                 ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
                 player.persistentDataContainer.set(keyAbilityActive, PersistentDataType.BOOLEAN, false)
@@ -352,7 +352,7 @@ class HalloweenChallenge : Challenge {
                 currentEquip.chestplate = null
                 currentEquip.leggings = null
                 currentEquip.boots = null
-                player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 1.0
+                player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = 1.0
                 ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0392156862745098)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
                 player.persistentDataContainer.set(keyAbilityActive, PersistentDataType.BOOLEAN, true)
@@ -398,7 +398,7 @@ class HalloweenChallenge : Challenge {
             onlinePlayers.forEach { p ->
                 val pos = p.location
                 val biome = pos.block.biome
-                val inForest = biome.name.endsWith("forest", true)
+                val inForest = biome.key.key.endsWith("forest", true)
                 if (inForest) {
                     if (ambientTimer <= 0) {
                         val sound = when ((0..100).random()) {

@@ -100,7 +100,7 @@ class LowGravity : Gravity {
             if (entity is LivingEntity) return@forEach
             val vector = Vector(0.0, -0.01, 0.0)
             entity.velocity = entity.velocity.clone().add(vector)
-            if (entity.type == EntityType.BOAT) {
+            if (entity.type.key.key.contains("boat", true)) {
                 entity.setGravity(false)
                 entity.velocity = entity.velocity.clone().setY(0.01)
             }

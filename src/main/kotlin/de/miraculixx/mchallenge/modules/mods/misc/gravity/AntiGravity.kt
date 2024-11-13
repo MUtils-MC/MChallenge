@@ -5,7 +5,6 @@ import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mcommons.text.defaultLocale
 import de.miraculixx.mcommons.text.msg
 import org.bukkit.Material
-import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockBreakEvent
@@ -46,7 +45,7 @@ class AntiGravity : Gravity {
             if (entity !is LivingEntity) {
                 val vector = entity.velocity.clone().setY(0.3)
                 entity.velocity = vector
-                if (entity.type == EntityType.BOAT) {
+                if (entity.type.key.key.contains("boat", true)) {
                     entity.setGravity(false)
                     entity.velocity = entity.velocity.clone().setY(0.06)
                 }

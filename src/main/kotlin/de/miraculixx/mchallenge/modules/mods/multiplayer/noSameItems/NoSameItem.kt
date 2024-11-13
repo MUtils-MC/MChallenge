@@ -55,7 +55,7 @@ class NoSameItem : Challenge {
             hearts[uuid] = lives
             player.showBossBar(getBossBar(player.uniqueId))
             updateBossBar(uuid)
-            if (sync) player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = lives * 2.0
+            if (sync) player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = lives * 2.0
         }
         return true
     }

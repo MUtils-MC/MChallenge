@@ -74,7 +74,7 @@ class AreaTimer : Challenge {
 
             val loc = player.location
             val key = when (mode) {
-                AreaTimerMode.BIOMES -> loc.block.biome.name.replace('_', ' ')
+                AreaTimerMode.BIOMES -> loc.block.biome.key.key.replace('_', ' ')
                 AreaTimerMode.CHUNKS -> {
                     val chunk = loc.chunk
                     "Chunk ${chunk.x} ${chunk.z}"
