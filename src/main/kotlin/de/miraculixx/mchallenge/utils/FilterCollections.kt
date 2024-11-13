@@ -10,13 +10,14 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
         it.isItem
                 && !it.isLegacy
                 && it.creativeCategory != null
-                && !it.name.endsWith("_ore")
+                && (!it.name.endsWith("_ore") || !silkTouch)
                 && !it.name.contains("WEATHERED_")
                 && (!it.name.contains("OXIDIZED_") || !removeHardToObtain)
                 && !it.name.startsWith("INFESTED_")
                 && !it.name.endsWith("SPAWN_EGG")
                 && (!it.name.contains("_CORAL") || !silkTouch)
                 && !it.name.endsWith("_HEAD")
+                && !it.name.contains("COMMAND_")
                 && (!it.name.contains("AMETHYST") || !silkTouch)
     }.toMutableList()
     if (!silkTouch) list.removeAll(
@@ -46,7 +47,13 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
             Material.LINGERING_POTION,
             Material.TIPPED_ARROW,
             Material.ENCHANTED_BOOK,
-            Material.LIGHT
+            Material.KNOWLEDGE_BOOK,
+            Material.LIGHT,
+            Material.STRUCTURE_VOID,
+            Material.STRUCTURE_BLOCK,
+            Material.JIGSAW,
+            Material.BARRIER,
+            Material.DEBUG_STICK,
         )
     )
     if (majorVersion >= 17) list.remove(Material.BUDDING_AMETHYST)
