@@ -9,12 +9,12 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 
 class ModuleCommand(name: String) : TabExecutor {
-    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         sender.sendMessage(prefix + sender.msg("command.notRegistered"))
         return true
     }
 
-    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>?): MutableList<String> {
+    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String> {
         return mutableListOf()
     }
 

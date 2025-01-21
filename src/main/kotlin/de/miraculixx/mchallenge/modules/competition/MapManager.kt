@@ -20,7 +20,7 @@ import java.awt.Image
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.InputStream
-import java.net.URL
+import java.net.URI
 import java.util.*
 import javax.imageio.ImageIO
 import javax.swing.ImageIcon
@@ -29,7 +29,8 @@ class MapManager(configFolder: File) {
     private val staticBackgroundTasks = loadImage(javaClass.getResourceAsStream("/assets/competition-bg-tasks.jpg"))
     private val staticBackgroundLeader = loadImage(javaClass.getResourceAsStream("/assets/competition-bg-leader.jpg"))
     private val mcFont = Font.createFont(Font.TRUETYPE_FONT, javaClass.getResourceAsStream("/assets/minecraft-font-regular.otf"))
-//    private val mcFont = Font.createFont(Font.TRUETYPE_FONT, File("plugins/MUtils/Challenges/data/minecraft-font-regular.ttf"))
+
+    //    private val mcFont = Font.createFont(Font.TRUETYPE_FONT, File("plugins/MUtils/Challenges/data/minecraft-font-regular.ttf"))
     private val skinCacheFolder = File(configFolder, "/data/skins")
 
     private val playerMaps: MutableMap<UUID, CompetitionMapOverlay> = mutableMapOf()
@@ -78,7 +79,7 @@ class MapManager(configFolder: File) {
         top3.forEach { (uuid, data) ->
             val file = File(skinCacheFolder, "$uuid.png")
             val skin = if (file.exists()) file.inputStream() else {
-                val url = URL("https://mc-heads.net/avatar/$uuid/24")
+                val url = URI("https://mc-heads.net/avatar/$uuid/24").toURL()
                 if (!skinCacheFolder.exists()) skinCacheFolder.mkdirs()
                 File(skinCacheFolder, "$uuid.png").writeBytes(url.readBytes())
                 url.openStream()

@@ -5,25 +5,25 @@ package de.miraculixx.mchallenge.commands.utils
 import de.miraculixx.kpaper.extensions.bukkit.msg
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.mchallenge.PluginManager
+import de.miraculixx.mchallenge.utils.command
 import de.miraculixx.mcommons.text.plus
 import de.miraculixx.mcommons.text.prefix
 import dev.jorel.commandapi.CommandTree
 import dev.jorel.commandapi.kotlindsl.anyExecutor
-import dev.jorel.commandapi.kotlindsl.commandTree
 import dev.jorel.commandapi.kotlindsl.entitySelectorArgumentManyPlayers
 import dev.jorel.commandapi.kotlindsl.playerExecutor
-import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 class HideCommand {
     @Suppress("unused")
-    val hide = commandTree("hide", { sender: CommandSender -> sender.hasPermission("mutils.hide") }) {
-        withPermission("command.hide")
+    val hide = command("hide") {
+        withPermission("mutils.hide")
         handleVisibility(true)
     }
 
     @Suppress("unused")
-    val show = commandTree("show", { sender: CommandSender -> sender.hasPermission("mutils.hide") }) {
+    val show = command("show") {
+        withPermission("mutils.hide")
         handleVisibility(false)
     }
 

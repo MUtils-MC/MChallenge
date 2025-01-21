@@ -51,7 +51,7 @@ class HalloweenBiomeProvider : BiomeProvider() {
             throw NotImplementedError("The internal world info is only for using inside a vanilla biome provider, not to work with it!")
         }
 
-        override fun getFeatureFlags(): @Unmodifiable Set<FeatureFlag?> {
+        override fun getFeatureFlags(): @Unmodifiable Set<FeatureFlag> {
             return setOf()
         }
     }

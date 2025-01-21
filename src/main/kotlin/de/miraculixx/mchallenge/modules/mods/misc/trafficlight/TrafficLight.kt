@@ -7,6 +7,9 @@ import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
+import de.miraculixx.mchallenge.modules.challenges.Challenges
+import de.miraculixx.mchallenge.modules.challenges.challenges
+import de.miraculixx.mchallenge.modules.challenges.getSetting
 import de.miraculixx.mcommons.text.cHighlight
 import de.miraculixx.mcommons.text.cmp
 import de.miraculixx.mcommons.text.plus
@@ -28,14 +31,13 @@ class TrafficLight : Challenge {
     private val damageCooldown: MutableList<Player> = mutableListOf()
     private var running = true
 
-    //TODO - Settings
-    private val damage = 10.0
-    private val minGreen = 30
-    private val maxGreen = 90
-    private val minYellow = 2
-    private val maxYellow = 4
-    private val minRed = 3
-    private val maxRed = 10
+    private val damage: Double
+    private val minGreen: Int
+    private val maxGreen: Int
+    private val minYellow: Int
+    private val maxYellow : Int
+    private val minRed: Int
+    private val maxRed: Int
 
     private var state = TrafficLightState.RED
     private var timeToNext = 0
@@ -44,6 +46,23 @@ class TrafficLight : Challenge {
     private val msgContainerOff = cmp("[⬜⬜⬜⬜]")
     private val msgHangRight = cmp("└")
     private val msgHangLeft = cmp("┘")
+
+    init {
+        val settings = challenges.getSetting(Challenges.TRAFFIC_LIGHT).settings
+        val greenSection = settings["green"]?.toSection()?.getValue()
+        minGreen = greenSection?.get("min")?.toInt()?.getValue() ?: (30)
+        maxGreen = greenSection?.get("max")?.toInt()?.getValue() ?: (90)
+
+        val yellowSection = settings["green"]?.toSection()?.getValue()
+        minYellow = yellowSection?.get("min")?.toInt()?.getValue() ?: (2)
+        maxYellow = yellowSection?.get("max")?.toInt()?.getValue() ?: (4)
+
+        val redSection = settings["green"]?.toSection()?.getValue()
+        minRed = redSection?.get("min")?.toInt()?.getValue() ?: (3)
+        maxRed = redSection?.get("max")?.toInt()?.getValue() ?: (10)
+
+        damage = settings["damage"]?.toDouble()?.getValue() ?: (10.0)
+    }
 
     override fun register() {
         onMove.register()

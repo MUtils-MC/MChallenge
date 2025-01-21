@@ -4,7 +4,6 @@ import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.sync
 import de.miraculixx.kpaper.runnables.task
@@ -20,6 +19,7 @@ import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.entity.FallingBlock
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityChangeBlockEvent
 import org.bukkit.event.entity.EntityDamageEvent
@@ -119,14 +119,16 @@ class AnvilCrusher : Challenge {
                     val center = loc.add(0.5, height.toDouble(), 0.5)
                     val blocks = (calcCircle(center, radius).map { v -> v.toLocation(world) })
 
-                    anvilLocations.addAll(blocks.shuffled()
+                    anvilLocations.addAll(
+                        blocks.shuffled()
                         .chunked((blocks.size * (density / 100.0)).toInt().coerceAtLeast(1))
                         .firstOrNull()
                         ?.map { v -> v.toLocation(world) } ?: hashSetOf())
                 }
                 anvilLocations.forEach { loc ->
                     sync {
-                        val b = loc.world.spawnFallingBlock(loc, anvilData)
+                        val b = loc.world.spawn(loc, FallingBlock::class.java)
+                        b.blockData = anvilData
                         b.isSilent = true
                         b.dropItem = false
                     }

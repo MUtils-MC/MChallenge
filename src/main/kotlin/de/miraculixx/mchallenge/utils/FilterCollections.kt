@@ -2,8 +2,6 @@ package de.miraculixx.mchallenge.utils
 
 import de.miraculixx.mcommons.majorVersion
 import org.bukkit.Material
-import org.bukkit.inventory.CreativeCategory
-
 
 fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
     val list = Material.entries.filter {
