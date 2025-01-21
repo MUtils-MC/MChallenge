@@ -36,13 +36,13 @@ object Spectator {
     private val file = File("${MChallenge.configFolder.path}/spectator.json")
 
     fun saveData() {
-        file.saveConfig(specSettings)
+//        file.saveConfig(specSettings)
     }
 
     fun loadData() {
-        file.loadConfig<Map<@Serializable(UUIDSerializer::class) UUID, SpecCollection>>(emptyMap()).forEach { (uuid, s) ->
-            specSettings[uuid] = s
-        }
+//        file.loadConfig<Map<@Serializable(UUIDSerializer::class) UUID, SpecCollection>>(emptyMap()).forEach { (uuid, s) ->
+//            specSettings[uuid] = s
+//        }
     }
 
     fun register() {
