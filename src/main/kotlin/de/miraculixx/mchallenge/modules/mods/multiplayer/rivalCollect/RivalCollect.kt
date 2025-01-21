@@ -16,8 +16,11 @@ import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mchallenge.utils.getItems
 import de.miraculixx.mcommons.extensions.enumOf
 import de.miraculixx.mcommons.serializer.miniMessage
+import de.miraculixx.mcommons.statics.KColors
 import de.miraculixx.mcommons.text.*
+import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.text.format.TextColor
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
@@ -60,7 +63,6 @@ class RivalCollect : Challenge {
                 } else emptyList()
             } ?: emptyList()
 
-            Registry.BIOME
             biomes = modeSection?.get("biomes")?.toBool()?.getValue()?.let {
                 if (it) {
                     add(RivalCollectMode.BIOMES)
@@ -101,13 +103,20 @@ class RivalCollect : Challenge {
 
     override fun stop() {
         progress.clear()
+        playerData.forEach { (p, b) ->
+            val player = Bukkit.getPlayer(p) ?: return@forEach
+            player.hideBossBar(b.bossBar)
+            player.inventory.forEach { item ->
+                if (item?.type == Material.PLAYER_HEAD && item.itemMeta?.customModel == 501) {
+                    player.inventory.removeItem(item)
+                }
+            }
+        }
         playerData.clear()
-        playerData.forEach { (_, am) -> am.armorStand?.remove() }
     }
 
     override fun register() {
         onJokerClick.register()
-        onMoveInPortal.register()
 
         if (modes.contains(RivalCollectMode.ITEMS)) {
             onCollect.register()
@@ -119,7 +128,6 @@ class RivalCollect : Challenge {
 
     override fun unregister() {
         onJokerClick.unregister()
-        onMoveInPortal.unregister()
 
         if (modes.contains(RivalCollectMode.ITEMS)) {
             onCollect.unregister()
@@ -131,7 +139,7 @@ class RivalCollect : Challenge {
         //Announce Stats
         onlinePlayers.forEach { it.playSound(it, Sound.BLOCK_BEACON_POWER_SELECT, 1f, 1f) }
         broadcast(miniMessage.deserialize("<blue><st>          </st>[ Leaderboard ]<st>          "))
-        val ranking = progress.entries.sortedBy { it.value.size }.map { it.key }
+        val ranking = progress.entries.sortedByDescending { it.value.size }.map { it.key }
         var counter = 1
         ranking.forEach {
             val name = Bukkit.getPlayer(it)?.name
@@ -206,23 +214,6 @@ class RivalCollect : Challenge {
         }
     }
 
-    private val onMoveInPortal = listen<PlayerMoveEvent>(register = false) {
-        val player = it.player
-        val loc = it.to
-        val block = loc.block
-
-        if (block.type == Material.NETHER_PORTAL || block.type == Material.END_PORTAL) {
-            val am = playerData[player.uniqueId]?.armorStand ?: return@listen
-            if (player.passengers.isNotEmpty()) player.removePassenger(am)
-            am.teleport(loc.clone().subtract(0.0, -1.4, 0.0))
-        } else if (player.passengers.isEmpty()) {
-            val am = playerData[player.uniqueId]?.armorStand ?: return@listen
-            am.teleport(player)
-            player.addPassenger(am)
-        }
-    }
-
-
     private fun checkItem(player: Player, material: Material) {
         val uuid = player.uniqueId
         val list = progress[uuid] ?: return
@@ -259,21 +250,21 @@ class RivalCollect : Challenge {
                 val copy = items.toMutableList()
                 copy.removeAll(progress.filter { it.type == RivalCollectMode.ITEMS }.map { enumOf<Material>(it.key) }.toSet())
                 val newEntry = copy.random()
-                RivalObject(newEntry.translationKey(), newEntry, newEntry.name)
+                RivalObject(newEntry.translationKey(), KColors.LIGHTYELLOW, newEntry.name)
             }
 
             RivalCollectMode.BIOMES -> {
                 val copy = biomes.toMutableList()
                 copy.removeAll(progress.filter { it.type == RivalCollectMode.BIOMES }.mapNotNull { Registry.BIOME.get(NamespacedKey("minecraft", it.key)) }.toSet())
                 val newEntry = copy.random()
-                RivalObject(newEntry.translationKey(), biomeToItem(newEntry), newEntry.key.key)
+                RivalObject(newEntry.translationKey(), KColors.LIGHTGREEN, newEntry.key.key)
             }
 
             RivalCollectMode.MOBS -> {
                 val copy = mobs.toMutableList()
                 copy.removeAll(progress.filter { it.type == RivalCollectMode.MOBS }.map { enumOf<EntityType>(it.key) }.toSet())
                 val newEntry = copy.random()
-                RivalObject(newEntry.translationKey(), mobToItem(newEntry), newEntry.name)
+                RivalObject(newEntry.translationKey(), KColors.LIGHTBLUE, newEntry.name)
             }
         }
         progress.add(CollectProgress(data.enumKey, newMode))
@@ -288,63 +279,10 @@ class RivalCollect : Challenge {
         sendMessage(prefix + locale.msg("event.rivalCollect.newItem", listOf("<lang:${data.translationKey}>")))
 
         // Apply new data
-        val playerData = playerData.getOrPut(uniqueId) { RivalPlayerData(createArmorStand(this), newMode) }
+        val playerData = playerData.getOrPut(uniqueId) { RivalPlayerData(BossBar.bossBar(cmp("Loading...", cError), 1f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS), newMode) }
         playerData.currentType = newMode
-        val armorStand = playerData.armorStand
-        if (armorStand == null) {
-            val newArmorStand = createArmorStand(this)
-            playerData.armorStand = newArmorStand
-            newArmorStand.equipment.helmet = ItemStack(data.display)
-        } else armorStand.equipment.helmet = ItemStack(data.display)
-    }
-
-    private fun biomeToItem(biome: Biome): Material {
-        val name = biome.key.key.uppercase()
-        return when {
-            name.contains("FROZEN") -> Material.ICE
-            name.contains("SAVANNA") -> Material.ACACIA_WOOD
-            name.contains("TAIGA") -> Material.SPRUCE_WOOD
-            name.contains("BIRCH") -> Material.BIRCH_WOOD
-            name.contains("JUNGLE") -> Material.JUNGLE_WOOD
-            name.contains("BEACH") || name.contains("DESERT") -> Material.SAND
-            name.contains("BADLANDS") -> Material.RED_SAND
-            name.contains("FLOWER") -> Material.SUNFLOWER
-            name.contains("CRIMSON") -> Material.CRIMSON_STEM
-            name.contains("WARPED") -> Material.WARPED_STEM
-            name.contains("BASALT") -> Material.BASALT
-            name.contains("SOUL") -> Material.SOUL_SAND
-            name.contains("WASTES") -> Material.NETHERRACK
-            name.contains("LUSH") -> Material.MOSS_BLOCK
-            name.contains("MUSHROOM") -> Material.MYCELIUM
-
-            name.contains("FOREST") -> Material.OAK_SAPLING
-            name.contains("SNOWY") -> Material.SNOW_BLOCK
-            name.contains("OCEAN") -> Material.WATER_BUCKET
-            name.contains("HILLS") || name.contains("PEAKS") -> Material.STONE
-
-            else -> Material.GRASS_BLOCK
-        }
-    }
-
-    private fun mobToItem(mob: EntityType): Material {
-        return try {
-            Material.valueOf("${mob}_SPAWN_EGG")
-        } catch (_: Exception) {
-            Material.POLAR_BEAR_SPAWN_EGG
-        }
-    }
-
-    private fun createArmorStand(player: Player): ArmorStand {
-        val armorStand = player.world.spawnEntity(player.location, EntityType.ARMOR_STAND) as ArmorStand
-        armorStand.isVisible = false
-        armorStand.isMarker = true
-        armorStand.isSmall = true
-        armorStand.setBasePlate(false)
-        EquipmentSlot.entries.forEach { armorStand.addDisabledSlots(it) }
-        player.addPassenger(armorStand)
-        val data = playerData.getOrPut(player.uniqueId) { RivalPlayerData(armorStand, RivalCollectMode.ITEMS) }
-        data.armorStand = armorStand
-        return armorStand
+        playerData.bossBar.name(cmpTranslatableVanilla(data.translationKey, data.color, true))
+        player?.showBossBar(playerData.bossBar)
     }
 
     private data class CollectProgress(
@@ -353,13 +291,13 @@ class RivalCollect : Challenge {
     )
 
     private data class RivalPlayerData(
-        var armorStand: ArmorStand?,
+        var bossBar: BossBar,
         var currentType: RivalCollectMode
     )
 
     private data class RivalObject(
         val translationKey: String,
-        val display: Material,
+        val color: TextColor,
         val enumKey: String
     )
 }

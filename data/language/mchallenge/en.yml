@@ -591,10 +591,13 @@ items:
         l: "All tasks that will randomly be<br>prompted to find/collect"
       items:
         n: "Items"
+        l: "Include all items"
       biomes:
         n: "Biomes"
+        l: "Include all biomes"
       mobs:
         n: "Mobs"
+        l: "Include all mobs"
       joker:
         n: "Joker"
         l: "Amount of joker to skip a task"
