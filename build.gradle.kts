@@ -1,16 +1,18 @@
 import dex.plugins.outlet.v2.util.ReleaseType
 import groovy.json.JsonSlurper
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+import net.minecrell.pluginyml.paper.PaperPluginDescription
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.yaml.snakeyaml.DumperOptions
 import org.yaml.snakeyaml.Yaml
 
 plugins {
     id("idea")
-    kotlin("jvm") version "1.9.23"
-    kotlin("plugin.serialization") version "1.9.23"
-    id("io.papermc.paperweight.userdev") version "1.7.1"
+    kotlin("jvm") version "2.1.0"
+    kotlin("plugin.serialization") version "2.1.0"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.14"
     id("xyz.jpenilla.run-paper") version "2.3.0"
-    id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
+    id("net.minecrell.plugin-yml.paper") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
     id("io.github.dexman545.outlet") version "1.6.1"
 
@@ -22,7 +24,6 @@ version = properties["version"] as String
 description = properties["description"] as String
 
 val gameVersion by properties
-val foliaSupport = properties["foliaSupport"] as String == "true"
 val projectName = properties["name"] as String
 
 repositories {
@@ -35,7 +36,7 @@ repositories {
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 dependencies {
-    paperweight.paperDevBundle("1.21.3-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("$gameVersion-R0.1-SNAPSHOT")
 
     // Kotlin libraries
     library(kotlin("stdlib"))
@@ -45,8 +46,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.1")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.6.1")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:9.6.0")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.7.0")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:9.7.0")
     implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs
@@ -56,6 +57,10 @@ dependencies {
     // External APIs
     compileOnly("de.miraculixx:mweb:1.1.0")
     compileOnly("de.miraculixx:timer-api:1.1.3")
+
+    // Paper Includes
+    paperLibrary("io.ktor:ktor-client-core-jvm:2.3.7")
+    paperLibrary("io.ktor:ktor-client-cio-jvm:2.3.7")
 }
 
 tasks {
@@ -67,7 +72,7 @@ tasks {
         options.release.set(21)
     }
     compileKotlin {
-        kotlinOptions.jvmTarget = "21"
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
     }
     shadowJar {
         dependencies {
@@ -85,21 +90,31 @@ sourceSets {
     }
 }
 
-bukkit {
+paper {
     main = "$group.${projectName.lowercase()}.${projectName}"
-    apiVersion = "1.16"
-    foliaSupported = foliaSupport
+    apiVersion = "1.20"
+    load = BukkitPluginDescription.PluginLoadOrder.STARTUP
+
+    // Plugin bootstrapper/loader
+    bootstrapper = "$group.${projectName.lowercase()}.loader.${projectName}Bootstrap"
+    loader = "$group.${projectName.lowercase()}.loader.${projectName}Loader"
+    hasOpenClassloader = true
+    generateLibrariesJson = true
+
     website = "https://mutils.net/ch/info"
     authors = listOf("Miraculixx", "NoRisk")
 
-    // Optionals
-    load = BukkitPluginDescription.PluginLoadOrder.STARTUP
-    depend = listOf()
-    softDepend = listOf("MTimer", "MWeb")
-    libraries = listOf(
-        "io.ktor:ktor-client-core-jvm:2.3.7",
-        "io.ktor:ktor-client-cio-jvm:2.3.7"
-    )
+    serverDependencies {
+        register("MTimer") {
+            load = PaperPluginDescription.RelativeLoadOrder.BEFORE
+            required = false
+        }
+
+        register("MWeb") {
+            load = PaperPluginDescription.RelativeLoadOrder.BEFORE
+            required = false
+        }
+    }
 }
 
 modrinth {
