@@ -96,7 +96,7 @@ paper {
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
 
     // Plugin bootstrapper/loader
-    bootstrapper = "$group.${projectName.lowercase()}.loader.${projectName}Bootstrap"
+    //bootstrapper = "$group.${projectName.lowercase()}.loader.${projectName}Bootstrap"
     loader = "$group.${projectName.lowercase()}.loader.${projectName}Loader"
     hasOpenClassloader = true
     generateLibrariesJson = true
