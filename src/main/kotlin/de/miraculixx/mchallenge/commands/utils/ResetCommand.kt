@@ -18,6 +18,9 @@ class ResetCommand {
     private val reset = commandTree("reset") {
         withPermission("mutils.reset")
         anyExecutor { sender, _ ->
+            BackpackCommand.reset()
+            PositionCommand.reset()
+
             ConfigManager.settings.reset = true
             ConfigManager.settings.worlds.addAll(worlds.map { it.name })
             onlinePlayers.forEach { player -> player.kick(sender.msg("command.reset", listOf(sender.name)), PlayerKickEvent.Cause.RESTART_COMMAND) }

@@ -87,8 +87,8 @@ class MChallenge : KPaper() {
         HideCommand()
         CustomRulesCommand()
         CompetitionCommand()
-        ConfigManager.addConfigurable(PositionCommand())
-        ConfigManager.addConfigurable(BackpackCommand())
+        ConfigManager.addConfigurable(PositionCommand)
+        ConfigManager.addConfigurable(BackpackCommand)
         TestCommand()
         ExperimentalFeatureCommand
 

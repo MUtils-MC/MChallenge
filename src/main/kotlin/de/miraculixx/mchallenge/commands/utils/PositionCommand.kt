@@ -15,7 +15,7 @@ import dev.jorel.commandapi.kotlindsl.*
 import kotlinx.serialization.Serializable
 import java.io.File
 
-class PositionCommand : Configurable {
+object PositionCommand : Configurable {
     private val file = File("${MChallenge.configFolder.path}/data/positions.json")
     private val positions: MutableMap<String, LiteLocation> = file.loadConfig(mutableMapOf())
 

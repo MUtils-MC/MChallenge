@@ -32,7 +32,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import java.io.File
 
-class BackpackCommand : Configurable {
+object BackpackCommand : Configurable {
     private val file = File("${de.miraculixx.mchallenge.MChallenge.configFolder.path}/data/backpack.json")
     private val data = file.loadConfig(Data())
 
