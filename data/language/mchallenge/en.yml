@@ -160,6 +160,8 @@ event:
   border:
     start: "<red>Click here to reset all your advancements (only new advancements add to border)"
     stop: "<red>(Rejoin to remove the border)"
+  inTime:
+    noTime: "<red>The player <input-1> run out of time!"
 
 
 
