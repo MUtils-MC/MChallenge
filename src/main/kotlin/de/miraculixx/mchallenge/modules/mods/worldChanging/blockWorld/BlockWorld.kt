@@ -6,7 +6,6 @@ import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.extensions.worlds
-import de.miraculixx.mcommons.majorVersion
 import net.kyori.adventure.util.TriState
 import org.bukkit.*
 import org.bukkit.event.player.PlayerTeleportEvent
@@ -19,12 +18,16 @@ import java.util.*
 class BlockWorld : Challenge {
     private val worldName = UUID.randomUUID().toString()
     private val materials = Material.entries.filter {
-        it.isBlock && !isInvalidItem(it)
+        it.isBlock && !it.isLegacy && isValidBlock(it)
     }
 
     private val overworld = WorldCreator.name(worldName).generator(ChunkProvider(materials)).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NORMAL).createWorld()
     private val nether = WorldCreator.name("${worldName}_nether").generator(ChunkProvider(materials)).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NETHER).createWorld()
     private val end = WorldCreator.name("${worldName}_the_end").generator(ChunkProvider(materials)).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.THE_END).createWorld()
+
+    init {
+        println(materials)
+    }
 
     override fun register() {
         onPortal.register()
@@ -57,39 +60,31 @@ class BlockWorld : Challenge {
         File(worldName).deleteRecursively()
     }
 
-    private fun isInvalidItem(material: Material): Boolean {
-        if (!material.isSolid) return true
-        val name = material.name
+    private fun isValidBlock(m: Material): Boolean {
+        if (!m.isSolid) return false
+        val name = m.name
         if (
-            Tag.ALL_SIGNS.isTagged(material) || Tag.BANNERS.isTagged(material) || Tag.BANNERS.isTagged(material) ||
-            Tag.BEDS.isTagged(material) || Tag.WOOL_CARPETS.isTagged(material) || Tag.SHULKER_BOXES.isTagged(material) ||
-            Tag.STAIRS.isTagged(material) || Tag.SLABS.isTagged(material) || Tag.DOORS.isTagged(material) ||
-            Tag.FLOWER_POTS.isTagged(material) || Tag.FLOWERS.isTagged(material) || Tag.LEAVES.isTagged(material) ||
-            Tag.SAPLINGS.isTagged(material) || Tag.CORALS.isTagged(material) || Tag.WALLS.isTagged(material) ||
-            Tag.FENCES.isTagged(material) || Tag.FENCE_GATES.isTagged(material) || Tag.WALLS.isTagged(material) ||
-            Tag.FENCES.isTagged(material) || Tag.FENCE_GATES.isTagged(material) || Tag.BUTTONS.isTagged(material) ||
-            Tag.TRAPDOORS.isTagged(material) || Tag.PRESSURE_PLATES.isTagged(material) || Tag.RAILS.isTagged(material) ||
-            Tag.CLIMBABLE.isTagged(material) || Tag.CANDLES.isTagged(material) || Tag.CANDLE_CAKES.isTagged(material) ||
-            Tag.ANVIL.isTagged(material)
-        ) return true
+            Tag.ALL_SIGNS.isTagged(m) || Tag.BANNERS.isTagged(m) || Tag.BANNERS.isTagged(m) ||
+            Tag.BEDS.isTagged(m) || Tag.WOOL_CARPETS.isTagged(m) || Tag.SHULKER_BOXES.isTagged(m) ||
+            Tag.STAIRS.isTagged(m) || Tag.SLABS.isTagged(m) || Tag.DOORS.isTagged(m) ||
+            Tag.FLOWER_POTS.isTagged(m) || Tag.FLOWERS.isTagged(m) || Tag.LEAVES.isTagged(m) ||
+            Tag.SAPLINGS.isTagged(m) || Tag.CORALS.isTagged(m) || Tag.WALLS.isTagged(m) ||
+            Tag.FENCES.isTagged(m) || Tag.FENCE_GATES.isTagged(m) || Tag.WALLS.isTagged(m) ||
+            Tag.FENCES.isTagged(m) || Tag.FENCE_GATES.isTagged(m) || Tag.BUTTONS.isTagged(m) ||
+            Tag.TRAPDOORS.isTagged(m) || Tag.PRESSURE_PLATES.isTagged(m) || Tag.RAILS.isTagged(m) ||
+            Tag.CLIMBABLE.isTagged(m) || Tag.CANDLES.isTagged(m) || Tag.CANDLE_CAKES.isTagged(m) ||
+            Tag.ANVIL.isTagged(m)
+        ) return false
 
         if (
             name.endsWith("GLASS") || name.endsWith("GLASS_PANE") || name.endsWith("HANGING_SIGN") ||
-            name.endsWith("HEAD") || name.contains("CORAL")
-        ) return true
+            name.endsWith("HEAD") || name.contains("CORAL") || name.endsWith("_GRATE") ||
+            name.contains("CHERRY") || name.contains("BAMBOO") || name.startsWith("SUSPICIOUS") ||
+            name.endsWith("_HANGING_SIGN") || name.contains("CAULDRON")
+        ) return false
 
-        if (majorVersion < 20) {
-            if (
-                name.contains("CHERRY") || name.contains("BAMBOO") || name.startsWith("SUSPICIOUS") ||
-                name.endsWith("_HANGING_SIGN")
-            ) return true
-            when (name) {
-                "TORCHFLOWER", "PINK_PETALS", "CHISELED_BOOKSHELF",
-                "DECORATED_POT", "TORCHFLOWER_SEEDS" -> return true
-            }
-        }
 
-        return when (material) {
+        when (m) {
             Material.KELP, Material.DRAGON_EGG, Material.SOUL_LANTERN,
             Material.LANTERN, Material.TORCH, Material.SOUL_TORCH,
             Material.TURTLE_EGG, Material.AMETHYST_CLUSTER, Material.SMALL_AMETHYST_BUD,
@@ -112,9 +107,16 @@ class BlockWorld : Challenge {
             Material.JIGSAW, Material.DAYLIGHT_DETECTOR, Material.COMPARATOR,
             Material.CONDUIT, Material.BELL, Material.END_GATEWAY,
             Material.SCULK_CATALYST, Material.SCULK_SENSOR, Material.SCULK_SHRIEKER,
-            Material.LIGHTNING_ROD, Material.IRON_BARS, Material.DIRT_PATH -> true
+            Material.LIGHTNING_ROD, Material.IRON_BARS, Material.DIRT_PATH, Material.VAULT,
+            Material.MANGROVE_ROOTS, Material.SNIFFER_EGG, Material.CACTUS,
+            Material.TORCHFLOWER, Material.PINK_PETALS, Material.CHISELED_BOOKSHELF,
+            Material.DECORATED_POT, Material.TORCHFLOWER_SEEDS, Material.TRIAL_SPAWNER,
+            Material.CALIBRATED_SCULK_SENSOR, Material.CRAFTER, Material.END_PORTAL_FRAME,
+            Material.COMPOSTER, Material.STONECUTTER, Material.SLIME_BLOCK,
+            Material.CAKE, Material.HONEY_BLOCK
+                -> return false
 
-            else -> false
+            else -> return true
         }
     }
 

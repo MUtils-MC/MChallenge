@@ -11,9 +11,9 @@ import de.miraculixx.mchallenge.modules.challenges.challenges
 import de.miraculixx.mchallenge.modules.challenges.getSetting
 import net.kyori.adventure.util.TriState
 import org.bukkit.*
-import org.bukkit.entity.EntityType
-import org.bukkit.entity.TNTPrimed
 import org.bukkit.event.block.Action
+import org.bukkit.event.block.BlockBreakEvent
+import org.bukkit.event.block.BlockPhysicsEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.event.world.WorldInitEvent
@@ -40,12 +40,14 @@ class MineFieldWorld : Challenge {
     override fun register() {
         onPortal.register()
         onPressurePlateStep.register()
+        onBlockBreak.register()
     }
 
     override fun unregister() {
         worldInitEvent.unregister()
         onPortal.unregister()
         onPressurePlateStep.unregister()
+        onBlockBreak.unregister()
     }
 
     override fun start(): Boolean {
@@ -53,8 +55,17 @@ class MineFieldWorld : Challenge {
         nether = WorldCreator.name("${worldName}_nether").keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NETHER).createWorld() ?: return false
         end = WorldCreator.name("${worldName}_end").keepSpawnLoaded(TriState.FALSE).environment(World.Environment.THE_END).createWorld() ?: return false
 
-        val loc = overworld.spawnLocation
-        onlinePlayers.forEach { p -> p.teleportAsync(loc) }
+        val spawnBlock = overworld.getHighestBlockAt(0, 0)
+        if (spawnBlock.type == Material.WATER || spawnBlock.type == Material.LAVA) {
+            (spawnBlock.x - 1 .. spawnBlock.x + 1).forEach { x ->
+                (spawnBlock.z - 1 .. spawnBlock.z + 1).forEach { z ->
+                    overworld.getBlockAt(x, spawnBlock.y, z).type = Material.BEDROCK
+                }
+            }
+        }
+
+        val spawnLoc = spawnBlock.location.add(0.0, 2.0, 0.0)
+        onlinePlayers.forEach { p -> p.teleportAsync(spawnLoc) }
         return true
     }
 
@@ -65,6 +76,8 @@ class MineFieldWorld : Challenge {
         overworld.removeWorld()
         nether.removeWorld()
         end.removeWorld()
+
+        onPhysics.unregister()
     }
 
     private fun World?.removeWorld() {
@@ -92,35 +105,49 @@ class MineFieldWorld : Challenge {
         if (it.action != Action.PHYSICAL) return@listen
         val block = it.clickedBlock ?: return@listen
         if (block.type != Material.LIGHT_WEIGHTED_PRESSURE_PLATE) return@listen
-        it.player.addPotionEffect(PotionEffect(PotionEffectType.RESISTANCE, 10, 2, false, false, false))
-        val tnt = block.world.spawnEntity(block.location.add(.5,.0,.5), EntityType.TNT) as TNTPrimed
-        tnt.fuseTicks = 1
-        tnt.setIsIncendiary(false)
+        block.setType(Material.AIR, false)
+
+        it.player.addPotionEffect(PotionEffect(PotionEffectType.RESISTANCE, 10, 1, false, false, false))
+        it.player.setRespawnLocation(block.world.spawnLocation, true)
+        block.world.createExplosion(block.location, 4.0f, false, false)
     }
 
-    private data class Position(val x: Int, val y: Int, val z: Int)
+    private val onBlockBreak = listen<BlockBreakEvent>(register = false) {
+        val block = it.block
+        if (block.type == Material.LIGHT_WEIGHTED_PRESSURE_PLATE) {
+            it.isCancelled = true
+            block.setType(Material.AIR, false)
+            block.world.createExplosion(block.location, 4.0f, false, false)
+        }
+    }
+
+    private val onPhysics = listen<BlockPhysicsEvent>(register = false) {
+        if (it.block.type == Material.LIGHT_WEIGHTED_PRESSURE_PLATE) {
+            it.isCancelled = true
+        }
+    }
+
 
     private class CustomBlockPopulator(private val density: Int) : BlockPopulator() {
         private val pressurePlate = Bukkit.createBlockData(Material.LIGHT_WEIGHTED_PRESSURE_PLATE)
-        private val a = Bukkit.createBlockData(Material.HEAVY_WEIGHTED_PRESSURE_PLATE)
-        private val progressedBlocks: MutableSet<Position> = mutableSetOf()
 
         override fun populate(worldInfo: WorldInfo, random: Random, chunkX: Int, chunkZ: Int, limitedRegion: LimitedRegion) {
-            val buffer = limitedRegion.buffer
-            val direction = buffer + (buffer / 2)
+            if (chunkX == 0 && chunkZ == 0) return // Skip spawn chunks
+
             val centerX = limitedRegion.centerBlockX
             val centerZ = limitedRegion.centerBlockZ
-            (centerX - direction..centerX + direction).forEach x@{ x ->
-                (centerZ - direction..centerZ + direction).forEach z@{ z ->
+            (centerX - 8..centerX + 8).forEach x@{ x ->
+                (centerZ - 8..centerZ + 8).forEach z@{ z ->
                     (worldInfo.minHeight + 1 until worldInfo.maxHeight - 1).forEach h@{ y ->
                         if (!limitedRegion.isInRegion(x, y, z)) return@h
                         val currentBlock = limitedRegion.getBlockState(x, y, z).type
-                        if (currentBlock.isAir || !currentBlock.isSolid || currentBlock == Material.HEAVY_WEIGHTED_PRESSURE_PLATE || currentBlock == Material.LIGHT_WEIGHTED_PRESSURE_PLATE) return@h
-                        val topBlock = limitedRegion.getBlockState(x, y + 1, z).type
-                        val pos = Position(x, y + 1, z)
-                        if ((!topBlock.isAir && !Tag.REPLACEABLE.isTagged(topBlock) && topBlock != Material.SNOW) || progressedBlocks.contains(pos)) return@h
 
-                        progressedBlocks.add(pos)
+                        // Skip if the block is air, not solid or a pressure plate
+                        if (currentBlock.isAir || !currentBlock.isSolid || currentBlock == Material.LIGHT_WEIGHTED_PRESSURE_PLATE) return@h
+
+                        val topBlock = limitedRegion.getBlockState(x, y + 1, z).type
+                        if (!topBlock.isAir && !Tag.REPLACEABLE.isTagged(topBlock) && topBlock != Material.SNOW) return@h
+
                         if ((0..100).random() <= density) {
                             limitedRegion.setBlockData(x, y + 1, z, pressurePlate)
                         }
