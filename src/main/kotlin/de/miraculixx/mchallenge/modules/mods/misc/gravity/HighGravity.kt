@@ -6,12 +6,11 @@ import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.attribute.Attribute
 import org.bukkit.block.BlastFurnace
 import org.bukkit.block.Chest
 import org.bukkit.block.Furnace
 import org.bukkit.block.Smoker
-import org.bukkit.entity.EntityType
-import org.bukkit.entity.Item
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.player.PlayerInteractEvent
@@ -29,7 +28,7 @@ class HighGravity : Gravity {
 
     override fun modifyPlayer(player: Player) {
         player.setGravity(true)
-        player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 200, false, false, false))
+        player.getAttribute(Attribute.GRAVITY)?.baseValue = 10.0
     }
 
     private fun mobPusher() {
@@ -81,19 +80,7 @@ class HighGravity : Gravity {
     private val onMove = listen<PlayerMoveEvent> {
         val player = it.player
         player.getNearbyEntities(0.5, 1.0, 0.5).forEach { entity ->
-            if (entity.type == EntityType.ITEM) {
-                val item = entity as Item
-                if (item.pickupDelay > 0) return@listen
-                val remaining = player.inventory.addItem(item.itemStack)
-                player.playPickupItemAnimation(item)
-                if (remaining.isEmpty()) entity.remove()
-                else {
-                    val size = remaining[remaining.keys.first()]?.amount ?: 0
-                    val newItemStack = entity.itemStack
-                    newItemStack.amount = size
-                    entity.itemStack = newItemStack
-                }
-            } else if (entity.type.key.key.contains("boat", true)) {
+            if (entity.type.key.key.contains("boat", true)) {
                 entity.setGravity(true)
                 entity.velocity = entity.velocity.clone().setY(-0.05)
             }
@@ -102,11 +89,8 @@ class HighGravity : Gravity {
 
         val subblock = it.to.clone().add(.0, -1.0, .0).block.type
         if (subblock.isAir || subblock == Material.WATER) {
-            player.removePotionEffect(PotionEffectType.LEVITATION)
             val vector = Vector(0, -1, 0)
             player.velocity = vector
-        } else {
-            player.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 99999, 200, false, false, false))
         }
     }
 

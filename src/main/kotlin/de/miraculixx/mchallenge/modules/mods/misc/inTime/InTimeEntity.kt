@@ -4,6 +4,7 @@ import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.mcommons.text.cError
 import de.miraculixx.mcommons.text.cHighlight
+import de.miraculixx.mcommons.text.cSuccess
 import de.miraculixx.mcommons.text.cmp
 import de.miraculixx.mcommons.text.prefix
 import net.kyori.adventure.bossbar.BossBar
@@ -22,8 +23,19 @@ class InTimeEntity(
     val entity: Entity,
     private val isPlayer: Boolean
 ) {
+    var lastDiff = 0L
+    var resetChangeIn = 0
     var isRunning = true
     var duration = startDuration
+        set(value) {
+            val diff = (value - field).inWholeSeconds
+            if (diff != -1L) {
+                lastDiff = diff
+                resetChangeIn = 3
+                updateDisplay()
+            }
+            field = value
+        }
     private val bossBar = if (isPlayer) BossBar.bossBar(getTime(), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS) else null
 
     init {
@@ -34,7 +46,7 @@ class InTimeEntity(
         val format = duration.toComponents { minutes, seconds, _ ->
             "${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}"
         }
-        return if (isRunning) cmp(format, getColor())
+        return if (isRunning) cmp(format, getColor(), true)
         else cmp("$format paused", cHighlight, italic = true)
     }
 
@@ -49,8 +61,11 @@ class InTimeEntity(
     }
 
     private fun updateDisplay() {
-        if (bossBar != null) bossBar.name(getTime())
-        else entity.customName(getTime())
+        var time = getTime()
+        if (lastDiff !in -1..0)
+            time = time.append(cmp(" (${lastDiff}s)", if (lastDiff > 0) cSuccess else cError))
+        if (bossBar != null) bossBar.name(time)
+        else entity.customName(time)
     }
 
     private val task = task(true, 20, 20) {
@@ -82,6 +97,10 @@ class InTimeEntity(
             it.cancel()
             return@task
         }
+
+        if (resetChangeIn > 0) {
+            resetChangeIn -= 1
+        } else lastDiff = 0
 
         duration -= 1.seconds
         updateDisplay()
