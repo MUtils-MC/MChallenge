@@ -33,7 +33,7 @@ class MineFieldWorld : Challenge {
     private var density: Int = 50
 
     init {
-        val settings = challenges.getSetting(Challenges.MIRROR).settings
+        val settings = challenges.getSetting(Challenges.MINEFIELD_WORLD).settings
         density = settings["density"]?.toInt()?.getValue() ?: 50
     }
 
@@ -51,6 +51,8 @@ class MineFieldWorld : Challenge {
     }
 
     override fun start(): Boolean {
+        worldInitEvent.register()
+
         overworld = WorldCreator.name(worldName).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NORMAL).createWorld() ?: return false
         nether = WorldCreator.name("${worldName}_nether").keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NETHER).createWorld() ?: return false
         end = WorldCreator.name("${worldName}_end").keepSpawnLoaded(TriState.FALSE).environment(World.Environment.THE_END).createWorld() ?: return false
@@ -71,7 +73,7 @@ class MineFieldWorld : Challenge {
 
     override fun stop() {
         val loc = worlds[0].spawnLocation
-        onlinePlayers.forEach { p -> p.teleportAsync(loc) }
+        onlinePlayers.forEach { p -> p.teleport(loc) }
 
         overworld.removeWorld()
         nether.removeWorld()
@@ -97,7 +99,7 @@ class MineFieldWorld : Challenge {
         }
     }
 
-    private val worldInitEvent = listen<WorldInitEvent> {
+    private val worldInitEvent = listen<WorldInitEvent>(register = false) {
         it.world.populators.add(CustomBlockPopulator(density))
     }
 
@@ -148,7 +150,7 @@ class MineFieldWorld : Challenge {
                         val topBlock = limitedRegion.getBlockState(x, y + 1, z).type
                         if (!topBlock.isAir && !Tag.REPLACEABLE.isTagged(topBlock) && topBlock != Material.SNOW) return@h
 
-                        if ((0..100).random() < density) {
+                        if ((0 .. 100).random() < density) {
                             limitedRegion.setBlockData(x, y + 1, z, pressurePlate)
                         }
                     }
