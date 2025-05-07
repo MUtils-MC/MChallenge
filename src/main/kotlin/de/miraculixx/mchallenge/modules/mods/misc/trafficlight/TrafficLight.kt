@@ -53,11 +53,11 @@ class TrafficLight : Challenge {
         minGreen = greenSection?.get("min")?.toInt()?.getValue() ?: (30)
         maxGreen = greenSection?.get("max")?.toInt()?.getValue() ?: (90)
 
-        val yellowSection = settings["green"]?.toSection()?.getValue()
+        val yellowSection = settings["yellow"]?.toSection()?.getValue()
         minYellow = yellowSection?.get("min")?.toInt()?.getValue() ?: (2)
         maxYellow = yellowSection?.get("max")?.toInt()?.getValue() ?: (4)
 
-        val redSection = settings["green"]?.toSection()?.getValue()
+        val redSection = settings["red"]?.toSection()?.getValue()
         minRed = redSection?.get("min")?.toInt()?.getValue() ?: (3)
         maxRed = redSection?.get("max")?.toInt()?.getValue() ?: (10)
 
