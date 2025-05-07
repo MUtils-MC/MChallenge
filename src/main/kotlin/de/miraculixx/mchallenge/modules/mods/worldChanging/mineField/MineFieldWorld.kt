@@ -148,7 +148,7 @@ class MineFieldWorld : Challenge {
                         val topBlock = limitedRegion.getBlockState(x, y + 1, z).type
                         if (!topBlock.isAir && !Tag.REPLACEABLE.isTagged(topBlock) && topBlock != Material.SNOW) return@h
 
-                        if ((0..100).random() <= density) {
+                        if ((0..100).random() < density) {
                             limitedRegion.setBlockData(x, y + 1, z, pressurePlate)
                         }
                     }
