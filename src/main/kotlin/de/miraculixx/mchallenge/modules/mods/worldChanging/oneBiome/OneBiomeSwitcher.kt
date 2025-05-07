@@ -91,7 +91,7 @@ class OneBiomeSwitcher {
         onlinePlayers.forEach {
             locations[it] = it.location
         }
-        val sBiome = newBiome.key.key.replace('_', ' ')
+        val sBiome = newBiome.toString().replace('_', ' ')
         onlinePlayers.forEach { player ->
             val loc = locations[player]
             if (loc == null) {
@@ -134,7 +134,7 @@ class OneBiomeSwitcher {
         worlds.forEach {
             val name = it.name
             if (name.endsWith("-O") || name.endsWith("-N") || name.endsWith("-E"))
-                if (!name.startsWith(newBiome.key.key)) {
+                if (!name.startsWith(newBiome.toString())) {
                     it.players.forEach { p -> p.teleportAsync(worldSpawn) }
                     Bukkit.unloadWorld(it, false)
                     File(name).deleteRecursively()

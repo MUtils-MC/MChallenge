@@ -4,11 +4,9 @@ import de.miraculixx.challenge.api.modules.challenges.Challenge
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.register
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.kpaper.extensions.broadcast
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.runnables.task
 import de.miraculixx.kpaper.runnables.taskRunLater
-import de.miraculixx.mchallenge.commands.utils.ExperimentalFeatureCommand
 import de.miraculixx.mchallenge.modules.ChallengeManager
 import de.miraculixx.mchallenge.modules.challenges.Challenges
 import de.miraculixx.mchallenge.modules.challenges.challenges
@@ -18,7 +16,6 @@ import de.miraculixx.mcommons.extensions.title
 import de.miraculixx.mcommons.text.cMark
 import de.miraculixx.mcommons.text.cmp
 import de.miraculixx.mcommons.text.emptyComponent
-import de.miraculixx.mcommons.text.prefix
 import org.bukkit.*
 import org.bukkit.entity.*
 import org.bukkit.event.entity.PlayerDeathEvent
@@ -57,21 +54,20 @@ class MLGChallenge : Challenge {
     init {
         val settings = challenges.getSetting(Challenges.MLG).settings
         val delaySection = settings["delay"]?.toSection()?.getValue()
-        delayTime = (delaySection?.get("minDelay")?.toInt()?.getValue() ?: (60 * 2))..(delaySection?.get("maxDelay")?.toInt()?.getValue() ?: (60 * 4))
+        delayTime =
+            (delaySection?.get("minDelay")?.toInt()?.getValue() ?: (60 * 2))..(delaySection?.get("maxDelay")?.toInt()
+                ?.getValue() ?: (60 * 4))
 
         val heightSelection = settings["height"]?.toSection()?.getValue()
-        mlgHeights = (heightSelection?.get("minHeight")?.toInt()?.getValue() ?: 50)..(heightSelection?.get("maxHeight")?.toInt()?.getValue() ?: 100)
+        mlgHeights =
+            (heightSelection?.get("minHeight")?.toInt()?.getValue() ?: 50)..(heightSelection?.get("maxHeight")?.toInt()
+                ?.getValue() ?: 100)
 
         mlgTypes = if (settings["hardMLGs"]?.toBool()?.getValue() == true) MLGType.entries.toSet()
         else MLGType.entries.filter { !it.hard }.toSet()
     }
 
     override fun start(): Boolean {
-        if (!ExperimentalFeatureCommand.enabledFeatures.contains("update_1_21")) {
-            broadcast(prefix, "event.experimental.missing", listOf("update_1_21"))
-            task?.cancel()
-            return false
-        }
         onMove.register()
         onDeath.register()
         return true
@@ -219,7 +215,13 @@ class MLGChallenge : Challenge {
 
                     MLGType.MINECART -> world.getBlockAt(0, -62, 0).type = Material.RAIL
                     MLGType.MACE -> {
-                        val set = setOf(EntityType.PIG, EntityType.SILVERFISH, EntityType.IRON_GOLEM, EntityType.CHICKEN, EntityType.FROG)
+                        val set = setOf(
+                            EntityType.PIG,
+                            EntityType.SILVERFISH,
+                            EntityType.IRON_GOLEM,
+                            EntityType.CHICKEN,
+                            EntityType.FROG
+                        )
                         val entity = world.spawnEntity(Location(world, 0.0, -62.0, 0.0), set.random()) as LivingEntity
                         entity.setAI(false)
                         entity.isGlowing = true
