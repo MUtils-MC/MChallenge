@@ -10,7 +10,7 @@ plugins {
     id("idea")
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.serialization") version "2.1.0"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.14"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.17"
     id("xyz.jpenilla.run-paper") version "2.3.0"
     id("net.minecrell.plugin-yml.paper") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
@@ -46,8 +46,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.2")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:10.0.1")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:10.0.1")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:10.1.0")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:10.1.0")
     implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs

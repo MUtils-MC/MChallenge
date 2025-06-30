@@ -72,7 +72,7 @@ class MChallenge : KPaper() {
         consoleAudience = console
         debug = true
 
-        CommandAPI.onLoad(CommandAPIBukkitConfig(this).verboseOutput(false).silentLogs(true))
+        CommandAPI.onLoad(CommandAPIBukkitConfig(this).verboseOutput(false).silentLogs(true).beLenientForMinorVersions(true))
 
         // Define version
         val versionSplit = server.minecraftVersion.split('.')
