@@ -46,8 +46,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.2")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:10.1.0")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:10.1.0")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:10.1.2")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:10.1.2")
     implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs
