@@ -140,7 +140,10 @@ enum class Challenges(val filter: Set<ChallengeTags>, val icon: Icon, val status
                 "distance" to ChallengeDoubleSetting("SNOWBALL", 3.0, "b", max = 10.0, min = 0.5), "warning" to ChallengeBoolSetting("CRIMSON_FUNGUS", true)
             )
 
-            RANDOMIZER_BLOCK -> mapOf("random" to ChallengeBoolSetting("DROPPER", false))
+            RANDOMIZER_BLOCK -> mapOf(
+                "random" to ChallengeBoolSetting("DROPPER", false),
+                "perPlayer" to ChallengeBoolSetting("PLAYER_HEAD", false)
+            )
 
             RANDOMIZER_ENTITY -> mapOf(
                 "random" to ChallengeBoolSetting("DROPPER", false),
