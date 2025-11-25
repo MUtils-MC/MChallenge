@@ -88,7 +88,7 @@ class BlockWorld : Challenge {
             Material.KELP, Material.DRAGON_EGG, Material.SOUL_LANTERN,
             Material.LANTERN, Material.TORCH, Material.SOUL_TORCH,
             Material.TURTLE_EGG, Material.AMETHYST_CLUSTER, Material.SMALL_AMETHYST_BUD,
-            Material.MEDIUM_AMETHYST_BUD, Material.LARGE_AMETHYST_BUD, Material.CHAIN,
+            Material.MEDIUM_AMETHYST_BUD, Material.LARGE_AMETHYST_BUD, Material.IRON_CHAIN, Material.COPPER_CHAIN,
             Material.BAMBOO, Material.END_ROD, Material.SEAGRASS,
             Material.TALL_SEAGRASS, Material.SHORT_GRASS, Material.TALL_GRASS,
             Material.BEEHIVE, Material.LAVA, Material.WATER,
@@ -113,7 +113,7 @@ class BlockWorld : Challenge {
             Material.DECORATED_POT, Material.TORCHFLOWER_SEEDS, Material.TRIAL_SPAWNER,
             Material.CALIBRATED_SCULK_SENSOR, Material.CRAFTER, Material.END_PORTAL_FRAME,
             Material.COMPOSTER, Material.STONECUTTER, Material.SLIME_BLOCK,
-            Material.CAKE, Material.HONEY_BLOCK
+            Material.CAKE, Material.HONEY_BLOCK, Material.COPPER_LANTERN
                 -> return false
 
             else -> return true

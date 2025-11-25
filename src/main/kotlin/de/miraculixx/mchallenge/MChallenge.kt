@@ -21,7 +21,7 @@ import de.miraculixx.mcommons.majorVersion
 import de.miraculixx.mcommons.minorVersion
 import de.miraculixx.mcommons.text.*
 import dev.jorel.commandapi.CommandAPI
-import dev.jorel.commandapi.CommandAPIBukkitConfig
+import dev.jorel.commandapi.CommandAPIPaperConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -72,7 +72,7 @@ class MChallenge : KPaper() {
         consoleAudience = console
         debug = true
 
-        CommandAPI.onLoad(CommandAPIBukkitConfig(this).verboseOutput(false).silentLogs(true).beLenientForMinorVersions(true))
+        CommandAPI.onLoad(CommandAPIPaperConfig(this).silentLogs(true).fallbackToLatestNMS(true))
 
         // Define version
         val versionSplit = server.minecraftVersion.split('.')

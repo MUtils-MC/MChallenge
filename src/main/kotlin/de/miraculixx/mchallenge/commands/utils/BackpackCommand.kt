@@ -19,7 +19,6 @@ import de.miraculixx.mcommons.extensions.msg
 import de.miraculixx.mcommons.statics.KHeads
 import de.miraculixx.mcommons.text.*
 import dev.jorel.commandapi.arguments.LiteralArgument
-import dev.jorel.commandapi.arguments.PlayerArgument
 import dev.jorel.commandapi.kotlindsl.*
 import kotlinx.serialization.Serializable
 import org.bukkit.Bukkit
@@ -42,7 +41,8 @@ object BackpackCommand : Configurable {
         playerExecutor { player, _ ->
             openInventory(player, player.name)
         }
-        argument(PlayerArgument("player").withPermission("command.backpack.other")) {
+        entitySelectorArgumentOnePlayer("player") {
+            withPermission("command.backpack.other")
             playerExecutor { player, args ->
                 val target = args[0] as Player
                 openInventory(player, target.name)
