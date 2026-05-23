@@ -21,6 +21,7 @@ import de.miraculixx.mcommons.text.emptyComponent
 import io.papermc.paper.event.player.PlayerArmSwingEvent
 import net.kyori.adventure.title.Title
 import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.entity.*
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityPickupItemEvent
@@ -127,10 +128,12 @@ class LimitedSkills : Challenge {
                     if (equipment.itemInOffHand.itemMeta?.customModel != 787) {
                         equipment.itemInOffHand.editMeta { meta -> meta.customModel = 787 }
                     }
-                    if (equipment.boots != null) equipment.boots = null
-                    if (equipment.leggings != null) equipment.leggings = null
-                    if (equipment.chestplate != null) equipment.chestplate = null
-                    if (equipment.helmet != null) equipment.helmet = null
+
+                    // we need the java methods here because we have mixed non null & nullable annotations
+                    if (equipment.boots.type != Material.AIR) equipment.setBoots(null)
+                    if (equipment.leggings.type != Material.AIR) equipment.setLeggings(null)
+                    if (equipment.chestplate.type != Material.AIR) equipment.setChestplate(null)
+                    if (equipment.helmet.type != Material.AIR) equipment.setHelmet(null)
                 }
             }
         }

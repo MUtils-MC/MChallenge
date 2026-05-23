@@ -143,7 +143,7 @@ class BorderChallenge : Challenge {
                 setCenter(center.x, center.y)
                 world = (it.world as CraftWorld).handle
 
-                lerpSizeBetween(size, radius + change, 1000 * 3)
+                lerpSizeBetween(size, radius + change, 1000 * 3, it.world.time)
             }
             val serverPlayer = (it as CraftPlayer).handle
             serverPlayer.connection.send(ClientboundInitializeBorderPacket(dummyBorder))
