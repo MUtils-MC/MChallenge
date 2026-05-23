@@ -8,15 +8,15 @@ import org.yaml.snakeyaml.Yaml
 
 plugins {
     id("idea")
-    kotlin("jvm") version "2.1.0"
-    kotlin("plugin.serialization") version "2.1.0"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.17"
+    kotlin("jvm") version "2.3.21"
+    kotlin("plugin.serialization") version "2.3.21"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
     id("xyz.jpenilla.run-paper") version "2.3.0"
     id("net.minecrell.plugin-yml.paper") version "0.6.0"
     id("com.modrinth.minotaur") version "2.+"
-    id("io.github.dexman545.outlet") version "1.6.1"
+    id("io.github.dexman545.outlet") version "1.8.0"
 
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = properties["group"] as String
@@ -33,10 +33,8 @@ repositories {
     maven("https://dl.cloudsmith.io/public/matyrobbrt/javanbt/maven/")
 }
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
-    paperweight.paperDevBundle("$gameVersion-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("$gameVersion.build.+")
 
     // Kotlin libraries
     library(kotlin("stdlib"))
@@ -46,8 +44,8 @@ dependencies {
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
     implementation("de.miraculixx:kpaper-light:1.2.2")
-    implementation("dev.jorel:commandapi-paper-shade:11.0.0")
-    implementation("dev.jorel:commandapi-kotlin-paper:11.0.0")
+    implementation("dev.jorel:commandapi-paper-shade:11.2.0")
+    implementation("dev.jorel:commandapi-kotlin-paper:11.2.0")
     implementation("io.github.matyrobbrt:javanbt:0.0.3")
 
     // Internal APIs
@@ -69,10 +67,10 @@ tasks {
     }
     compileJava {
         options.encoding = "UTF-8"
-        options.release.set(21)
+        options.release.set(25)
     }
     compileKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_25)
     }
     shadowJar {
         dependencies {

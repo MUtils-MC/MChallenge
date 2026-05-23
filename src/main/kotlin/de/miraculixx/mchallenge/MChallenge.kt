@@ -102,13 +102,17 @@ class MChallenge : KPaper() {
         if (settings.reset) {
             console.sendMessage(prefix + cmp("Delete loaded worlds..."))
             settings.worlds.forEach {
+                if (it.endsWith("_nether") || it.endsWith("_the_end")) {
+                    return@forEach
+                }
+
                 val currentRelativePath = Paths.get(it)
                 val path = currentRelativePath.toAbsolutePath().toString()
                 console.sendMessage(prefix + cmp("World Path: $path"))
                 File(path).listFiles()?.forEach { file ->
                     file.deleteRecursively()
-                    File("$path/playerdata").mkdirs()
                 }
+                File("$path/players/data").mkdirs()
             }
             settings.reset = false
             settings.worlds.clear()

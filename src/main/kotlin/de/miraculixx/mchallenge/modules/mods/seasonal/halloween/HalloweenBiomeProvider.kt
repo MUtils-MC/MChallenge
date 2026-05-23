@@ -1,6 +1,7 @@
 package de.miraculixx.mchallenge.modules.mods.seasonal.halloween
 
 import org.bukkit.FeatureFlag
+import org.bukkit.NamespacedKey
 import org.bukkit.Registry
 import org.bukkit.World.Environment
 import org.bukkit.block.Biome
@@ -53,6 +54,10 @@ class HalloweenBiomeProvider : BiomeProvider() {
 
         override fun getFeatureFlags(): @Unmodifiable Set<FeatureFlag> {
             return setOf()
+        }
+
+        override fun getKey(): NamespacedKey {
+            return NamespacedKey.minecraft(worldName)
         }
     }
 }

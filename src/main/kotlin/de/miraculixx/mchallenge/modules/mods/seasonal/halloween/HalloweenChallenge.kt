@@ -119,7 +119,7 @@ class HalloweenChallenge : Challenge {
         taskRunLater(1) {
             repeat((10..15).random()) {
                 pos.world.spawn(pos, Bat::class.java).apply {
-                    equipment.helmet = specialItems.candy().add(if (Random.nextBoolean()) 2 else 1) // 1 or 2
+                    equipment.setHelmet(specialItems.candy().add(if (Random.nextBoolean()) 2 else 1)) // 1 or 2
                     equipment.helmetDropChance = 1f
                     health = 1.0
                 }
@@ -161,7 +161,7 @@ class HalloweenChallenge : Challenge {
 
             if (!village.persistentDataContainer.has(villagerKey)) {
                 village.persistentDataContainer.set(villagerKey, PersistentDataType.BOOLEAN, true)
-                village.equipment.helmet = ItemStack(Material.JACK_O_LANTERN)
+                village.equipment.setHelmet(ItemStack(Material.JACK_O_LANTERN))
                 village.profession = Villager.Profession.CLERIC
                 village.villagerExperience = 10
                 val dummyList = villageTrades.toMutableList()
@@ -185,10 +185,10 @@ class HalloweenChallenge : Challenge {
         if (isBat) {
             taskRunLater(1) {
                 when (it.slotType) {
-                    PlayerArmorChangeEvent.SlotType.HEAD -> player.equipment.helmet = null
-                    PlayerArmorChangeEvent.SlotType.CHEST -> player.equipment.chestplate = null
-                    PlayerArmorChangeEvent.SlotType.LEGS -> player.equipment.leggings = null
-                    PlayerArmorChangeEvent.SlotType.FEET -> player.equipment.boots = null
+                    PlayerArmorChangeEvent.SlotType.HEAD -> player.equipment.setHelmet(null)
+                    PlayerArmorChangeEvent.SlotType.CHEST -> player.equipment.setChestplate(null)
+                    PlayerArmorChangeEvent.SlotType.LEGS -> player.equipment.setLeggings(null)
+                    PlayerArmorChangeEvent.SlotType.FEET -> player.equipment.setBoots(null)
                 }
                 player.inventory.addItem(it.newItem)
             }
@@ -239,7 +239,7 @@ class HalloweenChallenge : Challenge {
             is Chicken -> {
                 loc.world.spawn(loc, Slime::class.java, CreatureSpawnEvent.SpawnReason.SPELL).apply {
                     setWander(true)
-                    equipment.helmet = ItemStack(if (Random.nextBoolean()) Material.BROWN_MUSHROOM else Material.RED_MUSHROOM)
+                    equipment.setHelmet(ItemStack(if (Random.nextBoolean()) Material.BROWN_MUSHROOM else Material.RED_MUSHROOM))
                 }
                 it.isCancelled = true
             }
@@ -325,10 +325,10 @@ class HalloweenChallenge : Challenge {
                 player.removePotionEffect(PotionEffectType.INVISIBILITY)
                 val equip = armorCache[player]
                 val currentEquip = player.equipment
-                currentEquip.helmet = equip?.head
-                currentEquip.chestplate = equip?.body
-                currentEquip.leggings = equip?.pants
-                currentEquip.boots = equip?.feet
+                currentEquip.setHelmet(equip?.head)
+                currentEquip.setChestplate(equip?.body)
+                currentEquip.setLeggings(equip?.pants)
+                currentEquip.setBoots(equip?.feet)
                 player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = 20.0
                 ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
@@ -348,10 +348,10 @@ class HalloweenChallenge : Challenge {
                 val currentEquip = player.equipment
                 val equip = Equip(currentEquip.helmet, currentEquip.chestplate, currentEquip.leggings, currentEquip.boots)
                 armorCache[player] = equip
-                currentEquip.helmet = null
-                currentEquip.chestplate = null
-                currentEquip.leggings = null
-                currentEquip.boots = null
+                currentEquip.setHelmet(null)
+                currentEquip.setChestplate(null)
+                currentEquip.setLeggings(null)
+                currentEquip.setBoots(null)
                 player.getAttribute(Attribute.MAX_HEALTH)?.baseValue = 1.0
                 ParticleBuilder(Particle.ENTITY_EFFECT).offset(0.996078431372549, 0.9921568627450981, 0.0392156862745098)
                     .count(0).extra(1.0).receivers(player).location(player.location).spawn()
@@ -381,7 +381,7 @@ class HalloweenChallenge : Challenge {
         targets.forEach { p -> p.playSound(location, Sound.ENTITY_BAT_AMBIENT, 1f, Random.nextFloat() + 0.5f) }
         console.dispatchCommand("particle dust_color_transition 0.000 0.000 0.000 1 0.388 0.000 0.325 ${location.x} ${location.y} ${location.z} .5 .1 .5 1 8 normal")
         if (drop) {
-            bat.equipment.helmet = specialItems.candy()
+            bat.equipment.setHelmet(specialItems.candy())
             bat.equipment.helmetDropChance = 0.9f
         }
     }
