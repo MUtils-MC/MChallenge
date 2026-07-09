@@ -89,7 +89,7 @@ class HalloweenChallenge : Challenge {
 
     override fun start(): Boolean {
         val world = worlds[0]
-        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true)
+        world.setGameRule(GameRules.ADVANCE_TIME, true)
         startScheduler()
         val inventoryItems = HalloweenGUIItem()
         val inventoryLogic = HalloweenGUILogic(this)
@@ -101,7 +101,7 @@ class HalloweenChallenge : Challenge {
                 clickAction = inventoryLogic.run
             }
         }
-        world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false)
+        world.setGameRule(GameRules.SEND_COMMAND_FEEDBACK, false)
         return true
     }
 

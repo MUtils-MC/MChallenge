@@ -38,8 +38,8 @@ dependencies {
 
     // Kotlin libraries
     library(kotlin("stdlib"))
-    library("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.+")
-    library("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.+")
+    library("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.+")
+    library("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.+")
 
     // MC Libraries
     implementation("de.miraculixx:mc-commons:1.0.1")
@@ -57,8 +57,8 @@ dependencies {
     compileOnly("de.miraculixx:timer-api:1.1.3")
 
     // Paper Includes
-    paperLibrary("io.ktor:ktor-client-core-jvm:2.3.7")
-    paperLibrary("io.ktor:ktor-client-cio-jvm:2.3.7")
+    paperLibrary("io.ktor:ktor-client-core-jvm:3.4.3")
+    paperLibrary("io.ktor:ktor-client-cio-jvm:3.4.3")
 }
 
 tasks {
@@ -90,7 +90,7 @@ sourceSets {
 
 paper {
     main = "$group.${projectName.lowercase()}.${projectName}"
-    apiVersion = "1.20"
+    apiVersion = "1.21"
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
 
     // Plugin bootstrapper/loader
@@ -116,7 +116,7 @@ paper {
 }
 
 modrinth {
-    token.set(properties["modrinthToken"] as String)
+    //token.set(properties["modrinthToken"] as String)
     projectId.set(properties["modrinthProjectId"] as? String ?: properties["name"] as String)
     versionNumber.set(version as String)
     versionType.set(properties["publishState"] as String)
