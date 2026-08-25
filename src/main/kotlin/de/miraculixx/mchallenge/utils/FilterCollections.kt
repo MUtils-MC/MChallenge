@@ -1,6 +1,5 @@
 package de.miraculixx.mchallenge.utils
 
-import de.miraculixx.mcommons.majorVersion
 import org.bukkit.Material
 
 fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
@@ -54,6 +53,6 @@ fun getItems(silkTouch: Boolean, removeHardToObtain: Boolean): List<Material> {
             Material.DEBUG_STICK,
         )
     )
-    if (majorVersion >= 17) list.remove(Material.BUDDING_AMETHYST)
+    list.remove(Material.BUDDING_AMETHYST)
     return list
 }

@@ -17,8 +17,6 @@ import de.miraculixx.mchallenge.modules.global.RuleListener
 import de.miraculixx.mchallenge.modules.packs.ResourcePacks
 import de.miraculixx.mchallenge.modules.spectator.Spectator
 import de.miraculixx.mchallenge.utils.config.ConfigManager
-import de.miraculixx.mcommons.majorVersion
-import de.miraculixx.mcommons.minorVersion
 import de.miraculixx.mcommons.text.*
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
@@ -72,11 +70,6 @@ class MChallenge : KPaper() {
         debug = true
 
         CommandAPI.onLoad(CommandAPIPaperConfig(this).silentLogs(true).fallbackToLatestNMS(true))
-
-        // Define version
-        val versionSplit = server.minecraftVersion.split('.')
-        majorVersion = versionSplit.getOrNull(1)?.toIntOrNull() ?: 0
-        minorVersion = versionSplit.getOrNull(2)?.toIntOrNull() ?: 0
 
         // Configure Brigadier commands
         ChallengeCommand()

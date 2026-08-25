@@ -8,7 +8,6 @@ import de.miraculixx.kpaper.items.name
 import de.miraculixx.mchallenge.modules.spectator.SpecCollection
 import de.miraculixx.mchallenge.modules.spectator.data.Activation
 import de.miraculixx.mchallenge.modules.spectator.data.Visibility
-import de.miraculixx.mcommons.majorVersion
 import de.miraculixx.mcommons.text.*
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
@@ -31,7 +30,7 @@ class ItemsSpecSettings(private val settings: SpecCollection, private val locale
             10 to itemStack(Material.ENDER_EYE) {
                 getToggleAble(1, "items.spec.visibility", settings.hide == Visibility.HIDDEN, true)
             },
-            11 to itemStack(if (majorVersion >= 17) Material.SPYGLASS else Material.ENDER_EYE) {
+            11 to itemStack(Material.SPYGLASS) {
                 getToggleAble(2, "items.spec.visibilityOther", settings.selfHide == Visibility.HIDDEN, true)
             },
             13 to itemStack(Material.FEATHER) {
