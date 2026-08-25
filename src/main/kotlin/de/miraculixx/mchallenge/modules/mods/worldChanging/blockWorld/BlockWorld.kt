@@ -20,9 +20,9 @@ class BlockWorld : Challenge {
         it.isBlock && !it.isLegacy && isValidBlock(it)
     }
 
-    private val overworld = WorldCreator.name(worldName).generator(ChunkProvider(materials)).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NORMAL).createWorld()
-    private val nether = WorldCreator.name("${worldName}_nether").generator(ChunkProvider(materials)).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NETHER).createWorld()
-    private val end = WorldCreator.name("${worldName}_the_end").generator(ChunkProvider(materials)).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.THE_END).createWorld()
+    private val overworld = WorldCreator.name(worldName).generator(ChunkProvider(materials)).environment(World.Environment.NORMAL).createWorld()
+    private val nether = WorldCreator.name("${worldName}_nether").generator(ChunkProvider(materials)).environment(World.Environment.NETHER).createWorld()
+    private val end = WorldCreator.name("${worldName}_the_end").generator(ChunkProvider(materials)).environment(World.Environment.THE_END).createWorld()
 
     init {
         println(materials)
@@ -37,9 +37,9 @@ class BlockWorld : Challenge {
     }
 
     override fun start(): Boolean {
-        overworld?.setGameRule(GameRule.DO_FIRE_TICK, false)
-        nether?.setGameRule(GameRule.DO_FIRE_TICK, false)
-        end?.setGameRule(GameRule.DO_FIRE_TICK, false)
+        overworld?.setGameRule(GameRules.FIRE_SPREAD_RADIUS_AROUND_PLAYER, 0)
+        nether?.setGameRule(GameRules.FIRE_SPREAD_RADIUS_AROUND_PLAYER, 0)
+        end?.setGameRule(GameRules.FIRE_SPREAD_RADIUS_AROUND_PLAYER, 0)
         val loc = overworld?.spawnLocation ?: throw IllegalArgumentException("World could not be loaded! Do you use an unsupported version?")
         onlinePlayers.forEach { p -> p.teleportAsync(loc) }
         return true

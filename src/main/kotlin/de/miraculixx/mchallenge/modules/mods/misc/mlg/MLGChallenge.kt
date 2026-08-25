@@ -167,7 +167,7 @@ class MLGChallenge : Challenge {
                     .createWorld()
                 world?.let {
                     mlgWorlds.add(it)
-                    it.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true)
+                    it.setGameRule(GameRules.IMMEDIATE_RESPAWN, true)
                 }
                 world to player
             }
