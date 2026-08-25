@@ -27,7 +27,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
-import java.nio.file.Paths
 import kotlin.time.Duration.Companion.milliseconds
 
 
@@ -97,26 +96,6 @@ class MChallenge : KPaper() {
         ConfigManager.addConfigurable(ChallengeManager)
         val settings = ConfigManager.settings
         debug = settings.debug
-
-        // Reset World
-        if (settings.reset) {
-            console.sendMessage(prefix + cmp("Delete loaded worlds..."))
-            settings.worlds.forEach {
-                if (it.endsWith("_nether") || it.endsWith("_the_end")) {
-                    return@forEach
-                }
-
-                val currentRelativePath = Paths.get(it)
-                val path = currentRelativePath.toAbsolutePath().toString()
-                console.sendMessage(prefix + cmp("World Path: $path"))
-                File(path).listFiles()?.forEach { file ->
-                    file.deleteRecursively()
-                }
-                File("$path/players/data").mkdirs()
-            }
-            settings.reset = false
-            settings.worlds.clear()
-        }
 
 
         // Login with MUtils account

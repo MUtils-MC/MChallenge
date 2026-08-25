@@ -22,7 +22,6 @@ import org.bukkit.generator.LimitedRegion
 import org.bukkit.generator.WorldInfo
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
-import java.io.File
 import java.util.*
 
 class MineFieldWorld : Challenge {
@@ -53,9 +52,9 @@ class MineFieldWorld : Challenge {
     override fun start(): Boolean {
         worldInitEvent.register()
 
-        overworld = WorldCreator.name(worldName).keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NORMAL).createWorld() ?: return false
-        nether = WorldCreator.name("${worldName}_nether").keepSpawnLoaded(TriState.FALSE).environment(World.Environment.NETHER).createWorld() ?: return false
-        end = WorldCreator.name("${worldName}_end").keepSpawnLoaded(TriState.FALSE).environment(World.Environment.THE_END).createWorld() ?: return false
+        overworld = WorldCreator.name(worldName).environment(World.Environment.NORMAL).createWorld() ?: return false
+        nether = WorldCreator.name("${worldName}_nether").environment(World.Environment.NETHER).createWorld() ?: return false
+        end = WorldCreator.name("${worldName}_end").environment(World.Environment.THE_END).createWorld() ?: return false
 
         val spawnBlock = overworld.getHighestBlockAt(0, 0)
         if (spawnBlock.type == Material.WATER || spawnBlock.type == Material.LAVA) {
@@ -83,8 +82,9 @@ class MineFieldWorld : Challenge {
     }
 
     private fun World?.removeWorld() {
-        this?.let { Bukkit.unloadWorld(it, false) }
-        File(worldName).deleteRecursively()
+        val folder = this?.worldFolder ?: return
+        Bukkit.unloadWorld(this, false)
+        folder.deleteRecursively()
     }
 
     private val onPortal = listen<PlayerTeleportEvent>(register = false) {

@@ -11,7 +11,6 @@ import org.bukkit.*
 import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.generator.ChunkGenerator
 import org.bukkit.generator.WorldInfo
-import java.io.File
 import java.util.*
 
 
@@ -56,8 +55,9 @@ class BlockWorld : Challenge {
     }
 
     private fun World?.removeWorld() {
-        this?.let { Bukkit.unloadWorld(it, false) }
-        File(worldName).deleteRecursively()
+        val folder = this?.worldFolder ?: return
+        Bukkit.unloadWorld(this, false)
+        folder.deleteRecursively()
     }
 
     private fun isValidBlock(m: Material): Boolean {

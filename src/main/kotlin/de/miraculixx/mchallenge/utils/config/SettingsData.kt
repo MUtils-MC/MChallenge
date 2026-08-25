@@ -10,7 +10,7 @@ data class SettingsData(
     var language: @Serializable(with = LocaleSerializer::class) Locale = Locale.ENGLISH,
     val gui: GuiSettings = GuiSettings(),
     var reset: Boolean = false,
-    val worlds: MutableSet<String> = mutableSetOf()
+    var resetSeed: String? = null
 )
 
 @Serializable

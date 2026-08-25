@@ -32,7 +32,6 @@ import org.bukkit.persistence.PersistentDataType
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.bukkit.util.Vector
-import java.io.File
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -109,8 +108,9 @@ class HalloweenChallenge : Challenge {
         if (spookyWorld != null) {
             val spawn = worlds[0].spawnLocation
             spookyWorld?.players?.forEach { p -> p.teleport(spawn) }
+            val folder = spookyWorld!!.worldFolder
             Bukkit.unloadWorld(spookyWorld!!, false)
-            File(spookyWorld!!.name).deleteRecursively()
+            folder.deleteRecursively()
         }
     }
 

@@ -15,7 +15,6 @@ import net.kyori.adventure.bossbar.BossBar
 import org.bukkit.*
 import org.bukkit.block.Biome
 import org.bukkit.entity.Player
-import java.io.File
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -136,8 +135,9 @@ class OneBiomeSwitcher {
             if (name.endsWith("-O") || name.endsWith("-N") || name.endsWith("-E"))
                 if (!name.startsWith(newBiome.toString())) {
                     it.players.forEach { p -> p.teleportAsync(worldSpawn) }
+                    val folder = it.worldFolder
                     Bukkit.unloadWorld(it, false)
-                    File(name).deleteRecursively()
+                    folder.deleteRecursively()
                 }
         }
     }
