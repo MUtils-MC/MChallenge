@@ -1,7 +1,7 @@
 # 🧩 MChallenges
 
 <!-- modrinth_exclude.start -->
-### - [DOWNLOAD](https://modrinth.com/plugin/template) -
+### - [DOWNLOAD](https://modrinth.com/plugin/challenge) -
 <!-- modrinth_exclude.end -->
 
 MChallenges provides a variety of modifications (``challenges``) to change up your gameplay experience.<br>
@@ -18,7 +18,7 @@ We hope you will have the same fun while playing like us!
 
 ### ⇒ **Latest Update Trailer**
 <!-- modrinth_exclude.start -->
-[![Latest Update Trailer](.github/assets/thumbnail.png)](https://www.youtube.com/video/dQpM0Lkeh5c)
+[![Latest Update Trailer](.github/assets/thumbnail.png)](https://www.youtube.com/watch?v=dQpM0Lkeh5c)
 <!-- modrinth_exclude.end -->
 
 
@@ -33,7 +33,7 @@ All challenges can be combined and played in multiplayer or singleplayer (some r
 You have an idea for a new Challenge?
 We would be happy to hear it in our [discord](https://dc.mutils.net)!
 
-**▪ Current Challenge count** ⇒ ``69``
+**▪ Current Challenge count** ⇒ ``70``
 
 <!-- modrinth_exclude.start -->
 > **Important**<br>
@@ -281,6 +281,18 @@ The world gone crazy and every few seconds the gravity switches between 4 new gr
 
 🏷️ **Tags**
 - `Medium` - Slightly more difficult than normal Minecraft but still very doable
+</details><details><summary><b>Border</b> ▪ <img src='https://mutils.net/images/mc/grab/rendered/iron_bars.png' width='18'></summary>
+A border will be created around you which will grow with depending on your mode. Can you handle the limited space?
+
+---
+
+⚙️ **Settings**
+- `Border Radius` - Radius settings for the border
+- `Border Mode` - When should the border grow
+
+🏷️ **Tags**
+- `Medium` - Slightly more difficult than normal Minecraft but still very doable
+- `Force` - You receive a task and are forced to finish it to proceed<br>*Currently requires full access*
 </details><details><summary><b>MLG Challenge</b> ▪ <img src='https://mutils.net/images/mc/grab/items/water_bucket.png' width='18'></summary>
 Once a while you are forced to perform a random MLG! Can you survive the fall?
 

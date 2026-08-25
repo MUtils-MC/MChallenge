@@ -1,4 +1,5 @@
 import dex.plugins.outlet.v2.util.ReleaseType
+import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import net.minecrell.pluginyml.paper.PaperPluginDescription
@@ -80,6 +81,19 @@ tasks {
         }
         relocate("dev.jorel.commandapi", "de.miraculixx.mchallenge.commandapi")
     }
+    named("generatePaperPluginDescription") {
+        val librariesJson = layout.buildDirectory.file("generated/plugin-yml/Paper/paper-libraries.json")
+        doLast {
+            val file = librariesJson.get().asFile
+            if (!file.exists()) return@doLast
+            @Suppress("UNCHECKED_CAST")
+            val parsed = JsonSlurper().parse(file) as MutableMap<String, Any>
+            @Suppress("UNCHECKED_CAST")
+            val repositories = parsed["repositories"] as? Map<String, String> ?: emptyMap()
+            parsed["repositories"] = repositories.filterValues { it.startsWith("http") }
+            file.writeText(JsonOutput.toJson(parsed))
+        }
+    }
 }
 
 sourceSets {
@@ -116,12 +130,12 @@ paper {
 }
 
 modrinth {
-    //token.set(properties["modrinthToken"] as String)
     projectId.set(properties["modrinthProjectId"] as? String ?: properties["name"] as String)
     versionNumber.set(version as String)
     versionType.set(properties["publishState"] as String)
+    token.set(properties["modrinthToken"] as? String ?: "")
 
-    uploadFile.set(tasks.jar)
+    uploadFile.set(tasks.shadowJar)
     versionName = "MChallenge - ${properties["version"]}"
     outlet.mcVersionRange = properties["supportedVersions"] as String
     outlet.allowedReleaseTypes = setOf(ReleaseType.RELEASE)
@@ -136,7 +150,7 @@ modrinth {
         required.project("mweb")
     }
 
-    changelog = "- New Challenge -> Onestack (Stack limit)\n- New Challenge Setting -> Entity drop randomizer for items"
+    changelog = "- Fix many issues related to new world format & gamerules"
 
     syncBodyFrom = rootProject.file(".github/assets/README-Modrinth.md").readText()
 }
@@ -229,13 +243,14 @@ val craftReadme = task("craftReadme") {
         }
 
         val githubRemover = Regex("<!-- github_exclude\\.start -->(.*?)<!-- github_exclude\\.end -->", RegexOption.DOT_MATCHES_ALL)
+        val modrinthRemover = Regex("<!-- modrinth_exclude\\.start -->(.*?)<!-- modrinth_exclude\\.end -->", RegexOption.DOT_MATCHES_ALL)
         val sourceFile = File(".github/assets/README.md")
         val readmeModrinth = File(".github/assets/README-Modrinth.md")
         val readmeFile = File("README.md")
         var readmeContent = sourceFile.readText()
         readmeContent = readmeContent.replace("<!-- challenges -->", challengeString)
         readmeContent = readmeContent.replace("<!-- challenge-count -->", (challengeList.size + 10).toString()) // Multi Challenges: Disabler 6, Mirror 4, Force Collect 3
-        readmeModrinth.writeText(readmeContent)
+        readmeModrinth.writeText(modrinthRemover.replace(readmeContent, ""))
         readmeFile.writeText(githubRemover.replace(readmeContent, ""))
     }
 }

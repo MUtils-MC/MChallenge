@@ -1,7 +1,7 @@
 # 🧩 MChallenges
 
 <!-- modrinth_exclude.start -->
-### - [DOWNLOAD](https://modrinth.com/plugin/template) -
+### - [DOWNLOAD](https://modrinth.com/plugin/challenge) -
 <!-- modrinth_exclude.end -->
 
 MChallenges provides a variety of modifications (``challenges``) to change up your gameplay experience.<br>
@@ -18,7 +18,7 @@ We hope you will have the same fun while playing like us!
 
 ### ⇒ **Latest Update Trailer**
 <!-- modrinth_exclude.start -->
-[![Latest Update Trailer](.github/assets/thumbnail.png)](https://www.youtube.com/video/dQpM0Lkeh5c)
+[![Latest Update Trailer](.github/assets/thumbnail.png)](https://www.youtube.com/watch?v=dQpM0Lkeh5c)
 <!-- modrinth_exclude.end -->
 
 <!-- github_exclude.start -->
